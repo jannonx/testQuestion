@@ -1,0 +1,249 @@
+apply plugin: 'com.android.application'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'bugly'
+
+//本地properties文件配置数据
+Properties properties = new Properties()
+def writer = project.rootProject.file('local_config.properties')
+properties.load(writer.newDataInputStream())
+def verCode = properties.getProperty("mainVersionCode")
+def appVersionName = properties.getProperty("mainVersionName")
+def appversionCode = verCode.toInteger()
+def runTasks = gradle.startParameter.taskNames
+def bugly_app_id = properties.getProperty("BUGLY_APP_ID")
+def bugly_app_key = properties.getProperty("BUGLY_APP_KEY")
+
+
+android {
+    compileSdkVersion BuildConfig.compileSdkVersion
+    buildToolsVersion BuildConfig.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.guyuan.dear"
+        minSdkVersion BuildConfig.minSdkVersion
+        targetSdkVersion BuildConfig.targetSdkVersion
+        versionCode appversionCode
+        versionName appVersionName
+        flavorDimensions "default"
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // Enabling multidex support.
+        multiDexEnabled true
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [eventBusIndex: 'com.bandeng.MyEventBusIndex']
+            }
+        }
+
+        //设置支持的so库架构类型
+        ndk {
+            abiFilters 'armeabi', "armeabi-v7a", "x86"
+        }
+    }
+
+    //开启databingding
+    buildFeatures {
+        dataBinding = true
+    }
+
+
+    //apk分割设置
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi-v7a', 'x86_64'
+            universalApk true
+        }
+    }
+
+    //签名设置
+    signingConfigs {
+        config {
+            keyAlias 'gy'
+            keyPassword 'gy000000'
+            storeFile file('../keystore/sm.jks')
+            storePassword 'gy000000'
+        }
+    }
+
+
+    buildTypes {
+        //通用配置
+        commons {
+            buildConfigField "String", "SPEECH_APP_ID", properties.getProperty("SPEECH_APP_ID")
+            buildConfigField "String", "EZOpenKEY", properties.getProperty("EZOpenKEY")
+
+            buildConfigField "String", "MEIZU_APP_ID", properties.getProperty("MEIZU_APP_ID")
+            buildConfigField "String", "MEIZU_APP_KEY", properties.getProperty("MEIZU_APP_KEY")
+
+            buildConfigField "String", "OPPO_APP_KEY", properties.getProperty("OPPO_APP_KEY")
+            buildConfigField "String", "OPPO_APP_SECRET", properties.getProperty("OPPO_APP_SECRET")
+
+            buildConfigField "String", "AGORA_APP_ID", properties.getProperty("AGORA_APP_ID")
+
+            matchingFallbacks = ['debug', 'release'] //依赖库没有指定的buildtype采用这里指定的buildtype
+        }
+
+        //release
+        release {
+            initWith(buildTypes.commons)
+            buildConfigField "String", "SERVER_URL", properties.getProperty("RELEASE_SERVER_URL")
+            buildConfigField "String", "PIC_URL", properties.getProperty("RELEASE_SERVER_PIC_URL")
+            buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_LOCAL_APP_KEY")
+            buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_LOCAL_MSG_SECRET")
+            buildConfigField "String", "XIAO_MI_APP_ID", properties.getProperty("XIAO_MI_LOCAL_APP_ID")
+            buildConfigField "String", "XIAO_MI_APP_KEY", properties.getProperty("XIAO_MI_LOCAL_APP_KEY")
+            buildConfigField "Integer", "MORNING_BRIEFING_START_HOUR", properties.getProperty("MORNING_BRIEFING_START_HOUR")
+            buildConfigField "Integer", "MORNING_BRIEFING_START_MINUTE", properties.getProperty("MORNING_BRIEFING_START_MINUTE")
+            buildConfigField "Integer", "MORNING_BRIEFING_STOP_HOUR", properties.getProperty("MORNING_BRIEFING_STOP_HOUR")
+            buildConfigField "Integer", "MORNING_BRIEFING_STOP_MINUTE", properties.getProperty("MORNING_BRIEFING_STOP_MINUTE")
+            //    applicationIdSuffix ".release" //正式包APPID后缀,在手机上正式包和测试包就能共存了
+            signingConfig signingConfigs.config
+            debuggable false
+            zipAlignEnabled true //字节码优化
+            shrinkResources true //检测和删除没有使用的类，字段，方法和属性
+            minifyEnabled true //代码混淆
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+
+        //debug
+        debug {
+            initWith(buildTypes.commons)
+            buildConfigField "String", "SERVER_URL", properties.getProperty("DEBUG_SERVER_URL")
+            buildConfigField "String", "PIC_URL", properties.getProperty("DEBUG_SERVER_PIC_URL")
+            buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_LOCAL_APP_KEY")
+            buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_LOCAL_MSG_SECRET")
+            buildConfigField "String", "XIAO_MI_APP_ID", properties.getProperty("XIAO_MI_LOCAL_APP_ID")
+            buildConfigField "String", "XIAO_MI_APP_KEY", properties.getProperty("XIAO_MI_LOCAL_APP_KEY")
+            buildConfigField "Integer", "MORNING_BRIEFING_START_HOUR", properties.getProperty("MORNING_BRIEFING_START_HOUR")
+            buildConfigField "Integer", "MORNING_BRIEFING_START_MINUTE", properties.getProperty("MORNING_BRIEFING_START_MINUTE")
+            buildConfigField "Integer", "MORNING_BRIEFING_STOP_HOUR", properties.getProperty("MORNING_BRIEFING_STOP_HOUR")
+            buildConfigField "Integer", "MORNING_BRIEFING_STOP_MINUTE", properties.getProperty("MORNING_BRIEFING_STOP_MINUTE")
+            //    applicationIdSuffix ".debug"//测试包APPID后缀
+            debuggable true
+            signingConfig signingConfigs.config
+        }
+    }
+
+    //lint检测设置
+    lintOptions {
+        disable 'GoogleAppIndexingWarning' //去除google搜索检测不到该app警告
+        //  baseline file("lint-baseline.xml") // your choice of filename/path here
+    }
+
+//忽略通用配置在variant的显示
+    variantFilter { variant ->
+        if (variant.buildType.name.equals('commons')) {
+            variant.setIgnore(true)
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+bugly {
+    appId = bugly_app_id // 注册时分配的App ID
+    appKey = bugly_app_key // 注册时分配的App Key
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(path: ':mvvmlibrary')
+    implementation project(path: ':httplibrary')
+    implementation fileTree(dir: 'libs', include: ['LibEasyRecyclerView.aar'])
+    implementation AndroidX.appcompat
+    implementation AndroidX.constraintlayout
+    implementation Android.meteria
+    implementation AndroidX.lifeCycleExtension
+    implementation AndroidX.lifecycleRuntime
+    implementation AndroidX.lifeCycleKT
+    //google官方下拉刷新控件
+    implementation AndroidX.swiperefreshlayout
+    //为了使用谷歌最新的MergeAdapter导入新版本的库 by Leo
+    implementation AndroidX.recyclerview
+    //paging
+    implementation AndroidX.pagingRuntime
+    testImplementation AndroidX.pagingCommon
+    implementation AndroidX.pagingRxJava
+    implementation AndroidX.pagingGuava
+    //谷歌分包方案，解决方法数最大值65536限制(api21以下需要该库)
+    implementation AndroidX.multidex
+
+    //zxing
+    implementation Android.zxing
+
+    //hilt
+    implementation Hilt.daggerRuntime
+    kapt Hilt.daggerCompiler
+    implementation Hilt.viewModule
+    kapt Hilt.compiler
+
+    //====================测试库=========================
+    testImplementation Depend.junit
+    androidTestImplementation Depend.androidTestJunit
+    androidTestImplementation Depend.espressoCore
+
+    //===========================第三方库===============================
+
+    //evenbus
+    implementation EventBus.eventBus
+    //annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.0.1'
+
+
+    //leakcanary内存泄漏检测
+    debugImplementation Leakcanary.open
+    releaseImplementation Leakcanary.close
+
+    //gson
+    implementation Gson.runtime
+
+    //glide图片加载库
+    implementation Glide.runtime
+    implementation Glide.okhttp3Integration
+    implementation Glide.annotations
+    annotationProcessor Glide.compiler
+
+
+    //rxandroid
+    implementation Rxandroid.rxjava2
+    implementation Rxandroid.rxandroid
+
+    //retrofit
+    implementation Retrofit.runtime
+    implementation Retrofit.gson
+    implementation Retrofit.adapter
+    implementation Retrofit.logging
+
+    //兼容kotlin
+    implementation Kt.stdlibJdk7
+
+    //屏幕适配
+    implementation AutoSize.runtime
+
+    //bugly
+    implementation Bugly.upgrade
+    implementation Bugly.nativecrashreport
+
+    //文件选择
+    implementation FilePicker.runtime
+}

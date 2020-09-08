@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Dear</string>
+
+    <string name="default_title_realtime_progress">我的关注</string>
+    <string name="default_title_process_control">我的工作</string>
+    <string name="default_title_mobile_office">掌上办公</string>
+    <string name="default_title_smart_analysis">智慧管理</string>
+</resources>

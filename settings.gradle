@@ -1,0 +1,4 @@
+include ':httplibrary'
+include ':mvvmlibrary'
+include ':app'
+rootProject.name = "Dear"

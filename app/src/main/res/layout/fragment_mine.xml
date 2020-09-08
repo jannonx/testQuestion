@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/home_bar_ll"
+            layout="@layout/home_bar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginTop="10dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_svg_staff_icon_default" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/loginOrRegister_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="注册/登录"
+                android:textColor="@color/color_grey_464646"
+                android:textSize="19sp"
+                app:layout_constraintLeft_toRightOf="@id/iv_avatar"
+                app:layout_constraintTop_toTopOf="@id/iv_avatar"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tip_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="使用邮箱或手机登录"
+                android:textColor="@color/color_grey_757575"
+                android:textSize="13sp"
+                app:layout_constraintLeft_toLeftOf="@id/loginOrRegister_tv"
+                app:layout_constraintTop_toBottomOf="@id/loginOrRegister_tv" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="29dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="29dp"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_avatar">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_user_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="15dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="16dp"
+                        android:layout_height="17dp"
+                        app:srcCompat="@drawable/ic_svg_user_setting" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="9dp"
+                        android:text="个人信息"
+                        android:textColor="@color/color_grey_6d7278"
+                        android:textSize="15sp" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="23dp"
+                    android:background="@color/color_grey_757575" />
+
+                <!--    <androidx.appcompat.widget.LinearLayoutCompat-->
+                <!--      android:id="@+id/ll_account_safe"-->
+                <!--      android:layout_width="match_parent"-->
+                <!--      android:layout_height="wrap_content"-->
+                <!--      android:gravity="center_vertical"-->
+                <!--      android:paddingTop="@dimen/dp_13"-->
+                <!--      android:paddingBottom="@dimen/dp_15">-->
+
+                <!--      <androidx.appcompat.widget.AppCompatImageView-->
+                <!--        android:layout_width="@dimen/dp_16"-->
+                <!--        android:layout_height="@dimen/dp_17"-->
+                <!--        app:srcCompat="@drawable/ic_svg_account_security" />-->
+
+                <!--      <androidx.appcompat.widget.AppCompatTextView-->
+                <!--        android:layout_width="wrap_content"-->
+                <!--        android:layout_height="wrap_content"-->
+                <!--        android:layout_marginLeft="@dimen/dp_9"-->
+                <!--        android:text="账户安全"-->
+                <!--        android:textColor="@color/color_grey_6d7278"-->
+                <!--        android:textSize="@dimen/sp_15" />-->
+                <!--    </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+                <!--    <View-->
+                <!--      android:layout_width="match_parent"-->
+                <!--      android:layout_height="@dimen/dp_0p5"-->
+                <!--      android:layout_marginLeft="@dimen/dp_23"-->
+                <!--      android:background="@color/color_grey_757575" />-->
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_system_setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingTop="13dp"
+                    android:paddingBottom="15dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="16dp"
+                        android:layout_height="17dp"
+                        app:srcCompat="@drawable/ic_svg_system_setting" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_system_setting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="9dp"
+                        android:text="系统设置"
+                        android:textColor="@color/color_grey_6d7278"
+                        android:textSize="15sp" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="23dp"
+                    android:background="@color/color_grey_757575" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingTop="13dp"
+                    android:paddingBottom="15dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="16dp"
+                        android:layout_height="17dp"
+                        app:srcCompat="@drawable/ic_svg_about" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_about"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="9dp"
+                        android:text="关于"
+                        android:textColor="@color/color_grey_6d7278"
+                        android:textSize="15sp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_newVersion"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginLeft="9dp"
+                        android:background="@drawable/bg_red_dot"
+                        android:visibility="gone" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="23dp"
+                    android:background="@color/color_grey_757575" />
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_modify_pw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingTop="13dp"
+                    android:paddingBottom="15dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="16dp"
+                        android:layout_height="17dp"
+                        app:srcCompat="@drawable/ic_svg_change_account" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/modify_password_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="9dp"
+                        android:text="修改密码"
+                        android:textColor="@color/color_grey_6d7278"
+                        android:textSize="15sp" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="23dp"
+                    android:background="@color/color_grey_757575" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/ll_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingTop="13dp"
+                    android:paddingBottom="15dp">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="16dp"
+                        android:layout_height="17dp"
+                        app:srcCompat="@drawable/ic_svg_log_out" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/fragment_user_setting_tv_logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="9dp"
+                        android:text="退出登录"
+                        android:textColor="@color/color_grey_6d7278"
+                        android:textSize="15sp" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="23dp"
+                    android:background="@color/color_grey_757575" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+</layout>

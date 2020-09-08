@@ -1,0 +1,69 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!--状态栏颜色-->
+        <item name="colorPrimary">@color/white</item>
+        <!--通知栏颜色-->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!--控件选中颜色-->
+        <item name="colorAccent">@color/blue</item>
+        <!--文字颜色主体-->
+        <item name="android:textColorPrimary">@color/black</item>
+        <!--去掉点击水波纹效果-->
+        <item name="android:selectableItemBackground">@null</item>
+        <!--        <item name="android:selectableItemBackgroundBorderless">@null</item>-->
+        <!--activity支持5.0动画跳转-->
+        <!--        <item name="android:windowActivityTransitions">true</item>-->
+        <item name="android:windowBackground">@color/bg_window</item>
+
+        <!--布局内容延展到状态栏-->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <!--提交按钮统一样式-->
+    <style name="commit_btn" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">49dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:background">@drawable/bg_blue_0050b4_round</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:text">提交</item>
+    </style>
+
+
+    <!--顶部导航栏容器统一基本样式-->
+    <style name="tab_layout" parent="Widget.Design.TabLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="tabMaxWidth">0dp</item>
+        <item name="tabGravity">center</item>
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabBackground">@null</item>
+        <item name="tabRippleColor">@null</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+
+    <!--首页底部切换样式-->
+    <style name="tab_menu_item">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:textColor">@drawable/tab_menu_text</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:drawablePadding">2dp</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+</resources>

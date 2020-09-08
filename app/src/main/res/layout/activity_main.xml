@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".home.MainActivity">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/white" />
+
+        <RelativeLayout
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:elevation="1dp">
+
+            <RadioGroup
+                android:id="@+id/rd_group"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <RadioButton
+                    android:id="@+id/home_focus_rb"
+                    style="@style/tab_menu_item"
+                    android:drawableTop="@drawable/tab_menu_home"
+                    android:text="我的关注"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <RadioButton
+                    android:id="@+id/home_work_rb"
+                    style="@style/tab_menu_item"
+                    android:drawableTop="@drawable/tab_menu_discovery"
+                    android:text="我的工作"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <RadioButton
+                    android:id="@+id/home_office_rb"
+                    style="@style/tab_menu_item"
+                    android:drawableTop="@drawable/tab_menu_pay"
+                    android:text="掌上办公"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <RadioButton
+                    android:id="@+id/home_analysis_rb"
+                    style="@style/tab_menu_item"
+                    android:drawableTop="@drawable/tab_menu_smart"
+                    android:text="智能分析"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <RadioButton
+                    android:id="@+id/home_mine_rb"
+                    style="@style/tab_menu_item"
+                    android:drawableTop="@drawable/tab_menu_me"
+                    android:text="我的"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+            </RadioGroup>
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>
