@@ -18,6 +18,6 @@ public class LogUtils {
         sb.append(element.getMethodName()).append("->Line ");
         sb.append(element.getLineNumber()).append(":");
         sb.append(msg);
-        Log.e("GuYuanLog", sb.toString());
+        Log.e("DearLog", sb.toString());
     }
 }
