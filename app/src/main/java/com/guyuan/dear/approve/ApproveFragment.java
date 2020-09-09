@@ -131,7 +131,7 @@ public class ApproveFragment extends BaseDataBindingFragment<FragmentApproveBind
         switch (view.getId()) {
             //我的审批
             case R.id.ll_approve_mine:
-                ApprovalsEntranceActivity.start(getActivity());
+//                ApprovalsEntranceActivity.start(getActivity());
                 break;
             //我发起的
             case R.id.ll_sponsor_mine:

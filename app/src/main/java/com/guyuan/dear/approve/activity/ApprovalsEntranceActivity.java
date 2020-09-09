@@ -19,7 +19,7 @@
 // * @author:Jannonx
 // * @date: 2020/6/15 15:14
 // */
-//public class ApprovalsEntranceActivity  extends BaseToolbarActivity<ActivityWithToolbarBinding, ApproveViewModel> {
+//public class ApprovalsEntranceActivity  extends BaseTabActivity<ActivityWithToolbarBinding, ApproveViewModel> {
 //
 //
 //    private ApplyNotApproveFragment notApproveFragment;
