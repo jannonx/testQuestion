@@ -53,11 +53,9 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding> extends Ba
 
     @Override
     protected void initialization() {
-        if (getActivity() != null) {
-            recycleView = getActivity().findViewById(R.id.base_recycleView);
-            empty_view = getActivity().findViewById(R.id.empty_view);
-            no_data_iv = getActivity().findViewById(R.id.no_data_iv);
-        }
+        recycleView = rootView.findViewById(R.id.base_recycleView);
+        empty_view = rootView.findViewById(R.id.empty_view);
+        no_data_iv = rootView.findViewById(R.id.no_data_iv);
         initView();
         canPull();
         canLoadMore();

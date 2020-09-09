@@ -22,7 +22,8 @@ public abstract class BaseDataBindingFragment<VB extends ViewDataBinding> extend
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, getLayoutID(), container, false);
-        return binding.getRoot();
+        rootView=binding.getRoot();
+        return rootView;
     }
 
 }

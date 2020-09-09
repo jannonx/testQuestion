@@ -14,4 +14,8 @@
     <color name="color_grey_464646">#464646</color>
     <color name="color_grey_757575">#757575</color>
     <color name="color_grey_6d7278">#6D7278</color>
+    <color name="control_text_green">#00E500</color>
+    <color name="control_text_yellow">#ED6F1A</color>
+    <color name="control_text_red">#BE002F</color>
+    <color name="green">#9ACD32</color>
 </resources>
