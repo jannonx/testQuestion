@@ -7,7 +7,7 @@ package com.guyuan.dear.utils;
  * @company : 固远（深圳）信息技术有限公司
  **/
 public class ConstantValue {
-
+    public static final String KEY_MENU = "KEY_MENU";
 
     //===============app菜单字段和版本跳转协议==========================start
 
