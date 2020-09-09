@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="37dp"
             android:layout_marginTop="40dp"
-            android:drawableRight="@mipmap/tab_smart_select"
+            android:drawableRight="@mipmap/ic_focus"
             android:drawablePadding="6dp"
             android:text="@string/default_title_realtime_progress"
             android:textColor="#0661C6"

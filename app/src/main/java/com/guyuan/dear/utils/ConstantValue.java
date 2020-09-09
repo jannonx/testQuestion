@@ -7,6 +7,9 @@ package com.guyuan.dear.utils;
  * @company : 固远（深圳）信息技术有限公司
  **/
 public class ConstantValue {
+    public static final String FIRST_OPEN = "first_open";//第一次打开app
+    public static final String KEY_EXCEPTION = "KEY_EXCEPTION";    //异常列表标识
+    public static final int STATE_EXCEPTION = 0x001;  //异常状态
 
     //===============app菜单字段和版本跳转协议==========================start
 
@@ -17,6 +20,10 @@ public class ConstantValue {
     public static final String OFFICE = "MobileOffice";
     public static final String ANALYSE = "IntelligentAnalysis";
     public static final String MINE = "Mine";
+
+
+    //我的关注action集合
+    public static final String[] FOCUS_ACTIONS = {};
 
 
     public static final String KEY_TITLE = "KEY_TITLE";

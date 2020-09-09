@@ -37,6 +37,7 @@ public class DearApplication extends BaseApplication {
     //标识正式环境
     public static final String RELEASE = "release";
     private SharedPreferencesUtils sharedPreferencesUtils;
+
     public static DearApplication getInstance() {
         return application;
     }

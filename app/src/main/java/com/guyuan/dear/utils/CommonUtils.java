@@ -161,4 +161,9 @@ public class CommonUtils {
         return m.matches();
     }
 
+    //检查我的关注跳转协议
+    public static boolean checkFocusAction(String action) {
+        return Arrays.asList(ConstantValue.FOCUS_ACTIONS).contains(action);
+    }
+
 }

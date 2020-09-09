@@ -101,13 +101,14 @@ android {
             buildConfigField "Integer", "MORNING_BRIEFING_START_MINUTE", properties.getProperty("MORNING_BRIEFING_START_MINUTE")
             buildConfigField "Integer", "MORNING_BRIEFING_STOP_HOUR", properties.getProperty("MORNING_BRIEFING_STOP_HOUR")
             buildConfigField "Integer", "MORNING_BRIEFING_STOP_MINUTE", properties.getProperty("MORNING_BRIEFING_STOP_MINUTE")
-            //    applicationIdSuffix ".release" //正式包APPID后缀,在手机上正式包和测试包就能共存了
+            applicationIdSuffix ".release" //正式包APPID后缀,在手机上正式包和测试包就能共存了
             signingConfig signingConfigs.config
-            debuggable false
-            zipAlignEnabled true //字节码优化
-            shrinkResources true //检测和删除没有使用的类，字段，方法和属性
-            minifyEnabled true //代码混淆
+            debuggable true
+//            zipAlignEnabled true //字节码优化
+//            shrinkResources true //检测和删除没有使用的类，字段，方法和属性
+//            minifyEnabled true //代码混淆
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
 
         }
 
@@ -124,7 +125,7 @@ android {
             buildConfigField "Integer", "MORNING_BRIEFING_START_MINUTE", properties.getProperty("MORNING_BRIEFING_START_MINUTE")
             buildConfigField "Integer", "MORNING_BRIEFING_STOP_HOUR", properties.getProperty("MORNING_BRIEFING_STOP_HOUR")
             buildConfigField "Integer", "MORNING_BRIEFING_STOP_MINUTE", properties.getProperty("MORNING_BRIEFING_STOP_MINUTE")
-            //    applicationIdSuffix ".debug"//测试包APPID后缀
+            applicationIdSuffix ".debug"//测试包APPID后缀
             debuggable true
             signingConfig signingConfigs.config
         }

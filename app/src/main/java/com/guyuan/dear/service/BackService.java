@@ -36,6 +36,7 @@ import okhttp3.RequestBody;
 public class BackService extends IntentService {
 
     public static final String LOGIN = "service_action_login";
+    public static final String NOT_HANDLE_CONTROL_MESSAGE = "service_not_handle_message";
     private DearApplication mApplication;
 
     public BackService() {
