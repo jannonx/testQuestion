@@ -85,8 +85,8 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
             });
 
             GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
-            recycleView.setLayoutManager(manager);
-            recycleView.setAdapter(adapter);
+            binding.baseRecycleView.setLayoutManager(manager);
+            binding.baseRecycleView.setAdapter(adapter);
 
         }
 
