@@ -73,9 +73,9 @@ public class RxJavaHelper<T> {
                     @Override
                     public void accept(Object o) throws Exception {
                         if (TextUtils.isEmpty(preTip)) {
-                            viewModel.getShowLoading().setValue("数据加载中...");
+                            viewModel.getShowLoading().postValue("数据加载中...");
                         } else {
-                            viewModel.getShowLoading().setValue(preTip);
+                            viewModel.getShowLoading().postValue(preTip);
                         }
                     }
                 })
@@ -95,7 +95,7 @@ public class RxJavaHelper<T> {
             return new Consumer<Object>() {
                 @Override
                 public void accept(Object o) throws Exception {
-                    viewModel.getCallBack().setValue(o);
+                    viewModel.getCallBack().postValue(o);
                 }
             };
         } else {
@@ -109,7 +109,7 @@ public class RxJavaHelper<T> {
             return new ErrorResultBean() {
                 @Override
                 protected void onError(ErrorResultBean.ErrorBean errorBean) {
-                    viewModel.getTip().setValue(errorBean.getErrorResult());
+                    viewModel.getTip().postValue(errorBean.getErrorResult());
                 }
             };
         } else {

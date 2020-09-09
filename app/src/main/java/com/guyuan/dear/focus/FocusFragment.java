@@ -52,7 +52,6 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
             String title = arguments.getString(ConstantValue.KEY_TITLE,
                     getContext().getString(R.string.default_title_realtime_progress));
             binding.homeFocusTitleTv.setText(title);
-            binding.workMessageBar.setLabel(MessageBar.WORK);
             ArrayList<LoginBean.AppMenusBean.ChildrenBean> menuList =
                     arguments.getParcelableArrayList(ConstantValue.KEY_MENU);
             //hidden过滤，不显示
@@ -88,12 +87,6 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
 
         }
 
-        binding.homeBarLl.homeQrIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //    QRActivity.start("", getContext());
-            }
-        });
     }
 
     @Override
