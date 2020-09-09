@@ -12,10 +12,10 @@ public class ConstantValue {
 
     //首页入口权限字段
     public static final String SMART_CONTROL = "SmartControl";
-    public static final String FOCUS = "focus";
-    public static final String WORK = "work";
-    public static final String OFFICE = "office";
-    public static final String ANALYSE = "analyse";
+    public static final String FOCUS = "RealTimeProgress";
+    public static final String WORK = "ProcessControl";
+    public static final String OFFICE = "MobileOffice";
+    public static final String ANALYSE = "IntelligentAnalysis";
     public static final String MINE = "Mine";
 
 
