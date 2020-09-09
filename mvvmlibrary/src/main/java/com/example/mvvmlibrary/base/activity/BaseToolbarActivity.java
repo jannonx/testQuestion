@@ -43,4 +43,7 @@ public abstract class BaseToolbarActivity<V extends ViewDataBinding, VM extends 
     }
 
     protected abstract void initFragment(Bundle savedInstanceState);
+    protected void setTitleCenter(String title) {
+        title_tv.setText(title);
+    }
 }

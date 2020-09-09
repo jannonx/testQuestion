@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.approve.ApproveActivity;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.customizeview.MessageBar;
@@ -76,6 +77,17 @@ public class OfficeFragment extends BaseListFragment<LoginBean.AppMenusBean.Chil
                     if (NetworkUtils.isNetworkAvailable(getContext())) {
                         String url = menuList.get(position).getUrl();
                         String title = menuList.get(position).getTitle();
+                        switch (url) {
+                            case ConstantValue.MOBILE_OFFICE_APPROVALS_BROWSER://审核
+                                ArrayList<LoginBean.AppMenusBean.ChildrenBean> approveMenuList =
+                                        new ArrayList<>(menuList.get(position).getChildren());
+                                if (approveMenuList.size() > 0) {
+                                    ApproveActivity.start(getActivity(), approveMenuList, title);
+                                } else {
+                                    showToastTip("该账号未设置审批菜单");
+                                }
+                                break;
+                        }
                     } else {
                         showToastTip(ConstantValue.NO_INTERNET);
                     }

@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.example.mvvmlibrary.util.LogUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
@@ -57,6 +58,7 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
             //hidden过滤，不显示
             ArrayList<LoginBean.AppMenusBean.ChildrenBean> temMenuList = new ArrayList<>();
             for (LoginBean.AppMenusBean.ChildrenBean childrenBean : menuList) {
+                LogUtils.showLog("menu=" + childrenBean.getName());
                 if (childrenBean.getHidden() == 1) temMenuList.add(childrenBean);
             }
             menuList.clear();
