@@ -81,8 +81,8 @@ public class OfficeFragment extends BaseListFragment<LoginBean.AppMenusBean.Chil
                     }
                 }
             });
-            recycleView.setLayoutManager(new GridLayoutManager(getContext(), 4));
-            recycleView.setAdapter(adapter);
+            binding.baseRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 4));
+            binding.baseRecycleView.setAdapter(adapter);
         }
 
         binding.homeBarLl.homeQrIv.setOnClickListener(new View.OnClickListener() {
