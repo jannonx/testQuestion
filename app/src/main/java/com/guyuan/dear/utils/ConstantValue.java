@@ -31,4 +31,21 @@ public class ConstantValue {
     public static final String NO_INTERNET = "无网络,请检查网络连接！";
 
     public static boolean hasNewVersion = false;//是否有新版本
+
+    public static final String KEY_CONTENT = "KEY_CONTENT";
+    public static final String KEY_APPROVE_MENU = "KEY_APPROVE_MENU";
+
+    //移动办公
+    public static final String MOBILE_OFFICE_PENDING_FOR_MY_APPROVAL =
+            "MobileOfficePendingForMyApproval";//待我审批
+    public static final String MOBILEOFFICE_MEETING = "MobileOffice_Meeting";
+    public static final String MOBILEOFFICE_NOTICE = "MobileOffice_Notice";
+    public static final String MOBILEOFFICE_SIGNIN = "MobileOffice_SignIn";
+    public static final String MOBILEOFFICE_SIGNOUT = "MobileOffice_SignOut";
+    public static final String MOBILEOFFICE_UPLOAD = "MobileOffice_UpLoad";
+    public static final String MOBILE_OFFICE_MY_APPLY = "MobileOfficeMyApply";//我的申请
+    public static final String MOBILE_OFFICE_MY_APPROVAL_HISTORY = "MobileOfficeMyApprovalHistory";
+    public static final String MOBILE_OFFICE_APPROVALS_BROWSER = "MobileOfficeApprovalsBrowser";//我的审批
+    public static final String MOBILEOFFICE_REPORT = "MobileOffice_Report"; //工作报告
+    public static final String MobileOffice_Sign = "MobileOffice_Sign"; //签到打卡
 }
