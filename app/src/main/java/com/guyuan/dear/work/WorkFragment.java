@@ -41,6 +41,11 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
     }
 
     @Override
+    public int getLayoutID() {
+        return R.layout.fragment_work;
+    }
+
+    @Override
     protected void initView() {
         Bundle arguments = getArguments();
         if (arguments != null) {

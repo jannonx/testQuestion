@@ -41,6 +41,11 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
     }
 
     @Override
+    public int getLayoutID() {
+        return R.layout.fragment_focus;
+    }
+
+    @Override
     protected void initView() {
         Bundle arguments = getArguments();
         if (arguments != null) {

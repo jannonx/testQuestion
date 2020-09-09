@@ -33,7 +33,12 @@ public class AnalyseFragment extends BaseListFragment<LoginBean.AppMenusBean.Chi
         fragment.setArguments(args);
         return fragment;
     }
-    
+
+    @Override
+    public int getLayoutID() {
+        return R.layout.fragment_analyse;
+    }
+
     @Override
     protected void initView() {
         Bundle arguments = getArguments();

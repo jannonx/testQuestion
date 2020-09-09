@@ -42,6 +42,11 @@ public class OfficeFragment extends BaseListFragment<LoginBean.AppMenusBean.Chil
     }
 
     @Override
+    public int getLayoutID() {
+        return R.layout.fragment_office;
+    }
+
+    @Override
     protected void initView() {
         Bundle arguments = getArguments();
         if (arguments != null) {
