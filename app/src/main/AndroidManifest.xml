@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.guyuan.dear">
-
     <!-- 腾讯云SDK权限 -->
     <uses-feature android:name="android.hardware.Camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -62,7 +61,6 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_LOGS" />
 
-
     <application
         android:name=".base.app.DearApplication"
         android:allowBackup="true"
@@ -72,8 +70,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <!--今日头条屏幕适配-->
+        <!-- 今日头条屏幕适配 -->
         <meta-data
             android:name="design_width_in_dp"
             android:value="360" />
@@ -82,17 +79,14 @@
             android:value="675" />
 
         <activity android:name=".home.MainActivity" />
-
         <activity android:name=".login.ui.LoginActivity" />
-
         <activity android:name=".welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!--    掌上办公-->
+        </activity> <!-- 掌上办公 -->
         <activity
             android:name=".approve.ApproveActivity"
             android:launchMode="singleTop"

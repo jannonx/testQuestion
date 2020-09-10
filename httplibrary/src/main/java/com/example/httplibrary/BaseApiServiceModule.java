@@ -34,6 +34,7 @@ import dagger.hilt.InstallIn;
 import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import okhttp3.Cache;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -62,8 +63,7 @@ public class BaseApiServiceModule {
     protected final String mDebugCer = "cer/certificate.cer";      //测试环境证书地址
 
 
-
-//    @Provides  //dragger2提供实例注解
+    //    @Provides  //dragger2提供实例注解
 //    @Singleton //注解实现单例
     protected Cache providesCache(Context mContext) {
         //添加缓存
@@ -71,7 +71,7 @@ public class BaseApiServiceModule {
         return new Cache(cacheFile, CACHE_SIZE);
     }
 
-//    @Provides
+    //    @Provides
 //    @Singleton
     protected HttpLoggingInterceptor providesHttpLoggingInterceptor() {
         //配置日记拦截器
@@ -81,37 +81,37 @@ public class BaseApiServiceModule {
     }
 
 
-//    @Provides
+    //    @Provides
 //    @Singleton
     protected HeadInterceptor providesHeadInterceptor() {
         return new HeadInterceptor();
     }
 
-//    @Provides
+    //    @Provides
 //    @Singleton
     protected ParamsInterceptor providesParamsInterceptor() {
         return new ParamsInterceptor();
     }
 
-//    @Provides
+    //    @Provides
 //    @Singleton
     protected CacheInterceptor providesCacheInterceptor() {
         return new CacheInterceptor(CACHE_TIME);
     }
 
-//    @Provides
+    //    @Provides
 //    @Singleton
     protected VerificationInterceptor providesVerificationInterceptor() {
         return new VerificationInterceptor();
     }
 
-//    @Provides
+    //    @Provides
 //    @Singleton
-   protected ResponseInterceptor providesResponseInterceptor() {
+    protected ResponseInterceptor providesResponseInterceptor() {
         return new ResponseInterceptor();
     }
 
-//    @Provides
+    //    @Provides
 //    @Singleton
     protected X509TrustManager providesTrustManagerForCertificates(TrustManagerFactory
                                                                            trustManagerFactory) {
@@ -175,7 +175,7 @@ public class BaseApiServiceModule {
     }
 
 
-//    @Provides
+    //    @Provides
 //    @Singleton
     protected TrustManagerFactory providesTrustManagerFactory(KeyStore keyStore) {
         try {
@@ -189,7 +189,7 @@ public class BaseApiServiceModule {
         return null;
     }
 
-//    @Provides
+    //    @Provides
 //    @Singleton
     protected KeyStore providesNewEmptyKeyStore(Context context) {
         try {
@@ -229,7 +229,7 @@ public class BaseApiServiceModule {
     }
 
 
-//    @Provides
+    //    @Provides
 //    @Singleton
     protected HostnameVerifier providesHostNameVerifier() {
         return new HostnameVerifier() {
@@ -241,17 +241,12 @@ public class BaseApiServiceModule {
     }
 
 
-//    @Provides
+    //    @Provides
 //    @Singleton
-    protected OkHttpClient providesOkHttpClient(
+    protected OkHttpClient.Builder providesOkHttpClientBuilder(
             SSLSocketFactory sslSocketFactory,
             X509TrustManager x509TrustManager,
             HttpLoggingInterceptor loggingInterceptor,
-            HeadInterceptor headInterceptor,
-            ParamsInterceptor paramsInterceptor,
-            CacheInterceptor cacheInterceptor,
-            ResponseInterceptor responseInterceptor,
-            VerificationInterceptor verificationInterceptor,
             HostnameVerifier homeNameVerifier,
             Cache cache) {
 
@@ -263,29 +258,18 @@ public class BaseApiServiceModule {
                 .sslSocketFactory(sslSocketFactory, x509TrustManager)
                 .cache(cache)
                 .hostnameVerifier(homeNameVerifier)
-                .addInterceptor(headInterceptor)
-                .addInterceptor(responseInterceptor)
-                .addInterceptor(loggingInterceptor)
-//        .addInterceptor(paramsInterceptor)
-//        .addInterceptor(verificationInterceptor)
-//        .addInterceptor(cacheInterceptor)
-                .addNetworkInterceptor(cacheInterceptor).build();
+                .addInterceptor(loggingInterceptor);
 
     }
 
 
-//    @Provides
+    //    @Provides
 //    @Singleton
 //    @Named(BuildConfig.BUILD_TYPE)
-    protected OkHttpClient providesDebugOkHttpClient(
+    protected OkHttpClient.Builder providesDebugOkHttpClientBuilder(
             @Named(BuildConfig.BUILD_TYPE) SSLSocketFactory sslSocketFactory,
             X509TrustManager x509TrustManager,
             HttpLoggingInterceptor loggingInterceptor,
-            HeadInterceptor headInterceptor,
-            ParamsInterceptor paramsInterceptor,
-            CacheInterceptor cacheInterceptor,
-            ResponseInterceptor responseInterceptor,
-            VerificationInterceptor verificationInterceptor,
             HostnameVerifier homeNameVerifier,
             Cache cache) {
 
@@ -297,37 +281,31 @@ public class BaseApiServiceModule {
                 .sslSocketFactory(sslSocketFactory)
                 .cache(cache)
                 .hostnameVerifier(homeNameVerifier)
-                .addInterceptor(headInterceptor)
-                .addInterceptor(responseInterceptor)
-                .addInterceptor(loggingInterceptor)
-//        .addInterceptor(paramsInterceptor)
-//        .addInterceptor(verificationInterceptor)
-//        .addInterceptor(cacheInterceptor)
-                .addNetworkInterceptor(cacheInterceptor).build();
+                .addInterceptor(loggingInterceptor);
 
     }
 
 
-//    @Provides
+    //    @Provides
 //    @Singleton
-    protected Retrofit providesRetrofit(OkHttpClient okHttpClient) {
+    protected Retrofit providesRetrofit(OkHttpClient.Builder okHttpClientBuilder) {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())        //配置Gson
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //配置rxjava
                 .baseUrl(mBaseUrl)     //配置基本地址
-                .client(okHttpClient)  //配置客户端
+                .client(okHttpClientBuilder.build())  //配置客户端
                 .build();
     }
 
-//    @Provides
+    //    @Provides
 //    @Singleton
 //    @Named(BuildConfig.BUILD_TYPE)
-    protected Retrofit providesDebugRetrofit(@Named(BuildConfig.BUILD_TYPE) OkHttpClient okHttpClient) {
+    protected Retrofit providesDebugRetrofit(@Named(BuildConfig.BUILD_TYPE) OkHttpClient.Builder okHttpClientBuilder) {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())        //配置Gson
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //配置rxjava
                 .baseUrl(mBaseUrl)     //配置基本地址
-                .client(okHttpClient)  //配置客户端
+                .client(okHttpClientBuilder.build())  //配置客户端
                 .build();
     }
 
