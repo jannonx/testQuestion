@@ -216,7 +216,8 @@ dependencies {
     //leakcanary内存泄漏检测
     debugImplementation Leakcanary.open
     releaseImplementation Leakcanary.close
-
+    //数据库
+    implementation GreenDao.greendao
     //gson
     implementation Gson.runtime
 

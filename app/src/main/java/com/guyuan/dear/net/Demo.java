@@ -1,10 +1,10 @@
-package com.guyuan.dear.approve;
+package com.guyuan.dear.net;
 
 /**
  * @description:
  * @author: Jannonx
- * @since: 2020/9/9 15:05
+ * @since: 2020/9/10 16:48
  * @company: 固远（深圳）信息技术有限公司
  */
-public class Demo {
+class Demo {
 }

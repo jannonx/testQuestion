@@ -40,6 +40,7 @@ object Versions {
     const val gson = "2.8.5"
     const val glide = "4.10.0"
     const val rxjava = "2.2.2"
+    const val greendao = "3.2.2"
     const val rxandroid = "2.1.1"
     const val autosize = "1.1.2"
     const val bugly = "latest.release"
@@ -126,6 +127,10 @@ object Room {
     val ktx = "androidx.room:room-ktx:${Versions.room}"
     val rxjava2 = "androidx.room:room-rxjava2:${Versions.room}"
     val testing = "androidx.room:room-testing:${Versions.room}"
+}
+
+object GreenDao {
+    val greendao = "org.greenrobot:greendao:${Versions.greendao}"
 }
 
 object Fragment {

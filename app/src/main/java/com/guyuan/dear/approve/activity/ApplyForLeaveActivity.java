@@ -31,7 +31,7 @@ public class ApplyForLeaveActivity extends BaseToolbarActivity<ActivityWithToolb
     protected void initFragment(Bundle savedInstanceState) {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         binding.toolbarContainer.titleTv.setText(title);
-//        ApproveFragment mFragment = ApproveFragment.newInstance(approveMenuList);
+//        ApplyForLeaveFragment mFragment = ApplyForLeaveFragment.newInstance();
 //        ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
 //                ApproveFragment.TAG);
     }

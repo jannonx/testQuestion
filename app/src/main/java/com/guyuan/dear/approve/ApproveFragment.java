@@ -31,9 +31,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 public class ApproveFragment extends BaseDataBindingFragment<FragmentApproveBinding> implements View.OnClickListener {
 
     public static final String TAG = ApproveFragment.class.getSimpleName();
-//
-//    @BindView(R.id.recycler_view)
-//    BaseRecyclerView recyclerView;
+
 
     public static ApproveFragment newInstance(ArrayList<LoginBean.AppMenusBean.ChildrenBean> data) {
         ApproveFragment fragment = new ApproveFragment();
