@@ -26,7 +26,7 @@ import tl.com.easy_recycleview_library.interfaces.OnRefreshListener;
  **/
 public abstract class BaseListFragment<T, VB extends ViewDataBinding> extends BaseDataBindingFragment<VB> {
 
-    private BaseRecyclerView recycleView;
+    protected BaseRecyclerView recycleView;
     private View empty_view;
     private ImageView no_data_iv;
     private TextView tv_empty;

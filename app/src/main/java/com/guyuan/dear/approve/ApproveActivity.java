@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.lifecycle.Observer;
+
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.guyuan.dear.R;
@@ -42,7 +44,7 @@ public class ApproveActivity extends BaseToolbarActivity<ActivityWithToolbarBind
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         binding.toolbarContainer.titleTv.setText(title);
         ApproveFragment mFragment = ApproveFragment.newInstance(approveMenuList);
-        ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.container,
+        ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
                 ApproveFragment.TAG);
 
     }
@@ -54,6 +56,7 @@ public class ApproveActivity extends BaseToolbarActivity<ActivityWithToolbarBind
 
     @Override
     public void viewModuleCallBack(Object o) {
+
 
     }
 

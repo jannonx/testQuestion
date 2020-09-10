@@ -24,4 +24,7 @@ public class ApproveRepository {
     Observable<ResultBean<RefreshBean<ApprovalData>>> getApplyNotApproveList(RequestBody body) {
         return approveApiService.getApplyNotApproveList(body);
     }
+    Observable<ResultBean<RefreshBean<ApprovalData>>> getApplyYetApproveList(RequestBody body) {
+        return approveApiService.getApplyYetApproveList(body);
+    }
 }

@@ -76,7 +76,7 @@ public class BaseViewModel extends AndroidViewModel {
         return onBackPressedEvent;
     }
 
-    private <T> SingleLiveEvent<T> createLiveData(SingleLiveEvent<T> liveData) {
+    protected  <T> SingleLiveEvent<T> createLiveData(SingleLiveEvent<T> liveData) {
         if (liveData == null) {
             liveData = new SingleLiveEvent<T>();
         }
