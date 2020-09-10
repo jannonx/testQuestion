@@ -17,6 +17,7 @@ import javax.net.ssl.X509TrustManager;
 
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import okhttp3.Cache;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -31,15 +32,15 @@ public interface HttpSettingImpl {
 
     HttpLoggingInterceptor getHttpLoggingInterceptor();
 
-    HeadInterceptor getHeadInterceptor();
+    Interceptor getHeadInterceptor();
 
-    ParamsInterceptor getParamsInterceptor();
+    Interceptor getParamsInterceptor();
 
-    CacheInterceptor getCacheInterceptor();
+    Interceptor getCacheInterceptor();
 
-    VerificationInterceptor getVerificationInterceptor();
+    Interceptor getVerificationInterceptor();
 
-    ResponseInterceptor getResponseInterceptor();
+    Interceptor getResponseInterceptor();
 
     X509TrustManager getX509TrustManager(TrustManagerFactory trustManagerFactory);
 
@@ -56,22 +57,22 @@ public interface HttpSettingImpl {
     OkHttpClient getOkHttpClient(SSLSocketFactory sslSocketFactory,
                                  X509TrustManager x509TrustManager,
                                  HttpLoggingInterceptor loggingInterceptor,
-                                 HeadInterceptor headInterceptor,
-                                 ParamsInterceptor paramsInterceptor,
-                                 CacheInterceptor cacheInterceptor,
-                                 ResponseInterceptor responseInterceptor,
-                                 VerificationInterceptor verificationInterceptor,
+                                 Interceptor headInterceptor,
+                                 Interceptor paramsInterceptor,
+                                 Interceptor cacheInterceptor,
+                                 Interceptor responseInterceptor,
+                                 Interceptor verificationInterceptor,
                                  HostnameVerifier homeNameVerifier,
                                  Cache cache);
 
     OkHttpClient getDebugOkHttpClient(SSLSocketFactory sslSocketFactory,
                                       X509TrustManager x509TrustManager,
                                       HttpLoggingInterceptor loggingInterceptor,
-                                      HeadInterceptor headInterceptor,
-                                      ParamsInterceptor paramsInterceptor,
-                                      CacheInterceptor cacheInterceptor,
-                                      ResponseInterceptor responseInterceptor,
-                                      VerificationInterceptor verificationInterceptor,
+                                      Interceptor headInterceptor,
+                                      Interceptor paramsInterceptor,
+                                      Interceptor cacheInterceptor,
+                                      Interceptor responseInterceptor,
+                                      Interceptor verificationInterceptor,
                                       HostnameVerifier homeNameVerifier,
                                       Cache cache);
 

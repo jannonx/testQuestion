@@ -6,10 +6,11 @@ import com.example.httplibrary.BaseApiServiceModule;
 import com.example.httplibrary.BuildConfig;
 import com.example.httplibrary.HttpSettingImpl;
 import com.example.httplibrary.interceptor.CacheInterceptor;
-import com.example.httplibrary.interceptor.HeadInterceptor;
+
 import com.example.httplibrary.interceptor.ParamsInterceptor;
 import com.example.httplibrary.interceptor.ResponseInterceptor;
 import com.example.httplibrary.interceptor.VerificationInterceptor;
+import com.guyuan.dear.base.api.interceptor.HeadInterceptor;
 
 import java.security.KeyStore;
 
@@ -26,6 +27,7 @@ import dagger.hilt.InstallIn;
 import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import okhttp3.Cache;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -47,6 +49,8 @@ public class ApiServiceModule extends BaseApiServiceModule implements HttpSettin
         return providesCache(mContext);
     }
 
+
+
     @Override
     @Singleton
     @Provides
@@ -58,7 +62,7 @@ public class ApiServiceModule extends BaseApiServiceModule implements HttpSettin
     @Singleton
     @Provides
     public HeadInterceptor getHeadInterceptor() {
-        return providesHeadInterceptor();
+        return new HeadInterceptor();
     }
 
     @Override
@@ -132,17 +136,18 @@ public class ApiServiceModule extends BaseApiServiceModule implements HttpSettin
         return providesHostNameVerifier();
     }
 
+
     @Override
     @Singleton
     @Provides
     public OkHttpClient getOkHttpClient(SSLSocketFactory sslSocketFactory,
                                         X509TrustManager x509TrustManager,
                                         HttpLoggingInterceptor loggingInterceptor,
-                                        HeadInterceptor headInterceptor,
-                                        ParamsInterceptor paramsInterceptor,
-                                        CacheInterceptor cacheInterceptor,
-                                        ResponseInterceptor responseInterceptor,
-                                        VerificationInterceptor verificationInterceptor,
+                                        Interceptor headInterceptor,
+                                        Interceptor paramsInterceptor,
+                                        Interceptor cacheInterceptor,
+                                        Interceptor responseInterceptor,
+                                        Interceptor verificationInterceptor,
                                         HostnameVerifier homeNameVerifier,
                                         Cache cache) {
         return providesOkHttpClient(sslSocketFactory, x509TrustManager, loggingInterceptor,
@@ -157,11 +162,11 @@ public class ApiServiceModule extends BaseApiServiceModule implements HttpSettin
     public OkHttpClient getDebugOkHttpClient(@Named(BuildConfig.BUILD_TYPE) SSLSocketFactory sslSocketFactory,
                                              X509TrustManager x509TrustManager,
                                              HttpLoggingInterceptor loggingInterceptor,
-                                             HeadInterceptor headInterceptor,
-                                             ParamsInterceptor paramsInterceptor,
-                                             CacheInterceptor cacheInterceptor,
-                                             ResponseInterceptor responseInterceptor,
-                                             VerificationInterceptor verificationInterceptor,
+                                             Interceptor headInterceptor,
+                                             Interceptor paramsInterceptor,
+                                             Interceptor cacheInterceptor,
+                                             Interceptor responseInterceptor,
+                                             Interceptor verificationInterceptor,
                                              HostnameVerifier homeNameVerifier,
                                              Cache cache) {
         return providesDebugOkHttpClient(sslSocketFactory, x509TrustManager, loggingInterceptor,
