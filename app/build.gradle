@@ -240,7 +240,10 @@ dependencies {
 
     //屏幕适配
     implementation AutoSize.runtime
-
+    //柱形图三方库
+//    implementation AndroidChart.mpAndroidChart
+//    //解决piechart数字重叠的补丁：https://github.com/huzipiaopiao/MPAndroidChartFix
+//    implementation AndroidChart.mpAndroidChartUtils
     //bugly
     implementation Bugly.upgrade
     implementation Bugly.nativecrashreport

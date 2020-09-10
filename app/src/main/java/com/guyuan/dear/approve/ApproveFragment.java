@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
+import com.guyuan.dear.approve.activity.ApplyForLeaveActivity;
 import com.guyuan.dear.approve.activity.ApprovalsEntranceActivity;
+import com.guyuan.dear.approve.activity.MineApplyListActivity;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.databinding.FragmentApproveBinding;
 import com.guyuan.dear.login.data.LoginBean;
@@ -60,10 +62,10 @@ public class ApproveFragment extends BaseDataBindingFragment<FragmentApproveBind
                 String url = menuList.get(position).getUrl();
                 String title = menuList.get(position).getTitle();
                 switch (url) {
-//                    //请假
-//                    case ConstantValue.MOBILE_OFFICE_APPROVE_APPLY_FOR_LEAVE:
-//                        ApplyForLeaveActivity.start(getActivity(), title);
-//                        break;
+                    //请假
+                    case ConstantValue.MOBILE_OFFICE_APPROVE_APPLY_FOR_LEAVE:
+                        ApplyForLeaveActivity.start(getActivity(), title);
+                        break;
 //                    //出差
 //                    case ConstantValue.MOBILE_OFFICE_APPROVE_BUSINESS_TRIP:
 //                        ApproveBusinessTripActivity.start(getActivity(), title);
@@ -136,7 +138,7 @@ public class ApproveFragment extends BaseDataBindingFragment<FragmentApproveBind
                 break;
             //我发起的
             case R.id.ll_sponsor_mine:
-//                MineApplyListActivity.start(getActivity());
+                MineApplyListActivity.start(getActivity());
                 break;
             //抄给我的
             case R.id.ll_copy_mine:

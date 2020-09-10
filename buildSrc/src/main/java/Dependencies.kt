@@ -45,6 +45,8 @@ object Versions {
     const val bugly = "latest.release"
     const val spinKit = "1.4.0"
     const val filePicker = "2.2.1"
+    const val mpAndroidChart = "3.0.3"
+    const val mpAndroidChartUtil = "1.0.3"
 }
 
 object AndroidX {
@@ -186,4 +188,10 @@ object Depend {
 
 object FilePicker {
     const val runtime = "com.droidninja:filepicker:${Versions.filePicker}"
+}
+
+object AndroidChart {
+
+    const val mpAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.mpAndroidChart}"
+    const val mpAndroidChartUtils = "com.teaanddogdog:mpandroidchartutil:${Versions.mpAndroidChartUtil}"
 }
