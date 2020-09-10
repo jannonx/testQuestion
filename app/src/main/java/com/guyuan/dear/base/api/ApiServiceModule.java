@@ -50,7 +50,6 @@ public class ApiServiceModule extends BaseApiServiceModule implements HttpSettin
     }
 
 
-
     @Override
     @Singleton
     @Provides
@@ -137,47 +136,45 @@ public class ApiServiceModule extends BaseApiServiceModule implements HttpSettin
     }
 
 
-    @Override
     @Singleton
     @Provides
-    public OkHttpClient getOkHttpClient(SSLSocketFactory sslSocketFactory,
-                                        X509TrustManager x509TrustManager,
-                                        HttpLoggingInterceptor loggingInterceptor,
-                                        Interceptor headInterceptor,
-                                        Interceptor paramsInterceptor,
-                                        Interceptor cacheInterceptor,
-                                        Interceptor responseInterceptor,
-                                        Interceptor verificationInterceptor,
-                                        HostnameVerifier homeNameVerifier,
-                                        Cache cache) {
-        return providesOkHttpClient(sslSocketFactory, x509TrustManager, loggingInterceptor,
-                headInterceptor, paramsInterceptor, cacheInterceptor, responseInterceptor,
-                verificationInterceptor, homeNameVerifier, cache);
+    public OkHttpClient.Builder getOkHttpClientBuilder(SSLSocketFactory sslSocketFactory,
+                                                       X509TrustManager x509TrustManager,
+                                                       HttpLoggingInterceptor loggingInterceptor,
+                                                       HeadInterceptor headInterceptor,
+                                                       ResponseInterceptor responseInterceptor,
+                                                       CacheInterceptor cacheInterceptor,
+                                                       HostnameVerifier homeNameVerifier,
+                                                       Cache cache) {
+        return providesOkHttpClientBuilder(sslSocketFactory, x509TrustManager,
+                loggingInterceptor, homeNameVerifier, cache)
+                .addInterceptor(headInterceptor)
+                .addInterceptor(responseInterceptor)
+                .addNetworkInterceptor(cacheInterceptor);
     }
 
-    @Override
     @Singleton
     @Provides
     @Named(BuildConfig.BUILD_TYPE)
-    public OkHttpClient getDebugOkHttpClient(@Named(BuildConfig.BUILD_TYPE) SSLSocketFactory sslSocketFactory,
-                                             X509TrustManager x509TrustManager,
-                                             HttpLoggingInterceptor loggingInterceptor,
-                                             Interceptor headInterceptor,
-                                             Interceptor paramsInterceptor,
-                                             Interceptor cacheInterceptor,
-                                             Interceptor responseInterceptor,
-                                             Interceptor verificationInterceptor,
-                                             HostnameVerifier homeNameVerifier,
-                                             Cache cache) {
-        return providesDebugOkHttpClient(sslSocketFactory, x509TrustManager, loggingInterceptor,
-                headInterceptor, paramsInterceptor, cacheInterceptor, responseInterceptor,
-                verificationInterceptor, homeNameVerifier, cache);
+    public OkHttpClient.Builder getDebugOkHttpClientBuilder(@Named(BuildConfig.BUILD_TYPE) SSLSocketFactory sslSocketFactory,
+                                                            X509TrustManager x509TrustManager,
+                                                            HttpLoggingInterceptor loggingInterceptor,
+                                                            HeadInterceptor headInterceptor,
+                                                            ResponseInterceptor responseInterceptor,
+                                                            CacheInterceptor cacheInterceptor,
+                                                            HostnameVerifier homeNameVerifier,
+                                                            Cache cache) {
+        return providesDebugOkHttpClientBuilder(sslSocketFactory, x509TrustManager,
+                loggingInterceptor, homeNameVerifier, cache)
+                .addInterceptor(headInterceptor)
+                .addInterceptor(responseInterceptor)
+                .addNetworkInterceptor(cacheInterceptor);
     }
 
     @Override
     @Singleton
     @Provides
-    public Retrofit getRetrofit(OkHttpClient okHttpClient) {
+    public Retrofit getRetrofit(OkHttpClient.Builder okHttpClient) {
         return providesRetrofit(okHttpClient);
     }
 
@@ -185,7 +182,7 @@ public class ApiServiceModule extends BaseApiServiceModule implements HttpSettin
     @Singleton
     @Provides
     @Named(BuildConfig.BUILD_TYPE)
-    public Retrofit getDebugRetrofit(@Named(BuildConfig.BUILD_TYPE) OkHttpClient okHttpClient) {
+    public Retrofit getDebugRetrofit(@Named(BuildConfig.BUILD_TYPE) OkHttpClient.Builder okHttpClient) {
         return providesDebugRetrofit(okHttpClient);
     }
 }

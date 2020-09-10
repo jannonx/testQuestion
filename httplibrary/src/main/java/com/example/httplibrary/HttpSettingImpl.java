@@ -54,30 +54,8 @@ public interface HttpSettingImpl {
 
     HostnameVerifier getHostnameVerifier();
 
-    OkHttpClient getOkHttpClient(SSLSocketFactory sslSocketFactory,
-                                 X509TrustManager x509TrustManager,
-                                 HttpLoggingInterceptor loggingInterceptor,
-                                 Interceptor headInterceptor,
-                                 Interceptor paramsInterceptor,
-                                 Interceptor cacheInterceptor,
-                                 Interceptor responseInterceptor,
-                                 Interceptor verificationInterceptor,
-                                 HostnameVerifier homeNameVerifier,
-                                 Cache cache);
 
-    OkHttpClient getDebugOkHttpClient(SSLSocketFactory sslSocketFactory,
-                                      X509TrustManager x509TrustManager,
-                                      HttpLoggingInterceptor loggingInterceptor,
-                                      Interceptor headInterceptor,
-                                      Interceptor paramsInterceptor,
-                                      Interceptor cacheInterceptor,
-                                      Interceptor responseInterceptor,
-                                      Interceptor verificationInterceptor,
-                                      HostnameVerifier homeNameVerifier,
-                                      Cache cache);
+    Retrofit getRetrofit(OkHttpClient.Builder okHttpClientBuilder);
 
-
-    Retrofit getRetrofit(OkHttpClient okHttpClient);
-
-    Retrofit getDebugRetrofit(OkHttpClient okHttpClient);
+    Retrofit getDebugRetrofit(OkHttpClient.Builder okHttpClientBuilder);
 }
