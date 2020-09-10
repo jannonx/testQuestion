@@ -1,0 +1,26 @@
+<vector android:height="48dp" android:viewportHeight="89"
+    android:viewportWidth="89" android:width="48dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#7184FF" android:fillType="evenOdd"
+        android:pathData="M44.5,44.5m-44.5,0a44.5,44.5 0,1 1,89 0a44.5,44.5 0,1 1,-89 0"
+        android:strokeColor="#00000000" android:strokeWidth="1"/>
+    <path android:fillColor="#00000000" android:fillType="evenOdd"
+        android:pathData="M61,39.1091C61,34.7357 61,31.4119 61,31.4119L48.6916,19L29.6686,19C27.34,19 24.0047,19.7085 24.0047,24.6593C24.0047,29.61 24.0572,56.7342 24.0047,58.6235C23.9521,60.5128 24.2673,65 28.9858,65L36.707,65"
+        android:strokeColor="#FFFFFF" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:strokeWidth="2.37"/>
+    <path android:fillColor="#00000000" android:fillType="evenOdd"
+        android:pathData="M49,20L49.1792,28.8563C49.1792,28.8563 49.2902,32 52.3542,32C55.4182,32 61,32 61,32"
+        android:strokeColor="#FFFFFF" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:strokeWidth="2.37"/>
+    <path android:fillColor="#00000000" android:fillType="evenOdd"
+        android:pathData="M33,42.0153l7.7262,6.9847l13.2738,-12"
+        android:strokeColor="#FFFFFF" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:strokeWidth="2.37"/>
+    <path android:fillColor="#00000000" android:fillType="evenOdd"
+        android:pathData="M57,55m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0"
+        android:strokeColor="#FFFFFF" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:strokeWidth="2.37"/>
+    <path android:fillColor="#00000000" android:fillType="evenOdd"
+        android:pathData="M48,70L65,70L65,68.4957C65,64.915 62.1201,62.0096 58.5613,62L54.4301,62C50.8848,62.0143 48.0142,64.9025 48,68.4696L48,70Z"
+        android:strokeColor="#FFFFFF" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:strokeWidth="2.37"/>
+</vector>

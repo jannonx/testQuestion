@@ -71,7 +71,7 @@ public class LoginViewModel extends BaseViewModel {
                         loginBean = (LoginBean) o;
                         getTip().setValue("登录成功");
                         saveLoginData(loginBean);
-                        getCallBack().setValue(loginBean);
+                        getCallBack().postValue(loginBean);
                     }
                 })
                 .fail(new ErrorResultBean() {
