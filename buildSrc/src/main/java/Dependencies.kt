@@ -45,6 +45,7 @@ object Versions {
     const val autosize = "1.1.2"
     const val bugly = "latest.release"
     const val spinKit = "1.4.0"
+    const val timePickerDialog = "1.0.1"
     const val filePicker = "2.2.1"
     const val mpAndroidChart = "3.0.3"
     const val mpAndroidChartUtil = "1.0.3"
@@ -114,6 +115,10 @@ object Leakcanary {
 
 object SpinKit {
     const val runtime = "com.github.ybq:Android-SpinKit:${Versions.spinKit}"
+}
+
+object TimePickerDialog {
+    const val timePickerDialog= "com.jzxiang.pickerview:TimePickerDialog:${Versions.timePickerDialog}"
 }
 
 object Rxandroid {

@@ -20,6 +20,7 @@ import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.utils.ConstantValue;
 
 import com.guyuan.dear.R;
+
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
@@ -40,6 +41,7 @@ public class MineApplyListFragment extends BaseListFragment<ApplyBean, FragmentL
     }
 
     ApproveViewModel viewModel;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

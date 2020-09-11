@@ -28,8 +28,9 @@ import org.greenrobot.eventbus.EventBus;
 
 /**
  * @description: 掌上办公--审批--我发起的/抄送我的--详情
- * @author:Jannonx
- * @date: 2020/6/18 15:38
+ * @author: Jannonx
+ * @since: 2020/9/10 11:28
+ * @company: 固远（深圳）信息技术有限公司
  */
 public class ApplyApproveByMeFragment extends BaseDataBindingFragment<FragmentApplyApproveByMeBinding> implements View.OnClickListener {
 

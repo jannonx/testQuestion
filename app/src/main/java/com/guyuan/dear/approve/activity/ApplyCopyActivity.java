@@ -14,10 +14,12 @@ import com.guyuan.dear.utils.ActivityUtils;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
+
 /**
  * @description: 掌上办公--审批--抄送我的
- * @author:Jannonx
- * @date: 2020/6/17 10:51
+ * @author: Jannonx
+ * @since: 2020/9/10 11:28
+ * @company: 固远（深圳）信息技术有限公司
  */
 @AndroidEntryPoint
 public class ApplyCopyActivity extends BaseToolbarActivity<ActivityWithToolbarBinding, ApproveViewModel> {

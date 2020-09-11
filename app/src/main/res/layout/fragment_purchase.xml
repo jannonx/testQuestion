@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white_ffffff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="申请事由"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_purchase_reason"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入申请事由"
+                    android:maxLength="30"
+
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_purchase_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_13p5"
+                android:paddingEnd="@dimen/dp_12"
+                android:paddingBottom="13dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_purchase_type"
+                    style="@style/label_approve_text_title"
+                    android:text="采&#8194;购&#8194;类&#8194;型&#8194;" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_purchase_type"
+                    style="@style/tv_approve_text_content"
+                    android:layout_toStartOf="@+id/iv_purchase_type"
+                    android:text="请选择" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_purchase_type"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/dp_4"
+                    android:paddingTop="@dimen/dp_3"
+                    android:paddingBottom="@dimen/dp_3"
+                    android:src="@mipmap/ic_arrow_next" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_finish_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_13p5"
+                android:paddingEnd="@dimen/dp_12"
+                android:paddingBottom="13dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_finish_time"
+                    style="@style/label_approve_text_title"
+                    android:text="期望交付日期" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_finish_time"
+                    style="@style/tv_approve_text_content"
+                    android:layout_toStartOf="@+id/iv_finish_time"
+                    android:text="请选择" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_finish_time"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/dp_4"
+                    android:paddingTop="@dimen/dp_3"
+                    android:paddingBottom="@dimen/dp_3"
+                    android:src="@mipmap/ic_arrow_next" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="采购明细"
+                android:textColor="#999999"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white_ffffff"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="名称"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_purchase_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:maxLength="20"
+
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white_ffffff"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="规格"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_purchase_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:maxLength="20"
+
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white_ffffff"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="数量"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_purchase_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:inputType="number"
+                    android:maxLength="20"
+
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white_ffffff"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="单位"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_purchase_unit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:maxLength="20"
+
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white_ffffff"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="价格"
+
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_purchase_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入"
+                    android:inputType="numberDecimal"
+                    android:maxLength="20"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="元"
+
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white_ffffff"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="备注"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_purchase_remark"
+                    style="@style/edit_text_style"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:hint="请输入备注"
+                    android:maxLength="70" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="审批"
+                android:textColor="#999999"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white_ffffff"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="审批人"
+                    android:textSize="16sp" />
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1">
+
+                    <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
+                        android:id="@+id/tfl_approver"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </androidx.core.widget.NestedScrollView>
+
+
+                <ImageView
+                    android:id="@+id/iv_approver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/add_icon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white_ffffff"
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="抄送人"
+                    android:textSize="16sp" />
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1">
+
+                    <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
+                        android:id="@+id/tfl_copy_to"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </androidx.core.widget.NestedScrollView>
+
+
+                <ImageView
+                    android:id="@+id/iv_copy_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/add_icon" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_btn_summit"
+                style="@style/commit_btn"
+                android:layout_marginBottom="10dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

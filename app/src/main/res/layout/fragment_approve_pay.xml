@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white_ffffff">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="付款事由"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_pay_reason"
+                    style="@style/edit_text_style"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:hint="请输入付款事由"
+                    android:maxLength="70" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="付款总额"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_pay_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入付款总额(人民币)"
+                    android:inputType="numberDecimal"
+                    android:maxLength="10"
+                    android:textColor="@color/color_black_000000"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_pay_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_13p5"
+                android:paddingEnd="@dimen/dp_12"
+                android:paddingBottom="13dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_pay_type"
+                    style="@style/label_approve_text_title"
+                    android:text="付款方式" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_pay_type"
+                    style="@style/tv_approve_text_content"
+                    android:layout_toStartOf="@+id/iv_pay_type"
+                    android:text="请选择" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_pay_type"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/dp_4"
+                    android:paddingTop="@dimen/dp_3"
+                    android:paddingBottom="@dimen/dp_3"
+                    android:src="@mipmap/ic_arrow_next" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_pay_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_13p5"
+                android:paddingEnd="@dimen/dp_12"
+                android:paddingBottom="13dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label_pay_time"
+                    style="@style/label_approve_text_title"
+                    android:text="支付日期" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_pay_time"
+                    style="@style/tv_approve_text_content"
+                    android:layout_toStartOf="@+id/iv_pay_time"
+                    android:text="请选择" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_pay_time"
+                    android:layout_width="@dimen/dp_24"
+                    android:layout_height="@dimen/dp_24"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/dp_4"
+                    android:paddingTop="@dimen/dp_3"
+                    android:paddingBottom="@dimen/dp_3"
+                    android:src="@mipmap/ic_arrow_next" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="支付对象"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_pay_person"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请填写支付对象"
+                    android:maxLength="20"
+                    android:textColor="@color/color_black_000000"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="开户行&#12288;"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_pay_bank"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请填写支付对象"
+                    android:maxLength="20"
+                    android:textColor="@color/color_black_000000"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="银行账户"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/et_pay_bank_account"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请填写支付对象"
+                    android:maxLength="20"
+                    android:textColor="@color/color_black_000000"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="审批"
+                android:textColor="#999999"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="审批人"
+                    android:textSize="16sp" />
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1">
+
+                    <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
+                        android:id="@+id/tfl_approver"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </androidx.core.widget.NestedScrollView>
+
+
+                <ImageView
+                    android:id="@+id/iv_approver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/add_icon" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center_vertical"
+                android:padding="12dp">
+
+                <TextView
+                    style="@style/card_text_title"
+                    android:text="抄送人"
+                    android:textSize="16sp" />
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1">
+
+                    <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
+                        android:id="@+id/tfl_copy_to"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </androidx.core.widget.NestedScrollView>
+
+
+                <ImageView
+                    android:id="@+id/iv_copy_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/add_icon" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_btn_summit"
+                style="@style/commit_btn"
+                android:layout_marginBottom="10dp" />
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

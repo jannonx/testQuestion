@@ -10,6 +10,17 @@ import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.activity.ApplyForLeaveActivity;
 import com.guyuan.dear.approve.activity.ApprovalsEntranceActivity;
+import com.guyuan.dear.approve.activity.ApproveBusinessTripActivity;
+import com.guyuan.dear.approve.activity.ApproveCommonActivity;
+import com.guyuan.dear.approve.activity.ApproveEmployActivity;
+import com.guyuan.dear.approve.activity.ApproveExpenseReimbursementActivity;
+import com.guyuan.dear.approve.activity.ApproveLeaveOfficeActivity;
+import com.guyuan.dear.approve.activity.ApproveOutActivity;
+import com.guyuan.dear.approve.activity.ApproveOverTimeActivity;
+import com.guyuan.dear.approve.activity.ApprovePayActivity;
+import com.guyuan.dear.approve.activity.ApprovePrettyCashActivity;
+import com.guyuan.dear.approve.activity.ApprovePurchaseActivity;
+import com.guyuan.dear.approve.activity.ApproveSealActivity;
 import com.guyuan.dear.approve.activity.MineApplyListActivity;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.databinding.FragmentApproveBinding;
@@ -64,52 +75,52 @@ public class ApproveFragment extends BaseDataBindingFragment<FragmentApproveBind
                     case ConstantValue.MOBILE_OFFICE_APPROVE_APPLY_FOR_LEAVE:
                         ApplyForLeaveActivity.start(getActivity(), title);
                         break;
-//                    //出差
-//                    case ConstantValue.MOBILE_OFFICE_APPROVE_BUSINESS_TRIP:
-//                        ApproveBusinessTripActivity.start(getActivity(), title);
-//                        break;
-//                    //采购
-//                    case ConstantValue.MOBILE_OFFICE_APPROVE_PURCHASE:
-//                        ApprovePurchaseActivity.start(getActivity(), title);
-//                        break;
-//                    //外出
-//                    case ConstantValue.MOBILE_OFFICE_APPROVE_OUT:
-//                        ApproveOutActivity.start(getActivity(), title);
-//                        break;
-//                    //加班
-//                    case ConstantValue.MOBILE_OFFICE_APPROVE_OVERTIME:
-//                        ApproveOverTimeActivity.start(getActivity(), title);
-//                        break;
-//                    //招聘
-//                    case ConstantValue.MOBILE_OFFICE_APPROVE_EMPLOY:
-//                        ApproveEmployActivity.start(getActivity(), title);
-//                        break;
-//                    //离职
-//                    case ConstantValue.MOBILE_OFFICE_APPROVE_LEAVE_OFFICE:
-//                        ApproveLeaveOfficeActivity.start(getActivity(), title);
-//                        break;
-//                    //报销
-//                    case ConstantValue.MOBILE_OFFICE_APPROVE_EXPENSE_REIMBURSEMENT:
-//                        ApproveExpenseReimbursementActivity.start(getActivity(), title);
-//                        break;
-//                    //付款
-//                    case ConstantValue.MOBILE_OFFICE_APPROVE_PAY:
-//                        ApprovePayActivity.start(getActivity(), title);
-//                        break;
-//                    //备用金
-//                    case ConstantValue.MOBILE_OFFICE_APPROVE_IMPREST:
-//                        ApprovePrettyCashActivity.start(getActivity(), title);
-//                        break;
-//
-//                    //用印
-//                    case ConstantValue.MOBILE_OFFICE_APPROVE_SEAL:
-//                        ApproveSealActivity.start(getActivity(), title);
-//                        break;
-//                    //通用
-//                    case ConstantValue.MOBILE_OFFICE_APPROVE_COMMON:
-//                        ApproveCommonActivity.start(getActivity(), title);
-//                        break;
-//                    default:
+                    //出差
+                    case ConstantValue.MOBILE_OFFICE_APPROVE_BUSINESS_TRIP:
+                        ApproveBusinessTripActivity.start(getActivity(), title);
+                        break;
+                    //采购
+                    case ConstantValue.MOBILE_OFFICE_APPROVE_PURCHASE:
+                        ApprovePurchaseActivity.start(getActivity(), title);
+                        break;
+                    //外出
+                    case ConstantValue.MOBILE_OFFICE_APPROVE_OUT:
+                        ApproveOutActivity.start(getActivity(), title);
+                        break;
+                    //加班
+                    case ConstantValue.MOBILE_OFFICE_APPROVE_OVERTIME:
+                        ApproveOverTimeActivity.start(getActivity(), title);
+                        break;
+                    //招聘
+                    case ConstantValue.MOBILE_OFFICE_APPROVE_EMPLOY:
+                        ApproveEmployActivity.start(getActivity(), title);
+                        break;
+                    //离职
+                    case ConstantValue.MOBILE_OFFICE_APPROVE_LEAVE_OFFICE:
+                        ApproveLeaveOfficeActivity.start(getActivity(), title);
+                        break;
+                    //报销
+                    case ConstantValue.MOBILE_OFFICE_APPROVE_EXPENSE_REIMBURSEMENT:
+                        ApproveExpenseReimbursementActivity.start(getActivity(), title);
+                        break;
+                    //付款
+                    case ConstantValue.MOBILE_OFFICE_APPROVE_PAY:
+                        ApprovePayActivity.start(getActivity(), title);
+                        break;
+                    //备用金
+                    case ConstantValue.MOBILE_OFFICE_APPROVE_IMPREST:
+                        ApprovePrettyCashActivity.start(getActivity(), title);
+                        break;
+
+                    //用印
+                    case ConstantValue.MOBILE_OFFICE_APPROVE_SEAL:
+                        ApproveSealActivity.start(getActivity(), title);
+                        break;
+                    //通用
+                    case ConstantValue.MOBILE_OFFICE_APPROVE_COMMON:
+                        ApproveCommonActivity.start(getActivity(), title);
+                        break;
+                    default:
 
                 }
             }

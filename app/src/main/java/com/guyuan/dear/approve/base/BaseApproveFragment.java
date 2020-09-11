@@ -8,16 +8,13 @@
 //
 //import androidx.annotation.Nullable;
 //
+//import com.example.mvvmlibrary.base.activity.BaseActivity;
 //import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 //import com.guyuan.dear.R;
 //import com.guyuan.dear.approve.activity.MineApplyListActivity;
-//import com.guyuan.dear.approve.mvp.ApprovePresenter;
-//import com.guyuan.dear.base.activity.BaseActivity;
-//import com.guyuan.dear.base.adapter.TagStaffAdapter;
-//import com.guyuan.dear.base.fragment.BaseFragment;
+//
 //import com.guyuan.dear.customizeview.flowlayout.TagAdapter;
 //import com.guyuan.dear.customizeview.flowlayout.TagFlowLayout;
-//import com.guyuan.dear.meeting.activities.SelectStaffsActivity;
 //import com.guyuan.dear.net.smartfactory.bean.StaffBean;
 //import com.guyuan.dear.utils.ActivityUtils;
 //import com.guyuan.dear.utils.AlertDialogUtils;
@@ -59,7 +56,6 @@
 //    protected OnDateSetListener mOnStopDateSelectedCallback;
 //    protected Date startData, stopDate, selectDate;
 //    protected TagFlowLayout tflPartner;
-//    protected ApprovePresenter mPresenter;
 //
 //
 ////    @Override
@@ -274,23 +270,23 @@
 //            showToastTip("提交申请成功！");
 //            if (topActivity != null) {
 //                topActivity.finish();
-//                topActivity.setPlayContent("提交申请成功");
+////                topActivity.setPlayContent("提交申请成功");
 //
 //            }
 //            MineApplyListActivity.start(topActivity);
 //        } else {
 //            showToastTip("提交申请失败！");
-//            if (topActivity != null) {
-//                topActivity.setPlayContent("提交申请失败");
-//            }
+////            if (topActivity != null) {
+////                topActivity.setPlayContent("提交申请失败");
+////            }
 //        }
 //    }
 //
 //    private void commitApprove() {
 //        RequestBody body = getRequestBody();
-//        if (body != null) {
-//            mPresenter.postApplyInfo(body);
-//        }
+////        if (body != null) {
+////            mPresenter.postApplyInfo(body);
+////        }
 //    }
 //
 //    protected ArrayList<Long> getPartners() {
