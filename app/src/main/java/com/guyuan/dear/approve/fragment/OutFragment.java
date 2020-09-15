@@ -24,15 +24,6 @@ import okhttp3.RequestBody;
 public class OutFragment extends BaseDataBindingFragment<FragmentApproveOutBinding> implements View.OnClickListener {
     public static final String TAG = OutFragment.class.getSimpleName();
 
-//    @BindView(R.id.tv_start_time)
-//    AppCompatTextView tvStartTime;
-//    @BindView(R.id.tv_end_time)
-//    AppCompatTextView tvEndTime;
-//    @BindView(R.id.tv_duration)
-//    TextView tvDuration;
-//    @BindView(R.id.et_out_reason)
-//    EditText etOutReason;
-
 
     public static OutFragment newInstance() {
         Bundle args = new Bundle();

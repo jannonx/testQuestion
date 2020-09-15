@@ -24,25 +24,6 @@ public class BusinessTripFragment extends BaseDataBindingFragment<FragmentBusine
 
     public static final String TAG = BusinessTripFragment.class.getSimpleName();
 
-//    @BindView(R.id.tv_duration)
-//    TextView tvDuration;
-//    @BindView(R.id.tfl_partner)
-//    TagFlowLayout tflPartner;
-//    @BindView(R.id.tv_start_time)
-//    TextView tvStartTime;
-//    @BindView(R.id.tv_end_time)
-//    TextView tvEndTime;
-//    @BindView(R.id.et_business_reason)
-//    EditText etBusinessReason;
-//    @BindView(R.id.rg_trip_tool)
-//    RadioGroup rgTripTool;
-//    @BindView(R.id.et_start_city)
-//    EditText etStartCity;
-//    @BindView(R.id.et_end_city)
-//    EditText etEndCity;
-//    @BindView(R.id.et_remark)
-//    EditText etRemark;
-
 
     public static BusinessTripFragment newInstance() {
         Bundle args = new Bundle();

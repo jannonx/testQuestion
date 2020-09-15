@@ -29,16 +29,6 @@ public class OverTimeFragment extends BaseDataBindingFragment<FragmentApproveOve
     public static final String TAG = OverTimeFragment.class.getSimpleName();
 
 
-//    @BindView(R.id.tv_start_time)
-//    AppCompatTextView tvStartTime;
-//    @BindView(R.id.tv_end_time)
-//    AppCompatTextView tvEndTime;
-//    @BindView(R.id.tv_duration)
-//    TextView tvDuration;
-//    @BindView(R.id.et_over_time_reason)
-//    EditText etOverTimeReason;
-
-
     public static OverTimeFragment newInstance() {
         Bundle args = new Bundle();
         OverTimeFragment fragment = new OverTimeFragment();

@@ -21,14 +21,7 @@ import okhttp3.RequestBody;
  */
 public class LeaveOfficeFragment extends BaseDataBindingFragment<FragmentLeaveOfficeBinding> implements View.OnClickListener {
     public static final String TAG = LeaveOfficeFragment.class.getSimpleName();
-//    @BindView(R.id.tv_start_time)
-//    AppCompatTextView tvStartTime;
-//    @BindView(R.id.tv_end_time)
-//    AppCompatTextView tvEndTime;
-//    @BindView(R.id.et_leave_reason)
-//    EditText etLeaveReason;
-//    @BindView(R.id.et_leave_remark)
-//    EditText etLeaveRemark;
+
 
 
     public static LeaveOfficeFragment newInstance() {

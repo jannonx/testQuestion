@@ -1,6 +1,5 @@
 package com.guyuan.dear.office;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
