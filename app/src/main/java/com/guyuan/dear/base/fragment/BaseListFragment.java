@@ -57,8 +57,8 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding> extends Ba
         empty_view = rootView.findViewById(R.id.empty_view);
         no_data_iv = rootView.findViewById(R.id.no_data_iv);
         initView();
-        canPull();
-        canLoadMore();
+//        canPull();
+//        canLoadMore();
     }
 
 

@@ -42,6 +42,10 @@ import retrofit2.Retrofit;
 @InstallIn(ApplicationComponent.class)
 public class ApiServiceModule extends BaseApiServiceModule implements HttpSettingImpl {
 
+    public ApiServiceModule() {
+        mBaseUrl = com.guyuan.dear.BuildConfig.SERVER_URL;
+    }
+
     @Override
     @Singleton
     @Provides

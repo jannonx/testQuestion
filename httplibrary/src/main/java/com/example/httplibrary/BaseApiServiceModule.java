@@ -52,15 +52,15 @@ public class BaseApiServiceModule {
     /**
      * okhttp的一些参数设置常量(秒级单位)
      */
-    protected final int CACHE_TIME = 24 * 60 * 60;                 //设置缓存时间
-    protected final int READ_TIME = 180;                           //设置读取时间
-    protected final int WRITE_TIME = 180;                          //设置写时间
-    protected final int CONNECT_TIME = 5;                          //设置连接时间
-    protected final int CACHE_SIZE = 1024 * 1024 * 50;               //设置缓存大小
-    protected final String mBaseUrl = "https://106.52.80.126:8010/"; //设置baseUrl
-    protected final String mCacheName = "mCache";                   //缓存文件名
-    protected final String mReleaseCer = "cer/certificate.cer";  //正式环境证书地址
-    protected final String mDebugCer = "cer/certificate.cer";      //测试环境证书地址
+    protected  int CACHE_TIME = 24 * 60 * 60;                 //设置缓存时间
+    protected  int READ_TIME = 180;                           //设置读取时间
+    protected  int WRITE_TIME = 180;                          //设置写时间
+    protected  int CONNECT_TIME = 5;                          //设置连接时间
+    protected  int CACHE_SIZE = 1024 * 1024 * 50;               //设置缓存大小
+    protected  String mBaseUrl = "https://183.62.99.102:8088/"; //设置baseUrl("http://81.71.9.129:8010/")
+    protected  String mCacheName = "mCache";                   //缓存文件名
+    protected  String mReleaseCer = "cer/certificate.cer";  //正式环境证书地址
+    protected  String mDebugCer = "cer/certificate.cer";      //测试环境证书地址
 
 
     //    @Provides  //dragger2提供实例注解

@@ -1,4 +1,13 @@
 <resources>
+
+    <array name="focus_assess_title">
+        <item>评审概况</item>
+        <item>销售合同订单评审</item>
+        <item>方案评审</item>
+        <item>工程评审</item>
+    </array>
+
+
     <array name="control">
         <item>安全管理</item>
         <item>人员管理</item>
