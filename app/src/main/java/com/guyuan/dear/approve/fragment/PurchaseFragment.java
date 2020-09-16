@@ -29,25 +29,6 @@ import static com.guyuan.dear.utils.ConstantValue.TEXT_PLEASE_SELECT;
 public class PurchaseFragment extends BaseDataBindingFragment<FragmentPurchaseBinding> implements View.OnClickListener {
     public static final String TAG = PurchaseFragment.class.getSimpleName();
 
-//    @BindView(R.id.et_purchase_reason)
-//    EditText etPurchaseReason;
-//    @BindView(R.id.tv_finish_time)
-//    TextView tvFinishTime;
-//    @BindView(R.id.et_purchase_name)
-//    EditText etPurchaseName;
-//    @BindView(R.id.et_purchase_type)
-//    EditText etPurchaseType;
-//    @BindView(R.id.et_purchase_number)
-//    EditText etPurchaseNumber;
-//    @BindView(R.id.et_purchase_unit)
-//    EditText etPurchaseUnit;
-//    @BindView(R.id.et_purchase_price)
-//    EditText etPurchasePrice;
-//    @BindView(R.id.et_purchase_remark)
-//    EditText etPurchaseRemark;
-//    @BindView(R.id.tv_purchase_type)
-//    TextView tvPurchaseType;
-
 
     private PurchaseTypeDialogFragment purchaseTypeDialogFragment;
     private int purchaseType;

@@ -23,10 +23,6 @@ import okhttp3.RequestBody;
  */
 public class CommonApproveFragment extends BaseDataBindingFragment<FragmentApproveCommonBinding> implements View.OnClickListener {
     public static final String TAG = CommonApproveFragment.class.getSimpleName();
-//    @BindView(R.id.et_approve_content)
-//    EditText etApproveContent;
-//    @BindView(R.id.et_approve_detail)
-//    EditText etApproveDetail;
 
 
     public static CommonApproveFragment newInstance() {

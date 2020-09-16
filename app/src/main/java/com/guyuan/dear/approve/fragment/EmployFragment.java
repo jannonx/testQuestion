@@ -25,17 +25,6 @@ import okhttp3.RequestBody;
 public class EmployFragment extends BaseDataBindingFragment<FragmentApproveEmployBinding> implements View.OnClickListener  {
     public static final String TAG = EmployFragment.class.getSimpleName();
 
-//    @BindView(R.id.et_employ_position)
-//    EditText etEmployPosition;
-//    @BindView(R.id.et_employ_person_number)
-//    EditText etEmployPersonNumber;
-//    @BindView(R.id.et_current_person_number)
-//    EditText etCurrentPersonNumber;
-//    @BindView(R.id.et_employ_duty)
-//    EditText etEmployDuty;
-//    @BindView(R.id.tv_employ_time)
-//    TextView tvEmployTime;
-
 
     public static EmployFragment newInstance() {
         Bundle args = new Bundle();

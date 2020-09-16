@@ -25,22 +25,6 @@ import okhttp3.RequestBody;
  */
 public class PayFragment extends BaseDataBindingFragment<FragmentApprovePayBinding> implements View.OnClickListener {
     public static final String TAG = PayFragment.class.getSimpleName();
-//    @BindView(R.id.et_pay_reason)
-//    EditText etPayReason;
-//    @BindView(R.id.et_pay_price)
-//    EditText etPayPrice;
-//    @BindView(R.id.tv_pay_type)
-//    TextView tvPayType;
-//
-//    @BindView(R.id.tv_pay_time)
-//    TextView tvPayTime;
-//    @BindView(R.id.et_pay_person)
-//    EditText etPayPerson;
-//    @BindView(R.id.et_pay_bank)
-//    EditText etPayBank;
-//    @BindView(R.id.et_pay_bank_account)
-//    EditText etPayBankAccount;
-
 
     private ApprovePayTypeDialogFragment approvePayTypeDialogFragment;
     private int currentType;

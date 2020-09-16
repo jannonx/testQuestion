@@ -19,26 +19,9 @@ import okhttp3.RequestBody;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public class SealFragment extends BaseDataBindingFragment<FragmentApproveSealBinding> implements View.OnClickListener  {
+public class SealFragment extends BaseDataBindingFragment<FragmentApproveSealBinding> implements View.OnClickListener {
 
     public static final String TAG = SealFragment.class.getSimpleName();
-
-//    @BindView(R.id.et_seal_department)
-//    EditText etSealDepartment;
-//    @BindView(R.id.et_seal_person)
-//    EditText etSealPerson;
-//    @BindView(R.id.tv_seal_time)
-//    TextView tvSealTime;
-//    @BindView(R.id.et_seal_file)
-//    EditText etSealFile;
-//    @BindView(R.id.et_seal_file_number)
-//    EditText etSealFileNumber;
-//    @BindView(R.id.et_seal_file_type)
-//    EditText etSealFileType;
-//    @BindView(R.id.et_seal_type)
-//    EditText etSealType;
-//    @BindView(R.id.et_seal_remark)
-//    EditText etSealRemark;
 
 
     public static SealFragment newInstance() {
@@ -46,6 +29,11 @@ public class SealFragment extends BaseDataBindingFragment<FragmentApproveSealBin
         SealFragment fragment = new SealFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.fragment_approve_seal;
     }
 
     protected RequestBody getRequestBody() {
@@ -100,16 +88,11 @@ public class SealFragment extends BaseDataBindingFragment<FragmentApproveSealBin
 //    }
 
 
-
     @Override
     public void onClick(View v) {
 
     }
 
-    @Override
-    protected int getLayoutID() {
-        return R.layout.fragment_approve_seal;
-    }
 
     @Override
     protected void initialization() {

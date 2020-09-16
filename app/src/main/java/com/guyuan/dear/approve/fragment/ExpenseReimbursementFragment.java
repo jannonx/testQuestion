@@ -25,13 +25,6 @@ public class ExpenseReimbursementFragment extends BaseDataBindingFragment<Fragme
     public static final String TAG = ExpenseReimbursementFragment.class.getSimpleName();
 
 
-//    @BindView(R.id.et_expense_price)
-//    EditText etExpensePrice;
-//    @BindView(R.id.et_expense_type)
-//    EditText etExpenseType;
-//    @BindView(R.id.et_expense_remark)
-//    EditText etExpenseRemark;
-
     public static ExpenseReimbursementFragment newInstance() {
         Bundle args = new Bundle();
         ExpenseReimbursementFragment fragment = new ExpenseReimbursementFragment();

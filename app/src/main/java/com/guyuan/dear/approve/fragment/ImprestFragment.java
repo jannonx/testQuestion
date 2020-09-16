@@ -25,24 +25,6 @@ import okhttp3.RequestBody;
  */
 public class ImprestFragment extends BaseDataBindingFragment<FragmentApproveImprestBinding> implements View.OnClickListener {
     public static final String TAG = ImprestFragment.class.getSimpleName();
-//    @BindView(R.id.et_person)
-//    EditText etPerson;
-//    @BindView(R.id.et_department)
-//    EditText etDepartment;
-//    @BindView(R.id.et_reason)
-//    EditText etReason;
-//    @BindView(R.id.et_price)
-//    EditText etPrice;
-//
-//    @BindView(R.id.tv_use_time)
-//    TextView tvUseTime;
-//    @BindView(R.id.tv_back_time)
-//    TextView tvBackTime;
-//
-//    @BindView(R.id.et_out_person)
-//    EditText etOutPerson;
-//    @BindView(R.id.et_remark)
-//    EditText etRemark;
 
 
     public static ImprestFragment newInstance() {
