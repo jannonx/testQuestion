@@ -13,6 +13,7 @@ import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.customizeview.MessageBar;
 import com.guyuan.dear.databinding.FragmentFocusBinding;
 import com.guyuan.dear.focus.assess.ui.FocusAssessActivity;
+import com.guyuan.dear.focus.assess.ui.HrHomeActivity;
 import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
@@ -82,6 +83,11 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
                         switch (url) {
                             case ConstantValue.REALTIMEPROGRESS_SAFE://安全
                                 FocusAssessActivity.start(getContext(), title);
+                                break;
+                            case ConstantValue.REALTIMEPROGRESS_PERSON://人员
+                                HrHomeActivity.start(getContext(),title);
+                                break;
+                            default:
                                 break;
                         }
                     } else {

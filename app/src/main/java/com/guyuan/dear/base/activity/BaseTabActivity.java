@@ -120,7 +120,9 @@ public abstract class BaseTabActivity<V extends ViewDataBinding, VM extends Base
 
     protected abstract List<Fragment> getFragments();
 
-    protected abstract int getCustomViewId();
+    protected int getCustomViewId() {
+        return R.layout.tab_common;
+    }
 
     protected abstract void init();
 
