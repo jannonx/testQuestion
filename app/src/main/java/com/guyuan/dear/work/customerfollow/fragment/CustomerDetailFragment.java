@@ -9,7 +9,7 @@ import com.guyuan.dear.databinding.FragmentFocusAssessOverviewBinding;
 import com.guyuan.dear.work.purchase.fragment.PurchaseDetailFragment;
 
 /**
- * @description:
+ * @description: 我的工作--客户跟进--客户详情
  * @author: Jannonx
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司

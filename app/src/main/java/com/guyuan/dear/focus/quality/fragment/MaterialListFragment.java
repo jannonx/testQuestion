@@ -7,7 +7,7 @@ import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 
 /**
- * @description:
+ * @description: 我的关注--质检--原材料
  * @author: Jannonx
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司

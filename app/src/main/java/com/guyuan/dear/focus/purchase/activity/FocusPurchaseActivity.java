@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
-import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
-import com.guyuan.dear.focus.aftersale.fragment.ContractProgressFragment;
-import com.guyuan.dear.focus.aftersale.fragment.ProviderFragment;
+
 import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
+import com.guyuan.dear.focus.purchase.fragment.ContractProgressFragment;
+import com.guyuan.dear.focus.purchase.fragment.ProviderFragment;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;

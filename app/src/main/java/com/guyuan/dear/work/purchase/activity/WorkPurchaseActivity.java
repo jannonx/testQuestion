@@ -8,10 +8,8 @@ import androidx.fragment.app.Fragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
-import com.guyuan.dear.focus.aftersale.fragment.ContractProgressFragment;
-import com.guyuan.dear.focus.aftersale.fragment.ProviderFragment;
-import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.work.purchase.data.WorkPurchaseViewModel;
 import com.guyuan.dear.work.purchase.fragment.ComponentPurchaseFragment;
 import com.guyuan.dear.work.purchase.fragment.MaterialPurchaseFragment;
 
@@ -22,13 +20,13 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
- * @description: 我的关注--采购
+ * @description: 我的工作--采购计划
  * @author: Jannonx
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
 @AndroidEntryPoint
-public class WorkPurchaseActivity extends BaseTabActivity<ActivityBaseTabBinding, FocusPurchaseViewModel> {
+public class WorkPurchaseActivity extends BaseTabActivity<ActivityBaseTabBinding, WorkPurchaseViewModel> {
 
     private MaterialPurchaseFragment providerFragment;
     private ComponentPurchaseFragment contractProgressFragment;
@@ -88,7 +86,7 @@ public class WorkPurchaseActivity extends BaseTabActivity<ActivityBaseTabBinding
     }
 
     @Override
-    public FocusPurchaseViewModel getViewModel() {
+    public WorkPurchaseViewModel getViewModel() {
         return viewModel;
     }
 

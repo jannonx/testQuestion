@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
-import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 import com.guyuan.dear.work.projectsite.fragment.CheckGoodsFragment;
 import com.guyuan.dear.work.projectsite.fragment.CheckSafetyFragment;
@@ -23,7 +22,7 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
- * @description: 我的关注--采购
+ * @description: 我的工作--工程现场
  * @author: Jannonx
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司

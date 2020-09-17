@@ -7,7 +7,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentPrivacyPolicyBinding;
 
 /**
- * @description:
+ * @description: 我的--隐私政策
  * @author: Jannonx
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司

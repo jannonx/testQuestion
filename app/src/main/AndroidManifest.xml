@@ -87,7 +87,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 掌上办公 -->
+        </activity>
+        <!--#############掌上办公#############-->
         <activity
             android:name=".approve.ApproveActivity"
             android:launchMode="singleTop"
@@ -173,8 +174,116 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+        <!--#############我的关注#############-->
         <activity
             android:name=".focus.assess.ui.FocusAssessActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.projectsite.activity.FocusProjectSiteActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.projectsite.activity.ResultReportDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.purchase.activity.ContractProgressDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.purchase.activity.FocusPurchaseActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.purchase.activity.MaterialListActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.purchase.activity.ProviderDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.quality.activity.FocusQualityActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.quality.activity.QualityDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+
+        <!--#############我的工作#############-->
+        <activity
+            android:name=".work.customerfollow.activity.CustomerDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".work.customerfollow.activity.WorkCustomerActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".work.projectsite.activity.ResultReportDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".work.projectsite.activity.WorkProjectSiteActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".work.purchase.activity.PurchaseDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".work.purchase.activity.WorkPurchaseActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+       
+
+
+        <!--#############我的#############-->
+        <activity
+            android:name=".mine.activity.AboutUsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".mine.activity.FeedBackActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".mine.activity.PrivacyPolicyActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".mine.activity.SafetyCenterActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".mine.activity.SystemSettingActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".mine.activity.UserInfoActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

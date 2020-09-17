@@ -9,12 +9,8 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
-import com.guyuan.dear.focus.quality.fragment.KeyComponentFragment;
-import com.guyuan.dear.focus.quality.fragment.MaterialListFragment;
-import com.guyuan.dear.focus.quality.fragment.OutSourceFragment;
-import com.guyuan.dear.focus.quality.fragment.QualityExceptFragment;
-import com.guyuan.dear.focus.quality.fragment.QualityOverViewFragment;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.work.customerfollow.data.WorkCustomerViewModel;
 import com.guyuan.dear.work.customerfollow.fragment.AllCustomerFragment;
 import com.guyuan.dear.work.customerfollow.fragment.MyCustomerFragment;
 
@@ -25,17 +21,15 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
- * @description: 我的关注--采购
+ * @description: 我的工作--客户跟进
  * @author: Jannonx
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
 @AndroidEntryPoint
-public class WorkCustomerActivity extends BaseTabActivity<ActivityBaseTabBinding, FocusPurchaseViewModel> {
+public class WorkCustomerActivity extends BaseTabActivity<ActivityBaseTabBinding, WorkCustomerViewModel> {
 
-    //    private QualityOverViewFragment qualityOverViewFragment;
-//    private KeyComponentFragment keyComponentFragment;
-//    private OutSourceFragment outSourceFragment;
+
     private AllCustomerFragment materialListFragment;
     private MyCustomerFragment qualityExceptFragment;
 
@@ -55,14 +49,10 @@ public class WorkCustomerActivity extends BaseTabActivity<ActivityBaseTabBinding
     @Override
     protected List<Fragment> getFragments() {
         List<Fragment> fragmentList = new ArrayList<>();
-//        qualityOverViewFragment = QualityOverViewFragment.newInstance();
-//        keyComponentFragment = KeyComponentFragment.newInstance();
-//        outSourceFragment = OutSourceFragment.newInstance();
+
         materialListFragment = AllCustomerFragment.newInstance();
         qualityExceptFragment = MyCustomerFragment.newInstance();
-//        fragmentList.add(qualityOverViewFragment);
-//        fragmentList.add(keyComponentFragment);
-//        fragmentList.add(outSourceFragment);
+
         fragmentList.add(materialListFragment);
         fragmentList.add(qualityExceptFragment);
         return fragmentList;
@@ -84,9 +74,6 @@ public class WorkCustomerActivity extends BaseTabActivity<ActivityBaseTabBinding
         List<Integer> selectList = new ArrayList<>();
         selectList.add(R.mipmap.device_maintain);
         selectList.add(R.mipmap.device_fix);
-//        selectList.add(R.mipmap.device_maintain);
-//        selectList.add(R.mipmap.device_fix);
-//        selectList.add(R.mipmap.device_fix);
         return selectList;
     }
 
@@ -95,14 +82,12 @@ public class WorkCustomerActivity extends BaseTabActivity<ActivityBaseTabBinding
         List<Integer> unselected = new ArrayList<>();
         unselected.add(R.mipmap.device_maintain);
         unselected.add(R.mipmap.device_fix);
-//        unselected.add(R.mipmap.device_maintain);
-//        unselected.add(R.mipmap.device_fix);
-//        unselected.add(R.mipmap.device_fix);
+
         return unselected;
     }
 
     @Override
-    public FocusPurchaseViewModel getViewModel() {
+    public WorkCustomerViewModel getViewModel() {
         return viewModel;
     }
 

@@ -24,7 +24,7 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
- * @description: 我的关注--采购
+ * @description: 我的关注--工程现场
  * @author: Jannonx
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司

@@ -9,7 +9,7 @@ import com.guyuan.dear.databinding.FragmentFocusReportDetailBinding;
 import com.guyuan.dear.focus.purchase.fragment.ContractProgressDetailFragment;
 
 /**
- * @description:
+ * @description: 我的关注--工程现场--详情
  * @author: Jannonx
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
