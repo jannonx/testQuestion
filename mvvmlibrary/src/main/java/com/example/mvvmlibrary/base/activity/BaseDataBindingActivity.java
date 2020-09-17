@@ -1,7 +1,6 @@
 package com.example.mvvmlibrary.base.activity;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
@@ -95,10 +94,11 @@ public abstract class BaseDataBindingActivity<V extends ViewDataBinding, VM exte
     }
 
 
-
     protected abstract void initData(Bundle savedInstanceState);
 
-    public abstract VM getViewModel();
+    public VM getViewModel() {
+        return viewModel;
+    }
 
     public abstract void viewModuleCallBack(Object o);//通用viewModule回调
 
