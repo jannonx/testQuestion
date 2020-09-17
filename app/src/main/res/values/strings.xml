@@ -6,8 +6,31 @@
         <item>方案评审</item>
         <item>工程评审</item>
     </array>
-
-
+    <array name="focus_purchase_title">
+        <item>客户端查询</item>
+        <item>订单进度</item>
+    </array>
+    <array name="focus_project_title">
+        <item>清点货物</item>
+        <item>安全排查</item>
+        <item>现场勘查</item>
+        <item>客户验收</item>
+    </array>
+    <array name="focus_quality_title">
+        <item>质检概况</item>
+        <item>关键零部件质检</item>
+        <item>委外关键零部件质检</item>
+        <item>原材料质检报告</item>
+        <item>质检异常</item>
+    </array>
+    <array name="work_customer_title">
+        <item>全部客户</item>
+        <item>我的跟进</item>
+    </array>
+    <array name="work_purchase_title">
+        <item>采购原材料</item>
+        <item>采购关键零部件</item>
+    </array>
     <array name="control">
         <item>安全管理</item>
         <item>人员管理</item>

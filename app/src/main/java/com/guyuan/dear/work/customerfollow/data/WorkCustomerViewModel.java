@@ -1,4 +1,4 @@
-package com.guyuan.dear.work.purchase.data;
+package com.guyuan.dear.work.customerfollow.data;
 
 import androidx.hilt.lifecycle.ViewModelInject;
 
@@ -8,16 +8,16 @@ import com.guyuan.dear.base.app.DearApplication;
 /**
  * @description:
  * @author: Jannonx
- * @since: 2020/9/17 11:07
+ * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class WorkPurchaseViewModel extends BaseViewModel {
-    private WorkPurchaseRepository workPurchaseRepository;
+public class WorkCustomerViewModel extends BaseViewModel {
+    private WorkCustomerRepository workApproveRepository;
 
     @ViewModelInject
-    public WorkPurchaseViewModel(WorkPurchaseRepository workPurchaseRepository) {
+    public WorkCustomerViewModel(WorkCustomerRepository workApproveRepository) {
         super(DearApplication.getInstance());
-        this.workPurchaseRepository = workPurchaseRepository;
+        this.workApproveRepository = workApproveRepository;
     }
 
 

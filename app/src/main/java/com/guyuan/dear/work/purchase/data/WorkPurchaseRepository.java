@@ -1,7 +1,5 @@
 package com.guyuan.dear.work.purchase.data;
 
-import com.guyuan.dear.focus.assess.api.FocusAssessApiService;
-import com.guyuan.dear.focus.purchase.api.FocusPurchaseApiService;
 import com.guyuan.dear.work.purchase.api.WorkPurchaseApiService;
 
 /**

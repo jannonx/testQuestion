@@ -71,6 +71,11 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding> exte
 
     }
 
+    @Override
+    protected int getLayoutID() {
+        return R.layout.fragment_list_search;
+    }
+
     private void initDate() {
         calenderUtils = CalenderUtils.getInstance();
         //一年
