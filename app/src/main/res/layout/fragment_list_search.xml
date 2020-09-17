@@ -10,17 +10,17 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/search_bar_type"
+            layout="@layout/layout_search_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_44"
             android:layout_marginLeft="@dimen/dp_12"
             android:layout_marginRight="@dimen/dp_12" />
 
-<!--        <include layout="@layout/layout_classify_select" />-->
+        <!--        <include layout="@layout/layout_classify_select" />-->
 
-<!--        <include layout="@layout/layout_date_select" />-->
+        <!--        <include layout="@layout/layout_date_select" />-->
 
-<!--        <include layout="@layout/layout_title_tab" />-->
+        <!--        <include layout="@layout/layout_title_tab" />-->
 
         <tl.com.easy_recycleview_library.BaseRecyclerView
             android:id="@+id/base_recycleView"
@@ -30,7 +30,7 @@
 
         <include
             android:id="@+id/empty_view"
-            layout="@layout/layout_empty"
+            layout="@layout/layout_list_empty"
             android:visibility="gone"
             tools:visibility="visible"
 
