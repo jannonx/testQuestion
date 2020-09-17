@@ -14,7 +14,7 @@
             android:id="@+id/no_data_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/stock_no_data"
+            android:src="@mipmap/ic_no_data"
             tools:ignore="ContentDescription" />
 
         <TextView
