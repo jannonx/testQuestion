@@ -1,10 +1,18 @@
 package com.guyuan.dear.focus.quality.fragment;
 
 import android.os.Bundle;
+import android.view.View;
 
-import com.guyuan.dear.base.fragment.BaseListFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.guyuan.dear.R;
+import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
+import com.guyuan.dear.focus.quality.adapter.MaterialListAdapter;
+
+import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @description: 我的关注--质检--原材料
@@ -12,7 +20,7 @@ import com.guyuan.dear.databinding.FragmentListBinding;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class MaterialListFragment extends BaseListSearchFragment<Object, FragmentListBinding> {
+public class MaterialListFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding> {
 
     public static final String TAG = MaterialListFragment.class.getSimpleName();
 
@@ -25,7 +33,23 @@ public class MaterialListFragment extends BaseListSearchFragment<Object, Fragmen
         return fragment;
     }
 
+    @Override
+    protected void initView() {
+        MaterialListAdapter materialListAdapter = new MaterialListAdapter(getContext(),
+                listData, R.layout.item_focus_material_list);
+        adapter = new BaseRecyclerViewAdapter(materialListAdapter);
+        recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recycleView.setAdapter(adapter);
+        recycleView.setPullRefreshEnabled(isPullEnable());
+        recycleView.setLoadMoreEnabled(isLoadMoreEnable());
 
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+
+            }
+        });
+    }
 
     @Override
     protected void refresh() {

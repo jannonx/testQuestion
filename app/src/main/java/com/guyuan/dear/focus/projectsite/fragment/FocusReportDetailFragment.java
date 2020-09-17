@@ -4,9 +4,7 @@ import android.os.Bundle;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
-import com.guyuan.dear.databinding.FragmentFocusAssessOverviewBinding;
 import com.guyuan.dear.databinding.FragmentFocusReportDetailBinding;
-import com.guyuan.dear.focus.purchase.fragment.ContractProgressDetailFragment;
 
 /**
  * @description: 我的关注--工程现场--详情
@@ -24,6 +22,8 @@ public class FocusReportDetailFragment extends BaseDataBindingFragment<FragmentF
         fragment.setArguments(args);
         return fragment;
     }
+
+
 
     @Override
     protected int getLayoutID() {

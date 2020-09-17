@@ -64,6 +64,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding> exte
         ivClearBtn = rootView.findViewById(R.id.iv_clear);
 
         recycleView.setEmptyView(emptyView);
+        initView();
 //        initDate();
         initListener();
         canPull();
@@ -116,6 +117,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding> exte
     }
 
 
+    protected abstract void initView();
     protected abstract void refresh();
 
     protected abstract void loadMore();

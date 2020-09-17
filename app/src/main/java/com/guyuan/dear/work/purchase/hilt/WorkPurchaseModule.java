@@ -27,7 +27,7 @@ public class WorkPurchaseModule extends BaseModule {
     }
 
     @Provides
-    public WorkPurchaseRepository providesFocusPurchaseRepository(WorkPurchaseApiService workPurchaseApiService) {
+    public WorkPurchaseRepository providesWorkPurchaseRepository(WorkPurchaseApiService workPurchaseApiService) {
         return new WorkPurchaseRepository(workPurchaseApiService);
     }
 }
