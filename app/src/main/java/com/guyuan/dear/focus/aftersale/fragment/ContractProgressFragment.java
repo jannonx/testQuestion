@@ -26,6 +26,11 @@ public class ContractProgressFragment extends BaseListSearchFragment<Object, Fra
 
 
     @Override
+    protected void initView() {
+
+    }
+
+    @Override
     protected void refresh() {
 
     }
