@@ -201,7 +201,6 @@ object FilePicker {
 }
 
 object AndroidChart {
-
     const val mpAndroidChart = "com.github.PhilJay:MPAndroidChart:${Versions.mpAndroidChart}"
     const val mpAndroidChartUtils = "com.teaanddogdog:mpandroidchartutil:${Versions.mpAndroidChartUtil}"
 }

@@ -2,7 +2,6 @@ package com.guyuan.dear.focus;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Switch;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -10,10 +9,9 @@ import com.example.mvvmlibrary.util.LogUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
-import com.guyuan.dear.customizeview.MessageBar;
 import com.guyuan.dear.databinding.FragmentFocusBinding;
 import com.guyuan.dear.focus.assess.ui.FocusAssessActivity;
-import com.guyuan.dear.focus.assess.ui.HrHomeActivity;
+import com.guyuan.dear.focus.hr.view.HrHomeActivity;
 import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;

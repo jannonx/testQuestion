@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -22,9 +23,18 @@ public abstract class BaseDataBindingFragment<VB extends ViewDataBinding> extend
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, getLayoutID(), container, false);
-        rootView=binding.getRoot();
-
+        rootView = binding.getRoot();
+        binding.setLifecycleOwner(this);
         return rootView;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        binding.unbind();
+    }
+
+    protected VB getViewDataBinding() {
+        return binding;
+    }
 }
