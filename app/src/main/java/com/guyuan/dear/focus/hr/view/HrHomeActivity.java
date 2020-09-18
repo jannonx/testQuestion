@@ -1,15 +1,14 @@
-package com.guyuan.dear.focus.assess.ui;
+package com.guyuan.dear.focus.hr.view;
 
 import android.content.Context;
 import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
-import com.guyuan.dear.focus.assess.data.HrHomeViewModel;
+import com.guyuan.dear.focus.hr.viewmodel.HrHomeViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;

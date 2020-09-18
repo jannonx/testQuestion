@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.assess.ui;
+package com.guyuan.dear.focus.hr.view;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
