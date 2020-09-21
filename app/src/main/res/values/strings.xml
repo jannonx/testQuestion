@@ -23,6 +23,12 @@
         <item>原材料质检报告</item>
         <item>质检异常</item>
     </array>
+
+    <array name="focus_device_title">
+        <item>设备概况</item>
+        <item>设备异常</item>
+        <item>设备详情</item>
+    </array>
     <array name="work_customer_title">
         <item>全部客户</item>
         <item>我的跟进</item>

@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.example.mvvmlibrary.util.LogUtils;
 import com.google.gson.Gson;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.focus.device.data.beans.FactoryBean;
 import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.login.ui.LoginActivity;
 
@@ -75,7 +76,15 @@ public class CommonUtils {
         return new Gson().fromJson(loginStr, LoginBean.class);
     }
 
-
+    public static FactoryBean getFactoryListFromCache() {
+        FactoryBean bean = null;
+        String factoryCache =
+                (String) DearApplication.getInstance().getCacheData(ConstantValue.FACTORY_LIST, "");
+        if (!"".equals(factoryCache)) {
+            bean = GsonUtil.stringToBean(factoryCache, FactoryBean.class);
+        }
+        return bean;
+    }
 
     //int秒转化为小时分秒
     public static String getHour(int time) {
