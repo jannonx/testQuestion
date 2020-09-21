@@ -3,13 +3,13 @@ package com.guyuan.dear.base.api;
 import android.content.Context;
 
 import com.example.httplibrary.BaseApiServiceModule;
-import com.example.httplibrary.BuildConfig;
 import com.example.httplibrary.HttpSettingImpl;
 import com.example.httplibrary.interceptor.CacheInterceptor;
 
 import com.example.httplibrary.interceptor.ParamsInterceptor;
 import com.example.httplibrary.interceptor.ResponseInterceptor;
 import com.example.httplibrary.interceptor.VerificationInterceptor;
+import com.guyuan.dear.BuildConfig;
 import com.guyuan.dear.base.api.interceptor.HeadInterceptor;
 
 import java.security.KeyStore;
@@ -27,7 +27,6 @@ import dagger.hilt.InstallIn;
 import dagger.hilt.android.components.ApplicationComponent;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 import okhttp3.Cache;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -43,7 +42,7 @@ import retrofit2.Retrofit;
 public class ApiServiceModule extends BaseApiServiceModule implements HttpSettingImpl {
 
     public ApiServiceModule() {
-        mBaseUrl = com.guyuan.dear.BuildConfig.SERVER_URL;
+        mBaseUrl = BuildConfig.SERVER_URL;
     }
 
     @Override

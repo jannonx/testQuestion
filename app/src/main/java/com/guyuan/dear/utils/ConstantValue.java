@@ -8,17 +8,6 @@ package com.guyuan.dear.utils;
  **/
 public class ConstantValue {
     public static final String KEY_MENU = "KEY_MENU";
-
-    //===============app菜单字段和版本跳转协议==========================start
-
-    //首页入口权限字段
-    public static final String SMART_CONTROL = "SmartControl";
-    public static final String FOCUS = "RealTimeProgress";
-    public static final String WORK = "ProcessControl";
-    public static final String OFFICE = "MobileOffice";
-    public static final String ANALYSE = "IntelligentAnalysis";
-
-
     public static final String KEY_EQUIPMENT_LIST = "KEY_EQUIPMENT_LIST";
     public static final String KEY_ANALYSIS_ASPECT = "KEY_ANALYSIS_ASPECT";
     public static final String KEY_IS_EXCLCUDE_SELF = "KEY_IS_EXCLCUDE_SELF";
@@ -80,57 +69,46 @@ public class ConstantValue {
     //===============app菜单字段和版本跳转协议==========================start
 
     //首页入口权限字段
-    public static final String SMARTCONTROL = "SmartControl";
-    public static final String REALTIMEPROGRESS = "RealTimeProgress";
-    public static final String PROCESSCONTROL = "ProcessControl";
-    public static final String MOBILEOFFICE = "MobileOffice";
-    public static final String INTELLIGENTANALYSIS = "IntelligentAnalysis";
-    public static final String MINE = "Mine";
+    public static final String FOCUS = "my_focus";
+    public static final String WORK = "my_work";
+    public static final String SMART_MANAGEMENT = "smart_management";
+    public static final String MINE = "mine";
 
-    //实时进展
-    public static final String REALTIMEPROGRESS_SAFE = "RealTimeProgress_safe";
-    public static final String REALTIMEPROGRESS_PERSON = "RealTimeProgress_person";
-    public static final String REALTIMEPROGRESS_DEVICE = "RealTimeProgress_device";
-    public static final String REALTIMEPROGRESS_QUALITY = "RealTimeProgress_quality";
-    public static final String REALTIMEPROGRESS_STOCK = "RealTimeProgress_stock";
-    public static final String REALTIMEPROGRESS_PRODUCE = "RealTimeProgress_produce";
-    public static final String REALTIMEPROGRESS_CONTRACT = "RealTimeProgress_contract";
-    public static final String PROCESSCONTROL_MORNING_MEETINGS = "Process_Control_Morning_Meetings";
-    public static final String PROCESSCONTROL_GATE_WATCHER = "Process_Control_Gate_Watcher";
+    //我的关注
+    public static final String FOCUS_STAFF = "focus_staff";
+    public static final String FOCUS_SECURITY = "focus_security";
+    public static final String FOCUS_DEVICE = "focus_device";
+    public static final String FOCUS_SELL = "focus_sell";
+    public static final String FOCUS_ASSESS = "focus_assess";
+    public static final String FOCUS_PRODUCE = "focus_produce";
+    public static final String FOCUS_PURCHASE = "focus_purchase";
+    public static final String FOCUS_QUALITY = "focus_quality";
+    public static final String FOCUS_STOCK = "focus_stock";
+    public static final String FOCUS_TRANSPORT = "focus_transport";
+    public static final String FOCUS_PROJECT_SITE = "focus_project_site";
+    public static final String FOCUS_AFTER_SERVICE = "focus_after_service";
+    public static final String FOCUS_MORNING_MEETING = "focus_morning_meeting";
+    public static final String FOCUS_SMART_GUARD = "focus_smart_guard";
+    public static final String FOCUS_CONSTRUCTION_MONITORING = "focus_construction_monitoring";
+
+
+    //我的工作
+    public static final String WORK_SECURITY = "work_security";
+    public static final String WORK_DEVICE = "work_device";
+    public static final String WORK_CUSTOMER = "work_customer";
+    public static final String WORK_ASSESS = "work_assess";
+    public static final String WORK_PRODUCE = "work_produce";
+    public static final String WORK_PURCHASE = "work_purchase";
+    public static final String WORK_PROJECT_SITE = "work_project_site";
+    public static final String WORK_AFTER_SERVICE = "work_after_service";
+    public static final String WORK_MEETING = "work_meeting";
+    public static final String WORK_APPROVE = "work_approve";
+
+
 
     //摄像头界面
     public static final String SURVEILLANCE_ACTIVITY = "surveillanceActivity";
 
-    //过程控制
-    public static final String PROCESSCONTROL_SAFE = "ProcessControl_safe";
-    public static final String PROCESSCONTROL_PERSON = "ProcessControl_person";
-    public static final String PROCESSCONTROL_DEVICE = "ProcessControl_device";
-    public static final String PROCESSCONTROL_QUALITY = "ProcessControl_quality";
-    public static final String PROCESSCONTROL_STOCK = "ProcessControl_stock";
-    public static final String PROCESSCONTROL_PRODUCE = "ProcessControl_produce";
-    public static final String PROCESSCONTROL_CONTRACT = "ProcessControl_contract";
-    public static final String PROCESSCONTROL_DEVICE_LIST = "ProcessControl_device_list";
-    public static final String PROCESSCONTROL_SAFE_LIST = "ProcessControl_safe_list";
-    public static final String PROCESSCONTROL_QRCODE_COMPARE = "ProcessControl_qrcode_compare";
-    public static final String REAL_TIME_PROGRESS_FINANCIAL_MANAGEMENT =
-            "REAL_TIME_PROGRESS_FINANCIAL_MANAGEMENT";
-
-
-    //financial
-    //智能分析
-    public static final String INTELLIGENTANALYSIS_MAIN = "IntelligentAnalysis_main";//分析界面
-    public static final String INTELLIGENTANALYSIS_PERSONNELEFFICIENCY =
-            "IntelligentAnalysis_PersonnelEfficiency";//人员效率
-    public static final String INTELLIGENTANALYSIS_DEVICEEFFICIENCY =
-            "IntelligentAnalysis_DeviceEfficiency";//设备效率
-    public static final String INTELLIGENTANALYSIS_PROCESSRATIONAL =
-            "IntelligentAnalysis_ProcessRational";//流程合理性
-    public static final String INTELLIGENTANALYSIS_STOCKRATIONAL =
-            "IntelligentAnalysis_StockRational";//库存合理性
-    public static final String INTELLIGENTANALYSIS_MANAGESUGGESTION =
-            "IntelligentAnalysis_manageSuggestion";//改进建议
-    public static final String INTELLIGENT_ANALYSIS_OPERATION_RETURN =
-            "IntelligentAnalysisOperationReturn";//运营效益
 
     //移动办公
     public static final String MOBILE_OFFICE_PENDING_FOR_MY_APPROVAL =
@@ -166,16 +144,16 @@ public class ConstantValue {
     public static final String MOBILE_OFFICE_APPROVE_COMMON = "MobileOfficeApproveCommon";//通用审批
 
     //我的关注action集合
-    public static final String[] FOCUS_ACTIONS = {REALTIMEPROGRESS_SAFE, REALTIMEPROGRESS_PERSON,
-            REALTIMEPROGRESS_DEVICE, REALTIMEPROGRESS_QUALITY, REALTIMEPROGRESS_STOCK, REALTIMEPROGRESS_PRODUCE,
-            REALTIMEPROGRESS_CONTRACT, PROCESSCONTROL_MORNING_MEETINGS, PROCESSCONTROL_GATE_WATCHER,
-            SURVEILLANCE_ACTIVITY};
+    public static final String[] FOCUS_ACTIONS = {FOCUS_STAFF, FOCUS_SECURITY,
+            FOCUS_DEVICE, FOCUS_SELL, FOCUS_ASSESS, FOCUS_PRODUCE,
+            FOCUS_PURCHASE, FOCUS_QUALITY, FOCUS_STOCK,FOCUS_TRANSPORT,FOCUS_PROJECT_SITE,
+            FOCUS_AFTER_SERVICE,FOCUS_MORNING_MEETING,FOCUS_SMART_GUARD,
+            FOCUS_CONSTRUCTION_MONITORING,SURVEILLANCE_ACTIVITY};
 
     //我的工作action集合
-    public static final String[] WORK_ACTIONS = {PROCESSCONTROL_SAFE, PROCESSCONTROL_PERSON,
-            PROCESSCONTROL_DEVICE, PROCESSCONTROL_QUALITY, PROCESSCONTROL_STOCK, PROCESSCONTROL_PRODUCE,
-            PROCESSCONTROL_CONTRACT, PROCESSCONTROL_DEVICE_LIST, PROCESSCONTROL_SAFE_LIST,
-            PROCESSCONTROL_QRCODE_COMPARE};
+    public static final String[] WORK_ACTIONS = {WORK_SECURITY, WORK_DEVICE, WORK_CUSTOMER,
+            WORK_ASSESS, WORK_PRODUCE, WORK_PURCHASE, WORK_PROJECT_SITE, WORK_AFTER_SERVICE,
+            WORK_MEETING, WORK_APPROVE};
 
     //===============app菜单字段和版本跳转协议==========================end
 

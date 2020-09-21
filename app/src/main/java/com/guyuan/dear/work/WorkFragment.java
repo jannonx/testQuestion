@@ -76,6 +76,54 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
                         Bundle cBundle = new Bundle();
                         cBundle.putString(ConstantValue.KEY_TITLE, title);
 
+                        switch (url) {
+                            case ConstantValue.WORK_SECURITY://安全巡查
+
+                                break;
+
+                            case ConstantValue.WORK_DEVICE://设备维护
+
+                                break;
+
+                            case ConstantValue.WORK_CUSTOMER://客户跟进
+
+                                break;
+
+                            case ConstantValue.WORK_ASSESS://工程评审
+
+                                break;
+
+                            case ConstantValue.WORK_PRODUCE://生产计划
+
+                                break;
+
+                            case ConstantValue.WORK_PURCHASE://采购计划
+
+                                break;
+
+                            case ConstantValue.WORK_PROJECT_SITE://工程现场
+
+                                break;
+
+
+                            case ConstantValue.WORK_AFTER_SERVICE://售后服务
+
+                                break;
+
+
+                            case ConstantValue.WORK_MEETING://会议预约
+
+                                break;
+
+                            case ConstantValue.WORK_APPROVE://审批处理
+
+                                break;
+
+                            default:
+
+                                break;
+                        }
+
                     } else {
                         showToastTip(ConstantValue.NO_INTERNET);
                     }
@@ -91,7 +139,7 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
         binding.homeBarCl.homeQrIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             //   QRActivity.start("", getContext());
+                //   QRActivity.start("", getContext());
             }
         });
     }

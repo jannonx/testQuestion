@@ -99,14 +99,14 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Bas
                         fragmentList.add(workFragment);
                         break;
 
-                    case ConstantValue.OFFICE://掌上办公
-                        binding.homeOfficeRb.setVisibility(View.VISIBLE);
-                        binding.homeOfficeRb.setText(title);
-                        officeFragment = OfficeFragment.newInstance(title, menuList);
-                        fragmentList.add(officeFragment);
-                        break;
-
-                    case ConstantValue.ANALYSE://智能分析
+//                    case ConstantValue.OFFICE://掌上办公
+//                        binding.homeOfficeRb.setVisibility(View.VISIBLE);
+//                        binding.homeOfficeRb.setText(title);
+//                        officeFragment = OfficeFragment.newInstance(title, menuList);
+//                        fragmentList.add(officeFragment);
+//                        break;
+//
+                    case ConstantValue.SMART_MANAGEMENT://智慧管理
                         binding.homeAnalysisRb.setVisibility(View.VISIBLE);
                         binding.homeAnalysisRb.setText(title);
                         analyseFragment = AnalyseFragment.newInstance(title, menuList);

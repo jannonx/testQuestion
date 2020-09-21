@@ -79,12 +79,68 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
                         cBundle.putString(ConstantValue.KEY_TITLE, title);
 
                         switch (url) {
-                            case ConstantValue.REALTIMEPROGRESS_SAFE://安全
+                            case ConstantValue.FOCUS_STAFF://人员
+                                HrHomeActivity.start(getContext(), title);
+                                break;
+
+                            case ConstantValue.FOCUS_SECURITY://安全
+
+                                break;
+
+                            case ConstantValue.FOCUS_DEVICE://设备
+
+                                break;
+
+                            case ConstantValue.FOCUS_SELL://销售
+
+                                break;
+
+                            case ConstantValue.FOCUS_ASSESS://评审
                                 FocusAssessActivity.start(getContext(), title);
                                 break;
-                            case ConstantValue.REALTIMEPROGRESS_PERSON://人员
-                                HrHomeActivity.start(getContext(),title);
+
+                            case ConstantValue.FOCUS_PRODUCE://生产
+
                                 break;
+
+                            case ConstantValue.FOCUS_PURCHASE://采购
+
+                                break;
+
+                            case ConstantValue.FOCUS_QUALITY://质检
+
+                                break;
+
+                            case ConstantValue.FOCUS_STOCK://库存
+
+                                break;
+
+                            case ConstantValue.FOCUS_TRANSPORT://运输
+
+                                break;
+
+                            case ConstantValue.FOCUS_PROJECT_SITE://工程现场
+
+                                break;
+
+                            case ConstantValue.FOCUS_AFTER_SERVICE://售后服务
+
+                                break;
+
+                            case ConstantValue.FOCUS_MORNING_MEETING://晨会
+
+                                break;
+
+
+                            case ConstantValue.FOCUS_SMART_GUARD://智能门卫
+
+                                break;
+
+                            case ConstantValue.FOCUS_CONSTRUCTION_MONITORING://施工现场
+
+                                break;
+
+
                             default:
                                 break;
                         }
