@@ -52,18 +52,18 @@ public class FullScreenShowVideoFragment extends BaseDataBindingFragment<Fragmen
 
 
 
-    @Override
-    protected void initInViewPager() {
-        if (getArguments() != null) {
-            url = getArguments().getString(URL);
-            if (url.contains("storage")) {
-                full_screen_vv.setVideoPath(url);
-            } else {
-                showLoadingWithStatus(childFragmentManager, "视频加载中...");
-                full_screen_vv.setVideoURI(Uri.parse(url));
-            }
-        }
-    }
+//    @Override
+//    protected void initInViewPager() {
+//        if (getArguments() != null) {
+//            url = getArguments().getString(URL);
+//            if (url.contains("storage")) {
+//                full_screen_vv.setVideoPath(url);
+//            } else {
+//                showLoadingWithStatus(childFragmentManager, "视频加载中...");
+//                full_screen_vv.setVideoURI(Uri.parse(url));
+//            }
+//        }
+//    }
 
     @Override
     public void onPause() {

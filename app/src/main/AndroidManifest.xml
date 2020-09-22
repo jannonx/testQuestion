@@ -253,7 +253,6 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-       
 
 
         <!--#############我的#############-->
@@ -284,6 +283,11 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".mine.activity.UserInfoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.device.ui.FocusDeviceActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

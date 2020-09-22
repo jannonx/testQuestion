@@ -1,17 +1,16 @@
 package com.guyuan.dear.focus.device.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import androidx.fragment.app.Fragment;
-
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.device.data.FocusDeviceViewModel;
 import com.guyuan.dear.utils.ConstantValue;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -23,6 +22,15 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class FocusDeviceActivity extends BaseTabActivity<ActivityBaseTabBinding, FocusDeviceViewModel> {
 
+    private FocusDeviceOverviewFragment overviewFragment;
+    private FocusDeviceExceptionFragment exceptionFragment;
+    private FocusDeviceProfileFragment profileFragment;
+
+    public static void start(Context context, String title) {
+        Intent starter = new Intent(context, FocusDeviceActivity.class);
+        starter.putExtra(ConstantValue.KEY_TITLE, title);
+        context.startActivity(starter);
+    }
 
 
     @Override
@@ -33,7 +41,14 @@ public class FocusDeviceActivity extends BaseTabActivity<ActivityBaseTabBinding,
 
     @Override
     protected List<Fragment> getFragments() {
-        return null;
+        List<Fragment> fragmentList = new ArrayList<>();
+        overviewFragment = FocusDeviceOverviewFragment.newInstance();
+        exceptionFragment = FocusDeviceExceptionFragment.newInstance();
+        profileFragment = FocusDeviceProfileFragment.newInstance();
+        fragmentList.add(overviewFragment);
+        fragmentList.add(exceptionFragment);
+        fragmentList.add(profileFragment);
+        return fragmentList;
     }
 
     @Override
@@ -43,27 +58,18 @@ public class FocusDeviceActivity extends BaseTabActivity<ActivityBaseTabBinding,
     }
 
     @Override
-    protected List<Integer> setTabSelectedIconList() {
-        List<Integer> selectList = new ArrayList<>();
-        selectList.add(R.mipmap.device_maintain);
-        selectList.add(R.mipmap.device_fix);
-        selectList.add(R.mipmap.device_maintain);
-        selectList.add(R.mipmap.device_fix);
-        return selectList;
+    protected List<Integer> setTabIconList() {
+        List<Integer> tabDrawableList = new ArrayList<>();
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        return tabDrawableList;
     }
 
-    @Override
-    protected List<Integer> setTabUnselectedIconList() {
-        List<Integer> unselected = new ArrayList<>();
-        unselected.add(R.mipmap.device_maintain);
-        unselected.add(R.mipmap.device_fix);
-        unselected.add(R.mipmap.device_maintain);
-        unselected.add(R.mipmap.device_fix);
-        return unselected;
-    }
 
     @Override
     public void viewModuleCallBack(Object o) {
 
     }
+
 }

@@ -30,8 +30,7 @@ public abstract class BaseFragment extends Fragment {
     protected AlertDialog loadingDialog;
     protected View rootView;
     protected FragmentManager childFragmentManager;
-    protected boolean isFirstLoad = true;
-    protected boolean isUserVisible;
+
 
     @Nullable
     @Override
@@ -53,52 +52,6 @@ public abstract class BaseFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         childFragmentManager = getChildFragmentManager();
         initialization();
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (isFirstLoad) {
-            initInViewPager();
-            isFirstLoad = false;
-
-        }
-        reFreshUI();
-    }
-
-    /**
-     * 在这里实现Fragment数据的缓加载.
-     *
-     * @param isVisibleToUser
-     */
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (getUserVisibleHint()) {//当可见的时候执行操作
-            isUserVisible = true;
-            onVisible();
-        } else {//不可见时执行相应的操作
-            isUserVisible = false;
-            onInvisible();
-        }
-    }
-
-
-    protected void onVisible() {
-
-    }
-
-    protected void onInvisible() {
-    }
-
-
-    //Viewpager中fragment可见时刷新数据
-    protected void reFreshUI() {
-    }
-
-    //viewpager中fragment初始化
-    protected void initInViewPager() {
     }
 
 

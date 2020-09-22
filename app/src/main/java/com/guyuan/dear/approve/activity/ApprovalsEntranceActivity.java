@@ -55,10 +55,6 @@ public class ApprovalsEntranceActivity extends BaseTabActivity<ActivityBaseTabBi
         return fragmentList;
     }
 
-    @Override
-    protected int getCustomViewId() {
-        return R.layout.tab_common;
-    }
 
 
     @Override
@@ -69,20 +65,11 @@ public class ApprovalsEntranceActivity extends BaseTabActivity<ActivityBaseTabBi
     }
 
     @Override
-    protected List<Integer> setTabSelectedIconList() {
-        List<Integer> selectList = new ArrayList<>();
-        selectList.add(R.mipmap.approve_for_me);
-        selectList.add(R.mipmap.ic_my_approve);
-        return selectList;
+    protected List<Integer> setTabIconList() {
+        return null;
     }
 
-    @Override
-    protected List<Integer> setTabUnselectedIconList() {
-        List<Integer> unselectedList = new ArrayList<>();
-        unselectedList.add(R.mipmap.approve_for_me);
-        unselectedList.add(R.mipmap.ic_my_approve);
-        return unselectedList;
-    }
+
 
 
     @Override

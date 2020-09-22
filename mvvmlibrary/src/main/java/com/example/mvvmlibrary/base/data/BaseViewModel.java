@@ -144,7 +144,7 @@ public class BaseViewModel extends AndroidViewModel {
     /**
      * RxJava取消注册，以避免内存泄露
      */
-    protected void onUnSubscribe() {
+    public void onUnSubscribe() {
         if (mCompositeSubscription != null && mCompositeSubscription.size() > 0) {
             mCompositeSubscription.dispose();
         }

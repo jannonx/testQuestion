@@ -14,4 +14,8 @@ public class FocusDeviceRepository {
     public FocusDeviceRepository(FocusDeviceApiService focusDeviceApiService) {
         this.focusDeviceApiService = focusDeviceApiService;
     }
+
+    public FocusDeviceApiService getFocusDeviceApiService() {
+        return focusDeviceApiService;
+    }
 }

@@ -108,5 +108,8 @@ public abstract class BaseDataBindingActivity<V extends ViewDataBinding, VM exte
         if (binding != null) {
             binding.unbind();
         }
+        if (viewModel != null) {
+            viewModel.onUnSubscribe();
+        }
     }
 }

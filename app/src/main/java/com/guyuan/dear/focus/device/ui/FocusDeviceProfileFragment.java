@@ -1,19 +1,23 @@
 package com.guyuan.dear.focus.device.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentFocusDeviceProfileBinding;
 import com.guyuan.dear.focus.device.adapter.DeviceProfileAdapter;
+import com.guyuan.dear.focus.device.data.FocusDeviceViewModel;
 import com.guyuan.dear.focus.device.data.beans.EquipmentBean;
 import com.guyuan.dear.focus.device.data.beans.FactoryBean;
 import com.guyuan.dear.focus.device.data.beans.FactoryRealTimeBean;
 import com.guyuan.dear.focus.device.ui.detail.FocusDeviceDetailActivity;
 import com.guyuan.dear.utils.CommonUtils;
+import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.List;
 
@@ -29,15 +33,24 @@ public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTime
 
     public static final String TAG = "FocusDeviceProfileFragment";
     private long currentFactoryID;
+    private FocusDeviceViewModel viewModel;
 
     public static FocusDeviceProfileFragment newInstance() {
 
         Bundle args = new Bundle();
-        
+
         FocusDeviceProfileFragment fragment = new FocusDeviceProfileFragment();
         fragment.setArguments(args);
         return fragment;
     }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        FocusDeviceActivity activity = (FocusDeviceActivity) context;
+        viewModel = activity.getViewModel();
+    }
+
 
     @Override
     public int getLayoutID() {
@@ -46,6 +59,9 @@ public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTime
 
     @Override
     protected void initView() {
+        if (viewModel != null) {
+            viewModel.getFactoryList(ConstantValue.FIRST_PAGE);
+        }
         FactoryBean factoryBean = CommonUtils.getFactoryListFromCache();
         if (factoryBean != null) {
             setUI(factoryBean);
@@ -67,7 +83,7 @@ public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTime
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
 
-    //    devicePresenter.getFactoryRealTimeList(currentFactoryID);
+        //    devicePresenter.getFactoryRealTimeList(currentFactoryID);
     }
 
     public void setUI(FactoryBean factoryBean) {

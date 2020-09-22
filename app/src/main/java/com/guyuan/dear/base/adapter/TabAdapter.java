@@ -6,8 +6,10 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import java.util.List;
 
@@ -15,33 +17,23 @@ import java.util.List;
  * Created by TL
  * on 2019/11/28
  */
-public class TabAdapter extends FragmentPagerAdapter {
-  private List<String> titleList;
-  private List<Fragment> fragmentList;
-  private Context context;
-  private int layoutID;
+public class TabAdapter extends FragmentStateAdapter {
+    private List<Fragment> fragmentList;
 
-  public TabAdapter(@NonNull FragmentManager fm, List<String> titleList,
-                    List<Fragment> fragmentList, Context context, int layoutID) {
-    super(fm);
-    this.titleList = titleList;
-    this.fragmentList = fragmentList;
-    this.context=context;
-    this.layoutID=layoutID;
-  }
+    public TabAdapter(@NonNull FragmentActivity fm, List<Fragment> fragmentList) {
+        super(fm);
+        this.fragmentList = fragmentList;
+    }
 
-  @NonNull
-  @Override
-  public Fragment getItem(int position) {
-    return fragmentList.get(position);
-  }
 
-  @Override
-  public int getCount() {
-    return titleList.size();
-  }
+    @NonNull
+    @Override
+    public Fragment createFragment(int position) {
+        return fragmentList.get(position);
+    }
 
-  public View getView(){
-    return LayoutInflater.from(context).inflate(layoutID, null);
-  }
+    @Override
+    public int getItemCount() {
+        return fragmentList.size();
+    }
 }

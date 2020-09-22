@@ -191,6 +191,7 @@ dependencies {
     implementation AndroidX.pagingGuava
     //谷歌分包方案，解决方法数最大值65536限制(api21以下需要该库)
     implementation AndroidX.multidex
+    implementation AndroidX.viewpager2;
 
     //zxing
     implementation Android.zxing
@@ -257,4 +258,5 @@ dependencies {
 
     //文件选择
     implementation FilePicker.runtime
+
 }

@@ -59,32 +59,11 @@ public class HrHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, HrHo
     }
 
     @Override
-    protected List<Integer> setTabSelectedIconList() {
-        List<Integer> list = new ArrayList<Integer>() {
-            {
-                add(R.mipmap.device_maintain);
-                add(R.mipmap.device_fix);
-                add(R.mipmap.device_maintain);
-                add(R.mipmap.device_fix);
-            }
-
-        };
-        return list;
+    protected List<Integer> setTabIconList() {
+        return null;
     }
 
-    @Override
-    protected List<Integer> setTabUnselectedIconList() {
-        List<Integer> list = new ArrayList<Integer>() {
-            {
-                add(R.mipmap.device_maintain);
-                add(R.mipmap.device_fix);
-                add(R.mipmap.device_maintain);
-                add(R.mipmap.device_fix);
-            }
 
-        };
-        return list;
-    }
 
     @Override
     public void viewModuleCallBack(Object o) {

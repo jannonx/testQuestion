@@ -67,10 +67,7 @@ public class FocusQualityActivity extends BaseTabActivity<ActivityBaseTabBinding
         return fragmentList;
     }
 
-    @Override
-    protected int getCustomViewId() {
-        return R.layout.tab_common;
-    }
+
 
     @Override
     protected void init() {
@@ -79,26 +76,11 @@ public class FocusQualityActivity extends BaseTabActivity<ActivityBaseTabBinding
     }
 
     @Override
-    protected List<Integer> setTabSelectedIconList() {
-        List<Integer> selectList = new ArrayList<>();
-        selectList.add(R.mipmap.device_maintain);
-        selectList.add(R.mipmap.device_fix);
-        selectList.add(R.mipmap.device_maintain);
-        selectList.add(R.mipmap.device_fix);
-        selectList.add(R.mipmap.device_fix);
-        return selectList;
+    protected List<Integer> setTabIconList() {
+        return null;
     }
 
-    @Override
-    protected List<Integer> setTabUnselectedIconList() {
-        List<Integer> unselected = new ArrayList<>();
-        unselected.add(R.mipmap.device_maintain);
-        unselected.add(R.mipmap.device_fix);
-        unselected.add(R.mipmap.device_maintain);
-        unselected.add(R.mipmap.device_fix);
-        unselected.add(R.mipmap.device_fix);
-        return unselected;
-    }
+
 
     @Override
     public FocusPurchaseViewModel getViewModel() {

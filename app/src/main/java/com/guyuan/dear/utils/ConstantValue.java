@@ -105,7 +105,6 @@ public class ConstantValue {
     public static final String WORK_APPROVE = "work_approve";
 
 
-
     //摄像头界面
     public static final String SURVEILLANCE_ACTIVITY = "surveillanceActivity";
 
@@ -146,9 +145,9 @@ public class ConstantValue {
     //我的关注action集合
     public static final String[] FOCUS_ACTIONS = {FOCUS_STAFF, FOCUS_SECURITY,
             FOCUS_DEVICE, FOCUS_SELL, FOCUS_ASSESS, FOCUS_PRODUCE,
-            FOCUS_PURCHASE, FOCUS_QUALITY, FOCUS_STOCK,FOCUS_TRANSPORT,FOCUS_PROJECT_SITE,
-            FOCUS_AFTER_SERVICE,FOCUS_MORNING_MEETING,FOCUS_SMART_GUARD,
-            FOCUS_CONSTRUCTION_MONITORING,SURVEILLANCE_ACTIVITY};
+            FOCUS_PURCHASE, FOCUS_QUALITY, FOCUS_STOCK, FOCUS_TRANSPORT, FOCUS_PROJECT_SITE,
+            FOCUS_AFTER_SERVICE, FOCUS_MORNING_MEETING, FOCUS_SMART_GUARD,
+            FOCUS_CONSTRUCTION_MONITORING, SURVEILLANCE_ACTIVITY};
 
     //我的工作action集合
     public static final String[] WORK_ACTIONS = {WORK_SECURITY, WORK_DEVICE, WORK_CUSTOMER,
@@ -229,8 +228,8 @@ public class ConstantValue {
     public static final String NO_INTERNET = "无网络,请检查网络连接！";
 
 
-    public static final int PAGE_SIZE = 30;
-    public static final int FIRST_PAGE = 1;
+    public static final int PAGE_SIZE = 30;    //默认列表每页数量
+    public static final int FIRST_PAGE = 1;    //默认列表起始页码
     public static final int CONST_MAX_STAFF_COUNT = 13;
 
     public static final int LOAD_MORE = 0X0100;

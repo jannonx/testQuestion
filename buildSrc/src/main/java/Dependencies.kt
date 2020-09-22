@@ -49,6 +49,7 @@ object Versions {
     const val filePicker = "2.2.1"
     const val mpAndroidChart = "3.0.3"
     const val mpAndroidChartUtil = "1.0.3"
+    const val viewpager2 = "1.1.0-alpha01"
 }
 
 object AndroidX {
@@ -79,6 +80,7 @@ object AndroidX {
     const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime:${Versions.lifeCycle}"
     const val lifeCycleKT = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifeCycle}"
     const val multidex = "androidx.multidex:multidex:${Versions.multidex}"
+    const val viewpager2 = "androidx.viewpager2:viewpager2:${Versions.viewpager2}"
 }
 
 object Android {
@@ -118,7 +120,7 @@ object SpinKit {
 }
 
 object TimePickerDialog {
-    const val timePickerDialog= "com.jzxiang.pickerview:TimePickerDialog:${Versions.timePickerDialog}"
+    const val timePickerDialog = "com.jzxiang.pickerview:TimePickerDialog:${Versions.timePickerDialog}"
 }
 
 object Rxandroid {

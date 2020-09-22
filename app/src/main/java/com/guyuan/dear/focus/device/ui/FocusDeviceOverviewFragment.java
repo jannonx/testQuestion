@@ -1,14 +1,21 @@
 package com.guyuan.dear.focus.device.ui;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.mvvmlibrary.util.LogUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentFocusDeviceOverviewBinding;
 import com.guyuan.dear.focus.device.adapter.DeviceNumberAdapter;
+import com.guyuan.dear.focus.device.data.FocusDeviceViewModel;
 import com.guyuan.dear.focus.device.data.beans.DeviceNumberBean;
 import com.guyuan.dear.focus.device.ui.overview.FocusDeviceTypeActivity;
 import com.guyuan.dear.focus.device.ui.overview.FocusDeviceTypeFragment;
@@ -26,6 +33,7 @@ public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBe
 
 
     public static final String TAG = "FocusDeviceOverviewFragment";
+    private FocusDeviceViewModel viewModel;
 
     public static FocusDeviceOverviewFragment newInstance() {
 
@@ -37,13 +45,23 @@ public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBe
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        FocusDeviceActivity activity = (FocusDeviceActivity) context;
+        viewModel = activity.getViewModel();
+    }
+
+    @Override
     public int getLayoutID() {
         return R.layout.fragment_focus_device_overview;
     }
 
     @Override
     protected void initView() {
-      DeviceNumberAdapter numberAdapter = new DeviceNumberAdapter(getContext(), listData,
+        if (viewModel != null) {
+            viewModel.getOverviewTotalDevice();
+        }
+        DeviceNumberAdapter numberAdapter = new DeviceNumberAdapter(getContext(), listData,
                 R.layout.item_focus_device_number);
 
         numberAdapter.setTypeClickListener(new DeviceNumberAdapter.OnTypeClickListener() {
@@ -66,7 +84,7 @@ public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBe
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
 
-      //  presenter.getDeviceNumber();
+        //  presenter.getDeviceNumber();
 
         binding.totalNumberCv.setOnClickListener(new View.OnClickListener() {
             @Override
