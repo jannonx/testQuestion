@@ -5,13 +5,16 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
+
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.customizeview.TabLayoutHelper;
+
 import java.util.List;
 
 /**
@@ -28,7 +31,6 @@ public abstract class BaseTabActivity<V extends ViewDataBinding, VM extends Base
     private int startPosition;//起始选中位置
     private List<Integer> tabIconList;     //tab图标集合
     private List<String> titleList;
-
 
     @Override
     protected int getLayoutID() {
@@ -47,15 +49,12 @@ public abstract class BaseTabActivity<V extends ViewDataBinding, VM extends Base
         titleList = getTitles();
         List<Fragment> fragmentList = getFragments();
         tabIconList = setTabIconList();
-
+        init();
         new TabLayoutHelper(this, base_tl, base_vp, fragmentList)
                 .setTab()
                 .setStartPosition(startPosition)
                 .setListener(this)
                 .setCustomView();
-
-        init();
-
     }
 
 
