@@ -40,6 +40,7 @@ public class ConstantValue {
     public static final String KEY_STATUS_TYPE = "key_status_type";
     public static final String KEY_STAFF_TABLE_LAST_UPDATE_TIME = "key_staff_table_last_update_time";
     public static final String KEY_VIDEO_URL = "KEY_VIDEO_URL";
+    public static final String KEY_GRP_TYPE = "KEY_GROUP_TYPE";
     public static int isForground;   //app是否在前台
     public static boolean hasNewVersion = false;//是否有新版本
 

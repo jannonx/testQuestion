@@ -25,11 +25,21 @@ import java.util.List;
 public abstract class BaseTabActivity<V extends ViewDataBinding, VM extends BaseViewModel>
         extends BaseFileUploadActivity<V, VM> implements TabLayoutHelper.TabLayoutListener {
 
-    protected TabLayout base_tl;
-    protected ViewPager2 base_vp;
+    protected TabLayout tlBase;
+    protected ViewPager2 vpBase;
 
-    private int startPosition;//起始选中位置
-    private List<Integer> tabIconList;     //tab图标集合
+    /**
+     * 起始选中位置
+     */
+    private int startPosition;
+
+    /**
+     * tab图标集合
+     */
+    private List<Integer> tabIconList;
+    /**
+     * tab文本集合
+     */
     private List<String> titleList;
 
     @Override
@@ -38,8 +48,8 @@ public abstract class BaseTabActivity<V extends ViewDataBinding, VM extends Base
     }
 
     private void initView() {
-        base_tl = findViewById(R.id.base_tl);
-        base_vp = findViewById(R.id.base_vp);
+        tlBase = findViewById(R.id.base_tl);
+        vpBase = findViewById(R.id.base_vp);
     }
 
     @Override
@@ -50,7 +60,7 @@ public abstract class BaseTabActivity<V extends ViewDataBinding, VM extends Base
         List<Fragment> fragmentList = getFragments();
         tabIconList = setTabIconList();
         init();
-        new TabLayoutHelper(this, base_tl, base_vp, fragmentList)
+        new TabLayoutHelper(this, tlBase, vpBase, fragmentList)
                 .setTab()
                 .setStartPosition(startPosition)
                 .setListener(this)
@@ -66,17 +76,38 @@ public abstract class BaseTabActivity<V extends ViewDataBinding, VM extends Base
         tv.setText(titleList.get(currentPosition));
     }
 
-
+    /**
+     * 设置头部Tab文本集合
+     *
+     * @return 头部Tab文本集合
+     */
     protected abstract List<String> getTitles();
 
+    /**
+     * 设置内容fragment集合
+     *
+     * @return 内容fragment集合
+     */
     protected abstract List<Fragment> getFragments();
 
-
+    /**
+     * 初始化数据
+     */
     protected abstract void init();
 
+    /**
+     * 设置头部Tab图标集合
+     *
+     * @return 头部Tab图标集合
+     */
     protected abstract List<Integer> setTabIconList();
 
 
+    /**
+     * 设置起始位置
+     *
+     * @param position 位置下标
+     */
     protected void setStartPosition(int position) {
         startPosition = position;
     }
