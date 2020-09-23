@@ -6,6 +6,8 @@ import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentHrGroupBinding;
+import com.guyuan.dear.focus.hr.adapter.HrStaffAdapter;
+import com.guyuan.dear.focus.hr.bean.StaffBean;
 import com.guyuan.dear.utils.ConstantValue;
 
 /**
@@ -35,6 +37,7 @@ public class HrGroupFragment extends BaseMvvmFragment<FragmentHrGroupBinding, Hr
     protected void initData() {
         grpType = getArguments().getInt(ConstantValue.KEY_GRP_TYPE);
 
+
     }
 
     @Override
@@ -46,6 +49,20 @@ public class HrGroupFragment extends BaseMvvmFragment<FragmentHrGroupBinding, Hr
 
     @Override
     protected void initListeners() {
+        getViewModel().setCallback(new HrStaffAdapter.HrStaffAdapterCallback() {
+            @Override
+            public void onClickLoadMore(int grpType, int index, int size) {
+                showLoading(getParentFragmentManager());
+                getViewModel().loadMoreStaffs( grpType,  index,  size);
+                hideLoading();
+            }
+
+            @Override
+            public void onClickStaff(StaffBean item, int position) {
+                //todo 跳转到个人详情
+
+            }
+        });
 
     }
 

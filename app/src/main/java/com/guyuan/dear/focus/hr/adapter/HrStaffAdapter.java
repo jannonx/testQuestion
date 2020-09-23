@@ -71,6 +71,14 @@ public class HrStaffAdapter extends BaseRecyclerAdapter<StaffBean> {
         int viewType = getItemViewType(position);
         if (viewType != VIEW_TYPE_LOAD_MORE) {
             holder.setText(R.id.item_hr_staff_tv_name, item.getName());
+            holder.setOnClickListener(R.id.item_hr_staff_iv_icon, new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(callback!=null){
+                        callback.onClickStaff(item,position);
+                    }
+                }
+            });
         } else {
             holder.setOnClickListener(R.id.item_hr_load_more_iv_add, new View.OnClickListener() {
                 @Override
@@ -94,6 +102,7 @@ public class HrStaffAdapter extends BaseRecyclerAdapter<StaffBean> {
 
     public interface HrStaffAdapterCallback {
         void onClickLoadMore(int grpType, int index, int size);
+        void onClickStaff(StaffBean item, int position);
     }
 
     public void setCallback(HrStaffAdapterCallback callback) {

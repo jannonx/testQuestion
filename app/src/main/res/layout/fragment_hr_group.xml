@@ -15,6 +15,7 @@
         <ExpandableListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:setDeptData="@{fragment_hr_group_vm.staffs}"/>
+            app:setDeptData="@{fragment_hr_group_vm.staffs}"
+            app:setCallback="@{fragment_hr_group_vm.callback}"/>
     </LinearLayout>
 </layout>

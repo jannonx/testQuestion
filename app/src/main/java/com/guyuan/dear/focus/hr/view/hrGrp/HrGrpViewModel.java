@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
+import com.guyuan.dear.focus.hr.adapter.HrStaffAdapter;
 import com.guyuan.dear.focus.hr.bean.HrStaffsByDept;
 import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
 import com.guyuan.dear.focus.hr.bean.StaffBean;
@@ -34,6 +35,7 @@ public class HrGrpViewModel extends BaseViewModel {
 
     public MutableLiveData<List<HrStaffsByDept>> staffs = new MutableLiveData<>();
     public int grpType;
+    public HrStaffAdapter.HrStaffAdapterCallback callback;
 
     public void setGrpType(int grpType) {
         this.grpType = grpType;
@@ -58,5 +60,28 @@ public class HrGrpViewModel extends BaseViewModel {
             list.add(dept);
         }
         staffs.postValue(list);
+    }
+
+    public void setCallback(HrStaffAdapter.HrStaffAdapterCallback callback) {
+        this.callback = callback;
+    }
+
+    public void loadMoreStaffs(int grpType, int index, int size) {
+        if(staffs.getValue()==null){
+            return;
+        }
+        for (HrStaffsByDept dept : staffs.getValue()) {
+            if(dept.getGrpType() == grpType){
+                List<StaffBean> staffs = dept.getStaffs();
+                for(int i=0;i<size;i++){
+                    StaffBean staff = new StaffBean();
+                    staff.setName("NewGuy");
+                    staff.setId(0);
+                    staff.setDept(dept.getGrpLabel());
+                    staffs.add(staff);
+                }
+                break;
+            }
+        }
     }
 }

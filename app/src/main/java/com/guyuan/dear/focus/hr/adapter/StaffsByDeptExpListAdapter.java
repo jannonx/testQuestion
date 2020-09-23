@@ -99,11 +99,11 @@ public class StaffsByDeptExpListAdapter extends BaseExpandableListAdapter {
         }else {
             holder = (ChildViewHolder) convertView.getTag();
         }
-        initRecyclerView(holder,staffs,group.getGrpType(),groupPosition);
+        initChildView(holder,staffs,group.getGrpType(),groupPosition);
         return convertView;
     }
 
-    private void initRecyclerView(ChildViewHolder holder, List<StaffBean> staffs, int grpType, int groupPosition) {
+    private void initChildView(ChildViewHolder holder, List<StaffBean> staffs, int grpType, int groupPosition) {
         BaseRecyclerView recyclerView = holder.recyclerView;
         GridLayoutManager layoutManager = new GridLayoutManager(context,5,GridLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
@@ -115,9 +115,24 @@ public class StaffsByDeptExpListAdapter extends BaseExpandableListAdapter {
         adapter.setCallback(new HrStaffAdapter.HrStaffAdapterCallback() {
             @Override
             public void onClickLoadMore(int grpType, int index, int size) {
-                //todo 加载更多
+                if(callback!=null){
+                    callback.onClickLoadMore(grpType,index,size);
+                }
+            }
+
+            @Override
+            public void onClickStaff(StaffBean item, int position) {
+                if(callback!=null){
+                    callback.onClickStaff(item,position);
+                }
             }
         });
+    }
+
+    private HrStaffAdapter.HrStaffAdapterCallback callback;
+
+    public void setCallback(HrStaffAdapter.HrStaffAdapterCallback callback) {
+        this.callback = callback;
     }
 
     @Override
