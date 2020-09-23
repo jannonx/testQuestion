@@ -75,12 +75,16 @@ public class BackService extends IntentService {
                                     LoginBean loginBean = (LoginBean) o;
                                     mApplication.saveCacheData(ConstantValue.USER_JSON_STRING,
                                             new Gson().toJson(loginBean));
-                                    EventBus.getDefault().post(new LoginBusBean());
+                                    LoginBusBean busBean = new LoginBusBean();
+                                    busBean.setSuccess(true);
+                                    EventBus.getDefault().post(busBean);
                                 }
                             }, new ErrorResultBean() {
                                 @Override
                                 protected void onError(ErrorResultBean.ErrorBean errorBean) {
-                                    EventBus.getDefault().post(new LoginBusBean());
+                                    LoginBusBean busBean = new LoginBusBean();
+                                    busBean.setSuccess(false);
+                                    EventBus.getDefault().post(busBean);
                                 }
                             });
                 }

@@ -219,7 +219,12 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Bas
         if (o instanceof TokenBusBean) {     //退出登录
             CommonUtils.logout(this);
         } else if (o instanceof LoginBusBean) {//获取最新菜单
-            initFragments();
+            LoginBusBean loginBusBean = (LoginBusBean) o;
+            if (loginBusBean.isSuccess()) {
+                initFragments();
+            } else {
+                CommonUtils.logout(this);
+            }
         }
 
     }
