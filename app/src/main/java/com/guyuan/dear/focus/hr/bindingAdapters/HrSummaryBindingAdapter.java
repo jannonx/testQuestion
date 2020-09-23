@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.guyuan.dear.customizeview.PieChartView;
 import com.guyuan.dear.focus.hr.adapter.HrSummaryAdapter;
 import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
-import com.guyuan.dear.focus.hr.view.hrGrp.HrGroupActivity;
+import com.guyuan.dear.focus.hr.view.hrStatusGrp.HrStatusGroupActivity;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -41,7 +41,7 @@ public class HrSummaryBindingAdapter {
             @Override
             public void onItemClick(View view, int i) {
                 HrStatusGroup group = data.get(i);
-                HrGroupActivity.start(view.getContext(), group.getName(),group.getGrpType());
+                HrStatusGroupActivity.start(view.getContext(), group.getName(),group.getGrpType());
             }
         });
     }

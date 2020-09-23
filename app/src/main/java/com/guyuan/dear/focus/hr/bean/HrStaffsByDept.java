@@ -12,6 +12,15 @@ public class HrStaffsByDept {
     private String grpLabel;
     private int grpType;
     private List<StaffBean> staffs;
+    private long deptId;
+
+    public long getDeptId() {
+        return deptId;
+    }
+
+    public void setDeptId(long deptId) {
+        this.deptId = deptId;
+    }
 
     public String getGrpLabel() {
         return grpLabel;

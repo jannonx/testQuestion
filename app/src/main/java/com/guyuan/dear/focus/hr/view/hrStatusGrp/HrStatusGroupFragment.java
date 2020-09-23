@@ -1,13 +1,15 @@
-package com.guyuan.dear.focus.hr.view.hrGrp;
+package com.guyuan.dear.focus.hr.view.hrStatusGrp;
 
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentHrGroupBinding;
-import com.guyuan.dear.focus.hr.adapter.HrStaffAdapter;
+import com.guyuan.dear.focus.hr.adapter.StaffsDeptGrpExpListAdapter;
 import com.guyuan.dear.focus.hr.bean.StaffBean;
+import com.guyuan.dear.focus.hr.view.hrStaffStatusInfo.StaffStatusInfoActivity;
 import com.guyuan.dear.utils.ConstantValue;
 
 /**
@@ -16,14 +18,14 @@ import com.guyuan.dear.utils.ConstantValue;
  * @since: 2020/9/21 18:50
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class HrGroupFragment extends BaseMvvmFragment<FragmentHrGroupBinding, HrGrpViewModel> {
+public class HrStatusGroupFragment extends BaseMvvmFragment<FragmentHrGroupBinding, HrStatusGrpViewModel> {
 
     private int grpType;
 
-    public static HrGroupFragment getInstance(int grpType) {
+    public static HrStatusGroupFragment getInstance(int grpType) {
         Bundle bundle = new Bundle();
         bundle.putInt(ConstantValue.KEY_GRP_TYPE, grpType);
-        HrGroupFragment fragment = new HrGroupFragment();
+        HrStatusGroupFragment fragment = new HrStatusGroupFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -43,24 +45,29 @@ public class HrGroupFragment extends BaseMvvmFragment<FragmentHrGroupBinding, Hr
     @Override
     protected void initViews() {
         getViewModel().setGrpType(grpType);
-        getViewModel().update();
+        getViewModel().loadDataFromNet();
 
     }
 
     @Override
     protected void initListeners() {
-        getViewModel().setCallback(new HrStaffAdapter.HrStaffAdapterCallback() {
+        getViewModel().setCallback(new StaffsDeptGrpExpListAdapter.DeptGrpExpAdapterCallback() {
             @Override
-            public void onClickLoadMore(int grpType, int index, int size) {
+            public void onClickLoadMore(int grpType, long deptId, int pageStartIndex, int pageSize, int position) {
                 showLoading(getParentFragmentManager());
-                getViewModel().loadMoreStaffs( grpType,  index,  size);
-                hideLoading();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getViewModel().loadMoreStaffs(grpType, deptId, pageStartIndex, pageSize);
+                        hideLoading();
+                    }
+                },4000);
+
             }
 
             @Override
-            public void onClickStaff(StaffBean item, int position) {
-                //todo 跳转到个人详情
-
+            public void onClickStaff(StaffBean item) {
+                StaffStatusInfoActivity.start(getActivity(),item.getId());
             }
         });
 

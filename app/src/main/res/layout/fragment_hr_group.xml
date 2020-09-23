@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.guyuan.dear.focus.hr.view.hrGrp.HrGrpViewModel"/>
+        <import type="com.guyuan.dear.focus.hr.view.hrStatusGrp.HrStatusGrpViewModel"/>
         <variable
             name="fragment_hr_group_vm"
-            type="HrGrpViewModel" />
+            type="com.guyuan.dear.focus.hr.view.hrStatusGrp.HrStatusGrpViewModel" />
     </data>
 
     <LinearLayout

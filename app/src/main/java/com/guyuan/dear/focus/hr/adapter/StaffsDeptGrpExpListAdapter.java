@@ -25,11 +25,11 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
  * @since: 2020/9/22 14:35
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class StaffsByDeptExpListAdapter extends BaseExpandableListAdapter {
+public class StaffsDeptGrpExpListAdapter extends BaseExpandableListAdapter {
     private List<HrStaffsByDept> groupList;
     private Context context;
 
-    public StaffsByDeptExpListAdapter(List<HrStaffsByDept> groupList, Context context) {
+    public StaffsDeptGrpExpListAdapter(List<HrStaffsByDept> groupList, Context context) {
         this.groupList = groupList;
         this.context = context;
     }
@@ -99,40 +99,46 @@ public class StaffsByDeptExpListAdapter extends BaseExpandableListAdapter {
         }else {
             holder = (ChildViewHolder) convertView.getTag();
         }
-        initChildView(holder,staffs,group.getGrpType(),groupPosition);
+        initChildView(holder,staffs,group.getGrpType(),group.getDeptId(),groupPosition);
         return convertView;
     }
 
-    private void initChildView(ChildViewHolder holder, List<StaffBean> staffs, int grpType, int groupPosition) {
+    private void initChildView(ChildViewHolder holder, List<StaffBean> staffs, int grpType, long deptId, int groupPosition) {
         BaseRecyclerView recyclerView = holder.recyclerView;
         GridLayoutManager layoutManager = new GridLayoutManager(context,5,GridLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
-        HrStaffAdapter adapter = new HrStaffAdapter(context,staffs,grpType);
+        HrStaffAdapter adapter = new HrStaffAdapter(context,staffs,grpType,deptId);
         BaseRecyclerViewAdapter adapterWrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setAdapter(adapterWrapper);
         recyclerView.setLoadMoreEnabled(false);
         recyclerView.setPullRefreshEnabled(false);
         adapter.setCallback(new HrStaffAdapter.HrStaffAdapterCallback() {
             @Override
-            public void onClickLoadMore(int grpType, int index, int size) {
+            public void onClickLoadMore(int grpType, long deptId, int pageStartIndex, int pageSize, int position) {
                 if(callback!=null){
-                    callback.onClickLoadMore(grpType,index,size);
+                    callback.onClickLoadMore(grpType,deptId, pageStartIndex, pageSize, groupPosition);
                 }
             }
 
             @Override
-            public void onClickStaff(StaffBean item, int position) {
+            public void onClickStaff(StaffBean item) {
                 if(callback!=null){
-                    callback.onClickStaff(item,position);
+                    callback.onClickStaff(item);
                 }
             }
         });
     }
 
-    private HrStaffAdapter.HrStaffAdapterCallback callback;
+    private DeptGrpExpAdapterCallback callback;
 
-    public void setCallback(HrStaffAdapter.HrStaffAdapterCallback callback) {
+    public void setCallback(DeptGrpExpAdapterCallback callback) {
         this.callback = callback;
+    }
+
+
+    public interface DeptGrpExpAdapterCallback{
+        void onClickLoadMore(int grpType, long deptId, int pageStartIndex, int pageSize, int grpPos);
+        void onClickStaff(StaffBean bean);
     }
 
     @Override

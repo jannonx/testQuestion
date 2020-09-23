@@ -23,12 +23,14 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
  **/
 public class HrStaffAdapter extends BaseRecyclerAdapter<StaffBean> {
     private int grpType;
+    private long deptId;
     private static final int VIEW_TYPE_LOAD_MORE = 1;
     private HrStaffAdapterCallback callback;
 
-    public HrStaffAdapter(Context context, @NonNull List<StaffBean> listData, int grpType) {
+    public HrStaffAdapter(Context context, @NonNull List<StaffBean> listData, int grpType,long deptId) {
         super(context, listData, R.layout.item_hr_staff);
         this.grpType = grpType;
+        this.deptId = deptId;
     }
 
     @Override
@@ -74,8 +76,8 @@ public class HrStaffAdapter extends BaseRecyclerAdapter<StaffBean> {
             holder.setOnClickListener(R.id.item_hr_staff_iv_icon, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(callback!=null){
-                        callback.onClickStaff(item,position);
+                    if (callback != null) {
+                        callback.onClickStaff(item);
                     }
                 }
             });
@@ -84,7 +86,7 @@ public class HrStaffAdapter extends BaseRecyclerAdapter<StaffBean> {
                 @Override
                 public void onClick(View v) {
                     if (callback != null) {
-                        callback.onClickLoadMore(grpType, listData.size(), 50);
+                        callback.onClickLoadMore(grpType, deptId, listData.size(), 50,position);
                     }
                 }
             });
@@ -101,8 +103,9 @@ public class HrStaffAdapter extends BaseRecyclerAdapter<StaffBean> {
 
 
     public interface HrStaffAdapterCallback {
-        void onClickLoadMore(int grpType, int index, int size);
-        void onClickStaff(StaffBean item, int position);
+        void onClickLoadMore(int grpType, long deptId, int pageStartIndex, int pageSize,int itemPos);
+
+        void onClickStaff(StaffBean item);
     }
 
     public void setCallback(HrStaffAdapterCallback callback) {

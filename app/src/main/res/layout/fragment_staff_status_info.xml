@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.guyuan.dear.focus.hr.view.hrStaffStatusInfo.StaffStatusInfoViewModel"
+            alias="viewModel"/>
+        <variable
+            name="fragment_staff_status_vm"
+            type="viewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:scrollbars="none">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/fragment_staff_status_info_iv_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_svg_staff_icon_default"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:layout_marginTop="@dimen/dp_20"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/fragment_staff_status_info_tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    app:layout_constraintTop_toTopOf="@id/fragment_staff_status_info_iv_icon"
+                    app:layout_constraintBottom_toTopOf="@id/fragment_staff_status_info_tv_id"
+                    app:layout_constraintLeft_toRightOf="@id/fragment_staff_status_info_iv_icon"
+                    android:text="name"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/fragment_staff_status_info_tv_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="id"
+                    app:layout_constraintLeft_toLeftOf="@id/fragment_staff_status_info_tv_name"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_staff_status_info_tv_name"
+                    app:layout_constraintBottom_toBottomOf="@id/fragment_staff_status_info_iv_icon"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/fragment_staff_status_info_tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/fragment_staff_status_info_iv_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/fragment_staff_status_info_iv_icon"
+                    android:layout_marginRight="@dimen/dp_5"
+                    app:layout_constraintRight_toLeftOf="@id/fragment_staff_status_info_iv_status"
+                    android:text="正常"/>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/fragment_staff_status_info_iv_status"
+                    android:layout_width="@dimen/dp_25"
+                    android:layout_height="@dimen/dp_25"
+                    app:layout_constraintTop_toTopOf="@id/fragment_staff_status_info_iv_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/fragment_staff_status_info_iv_icon"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginRight="@dimen/dp_20"
+                    app:srcCompat="@drawable/ic_svg_staff_status_normal"/>
+
+                <view
+                    android:id="@+id/fragment_staff_status_info_divider_1"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    app:layout_constraintLeft_toRightOf="@id/fragment_staff_status_info_iv_icon"
+                    app:layout_constraintRight_toRightOf="@id/fragment_staff_status_info_iv_status"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_staff_status_info_iv_icon"
+                    android:background="@color/color_grey_e5e5e5"/>
+
+                <TableLayout
+                    app:layout_constraintLeft_toLeftOf="@id/fragment_staff_status_info_divider_1"
+                    app:layout_constraintRight_toRightOf="@id/fragment_staff_status_info_divider_1"
+                    app:layout_constraintTop_toBottomOf="@id/fragment_staff_status_info_divider_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    >
+                    <TableRow>
+
+                    </TableRow>
+                </TableLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+</layout>

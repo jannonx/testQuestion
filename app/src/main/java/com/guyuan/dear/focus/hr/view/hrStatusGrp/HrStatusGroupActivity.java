@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.hr.view.hrGrp;
+package com.guyuan.dear.focus.hr.view.hrStatusGrp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,10 +14,10 @@ import com.guyuan.dear.utils.ConstantValue;
  *
  * @author leoliao
  */
-public class HrGroupActivity extends BaseToolbarActivity<ActivityHrGroupContentBinding, HrGrpViewModel> {
+public class HrStatusGroupActivity extends BaseToolbarActivity<ActivityHrGroupContentBinding, HrStatusGrpViewModel> {
 
     public static void start(Context context, String title,int grpType) {
-        Intent starter = new Intent(context, HrGroupActivity.class);
+        Intent starter = new Intent(context, HrStatusGroupActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE, title);
         starter.putExtra(ConstantValue.KEY_GRP_TYPE,grpType);
         context.startActivity(starter);
@@ -35,7 +35,7 @@ public class HrGroupActivity extends BaseToolbarActivity<ActivityHrGroupContentB
         setTitleCenter(title);
         int grpType = getIntent().getIntExtra(ConstantValue.KEY_GRP_TYPE, 0);
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.activity_hr_grp_content_frame_layout, HrGroupFragment.getInstance(grpType))
+                .add(R.id.activity_hr_grp_content_frame_layout, HrStatusGroupFragment.getInstance(grpType))
                 .commit();
     }
 

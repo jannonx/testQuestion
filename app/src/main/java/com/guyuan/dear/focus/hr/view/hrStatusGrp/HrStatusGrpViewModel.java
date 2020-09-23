@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.hr.view.hrGrp;
+package com.guyuan.dear.focus.hr.view.hrStatusGrp;
 
 import android.app.Application;
 
@@ -6,11 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
+import com.example.mvvmlibrary.util.LogUtils;
 import com.guyuan.dear.focus.hr.adapter.HrStaffAdapter;
+import com.guyuan.dear.focus.hr.adapter.StaffsDeptGrpExpListAdapter;
 import com.guyuan.dear.focus.hr.bean.HrStaffsByDept;
-import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
 import com.guyuan.dear.focus.hr.bean.StaffBean;
-import com.guyuan.dear.focus.hr.view.home.HrHomeViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
  * @since: 2020/9/21 17:54
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class HrGrpViewModel extends BaseViewModel {
+public class HrStatusGrpViewModel extends BaseViewModel {
     /**
      * ！有坑注意！
      * 子类必须要带有一个和父类一样的构造函数，如：LoginViewModel(Application app)。否则根据源码，在ViewModelProvider中生成时会报错。
@@ -29,31 +29,33 @@ public class HrGrpViewModel extends BaseViewModel {
      *
      * @param application
      */
-    public HrGrpViewModel(@NonNull Application application) {
+    public HrStatusGrpViewModel(@NonNull Application application) {
         super(application);
     }
 
     public MutableLiveData<List<HrStaffsByDept>> staffs = new MutableLiveData<>();
     public int grpType;
-    public HrStaffAdapter.HrStaffAdapterCallback callback;
+    public StaffsDeptGrpExpListAdapter.DeptGrpExpAdapterCallback callback;
 
     public void setGrpType(int grpType) {
         this.grpType = grpType;
     }
 
-    public void update() {
+    public void loadDataFromNet() {
         int count=10;
         List<HrStaffsByDept> list = new ArrayList<>();
         for(int i=0;i<count;i++){
             HrStaffsByDept dept = new HrStaffsByDept();
             dept.setGrpType(grpType);
             dept.setGrpLabel("部门"+i);
+            dept.setDeptId(i);
             dept.setStaffs(new ArrayList<StaffBean>(){
                 {
                     StaffBean staff = new StaffBean();
                     staff.setDept(dept.getGrpLabel());
                     staff.setName("Leo");
                     staff.setId(1);
+                    staff.setDeptId(dept.getDeptId());
                     add(staff);
                 }
             });
@@ -62,26 +64,29 @@ public class HrGrpViewModel extends BaseViewModel {
         staffs.postValue(list);
     }
 
-    public void setCallback(HrStaffAdapter.HrStaffAdapterCallback callback) {
+    public void setCallback(StaffsDeptGrpExpListAdapter.DeptGrpExpAdapterCallback callback) {
         this.callback = callback;
     }
 
-    public void loadMoreStaffs(int grpType, int index, int size) {
+    public void loadMoreStaffs(int grpType, long deptId, int startPos, int size) {
         if(staffs.getValue()==null){
             return;
         }
         for (HrStaffsByDept dept : staffs.getValue()) {
-            if(dept.getGrpType() == grpType){
+            long deptDeptId = dept.getDeptId();
+            if(deptDeptId == deptId){
                 List<StaffBean> staffs = dept.getStaffs();
                 for(int i=0;i<size;i++){
                     StaffBean staff = new StaffBean();
-                    staff.setName("NewGuy");
+                    staff.setName("NewGuy"+(startPos+i));
                     staff.setId(0);
                     staff.setDept(dept.getGrpLabel());
+                    staff.setDeptId(deptId);
                     staffs.add(staff);
                 }
                 break;
             }
         }
+        this.staffs.setValue(this.staffs.getValue());
     }
 }
