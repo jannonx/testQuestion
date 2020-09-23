@@ -18,6 +18,7 @@ import com.teaanddogdog.mpandroidchartutil.PieChartFixCover;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -87,7 +88,7 @@ public class PieChartView extends PieChartFixCover {
         setEntryLabelTextSize(12f);
     }
 
-    public void setData(HashMap<String, Float> data, String title) {
+    public void setData(LinkedHashMap<String, Float> data, String title) {
         ArrayList<PieEntry> entries = new ArrayList<>();
 //        ArrayList<String> labels = new ArrayList<>();
 
@@ -135,6 +136,7 @@ public class PieChartView extends PieChartFixCover {
         });
         pieData.setValueTextSize(11f);
         pieData.setValueTextColor(Color.BLACK);
+        pieData.setDrawValues(false);
         setData(pieData);
 
         // undo all highlights

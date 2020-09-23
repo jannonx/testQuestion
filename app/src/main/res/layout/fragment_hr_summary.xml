@@ -1,45 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
-        <import
-            alias="viewModel"
-            type="com.guyuan.dear.focus.hr.viewmodel.HrSummaryViewModel" />
+        <import type="com.guyuan.dear.focus.hr.view.hrSummary.HrSummaryViewModel" alias="viewModel"/>
 
         <variable
             name="fragment_hr_summary_vm"
             type="viewModel" />
+
+
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/white">
 
         <include layout="@layout/layout_search_bar" />
 
         <com.guyuan.dear.customizeview.title_tab_strip.TitleTabStripView
+            android:id="@+id/fragment_hr_summary_tab_view_toggle_hr_type"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp_20">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="公司总人数: " />
+                android:textSize="@dimen/sp_18"
+                android:text="公司总人数: "
+                android:padding="@dimen/dp_5"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_20"
+                android:textColor="@color/color_blue_2a82e4"
                 android:text="@{String.valueOf(fragment_hr_summary_vm.staffTotal),default=0}" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_18"
+                android:padding="@dimen/dp_5"
                 android:text=" 人" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -50,16 +60,22 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
 
                 <tl.com.easy_recycleview_library.BaseRecyclerView
+                    android:id="@+id/fragment_hr_summary_recycler_view"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    android:layout_height="wrap_content"
+                    app:setHrGroup="@{fragment_hr_summary_vm.listData}"/>
 
                 <com.guyuan.dear.customizeview.PieChartView
+                    android:id="@+id/fragment_hr_summary_pie_chart"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_margin="@dimen/dp_40"
+                    android:layout_height="400dp"
+                    app:setHrPieData="@{fragment_hr_summary_vm.listData}"/>
             </LinearLayout>
         </ScrollView>
 

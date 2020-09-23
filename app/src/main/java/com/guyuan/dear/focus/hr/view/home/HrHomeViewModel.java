@@ -1,11 +1,11 @@
-package com.guyuan.dear.focus.hr.viewmodel;
+package com.guyuan.dear.focus.hr.view.home;
 
 import android.app.Application;
 
 import androidx.annotation.NonNull;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
-import com.guyuan.dear.focus.hr.view.HrHomeActivity;
+import com.guyuan.dear.focus.hr.view.home.HrHomeActivity;
 
 /**
  * @author: 廖华凯
