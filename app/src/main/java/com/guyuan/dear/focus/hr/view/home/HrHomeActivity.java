@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.hr.view;
+package com.guyuan.dear.focus.hr.view.home;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
-import com.guyuan.dear.focus.hr.viewmodel.HrHomeViewModel;
+import com.guyuan.dear.focus.hr.view.hrAbnormal.HrAbnormalityFragment;
+import com.guyuan.dear.focus.hr.view.hrStruct.HrStructFragment;
+import com.guyuan.dear.focus.hr.view.hrSummary.HrSummaryFragment;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
@@ -41,6 +43,11 @@ public class HrHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, HrHo
     }
 
     @Override
+    protected int setOffScreenPageLimit() {
+        return 3;
+    }
+
+    @Override
     protected List<Fragment> getFragments() {
         List<Fragment> fragments = new ArrayList<Fragment>(){
             {
@@ -51,6 +58,7 @@ public class HrHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, HrHo
         };
         return fragments;
     }
+
 
     @Override
     protected void init() {

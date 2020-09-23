@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/dp_10">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/item_hr_staff_iv_icon"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/ic_svg_staff_icon_default"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_hr_staff_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_black"
+        android:text="xxx"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
