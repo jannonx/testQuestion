@@ -10,6 +10,10 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.device.data.FocusDeviceViewModel;
+import com.guyuan.dear.focus.device.data.beans.DeviceExceptionBean;
+import com.guyuan.dear.focus.device.data.beans.DeviceNumberBean;
+import com.guyuan.dear.focus.device.data.beans.FactoryBean;
+import com.guyuan.dear.focus.device.data.beans.FactoryRealTimeBean;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
@@ -75,7 +79,23 @@ public class FocusDeviceActivity extends BaseTabActivity<ActivityBaseTabBinding,
 
     @Override
     public void viewModuleCallBack(Object o) {
-
+        if (o instanceof DeviceNumberBean) {
+            DeviceNumberBean deviceNumberBean = (DeviceNumberBean) o;
+            overviewFragment.setUI(deviceNumberBean);
+        } else if (o instanceof DeviceExceptionBean) {
+            DeviceExceptionBean exceptionBean = (DeviceExceptionBean) o;
+            if (exceptionBean.getContent() != null) {
+                exceptionFragment.setListData(exceptionBean.getContent());
+            }
+        } else if (o instanceof FactoryBean) {
+            FactoryBean factoryBean = (FactoryBean) o;
+            profileFragment.setUI(factoryBean);
+        } else if (o instanceof FactoryRealTimeBean) {
+            FactoryRealTimeBean realTimeBean = (FactoryRealTimeBean) o;
+            if (realTimeBean.getWorkshops() != null) {
+                profileFragment.setListData(realTimeBean.getWorkshops());
+            }
+        }
     }
 
 }

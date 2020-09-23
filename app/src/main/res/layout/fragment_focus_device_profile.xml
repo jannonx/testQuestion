@@ -38,12 +38,11 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-
-<!--            <com.gy.smartmanagement.customizeview.gy_common_tab_view.GuYuanCommonTabView-->
-<!--                android:id="@+id/farm_rv"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:padding="12dp" />-->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/farm_tl"
+                style="@style/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <tl.com.easy_recycleview_library.BaseRecyclerView

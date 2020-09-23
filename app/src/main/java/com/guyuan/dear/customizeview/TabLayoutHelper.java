@@ -48,14 +48,16 @@ public class TabLayoutHelper {
         this.fragmentList = fragmentList;
     }
 
-    public TabLayoutHelper(TabLayout tabLayout, int tabSize, int layoutID) {
+    public TabLayoutHelper(FragmentActivity fa,TabLayout tabLayout, int tabSize, int layoutID) {
+        this.fa = fa;
         this.tabLayout = tabLayout;
         this.tabSize = tabSize;
         this.layoutID = layoutID;
     }
 
 
-    public TabLayoutHelper(TabLayout tabLayout, int tabSize) {
+    public TabLayoutHelper(FragmentActivity fa,TabLayout tabLayout, int tabSize) {
+        this.fa = fa;
         this.tabLayout = tabLayout;
         this.tabSize = tabSize;
     }
@@ -72,7 +74,7 @@ public class TabLayoutHelper {
             }).attach();
         } else {
             for (int i = 0; i < tabSize; i++) {
-                tabLayout.addTab(new TabLayout.Tab());
+                tabLayout.addTab(tabLayout.newTab());
             }
         }
 

@@ -84,8 +84,6 @@ public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBe
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
 
-        //  presenter.getDeviceNumber();
-
         binding.totalNumberCv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +126,14 @@ public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBe
             }
         });
     }
+
+    public void setUI(DeviceNumberBean deviceNumberBean) {
+        binding.setNumber(deviceNumberBean);
+        if(deviceNumberBean.getEquipments()!=null){
+            setListData(deviceNumberBean.getEquipments());
+        }
+    }
+
 
     @Override
     protected void refresh() {

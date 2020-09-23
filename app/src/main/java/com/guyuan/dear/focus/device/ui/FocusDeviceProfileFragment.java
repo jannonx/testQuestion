@@ -3,12 +3,16 @@ package com.guyuan.dear.focus.device.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
+import com.guyuan.dear.customizeview.TabLayoutHelper;
 import com.guyuan.dear.databinding.FragmentFocusDeviceProfileBinding;
 import com.guyuan.dear.focus.device.adapter.DeviceProfileAdapter;
 import com.guyuan.dear.focus.device.data.FocusDeviceViewModel;
@@ -19,6 +23,7 @@ import com.guyuan.dear.focus.device.ui.detail.FocusDeviceDetailActivity;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
@@ -29,11 +34,12 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
  * @since: 2020/9/21 18:19
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTimeBean.WorkshopsBean, FragmentFocusDeviceProfileBinding> {
+public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTimeBean.WorkshopsBean, FragmentFocusDeviceProfileBinding> implements TabLayoutHelper.TabLayoutListener {
 
     public static final String TAG = "FocusDeviceProfileFragment";
     private long currentFactoryID;
     private FocusDeviceViewModel viewModel;
+    private FactoryBean factoryBean;
 
     public static FocusDeviceProfileFragment newInstance() {
 
@@ -62,7 +68,19 @@ public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTime
         if (viewModel != null) {
             viewModel.getFactoryList(ConstantValue.FIRST_PAGE);
         }
-        FactoryBean factoryBean = CommonUtils.getFactoryListFromCache();
+
+        factoryBean = new FactoryBean();
+        List<FactoryBean.ContentBean> dataList = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            FactoryBean.ContentBean contentBean = new FactoryBean.ContentBean();
+            contentBean.setName("factory" + i);
+            contentBean.setCode("312312");
+            contentBean.setId(213L);
+            dataList.add(contentBean);
+        }
+        factoryBean.setContent(dataList);
+
+        //    FactoryBean factoryBean = CommonUtils.getFactoryListFromCache();
         if (factoryBean != null) {
             setUI(factoryBean);
         }
@@ -83,26 +101,38 @@ public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTime
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
 
-        //    devicePresenter.getFactoryRealTimeList(currentFactoryID);
     }
 
     public void setUI(FactoryBean factoryBean) {
-//        List<FactoryBean.ContentBean> dataList = factoryBean.getContent();
-//        if (dataList != null && dataList.size() > 0) {
-//            dataList.get(0).setSelected(true);
-//            devicePresenter.getFactoryRealTimeList(dataList.get(0).getId());
-//            farm_rv.init(dataList, new GuYuanCommonTapAdapter.OnItemTappedListener() {
-//                @Override
-//                public void onItemTapped(AbstractTabContent item, int pos) {
-//                    FactoryBean.ContentBean contentBean = dataList.get(pos);
-//                    long factoryID = contentBean.getId();
-//                    if (currentFactoryID != factoryID) {
-//                        currentFactoryID = factoryID;
-//                        devicePresenter.getFactoryRealTimeList(currentFactoryID);
-//                    }
-//                }
-//            });
-//        }
+        List<FactoryBean.ContentBean> dataList = factoryBean.getContent();
+        if (dataList != null && dataList.size() > 0) {
+            viewModel.getFactoryDevice(dataList.get(0).getId());
+
+            new TabLayoutHelper(getActivity(), binding.farmTl, dataList.size(), R.layout.item_tab_white_to_blue_round_corner)
+                    .setTab()
+                    .setListener(this)
+                    .addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                        @Override
+                        public void onTabSelected(TabLayout.Tab tab) {
+                            FactoryBean.ContentBean contentBean = dataList.get(tab.getPosition());
+                            long factoryID = contentBean.getId();
+                            if (currentFactoryID != factoryID) {
+                                currentFactoryID = factoryID;
+                                viewModel.getFactoryDevice(currentFactoryID);
+                            }
+                        }
+
+                        @Override
+                        public void onTabUnselected(TabLayout.Tab tab) {
+
+                        }
+
+                        @Override
+                        public void onTabReselected(TabLayout.Tab tab) {
+
+                        }
+                    }).setCustomView();
+        }
 
     }
 
@@ -125,5 +155,11 @@ public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTime
     @Override
     protected boolean isLoadMoreEnable() {
         return false;
+    }
+
+    @Override
+    public void setCustomContent(View customView, int currentPosition) {
+        AppCompatTextView factoryTV = customView.findViewById(R.id.item_tab_white_to_blue_round_corner_tv_name);
+        factoryTV.setText(factoryBean.getContent().get(currentPosition).getName());
     }
 }

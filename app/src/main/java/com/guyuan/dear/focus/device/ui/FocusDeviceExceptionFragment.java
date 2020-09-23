@@ -8,13 +8,18 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.util.LogUtils;
+import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
+import com.guyuan.dear.focus.device.adapter.DeviceExceptionAdapter;
 import com.guyuan.dear.focus.device.data.FocusDeviceViewModel;
 import com.guyuan.dear.focus.device.data.beans.DeviceExceptionBean;
 import com.guyuan.dear.utils.ConstantValue;
+
+import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
 /**
  * @author : tl
@@ -42,7 +47,6 @@ public class FocusDeviceExceptionFragment extends BaseListFragment<DeviceExcepti
         super.onAttach(context);
         FocusDeviceActivity activity = (FocusDeviceActivity) context;
         viewModel = activity.getViewModel();
-        LogUtils.showLog("onAttach");
     }
 
 
@@ -51,25 +55,32 @@ public class FocusDeviceExceptionFragment extends BaseListFragment<DeviceExcepti
         if (viewModel != null) {
             viewModel.getExceptionDevice(ConstantValue.FIRST_PAGE);
         }
+
+        DeviceExceptionAdapter exceptionAdapter = new DeviceExceptionAdapter(getContext(), listData,
+                R.layout.item_focus_device_exception);
+        adapter = new BaseRecyclerViewAdapter(exceptionAdapter);
+        recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recycleView.setAdapter(adapter);
     }
 
     @Override
     protected void refresh() {
-
+        currentPage = FIRST_PAGE;
+        viewModel.getExceptionDevice(currentPage);
     }
 
     @Override
     protected void loadMore() {
-
+        viewModel.getExceptionDevice(++currentPage);
     }
 
     @Override
     protected boolean isPullEnable() {
-        return false;
+        return true;
     }
 
     @Override
     protected boolean isLoadMoreEnable() {
-        return false;
+        return true;
     }
 }
