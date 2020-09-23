@@ -60,7 +60,7 @@ public class ApprovalsEntranceActivity extends BaseTabActivity<ActivityBaseTabBi
     @Override
     protected void init() {
         setTitleCenter("我的审批");
-        base_tl.setTabMode(TabLayout.MODE_FIXED);
+        tlBase.setTabMode(TabLayout.MODE_FIXED);
 
     }
 

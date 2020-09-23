@@ -42,10 +42,7 @@ public class HrHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, HrHo
         return list;
     }
 
-    @Override
-    protected int setOffScreenPageLimit() {
-        return 3;
-    }
+
 
     @Override
     protected List<Fragment> getFragments() {
@@ -68,7 +65,11 @@ public class HrHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, HrHo
 
     @Override
     protected List<Integer> setTabIconList() {
-        return null;
+        List<Integer> tabDrawableList = new ArrayList<>();
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        return tabDrawableList;
     }
 
 
