@@ -59,7 +59,7 @@ public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBe
     @Override
     protected void initView() {
         if (viewModel != null) {
-            viewModel.getOverviewTotalDevice();
+            viewModel.getDeviceTotalNumber();
         }
         DeviceNumberAdapter numberAdapter = new DeviceNumberAdapter(getContext(), listData,
                 R.layout.item_focus_device_number);
