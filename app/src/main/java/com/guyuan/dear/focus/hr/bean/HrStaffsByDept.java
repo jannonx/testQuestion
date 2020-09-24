@@ -11,7 +11,7 @@ import java.util.List;
 public class HrStaffsByDept {
     private String grpLabel;
     private int grpType;
-    private List<StaffBean> staffs;
+    private List<StaffBasicInfo> staffs;
     private long deptId;
 
     public long getDeptId() {
@@ -38,11 +38,11 @@ public class HrStaffsByDept {
         this.grpType = grpType;
     }
 
-    public List<StaffBean> getStaffs() {
+    public List<StaffBasicInfo> getStaffs() {
         return staffs;
     }
 
-    public void setStaffs(List<StaffBean> staffs) {
+    public void setStaffs(List<StaffBasicInfo> staffs) {
         this.staffs = staffs;
     }
 }

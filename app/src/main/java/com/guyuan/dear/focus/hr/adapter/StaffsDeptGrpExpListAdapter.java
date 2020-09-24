@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.hr.bean.HrStaffsByDept;
-import com.guyuan.dear.focus.hr.bean.StaffBean;
+import com.guyuan.dear.focus.hr.bean.StaffBasicInfo;
 
 import java.util.List;
 
@@ -90,7 +90,7 @@ public class StaffsDeptGrpExpListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         HrStaffsByDept group = groupList.get(groupPosition);
-        List<StaffBean> staffs = group.getStaffs();
+        List<StaffBasicInfo> staffs = group.getStaffs();
         ChildViewHolder holder = null;
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.item_hr_staffs_by_dept_child_view,parent,false);
@@ -103,7 +103,7 @@ public class StaffsDeptGrpExpListAdapter extends BaseExpandableListAdapter {
         return convertView;
     }
 
-    private void initChildView(ChildViewHolder holder, List<StaffBean> staffs, int grpType, long deptId, int groupPosition) {
+    private void initChildView(ChildViewHolder holder, List<StaffBasicInfo> staffs, int grpType, long deptId, int groupPosition) {
         BaseRecyclerView recyclerView = holder.recyclerView;
         GridLayoutManager layoutManager = new GridLayoutManager(context,5,GridLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(layoutManager);
@@ -121,7 +121,7 @@ public class StaffsDeptGrpExpListAdapter extends BaseExpandableListAdapter {
             }
 
             @Override
-            public void onClickStaff(StaffBean item) {
+            public void onClickStaff(StaffBasicInfo item) {
                 if(callback!=null){
                     callback.onClickStaff(item);
                 }
@@ -138,7 +138,7 @@ public class StaffsDeptGrpExpListAdapter extends BaseExpandableListAdapter {
 
     public interface DeptGrpExpAdapterCallback{
         void onClickLoadMore(int grpType, long deptId, int pageStartIndex, int pageSize, int grpPos);
-        void onClickStaff(StaffBean bean);
+        void onClickStaff(StaffBasicInfo bean);
     }
 
     @Override

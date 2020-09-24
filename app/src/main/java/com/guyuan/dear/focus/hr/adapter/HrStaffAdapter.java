@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
-import com.guyuan.dear.focus.hr.bean.StaffBean;
+import com.guyuan.dear.focus.hr.bean.StaffBasicInfo;
 
 import java.util.List;
 
@@ -21,13 +21,13 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
  * @since: 2020/9/22 15:58
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class HrStaffAdapter extends BaseRecyclerAdapter<StaffBean> {
+public class HrStaffAdapter extends BaseRecyclerAdapter<StaffBasicInfo> {
     private int grpType;
     private long deptId;
     private static final int VIEW_TYPE_LOAD_MORE = 1;
     private HrStaffAdapterCallback callback;
 
-    public HrStaffAdapter(Context context, @NonNull List<StaffBean> listData, int grpType,long deptId) {
+    public HrStaffAdapter(Context context, @NonNull List<StaffBasicInfo> listData, int grpType, long deptId) {
         super(context, listData, R.layout.item_hr_staff);
         this.grpType = grpType;
         this.deptId = deptId;
@@ -69,7 +69,7 @@ public class HrStaffAdapter extends BaseRecyclerAdapter<StaffBean> {
 
 
     @Override
-    protected void bindDataToView(BaseRecyclerViewHolder holder, StaffBean item, int position) {
+    protected void bindDataToView(BaseRecyclerViewHolder holder, StaffBasicInfo item, int position) {
         int viewType = getItemViewType(position);
         if (viewType != VIEW_TYPE_LOAD_MORE) {
             holder.setText(R.id.item_hr_staff_tv_name, item.getName());
@@ -105,7 +105,7 @@ public class HrStaffAdapter extends BaseRecyclerAdapter<StaffBean> {
     public interface HrStaffAdapterCallback {
         void onClickLoadMore(int grpType, long deptId, int pageStartIndex, int pageSize,int itemPos);
 
-        void onClickStaff(StaffBean item);
+        void onClickStaff(StaffBasicInfo item);
     }
 
     public void setCallback(HrStaffAdapterCallback callback) {
