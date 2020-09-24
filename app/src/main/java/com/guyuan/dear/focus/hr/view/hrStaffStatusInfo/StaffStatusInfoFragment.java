@@ -15,6 +15,7 @@ import com.guyuan.dear.utils.ConstantValue;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class StaffStatusInfoFragment extends BaseMvvmFragment<FragmentStaffStatusInfoBinding,StaffStatusInfoViewModel> {
+    private long staffId;
 
     public static StaffStatusInfoFragment getInstance(long staffId){
         Bundle bundle = new Bundle();
@@ -31,6 +32,8 @@ public class StaffStatusInfoFragment extends BaseMvvmFragment<FragmentStaffStatu
 
     @Override
     protected void initData() {
+        staffId =getArguments().getLong(ConstantValue.KEY_STAFF_ID);
+        getViewModel().loadUserData(staffId);
 
     }
 

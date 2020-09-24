@@ -6,11 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
-import com.example.mvvmlibrary.util.LogUtils;
-import com.guyuan.dear.focus.hr.adapter.HrStaffAdapter;
 import com.guyuan.dear.focus.hr.adapter.StaffsDeptGrpExpListAdapter;
 import com.guyuan.dear.focus.hr.bean.HrStaffsByDept;
-import com.guyuan.dear.focus.hr.bean.StaffBean;
+import com.guyuan.dear.focus.hr.bean.StaffBasicInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,9 +47,9 @@ public class HrStatusGrpViewModel extends BaseViewModel {
             dept.setGrpType(grpType);
             dept.setGrpLabel("部门"+i);
             dept.setDeptId(i);
-            dept.setStaffs(new ArrayList<StaffBean>(){
+            dept.setStaffs(new ArrayList<StaffBasicInfo>(){
                 {
-                    StaffBean staff = new StaffBean();
+                    StaffBasicInfo staff = new StaffBasicInfo();
                     staff.setDept(dept.getGrpLabel());
                     staff.setName("Leo");
                     staff.setId(1);
@@ -75,9 +73,9 @@ public class HrStatusGrpViewModel extends BaseViewModel {
         for (HrStaffsByDept dept : staffs.getValue()) {
             long deptDeptId = dept.getDeptId();
             if(deptDeptId == deptId){
-                List<StaffBean> staffs = dept.getStaffs();
+                List<StaffBasicInfo> staffs = dept.getStaffs();
                 for(int i=0;i<size;i++){
-                    StaffBean staff = new StaffBean();
+                    StaffBasicInfo staff = new StaffBasicInfo();
                     staff.setName("NewGuy"+(startPos+i));
                     staff.setId(0);
                     staff.setDept(dept.getGrpLabel());

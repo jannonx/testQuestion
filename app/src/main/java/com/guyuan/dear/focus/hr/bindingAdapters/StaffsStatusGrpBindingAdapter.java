@@ -4,11 +4,9 @@ import android.widget.ExpandableListView;
 
 import androidx.databinding.BindingAdapter;
 
-import com.guyuan.dear.customizeview.ScrollExpandableListView;
-import com.guyuan.dear.focus.hr.adapter.HrStaffAdapter;
 import com.guyuan.dear.focus.hr.adapter.StaffsDeptGrpExpListAdapter;
 import com.guyuan.dear.focus.hr.bean.HrStaffsByDept;
-import com.guyuan.dear.focus.hr.bean.StaffBean;
+import com.guyuan.dear.focus.hr.bean.StaffBasicInfo;
 
 import java.util.List;
 
@@ -51,7 +49,7 @@ public class StaffsStatusGrpBindingAdapter {
                 }
 
                 @Override
-                public void onClickStaff(StaffBean bean) {
+                public void onClickStaff(StaffBasicInfo bean) {
                     callback.onClickStaff(bean);
 
                 }

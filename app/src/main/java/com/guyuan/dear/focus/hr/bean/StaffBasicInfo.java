@@ -6,7 +6,7 @@ package com.guyuan.dear.focus.hr.bean;
  * @since: 2020/9/22 12:10
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class StaffBean {
+public class StaffBasicInfo {
     private long id;
     private String name;
     private String dept;
