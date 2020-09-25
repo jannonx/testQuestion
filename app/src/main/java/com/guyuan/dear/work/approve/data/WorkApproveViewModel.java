@@ -17,7 +17,6 @@ public class WorkApproveViewModel extends BaseViewModel {
 
     @ViewModelInject
     public WorkApproveViewModel(WorkApproveRepository workApproveRepository) {
-        super(DearApplication.getInstance());
         this.workApproveRepository = workApproveRepository;
     }
 

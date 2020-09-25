@@ -284,6 +284,7 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".focus.security.ui.FocusSecurityActivity" />
 
         <service android:name=".service.BackService" />
     </application>

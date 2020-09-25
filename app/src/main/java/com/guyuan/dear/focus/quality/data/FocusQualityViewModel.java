@@ -16,7 +16,6 @@ public class FocusQualityViewModel extends BaseViewModel {
 
     @ViewModelInject
     public FocusQualityViewModel(FocusQualityRepository focusQualityRepository) {
-        super(DearApplication.getInstance());
         this.focusQualityRepository = focusQualityRepository;
     }
 

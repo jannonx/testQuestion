@@ -15,7 +15,6 @@ public class FocusAssessViewModel extends BaseViewModel {
 
     @ViewModelInject
     public FocusAssessViewModel(FocusAssessRepository focusAssessRepository) {
-        super(DearApplication.getInstance());
         this.focusAssessRepository = focusAssessRepository;
     }
 

@@ -15,7 +15,5 @@ import com.guyuan.dear.focus.hr.view.home.HrHomeActivity;
  **/
 public class HrHomeViewModel extends BaseViewModel {
 
-    public HrHomeViewModel(@NonNull Application application) {
-        super(application);
-    }
+
 }

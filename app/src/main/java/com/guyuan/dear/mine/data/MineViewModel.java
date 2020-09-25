@@ -17,7 +17,6 @@ public class MineViewModel extends BaseViewModel {
 
     @ViewModelInject
     public MineViewModel(MineRepository mineRepository) {
-        super(DearApplication.getInstance());
         this.mineRepository = mineRepository;
     }
 

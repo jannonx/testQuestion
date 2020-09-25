@@ -17,7 +17,6 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
 
     @ViewModelInject
     public FocusProjectSiteViewModel(FocusAfterSaleRepository focusAfterSaleRepository) {
-        super(DearApplication.getInstance());
         this.focusAfterSaleRepository = focusAfterSaleRepository;
     }
 

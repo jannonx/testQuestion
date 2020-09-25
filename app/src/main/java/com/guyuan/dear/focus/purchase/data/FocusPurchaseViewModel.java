@@ -16,7 +16,6 @@ public class FocusPurchaseViewModel extends BaseViewModel {
 
     @ViewModelInject
     public FocusPurchaseViewModel(FocusPurchaseRepository focusPurchaseRepository) {
-        super(DearApplication.getInstance());
         this.focusPurchaseRepository = focusPurchaseRepository;
     }
 

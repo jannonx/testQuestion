@@ -32,7 +32,7 @@ public interface BaseApiService {
     //接口参数
     String PAGE_INDEX = "pageNum";  //页码
     String PAGE_SIZE = "pageSize";  //每页数量
-
+    String ID = "id";
 
     String WORKSHOP = BASE + "tWorkshop/findPage";
     String FACTORY = BASE + "tFactory/findPage";

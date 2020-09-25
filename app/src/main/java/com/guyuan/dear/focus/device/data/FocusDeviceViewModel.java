@@ -25,7 +25,6 @@ public class FocusDeviceViewModel extends BaseViewModel {
 
     @ViewModelInject
     public FocusDeviceViewModel(FocusDeviceRepository focusDeviceRepository) {
-        super(DearApplication.getInstance());
         focusDeviceApiService = focusDeviceRepository.getFocusDeviceApiService();
     }
 

@@ -16,7 +16,6 @@ public class WorkPurchaseViewModel extends BaseViewModel {
 
     @ViewModelInject
     public WorkPurchaseViewModel(WorkPurchaseRepository workPurchaseRepository) {
-        super(DearApplication.getInstance());
         this.workPurchaseRepository = workPurchaseRepository;
     }
 

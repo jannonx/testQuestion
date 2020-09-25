@@ -1,6 +1,7 @@
 package com.guyuan.dear.login.data;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -40,7 +41,6 @@ public class LoginViewModel extends BaseViewModel {
 
     @ViewModelInject
     public LoginViewModel(LoginRepository loginRepository) {
-        super(DearApplication.getInstance());
         this.loginRepository = loginRepository;
     }
 
@@ -85,6 +85,7 @@ public class LoginViewModel extends BaseViewModel {
     }
 
     private void saveLoginData(LoginBean newUser) {
+        Context context=DearApplication.getInstance();
         List<LoginBean.AppMenusBean> menus = newUser.getAppMenus();
         if (menus != null && menus.size() > 0) {
             DearApplication.getInstance().saveCacheData(ConstantValue.KEY_USER_NAME, name);
@@ -94,9 +95,9 @@ public class LoginViewModel extends BaseViewModel {
             bundle.putInt(MainActivity.OPEN_TYPE,MainActivity.LOGIN);
             startActivity(MainActivity.class,bundle);
         } else {
-            SharedPreferencesUtils.removeData(getApplication(), ConstantValue.KEY_USER_NAME);
-            SharedPreferencesUtils.removeData(getApplication(), ConstantValue.KEY_USER_PW);
-            SharedPreferencesUtils.removeData(getApplication(), ConstantValue.USER_JSON_STRING);
+            SharedPreferencesUtils.removeData(context, ConstantValue.KEY_USER_NAME);
+            SharedPreferencesUtils.removeData(context, ConstantValue.KEY_USER_PW);
+            SharedPreferencesUtils.removeData(context, ConstantValue.USER_JSON_STRING);
             getTip().setValue("用户角色未设置任何权限，请联系系统管理员！");
         }
     }

@@ -45,7 +45,6 @@ public class ApproveViewModel extends BaseViewModel {
 
     @ViewModelInject
     public ApproveViewModel(ApproveRepository approveRepository) {
-        super(DearApplication.getInstance());
         this.approveRepository = approveRepository;
     }
 
