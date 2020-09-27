@@ -60,7 +60,7 @@ public class DeviceTypeAdapter extends BaseRecyclerAdapter<List<EquipmentBean>> 
     }
 
     DeviceItemAdapter farmDetailAdapter =
-        new DeviceItemAdapter(context, item, R.layout.item_focus_device);
+        new DeviceItemAdapter(context, item, R.layout.item_focus_content);
     farmDetailAdapter.setListener(new DeviceItemAdapter.FarmDetailListener() {
       @Override
       public void onClick(EquipmentBean bean) {

@@ -47,7 +47,8 @@ public class ListRequestBody {
         private int id;
         private String startTime;
         private String endTime;
-
+        private int securityId;
+        private int securityType;
 
 
         public int getId() {
@@ -104,6 +105,22 @@ public class ListRequestBody {
 
         public void setType(String type) {
             this.type = type;
+        }
+
+        public int getSecurityId() {
+            return securityId;
+        }
+
+        public void setSecurityId(int securityId) {
+            this.securityId = securityId;
+        }
+
+        public int getSecurityType() {
+            return securityType;
+        }
+
+        public void setSecurityType(int securityType) {
+            this.securityType = securityType;
         }
     }
 }

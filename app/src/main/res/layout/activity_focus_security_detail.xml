@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp">
+
+            <include layout="@layout/toolbar" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="37dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/danger_iv"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="32dp"
+                        android:scaleType="centerInside"
+                        android:src="@mipmap/ic_launcher" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/danger_area_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#464646"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            tools:text="易燃区域" />
+
+                        <TextView
+                            android:id="@+id/camera_tv"
+                            style="@style/card_text_title_content_new"
+                            android:layout_marginTop="11dp"
+                            android:drawableLeft="@mipmap/video_icon"
+                            android:drawablePadding="4dp"
+                            android:gravity="center"
+                            android:text="实时视频" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="33dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <ImageView
+                            android:id="@+id/status_iv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/status_normal" />
+
+                        <TextView
+                            android:id="@+id/danger_state_tv"
+                            style="@style/card_text_title_content_new"
+                            android:layout_marginTop="6dp"
+                            tools:text="状态正常" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:background="@color/color_white_ffffff"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/card_text_title_new"
+                                android:text="危险代号" />
+
+                            <TextView
+                                android:id="@+id/danger_number_tv"
+                                style="@style/card_text_title_content_new"
+                                tools:text="1212121" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                style="@style/card_text_title_new"
+                                android:text="危险类型    " />
+
+                            <TextView
+                                android:id="@+id/danger_type_tv"
+                                style="@style/card_text_title_content_new"
+                                tools:text="1212121" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/security_degree_ll"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                style="@style/card_text_title_new"
+                                android:text="紧急程度    " />
+
+                            <TextView
+                                android:id="@+id/danger_degree_tv"
+                                style="@style/card_text_title_content_new"
+                                tools:text="1212121" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/search_result_ll"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/security_result_title_tv"
+                                style="@style/card_text_title_new"
+                                android:text="报警原因    " />
+
+                            <TextView
+                                android:id="@+id/danger_result_tv"
+                                style="@style/card_text_title_content_new"
+                                tools:text="有隐患" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                style="@style/card_text_title_new"
+                                android:text="所属厂区    " />
+
+                            <TextView
+                                android:id="@+id/danger_factory_position_tv"
+                                style="@style/card_text_title_content_new"
+                                tools:text="张三" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                style="@style/card_text_title_new"
+                                android:text="所属车间    " />
+
+                            <TextView
+                                android:id="@+id/danger_farm_position_tv"
+                                style="@style/card_text_title_content_new"
+                                tools:text="张三" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                style="@style/card_text_title_new"
+                                android:text="负&#8194;责&#8194;人" />
+
+                            <TextView
+                                android:id="@+id/danger_name_tv"
+                                style="@style/card_text_title_content_new"
+                                tools:text="张三" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                style="@style/card_text_title_new"
+                                android:text="负责电话" />
+
+                            <TextView
+                                android:id="@+id/danger_duty_phone_tv"
+                                style="@style/card_text_title_content_new"
+                                tools:text="12312312" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/search_person_ll"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/handle_name_tv"
+                                style="@style/card_text_title_new"
+                                android:text="巡&#8194;查&#8194;人" />
+
+                            <TextView
+                                android:id="@+id/danger_last_search_person_tv"
+                                style="@style/card_text_title_content_new"
+                                tools:text="张三" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/search_phone_ll"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/handle_phone_tv"
+                                style="@style/card_text_title_new"
+                                android:text="巡查电话" />
+
+                            <TextView
+                                android:id="@+id/danger_last_search_phone_tv"
+                                style="@style/card_text_title_content_new"
+                                tools:text="312312312" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_call_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <TextView
+                                android:id="@+id/lable_call_time"
+                                style="@style/card_text_title_new"
+                                android:text="报警时间" />
+
+                            <TextView
+                                android:id="@+id/tv_call_time"
+                                style="@style/card_text_title_content_new"
+                                tools:text="312312312" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/search_time_ll"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/handle_time_tv"
+                                style="@style/card_text_title"
+                                android:text="巡查时间" />
+
+                            <com.guyuan.dear.customizeview.ScrollExpandableListView
+                                android:id="@+id/time_ev"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+    </LinearLayout>
+</layout>

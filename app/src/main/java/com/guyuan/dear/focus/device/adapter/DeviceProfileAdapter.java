@@ -33,7 +33,7 @@ public class DeviceProfileAdapter extends BaseRecyclerAdapter<FactoryRealTimeBea
     holder.setText(R.id.line_name_tv, item.getName());
     BaseRecyclerView line_rv = holder.getView(R.id.line_rv);
     DeviceItemAdapter deviceItemAdapter =
-        new DeviceItemAdapter(context, item.getEquipments(), R.layout.item_focus_device);
+        new DeviceItemAdapter(context, item.getEquipments(), R.layout.item_focus_content);
     deviceItemAdapter.setListener(new DeviceItemAdapter.FarmDetailListener() {
       @Override public void onClick(EquipmentBean bean) {
         if (lineListener != null) {
