@@ -87,10 +87,7 @@ public class FocusDeviceActivity extends BaseTabActivity<ActivityBaseTabBinding,
             if (exceptionBean.getContent() != null) {
                 exceptionFragment.setListData(exceptionBean.getContent());
             }
-        } else if (o instanceof FactoryBean) {
-            FactoryBean factoryBean = (FactoryBean) o;
-            profileFragment.setUI(factoryBean);
-        } else if (o instanceof FactoryRealTimeBean) {
+        }  else if (o instanceof FactoryRealTimeBean) {
             FactoryRealTimeBean realTimeBean = (FactoryRealTimeBean) o;
             if (realTimeBean.getWorkshops() != null) {
                 profileFragment.setListData(realTimeBean.getWorkshops());

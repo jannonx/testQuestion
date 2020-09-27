@@ -34,7 +34,7 @@ public class SiteExplorationFragment extends BaseListSearchFragment<SimpleTabBea
     }
 
     @Override
-    protected void initView() {
+    protected void init() {
         SiteExplorationAdapter siteExplorationAdapter = new SiteExplorationAdapter(getContext(),
                 listData, R.layout.item_work_site_exploration);
         adapter = new BaseRecyclerViewAdapter(siteExplorationAdapter);

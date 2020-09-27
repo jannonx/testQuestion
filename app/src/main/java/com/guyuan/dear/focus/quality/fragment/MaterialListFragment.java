@@ -34,7 +34,7 @@ public class MaterialListFragment extends BaseListSearchFragment<SimpleTabBean, 
     }
 
     @Override
-    protected void initView() {
+    protected void init() {
         MaterialListAdapter materialListAdapter = new MaterialListAdapter(getContext(),
                 listData, R.layout.item_focus_material_list);
         adapter = new BaseRecyclerViewAdapter(materialListAdapter);

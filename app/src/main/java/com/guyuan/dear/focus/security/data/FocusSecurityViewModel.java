@@ -1,15 +1,9 @@
 package com.guyuan.dear.focus.security.data;
 
-import android.app.Application;
-
-import androidx.annotation.NonNull;
 import androidx.hilt.lifecycle.ViewModelInject;
-
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.api.RxJavaHelper;
-import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.security.api.FocusSecurityApiService;
-
 import io.reactivex.disposables.Disposable;
 import okhttp3.RequestBody;
 

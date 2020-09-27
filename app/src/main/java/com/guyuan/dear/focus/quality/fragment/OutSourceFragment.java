@@ -34,7 +34,7 @@ public class OutSourceFragment extends BaseListSearchFragment<SimpleTabBean, Fra
     }
 
     @Override
-    protected void initView() {
+    protected void init() {
         OutSourceAdapter outSourceAdapter = new OutSourceAdapter(getContext(),
                 listData, R.layout.item_focus_out_source);
         adapter = new BaseRecyclerViewAdapter(outSourceAdapter);
@@ -50,6 +50,7 @@ public class OutSourceFragment extends BaseListSearchFragment<SimpleTabBean, Fra
             }
         });
     }
+
     @Override
     protected void refresh() {
 

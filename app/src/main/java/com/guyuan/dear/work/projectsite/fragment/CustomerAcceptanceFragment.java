@@ -34,7 +34,7 @@ public class CustomerAcceptanceFragment extends BaseListSearchFragment<SimpleTab
     }
 
     @Override
-    protected void initView() {
+    protected void init() {
         CustomerAcceptanceAdapter customerAcceptanceAdapter = new CustomerAcceptanceAdapter(getContext(),
                 listData, R.layout.item_work_customer_acceptance);
         adapter = new BaseRecyclerViewAdapter(customerAcceptanceAdapter);

@@ -33,9 +33,8 @@ public class KeyComponentFragment extends BaseListSearchFragment<SimpleTabBean, 
         return fragment;
     }
 
-
     @Override
-    protected void initView() {
+    protected void init() {
         KeyComponentAdapter keyComponentAdapter = new KeyComponentAdapter(getContext(),
                 listData, R.layout.item_focus_key_component);
         adapter = new BaseRecyclerViewAdapter(keyComponentAdapter);

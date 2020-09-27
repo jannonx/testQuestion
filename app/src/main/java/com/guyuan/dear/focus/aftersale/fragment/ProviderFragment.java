@@ -26,8 +26,9 @@ public class ProviderFragment extends BaseListSearchFragment<Object, FragmentLis
     }
 
 
+
     @Override
-    protected void initView() {
+    protected void init() {
 
     }
 

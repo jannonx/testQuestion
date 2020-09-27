@@ -34,7 +34,7 @@ public class ContractProgressFragment extends BaseListSearchFragment<SimpleTabBe
     }
 
     @Override
-    protected void initView() {
+    protected void init() {
         ProgressAdapter progressAdapter = new ProgressAdapter(getContext(),
                 listData, R.layout.item_focus_contract_progress);
         adapter = new BaseRecyclerViewAdapter(progressAdapter);
@@ -50,6 +50,7 @@ public class ContractProgressFragment extends BaseListSearchFragment<SimpleTabBe
             }
         });
     }
+
     @Override
     protected void refresh() {
 

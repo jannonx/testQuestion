@@ -34,7 +34,7 @@ public class CheckGoodsFragment extends BaseListSearchFragment<SimpleTabBean, Fr
     }
 
     @Override
-    protected void initView() {
+    protected void init() {
         CheckGoodsAdapter checkGoodsAdapter = new CheckGoodsAdapter(getContext(),
                 listData, R.layout.item_work_check_goods);
         adapter = new BaseRecyclerViewAdapter(checkGoodsAdapter);

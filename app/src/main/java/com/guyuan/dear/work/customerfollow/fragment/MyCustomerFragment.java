@@ -33,9 +33,8 @@ public class MyCustomerFragment extends BaseListSearchFragment<SimpleTabBean, Fr
         return fragment;
     }
 
-
     @Override
-    protected void initView() {
+    protected void init() {
         MyCustomerAdapter myCustomerAdapter = new MyCustomerAdapter(getContext(),
                 listData, R.layout.item_work_my_customer);
         adapter = new BaseRecyclerViewAdapter(myCustomerAdapter);

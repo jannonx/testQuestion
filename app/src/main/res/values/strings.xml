@@ -171,7 +171,7 @@
     </array>
 
 
-    <array name="real_time_security">
+    <array name="focus_security">
         <item>安全概况</item>
         <item>安全异常</item>
         <item>安全详情</item>

@@ -33,8 +33,9 @@ public class AllCustomerFragment extends BaseListSearchFragment<SimpleTabBean, F
         return fragment;
     }
 
+
     @Override
-    protected void initView() {
+    protected void init() {
         AllCustomerAdapter allCustomerAdapter = new AllCustomerAdapter(getContext(),
                 listData, R.layout.item_work_all_customer);
         adapter = new BaseRecyclerViewAdapter(allCustomerAdapter);

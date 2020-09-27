@@ -34,7 +34,7 @@ public class MaterialPurchaseFragment extends BaseListSearchFragment<SimpleTabBe
     }
 
     @Override
-    protected void initView() {
+    protected void init() {
         MaterialPurchaseAdapter materialPurchaseAdapter = new MaterialPurchaseAdapter(getContext(),
                 listData, R.layout.item_work_material_purchase);
         adapter = new BaseRecyclerViewAdapter(materialPurchaseAdapter);

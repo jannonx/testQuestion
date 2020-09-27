@@ -34,7 +34,7 @@ public class ProviderFragment extends BaseListSearchFragment<SimpleTabBean, Frag
     }
 
     @Override
-    protected void initView() {
+    protected void init() {
         ProviderAdapter providerAdapter = new ProviderAdapter(getContext(),
                 listData, R.layout.item_focus_provider);
         adapter = new BaseRecyclerViewAdapter(providerAdapter);

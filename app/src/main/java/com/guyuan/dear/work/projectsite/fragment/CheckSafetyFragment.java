@@ -34,7 +34,7 @@ public class CheckSafetyFragment extends BaseListSearchFragment<SimpleTabBean, F
     }
 
     @Override
-    protected void initView() {
+    protected void init() {
         CheckSafetyAdapter checkSafetyAdapter = new CheckSafetyAdapter(getContext(),
                 listData, R.layout.item_work_check_safety);
         adapter = new BaseRecyclerViewAdapter(checkSafetyAdapter);

@@ -34,7 +34,7 @@ public class ComponentPurchaseFragment extends BaseListSearchFragment<SimpleTabB
     }
 
     @Override
-    protected void initView() {
+    protected void init() {
         ComponentPurchaseAdapter componentPurchaseAdapter = new ComponentPurchaseAdapter(getContext(),
                 listData, R.layout.item_work_component_purchase);
         adapter = new BaseRecyclerViewAdapter(componentPurchaseAdapter);

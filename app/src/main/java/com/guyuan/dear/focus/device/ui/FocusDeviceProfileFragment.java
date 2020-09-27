@@ -65,10 +65,6 @@ public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTime
 
     @Override
     protected void initView() {
-        if (viewModel != null) {
-            viewModel.getFactoryList(ConstantValue.FIRST_PAGE);
-        }
-
         factoryBean = new FactoryBean();
         List<FactoryBean.ContentBean> dataList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
@@ -82,7 +78,7 @@ public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTime
 
         //    FactoryBean factoryBean = CommonUtils.getFactoryListFromCache();
         if (factoryBean != null) {
-            setUI(factoryBean);
+            setTab(factoryBean);
         }
         DeviceProfileAdapter farmNewContentAdapter =
                 new DeviceProfileAdapter(getContext(), listData, R.layout.item_line);
@@ -101,9 +97,10 @@ public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTime
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
 
+        viewModel.getFactoryList(ConstantValue.FIRST_PAGE);
     }
 
-    public void setUI(FactoryBean factoryBean) {
+    private void setTab(FactoryBean factoryBean) {
         List<FactoryBean.ContentBean> dataList = factoryBean.getContent();
         if (dataList != null && dataList.size() > 0) {
             viewModel.getFactoryDevice(dataList.get(0).getId());

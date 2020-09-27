@@ -34,7 +34,7 @@ public class QualityExceptFragment extends BaseListSearchFragment<SimpleTabBean,
     }
 
     @Override
-    protected void initView() {
+    protected void init() {
         QualityExceptAdapter qualityExceptAdapter = new QualityExceptAdapter(getContext(),
                 listData, R.layout.item_focus_quality_except);
         adapter = new BaseRecyclerViewAdapter(qualityExceptAdapter);
@@ -50,6 +50,7 @@ public class QualityExceptFragment extends BaseListSearchFragment<SimpleTabBean,
             }
         });
     }
+
     @Override
     protected void refresh() {
 

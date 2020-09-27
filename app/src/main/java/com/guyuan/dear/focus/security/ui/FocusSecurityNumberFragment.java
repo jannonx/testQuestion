@@ -59,14 +59,15 @@ public class FocusSecurityNumberFragment extends BaseListFragment<DangerNumberBe
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-                DangerNumberBean.ListBean bean=listData.get(i);
+                DangerNumberBean.ListBean bean = listData.get(i);
 
             }
         });
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
-
-        viewModel.getDangerPointNumber();
+        if (viewModel != null) {
+            viewModel.getDangerPointNumber();
+        }
     }
 
     public void setUI(DangerNumberBean bean) {
