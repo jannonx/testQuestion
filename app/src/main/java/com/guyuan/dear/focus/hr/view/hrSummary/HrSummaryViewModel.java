@@ -1,14 +1,12 @@
 package com.guyuan.dear.focus.hr.view.hrSummary;
 
-import android.app.Application;
 import android.util.SparseArray;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
-import com.guyuan.dear.focus.hr.bean.HrSummary;
 import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
+import com.guyuan.dear.focus.hr.bean.HrSummary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +25,8 @@ public class HrSummaryViewModel extends BaseViewModel {
      */
     private int mode;
     private MutableLiveData<Integer> staffTotal = new MutableLiveData<>();
-    private MutableLiveData<List<HrStatusGroup>> listData =new MutableLiveData<>();
+    private MutableLiveData<List<HrStatusGroup>> listData = new MutableLiveData<>();
     private SparseArray<Object> cacheData = new SparseArray<>();
-
-
-
 
     public int getMode() {
         return mode;
@@ -63,11 +58,11 @@ public class HrSummaryViewModel extends BaseViewModel {
         group2.setName("缺席人员");
         group2.setStaffTotal(1);
         group2.setGrpType(HrStatusGroup.GRP_TYPE_ABSENT);
-        HrStatusGroup group3=new HrStatusGroup();
+        HrStatusGroup group3 = new HrStatusGroup();
         group3.setName("迟到人员");
         group3.setStaffTotal(0);
         group3.setGrpType(HrStatusGroup.GRP_TYPE_LATE);
-        HrStatusGroup group4 =new HrStatusGroup();
+        HrStatusGroup group4 = new HrStatusGroup();
         group4.setName("早退人员");
         group4.setStaffTotal(0);
         group4.setGrpType(HrStatusGroup.GRP_TYPE_LEAVE_EARLY);
@@ -90,11 +85,11 @@ public class HrSummaryViewModel extends BaseViewModel {
         group2.setName("缺席人员");
         group2.setStaffTotal(10);
         group2.setGrpType(HrStatusGroup.GRP_TYPE_ABSENT);
-        HrStatusGroup group3=new HrStatusGroup();
+        HrStatusGroup group3 = new HrStatusGroup();
         group3.setName("迟到人员");
         group3.setStaffTotal(2);
         group3.setGrpType(HrStatusGroup.GRP_TYPE_LATE);
-        HrStatusGroup group4 =new HrStatusGroup();
+        HrStatusGroup group4 = new HrStatusGroup();
         group4.setName("早退人员");
         group4.setStaffTotal(1);
         group4.setGrpType(HrStatusGroup.GRP_TYPE_LEAVE_EARLY);

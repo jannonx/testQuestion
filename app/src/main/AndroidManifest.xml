@@ -70,7 +70,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".focus.hr.view.hrStaffAttendDetail.StaffAttendDetailActivity"></activity>
+        <activity android:name=".focus.sales.view.home.SalesHomeActivity"></activity>
+        <activity android:name=".focus.hr.view.hrStaffAttendDetail.StaffAttendDetailActivity" />
         <activity android:name=".focus.hr.view.hrStatusGrp.HrStatusGroupActivity" />
         <activity android:name=".focus.hr.view.home.HrHomeActivity" /> <!-- 今日头条屏幕适配 -->
         <meta-data
