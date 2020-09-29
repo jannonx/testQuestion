@@ -389,4 +389,19 @@ public class CalenderUtils {
         Date currYearFirst = calendar.getTime();
         return currYearFirst;
     }
+
+    private String[] weekDays = new String[]{"星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"};
+
+    /**
+     * 格式样板：2020-9-27 (星期日)
+     *
+     * @param startTime
+     */
+    public String toDateAndWeekDayFormat(long startTime) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(startTime);
+        int index = calendar.get(Calendar.DAY_OF_WEEK)-1;
+        String format = simpleDateFormatByDay.format(new Date(startTime));
+        return format + " (" + weekDays[index]+")";
+    }
 }

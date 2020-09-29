@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.hr.view.hrStaffStatusInfo;
+package com.guyuan.dear.focus.hr.view.hrStaffAttendDetail;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.guyuan.dear.R;
-import com.guyuan.dear.databinding.ActivityStaffStatusInfoBinding;
+import com.guyuan.dear.databinding.ActivityStaffAttendDetailBinding;
 import com.guyuan.dear.utils.ConstantValue;
 
 /**
@@ -17,18 +17,18 @@ import com.guyuan.dear.utils.ConstantValue;
  * @since: 2020/9/23 17:41
  * @company: 固远（深圳）信息技术有限公司
  */
-public class StaffStatusInfoActivity extends BaseToolbarActivity<ActivityStaffStatusInfoBinding, StaffStatusInfoViewModel> {
+public class StaffAttendDetailActivity extends BaseToolbarActivity<ActivityStaffAttendDetailBinding, StaffAttendDetailViewModel> {
 
 
     public static void start(Context context, long staffId) {
-        Intent starter = new Intent(context, StaffStatusInfoActivity.class);
+        Intent starter = new Intent(context, StaffAttendDetailActivity.class);
         starter.putExtra(ConstantValue.KEY_STAFF_ID, staffId);
         context.startActivity(starter);
     }
 
     @Override
     protected int getLayoutID() {
-        return R.layout.activity_staff_status_info;
+        return R.layout.activity_staff_attend_detail;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class StaffStatusInfoActivity extends BaseToolbarActivity<ActivityStaffSt
         setTitleCenter("员工信息");
         Intent intent = getIntent();
         long id = intent.getLongExtra(ConstantValue.KEY_STAFF_ID, 0);
-        StaffStatusInfoFragment fragment = StaffStatusInfoFragment.getInstance(id);
+        StaffAttendDetailFragment fragment = StaffAttendDetailFragment.getInstance(id);
         getSupportFragmentManager().beginTransaction().add(R.id.activity_staff_status_info_frame_layout, fragment).commit();
     }
 

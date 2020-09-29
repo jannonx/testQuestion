@@ -19,7 +19,7 @@ public class StaffWorkInfo {
     private String contactNumber;
     /**
      * {@link HrStatusGroup#GRP_TYPE_ABSENT}, {@link HrStatusGroup#GRP_TYPE_LATE},
-     * {@link HrStatusGroup#GRP_TYPE_ABSENT}, {@link HrStatusGroup#GRP_TYPE_LEAVE_EARLY}
+     * {@link HrStatusGroup#GRP_TYPE_NORMAL}, {@link HrStatusGroup#GRP_TYPE_LEAVE_EARLY}
      */
     private int currentStatus;
 

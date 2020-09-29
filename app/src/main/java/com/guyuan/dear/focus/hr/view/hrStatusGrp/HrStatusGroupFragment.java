@@ -9,7 +9,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentHrGroupBinding;
 import com.guyuan.dear.focus.hr.adapter.StaffsDeptGrpExpListAdapter;
 import com.guyuan.dear.focus.hr.bean.StaffBasicInfo;
-import com.guyuan.dear.focus.hr.view.hrStaffStatusInfo.StaffStatusInfoActivity;
+import com.guyuan.dear.focus.hr.view.hrStaffAttendDetail.StaffAttendDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 
 /**
@@ -67,7 +67,7 @@ public class HrStatusGroupFragment extends BaseMvvmFragment<FragmentHrGroupBindi
 
             @Override
             public void onClickStaff(StaffBasicInfo item) {
-                StaffStatusInfoActivity.start(getActivity(),item.getId());
+                StaffAttendDetailActivity.start(getActivity(),item.getId());
             }
         });
 

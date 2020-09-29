@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 
@@ -30,7 +31,7 @@ public abstract class BaseMvvmFragment<VDB extends ViewDataBinding, VM extends B
         Type genericSuperclass = getClass().getGenericSuperclass();
         if (genericSuperclass instanceof ParameterizedType) {
             Class<VM> cls = (Class<VM>) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[1];
-            viewModel = getDefaultViewModelProviderFactory().create(cls);
+            viewModel = new ViewModelProvider(getActivity()).get(cls);
         }
     }
 

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import
+            alias="viewModel"
+            type="com.guyuan.dear.focus.hr.view.hrStaffAttendDetail.StaffAttendDetailViewModel" />
+
+
+        <variable
+            name="fragment_staff_attend_detail_vm"
+            type="viewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fragment_staff_status_info_iv_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_svg_staff_icon_default" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_staff_status_info_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:text="@{fragment_staff_attend_detail_vm.staffInfo.name}"
+            app:layout_constraintBottom_toTopOf="@id/fragment_staff_status_info_tv_id"
+            app:layout_constraintLeft_toRightOf="@id/fragment_staff_status_info_iv_icon"
+            app:layout_constraintTop_toTopOf="@id/fragment_staff_status_info_iv_icon" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_staff_status_info_tv_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(fragment_staff_attend_detail_vm.staffInfo.workId)}"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_staff_status_info_iv_icon"
+            app:layout_constraintLeft_toLeftOf="@id/fragment_staff_status_info_tv_name"
+            app:layout_constraintTop_toBottomOf="@id/fragment_staff_status_info_tv_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_staff_status_info_tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp_5"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_staff_status_info_iv_icon"
+            app:layout_constraintRight_toLeftOf="@id/fragment_staff_status_info_iv_status"
+            app:layout_constraintTop_toTopOf="@id/fragment_staff_status_info_iv_icon"
+            app:setStaffStatus="@{fragment_staff_attend_detail_vm.staffInfo.currentStatus}"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fragment_staff_status_info_iv_status"
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:layout_marginRight="@dimen/dp_20"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_staff_status_info_iv_icon"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/fragment_staff_status_info_iv_icon"
+            app:srcCompat="@drawable/ic_svg_staff_status_normal" />
+
+        <View
+            android:id="@+id/fragment_staff_status_info_divider_1"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="@color/color_grey_e5e5e5"
+            app:layout_constraintLeft_toRightOf="@id/fragment_staff_status_info_iv_icon"
+            app:layout_constraintRight_toRightOf="@id/fragment_staff_status_info_iv_status"
+            app:layout_constraintTop_toBottomOf="@id/fragment_staff_status_info_iv_icon" />
+
+        <TableLayout
+            android:id="@+id/fragment_staff_status_info_table_layout_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_5"
+            android:stretchColumns="1"
+            app:layout_constraintLeft_toLeftOf="@id/fragment_staff_status_info_divider_1"
+            app:layout_constraintRight_toRightOf="@id/fragment_staff_status_info_divider_1"
+            app:layout_constraintTop_toBottomOf="@id/fragment_staff_status_info_divider_1">
+
+            <TableRow>
+
+                <androidx.appcompat.widget.AppCompatTextView android:text="所属部门： " />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/fragment_staff_status_info_tv_dept_name"
+                    android:text="@{fragment_staff_attend_detail_vm.staffInfo.deptName}"/>
+            </TableRow>
+
+            <TableRow>
+
+                <androidx.appcompat.widget.AppCompatTextView android:text="所属岗位： " />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/fragment_staff_status_info_tv_job_title"
+                    android:text="@{fragment_staff_attend_detail_vm.staffInfo.jobTitle}"
+                    />
+            </TableRow>
+
+            <TableRow>
+
+                <androidx.appcompat.widget.AppCompatTextView android:text="入职时间： " />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/fragment_staff_status_info_tv_enrolled_date"
+                    app:setEnrollDate="@{fragment_staff_attend_detail_vm.staffInfo.enrolledDate}"
+                    />
+            </TableRow>
+
+            <TableRow>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:text="性别： " />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/fragment_staff_status_info_tv_gender"
+                    app:setGender="@{fragment_staff_attend_detail_vm.staffInfo.gender}"/>
+            </TableRow>
+
+            <TableRow>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:text="联系方式： " />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/fragment_staff_status_info_tv_contact"
+                    android:text="@{fragment_staff_attend_detail_vm.staffInfo.contactNumber}"
+                    />
+            </TableRow>
+        </TableLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_staff_status_info_anchor_tv_current_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/fragment_staff_status_info_iv_icon"
+            app:layout_constraintTop_toBottomOf="@id/fragment_staff_status_info_table_layout_1"
+            app:setTableDate="@{fragment_staff_attend_detail_vm.selectDate}" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/fragment_staff_status_info_btn_change_date"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_20"
+            android:text="更改时间"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_staff_status_info_anchor_tv_current_date"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/fragment_staff_status_info_anchor_tv_current_date"
+            android:onClick="@{fragment_staff_attend_detail_vm.onClickSelectDate}"/>
+
+        <TableLayout
+            android:id="@+id/fragment_staff_status_info_table_layout_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_20"
+            android:stretchColumns="1,3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_staff_status_info_btn_change_date">
+
+            <TableRow>
+
+                <TextView android:text="正常：" />
+
+                <TextView
+                    android:text="@{String.valueOf(fragment_staff_attend_detail_vm.normalCount)}"/>
+
+                <TextView android:text="迟到：" />
+
+                <TextView
+                    android:text="@{String.valueOf(fragment_staff_attend_detail_vm.lateCount)}"/>
+
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView android:text="缺席：" />
+
+                <TextView
+                    android:text="@{String.valueOf(fragment_staff_attend_detail_vm.absentCount)}"/>
+
+                <TextView android:text="早退：" />
+
+                <TextView
+                    android:text="@{String.valueOf(fragment_staff_attend_detail_vm.leaveEarlyCount)}"/>
+            </TableRow>
+        </TableLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/fragment_staff_status_info_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_staff_status_info_table_layout_2" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/fragment_staff_status_info_view_pager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/fragment_staff_status_info_tab_layout"
+            app:layout_constraintRight_toRightOf="@id/fragment_staff_status_info_tab_layout"
+            app:layout_constraintTop_toBottomOf="@id/fragment_staff_status_info_tab_layout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
