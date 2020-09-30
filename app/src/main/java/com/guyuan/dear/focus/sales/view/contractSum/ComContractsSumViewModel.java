@@ -25,9 +25,6 @@ public class ComContractsSumViewModel extends BaseViewModel {
         return comContractSum;
     }
 
-    public void setComContractSum(ComContractsBean data) {
-        comContractSum.postValue(data);
-    }
 
     public MutableLiveData<View.OnClickListener> getOnClickSelectDate() {
         return onClickSelectDate;
