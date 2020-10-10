@@ -288,6 +288,7 @@
         <activity android:name=".focus.security.ui.FocusSecurityActivity" />
         <activity android:name=".focus.security.ui.type.FocusSecurityTypeActivity" />
         <activity android:name=".focus.security.ui.detail.FocusSecurityDetailActivity" />
+        <activity android:name=".focus.produce.ui.FocusProduceActivity" />
 
         <service android:name=".service.BackService" />
     </application>

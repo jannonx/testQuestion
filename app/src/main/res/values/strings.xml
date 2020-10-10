@@ -29,6 +29,13 @@
         <item>设备异常</item>
         <item>设备详情</item>
     </array>
+
+    <array name="focus_produce_title">
+        <item>生产概况</item>
+        <item>生产异常</item>
+        <item>生产详情</item>
+    </array>
+
     <array name="work_customer_title">
         <item>全部客户</item>
         <item>我的跟进</item>

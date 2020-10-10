@@ -42,9 +42,7 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/security_profile_tl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="12dp" />
+                style="@style/tab_layout" />
 
         </LinearLayout>
 
