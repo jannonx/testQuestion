@@ -11,6 +11,7 @@ import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.customizeview.MessageBar;
 import com.guyuan.dear.databinding.FragmentWorkBinding;
 import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.scan.ScanActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
 
@@ -139,7 +140,7 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
         binding.homeBarCl.homeQrIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //   QRActivity.start("", getContext());
+                ScanActivity.starter(getContext(), "");
             }
         });
     }

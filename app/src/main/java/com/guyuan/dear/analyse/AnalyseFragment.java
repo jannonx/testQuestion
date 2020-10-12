@@ -2,15 +2,20 @@ package com.guyuan.dear.analyse;
 
 import android.os.Bundle;
 import android.view.View;
+
 import androidx.recyclerview.widget.GridLayoutManager;
+
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentAnalyseBinding;
 import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.scan.ScanActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
+
 import java.util.ArrayList;
+
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
@@ -42,7 +47,7 @@ public class AnalyseFragment extends BaseListFragment<LoginBean.AppMenusBean.Chi
     @Override
     protected void initView() {
         Bundle arguments = getArguments();
-        if (arguments != null&&getContext()!=null) {
+        if (arguments != null && getContext() != null) {
             String title = arguments.getString(ConstantValue.KEY_TITLE,
                     getContext().getString(R.string.default_title_smart_analysis));
             binding.analyseTitleTv.setText(title);
@@ -64,7 +69,7 @@ public class AnalyseFragment extends BaseListFragment<LoginBean.AppMenusBean.Chi
             adapter.setOnItemClickListener(new OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
-                    if ( NetworkUtils.isNetworkAvailable(getContext())) {
+                    if (NetworkUtils.isNetworkAvailable(getContext())) {
                         LoginBean.AppMenusBean.ChildrenBean childrenBean = menuList.get(position);
                         String url = childrenBean.getUrl();
                         String title = childrenBean.getTitle();
@@ -81,7 +86,7 @@ public class AnalyseFragment extends BaseListFragment<LoginBean.AppMenusBean.Chi
         binding.homeBarLl.homeQrIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //    QRActivity.start("", getContext());
+                ScanActivity.starter(getContext(), "");
             }
         });
     }

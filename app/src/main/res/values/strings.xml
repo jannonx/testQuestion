@@ -184,6 +184,12 @@
         <item>安全详情</item>
     </array>
 
+    <array name="focus_stock">
+        <item>库存概况</item>
+        <item>库存异常</item>
+        <item>库存详情</item>
+    </array>
+
     <array name="real_time_produce">
         <item>时段概览</item>
         <item>完工报告</item>
