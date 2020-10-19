@@ -10,6 +10,7 @@ import android.os.Bundle;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
+import com.guyuan.dear.focus.sales.view.contractProgress.ContractPrgHomeFragment;
 import com.guyuan.dear.focus.sales.view.contractSum.ComContractsSumFragment;
 import com.guyuan.dear.utils.ConstantValue;
 
@@ -37,6 +38,7 @@ public class SalesHomeActivity  extends BaseTabActivity<ActivityBaseTabBinding, 
         return new ArrayList<String>(){
             {
                 add("合同订单概况");
+                add("合同订单进度");
             }
         };
     }
@@ -46,6 +48,7 @@ public class SalesHomeActivity  extends BaseTabActivity<ActivityBaseTabBinding, 
         return new ArrayList<Fragment>(){
             {
                 add(ComContractsSumFragment.getInstance());
+                add(ContractPrgHomeFragment.getInstance());
             }
         };
     }
@@ -60,6 +63,7 @@ public class SalesHomeActivity  extends BaseTabActivity<ActivityBaseTabBinding, 
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
         return tabDrawableList;
     }

@@ -7,6 +7,8 @@ import androidx.databinding.library.baseAdapters.BR;
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.ComContractsBinding;
+import com.guyuan.dear.focus.sales.bean.ContractBaseBean;
+import com.guyuan.dear.focus.sales.view.contractList.ContractListActivity;
 import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.jzxiang.pickerview.TimePickerDialog;
@@ -45,7 +47,8 @@ public class ComContractsSumFragment extends BaseMvvmFragment<ComContractsBindin
 
     @Override
     protected void initListeners() {
-        getViewModel().setOnClickSelectDate(new View.OnClickListener() {
+        final ComContractsSumViewModel viewModel = getViewModel();
+        viewModel.setOnClickSelectDate(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 long currentDate = System.currentTimeMillis();
@@ -61,10 +64,49 @@ public class ComContractsSumFragment extends BaseMvvmFragment<ComContractsBindin
                         new OnDateSetListener() {
                             @Override
                             public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
-                                getViewModel().setSelectDate(millseconds);
+                                viewModel.setSelectDate(millseconds);
                             }
                         }
                 );
+            }
+        });
+        viewModel.setOnClickShowPreAnnualDelivers(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContractListActivity.start(getActivity(),"上年交付", ContractBaseBean.CONTRACT_TYPE_PRE_ANNUAL_DELIVERS);
+            }
+        });
+
+        viewModel.setOnClickShowNewContracts(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContractListActivity.start(getActivity(),"今年新签", ContractBaseBean.CONTRACT_TYPE_NEW_CONTRACTS);
+            }
+        });
+        viewModel.setOnClickShowFinished(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContractListActivity.start(getActivity(),"已经完成", ContractBaseBean.CONTRACT_TYPE_FINISHED_CONTRACTS);
+            }
+        });
+        viewModel.setOnClickShowExecuting(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContractListActivity.start(getActivity(),"正在执行", ContractBaseBean.CONTRACT_TYPE_EXECUTING_CONTRACTS);
+            }
+        });
+
+        viewModel.setOnClickShowUnfinished(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContractListActivity.start(getActivity(),"未完成", ContractBaseBean.CONTRACT_TYPE_UNFINISHED_CONTRACTS);
+            }
+        });
+
+        viewModel.setOnClickShowExceptions(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContractListActivity.start(getActivity(),"执行异常", ContractBaseBean.CONTRACT_TYPE_EXCEPTION_CONTRACTS);
             }
         });
 

@@ -42,6 +42,11 @@ public class ConstantValue {
     public static final String KEY_VIDEO_URL = "KEY_VIDEO_URL";
     public static final String KEY_GRP_TYPE = "KEY_GROUP_TYPE";
     public static final String KEY_ATTEND_LIST = "KEY_ATTEND_LIST";
+    public static final String KEY_BUYER_FIRST_CREATE_DATE = "KEY_BUYER_FIRST_CREATE_DATE";
+    public static final String KEY_CONTRACT_ID = "KEY_CONTRACT_ID";
+    public static final String KEY_CONTRACT_TYPE = "KEY_CONTRACT_TYPE";
+    public static final String KEY_CONTRACT_LOGS = "KEY_CONTRACT_LOGS";
+    public static final String KEY_DISPLAY_INDEX = "KEY_DISPLAY_INDEX";
     public static int isForground;   //app是否在前台
     public static boolean hasNewVersion = false;//是否有新版本
 

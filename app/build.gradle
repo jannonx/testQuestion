@@ -259,4 +259,7 @@ dependencies {
     //文件选择
     implementation FilePicker.runtime
 
+    //图片预览三方库
+    implementation 'com.bm.photoview:library:1.4.1'
+
 }

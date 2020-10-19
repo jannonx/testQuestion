@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TableRow android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:text="合同编号"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_19" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_contract_list_tv_contact_id"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:textSize="@dimen/sp_19" />
+    </TableRow>
+
+    <TableRow android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:text="买方：" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_contract_list_tv_buyer"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:textSize="@dimen/sp_19" />
+    </TableRow>
+
+    <TableRow android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:text="合同签订时间：" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_contract_list_tv_date"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:textSize="@dimen/sp_19" />
+    </TableRow>
+
+    <TableRow android:gravity="center_vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:text="销售人员：" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_contract_list_tv_sales_person"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_10"
+            android:textSize="@dimen/sp_19" />
+    </TableRow>
+
+
+</TableLayout>

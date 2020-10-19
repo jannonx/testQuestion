@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dp_5">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_tag_flow_layout_contract_prg_home_tag_tv_name"
+        android:textSize="@dimen/sp_15"
+        android:padding="@dimen/dp_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        android:background="@drawable/shape_round_corner_orange_solid_rd50"
+        android:text="内容"/>
+</FrameLayout>

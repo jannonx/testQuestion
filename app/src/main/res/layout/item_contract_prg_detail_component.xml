@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_contract_prg_detail_component_tv_component_state"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:text="待生产："/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_contract_prg_detail_component_tv_component_name"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:text="零件1"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_contract_prg_detail_component_tv_component_model_name"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
+        android:text="XXXXXX型号"/>
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,7 +1,10 @@
 package com.guyuan.dear.base.app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.WindowManager;
 
 import com.example.mvvmlibrary.app.BaseApplication;
 import com.guyuan.dear.BuildConfig;
@@ -37,6 +40,7 @@ public class DearApplication extends BaseApplication {
     //标识正式环境
     public static final String RELEASE = "release";
     private SharedPreferencesUtils sharedPreferencesUtils;
+    private DisplayMetrics displayMetrics=new DisplayMetrics();
 
     public static DearApplication getInstance() {
         return application;
@@ -48,6 +52,8 @@ public class DearApplication extends BaseApplication {
         super.onCreate();
         application = this;
         sharedPreferencesUtils = SharedPreferencesUtils.getInstance(this);
+        WindowManager winManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        winManager.getDefaultDisplay().getMetrics(displayMetrics);
     }
 
     /**
@@ -63,6 +69,9 @@ public class DearApplication extends BaseApplication {
         }
     }
 
+    public DisplayMetrics getDisplayMetrics() {
+        return displayMetrics;
+    }
 
     /**
      * 开启后台服务器 (采用IntentService服务形式加载)

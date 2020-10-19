@@ -19,6 +19,13 @@ import java.util.Random;
 public class ComContractsSumViewModel extends BaseViewModel {
     private MutableLiveData<ComContractsBean> comContractSum = new MutableLiveData<>();
     private MutableLiveData<View.OnClickListener> onClickSelectDate = new MutableLiveData<>();
+    private MutableLiveData<View.OnClickListener> onClickShowPreAnnualDelivers = new MutableLiveData<>();
+    private MutableLiveData<View.OnClickListener> onClickShowNewContracts=new MutableLiveData<>();
+    private MutableLiveData<View.OnClickListener> onClickShowFinished=new MutableLiveData<>();
+    private MutableLiveData<View.OnClickListener> onClickShowExecuting=new MutableLiveData<>();
+    private MutableLiveData<View.OnClickListener> onClickShowUnfinished=new MutableLiveData<>();
+    private MutableLiveData<View.OnClickListener> onClickShowExceptions=new MutableLiveData<>();
+
     private MutableLiveData<Long> selectDate = new MutableLiveData<Long>(0L);
 
     public MutableLiveData<ComContractsBean> getComContractSum() {
@@ -32,6 +39,54 @@ public class ComContractsSumViewModel extends BaseViewModel {
 
     public void setOnClickSelectDate(View.OnClickListener listener) {
         this.onClickSelectDate.postValue(listener);
+    }
+
+    public MutableLiveData<View.OnClickListener> getOnClickShowPreAnnualDelivers() {
+        return onClickShowPreAnnualDelivers;
+    }
+
+    public void setOnClickShowPreAnnualDelivers(View.OnClickListener listener) {
+        onClickShowPreAnnualDelivers.postValue(listener);
+    }
+
+    public MutableLiveData<View.OnClickListener> getOnClickShowNewContracts() {
+        return onClickShowNewContracts;
+    }
+
+    public void setOnClickShowNewContracts(View.OnClickListener listener) {
+        this.onClickShowNewContracts.postValue(listener);
+    }
+
+    public MutableLiveData<View.OnClickListener> getOnClickShowFinished() {
+        return onClickShowFinished;
+    }
+
+    public void setOnClickShowFinished(View.OnClickListener listener) {
+        this.onClickShowFinished.postValue(listener);
+    }
+
+    public MutableLiveData<View.OnClickListener> getOnClickShowExecuting() {
+        return onClickShowExecuting;
+    }
+
+    public void setOnClickShowExecuting(View.OnClickListener listener) {
+        this.onClickShowExecuting.postValue(listener);
+    }
+
+    public MutableLiveData<View.OnClickListener> getOnClickShowUnfinished() {
+        return onClickShowUnfinished;
+    }
+
+    public void setOnClickShowUnfinished(View.OnClickListener listener) {
+        this.onClickShowUnfinished.postValue(listener);
+    }
+
+    public MutableLiveData<View.OnClickListener> getOnClickShowExceptions() {
+        return onClickShowExceptions;
+    }
+
+    public void setOnClickShowExceptions(View.OnClickListener listener) {
+        this.onClickShowExceptions.postValue(listener);
     }
 
     public MutableLiveData<Long> getSelectDate() {

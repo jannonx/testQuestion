@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:textColor="@color/black"
+        android:id="@+id/item_contract_base_info_tv_index"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10"
+        android:text="1-产品名称"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@id/item_contract_base_info_tv_index"
+        app:layout_constraintTop_toTopOf="@id/item_contract_base_info_tv_index">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/black"
+            android:id="@+id/item_contract_base_info_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_5"
+            android:text="空气冷却塔" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/black"
+            android:id="@+id/item_contract_base_info_tv_model"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
+            android:text="TK835" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/black"
+            android:id="@+id/item_contract_base_info_tv_blue_print_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_5"
+            android:text="TK835-001" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:textColor="@color/black"
+            android:id="@+id/item_contract_base_info_tv_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/dp_5"
+            android:paddingBottom="@dimen/dp_10"
+            android:text="2台" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

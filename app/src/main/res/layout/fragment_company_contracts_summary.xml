@@ -146,19 +146,17 @@
                     android:text="上年交付"
                     android:textSize="@dimen/sp_16" />
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.preAnnualDelivers)}"
                     android:textColor="@color/color_black"
+                    android:gravity="end"
                     android:textSize="@dimen/sp_16" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:onClick="@{fragment_contact_summary_vm.onClickShowPreAnnualDelivers}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_svg_right_arrow"
@@ -176,19 +174,17 @@
                     android:text="今年新签"
                     android:textSize="@dimen/sp_16" />
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
                     android:layout_height="wrap_content"
                     android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.newContracts)}"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/sp_16" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:onClick="@{fragment_contact_summary_vm.onClickShowNewContracts}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_svg_right_arrow"
@@ -213,19 +209,18 @@
                     android:text="已经完成"
                     android:textSize="@dimen/sp_16" />
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
                     android:layout_height="wrap_content"
                     android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.finishedContracts)}"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/sp_16" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:onClick="@{fragment_contact_summary_vm.onClickShowFinished}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_svg_right_arrow"
@@ -243,19 +238,18 @@
                     android:text="正在执行"
                     android:textSize="@dimen/sp_16" />
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
                     android:layout_height="wrap_content"
                     android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.executingContracts)}"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/sp_16" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:onClick="@{fragment_contact_summary_vm.onClickShowExecuting}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_svg_right_arrow"
@@ -280,19 +274,18 @@
                     android:text="未  完  成"
                     android:textSize="@dimen/sp_16" />
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
                     android:layout_height="wrap_content"
                     android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.unfinishedContracts)}"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/sp_16" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:onClick="@{fragment_contact_summary_vm.onClickShowUnfinished}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_svg_right_arrow"
@@ -310,19 +303,18 @@
                     android:text="执行异常"
                     android:textSize="@dimen/sp_16" />
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="end"
                     android:layout_height="wrap_content"
                     android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.exceptionContracts)}"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/sp_16" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:onClick="@{fragment_contact_summary_vm.onClickShowExceptions}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_svg_right_arrow"

@@ -18,7 +18,7 @@ object Versions {
     const val work = "2.2.0"
     const val room = "2.3.0-alpha01"
     const val cardview = "1.0.0"
-    const val recyclerview = "1.0.0"
+    const val recyclerview = "1.2.0-alpha06"
     const val fragment = "1.3.0-alpha06"
     const val anko = "0.10.8"
     const val swiperefreshlayout = "1.0.0"

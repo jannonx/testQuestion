@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="fragment_contract_prg_detail_vm"
+            type="com.guyuan.dear.focus.sales.view.contractProgress.ContractPrgDetailViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                app:cardBackgroundColor="@color/white">
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_10">
+                    <TableRow android:gravity="center_vertical">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="合同编号："
+                            android:padding="@dimen/dp_5"
+                            android:textColor="@color/black" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="@{fragment_contract_prg_detail_vm.detailBean.contractId}"
+                            android:padding="@dimen/dp_5"
+                            android:textColor="@color/black"/>
+                    </TableRow>
+                    <TableRow android:gravity="center_vertical">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="买方："
+                            android:padding="@dimen/dp_5"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="@{fragment_contract_prg_detail_vm.detailBean.buyer}"
+                            android:padding="@dimen/dp_5"/>
+                    </TableRow>
+                    <TableRow android:gravity="center_vertical">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="合同签订时间："
+                            android:padding="@dimen/dp_5"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            setContractDate="@{fragment_contract_prg_detail_vm.detailBean.date}"
+                            android:padding="@dimen/dp_5"/>
+                    </TableRow>
+                    <TableRow android:gravity="center_vertical">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="设备名称："
+                            android:padding="@dimen/dp_5"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="@{fragment_contract_prg_detail_vm.detailBean.productName}"
+                            android:padding="@dimen/dp_5"/>
+                    </TableRow>
+                    <TableRow android:gravity="center_vertical">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="设备型号："
+                            android:padding="@dimen/dp_5"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:text="@{fragment_contract_prg_detail_vm.detailBean.productModel}"
+                            android:padding="@dimen/dp_5"/>
+                    </TableRow>
+                </TableLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                app:cardBackgroundColor="#E7F1FF">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="生产状态："
+                        android:textSize="@dimen/sp_15"
+                        android:padding="@dimen/dp_10"
+                        android:textColor="@color/black"/>
+                    <tl.com.easy_recycleview_library.BaseRecyclerView
+                        android:id="@+id/fragment_contract_prg_detail_recycler_view_components"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_margin="@dimen/dp_10"
+                        app:setContractComponentStates="@{fragment_contract_prg_detail_vm.detailBean.componentStates}"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.cardview.widget.CardView>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10"
+                android:text="点击圆点，查看该节点状态"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fragment_contract_prg_detail_recycler_view_prg_knots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:setContractPrgKnots="@{fragment_contract_prg_detail_vm.detailBean.knotList}"/>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/fragment_contract_prg_detail_tab_layout_contract_logs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/fragment_contract_prg_detail_vp_contract_logs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+
+</layout>

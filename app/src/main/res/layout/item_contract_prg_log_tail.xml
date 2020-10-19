@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/item_contract_prg_log_tail_view_anchor_1"
+        android:layout_width="@dimen/dp_25"
+        android:layout_height="@dimen/dp_25"
+        android:layout_margin="@dimen/dp_10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/ic_svg_right_arrow"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_contract_prg_log_tail_view_anchor_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp_10"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintLeft_toRightOf="@id/item_contract_prg_log_tail_view_anchor_1"
+        app:layout_constraintBottom_toBottomOf="@id/item_contract_prg_log_tail_view_anchor_1"
+        android:text="首次创建时间："/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_contract_prg_log_tail_tv_first_create_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/item_contract_prg_log_tail_view_anchor_2"
+        app:layout_constraintBottom_toBottomOf="@id/item_contract_prg_log_tail_view_anchor_2"
+        android:paddingLeft="@dimen/dp_10"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
