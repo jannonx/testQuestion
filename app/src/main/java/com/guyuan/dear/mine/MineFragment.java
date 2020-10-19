@@ -7,6 +7,7 @@ import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentMineBinding;
 import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.scan.ScanActivity;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GlideUtils;
@@ -92,7 +93,7 @@ public class MineFragment extends BaseDataBindingFragment<FragmentMineBinding> i
                 break;
             //扫码
             case R.id.home_qr_iv:
-
+                ScanActivity.starter(getContext(), "");
                 break;
         }
     }

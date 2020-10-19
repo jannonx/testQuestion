@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
@@ -14,12 +15,18 @@ import com.guyuan.dear.customizeview.TabLayoutHelper;
 import com.guyuan.dear.databinding.FragmentFocusSecurityProfileBinding;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.device.data.beans.FactoryBean;
+import com.guyuan.dear.focus.security.adapter.SecurityProfileAdapter;
 import com.guyuan.dear.focus.security.data.FocusSecurityViewModel;
 import com.guyuan.dear.focus.security.data.beans.DangerProfileBean;
+import com.guyuan.dear.focus.security.data.beans.SecurityBaseBean;
+import com.guyuan.dear.focus.security.data.beans.SecurityContentBean;
+import com.guyuan.dear.focus.security.ui.detail.FocusSecurityDetailActivity;
 import com.guyuan.dear.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
 /**
  * @author : tl
@@ -59,7 +66,7 @@ public class FocusSecurityProfileFragment extends BaseListFragment<DangerProfile
     @Override
     protected void initView() {
         setTab();
-
+        setAdapter();
     }
 
 
@@ -109,6 +116,27 @@ public class FocusSecurityProfileFragment extends BaseListFragment<DangerProfile
         }
     }
 
+
+    private void setAdapter() {
+        SecurityProfileAdapter contentAdapter =
+                new SecurityProfileAdapter(getContext(), listData, R.layout.item_focus_content);
+
+        contentAdapter.setListener(new SecurityProfileAdapter.ContentListener() {
+            @Override
+            public void showDetail(SecurityBaseBean detailBean) {
+                SecurityContentBean contentBean = new SecurityContentBean();
+                contentBean.setTSecurityBaseVo(detailBean);
+                FocusSecurityDetailActivity.starter(getContext(), contentBean,
+                        FocusSecurityDetailActivity.SECURITY_SEARCH);
+            }
+        });
+
+        BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter(contentAdapter);
+        binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.baseRecycleView.setAdapter(adapter);
+        binding.baseRecycleView.setPullRefreshEnabled(false);
+        binding.baseRecycleView.setLoadMoreEnabled(false);
+    }
 
     @Override
     protected void refresh() {
