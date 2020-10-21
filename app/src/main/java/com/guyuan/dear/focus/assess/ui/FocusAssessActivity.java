@@ -27,10 +27,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class FocusAssessActivity extends BaseTabActivity<ActivityBaseTabBinding, FocusAssessViewModel> {
 
     private FocusAssessOverviewFragment overviewFragment;
-    private FocusPlanAssessFragment planAssessFragment;
-    private FocusProjectAssessFragment projectAssessFragment;
-    private FocusSellAssessFragment sellAssessFragment;
-
+    private FocusAssessListFragment exceptionFragment;
+    private FocusAssessListFragment totalFragment;
 
     public static void start(Context context, String title) {
         Intent starter = new Intent(context, FocusAssessActivity.class);
@@ -48,16 +46,13 @@ public class FocusAssessActivity extends BaseTabActivity<ActivityBaseTabBinding,
     protected List<Fragment> getFragments() {
         List<Fragment> fragmentList = new ArrayList<>();
         overviewFragment = FocusAssessOverviewFragment.newInstance();
-        sellAssessFragment = FocusSellAssessFragment.newInstance();
-        planAssessFragment = FocusPlanAssessFragment.newInstance();
-        projectAssessFragment = FocusProjectAssessFragment.newInstance();
+        exceptionFragment = FocusAssessListFragment.newInstance(FocusAssessListFragment.EXCEPTION);
+        totalFragment = FocusAssessListFragment.newInstance(FocusAssessListFragment.TOTAL);
         fragmentList.add(overviewFragment);
-        fragmentList.add(sellAssessFragment);
-        fragmentList.add(planAssessFragment);
-        fragmentList.add(projectAssessFragment);
+        fragmentList.add(exceptionFragment);
+        fragmentList.add(totalFragment);
         return fragmentList;
     }
-
 
 
     @Override
@@ -72,11 +67,8 @@ public class FocusAssessActivity extends BaseTabActivity<ActivityBaseTabBinding,
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
         return tabDrawableList;
     }
-
-
 
 
     @Override

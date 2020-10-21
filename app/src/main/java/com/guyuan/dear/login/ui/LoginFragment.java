@@ -53,6 +53,10 @@ public class LoginFragment extends BaseDataBindingFragment<FragmentLoginBinding>
 
     @Override
     protected void initialization() {
+        if (viewModel != null) {
+            binding.nameEt.setText(viewModel.getUserName());
+        }
+
         setListener();
     }
 

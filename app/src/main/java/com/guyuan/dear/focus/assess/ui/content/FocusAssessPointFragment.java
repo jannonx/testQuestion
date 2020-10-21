@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.assess.ui;
+package com.guyuan.dear.focus.assess.ui.content;
 
 import android.os.Bundle;
 
@@ -8,18 +8,20 @@ import com.guyuan.dear.databinding.FragmentListBinding;
 /**
  * @author : tl
  * @description :
- * @since: 2020/9/16 18:05
+ * @since: 2020/10/21 11:36
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusPlanAssessFragment extends BaseListFragment<Object, FragmentListBinding> {
 
-    public static final String TAG = "FocusPlanAssessFragment";
+public class FocusAssessPointFragment extends BaseListFragment<Object, FragmentListBinding> {
 
-    public static FocusPlanAssessFragment newInstance() {
+
+    public static final String TAG = "FocusAssessPointFragment";
+
+    public static FocusAssessPointFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        FocusPlanAssessFragment fragment = new FocusPlanAssessFragment();
+        FocusAssessPointFragment fragment = new FocusAssessPointFragment();
         fragment.setArguments(args);
         return fragment;
     }

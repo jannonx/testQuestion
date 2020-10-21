@@ -43,7 +43,6 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding> exte
 
     protected TextView mTvSelectStartTime, mTvSelectEndTime;
     protected AppCompatImageView ivClearBtn;
-    protected BaseRecyclerView recycleView;
     protected AppCompatEditText etSearch;
 
 

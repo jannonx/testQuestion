@@ -1,0 +1,81 @@
+package com.guyuan.dear.focus.assess.ui;
+
+import android.content.Context;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.guyuan.dear.R;
+import com.guyuan.dear.base.fragment.BaseListSearchFragment;
+import com.guyuan.dear.databinding.FragmentListSearchBinding;
+import com.guyuan.dear.focus.assess.adapter.AssessListAdapter;
+import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
+
+import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+
+/**
+ * @author : tl
+ * @description :
+ * @since: 2020/10/21 10:24
+ * @company : 固远（深圳）信息技术有限公司
+ **/
+
+public class FocusAssessListFragment extends BaseListSearchFragment<Object, FragmentListSearchBinding> {
+
+    public static final String TAG = "FocusListFragment";
+    public static final String TYPE = "type";
+    public static final int EXCEPTION = 0x001;
+    public static final int TOTAL = 0x002;
+    private FocusAssessViewModel viewModel;
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        FocusAssessActivity assessActivity = (FocusAssessActivity) context;
+        viewModel = assessActivity.getViewModel();
+    }
+
+    public static FocusAssessListFragment newInstance(int type) {
+
+        Bundle args = new Bundle();
+        args.putInt(TYPE, type);
+        FocusAssessListFragment fragment = new FocusAssessListFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    protected void init() {
+        if (getArguments() != null) {
+            int type = getArguments().getInt(TYPE);
+            AssessListAdapter listAdapter = new AssessListAdapter(getContext(), listData,
+                    R.layout.item_focus_assess_list);
+            BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter(listAdapter);
+            recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+            recycleView.setAdapter(adapter);
+        }
+
+    }
+
+    @Override
+    protected void refresh() {
+
+    }
+
+    @Override
+    protected void loadMore() {
+
+    }
+
+    @Override
+    protected boolean isPullEnable() {
+        return false;
+    }
+
+    @Override
+    protected boolean isLoadMoreEnable() {
+        return false;
+    }
+}

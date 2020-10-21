@@ -1,27 +1,33 @@
-package com.guyuan.dear.focus.assess.ui;
+package com.guyuan.dear.focus.assess.ui.content;
 
 import android.os.Bundle;
 
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
-import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
-import com.guyuan.dear.utils.ConstantValue;
 
 /**
  * @author : tl
  * @description :
- * @since: 2020/9/16 18:02
+ * @since: 2020/10/21 11:24
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusSellAssessFragment extends BaseListFragment<Object, FragmentListBinding> {
 
-    public static final String TAG = "FocusSellAssessFragment";
+public class FocusAssessResultFragment extends BaseListFragment<Object, FragmentListBinding> {
 
-    public static FocusSellAssessFragment newInstance() {
+    public static final String TAG = "FocusAssessResultFragment";
+
+    public static FocusAssessResultFragment newInstance() {
+
         Bundle args = new Bundle();
-        FocusSellAssessFragment fragment = new FocusSellAssessFragment();
+
+        FocusAssessResultFragment fragment = new FocusAssessResultFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    protected void initialization() {
+
     }
 
     @Override

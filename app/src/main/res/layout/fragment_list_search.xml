@@ -30,7 +30,7 @@
 
         <include
             android:id="@+id/empty_view"
-            layout="@layout/layout_list_empty"
+            layout="@layout/empty"
             android:visibility="gone"
             tools:visibility="visible"
 

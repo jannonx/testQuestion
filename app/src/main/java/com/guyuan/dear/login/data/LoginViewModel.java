@@ -62,6 +62,10 @@ public class LoginViewModel extends BaseViewModel {
         }
     }
 
+    public String getUserName() {
+        String name = (String) DearApplication.getInstance().getCacheData(ConstantValue.KEY_USER_NAME, "");
+        return name;
+    }
 
     public void login(RequestBody requestBody) {
         Disposable disposable = RxJavaHelper.build(this, loginRepository.getLoginData(requestBody))
@@ -85,15 +89,15 @@ public class LoginViewModel extends BaseViewModel {
     }
 
     private void saveLoginData(LoginBean newUser) {
-        Context context=DearApplication.getInstance();
+        Context context = DearApplication.getInstance();
         List<LoginBean.AppMenusBean> menus = newUser.getAppMenus();
         if (menus != null && menus.size() > 0) {
             DearApplication.getInstance().saveCacheData(ConstantValue.KEY_USER_NAME, name);
             DearApplication.getInstance().saveCacheData(ConstantValue.KEY_USER_PW, pwd);
             DearApplication.getInstance().saveCacheData(ConstantValue.USER_JSON_STRING, new Gson().toJson(newUser));
-            Bundle bundle=new Bundle();
-            bundle.putInt(MainActivity.OPEN_TYPE,MainActivity.LOGIN);
-            startActivity(MainActivity.class,bundle);
+            Bundle bundle = new Bundle();
+            bundle.putInt(MainActivity.OPEN_TYPE, MainActivity.LOGIN);
+            startActivity(MainActivity.class, bundle);
         } else {
             SharedPreferencesUtils.removeData(context, ConstantValue.KEY_USER_NAME);
             SharedPreferencesUtils.removeData(context, ConstantValue.KEY_USER_PW);

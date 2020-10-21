@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/custom_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="23dp"
+        android:text="客户名称："
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/custom_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@+id/custom_title_tv"
+        app:layout_constraintTop_toTopOf="@+id/custom_title_tv"
+        tools:text="深圳固远" />
+
+    <TextView
+        android:id="@+id/contract_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="合同编号："
+        app:layout_constraintStart_toStartOf="@+id/custom_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/custom_title_tv" />
+
+    <TextView
+        android:id="@+id/contract_number_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@+id/contract_title_tv"
+        app:layout_constraintTop_toTopOf="@+id/contract_title_tv"
+        tools:text="2312312" />
+
+    <TextView
+        android:id="@+id/assess_person_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="主持人："
+        app:layout_constraintStart_toStartOf="@+id/contract_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/contract_title_tv" />
+
+    <TextView
+        android:id="@+id/assess_person_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@+id/assess_person_title"
+        app:layout_constraintTop_toTopOf="@+id/assess_person_title"
+        tools:text="张三" />
+
+    <TextView
+        android:id="@+id/assess_time_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="评审时间："
+        app:layout_constraintStart_toStartOf="@+id/assess_person_title"
+        app:layout_constraintTop_toBottomOf="@+id/assess_person_title" />
+
+    <TextView
+        android:id="@+id/assess_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@+id/assess_time_title_tv"
+        app:layout_constraintTop_toTopOf="@+id/assess_time_title_tv"
+        tools:text="2012-11-21" />
+
+    <TextView
+        android:id="@+id/assess_room_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/assess_time_title_tv"
+        tools:text="2号" />
+
+    <TextView
+        android:id="@+id/assess_room_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="会议室："
+        app:layout_constraintEnd_toStartOf="@+id/assess_room_tv"
+        app:layout_constraintTop_toTopOf="@+id/assess_time_title_tv" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/approve_copy" />
+</androidx.constraintlayout.widget.ConstraintLayout>

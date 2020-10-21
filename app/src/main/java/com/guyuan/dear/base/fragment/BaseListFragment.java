@@ -56,6 +56,7 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding> extends Ba
         recycleView = rootView.findViewById(R.id.base_recycleView);
         empty_view = rootView.findViewById(R.id.empty_view);
         no_data_iv = rootView.findViewById(R.id.no_data_iv);
+        tv_empty = rootView.findViewById(R.id.tv_empty);
         initView();
         canPull();
         canLoadMore();

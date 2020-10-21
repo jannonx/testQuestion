@@ -11,11 +11,6 @@ import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
 import com.guyuan.dear.focus.aftersale.fragment.ContractProgressFragment;
 import com.guyuan.dear.focus.aftersale.fragment.ProviderFragment;
-import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
-import com.guyuan.dear.focus.assess.ui.FocusAssessOverviewFragment;
-import com.guyuan.dear.focus.assess.ui.FocusPlanAssessFragment;
-import com.guyuan.dear.focus.assess.ui.FocusProjectAssessFragment;
-import com.guyuan.dear.focus.assess.ui.FocusSellAssessFragment;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
