@@ -4,11 +4,13 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.ViewDataBinding;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
@@ -44,6 +46,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding> exte
     protected TextView mTvSelectStartTime, mTvSelectEndTime;
     protected AppCompatImageView ivClearBtn;
     protected AppCompatEditText etSearch;
+    protected TextView searchBtn;
 
 
     @Override
@@ -55,7 +58,8 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding> exte
     @Override
     protected void initView() {
         etSearch = rootView.findViewById(R.id.et_search);
-        ivClearBtn = rootView.findViewById(R.id.iv_clear);
+//        ivClearBtn = rootView.findViewById(R.id.iv_clear);
+        searchBtn = rootView.findViewById(R.id.tv_search_btn);
         //    initDate();
         initListener();
         init();
@@ -84,7 +88,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding> exte
 
             @Override
             public void afterTextChanged(Editable editable) {
-                ivClearBtn.setVisibility(TextUtils.isEmpty(editable.toString()) ? View.GONE : View.VISIBLE);
+//                ivClearBtn.setVisibility(TextUtils.isEmpty(editable.toString()) ? View.GONE : View.VISIBLE);
                 if (TextUtils.isEmpty(editable.toString())) {
                     etSearch.clearFocus();
                 }
@@ -92,10 +96,21 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding> exte
             }
         });
 
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onSearch();
+            }
+        });
+
 
     }
 
     protected abstract void init();
+
+    protected void onSearch(){
+
+    };
 
     protected void editTextChanged(String text) {
 

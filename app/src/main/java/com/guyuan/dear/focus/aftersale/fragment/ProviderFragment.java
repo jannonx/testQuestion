@@ -33,6 +33,11 @@ public class ProviderFragment extends BaseListSearchFragment<Object, FragmentLis
     }
 
     @Override
+    protected void onSearch() {
+
+    }
+
+    @Override
     protected void refresh() {
 
     }

@@ -511,5 +511,14 @@
         <!--    <item name="android:textStyle">bold</item>-->
         <item name="android:padding">@dimen/dp_12</item>
     </style>
+    <style name="TabLayoutTextSelected">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/color_blue_1677ff</item>
+    </style>
+
+    <style name="TabLayoutTextUnSelected">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/color_black_333333</item>
+    </style>
 
 </resources>
