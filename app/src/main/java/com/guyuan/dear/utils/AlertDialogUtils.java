@@ -205,7 +205,7 @@ public class AlertDialogUtils {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
-                listener.onSelected(CalenderUtils.getInstance().getYearByDate(picker.getYear()));
+                listener.onSelected(String.valueOf(picker.getYear()));
             }
         });
         hideMonthAndDay(picker);
