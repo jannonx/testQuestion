@@ -1,5 +1,6 @@
 package com.guyuan.dear.login.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.InputType;
@@ -67,6 +68,7 @@ public class LoginFragment extends BaseDataBindingFragment<FragmentLoginBinding>
         binding.passWordShowIv.setOnClickListener(this);
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         int id = v.getId();

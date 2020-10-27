@@ -1,10 +1,283 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="AssessOverviewBean"
+            type="com.guyuan.dear.focus.assess.data.bean.AssessOverviewBean" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/layout_search_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_44"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#F5F7FA"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include">
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="日期"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+                app:layout_constraintTop_toBottomOf="@+id/include" />
+
+            <TextView
+                android:id="@+id/date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/bg_white_corner_12"
+                android:drawableRight="@mipmap/arrow_head_down"
+                android:drawablePadding="8dp"
+                android:paddingStart="12dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+                app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+                app:layout_constraintTop_toBottomOf="@+id/include"
+                tools:text="2020" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/total_cardView"
+                android:layout_width="match_parent"
+                android:layout_height="52.5dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/total_cardView_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:drawableLeft="@mipmap/assess_total"
+                        android:drawablePadding="6dp"
+                        android:text="总次数"
+                        app:layout_constraintBottom_toBottomOf="@+id/total_cardView_container"
+                        app:layout_constraintStart_toStartOf="@+id/total_cardView_container"
+                        app:layout_constraintTop_toTopOf="@+id/total_cardView_container" />
+
+                    <TextView
+                        android:id="@+id/assess_total_number_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:drawablePadding="8dp"
+                        android:text='@{String.valueOf(AssessOverviewBean.sellOrderSumNumber)}'
+                        android:textColor="#0050B4"
+                        android:textSize="14sp"
+                        app:drawableRightCompat="@mipmap/ic_arrow_gray_right"
+                        app:layout_constraintBottom_toBottomOf="@+id/total_cardView_container"
+                        app:layout_constraintEnd_toEndOf="@+id/total_cardView_container"
+                        app:layout_constraintTop_toTopOf="@+id/total_cardView_container"
+                        tools:text="400" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/not_assess_cv"
+                android:layout_width="match_parent"
+                android:layout_height="52.5dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="12dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/total_cardView">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/not_pass_cv_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:drawableLeft="@mipmap/assess_not_pass"
+                        android:drawablePadding="6dp"
+                        android:text="不通过次数"
+                        app:layout_constraintBottom_toBottomOf="@+id/not_pass_cv_container"
+                        app:layout_constraintStart_toStartOf="@+id/not_pass_cv_container"
+                        app:layout_constraintTop_toTopOf="@+id/not_pass_cv_container" />
+
+                    <TextView
+                        android:id="@+id/assess_not_pass_number_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:drawablePadding="8dp"
+                        android:text='@{String.valueOf(AssessOverviewBean.noPassSumNumber)}'
+                        android:textColor="#0050B4"
+                        android:textSize="14sp"
+                        app:drawableRightCompat="@mipmap/ic_arrow_gray_right"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/not_pass_cv_container"
+                        app:layout_constraintTop_toTopOf="@+id/not_pass_cv_container"
+                        tools:text="400" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/pass_cv"
+                android:layout_width="match_parent"
+                android:layout_height="52.5dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="12dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/not_assess_cv">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/pass_cv_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:drawableLeft="@mipmap/assess_pass"
+                        android:drawablePadding="6dp"
+                        android:text="通过次数"
+                        app:layout_constraintBottom_toBottomOf="@+id/pass_cv_container"
+                        app:layout_constraintStart_toStartOf="@+id/pass_cv_container"
+                        app:layout_constraintTop_toTopOf="@+id/pass_cv_container" />
+
+                    <TextView
+                        android:id="@+id/assess_pass_number_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:drawablePadding="8dp"
+                        android:text='@{String.valueOf(AssessOverviewBean.passSumNumber),default=100}'
+                        android:textColor="#0050B4"
+                        android:textSize="14sp"
+                        app:drawableRightCompat="@mipmap/ic_arrow_gray_right"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/pass_cv_container"
+                        app:layout_constraintTop_toTopOf="@+id/pass_cv_container"
+                        tools:text="400" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/pass_rate_cv"
+                android:layout_width="match_parent"
+                android:layout_height="52.5dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="12dp"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_cv">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/pass_rate_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/transparent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:drawableLeft="@mipmap/assess_pass_rate"
+                        android:drawablePadding="6dp"
+                        android:text="通过率"
+                        app:layout_constraintBottom_toBottomOf="@+id/pass_rate_container"
+                        app:layout_constraintStart_toStartOf="@+id/pass_rate_container"
+                        app:layout_constraintTop_toTopOf="@+id/pass_rate_container" />
+
+                    <TextView
+                        android:id="@+id/assess_pass_rate_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:text='@{String.valueOf(AssessOverviewBean.passRate),default="0%"}'
+                        android:textColor="#0050B4"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/pass_rate_container"
+                        app:layout_constraintEnd_toEndOf="@+id/pass_rate_container"
+                        app:layout_constraintTop_toTopOf="@+id/pass_rate_container" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
+                android:text="评审统计表"
+                android:textColor="#333333"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pass_rate_cv" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
 </layout>

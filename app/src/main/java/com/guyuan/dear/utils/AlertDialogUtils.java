@@ -70,25 +70,25 @@ public class AlertDialogUtils {
                                 long selectedDate, Type dialogType, OnDateSetListener callback) {
         if (!CommonUtils.isFastDoubleClick()) {
             TimePickerDialog dialog = new TimePickerDialog.Builder()
-                .setCallBack(callback)
-                .setCancelStringId("取消")
-                .setSureStringId("确认")
-                .setTitleStringId(title)
-                .setYearText("年")
-                .setMonthText("月")
-                .setDayText("日")
-                .setHourText("时")
-                .setMinuteText("分")
-                .setCyclic(true)
-                .setMinMillseconds(minDate)
-                .setMaxMillseconds(maxDate)
-                .setCurrentMillseconds(selectedDate)
-                .setThemeColor(DearApplication.getInstance().getBaseContext().getResources().getColor(R.color.color_actionbar))
-                .setType(dialogType)
-                .setWheelItemTextNormalColor(DearApplication.getInstance().getBaseContext().getResources().getColor(R.color.timetimepicker_default_text_color))
-                .setWheelItemTextSelectorColor(DearApplication.getInstance().getBaseContext().getResources().getColor(R.color.color_black_000000))
-                .setWheelItemTextSize(12)
-                .build();
+                    .setCallBack(callback)
+                    .setCancelStringId("取消")
+                    .setSureStringId("确认")
+                    .setTitleStringId(title)
+                    .setYearText("年")
+                    .setMonthText("月")
+                    .setDayText("日")
+                    .setHourText("时")
+                    .setMinuteText("分")
+                    .setCyclic(true)
+                    .setMinMillseconds(minDate)
+                    .setMaxMillseconds(maxDate)
+                    .setCurrentMillseconds(selectedDate)
+                    .setThemeColor(DearApplication.getInstance().getBaseContext().getResources().getColor(R.color.color_actionbar))
+                    .setType(dialogType)
+                    .setWheelItemTextNormalColor(DearApplication.getInstance().getBaseContext().getResources().getColor(R.color.timetimepicker_default_text_color))
+                    .setWheelItemTextSelectorColor(DearApplication.getInstance().getBaseContext().getResources().getColor(R.color.color_black_000000))
+                    .setWheelItemTextSize(12)
+                    .build();
             dialog.show(manager, title);
         }
 
@@ -147,7 +147,7 @@ public class AlertDialogUtils {
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
         picker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH), null);
+                calendar.get(Calendar.DAY_OF_MONTH), null);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,9 +160,9 @@ public class AlertDialogUtils {
         });
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         alertDialog = builder.setCancelable(true)
-            .setTitle(title)
-            .setView(view)
-            .create();
+                .setTitle(title)
+                .setView(view)
+                .create();
         alertDialog.show();
     }
 
@@ -173,7 +173,7 @@ public class AlertDialogUtils {
         AppCompatButton btnConfirm = view.findViewById(R.id.dialog_date_picker_btn_confirm);
         Calendar calendar = Calendar.getInstance();
         picker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH), null);
+                calendar.get(Calendar.DAY_OF_MONTH), null);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -187,9 +187,33 @@ public class AlertDialogUtils {
         hideMonthAndDay(picker);
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         alertDialog = builder.setCancelable(true)
-            .setTitle(title)
-            .setView(view)
-            .create();
+                .setTitle(title)
+                .setView(view)
+                .create();
+        alertDialog.show();
+    }
+
+
+    public static void pickYear(Context context, String title, YearStringListener listener) {
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_year_picker, null);
+        DatePicker picker = view.findViewById(R.id.dialog_date_picker_selector);
+        AppCompatButton btnConfirm = view.findViewById(R.id.dialog_date_picker_btn_confirm);
+        Calendar calendar = Calendar.getInstance();
+        picker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH), null);
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                listener.onSelected(CalenderUtils.getInstance().getYearByDate(picker.getYear()));
+            }
+        });
+        hideMonthAndDay(picker);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        alertDialog = builder.setCancelable(true)
+                .setTitle(title)
+                .setView(view)
+                .create();
         alertDialog.show();
     }
 
@@ -203,10 +227,14 @@ public class AlertDialogUtils {
     }
 
 
+    public interface YearStringListener {
+        void onSelected(String year);
+    }
+
     public static void showImagePicker(Fragment fragment) {
         AlertDialog.Builder builder = new AlertDialog.Builder(fragment.getContext());
         View rootView =
-            LayoutInflater.from(fragment.getContext()).inflate(R.layout.dialog_image_picker, null);
+                LayoutInflater.from(fragment.getContext()).inflate(R.layout.dialog_image_picker, null);
         AppCompatImageView ivCamera = rootView.findViewById(R.id.dialog_image_picker_iv_camera);
         AppCompatImageView ivGallery = rootView.findViewById(R.id.dialog_image_picker_iv_gallery);
         ivCamera.setOnClickListener(new View.OnClickListener() {
@@ -230,7 +258,7 @@ public class AlertDialogUtils {
                 if (Build.VERSION.SDK_INT >= 24) {
                     // 将File对象转换成一个封装过的Uri对象
                     imagePickerImageUri = FileProvider.getUriForFile(fragment.getContext(), "com.gy" +
-                        ".smartmanagement.cameraalbumtest.fileprovider", outputImageFile);
+                            ".smartmanagement.cameraalbumtest.fileprovider", outputImageFile);
                 } else {
                     // 将File对象转换为Uri对象，这个Uri标识着output_image.jpg这张图片的本地真实路径
                     imagePickerImageUri = Uri.fromFile(outputImageFile);
@@ -246,15 +274,15 @@ public class AlertDialogUtils {
             public void onClick(View v) {
                 alertDialog.dismiss();
                 FilePickerBuilder.getInstance()
-                    .setMaxCount(1)
-                    .setSelectedFiles(new ArrayList<String>())
-                    .setActivityTheme(R.style.LibAppTheme)
-                    .pickPhoto(fragment);
+                        .setMaxCount(1)
+                        .setSelectedFiles(new ArrayList<String>())
+                        .setActivityTheme(R.style.LibAppTheme)
+                        .pickPhoto(fragment);
             }
         });
         alertDialog = builder.setView(rootView)
-            .setCancelable(true)
-            .create();
+                .setCancelable(true)
+                .create();
         alertDialog.show();
     }
 

@@ -15,5 +15,7 @@ public class FocusAssessRepository {
         this.focusAssessApiService = focusAssessApiService;
     }
 
-
+    public FocusAssessApiService getFocusAssessApiService() {
+        return focusAssessApiService;
+    }
 }

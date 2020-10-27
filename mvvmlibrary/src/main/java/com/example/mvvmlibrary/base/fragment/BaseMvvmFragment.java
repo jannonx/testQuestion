@@ -22,7 +22,7 @@ import java.lang.reflect.Type;
  * @since: 2020/9/18 10:31
  * @company: 固远（深圳）信息技术有限公司
  **/
-public abstract class BaseMvvmFragment<VDB extends ViewDataBinding, VM extends BaseViewModel> extends BaseDataBindingFragment<VDB> {
+public abstract class BaseMvvmFragment<VDB extends ViewDataBinding, VM extends BaseViewModel> extends BaseViewModelFragment<VDB> {
     private VM viewModel;
 
     @Override

@@ -155,6 +155,11 @@ public class CalenderUtils {
         return mSimpleDateFormatByYearMonthDayHourMin.format(new Date(time));
     }
 
+    public String getCurrentYearByString() {
+        Calendar calendar = Calendar.getInstance();
+        return String.valueOf(calendar.get(Calendar.YEAR));
+    }
+
     public String getYearByDate(long time) {
         return simpleDateFormatByYear.format(new Date(time));
     }
