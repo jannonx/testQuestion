@@ -6,7 +6,7 @@
 
         <import
             alias="vm"
-            type="com.guyuan.dear.focus.sales.view.contractSum.ComContractsSumViewModel" />
+            type="com.guyuan.dear.focus.contract.view.contractSum.ComContractsSumViewModel" />
 
         <variable
             name="fragment_contact_summary_vm"

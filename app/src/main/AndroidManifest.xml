@@ -70,12 +70,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".focus.sales.view.zoomView.ZoomViewActivity"></activity>
-        <activity android:name=".focus.sales.view.contractProgress.ContractPrgDetailActivity" />
-        <activity android:name=".focus.sales.view.contractList.ContractListActivity" />
-        <activity android:name=".focus.sales.view.contractDetail.ContractDetailActivity" />
-        <activity android:name=".focus.sales.view.home.SalesHomeActivity" />
-        <activity android:name=".focus.sales.view.home.SalesHomeActivity"/>
+        <activity android:name=".focus.contract.view.zoomView.ZoomViewActivity"></activity>
+        <activity android:name=".focus.contract.view.contractProgress.ContractPrgDetailActivity" />
+        <activity android:name=".focus.contract.view.contractList.ContractListActivity" />
+        <activity android:name=".focus.contract.view.contractDetail.ContractDetailActivity" />
+        <activity android:name=".focus.contract.view.home.SalesHomeActivity" />
         <activity android:name=".focus.hr.view.hrStaffAttendDetail.StaffAttendDetailActivity" />
         <activity android:name=".focus.hr.view.hrStatusGrp.HrStatusGroupActivity" />
         <activity android:name=".focus.hr.view.home.HrHomeActivity" /> <!-- 今日头条屏幕适配 -->

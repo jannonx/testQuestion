@@ -13,7 +13,7 @@ import com.guyuan.dear.databinding.FragmentFocusBinding;
 import com.guyuan.dear.focus.assess.ui.FocusAssessActivity;
 import com.guyuan.dear.focus.device.ui.FocusDeviceActivity;
 import com.guyuan.dear.focus.hr.view.home.HrHomeActivity;
-import com.guyuan.dear.focus.sales.view.home.SalesHomeActivity;
+import com.guyuan.dear.focus.contract.view.home.SalesHomeActivity;
 import com.guyuan.dear.focus.produce.ui.FocusProduceActivity;
 import com.guyuan.dear.focus.security.ui.FocusSecurityActivity;
 import com.guyuan.dear.focus.stock.ui.FocusStockActivity;
