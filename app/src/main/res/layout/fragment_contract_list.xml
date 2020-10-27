@@ -4,7 +4,7 @@
     <data>
         <variable
             name="fragment_contract_list_vm"
-            type="com.guyuan.dear.focus.sales.view.contractList.ContractListViewModel" />
+            type="com.guyuan.dear.focus.contract.view.contractList.ContractListViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

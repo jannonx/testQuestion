@@ -13,7 +13,7 @@ import com.guyuan.dear.databinding.FragmentFocusBinding;
 import com.guyuan.dear.focus.assess.ui.FocusAssessActivity;
 import com.guyuan.dear.focus.device.ui.FocusDeviceActivity;
 import com.guyuan.dear.focus.hr.view.home.HrHomeActivity;
-import com.guyuan.dear.focus.sales.view.home.SalesHomeActivity;
+import com.guyuan.dear.focus.contract.view.home.ContractHomeActivity;
 import com.guyuan.dear.focus.produce.ui.FocusProduceActivity;
 import com.guyuan.dear.focus.security.ui.FocusSecurityActivity;
 import com.guyuan.dear.focus.stock.ui.FocusStockActivity;
@@ -97,7 +97,7 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
                                 break;
 
                             case ConstantValue.FOCUS_SELL://销售
-                                SalesHomeActivity.start(getContext(),title);
+
                                 break;
 
                             case ConstantValue.FOCUS_ASSESS://评审
@@ -143,6 +143,9 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
 
                             case ConstantValue.FOCUS_CONSTRUCTION_MONITORING://施工现场
 
+                                break;
+                            case ConstantValue.FOCUS_CONTRACT://合同
+                                ContractHomeActivity.start(getContext(),title);
                                 break;
                             default:
                                 break;

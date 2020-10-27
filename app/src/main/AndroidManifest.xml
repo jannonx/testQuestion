@@ -70,12 +70,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".focus.sales.view.zoomView.ZoomViewActivity"></activity>
-        <activity android:name=".focus.sales.view.contractProgress.ContractPrgDetailActivity" />
-        <activity android:name=".focus.sales.view.contractList.ContractListActivity" />
-        <activity android:name=".focus.sales.view.contractDetail.ContractDetailActivity" />
-        <activity android:name=".focus.sales.view.home.SalesHomeActivity" />
-        <activity android:name=".focus.sales.view.home.SalesHomeActivity"/>
+        <activity android:name=".focus.contract.view.zoomView.ZoomViewActivity"></activity>
+        <activity android:name=".focus.contract.view.contractProgress.ContractPrgDetailActivity" />
+        <activity android:name=".focus.contract.view.contractList.ContractListActivity" />
+        <activity android:name=".focus.contract.view.contractDetail.ContractDetailActivity" />
+        <activity android:name=".focus.contract.view.home.ContractHomeActivity" />
         <activity android:name=".focus.hr.view.hrStaffAttendDetail.StaffAttendDetailActivity" />
         <activity android:name=".focus.hr.view.hrStatusGrp.HrStatusGroupActivity" />
         <activity android:name=".focus.hr.view.home.HrHomeActivity" /> <!-- 今日头条屏幕适配 -->
@@ -182,6 +181,11 @@
             tools:ignore="LockedOrientationActivity" /> <!-- #############我的关注############# -->
         <activity
             android:name=".focus.assess.ui.FocusAssessActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.client.activity.FocusClientActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
