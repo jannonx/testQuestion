@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.guyuan.dear.focus.contract.view.home.ContractHomeActivity">
+        tools:context="com.guyuan.dear.focus.sales.view.home.SalesHomeActivity">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

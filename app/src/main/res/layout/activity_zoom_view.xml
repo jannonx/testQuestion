@@ -6,14 +6,14 @@
     <data>
         <variable
             name="activity_zoom_view_vm"
-            type="com.guyuan.dear.focus.contract.view.zoomView.ZoomViewViewModel" />
+            type="com.guyuan.dear.focus.sales.view.zoomView.ZoomViewViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.guyuan.dear.focus.contract.view.zoomView.ZoomViewActivity">
+        tools:context="com.guyuan.dear.focus.sales.view.zoomView.ZoomViewActivity">
 
         <include layout="@layout/toolbar"/>
 

@@ -6,7 +6,7 @@
 
         <import
             alias="vm"
-            type="com.guyuan.dear.focus.contract.view.contractSum.ComContractsSumViewModel" />
+            type="com.guyuan.dear.focus.sales.view.contractSum.ComContractsSumViewModel" />
 
         <variable
             name="fragment_contact_summary_vm"
@@ -321,11 +321,11 @@
                     android:padding="@dimen/dp_10"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <com.guyuan.dear.customizeview.PieChartView
+            <com.github.mikephil.charting.charts.BarChart
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_margin="@dimen/sp_10"
-                app:setContractSumPieData="@{fragment_contact_summary_vm.comContractSum}"
+                app:setContractSumBarData="@{fragment_contact_summary_vm.comContractSum}"
                 />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

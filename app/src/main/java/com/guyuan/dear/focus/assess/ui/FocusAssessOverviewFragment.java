@@ -12,8 +12,10 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusAssessOverviewBinding;
 import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
 import com.guyuan.dear.focus.assess.data.bean.AssessOverviewBean;
+import com.guyuan.dear.focus.assess.data.bean.OverviewBody;
 import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.DateUtil;
 
@@ -54,7 +56,9 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
     protected void initialization() {
         if (viewModel != null) {
             initYear();
-            viewModel.getAssessOverview(binding.dateTv.getText().toString());
+            OverviewBody body = new OverviewBody();
+            body.setAuditTime(binding.dateTv.getText().toString());
+            viewModel.getAssessOverview(CommonUtils.getCommonRequestBody(body));
         }
     }
 
@@ -67,7 +71,9 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
                     @Override
                     public void onSelected(String year) {
                         binding.dateTv.setText(year);
-                        viewModel.getAssessOverview(year);
+                        OverviewBody body = new OverviewBody();
+                        body.setAuditTime(year);
+                        viewModel.getAssessOverview(CommonUtils.getCommonRequestBody(body));
                     }
                 });
             }
@@ -77,6 +83,5 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
     public void setUI(AssessOverviewBean assessOverviewBean) {
         binding.setVariable(BR.AssessOverviewBean, assessOverviewBean);
     }
-
 
 }

@@ -6,14 +6,14 @@
     <data>
         <variable
             name="activity_contract_list_vm"
-            type="com.guyuan.dear.focus.contract.view.contractList.ContractListViewModel"/>
+            type="com.guyuan.dear.focus.sales.view.contractList.ContractListViewModel"/>
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.guyuan.dear.focus.contract.view.contractList.ContractListActivity">
+        tools:context="com.guyuan.dear.focus.sales.view.contractList.ContractListActivity">
 
         <include layout="@layout/toolbar"/>
         <FrameLayout

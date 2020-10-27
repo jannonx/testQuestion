@@ -4,7 +4,7 @@
     <data>
         <variable
             name="fragment_contract_prg_client_receipt_vm"
-            type="com.guyuan.dear.focus.contract.view.contractProgress.ContractPrgDetailViewModel" />
+            type="com.guyuan.dear.focus.sales.view.contractProgress.ContractPrgDetailViewModel" />
     </data>
 
     <FrameLayout

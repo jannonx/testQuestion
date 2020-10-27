@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailViewModel"
+        <import type="com.guyuan.dear.focus.sales.view.contractDetail.ContractDetailViewModel"
             alias="vm"/>
         <variable
             name="fragment_contract_detail_vm"

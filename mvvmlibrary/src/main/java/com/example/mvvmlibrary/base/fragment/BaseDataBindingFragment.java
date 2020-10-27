@@ -20,24 +20,13 @@ import com.example.mvvmlibrary.base.data.BaseViewModel;
  * created at 2020/8/25
  */
 
-public abstract class BaseDataBindingFragment<VB extends ViewDataBinding, VM extends BaseViewModel> extends BaseFragment {
+public abstract class BaseDataBindingFragment<VB extends ViewDataBinding> extends BaseFragment {
     protected VB binding;
-    protected VM viewModel;
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        BaseDataBindingActivity activity = (BaseDataBindingActivity) context;
-        viewModel = (VM) activity.getViewModel();
-    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, getLayoutID(), container, false);
-        if (getVariableId() != 0) {
-            binding.setVariable(getVariableId(), viewModel);
-        }
         rootView = binding.getRoot();
         binding.setLifecycleOwner(this);
         return rootView;
@@ -49,7 +38,7 @@ public abstract class BaseDataBindingFragment<VB extends ViewDataBinding, VM ext
         binding.unbind();
     }
 
-    protected abstract int getVariableId();
+
 
     protected VB getViewDataBinding() {
         return binding;

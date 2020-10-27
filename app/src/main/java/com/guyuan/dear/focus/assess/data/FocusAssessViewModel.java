@@ -8,6 +8,7 @@ import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.assess.api.FocusAssessApiService;
 
 import io.reactivex.disposables.Disposable;
+import okhttp3.RequestBody;
 
 /**
  * @author : tl
@@ -23,9 +24,9 @@ public class FocusAssessViewModel extends BaseViewModel {
         this.apiService = focusAssessRepository.getFocusAssessApiService();
     }
 
-    public void getAssessOverview(String auditTime) {
+    public void getAssessOverview(RequestBody body) {
         Disposable disposable = RxJavaHelper.build(this,
-                apiService.getAssessOverview(auditTime)).getHelper().flow();
+                apiService.getAssessOverview(body)).getHelper().flow();
         addSubscription(disposable);
     }
 

@@ -9,6 +9,8 @@ import com.guyuan.dear.focus.assess.data.bean.AssessOverviewBean;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -34,8 +36,7 @@ public interface FocusAssessApiService extends BaseApiService {
 
     //评审概览
     @POST(ASSESS_OVERVIEW)
-    @FormUrlEncoded
-    Observable<ResultBean<AssessOverviewBean>> getAssessOverview(@Field(AUDIT_TIME) String auditTime);
+    Observable<ResultBean<AssessOverviewBean>> getAssessOverview(@Body RequestBody body);
 
     //评审列表
     @POST(ASSESS_LIST)
