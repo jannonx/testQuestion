@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mvvmlibrary.base.fragment.BaseFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.contract.adapter.CommentListAdapter;
-import com.guyuan.dear.focus.contract.bean.ContractDetailBean;
+import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.bean.ContractComment;
 import com.guyuan.dear.utils.ConstantValue;
 
@@ -107,7 +107,7 @@ public class ContractCommentsFragment extends BaseFragment {
         }
     }
 
-    public void updateViewByDate(ContractDetailBean data){
+    public void updateViewByDate(DetailContractBean data){
         adapter.setFirstCreateData(data.getBuyerFirstCreateDate());
         mCommentList.clear();
         mCommentList.addAll(data.getCommentList());

@@ -10,7 +10,7 @@ import kotlin.jvm.Transient;
  * @since: 2020/10/12 10:46
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ContractBaseBean {
+public class BaseContractBean {
     /**
      * 合同编号
      */

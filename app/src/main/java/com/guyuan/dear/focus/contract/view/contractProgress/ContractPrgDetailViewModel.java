@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.contract.bean.ComponentStateBean;
 import com.guyuan.dear.focus.contract.bean.ContractLogBean;
-import com.guyuan.dear.focus.contract.bean.ContractPrgDetailBean;
+import com.guyuan.dear.focus.contract.bean.PrgDetailContractBean;
 import com.guyuan.dear.focus.contract.bean.ContractPrgKnot;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.ClientReceipt;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.FirstCreateDate;
@@ -25,15 +25,15 @@ import java.util.Random;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class ContractPrgDetailViewModel extends BaseViewModel {
-    private MutableLiveData<ContractPrgDetailBean> detailBean = new MutableLiveData<>();
+    private MutableLiveData<PrgDetailContractBean> detailBean = new MutableLiveData<>();
 
 
-    public MutableLiveData<ContractPrgDetailBean> getDetailBean() {
+    public MutableLiveData<PrgDetailContractBean> getDetailBean() {
         return detailBean;
     }
 
     public void loadDateFromNet(String contractId) {
-        ContractPrgDetailBean bean = new ContractPrgDetailBean();
+        PrgDetailContractBean bean = new PrgDetailContractBean();
         bean.setBuyer("深圳固远智能机器人公司");
         bean.setDate(System.currentTimeMillis());
         bean.setContractId(contractId);

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mvvmlibrary.base.fragment.BaseFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.contract.adapter.ContractBaseInfoAdapter;
-import com.guyuan.dear.focus.contract.bean.ContractDetailBean;
+import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.bean.ProductComponent;
 
 import java.util.ArrayList;
@@ -64,7 +64,7 @@ public class ContractBaseInfoFragment extends BaseFragment {
 
     }
 
-    public void updateViewByData(ContractDetailBean data){
+    public void updateViewByData(DetailContractBean data){
         tvName.setText(data.getProductName());
         tvModel.setText(data.getProductModel());
         mComponentList.clear();

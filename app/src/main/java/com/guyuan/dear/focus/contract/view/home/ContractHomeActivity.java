@@ -8,7 +8,7 @@ import android.content.Intent;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
-import com.guyuan.dear.focus.contract.view.contractProgress.ContractPrgHomeFragment;
+import com.guyuan.dear.focus.contract.view.contractExcptList.ExcptContractListFragment;
 import com.guyuan.dear.focus.contract.view.contractSum.ComContractsSumFragment;
 import com.guyuan.dear.utils.ConstantValue;
 
@@ -16,17 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 我的关注-销售-进来主界面
+ * 我的关注-合同-进来主界面
  *
  * @author: 廖华凯
  * @description:
  * @since: 2020/9/23 17:41
  * @company: 固远（深圳）信息技术有限公司
  */
-public class SalesHomeActivity  extends BaseTabActivity<ActivityBaseTabBinding, SalesHomeViewModel> {
+public class ContractHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, SalesHomeViewModel> {
 
     public static void start(Context context,String title) {
-        Intent starter = new Intent(context, SalesHomeActivity.class);
+        Intent starter = new Intent(context, ContractHomeActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE,title);
         context.startActivity(starter);
     }
@@ -46,7 +46,7 @@ public class SalesHomeActivity  extends BaseTabActivity<ActivityBaseTabBinding, 
         return new ArrayList<Fragment>(){
             {
                 add(ComContractsSumFragment.getInstance());
-                add(ContractPrgHomeFragment.getInstance());
+                add(ExcptContractListFragment.getInstance());
             }
         };
     }

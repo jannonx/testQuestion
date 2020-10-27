@@ -14,7 +14,7 @@ import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentContractDetailBinding;
 import com.guyuan.dear.focus.contract.adapter.ContractDetailPagerAdapter;
-import com.guyuan.dear.focus.contract.bean.ContractDetailBean;
+import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.view.contractProgress.ContractPrgDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 
@@ -70,9 +70,9 @@ public class ContractDetailFragment extends BaseMvvmFragment<FragmentContractDet
         mediator.attach();
         getViewModel().getContractBean().observe(
                 getViewLifecycleOwner(),
-                new Observer<ContractDetailBean>() {
+                new Observer<DetailContractBean>() {
                     @Override
-                    public void onChanged(ContractDetailBean bean) {
+                    public void onChanged(DetailContractBean bean) {
                         adapter.update(bean);
                     }
                 });

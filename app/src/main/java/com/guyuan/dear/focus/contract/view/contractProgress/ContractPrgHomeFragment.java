@@ -11,7 +11,7 @@ import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentContractPrgHomeBinding;
 import com.guyuan.dear.focus.contract.adapter.ContractPrgHomeListAdapter;
-import com.guyuan.dear.focus.contract.bean.ContractBaseBean;
+import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class ContractPrgHomeFragment extends BaseMvvmFragment<FragmentContractPrgHomeBinding,ContractPrgHomeViewModel> {
-    private List<ContractBaseBean> mList=new ArrayList<>();
+    private List<BaseContractBean> mList=new ArrayList<>();
     private BaseRecyclerViewAdapter mAdapterWrapper;
     private int pageIndex=0;
     private static final int PAGE_SIZE=20;
@@ -73,15 +73,15 @@ public class ContractPrgHomeFragment extends BaseMvvmFragment<FragmentContractPr
         mAdapterWrapper.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-                ContractBaseBean bean = mList.get(i);
+                BaseContractBean bean = mList.get(i);
                 ContractPrgDetailActivity.start(getActivity(),"合同订单进度详情",bean.getContractId());
             }
         });
-        getViewModel().getContractList().observe(getViewLifecycleOwner(), new Observer<List<ContractBaseBean>>() {
+        getViewModel().getContractList().observe(getViewLifecycleOwner(), new Observer<List<BaseContractBean>>() {
             @Override
-            public void onChanged(List<ContractBaseBean> contractBaseBeans) {
+            public void onChanged(List<BaseContractBean> baseContractBeans) {
                 mList.clear();
-                mList.addAll(contractBaseBeans);
+                mList.addAll(baseContractBeans);
                 mAdapterWrapper.notifyDataSetChanged();
             }
         });

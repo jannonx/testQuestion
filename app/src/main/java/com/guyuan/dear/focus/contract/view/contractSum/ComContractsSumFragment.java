@@ -7,7 +7,7 @@ import androidx.databinding.library.baseAdapters.BR;
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.ComContractsBinding;
-import com.guyuan.dear.focus.contract.bean.ContractBaseBean;
+import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 import com.guyuan.dear.focus.contract.view.contractList.ContractListActivity;
 import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
@@ -73,40 +73,40 @@ public class ComContractsSumFragment extends BaseMvvmFragment<ComContractsBindin
         viewModel.setOnClickShowPreAnnualDelivers(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"上年交付", ContractBaseBean.CONTRACT_TYPE_PRE_ANNUAL_DELIVERS);
+                ContractListActivity.start(getActivity(),"上年交付", BaseContractBean.CONTRACT_TYPE_PRE_ANNUAL_DELIVERS);
             }
         });
 
         viewModel.setOnClickShowNewContracts(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"今年新签", ContractBaseBean.CONTRACT_TYPE_NEW_CONTRACTS);
+                ContractListActivity.start(getActivity(),"今年新签", BaseContractBean.CONTRACT_TYPE_NEW_CONTRACTS);
             }
         });
         viewModel.setOnClickShowFinished(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"已经完成", ContractBaseBean.CONTRACT_TYPE_FINISHED_CONTRACTS);
+                ContractListActivity.start(getActivity(),"已经完成", BaseContractBean.CONTRACT_TYPE_FINISHED_CONTRACTS);
             }
         });
         viewModel.setOnClickShowExecuting(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"正在执行", ContractBaseBean.CONTRACT_TYPE_EXECUTING_CONTRACTS);
+                ContractListActivity.start(getActivity(),"正在执行", BaseContractBean.CONTRACT_TYPE_EXECUTING_CONTRACTS);
             }
         });
 
         viewModel.setOnClickShowUnfinished(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"未完成", ContractBaseBean.CONTRACT_TYPE_UNFINISHED_CONTRACTS);
+                ContractListActivity.start(getActivity(),"未完成", BaseContractBean.CONTRACT_TYPE_UNFINISHED_CONTRACTS);
             }
         });
 
         viewModel.setOnClickShowExceptions(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"执行异常", ContractBaseBean.CONTRACT_TYPE_EXCEPTION_CONTRACTS);
+                ContractListActivity.start(getActivity(),"执行异常", BaseContractBean.CONTRACT_TYPE_EXCEPTION_CONTRACTS);
             }
         });
 

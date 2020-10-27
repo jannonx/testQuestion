@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.guyuan.dear.focus.contract.bean.ContractDetailBean;
+import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.view.contractDetail.ContractBaseInfoFragment;
 import com.guyuan.dear.focus.contract.view.contractDetail.ContractCommentsFragment;
 import com.guyuan.dear.focus.contract.view.contractDetail.SalesDeliveryFragment;
@@ -68,7 +68,7 @@ public class ContractDetailPagerAdapter extends FragmentStateAdapter {
         return mTitles[pos];
     }
 
-    public void update(ContractDetailBean bean) {
+    public void update(DetailContractBean bean) {
         if (baseInfoFragment != null) {
             baseInfoFragment.updateViewByData(bean);
         }

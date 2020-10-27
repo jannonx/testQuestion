@@ -11,7 +11,7 @@ import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentClientReceiptBinding;
 import com.guyuan.dear.focus.contract.adapter.contractPrgLog.ClientReceiptAdapter;
-import com.guyuan.dear.focus.contract.bean.ContractPrgDetailBean;
+import com.guyuan.dear.focus.contract.bean.PrgDetailContractBean;
 import com.guyuan.dear.focus.contract.bean.ImageSource;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.ClientReceipt;
 import com.guyuan.dear.focus.contract.view.zoomView.ZoomViewActivity;
@@ -77,14 +77,14 @@ public class ClientReceiptFragment extends BaseMvvmFragment<FragmentClientReceip
         });
 
 
-        ContractPrgDetailBean value = getViewModel().getDetailBean().getValue();
+        PrgDetailContractBean value = getViewModel().getDetailBean().getValue();
         if (value != null) {
             updateViewByData(value.getClientReceipts());
         }
 
-        getViewModel().getDetailBean().observe(getViewLifecycleOwner(), new Observer<ContractPrgDetailBean>() {
+        getViewModel().getDetailBean().observe(getViewLifecycleOwner(), new Observer<PrgDetailContractBean>() {
             @Override
-            public void onChanged(ContractPrgDetailBean contractPrgDetailBean) {
+            public void onChanged(PrgDetailContractBean contractPrgDetailBean) {
                 updateViewByData(contractPrgDetailBean.getClientReceipts());
             }
         });

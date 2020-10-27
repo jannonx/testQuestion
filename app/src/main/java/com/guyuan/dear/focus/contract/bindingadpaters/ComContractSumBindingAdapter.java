@@ -12,13 +12,20 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ViewPortHandler;
+import com.guyuan.dear.customizeview.PieChartView;
 import com.guyuan.dear.focus.contract.bean.ComContractsBean;
 import com.guyuan.dear.utils.CalenderUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author: 廖华凯
@@ -31,6 +38,34 @@ public class ComContractSumBindingAdapter {
     public static void setContractsYear(AppCompatTextView view, long timeMills){
         String year = CalenderUtils.getInstance().getYearByDate(timeMills);
         view.setText(year);
+    }
+
+    @BindingAdapter("setContractSumPieData")
+    public static void setContractSumPieData(PieChartView view,ComContractsBean data){
+        if(data==null){
+            return;
+        }
+        LinkedHashMap<String,Float> pieData=new LinkedHashMap<>();
+        pieData.put("正在执行",data.getExecutingContracts()*1.f);
+        pieData.put("执行异常",data.getExceptionContracts()*1.f);
+        pieData.put("已完成",data.getFinishedContracts()*1.f);
+        view.setData(pieData,"");
+        view.getLegend().setEnabled(false);
+        view.setUsePercentValues(false);
+        view.getData().setDrawValues(true);
+        view.getData().setValueFormatter(new IValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                return String.format(Locale.CHINA,"%d",(int)value);
+            }
+        });
+        view.setExtraOffsets(10, 10, 10, 10);
+        view.setHoleRadius(30f);
+        view.setTransparentCircleRadius(31f);
+        view.setDrawHoleEnabled(true);
+        view.setDrawEntryLabels(true);
+        view.setHighlightPerTapEnabled(true);
+        view.animate();
     }
 
     @BindingAdapter("setContractSumBarData")

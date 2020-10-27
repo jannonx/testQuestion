@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
-import com.guyuan.dear.focus.contract.bean.ContractDetailBean;
+import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.bean.ContractComment;
 import com.guyuan.dear.focus.contract.bean.ProductComponent;
 import com.guyuan.dear.utils.CalenderUtils;
@@ -20,14 +20,14 @@ import java.util.List;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class ContractDetailViewModel extends BaseViewModel {
-    private MutableLiveData<ContractDetailBean> contractBean = new MutableLiveData<>();
+    private MutableLiveData<DetailContractBean> contractBean = new MutableLiveData<>();
     private MutableLiveData<View.OnClickListener> onClickCheckProgress = new MutableLiveData<>();
 
-    public MutableLiveData<ContractDetailBean> getContractBean() {
+    public MutableLiveData<DetailContractBean> getContractBean() {
         return contractBean;
     }
 
-    public void setContractBean(ContractDetailBean bean) {
+    public void setContractBean(DetailContractBean bean) {
         contractBean.postValue(bean);
     }
 
@@ -40,7 +40,7 @@ public class ContractDetailViewModel extends BaseViewModel {
     }
 
     public void loadContractDetail() {
-        ContractDetailBean bean = new ContractDetailBean();
+        DetailContractBean bean = new DetailContractBean();
         bean.setDate(System.currentTimeMillis());
         bean.setBuyer("深圳固远智能机器人有限公司");
         bean.setSalesPerson("兰特芳");

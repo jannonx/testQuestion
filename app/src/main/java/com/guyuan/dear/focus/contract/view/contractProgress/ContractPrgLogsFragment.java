@@ -13,7 +13,7 @@ import com.guyuan.dear.databinding.FragmentContractPrgDetailLogsBinding;
 import com.guyuan.dear.focus.contract.adapter.contractPrgLog.LogTailAdapter;
 import com.guyuan.dear.focus.contract.adapter.contractPrgLog.SalesReviewAdapter;
 import com.guyuan.dear.focus.contract.bean.ContractLogBean;
-import com.guyuan.dear.focus.contract.bean.ContractPrgDetailBean;
+import com.guyuan.dear.focus.contract.bean.PrgDetailContractBean;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.FirstCreateDate;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.SalesReviewMeeting;
 
@@ -66,7 +66,7 @@ public class ContractPrgLogsFragment extends BaseMvvmFragment<FragmentContractPr
         recyclerView.setAdapter(concatAdapter);
 
 
-        ContractPrgDetailBean detailBean = getViewModel().getDetailBean().getValue();
+        PrgDetailContractBean detailBean = getViewModel().getDetailBean().getValue();
         if (detailBean != null) {
             upDateViewByDate(detailBean);
         }
@@ -74,9 +74,9 @@ public class ContractPrgLogsFragment extends BaseMvvmFragment<FragmentContractPr
 
     @Override
     protected void initListeners() {
-        getViewModel().getDetailBean().observe(getViewLifecycleOwner(), new Observer<ContractPrgDetailBean>() {
+        getViewModel().getDetailBean().observe(getViewLifecycleOwner(), new Observer<PrgDetailContractBean>() {
             @Override
-            public void onChanged(ContractPrgDetailBean contractPrgDetailBean) {
+            public void onChanged(PrgDetailContractBean contractPrgDetailBean) {
                 mFirstCreateDate.clear();
                 mSalesReviews.clear();
                 upDateViewByDate(contractPrgDetailBean);
@@ -84,7 +84,7 @@ public class ContractPrgLogsFragment extends BaseMvvmFragment<FragmentContractPr
         });
     }
 
-    private void upDateViewByDate(ContractPrgDetailBean contractPrgDetailBean) {
+    private void upDateViewByDate(PrgDetailContractBean contractPrgDetailBean) {
         List<ContractLogBean> logs = contractPrgDetailBean.getLogs();
         for (ContractLogBean log : logs) {
             int logType = log.getLogType();

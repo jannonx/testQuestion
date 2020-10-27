@@ -74,7 +74,7 @@
         <activity android:name=".focus.contract.view.contractProgress.ContractPrgDetailActivity" />
         <activity android:name=".focus.contract.view.contractList.ContractListActivity" />
         <activity android:name=".focus.contract.view.contractDetail.ContractDetailActivity" />
-        <activity android:name=".focus.contract.view.home.SalesHomeActivity" />
+        <activity android:name=".focus.contract.view.home.ContractHomeActivity" />
         <activity android:name=".focus.hr.view.hrStaffAttendDetail.StaffAttendDetailActivity" />
         <activity android:name=".focus.hr.view.hrStatusGrp.HrStatusGroupActivity" />
         <activity android:name=".focus.hr.view.home.HrHomeActivity" /> <!-- 今日头条屏幕适配 -->

@@ -4,7 +4,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import com.example.mvvmlibrary.base.fragment.BaseFragment;
 import com.guyuan.dear.R;
-import com.guyuan.dear.focus.contract.bean.ContractDetailBean;
+import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 
 /**
  * @author: 廖华凯
@@ -36,7 +36,7 @@ public class SalesDeliveryFragment extends BaseFragment {
         tvContactNumber = rootView.findViewById(R.id.fragment_sales_delivery_tv_contact_number);
     }
 
-    public void updateViewByData(ContractDetailBean data){
+    public void updateViewByData(DetailContractBean data){
         tvBuyer.setText(data.getBuyer());
         tvBuyerAddress.setText(data.getBuyerAddress());
         tvReceivePerson.setText(data.getReceivePerson());

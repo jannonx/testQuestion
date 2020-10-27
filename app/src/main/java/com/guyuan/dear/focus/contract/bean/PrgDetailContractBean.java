@@ -10,7 +10,7 @@ import java.util.List;
  * @since: 2020/10/13 17:00
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ContractPrgDetailBean extends ContractBaseBean {
+public class PrgDetailContractBean extends BaseContractBean {
     private List<ContractPrgKnot> knotList;
     private List<ComponentStateBean> componentStates;
     private List<ContractLogBean> logs;

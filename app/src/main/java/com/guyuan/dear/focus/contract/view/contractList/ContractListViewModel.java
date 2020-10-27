@@ -3,7 +3,7 @@ package com.guyuan.dear.focus.contract.view.contractList;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
-import com.guyuan.dear.focus.contract.bean.ContractBaseBean;
+import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,19 +15,19 @@ import java.util.List;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class ContractListViewModel extends BaseViewModel {
-    private MutableLiveData<List<ContractBaseBean>> contractList = new MutableLiveData<List<ContractBaseBean>>();
+    private MutableLiveData<List<BaseContractBean>> contractList = new MutableLiveData<List<BaseContractBean>>();
 
-    public MutableLiveData<List<ContractBaseBean>> getContractList() {
+    public MutableLiveData<List<BaseContractBean>> getContractList() {
         return contractList;
     }
 
     public void loadContractListFromNet(int contractType){
-        List<ContractBaseBean> value = contractList.getValue();
+        List<BaseContractBean> value = contractList.getValue();
         if(value==null){
             value = new ArrayList<>();
         }
         for (int i=0;i<5;i++){
-            ContractBaseBean bean =new ContractBaseBean();
+            BaseContractBean bean =new BaseContractBean();
             bean.setDate(System.currentTimeMillis());
             bean.setBuyer("深圳固远智能机器人有限公司");
             bean.setContractId("DEAR-2020/10/10");

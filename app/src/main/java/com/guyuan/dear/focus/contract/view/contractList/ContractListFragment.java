@@ -12,7 +12,7 @@ import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentContractListBinding;
 import com.guyuan.dear.focus.contract.adapter.ContractListAdapter;
-import com.guyuan.dear.focus.contract.bean.ContractBaseBean;
+import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 
@@ -32,7 +32,7 @@ import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;
  **/
 public class ContractListFragment extends BaseMvvmFragment<FragmentContractListBinding, ContractListViewModel> {
 
-    private List<ContractBaseBean> mList = new ArrayList<>();
+    private List<BaseContractBean> mList = new ArrayList<>();
     private BaseRecyclerViewAdapter mAdapterWrapper;
     private int contractType;
 
@@ -58,11 +58,11 @@ public class ContractListFragment extends BaseMvvmFragment<FragmentContractListB
 
     @Override
     protected void initViews() {
-        getViewModel().getContractList().observe(getViewLifecycleOwner(), new Observer<List<ContractBaseBean>>() {
+        getViewModel().getContractList().observe(getViewLifecycleOwner(), new Observer<List<BaseContractBean>>() {
             @Override
-            public void onChanged(List<ContractBaseBean> contractBaseBeans) {
+            public void onChanged(List<BaseContractBean> baseContractBeans) {
                 mList.clear();
-                mList.addAll(contractBaseBeans);
+                mList.addAll(baseContractBeans);
                 mAdapterWrapper.notifyDataSetChanged();
             }
         });
@@ -90,7 +90,7 @@ public class ContractListFragment extends BaseMvvmFragment<FragmentContractListB
         mAdapterWrapper.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-                ContractBaseBean bean = mList.get(i);
+                BaseContractBean bean = mList.get(i);
                 ContractDetailActivity.start(getActivity(), "合同详情", bean.getContractId());
             }
         });

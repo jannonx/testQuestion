@@ -8,7 +8,7 @@ import java.util.List;
  * @since: 2020/10/10 10:46
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ContractDetailBean extends ContractBaseBean {
+public class DetailContractBean extends BaseContractBean {
 
     /**
      * 买方地址
