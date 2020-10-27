@@ -1,8 +1,13 @@
 package com.guyuan.dear.focus.assess.data;
 
 import androidx.hilt.lifecycle.ViewModelInject;
+
 import com.example.mvvmlibrary.base.data.BaseViewModel;
+import com.guyuan.dear.base.api.RxJavaHelper;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.focus.assess.api.FocusAssessApiService;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * @author : tl
@@ -11,12 +16,26 @@ import com.guyuan.dear.base.app.DearApplication;
  * @company : 固远（深圳）信息技术有限公司
  **/
 public class FocusAssessViewModel extends BaseViewModel {
-    private FocusAssessRepository focusAssessRepository;
+    private FocusAssessApiService apiService;
 
     @ViewModelInject
     public FocusAssessViewModel(FocusAssessRepository focusAssessRepository) {
-        this.focusAssessRepository = focusAssessRepository;
+        this.apiService = focusAssessRepository.getFocusAssessApiService();
     }
 
+    public void getAssessOverview(String auditTime) {
+        Disposable disposable = RxJavaHelper.build(this,
+                apiService.getAssessOverview(auditTime)).getHelper().flow();
+        addSubscription(disposable);
+    }
 
+    public void getAssessList(int pageIndex, int pageSize, String queryParams, int status) {
+        Disposable disposable = RxJavaHelper.build(this,
+                apiService.getAssessList(pageIndex, pageSize, queryParams, status)).getHelper().flow();
+    }
+
+    public void getAssessDetail(int id, String contractNumber) {
+        Disposable disposable = RxJavaHelper.build(this,
+                apiService.getAssessDetail(id, contractNumber)).getHelper().flow();
+    }
 }
