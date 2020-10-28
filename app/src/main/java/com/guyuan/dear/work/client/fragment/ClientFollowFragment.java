@@ -1,43 +1,39 @@
-package com.guyuan.dear.focus.client.fragment;
+package com.guyuan.dear.work.client.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
-import com.guyuan.dear.approve.adapter.ApprovedListAdapter;
-import com.guyuan.dear.approve.bean.ApplyBean;
 import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
-import com.guyuan.dear.focus.client.activity.FocusClientActivity;
-import com.guyuan.dear.focus.client.activity.FocusClientDetailActivity;
-import com.guyuan.dear.focus.client.adapter.ClientListAdapter;
-import com.guyuan.dear.focus.client.data.FocusClientViewModel;
+import com.guyuan.dear.work.client.activity.WorkClientActivity;
+import com.guyuan.dear.work.client.activity.WorkClientDetailActivity;
+import com.guyuan.dear.work.client.adapter.ClientFollowAdapter;
+import com.guyuan.dear.work.client.data.WorkClientViewModel;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
- * @description: 我的关注-客户
+ * @description: 我的关注--售后
  * @author: Jannonx
- * @since: 2020/10/26 16:11
+ * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusClientFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding> {
+public class ClientFollowFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding> {
 
-    public static final String TAG = FocusClientFragment.class.getSimpleName();
-    private FocusClientViewModel viewModel;
+    public static final String TAG = ClientFollowFragment.class.getSimpleName();
+    private WorkClientViewModel viewModel;
 
-    public static FocusClientFragment newInstance() {
-
+    public static ClientFollowFragment newInstance() {
         Bundle args = new Bundle();
-
-        FocusClientFragment fragment = new FocusClientFragment();
+        ClientFollowFragment fragment = new ClientFollowFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -45,8 +41,8 @@ public class FocusClientFragment extends BaseListSearchFragment<SimpleTabBean, F
 
     @Override
     protected void init() {
-        ClientListAdapter listAdapter = new ClientListAdapter(getContext(), listData,
-                R.layout.item_examine_and_approve);
+        ClientFollowAdapter listAdapter = new ClientFollowAdapter(getContext(), listData,
+                R.layout.item_work_follow);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
@@ -54,14 +50,17 @@ public class FocusClientFragment extends BaseListSearchFragment<SimpleTabBean, F
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+//                ApplyBean bean = listData.get(position);
+//                ApplyDetailPageActivity.start(getContext(), bean);
             }
         });
+
+
     }
 
     @Override
     protected void onSearch() {
-        FocusClientDetailActivity.start(getContext(), "详情");
+        WorkClientDetailActivity.start(getContext(), "详情");
     }
 
     @Override
@@ -88,8 +87,9 @@ public class FocusClientFragment extends BaseListSearchFragment<SimpleTabBean, F
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (getActivity() != null) {
-            FocusClientActivity activity = (FocusClientActivity) getActivity();
+            WorkClientActivity activity = (WorkClientActivity) getActivity();
             viewModel = activity.getViewModel();
         }
     }
+
 }
