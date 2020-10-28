@@ -60,10 +60,10 @@ public class BasicInfoFragment extends BaseDataBindingFragment<FragmentBasicInfo
         ClientPhoneAdapter listAdapter = new ClientPhoneAdapter(getContext(), clientCompanyBean.getList(),
                 R.layout.item_client_phone);
         BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter(listAdapter);
+        binding.baseRecycleView.setAdapter(adapter);
         binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.baseRecycleView.setLoadMoreEnabled(false);
         binding.baseRecycleView.setPullRefreshEnabled(false);
-        binding.baseRecycleView.setAdapter(adapter);
         adapter.addFooterView(footerView);
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override

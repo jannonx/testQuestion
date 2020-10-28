@@ -77,11 +77,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- #############掌上办公############# -->
-        <activity android:name=".focus.sales.view.zoomView.ZoomViewActivity"></activity>
+        <activity android:name=".focus.sales.view.zoomView.ZoomViewActivity"/>
         <activity android:name=".focus.sales.view.contractProgress.ContractPrgDetailActivity" />
         <activity android:name=".focus.sales.view.contractList.ContractListActivity" />
         <activity android:name=".focus.sales.view.contractDetail.ContractDetailActivity" />
-        <activity android:name=".focus.sales.view.home.SalesHomeActivity" />
         <activity android:name=".focus.sales.view.home.SalesHomeActivity" />
         <activity android:name=".focus.hr.view.hrStaffAttendDetail.StaffAttendDetailActivity" />
         <activity android:name=".focus.hr.view.hrStatusGrp.HrStatusGroupActivity" />
