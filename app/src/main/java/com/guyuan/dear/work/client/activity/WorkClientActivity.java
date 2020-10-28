@@ -11,7 +11,7 @@ import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.client.data.WorkClientViewModel;
 import com.guyuan.dear.work.client.fragment.AllClientFragment;
-import com.guyuan.dear.work.client.fragment.CustomerFollowFragment;
+import com.guyuan.dear.work.client.fragment.ClientFollowFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,7 +31,7 @@ public class WorkClientActivity extends BaseTabActivity<ActivityBaseTabBinding, 
 
     private AllClientFragment allClientFragment;
 
-    private CustomerFollowFragment customerFollowFragment;
+    private ClientFollowFragment customerFollowFragment;
 
     public static void start(Context context, String title) {
         Intent starter = new Intent(context, WorkClientActivity.class);
@@ -49,7 +49,7 @@ public class WorkClientActivity extends BaseTabActivity<ActivityBaseTabBinding, 
     protected List<Fragment> getFragments() {
         List<Fragment> fragmentList = new ArrayList<>();
         allClientFragment = AllClientFragment.newInstance();
-        customerFollowFragment = CustomerFollowFragment.newInstance();
+        customerFollowFragment = ClientFollowFragment.newInstance();
         fragmentList.add(allClientFragment);
         fragmentList.add(customerFollowFragment);
         return fragmentList;
@@ -65,8 +65,8 @@ public class WorkClientActivity extends BaseTabActivity<ActivityBaseTabBinding, 
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.tab_work_client_all_selector);
+        tabDrawableList.add(R.drawable.tab_work_client_follow_selector);
         return tabDrawableList;
     }
 

@@ -54,8 +54,7 @@ public class FocusClientFragment extends BaseListSearchFragment<SimpleTabBean, F
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-//                ApplyBean bean = listData.get(position);
-//                ApplyDetailPageActivity.start(getContext(), bean);
+
             }
         });
     }
