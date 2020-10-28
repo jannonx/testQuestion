@@ -64,7 +64,7 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
             listData.add(contactBean);
         }
         ClientListAdapter listAdapter = new ClientListAdapter(getContext(), listData,
-                R.layout.item_examine_and_approve);
+                R.layout.item_focus_client);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);

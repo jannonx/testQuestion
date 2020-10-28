@@ -30,7 +30,7 @@ import java.util.List;
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司
  */
-public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWorkClientDetailBinding,WorkClientViewModel> {
+public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWorkClientDetailBinding, WorkClientViewModel> {
 
     public static final String TAG = "FocusClientDetailFragment";
     private WorkClientViewModel viewModel;
@@ -56,6 +56,15 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
 
     @Override
     protected void initialization() {
+        initView();
+        initData();
+    }
+
+    private void initData() {
+
+    }
+
+    private void initView() {
         List<Fragment> tabFragmentList = new ArrayList<>();
         followStatusFragment = FollowStatusFragment.newInstance();
         basicInfoFragment = BasicInfoFragment.newInstance();
@@ -100,12 +109,13 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
                 if (i == startPosition) {
                     setTabSelect(tab);
                     tab.select();
-                }else{
+                } else {
                     setTabUnselected(tab);
                 }
             }
         }
     }
+
     private int getCustomViewId() {
         return R.layout.layout_tab_text;
     }

@@ -15,6 +15,7 @@ import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.scan.ScanActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
+import com.guyuan.dear.work.client.activity.WorkClientActivity;
 
 import java.util.ArrayList;
 
@@ -104,7 +105,7 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
                                 break;
 
                             case ConstantValue.WORK_PROJECT_SITE://工程现场
-
+                                WorkClientActivity.start(getContext(), title);
                                 break;
 
 
