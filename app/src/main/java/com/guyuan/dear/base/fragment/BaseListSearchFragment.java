@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -36,14 +37,14 @@ import tl.com.easy_recycleview_library.interfaces.OnRefreshListener;
  * @since: 2020/9/17 11:14
  * @company: 固远（深圳）信息技术有限公司
  */
-public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding,VM extends BaseViewModel> extends BaseListFragment<T, VB,VM> {
+public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM extends BaseViewModel> extends BaseListFragment<T, VB, VM> {
 
 
     protected Date[] dates = new Date[2];
     protected CalenderUtils calenderUtils;
 
     protected TextView mTvSelectStartTime, mTvSelectEndTime;
-    protected AppCompatImageView ivClearBtn;
+    protected TextView searchBtn;
     protected AppCompatEditText etSearch;
 
 
@@ -56,7 +57,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding,VM ex
     @Override
     protected void initView() {
         etSearch = rootView.findViewById(R.id.et_search);
-        ivClearBtn = rootView.findViewById(R.id.iv_clear);
+        searchBtn = rootView.findViewById(R.id.tv_search_btn);
         //    initDate();
         initListener();
         init();
@@ -85,22 +86,35 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding,VM ex
 
             @Override
             public void afterTextChanged(Editable editable) {
-                ivClearBtn.setVisibility(TextUtils.isEmpty(editable.toString()) ? View.GONE : View.VISIBLE);
+//                ivClearBtn.setVisibility(TextUtils.isEmpty(editable.toString()) ? View.GONE : View.VISIBLE);
                 if (TextUtils.isEmpty(editable.toString())) {
                     etSearch.clearFocus();
                 }
                 editTextChanged(editable.toString());
             }
         });
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String key = etSearch.getText().toString();
+                if (TextUtils.isEmpty(key)) {
 
+                } else {
+                    onSearch(key);
+                }
+
+            }
+        });
 
     }
 
     protected abstract void init();
 
-    protected void onSearch(){
+    protected void onSearch(String text) {
 
-    };
+    }
+
+    ;
 
     protected void editTextChanged(String text) {
 

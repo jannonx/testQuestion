@@ -1,16 +1,16 @@
 package com.guyuan.dear.focus.client.fragment;
 
-import android.app.TabActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.lifecycle.Observer;
 
+import com.example.httplibrary.bean.RefreshBean;
+import com.example.httplibrary.bean.ResultBean;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
@@ -18,12 +18,21 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFoucsClientDetailBinding;
 import com.guyuan.dear.focus.client.activity.FocusClientDetailActivity;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
+import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
+import com.guyuan.dear.focus.client.bean.CommentsBean;
+import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
+import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.GsonUtil;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import okhttp3.RequestBody;
+
+import static com.guyuan.dear.utils.ConstantValue.FIRST_PAGE;
+import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
 
 /**
  * @description: 我的关注--客户详情
@@ -31,7 +40,7 @@ import java.util.List;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentFoucsClientDetailBinding,FocusClientViewModel> {
+public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentFoucsClientDetailBinding, FocusClientViewModel> {
 
     public static final String TAG = "FocusClientDetailFragment";
     private FocusClientViewModel viewModel;
@@ -42,11 +51,13 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
     private int startPosition = 0;//起始选中位置
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
+    private ClientCompanyBean clientData;
 
-    public static FocusClientDetailFragment newInstance() {
-        Bundle args = new Bundle();
+    public static FocusClientDetailFragment newInstance(ClientCompanyBean data) {
+        Bundle bundle = new Bundle();
         FocusClientDetailFragment fragment = new FocusClientDetailFragment();
-        fragment.setArguments(args);
+        bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -57,6 +68,43 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
 
     @Override
     protected void initialization() {
+        initView();
+        initData();
+    }
+
+    private void initData() {
+        Bundle arguments = getArguments();
+        clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        viewModel.getClientBasicInfo(clientData.getId());
+        viewModel.getFollowCommentList(getListRequestBody(FIRST_PAGE));
+        viewModel.getClientBasicEvent().observe(getActivity(), new Observer<ResultBean<ClientCompanyBean>>() {
+            @Override
+            public void onChanged(ResultBean<ClientCompanyBean> dataRefreshBean) {
+
+            }
+        });
+        viewModel.getFollowListEvent().observe(getActivity(), new Observer<ResultBean<RefreshBean<CommentsBean>>>() {
+            @Override
+            public void onChanged(ResultBean<RefreshBean<CommentsBean>> dataRefreshBean) {
+
+            }
+        });
+    }
+
+    private RequestBody getListRequestBody(int pageNum) {
+        ListClientRequestBody body = new ListClientRequestBody();
+        ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
+        filtersBean.setId(clientData.getId());
+        body.setFilters(filtersBean);
+        body.setPageNum(pageNum);
+        body.setPageSize(PAGE_SIZE);
+
+        String str = GsonUtil.objectToString(body);
+        return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
+                "charset=utf-8"), str);
+    }
+
+    private void initView() {
         List<Fragment> tabFragmentList = new ArrayList<>();
         followStatusFragment = FollowStatusFragment.newInstance();
         basicInfoFragment = BasicInfoFragment.newInstance();
@@ -64,8 +112,7 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
         tabFragmentList.add(followStatusFragment);
         tabFragmentList.add(basicInfoFragment);
 
-        titleList =
-                getResources().getStringArray(R.array.focus_client_tab);
+        titleList = getResources().getStringArray(R.array.focus_client_tab);
         TabAdapter tabAdapter = new
                 TabAdapter(getChildFragmentManager(), Arrays.asList(titleList), tabFragmentList, getContext(),
                 getCustomViewId());
@@ -101,12 +148,13 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
                 if (i == startPosition) {
                     setTabSelect(tab);
                     tab.select();
-                }else{
+                } else {
                     setTabUnselected(tab);
                 }
             }
         }
     }
+
     private int getCustomViewId() {
         return R.layout.layout_tab_text;
     }

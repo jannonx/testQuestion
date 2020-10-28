@@ -14,6 +14,7 @@ import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
 import com.guyuan.dear.focus.client.fragment.FocusClientDetailFragment;
 import com.guyuan.dear.focus.client.fragment.FocusClientDetailFragment;
+import com.guyuan.dear.focus.client.fragment.FocusClientFragment;
 import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
@@ -34,7 +35,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class FocusClientActivity extends BaseToolbarActivity<ActivityWithToolbarBinding, FocusClientViewModel> {
 
     public static void start(Context context, String title) {
-        Intent intent = new Intent(context, FocusClientDetailActivity.class);
+        Intent intent = new Intent(context, FocusClientActivity.class);
         intent.putExtra(ConstantValue.KEY_TITLE, title);
         context.startActivity(intent);
     }
@@ -44,9 +45,9 @@ public class FocusClientActivity extends BaseToolbarActivity<ActivityWithToolbar
     protected void initFragment(Bundle savedInstanceState) {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         binding.toolbarContainer.titleTv.setText(title);
-        FocusClientDetailFragment mFragment = FocusClientDetailFragment.newInstance();
+        FocusClientFragment mFragment = FocusClientFragment.newInstance();
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
-                FocusClientDetailFragment.TAG);
+                FocusClientFragment.TAG);
     }
 
     @Override

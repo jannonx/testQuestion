@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.guyuan.dear.R;
+import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
 import com.guyuan.dear.focus.client.fragment.FocusClientDetailFragment;
 import com.guyuan.dear.utils.ActivityUtils;
@@ -24,18 +25,18 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class FocusClientDetailActivity extends BaseToolbarActivity<ActivityWithToolbarBinding, FocusClientViewModel> {
 
-    public static void start(Context context, String title) {
+    public static void start(Context context, ClientCompanyBean data) {
         Intent intent = new Intent(context, FocusClientDetailActivity.class);
-        intent.putExtra(ConstantValue.KEY_TITLE, title);
+        intent.putExtra(ConstantValue.KEY_CONTENT, data);
         context.startActivity(intent);
     }
 
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-        String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
-        binding.toolbarContainer.titleTv.setText(title);
-        FocusClientDetailFragment mFragment = FocusClientDetailFragment.newInstance();
+        ClientCompanyBean bean = (ClientCompanyBean) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
+        binding.toolbarContainer.titleTv.setText("客户详情");
+        FocusClientDetailFragment mFragment = FocusClientDetailFragment.newInstance(bean);
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
                 FocusClientDetailFragment.TAG);
     }
