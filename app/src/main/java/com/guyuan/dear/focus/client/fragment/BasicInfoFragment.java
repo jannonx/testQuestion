@@ -12,6 +12,9 @@ import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.databinding.FragmentBasicInfoBinding;
 import com.guyuan.dear.focus.client.adapter.ClientListAdapter;
 import com.guyuan.dear.focus.client.adapter.ClientPhoneAdapter;
+import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
+import com.guyuan.dear.focus.client.bean.ClientContactBean;
+import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
 
 import java.util.ArrayList;
@@ -45,12 +48,21 @@ public class BasicInfoFragment extends BaseDataBindingFragment<FragmentBasicInfo
 
     @Override
     protected void initialization() {
+        ClientCompanyBean clientCompanyBean = new ClientCompanyBean();
+        List<ClientContactBean> childList = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            ClientContactBean contactBean = new ClientContactBean();
+            contactBean.setMailbox("ClientContactBean" + i);
+            childList.add(contactBean);
+        }
+        clientCompanyBean.setList(childList);
         View footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_client_basic_info, null);
-        List<SimpleTabBean> listData = new ArrayList<>();
-        ClientPhoneAdapter listAdapter = new ClientPhoneAdapter(getContext(), listData,
+        ClientPhoneAdapter listAdapter = new ClientPhoneAdapter(getContext(), clientCompanyBean.getList(),
                 R.layout.item_client_phone);
         BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter(listAdapter);
         binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.baseRecycleView.setLoadMoreEnabled(false);
+        binding.baseRecycleView.setPullRefreshEnabled(false);
         binding.baseRecycleView.setAdapter(adapter);
         adapter.addFooterView(footerView);
         adapter.setOnItemClickListener(new OnItemClickListener() {

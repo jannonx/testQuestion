@@ -27,6 +27,10 @@ public class CommentsBean implements Serializable {
      */
     private String createName;
     /**
+     * 创建人头像
+     */
+    private String imgUrl;
+    /**
      * 创建时间
      */
     private String createTime;
@@ -58,6 +62,14 @@ public class CommentsBean implements Serializable {
 
     public void setFollowBusinessId(long followBusinessId) {
         this.followBusinessId = followBusinessId;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getContent() {
