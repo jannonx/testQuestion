@@ -13,7 +13,7 @@ import com.guyuan.dear.focus.client.data.FocusClientViewModel;
  * @since: 2020/10/27 14:31
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollowStatusBinding> {
+public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollowStatusBinding,FocusClientViewModel> {
 
     public static final String TAG = "FollowStatusFragment";
     private FocusClientViewModel viewModel;
@@ -33,5 +33,10 @@ public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollow
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

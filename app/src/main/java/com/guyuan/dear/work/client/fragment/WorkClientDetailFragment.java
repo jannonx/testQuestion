@@ -30,7 +30,7 @@ import java.util.List;
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司
  */
-public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWorkClientDetailBinding> {
+public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWorkClientDetailBinding,WorkClientViewModel> {
 
     public static final String TAG = "FocusClientDetailFragment";
     private WorkClientViewModel viewModel;
@@ -145,4 +145,8 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
         }
     }
 
+    @Override
+    protected int getVariableId() {
+        return 0;
+    }
 }

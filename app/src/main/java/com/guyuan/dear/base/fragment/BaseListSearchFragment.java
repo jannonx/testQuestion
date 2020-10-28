@@ -98,6 +98,10 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding,VM ex
 
     protected abstract void init();
 
+    protected void onSearch(){
+
+    };
+
     protected void editTextChanged(String text) {
 
     }

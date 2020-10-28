@@ -33,7 +33,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/10/26 16:11
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBean, FragmentListBinding> {
+public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBean, FragmentListBinding,FocusClientViewModel> {
 
     public static final String TAG = FocusClientFragment.class.getSimpleName();
     private FocusClientViewModel viewModel;
@@ -101,5 +101,10 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
             FocusClientActivity activity = (FocusClientActivity) getActivity();
             viewModel = activity.getViewModel();
         }
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

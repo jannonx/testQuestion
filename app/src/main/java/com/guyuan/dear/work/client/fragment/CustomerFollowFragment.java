@@ -30,7 +30,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司
  */
-public class CustomerFollowFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding> {
+public class CustomerFollowFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding,WorkClientViewModel> {
 
     public static final String TAG = CustomerFollowFragment.class.getSimpleName();
     private WorkClientViewModel viewModel;
@@ -94,4 +94,8 @@ public class CustomerFollowFragment extends BaseListSearchFragment<SimpleTabBean
         }
     }
 
+    @Override
+    protected int getVariableId() {
+        return 0;
+    }
 }

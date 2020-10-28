@@ -11,6 +11,7 @@ import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.databinding.FragmentFollowStatusBinding;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
 import com.guyuan.dear.work.client.adapter.ClientAllAdapter;
+import com.guyuan.dear.work.client.data.WorkClientViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollowStatusBinding> {
+public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollowStatusBinding, WorkClientViewModel> {
 
     public static final String TAG = "FollowStatusFragment";
     private FocusClientViewModel viewModel;
@@ -56,5 +57,10 @@ public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollow
 //
 //            }
 //        });
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

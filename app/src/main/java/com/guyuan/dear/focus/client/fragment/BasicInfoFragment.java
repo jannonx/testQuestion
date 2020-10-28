@@ -14,7 +14,7 @@ import com.guyuan.dear.focus.client.data.FocusClientViewModel;
  * @since: 2020/10/27 14:31
  * @company: 固远（深圳）信息技术有限公司
  */
-public class BasicInfoFragment extends BaseDataBindingFragment<FragmentBasicInfoBinding> {
+public class BasicInfoFragment extends BaseDataBindingFragment<FragmentBasicInfoBinding,FocusClientViewModel> {
 
     public static final String TAG = "BasicInfoFragment";
     private FocusClientViewModel viewModel;
@@ -34,5 +34,10 @@ public class BasicInfoFragment extends BaseDataBindingFragment<FragmentBasicInfo
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }
