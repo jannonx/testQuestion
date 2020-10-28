@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.library.baseAdapters.BR;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
@@ -81,6 +82,6 @@ public class FocusAssessListFragment extends BaseListSearchFragment<Object, Frag
 
     @Override
     protected int getVariableId() {
-        return 0;
+        return BR.assessViewModel;
     }
 }
