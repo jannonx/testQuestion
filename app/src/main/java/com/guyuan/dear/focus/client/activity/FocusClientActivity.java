@@ -34,7 +34,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class FocusClientActivity extends BaseToolbarActivity<ActivityWithToolbarBinding, FocusClientViewModel> {
 
     public static void start(Context context, String title) {
-        Intent intent = new Intent(context, FocusClientDetailActivity.class);
+        Intent intent = new Intent(context, FocusClientActivity.class);
         intent.putExtra(ConstantValue.KEY_TITLE, title);
         context.startActivity(intent);
     }
