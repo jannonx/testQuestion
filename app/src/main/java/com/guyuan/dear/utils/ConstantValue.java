@@ -97,6 +97,7 @@ public class ConstantValue {
     public static final String FOCUS_MORNING_MEETING = "focus_morning_meeting";
     public static final String FOCUS_SMART_GUARD = "focus_smart_guard";
     public static final String FOCUS_CONSTRUCTION_MONITORING = "focus_construction_monitoring";
+    public static final String FOCUS_CONTRACT="focus_contract";
 
 
     //我的工作

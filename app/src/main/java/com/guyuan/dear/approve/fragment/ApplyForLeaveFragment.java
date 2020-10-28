@@ -10,6 +10,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.approve.base.BaseApproveFragment;
 import com.guyuan.dear.approve.bean.BodyApprovalSubmit;
 import com.guyuan.dear.approve.constant.ApplyConstant;
+import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.databinding.FragmentApproceLeaveBinding;
 import com.guyuan.dear.databinding.FragmentApproveBinding;
 import com.guyuan.dear.dialog.SimpleRecyclerViewDialog;
@@ -31,7 +32,7 @@ import static com.guyuan.dear.utils.ConstantValue.TEXT_PLEASE_SELECT;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public class ApplyForLeaveFragment extends BaseApproveFragment<FragmentApproceLeaveBinding> implements View.OnClickListener {
+public class ApplyForLeaveFragment extends BaseApproveFragment<FragmentApproceLeaveBinding, ApproveViewModel> implements View.OnClickListener {
 
     public static final String TAG = ApplyForLeaveFragment.class.getSimpleName();
 
@@ -143,4 +144,8 @@ public class ApplyForLeaveFragment extends BaseApproveFragment<FragmentApproceLe
         }
     }
 
+    @Override
+    protected int getVariableId() {
+        return 0;
+    }
 }

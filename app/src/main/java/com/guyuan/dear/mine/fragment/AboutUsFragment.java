@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentAboutUsBinding;
+import com.guyuan.dear.mine.data.MineViewModel;
 
 /**
  * @description: 我的--关于我们
@@ -12,7 +13,7 @@ import com.guyuan.dear.databinding.FragmentAboutUsBinding;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class AboutUsFragment extends BaseDataBindingFragment<FragmentAboutUsBinding> {
+public class AboutUsFragment extends BaseDataBindingFragment<FragmentAboutUsBinding, MineViewModel> {
 
     public static final String TAG = "FocusAssessOverviewFrag";
 
@@ -31,5 +32,10 @@ public class AboutUsFragment extends BaseDataBindingFragment<FragmentAboutUsBind
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

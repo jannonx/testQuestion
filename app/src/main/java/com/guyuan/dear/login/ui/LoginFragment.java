@@ -21,7 +21,7 @@ import okhttp3.RequestBody;
  * created at 2020/8/24
  */
 
-public class LoginFragment extends BaseDataBindingFragment<FragmentLoginBinding> implements View.OnClickListener {
+public class LoginFragment extends BaseDataBindingFragment<FragmentLoginBinding,LoginViewModel> implements View.OnClickListener {
 
     private LoginViewModel viewModel;
     private String name;
@@ -100,5 +100,10 @@ public class LoginFragment extends BaseDataBindingFragment<FragmentLoginBinding>
             default:
                 break;
         }
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

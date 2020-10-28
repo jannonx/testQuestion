@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.ApproveActivity;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
@@ -26,7 +27,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/8 14:18
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class OfficeFragment extends BaseListFragment<LoginBean.AppMenusBean.ChildrenBean, FragmentOfficeBinding> {
+public class OfficeFragment extends BaseListFragment<LoginBean.AppMenusBean.ChildrenBean, FragmentOfficeBinding, BaseViewModel> {
 
     public static final String TAG = "OfficeFragment";
 
@@ -122,5 +123,10 @@ public class OfficeFragment extends BaseListFragment<LoginBean.AppMenusBean.Chil
     @Override
     protected boolean isLoadMoreEnable() {
         return false;
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

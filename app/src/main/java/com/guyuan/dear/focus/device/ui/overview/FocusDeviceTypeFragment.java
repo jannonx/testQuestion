@@ -25,7 +25,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
  * @since: 2020/9/21 14:52
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusDeviceTypeFragment extends BaseListFragment<List<EquipmentBean>, FragmentDeviceTypeBinding> {
+public class FocusDeviceTypeFragment extends BaseListFragment<List<EquipmentBean>, FragmentDeviceTypeBinding,FocusDeviceViewModel> {
 
     public static final String TAG = "FocusDeviceOverviewFragment";
     public static final String ID = "id";
@@ -189,5 +189,10 @@ public class FocusDeviceTypeFragment extends BaseListFragment<List<EquipmentBean
     @Override
     protected boolean isLoadMoreEnable() {
         return false;
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

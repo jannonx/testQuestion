@@ -29,7 +29,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/27 14:21
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusSecurityTypeFragment extends BaseListFragment<SecurityBaseBean, FragmentListBinding> {
+public class FocusSecurityTypeFragment extends BaseListFragment<SecurityBaseBean, FragmentListBinding,FocusSecurityViewModel> {
 
     public static final String TAG = "FocusSecurityTypeFragment";
     private FocusSecurityViewModel viewModel;
@@ -103,5 +103,10 @@ public class FocusSecurityTypeFragment extends BaseListFragment<SecurityBaseBean
     @Override
     protected boolean isLoadMoreEnable() {
         return false;
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

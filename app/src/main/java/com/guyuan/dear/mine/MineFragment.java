@@ -3,6 +3,7 @@ package com.guyuan.dear.mine;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentMineBinding;
@@ -18,7 +19,7 @@ import com.guyuan.dear.utils.GlideUtils;
  * @since: 2020/9/8 11:56
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class MineFragment extends BaseDataBindingFragment<FragmentMineBinding> implements View.OnClickListener {
+public class MineFragment extends BaseDataBindingFragment<FragmentMineBinding, BaseViewModel> implements View.OnClickListener {
 
     public static final String TAG = "MineFragment";
     private LoginBean user;
@@ -96,5 +97,10 @@ public class MineFragment extends BaseDataBindingFragment<FragmentMineBinding> i
                 ScanActivity.starter(getContext(), "");
                 break;
         }
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

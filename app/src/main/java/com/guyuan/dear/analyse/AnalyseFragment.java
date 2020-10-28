@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
@@ -25,7 +26,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/8 10:55
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class AnalyseFragment extends BaseListFragment<LoginBean.AppMenusBean.ChildrenBean, FragmentAnalyseBinding> {
+public class AnalyseFragment extends BaseListFragment<LoginBean.AppMenusBean.ChildrenBean, FragmentAnalyseBinding, BaseViewModel> {
     public static final String TAG = "AnalyseFragment";
 
     public static AnalyseFragment newInstance(String title,
@@ -111,4 +112,8 @@ public class AnalyseFragment extends BaseListFragment<LoginBean.AppMenusBean.Chi
         return false;
     }
 
+    @Override
+    protected int getVariableId() {
+        return 0;
+    }
 }

@@ -33,21 +33,11 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public class MineApplyListFragment extends BaseListFragment<ApplyBean, FragmentListBinding> {
+public class MineApplyListFragment extends BaseListFragment<ApplyBean, FragmentListBinding, ApproveViewModel> {
     public static final String TAG = MineApplyListFragment.class.getSimpleName();
 
     public static MineApplyListFragment getInstance() {
         return new MineApplyListFragment();
-    }
-
-    ApproveViewModel viewModel;
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (getActivity() != null) {
-            viewModel = ((MineApplyListActivity) getActivity()).getViewModel();
-        }
     }
 
     @Override
@@ -105,4 +95,8 @@ public class MineApplyListFragment extends BaseListFragment<ApplyBean, FragmentL
     }
 
 
+    @Override
+    protected int getVariableId() {
+        return 0;
+    }
 }

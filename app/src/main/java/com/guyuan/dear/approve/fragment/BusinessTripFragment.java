@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.bean.ApplyBean;
 import com.guyuan.dear.approve.constant.ApplyConstant;
+import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.databinding.FragmentBusinessTripBinding;
 import com.guyuan.dear.utils.CalenderUtils;
 
@@ -20,7 +21,7 @@ import okhttp3.RequestBody;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public class BusinessTripFragment extends BaseDataBindingFragment<FragmentBusinessTripBinding> implements View.OnClickListener {
+public class BusinessTripFragment extends BaseDataBindingFragment<FragmentBusinessTripBinding, ApproveViewModel> implements View.OnClickListener {
 
     public static final String TAG = BusinessTripFragment.class.getSimpleName();
 
@@ -117,5 +118,10 @@ public class BusinessTripFragment extends BaseDataBindingFragment<FragmentBusine
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

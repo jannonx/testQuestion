@@ -34,7 +34,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
  * @since: 2020/9/21 18:19
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTimeBean.WorkshopsBean, FragmentFocusDeviceProfileBinding> implements TabLayoutHelper.TabLayoutListener {
+public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTimeBean.WorkshopsBean, FragmentFocusDeviceProfileBinding,FocusDeviceViewModel> implements TabLayoutHelper.TabLayoutListener {
 
     public static final String TAG = "FocusDeviceProfileFragment";
     private long currentFactoryID;
@@ -158,5 +158,10 @@ public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTime
     public void setCustomContent(View customView, int currentPosition) {
         AppCompatTextView factoryTV = customView.findViewById(R.id.item_tab_white_to_blue_round_corner_tv_name);
         factoryTV.setText(factoryBean.getContent().get(currentPosition).getName());
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

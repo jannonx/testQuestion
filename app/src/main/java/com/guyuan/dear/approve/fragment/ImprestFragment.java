@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.bean.ApplyBean;
 import com.guyuan.dear.approve.constant.ApplyConstant;
+import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.databinding.FragmentApproveImprestBinding;
 import com.guyuan.dear.databinding.FragmentApproveOutBinding;
 import com.guyuan.dear.utils.CalenderUtils;
@@ -23,7 +24,7 @@ import okhttp3.RequestBody;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public class ImprestFragment extends BaseDataBindingFragment<FragmentApproveImprestBinding> implements View.OnClickListener {
+public class ImprestFragment extends BaseDataBindingFragment<FragmentApproveImprestBinding, ApproveViewModel> implements View.OnClickListener {
     public static final String TAG = ImprestFragment.class.getSimpleName();
 
 
@@ -100,6 +101,11 @@ public class ImprestFragment extends BaseDataBindingFragment<FragmentApproveImpr
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 
 

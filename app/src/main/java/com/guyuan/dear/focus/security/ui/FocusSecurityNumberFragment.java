@@ -25,7 +25,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/24 17:52
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusSecurityNumberFragment extends BaseListFragment<DangerNumberBean.ListBean, FragmentFocusSecurityNumberBinding> {
+public class FocusSecurityNumberFragment extends BaseListFragment<DangerNumberBean.ListBean, FragmentFocusSecurityNumberBinding,FocusSecurityViewModel> {
 
     public static final String TAG = "FocusSecurityNumberFragment";
     private FocusSecurityViewModel viewModel;
@@ -108,5 +108,10 @@ public class FocusSecurityNumberFragment extends BaseListFragment<DangerNumberBe
     @Override
     protected boolean isLoadMoreEnable() {
         return false;
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.MediaController;
 
+import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFullScreenVideoBinding;
@@ -22,7 +23,7 @@ import static android.media.MediaMetadataRetriever.OPTION_CLOSEST_SYNC;
  * created by tl
  * created at 2020/6/17
  */
-public class FullScreenShowVideoFragment extends BaseDataBindingFragment<FragmentFullScreenVideoBinding> {
+public class FullScreenShowVideoFragment extends BaseDataBindingFragment<FragmentFullScreenVideoBinding, BaseViewModel> {
 
     private CustomVideoView full_screen_vv = binding.fullScreenVv;
     private ImageView first_pic_iv = binding.firstPicIv;
@@ -199,4 +200,8 @@ public class FullScreenShowVideoFragment extends BaseDataBindingFragment<Fragmen
         return bitmap;
     }
 
+    @Override
+    protected int getVariableId() {
+        return 0;
+    }
 }

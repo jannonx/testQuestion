@@ -7,6 +7,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusAssessOverviewBinding;
 import com.guyuan.dear.databinding.FragmentPurchaseDetailBinding;
 import com.guyuan.dear.work.projectsite.fragment.CustomerAcceptanceFragment;
+import com.guyuan.dear.work.purchase.data.WorkPurchaseViewModel;
 
 /**
  * @description: 我的工作--采购计划--详情
@@ -14,7 +15,7 @@ import com.guyuan.dear.work.projectsite.fragment.CustomerAcceptanceFragment;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class PurchaseDetailFragment extends BaseDataBindingFragment<FragmentPurchaseDetailBinding> {
+public class PurchaseDetailFragment extends BaseDataBindingFragment<FragmentPurchaseDetailBinding, WorkPurchaseViewModel> {
 
     public static final String TAG = PurchaseDetailFragment.class.getSimpleName();
 
@@ -33,5 +34,10 @@ public class PurchaseDetailFragment extends BaseDataBindingFragment<FragmentPurc
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

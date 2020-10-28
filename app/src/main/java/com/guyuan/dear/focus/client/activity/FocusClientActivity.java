@@ -13,7 +13,7 @@ import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
 import com.guyuan.dear.focus.client.fragment.FocusClientDetailFragment;
-import com.guyuan.dear.focus.client.fragment.FocusClientFragment;
+import com.guyuan.dear.focus.client.fragment.FocusClientDetailFragment;
 import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
@@ -44,7 +44,7 @@ public class FocusClientActivity extends BaseToolbarActivity<ActivityWithToolbar
     protected void initFragment(Bundle savedInstanceState) {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         binding.toolbarContainer.titleTv.setText(title);
-        FocusClientFragment mFragment = FocusClientFragment.newInstance();
+        FocusClientDetailFragment mFragment = FocusClientDetailFragment.newInstance();
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
                 FocusClientDetailFragment.TAG);
     }

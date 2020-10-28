@@ -26,7 +26,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司
  */
-public class AllClientFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding> {
+public class AllClientFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding,WorkClientViewModel> {
 
     public static final String TAG = AllClientFragment.class.getSimpleName();
     private WorkClientViewModel viewModel;
@@ -93,4 +93,8 @@ public class AllClientFragment extends BaseListSearchFragment<SimpleTabBean, Fra
     }
 
 
+    @Override
+    protected int getVariableId() {
+        return 0;
+    }
 }

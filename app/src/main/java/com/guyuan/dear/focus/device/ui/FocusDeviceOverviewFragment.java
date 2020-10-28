@@ -29,7 +29,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/21 14:31
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBean.EquipmentsBean, FragmentFocusDeviceOverviewBinding> {
+public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBean.EquipmentsBean, FragmentFocusDeviceOverviewBinding,FocusDeviceViewModel> {
 
 
     public static final String TAG = "FocusDeviceOverviewFragment";
@@ -153,5 +153,10 @@ public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBe
     @Override
     protected boolean isLoadMoreEnable() {
         return false;
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

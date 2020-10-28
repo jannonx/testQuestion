@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.bean.ApplyBean;
 import com.guyuan.dear.approve.constant.ApplyConstant;
+import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.databinding.FragmentApproveEmployBinding;
 import com.guyuan.dear.databinding.FragmentBusinessTripBinding;
 
@@ -22,7 +23,7 @@ import okhttp3.RequestBody;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public class EmployFragment extends BaseDataBindingFragment<FragmentApproveEmployBinding> implements View.OnClickListener  {
+public class EmployFragment extends BaseDataBindingFragment<FragmentApproveEmployBinding, ApproveViewModel> implements View.OnClickListener  {
     public static final String TAG = EmployFragment.class.getSimpleName();
 
 
@@ -94,5 +95,10 @@ public class EmployFragment extends BaseDataBindingFragment<FragmentApproveEmplo
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
+import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
 
 /**
  * @description: 我的关注--售后
@@ -12,7 +13,7 @@ import com.guyuan.dear.databinding.FragmentListBinding;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class ProviderFragment extends BaseListSearchFragment<Object, FragmentListBinding> {
+public class ProviderFragment extends BaseListSearchFragment<Object, FragmentListBinding, FocusAfterSaleViewModel> {
 
     public static final String TAG = ProviderFragment.class.getSimpleName();
 
@@ -29,11 +30,6 @@ public class ProviderFragment extends BaseListSearchFragment<Object, FragmentLis
 
     @Override
     protected void init() {
-
-    }
-
-    @Override
-    protected void onSearch() {
 
     }
 
@@ -58,4 +54,8 @@ public class ProviderFragment extends BaseListSearchFragment<Object, FragmentLis
     }
 
 
+    @Override
+    protected int getVariableId() {
+        return 0;
+    }
 }

@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.bean.ApplyBean;
 import com.guyuan.dear.approve.constant.ApplyConstant;
+import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.databinding.FragmentApproveSealBinding;
 
 import okhttp3.RequestBody;
@@ -19,7 +20,7 @@ import okhttp3.RequestBody;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public class SealFragment extends BaseDataBindingFragment<FragmentApproveSealBinding> implements View.OnClickListener {
+public class SealFragment extends BaseDataBindingFragment<FragmentApproveSealBinding, ApproveViewModel> implements View.OnClickListener {
 
     public static final String TAG = SealFragment.class.getSimpleName();
 
@@ -97,5 +98,10 @@ public class SealFragment extends BaseDataBindingFragment<FragmentApproveSealBin
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

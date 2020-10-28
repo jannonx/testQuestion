@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProduceOverviewBinding;
+import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 
 /**
  * @author : tl
@@ -12,7 +13,7 @@ import com.guyuan.dear.databinding.FragmentFocusProduceOverviewBinding;
  * @since: 2020/10/10 11:17
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusProduceOverviewFragment extends BaseDataBindingFragment<FragmentFocusProduceOverviewBinding> {
+public class FocusProduceOverviewFragment extends BaseDataBindingFragment<FragmentFocusProduceOverviewBinding, FocusProduceViewModel> {
 
     public static final String TAG = "FocusProduceOverviewFragment";
 
@@ -33,5 +34,10 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

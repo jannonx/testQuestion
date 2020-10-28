@@ -75,7 +75,7 @@ public class ApproveViewModel extends BaseViewModel {
                         getTip().setValue(errorBean.getErrorResult());
                         getCallBack().setValue(errorBean);
                     }
-                }).getHelper().flow();
+                }).getHelper().flow(applyNotApproveEvent);
         addSubscription(disposable);
 
     }
@@ -96,7 +96,7 @@ public class ApproveViewModel extends BaseViewModel {
                         getTip().setValue(errorBean.getErrorResult());
                         getCallBack().setValue(errorBean);
                     }
-                }).getHelper().flow();
+                }).getHelper().flow(applyYetApproveEvent);
         addSubscription(disposable);
     }
 }

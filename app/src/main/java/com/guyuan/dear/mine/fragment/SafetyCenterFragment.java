@@ -6,6 +6,7 @@ import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusAssessOverviewBinding;
 import com.guyuan.dear.databinding.FragmentSafetyCenterBinding;
+import com.guyuan.dear.mine.data.MineViewModel;
 
 /**
  * @description: 我的--安全中心
@@ -13,7 +14,7 @@ import com.guyuan.dear.databinding.FragmentSafetyCenterBinding;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class SafetyCenterFragment extends BaseDataBindingFragment<FragmentSafetyCenterBinding> {
+public class SafetyCenterFragment extends BaseDataBindingFragment<FragmentSafetyCenterBinding, MineViewModel> {
 
     public static final String TAG = "FocusAssessOverviewFrag";
 
@@ -32,5 +33,10 @@ public class SafetyCenterFragment extends BaseDataBindingFragment<FragmentSafety
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

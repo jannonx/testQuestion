@@ -37,22 +37,13 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/9 15:40
  * @company: 固远（深圳）信息技术有限公司
  */
-public class ApplyNotApproveFragment extends BaseListFragment<ApplyBean, FragmentListBinding> {
+public class ApplyNotApproveFragment extends BaseListFragment<ApplyBean, FragmentListBinding,ApproveViewModel> {
     public static final String TAG = ApplyNotApproveFragment.class.getSimpleName();
-    ApproveViewModel viewModel;
+
 
     public static ApplyNotApproveFragment getInstance() {
         return new ApplyNotApproveFragment();
     }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (getActivity() != null) {
-            viewModel = ((ApprovalsEntranceActivity) getActivity()).getViewModel();
-        }
-    }
-
 
     @Override
     protected void initView() {
@@ -132,4 +123,8 @@ public class ApplyNotApproveFragment extends BaseListFragment<ApplyBean, Fragmen
     }
 
 
+    @Override
+    protected int getVariableId() {
+        return 0;
+    }
 }

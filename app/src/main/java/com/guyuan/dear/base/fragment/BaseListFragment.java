@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.databinding.ViewDataBinding;
 
+import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 
@@ -24,7 +25,7 @@ import tl.com.easy_recycleview_library.interfaces.OnRefreshListener;
  * @since: 2020/9/7
  * @company : 固远（深圳）信息技术有限公司
  **/
-public abstract class BaseListFragment<T, VB extends ViewDataBinding> extends BaseDataBindingFragment<VB> {
+public abstract class BaseListFragment<T, VB extends ViewDataBinding,VM extends BaseViewModel> extends BaseDataBindingFragment<VB,VM> {
 
     protected BaseRecyclerView recycleView;
     protected View empty_view;

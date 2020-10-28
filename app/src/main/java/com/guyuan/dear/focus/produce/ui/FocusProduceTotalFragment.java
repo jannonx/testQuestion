@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
+import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 
 /**
  * @author : tl
@@ -11,7 +12,7 @@ import com.guyuan.dear.databinding.FragmentListBinding;
  * @since: 2020/10/10 11:22
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusProduceTotalFragment extends BaseListFragment<Object, FragmentListBinding> {
+public class FocusProduceTotalFragment extends BaseListFragment<Object, FragmentListBinding, FocusProduceViewModel> {
 
     public static final String TAG = "FocusProduceTotalFragment";
 
@@ -47,5 +48,10 @@ public class FocusProduceTotalFragment extends BaseListFragment<Object, Fragment
     @Override
     protected boolean isLoadMoreEnable() {
         return false;
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

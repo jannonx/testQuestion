@@ -11,6 +11,7 @@ import com.guyuan.dear.approve.adapter.ApprovedListAdapter;
 import com.guyuan.dear.approve.bean.ApplyBean;
 import com.guyuan.dear.approve.bean.ApprovalData;
 import com.guyuan.dear.approve.bean.ApproveListBody;
+import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 
@@ -36,7 +37,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/9 15:40
  * @company: 固远（深圳）信息技术有限公司
  */
-public class ApplyYetApprovedFragment extends BaseListFragment<ApplyBean, FragmentListBinding> {
+public class ApplyYetApprovedFragment extends BaseListFragment<ApplyBean, FragmentListBinding, ApproveViewModel> {
     public static final String TAG = ApplyYetApprovedFragment.class.getSimpleName();
 
     public static ApplyYetApprovedFragment getInstance() {
@@ -126,4 +127,8 @@ public class ApplyYetApprovedFragment extends BaseListFragment<ApplyBean, Fragme
     }
 
 
+    @Override
+    protected int getVariableId() {
+        return 0;
+    }
 }

@@ -22,6 +22,7 @@ import com.guyuan.dear.approve.activity.ApprovePrettyCashActivity;
 import com.guyuan.dear.approve.activity.ApprovePurchaseActivity;
 import com.guyuan.dear.approve.activity.ApproveSealActivity;
 import com.guyuan.dear.approve.activity.MineApplyListActivity;
+import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.databinding.FragmentApproveBinding;
 import com.guyuan.dear.login.data.LoginBean;
@@ -39,7 +40,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/9 15:40
  * @company: 固远（深圳）信息技术有限公司
  */
-public class ApproveFragment extends BaseDataBindingFragment<FragmentApproveBinding> implements View.OnClickListener {
+public class ApproveFragment extends BaseDataBindingFragment<FragmentApproveBinding, ApproveViewModel> implements View.OnClickListener {
 
     public static final String TAG = ApproveFragment.class.getSimpleName();
 
@@ -155,5 +156,10 @@ public class ApproveFragment extends BaseDataBindingFragment<FragmentApproveBind
                 break;
             default:
         }
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.bean.ApplyBean;
 import com.guyuan.dear.approve.constant.ApplyConstant;
+import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.databinding.FragmentLeaveOfficeBinding;
 import com.guyuan.dear.utils.CalenderUtils;
 
@@ -19,7 +20,7 @@ import okhttp3.RequestBody;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public class LeaveOfficeFragment extends BaseDataBindingFragment<FragmentLeaveOfficeBinding> implements View.OnClickListener {
+public class LeaveOfficeFragment extends BaseDataBindingFragment<FragmentLeaveOfficeBinding, ApproveViewModel> implements View.OnClickListener {
     public static final String TAG = LeaveOfficeFragment.class.getSimpleName();
 
 
@@ -102,5 +103,10 @@ public class LeaveOfficeFragment extends BaseDataBindingFragment<FragmentLeaveOf
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

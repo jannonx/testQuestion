@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.bean.ApplyBean;
 import com.guyuan.dear.approve.constant.ApplyConstant;
+import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.databinding.FragmentPurchaseBinding;
 import com.guyuan.dear.dialog.PurchaseTypeDialogFragment;
 
@@ -26,7 +27,7 @@ import static com.guyuan.dear.utils.ConstantValue.TEXT_PLEASE_SELECT;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public class PurchaseFragment extends BaseDataBindingFragment<FragmentPurchaseBinding> implements View.OnClickListener {
+public class PurchaseFragment extends BaseDataBindingFragment<FragmentPurchaseBinding, ApproveViewModel> implements View.OnClickListener {
     public static final String TAG = PurchaseFragment.class.getSimpleName();
 
 
@@ -141,5 +142,10 @@ public class PurchaseFragment extends BaseDataBindingFragment<FragmentPurchaseBi
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }
