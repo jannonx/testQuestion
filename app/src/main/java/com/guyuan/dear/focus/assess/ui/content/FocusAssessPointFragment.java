@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
+import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
 
 /**
  * @author : tl
@@ -12,7 +13,7 @@ import com.guyuan.dear.databinding.FragmentListBinding;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class FocusAssessPointFragment extends BaseListFragment<Object, FragmentListBinding> {
+public class FocusAssessPointFragment extends BaseListFragment<Object, FragmentListBinding, FocusAssessViewModel> {
 
 
     public static final String TAG = "FocusAssessPointFragment";
@@ -49,5 +50,10 @@ public class FocusAssessPointFragment extends BaseListFragment<Object, FragmentL
     @Override
     protected boolean isLoadMoreEnable() {
         return false;
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

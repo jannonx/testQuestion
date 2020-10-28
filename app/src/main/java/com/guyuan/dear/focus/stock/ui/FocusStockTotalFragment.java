@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
+import com.guyuan.dear.focus.stock.data.FocusStockViewModel;
 
 /**
  * @author : tl
@@ -11,7 +12,7 @@ import com.guyuan.dear.databinding.FragmentListBinding;
  * @since: 2020/10/12 10:51
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusStockTotalFragment extends BaseListFragment<Object,FragmentListBinding> {
+public class FocusStockTotalFragment extends BaseListFragment<Object,FragmentListBinding, FocusStockViewModel> {
     public static final String TAG = "FocusStockTotalFragment";
 
     public static FocusStockTotalFragment newInstance() {
@@ -46,5 +47,10 @@ public class FocusStockTotalFragment extends BaseListFragment<Object,FragmentLis
     @Override
     protected boolean isLoadMoreEnable() {
         return false;
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

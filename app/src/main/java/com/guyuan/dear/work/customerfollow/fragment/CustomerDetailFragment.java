@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
+import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.databinding.FragmentCustomerDetailBinding;
 import com.guyuan.dear.databinding.FragmentFocusAssessOverviewBinding;
 import com.guyuan.dear.work.purchase.fragment.PurchaseDetailFragment;
@@ -14,7 +15,7 @@ import com.guyuan.dear.work.purchase.fragment.PurchaseDetailFragment;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class CustomerDetailFragment extends BaseDataBindingFragment<FragmentCustomerDetailBinding> {
+public class CustomerDetailFragment extends BaseDataBindingFragment<FragmentCustomerDetailBinding, ApproveViewModel> {
 
     public static final String TAG = CustomerDetailFragment.class.getSimpleName();
 
@@ -33,5 +34,10 @@ public class CustomerDetailFragment extends BaseDataBindingFragment<FragmentCust
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

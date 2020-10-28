@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.ViewDataBinding;
 
 import com.example.mvvmlibrary.base.activity.BaseActivity;
+import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.activity.MineApplyListActivity;
@@ -39,7 +40,8 @@ import okhttp3.RequestBody;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public abstract class BaseApproveFragment<VB extends ViewDataBinding> extends BaseDataBindingFragment<VB> {
+public abstract class BaseApproveFragment<VB extends ViewDataBinding, VM extends BaseViewModel> extends BaseDataBindingFragment<VB,VM> {
+
     public static final int REQUEST_PARTNER = 0x001;
     public static final int REQUEST_APPROVE = 0x002;
     public static final int REQUEST_COPY = 0x003;

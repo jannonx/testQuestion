@@ -10,6 +10,7 @@ import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.quality.adapter.MaterialListAdapter;
+import com.guyuan.dear.focus.quality.data.FocusQualityViewModel;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
@@ -20,7 +21,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class MaterialListFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding> {
+public class MaterialListFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding, FocusQualityViewModel> {
 
     public static final String TAG = MaterialListFragment.class.getSimpleName();
 
@@ -72,4 +73,8 @@ public class MaterialListFragment extends BaseListSearchFragment<SimpleTabBean, 
     }
 
 
+    @Override
+    protected int getVariableId() {
+        return 0;
+    }
 }

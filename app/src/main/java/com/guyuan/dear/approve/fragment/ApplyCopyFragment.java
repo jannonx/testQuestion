@@ -27,26 +27,15 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public class ApplyCopyFragment extends BaseListFragment<ApplyBean, FragmentListBinding> {
+public class ApplyCopyFragment extends BaseListFragment<ApplyBean, FragmentListBinding,ApproveViewModel> {
 
     public static final String TAG = ApplyCopyFragment.class.getSimpleName();
-
-    ApproveViewModel viewModel;
 
     public static ApplyCopyFragment newInstance() {
         Bundle args = new Bundle();
         ApplyCopyFragment fragment = new ApplyCopyFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (getActivity() != null) {
-            viewModel = ((ApplyCopyActivity) getActivity()).getViewModel();
-        }
     }
 
     @Override
@@ -93,4 +82,8 @@ public class ApplyCopyFragment extends BaseListFragment<ApplyBean, FragmentListB
     }
 
 
+    @Override
+    protected int getVariableId() {
+        return 0;
+    }
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
+import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.R;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.gson.Gson;
@@ -32,7 +33,7 @@ import org.greenrobot.eventbus.EventBus;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public class ApplyApproveByMeFragment extends BaseDataBindingFragment<FragmentApplyApproveByMeBinding> implements View.OnClickListener {
+public class ApplyApproveByMeFragment extends BaseDataBindingFragment<FragmentApplyApproveByMeBinding,ApproveViewModel> implements View.OnClickListener {
 
     public static final String TAG = ApplyApproveByMeFragment.class.getSimpleName();
 
@@ -41,7 +42,6 @@ public class ApplyApproveByMeFragment extends BaseDataBindingFragment<FragmentAp
     private EventSubmitOK busEventSubmitOK;
     private BodyApprovalSubmit body;
     private ApplyApproveByMeActivity activity;
-    private ApproveViewModel viewModel;
 
     public static ApplyApproveByMeFragment newInstant(ApplyBean apply) {
         Bundle bundle = new Bundle();
@@ -51,15 +51,6 @@ public class ApplyApproveByMeFragment extends BaseDataBindingFragment<FragmentAp
         return fragment;
     }
 
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (getActivity() != null) {
-            activity = (ApplyApproveByMeActivity) getActivity();
-            viewModel = activity.getViewModel();
-        }
-    }
 
     @Override
     protected int getLayoutID() {
@@ -168,6 +159,11 @@ public class ApplyApproveByMeFragment extends BaseDataBindingFragment<FragmentAp
         if (busEventSubmitOK != null) {
             EventBus.getDefault().post(busEventSubmitOK);
         }
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.bean.ApplyBean;
 import com.guyuan.dear.approve.constant.ApplyConstant;
+import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.databinding.FragmentApproveCommonBinding;
 import com.guyuan.dear.databinding.FragmentApproveExpenseBinding;
 
@@ -21,7 +22,7 @@ import okhttp3.RequestBody;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public class ExpenseReimbursementFragment extends BaseDataBindingFragment<FragmentApproveExpenseBinding> implements View.OnClickListener {
+public class ExpenseReimbursementFragment extends BaseDataBindingFragment<FragmentApproveExpenseBinding, ApproveViewModel> implements View.OnClickListener {
     public static final String TAG = ExpenseReimbursementFragment.class.getSimpleName();
 
 
@@ -79,5 +80,10 @@ public class ExpenseReimbursementFragment extends BaseDataBindingFragment<Fragme
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

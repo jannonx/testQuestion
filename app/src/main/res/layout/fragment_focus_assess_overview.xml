@@ -7,8 +7,8 @@
     <data>
 
         <variable
-            name="AssessOverviewBean"
-            type="com.guyuan.dear.focus.assess.data.bean.AssessOverviewBean" />
+            name="assessViewModel"
+            type="com.guyuan.dear.focus.assess.data.FocusAssessViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -106,7 +106,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="12dp"
                         android:drawablePadding="8dp"
-                        android:text='@{String.valueOf(AssessOverviewBean.sellOrderSumNumber)}'
+                        android:text='@{String.valueOf(assessViewModel.assessOverviewBean.sellOrderSumNumber)}'
                         android:textColor="#0050B4"
                         android:textSize="14sp"
                         app:drawableRightCompat="@mipmap/ic_arrow_gray_right"
@@ -156,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="12dp"
                         android:drawablePadding="8dp"
-                        android:text='@{String.valueOf(AssessOverviewBean.noPassSumNumber)}'
+                        android:text='@{String.valueOf(assessViewModel.assessOverviewBean.noPassSumNumber)}'
                         android:textColor="#0050B4"
                         android:textSize="14sp"
                         app:drawableRightCompat="@mipmap/ic_arrow_gray_right"
@@ -206,7 +206,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="12dp"
                         android:drawablePadding="8dp"
-                        android:text='@{String.valueOf(AssessOverviewBean.passSumNumber),default=100}'
+                        android:text='@{String.valueOf(assessViewModel.assessOverviewBean.passSumNumber),default=100}'
                         android:textColor="#0050B4"
                         android:textSize="14sp"
                         app:drawableRightCompat="@mipmap/ic_arrow_gray_right"
@@ -255,12 +255,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="12dp"
-                        android:text='@{String.valueOf(AssessOverviewBean.passRate),default="0%"}'
+                        android:text='@{String.valueOf(assessViewModel.assessOverviewBean.passRate),default="0%"}'
                         android:textColor="#0050B4"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/pass_rate_container"
                         app:layout_constraintEnd_toEndOf="@+id/pass_rate_container"
-                        app:layout_constraintTop_toTopOf="@+id/pass_rate_container" />
+                        app:layout_constraintTop_toTopOf="@+id/pass_rate_container"
+                        tools:text="400" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

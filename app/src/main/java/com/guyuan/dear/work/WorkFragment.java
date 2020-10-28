@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
@@ -14,7 +15,6 @@ import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.scan.ScanActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
-import com.guyuan.dear.work.client.activity.WorkClientActivity;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/8 14:24
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.ChildrenBean, FragmentWorkBinding> {
+public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.ChildrenBean, FragmentWorkBinding, BaseViewModel> {
 
     public static final String TAG = "WorkFragment";
 
@@ -88,7 +88,7 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
                                 break;
 
                             case ConstantValue.WORK_CUSTOMER://客户跟进
-                                WorkClientActivity.start(getContext(),title);
+
                                 break;
 
                             case ConstantValue.WORK_ASSESS://工程评审
@@ -164,5 +164,10 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
     @Override
     protected boolean isLoadMoreEnable() {
         return false;
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

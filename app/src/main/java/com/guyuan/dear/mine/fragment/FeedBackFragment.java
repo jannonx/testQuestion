@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFeedBackBinding;
+import com.guyuan.dear.mine.data.MineViewModel;
 
 /**
  * @description: 我的--意见反馈
@@ -12,7 +13,7 @@ import com.guyuan.dear.databinding.FragmentFeedBackBinding;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FeedBackFragment extends BaseDataBindingFragment<FragmentFeedBackBinding> {
+public class FeedBackFragment extends BaseDataBindingFragment<FragmentFeedBackBinding, MineViewModel> {
 
     public static final String TAG = "FocusAssessOverviewFrag";
 
@@ -31,5 +32,10 @@ public class FeedBackFragment extends BaseDataBindingFragment<FragmentFeedBackBi
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

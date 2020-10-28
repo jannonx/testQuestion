@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusAssessDetailBinding;
+import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
 
 /**
  * @author : tl
@@ -13,7 +14,7 @@ import com.guyuan.dear.databinding.FragmentFocusAssessDetailBinding;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class FocusAssessDetailFragment extends BaseDataBindingFragment<FragmentFocusAssessDetailBinding> {
+public class FocusAssessDetailFragment extends BaseDataBindingFragment<FragmentFocusAssessDetailBinding, FocusAssessViewModel> {
 
     public static final String TAG = "FocusAssessDetailFragment";
 
@@ -34,5 +35,10 @@ public class FocusAssessDetailFragment extends BaseDataBindingFragment<FragmentF
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

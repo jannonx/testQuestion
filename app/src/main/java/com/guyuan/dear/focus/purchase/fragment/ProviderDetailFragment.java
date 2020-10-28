@@ -6,6 +6,7 @@ import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusAssessOverviewBinding;
 import com.guyuan.dear.databinding.FragmentProviderDetailBinding;
+import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
 import com.guyuan.dear.focus.quality.fragment.QualityDetailFragment;
 
 /**
@@ -14,7 +15,7 @@ import com.guyuan.dear.focus.quality.fragment.QualityDetailFragment;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class ProviderDetailFragment extends BaseDataBindingFragment<FragmentProviderDetailBinding> {
+public class ProviderDetailFragment extends BaseDataBindingFragment<FragmentProviderDetailBinding, FocusPurchaseViewModel> {
 
     public static final String TAG = ProviderDetailFragment.class.getSimpleName();
 
@@ -33,5 +34,10 @@ public class ProviderDetailFragment extends BaseDataBindingFragment<FragmentProv
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

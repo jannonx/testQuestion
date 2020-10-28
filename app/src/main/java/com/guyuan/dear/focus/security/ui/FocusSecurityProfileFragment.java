@@ -35,7 +35,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
  * @company : 固远（深圳）信息技术有限公司
  **/
 public class FocusSecurityProfileFragment extends BaseListFragment<DangerProfileBean.WorkshopSecurityVoBean,
-        FragmentFocusSecurityProfileBinding> implements TabLayoutHelper.TabLayoutListener {
+        FragmentFocusSecurityProfileBinding,FocusSecurityViewModel> implements TabLayoutHelper.TabLayoutListener {
 
     public static final String TAG = "FocusSecurityProfileFragment";
     private FocusSecurityViewModel viewModel;
@@ -162,5 +162,10 @@ public class FocusSecurityProfileFragment extends BaseListFragment<DangerProfile
     public void setCustomContent(View customView, int currentPosition) {
         AppCompatTextView factoryTV = customView.findViewById(R.id.item_tab_white_to_blue_round_corner_tv_name);
         factoryTV.setText(factoryBean.getContent().get(currentPosition).getName());
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

@@ -21,7 +21,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class FocusAssessListFragment extends BaseListSearchFragment<Object, FragmentListSearchBinding> {
+public class FocusAssessListFragment extends BaseListSearchFragment<Object, FragmentListSearchBinding,FocusAssessViewModel> {
 
     public static final String TAG = "FocusListFragment";
     public static final String TYPE = "type";
@@ -77,5 +77,10 @@ public class FocusAssessListFragment extends BaseListSearchFragment<Object, Frag
     @Override
     protected boolean isLoadMoreEnable() {
         return false;
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

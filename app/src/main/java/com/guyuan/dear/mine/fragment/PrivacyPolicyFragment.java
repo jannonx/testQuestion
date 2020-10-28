@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentPrivacyPolicyBinding;
+import com.guyuan.dear.mine.data.MineViewModel;
 
 /**
  * @description: 我的--隐私政策
@@ -12,7 +13,7 @@ import com.guyuan.dear.databinding.FragmentPrivacyPolicyBinding;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class PrivacyPolicyFragment extends BaseDataBindingFragment<FragmentPrivacyPolicyBinding> {
+public class PrivacyPolicyFragment extends BaseDataBindingFragment<FragmentPrivacyPolicyBinding, MineViewModel> {
 
     public static final String TAG = "FocusAssessOverviewFrag";
 
@@ -31,5 +32,10 @@ public class PrivacyPolicyFragment extends BaseDataBindingFragment<FragmentPriva
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

@@ -98,7 +98,6 @@
     <dimen name="sp_22">22sp</dimen>
     <dimen name="dp_52">52dp</dimen>
     <dimen name="dp_37">37dp</dimen>
-    <dimen name="dp_84">84dp</dimen>
     <dimen name="dp_190">190dp</dimen>
     <dimen name="actionbar_height">@dimen/dp_60</dimen>
     <dimen name="dp_55">55dp</dimen>

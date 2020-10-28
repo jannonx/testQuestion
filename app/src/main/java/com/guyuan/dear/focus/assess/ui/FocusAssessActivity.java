@@ -9,7 +9,6 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
-import com.guyuan.dear.focus.assess.data.bean.AssessOverviewBean;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
@@ -74,9 +73,6 @@ public class FocusAssessActivity extends BaseTabActivity<ActivityBaseTabBinding,
 
     @Override
     public void viewModuleCallBack(Object o) {
-        if (o instanceof AssessOverviewBean) {
-            AssessOverviewBean assessOverviewBean = (AssessOverviewBean) o;
-            overviewFragment.setUI(assessOverviewBean);
-        }
+
     }
 }

@@ -5,16 +5,16 @@ import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.util.LogUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentFocusBinding;
 import com.guyuan.dear.focus.assess.ui.FocusAssessActivity;
-import com.guyuan.dear.focus.client.activity.FocusClientActivity;
 import com.guyuan.dear.focus.device.ui.FocusDeviceActivity;
 import com.guyuan.dear.focus.hr.view.home.HrHomeActivity;
-import com.guyuan.dear.focus.sales.view.home.SalesHomeActivity;
+import com.guyuan.dear.focus.contract.view.home.ContractHomeActivity;
 import com.guyuan.dear.focus.produce.ui.FocusProduceActivity;
 import com.guyuan.dear.focus.security.ui.FocusSecurityActivity;
 import com.guyuan.dear.focus.stock.ui.FocusStockActivity;
@@ -33,7 +33,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/8 11:41
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.ChildrenBean, FragmentFocusBinding> {
+public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.ChildrenBean, FragmentFocusBinding, BaseViewModel> {
 
     public static final String TAG = "FocusFragment";
 
@@ -98,7 +98,7 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
                                 break;
 
                             case ConstantValue.FOCUS_SELL://销售
-                                SalesHomeActivity.start(getContext(), title);
+
                                 break;
 
                             case ConstantValue.FOCUS_ASSESS://评审
@@ -126,7 +126,7 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
                                 break;
 
                             case ConstantValue.FOCUS_PROJECT_SITE://工程现场
-                                FocusClientActivity.start(getContext(), title);
+
                                 break;
 
                             case ConstantValue.FOCUS_AFTER_SERVICE://售后服务
@@ -144,6 +144,9 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
 
                             case ConstantValue.FOCUS_CONSTRUCTION_MONITORING://施工现场
 
+                                break;
+                            case ConstantValue.FOCUS_CONTRACT://合同
+                                ContractHomeActivity.start(getContext(),title);
                                 break;
                             default:
                                 break;
@@ -180,5 +183,10 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
     @Override
     protected boolean isLoadMoreEnable() {
         return false;
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

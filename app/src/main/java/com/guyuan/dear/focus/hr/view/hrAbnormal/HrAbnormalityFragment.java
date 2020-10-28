@@ -1,5 +1,6 @@
 package com.guyuan.dear.focus.hr.view.hrAbnormal;
 
+import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentHrAbnormalityBinding;
@@ -10,7 +11,7 @@ import com.guyuan.dear.databinding.FragmentHrAbnormalityBinding;
  * @since: 2020/9/17 17:14
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class HrAbnormalityFragment extends BaseDataBindingFragment<FragmentHrAbnormalityBinding> {
+public class HrAbnormalityFragment extends BaseDataBindingFragment<FragmentHrAbnormalityBinding, BaseViewModel> {
 
     public static HrAbnormalityFragment getInstance(){
         return new HrAbnormalityFragment();
@@ -24,5 +25,10 @@ public class HrAbnormalityFragment extends BaseDataBindingFragment<FragmentHrAbn
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

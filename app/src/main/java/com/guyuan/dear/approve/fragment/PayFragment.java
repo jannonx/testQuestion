@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.bean.ApplyBean;
 import com.guyuan.dear.approve.constant.ApplyConstant;
+import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.databinding.FragmentApprovePayBinding;
 import com.guyuan.dear.dialog.ApprovePayTypeDialogFragment;
 
@@ -23,7 +24,7 @@ import okhttp3.RequestBody;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public class PayFragment extends BaseDataBindingFragment<FragmentApprovePayBinding> implements View.OnClickListener {
+public class PayFragment extends BaseDataBindingFragment<FragmentApprovePayBinding, ApproveViewModel> implements View.OnClickListener {
     public static final String TAG = PayFragment.class.getSimpleName();
 
     private ApprovePayTypeDialogFragment approvePayTypeDialogFragment;
@@ -148,5 +149,10 @@ public class PayFragment extends BaseDataBindingFragment<FragmentApprovePayBindi
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

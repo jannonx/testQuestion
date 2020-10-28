@@ -8,6 +8,7 @@ import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.gson.Gson;
 import com.guyuan.dear.approve.bean.ApplyBean;
 import com.guyuan.dear.approve.constant.ApplyConstant;
+import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.databinding.FragmentApproveOutBinding;
 import com.guyuan.dear.databinding.FragmentOfficeBinding;
 import com.guyuan.dear.R;
@@ -21,7 +22,7 @@ import okhttp3.RequestBody;
  * @since: 2020/9/10 11:28
  * @company: 固远（深圳）信息技术有限公司
  */
-public class OutFragment extends BaseDataBindingFragment<FragmentApproveOutBinding> implements View.OnClickListener {
+public class OutFragment extends BaseDataBindingFragment<FragmentApproveOutBinding, ApproveViewModel> implements View.OnClickListener {
     public static final String TAG = OutFragment.class.getSimpleName();
 
 
@@ -108,5 +109,10 @@ public class OutFragment extends BaseDataBindingFragment<FragmentApproveOutBindi
     @Override
     protected void initialization() {
 
+    }
+
+    @Override
+    protected int getVariableId() {
+        return 0;
     }
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="fragment_contract_except_list_vm"
+            type="com.guyuan.dear.focus.contract.view.contractExcptList.ContractExcptListViewModel" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_20"
+            android:background="@color/color_grey_e5e5e5"/>
+        <include layout="@layout/layout_search_bar"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_10"
+            android:background="@color/color_grey_e5e5e5"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:setExcptContractList="@{fragment_contract_except_list_vm.contractList}"
+            app:setOnItemClick="@{fragment_contract_except_list_vm.itemClickListener}"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

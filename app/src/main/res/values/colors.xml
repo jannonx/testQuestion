@@ -56,7 +56,6 @@
     <color name="color_actionbar">@color/color_blue_0050B4</color>
     <color name="color_grey_848484">#848484</color>
     <color name="color_grey_6d7278">#6D7278</color>
-    <color name="color_grey_EDEDED">#EDEDED</color>
     <color name="color_grey_0a1d33">#0A1D33</color>
     <color name="color_grey_dadada">#DADADA</color>
     <color name="color_yellow_f7b500">#F7B500</color>
@@ -79,7 +78,6 @@
     <color name="color_black">#000000</color>
     <color name="color_black_50">#50000000</color>
     <color name="color_black_45">#45000000</color>
-    <color name="color_black_04">#04000000</color>
     <color name="color_black_05">#05000000</color>
     <color name="color_yellow_facc14">#FACC14</color>
     <color name="color_white_fffefe">#FFFEFE</color>

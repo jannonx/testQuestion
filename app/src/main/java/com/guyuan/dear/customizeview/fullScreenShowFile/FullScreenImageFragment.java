@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFullScreenImageBinding;
@@ -17,7 +18,7 @@ import com.guyuan.dear.databinding.FragmentFullScreenImageBinding;
  * created by tl
  * created at 2020/6/17
  */
-public class FullScreenImageFragment extends BaseDataBindingFragment<FragmentFullScreenImageBinding> {
+public class FullScreenImageFragment extends BaseDataBindingFragment<FragmentFullScreenImageBinding, BaseViewModel> {
 
 
     public static final String TAG = "FullScreenImageFragment";
@@ -59,4 +60,8 @@ public class FullScreenImageFragment extends BaseDataBindingFragment<FragmentFul
         }
     }
 
+    @Override
+    protected int getVariableId() {
+        return 0;
+    }
 }

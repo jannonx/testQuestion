@@ -13,7 +13,8 @@
             layout="@layout/layout_search_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_44"
-         />
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_12" />
 
         <!--        <include layout="@layout/layout_classify_select" />-->
 

@@ -28,23 +28,16 @@ import java.util.List;
  * @since: 2020/9/16 17:55
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusAssessOverviewFragment extends BaseDataBindingFragment<FragmentFocusAssessOverviewBinding> {
+public class FocusAssessOverviewFragment extends BaseDataBindingFragment<FragmentFocusAssessOverviewBinding, FocusAssessViewModel> {
 
     public static final String TAG = "FocusAssessOverviewFrag";
-    private FocusAssessViewModel viewModel;
+
 
     public static FocusAssessOverviewFragment newInstance() {
         Bundle args = new Bundle();
         FocusAssessOverviewFragment fragment = new FocusAssessOverviewFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        FocusAssessActivity assessActivity = (FocusAssessActivity) context;
-        viewModel = assessActivity.getViewModel();
     }
 
     @Override
@@ -80,8 +73,8 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
         });
     }
 
-    public void setUI(AssessOverviewBean assessOverviewBean) {
-        binding.setVariable(BR.AssessOverviewBean, assessOverviewBean);
+    @Override
+    protected int getVariableId() {
+        return BR.assessViewModel;
     }
-
 }
