@@ -17,7 +17,12 @@ import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.client.activity.FocusClientActivity;
 import com.guyuan.dear.focus.client.activity.FocusClientDetailActivity;
 import com.guyuan.dear.focus.client.adapter.ClientListAdapter;
+import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
+import com.guyuan.dear.focus.client.bean.ClientContactBean;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
@@ -28,7 +33,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/10/26 16:11
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusClientFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding> {
+public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBean, FragmentListBinding> {
 
     public static final String TAG = FocusClientFragment.class.getSimpleName();
     private FocusClientViewModel viewModel;
@@ -45,6 +50,11 @@ public class FocusClientFragment extends BaseListSearchFragment<SimpleTabBean, F
 
     @Override
     protected void init() {
+        for (int i = 0; i < 5; i++) {
+            ClientCompanyBean contactBean = new ClientCompanyBean();
+            contactBean.setCusName("ClientCompanyBean" + i);
+            listData.add(contactBean);
+        }
         ClientListAdapter listAdapter = new ClientListAdapter(getContext(), listData,
                 R.layout.item_examine_and_approve);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
