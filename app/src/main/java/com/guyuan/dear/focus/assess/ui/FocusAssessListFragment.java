@@ -11,6 +11,7 @@ import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListSearchBinding;
 import com.guyuan.dear.focus.assess.adapter.AssessListAdapter;
 import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
+import com.guyuan.dear.utils.ConstantValue;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
@@ -21,26 +22,19 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class FocusAssessListFragment extends BaseListSearchFragment<Object, FragmentListSearchBinding,FocusAssessViewModel> {
+public class FocusAssessListFragment extends BaseListSearchFragment<Object, FragmentListSearchBinding, FocusAssessViewModel> {
 
     public static final String TAG = "FocusListFragment";
     public static final String TYPE = "type";
     public static final int EXCEPTION = 0x001;
     public static final int TOTAL = 0x002;
-    private FocusAssessViewModel viewModel;
+    private int type;
 
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        FocusAssessActivity assessActivity = (FocusAssessActivity) context;
-        viewModel = assessActivity.getViewModel();
-    }
-
-    public static FocusAssessListFragment newInstance(int type) {
+    public static FocusAssessListFragment newInstance(int type, String searchContent) {
 
         Bundle args = new Bundle();
         args.putInt(TYPE, type);
+        args.putString(ConstantValue.KEY_CONTENT, searchContent);
         FocusAssessListFragment fragment = new FocusAssessListFragment();
         fragment.setArguments(args);
         return fragment;
@@ -49,7 +43,10 @@ public class FocusAssessListFragment extends BaseListSearchFragment<Object, Frag
     @Override
     protected void init() {
         if (getArguments() != null) {
-            int type = getArguments().getInt(TYPE);
+            type = getArguments().getInt(TYPE);
+            String searchContent = getArguments().getString(ConstantValue.KEY_CONTENT);
+            etSearch.setText(searchContent);
+            viewModel.getAssessList(ConstantValue.FIRST_PAGE, ConstantValue.PAGE_SIZE, searchContent, type);
             AssessListAdapter listAdapter = new AssessListAdapter(getContext(), listData,
                     R.layout.item_focus_assess_list);
             BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter(listAdapter);
@@ -61,22 +58,25 @@ public class FocusAssessListFragment extends BaseListSearchFragment<Object, Frag
 
     @Override
     protected void refresh() {
-
+        String searchContent = etSearch.getText() == null ? "" : etSearch.getText().toString();
+        currentPage=ConstantValue.FIRST_PAGE;
+        viewModel.getAssessList(currentPage, ConstantValue.PAGE_SIZE, searchContent, type);
     }
 
     @Override
     protected void loadMore() {
-
+        String searchContent = etSearch.getText() == null ? "" : etSearch.getText().toString();
+        viewModel.getAssessList(++currentPage, ConstantValue.PAGE_SIZE, searchContent, type);
     }
 
     @Override
     protected boolean isPullEnable() {
-        return false;
+        return true;
     }
 
     @Override
     protected boolean isLoadMoreEnable() {
-        return false;
+        return true;
     }
 
     @Override
