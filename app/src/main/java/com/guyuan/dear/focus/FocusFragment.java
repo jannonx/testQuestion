@@ -12,6 +12,7 @@ import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentFocusBinding;
 import com.guyuan.dear.focus.assess.ui.FocusAssessActivity;
+import com.guyuan.dear.focus.client.activity.FocusClientActivity;
 import com.guyuan.dear.focus.device.ui.FocusDeviceActivity;
 import com.guyuan.dear.focus.hr.view.home.HrHomeActivity;
 import com.guyuan.dear.focus.contract.view.home.ContractHomeActivity;
@@ -130,7 +131,7 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
                                 break;
 
                             case ConstantValue.FOCUS_AFTER_SERVICE://售后服务
-
+                                FocusClientActivity.start(getContext(),title);
                                 break;
 
                             case ConstantValue.FOCUS_MORNING_MEETING://晨会

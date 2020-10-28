@@ -59,7 +59,7 @@ public class ClientFollowFragment extends BaseListSearchFragment<SimpleTabBean, 
     }
 
     @Override
-    protected void onSearch() {
+    protected void onSearch(String text) {
         WorkClientDetailActivity.start(getContext(), "详情");
     }
 

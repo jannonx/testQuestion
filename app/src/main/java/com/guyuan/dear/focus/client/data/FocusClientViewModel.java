@@ -7,13 +7,11 @@ import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.data.SingleLiveEvent;
-import com.guyuan.dear.approve.bean.ApprovalData;
-import com.guyuan.dear.approve.data.ApproveRepository;
 import com.guyuan.dear.base.api.RxJavaHelper;
-import com.guyuan.dear.focus.client.api.FocusClientApiService;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.focus.security.api.FocusSecurityApiService;
-import com.guyuan.dear.focus.security.data.FocusSecurityRepository;
+import com.guyuan.dear.focus.client.bean.CommentsBean;
+
+import java.util.List;
 
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -29,15 +27,62 @@ public class FocusClientViewModel extends BaseViewModel {
 
     private FocusClientRepository repository;
 
-    private SingleLiveEvent<ResultBean<ClientCompanyBean>> clientListEvent;//客户列表
+    private SingleLiveEvent<ResultBean<List<ClientCompanyBean>>> clientListByNameEvent;//模糊查询客户列表
+    private SingleLiveEvent<ResultBean<List<ClientCompanyBean>>> clientListEvent;//客户列表
+    private SingleLiveEvent<ResultBean<ClientCompanyBean>> clientBasicEvent;//基础信息
+    private SingleLiveEvent<ResultBean<RefreshBean<CommentsBean>>> followListEvent;//跟进评论
+
     @ViewModelInject
     public FocusClientViewModel(FocusClientRepository focusClientRepository) {
         this.repository = focusClientRepository;
     }
-    public SingleLiveEvent<ResultBean<ClientCompanyBean>> getClientListEvent() {
+
+    public SingleLiveEvent<ResultBean<List<ClientCompanyBean>>> getClientListByNameEvent() {
+        clientListByNameEvent = createLiveData(clientListByNameEvent);
+        return clientListByNameEvent;
+
+    }
+
+    public SingleLiveEvent<ResultBean<List<ClientCompanyBean>>> getClientListEvent() {
         clientListEvent = createLiveData(clientListEvent);
         return clientListEvent;
 
+    }
+
+    public SingleLiveEvent<ResultBean<ClientCompanyBean>> getClientBasicEvent() {
+        clientBasicEvent = createLiveData(clientBasicEvent);
+        return clientBasicEvent;
+
+    }
+
+    public SingleLiveEvent<ResultBean<RefreshBean<CommentsBean>>> getFollowListEvent() {
+        followListEvent = createLiveData(followListEvent);
+        return followListEvent;
+
+    }
+
+    /**
+     * 根据名称模糊查询客户列表
+     *
+     * @param name 客户名称
+     */
+    public void getClientListByName(String name) {
+
+        Disposable disposable = RxJavaHelper.build(this, repository.getClientListByName(name))
+                .success(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        ResultBean<List<ClientCompanyBean>> bean = (ResultBean<List<ClientCompanyBean>>) o;
+                        clientListByNameEvent.postValue(bean);
+                    }
+                })
+                .fail(new ErrorResultBean() {
+                    @Override
+                    protected void onError(ErrorBean errorBean) {
+                        getTip().setValue(errorBean.getErrorResult());
+                        getCallBack().setValue(errorBean);
+                    }
+                }).getHelper().flow();
     }
 
     /**
@@ -46,16 +91,63 @@ public class FocusClientViewModel extends BaseViewModel {
      * @param body 列表参数
      */
     public void getClientList(RequestBody body) {
-//        Disposable disposable = RxJavaHelper.build(this,
-//                apiService.getClientList(body)).getHelper().flow();
-//        addSubscription(disposable);
 
         Disposable disposable = RxJavaHelper.build(this, repository.getClientList(body))
                 .success(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        ResultBean<ClientCompanyBean> bean = (ResultBean<ClientCompanyBean>) o;
+                        ResultBean<List<ClientCompanyBean>> bean = (ResultBean<List<ClientCompanyBean>>) o;
                         clientListEvent.postValue(bean);
+                    }
+                })
+                .fail(new ErrorResultBean() {
+                    @Override
+                    protected void onError(ErrorBean errorBean) {
+                        getTip().setValue(errorBean.getErrorResult());
+                        getCallBack().setValue(errorBean);
+                    }
+                }).getHelper().flow();
+        addSubscription(disposable);
+    }
+
+    /**
+     * 根据客户id查看详情
+     *
+     * @param id 客户id
+     */
+    public void getClientBasicInfo(Long id) {
+
+        Disposable disposable = RxJavaHelper.build(this, repository.getClientBasicInfo(id))
+                .success(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        ResultBean<ClientCompanyBean> bean = (ResultBean<ClientCompanyBean>) o;
+                        clientBasicEvent.postValue(bean);
+                    }
+                })
+                .fail(new ErrorResultBean() {
+                    @Override
+                    protected void onError(ErrorBean errorBean) {
+                        getTip().setValue(errorBean.getErrorResult());
+                        getCallBack().setValue(errorBean);
+                    }
+                }).getHelper().flow();
+        addSubscription(disposable);
+    }
+
+    /**
+     * 根据客户id查询跟进
+     *
+     * @param body 列表参数
+     */
+    public void getFollowCommentList(RequestBody body) {
+
+        Disposable disposable = RxJavaHelper.build(this, repository.getFollowCommentList(body))
+                .success(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        ResultBean<RefreshBean<CommentsBean>> bean = (ResultBean<RefreshBean<CommentsBean>>) o;
+                        followListEvent.postValue(bean);
                     }
                 })
                 .fail(new ErrorResultBean() {

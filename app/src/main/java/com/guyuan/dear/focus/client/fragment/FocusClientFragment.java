@@ -41,7 +41,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/10/26 16:11
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBean, FragmentListBinding,FocusClientViewModel> {
+public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBean, FragmentListBinding, FocusClientViewModel> {
 
     public static final String TAG = FocusClientFragment.class.getSimpleName();
     private FocusClientViewModel viewModel;
@@ -72,7 +72,19 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                FocusClientDetailActivity.start(getContext(), listData.get(position));
+            }
+        });
 
+
+        initData();
+    }
+
+    private void initData() {
+        viewModel.getClientList(getListRequestBody(FIRST_PAGE));
+        viewModel.getClientListEvent().observe(getActivity(), new Observer<ResultBean<List<ClientCompanyBean>>>() {
+            @Override
+            public void onChanged(ResultBean<List<ClientCompanyBean>> dataRefreshBean) {
             }
         });
     }
@@ -90,19 +102,18 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
     }
 
     @Override
-    protected void onSearch() {
-        FocusClientDetailActivity.start(getContext(), "详情");
+    protected void onSearch(String keyWord) {
+        viewModel.getClientListByName(keyWord);
+        viewModel.getClientListEvent().observe(getActivity(), new Observer<ResultBean<List<ClientCompanyBean>>>() {
+            @Override
+            public void onChanged(ResultBean<List<ClientCompanyBean>> dataRefreshBean) {
+            }
+        });
     }
 
     @Override
     protected void refresh() {
-        viewModel.getClientList(getListRequestBody(FIRST_PAGE));
-        viewModel.getClientListEvent().observe(getActivity(), new Observer<ResultBean<ClientCompanyBean>>() {
-            @Override
-            public void onChanged(ResultBean<ClientCompanyBean> dataRefreshBean) {
-//                showApplyNotApproveList(dataRefreshBean);
-            }
-        });
+
     }
 
     @Override

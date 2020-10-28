@@ -7,6 +7,8 @@ import com.guyuan.dear.approve.bean.ApprovalData;
 import com.guyuan.dear.focus.client.api.FocusClientApiService;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 
@@ -26,11 +28,21 @@ public class FocusClientRepository {
     public FocusClientApiService getApiService() {
         return apiService;
     }
-//    Observable<ResultBean<RefreshBean<ApprovalData>>> getApplyNotApproveList(RequestBody body) {
-//        return approveApiService.getApplyNotApproveList(body);
-//    }
 
-    Observable<ResultBean<ClientCompanyBean>> getClientList(RequestBody body) {
+
+    Observable<ResultBean<List<ClientCompanyBean>>> getClientListByName(String name) {
+        return apiService.getClientListByName(name);
+    }
+
+    Observable<ResultBean<List<ClientCompanyBean>>> getClientList(RequestBody body) {
         return apiService.getClientList(body);
+    }
+
+    Observable<ResultBean<ClientCompanyBean>> getClientBasicInfo(long id) {
+        return apiService.getClientBasicInfo(id);
+    }
+
+    Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getFollowCommentList(RequestBody body) {
+        return apiService.getFollowCommentList(body);
     }
 }
