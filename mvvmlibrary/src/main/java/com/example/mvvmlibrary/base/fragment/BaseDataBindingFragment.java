@@ -48,7 +48,4 @@ public abstract class BaseDataBindingFragment<VB extends ViewDataBinding, VM ext
 
     protected abstract int getVariableId();
 
-    protected VB getViewDataBinding() {
-        return binding;
-    }
 }

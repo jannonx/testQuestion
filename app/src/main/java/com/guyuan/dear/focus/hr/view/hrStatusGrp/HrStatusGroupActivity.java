@@ -39,8 +39,5 @@ public class HrStatusGroupActivity extends BaseToolbarActivity<ActivityHrGroupCo
                 .commit();
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 }

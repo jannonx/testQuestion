@@ -47,10 +47,7 @@ public class UserInfoActivity extends BaseToolbarActivity<ActivityWithToolbarBin
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

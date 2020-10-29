@@ -72,10 +72,4 @@ public class HrHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, HrHo
         return tabDrawableList;
     }
 
-
-
-    @Override
-    public void viewModuleCallBack(Object o) {
-
-    }
 }

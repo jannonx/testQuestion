@@ -31,7 +31,6 @@ public class BaseViewModel extends ViewModel {
     private SingleLiveEvent<String> showLoading;//显示加载框
     private SingleLiveEvent<Void> hideLoading;//隐藏加载框
     private SingleLiveEvent<String> tip; //提示语
-    private SingleLiveEvent<Object> callBack;    //通用回调
     private SingleLiveEvent<Map<String, Object>> startActivityEvent;//activity跳转
     private SingleLiveEvent<Void> finishEvent;  //关闭当前activity
     private SingleLiveEvent<Void> onBackPressedEvent; //点击返回键
@@ -50,11 +49,6 @@ public class BaseViewModel extends ViewModel {
     public SingleLiveEvent<String> getTip() {
         tip = createLiveData(tip);
         return tip;
-    }
-
-    public SingleLiveEvent<Object> getCallBack() {
-        callBack = createLiveData(callBack);
-        return callBack;
     }
 
     public SingleLiveEvent<Map<String, Object>> getStartActivityEvent() {

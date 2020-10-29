@@ -69,8 +69,5 @@ public class FocusStockActivity extends BaseTabActivity<ActivityBaseTabBinding, 
         return tabDrawableList;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 }

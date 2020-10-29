@@ -78,8 +78,4 @@ public class WorkCustomerActivity extends BaseTabActivity<ActivityBaseTabBinding
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
-
-    }
 }

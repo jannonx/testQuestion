@@ -2,13 +2,16 @@ package com.guyuan.dear.focus.assess.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
+import com.guyuan.dear.focus.assess.data.bean.AssessListBean;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
@@ -46,7 +49,7 @@ public class FocusAssessActivity extends BaseTabActivity<ActivityBaseTabBinding,
     protected List<Fragment> getFragments() {
         List<Fragment> fragmentList = new ArrayList<>();
         overviewFragment = FocusAssessOverviewFragment.newInstance();
-        exceptionFragment = FocusAssessListFragment.newInstance(FocusAssessListFragment.EXCEPTION, "");
+        exceptionFragment = FocusAssessListFragment.newInstance(10, "");
         totalFragment = FocusAssessListFragment.newInstance(FocusAssessListFragment.TOTAL, "");
         fragmentList.add(overviewFragment);
         fragmentList.add(exceptionFragment);
@@ -59,6 +62,7 @@ public class FocusAssessActivity extends BaseTabActivity<ActivityBaseTabBinding,
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+        setOverviewFragment();
     }
 
     @Override
@@ -70,9 +74,21 @@ public class FocusAssessActivity extends BaseTabActivity<ActivityBaseTabBinding,
         return tabDrawableList;
     }
 
+    private void setOverviewFragment() {
+        viewModel.assessNotPassListBean.observe(this, new Observer<AssessListBean>() {
+            @Override
+            public void onChanged(AssessListBean assessListBean) {
+                exceptionFragment.setListData(assessListBean.getContent());
+            }
+        });
 
-    @Override
-    public void viewModuleCallBack(Object o) {
-
+        viewModel.assessTotalListBean.observe(this, new Observer<AssessListBean>() {
+            @Override
+            public void onChanged(AssessListBean assessListBean) {
+                totalFragment.setListData(assessListBean.getContent());
+            }
+        });
     }
+
+
 }

@@ -50,8 +50,5 @@ public class ZoomViewActivity extends BaseToolbarActivity<ActivityZoomViewBindin
         vp.setCurrentItem(displayIndex);
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 }

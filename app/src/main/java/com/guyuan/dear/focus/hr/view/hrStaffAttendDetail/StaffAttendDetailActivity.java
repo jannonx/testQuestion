@@ -40,8 +40,4 @@ public class StaffAttendDetailActivity extends BaseToolbarActivity<ActivityStaff
         getSupportFragmentManager().beginTransaction().add(R.id.activity_staff_status_info_frame_layout, fragment).commit();
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
-
-    }
 }

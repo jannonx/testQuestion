@@ -74,14 +74,6 @@ public abstract class BaseDataBindingActivity<V extends ViewDataBinding, VM exte
                 }
             });
 
-            viewModel.getCallBack().observe(this, new Observer<Object>() {
-
-                @Override
-                public void onChanged(Object o) {
-                    viewModuleCallBack(o);
-                }
-            });
-
             viewModel.getStartActivityEvent().observe(this, new Observer<Map<String, Object>>() {
                 @Override
                 public void onChanged(Map<String, Object> params) {
@@ -100,7 +92,7 @@ public abstract class BaseDataBindingActivity<V extends ViewDataBinding, VM exte
         return viewModel;
     }
 
-    public abstract void viewModuleCallBack(Object o);//通用viewModule回调
+
 
     @Override
     protected void onDestroy() {

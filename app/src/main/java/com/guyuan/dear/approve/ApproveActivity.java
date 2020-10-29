@@ -54,11 +54,7 @@ public class ApproveActivity extends BaseToolbarActivity<ActivityWithToolbarBind
         return null;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-
-    }
 
 
     @Override

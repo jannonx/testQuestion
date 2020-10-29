@@ -82,8 +82,5 @@ public class WorkProjectSiteActivity extends BaseTabActivity<ActivityBaseTabBind
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 }

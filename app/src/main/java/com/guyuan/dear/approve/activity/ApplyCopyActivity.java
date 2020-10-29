@@ -48,10 +48,7 @@ public class ApplyCopyActivity extends BaseToolbarActivity<ActivityWithToolbarBi
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

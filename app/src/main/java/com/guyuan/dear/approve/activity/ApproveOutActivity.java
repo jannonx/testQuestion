@@ -43,10 +43,7 @@ public class ApproveOutActivity extends BaseToolbarActivity<ActivityWithToolbarB
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

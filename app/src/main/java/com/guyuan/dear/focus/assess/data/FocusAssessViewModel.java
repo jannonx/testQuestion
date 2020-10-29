@@ -6,10 +6,13 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.api.RxJavaHelper;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.base.bean.ListRequestBody;
 import com.guyuan.dear.focus.assess.api.FocusAssessApiService;
 import com.guyuan.dear.focus.assess.data.bean.AssessDetailBean;
 import com.guyuan.dear.focus.assess.data.bean.AssessListBean;
 import com.guyuan.dear.focus.assess.data.bean.AssessOverviewBean;
+import com.guyuan.dear.focus.assess.ui.FocusAssessListFragment;
+import com.guyuan.dear.utils.CommonUtils;
 
 import java.util.List;
 
@@ -25,7 +28,9 @@ import okhttp3.RequestBody;
 public class FocusAssessViewModel extends BaseViewModel {
     private FocusAssessApiService apiService;
     public MutableLiveData<AssessOverviewBean> assessOverviewBean = new MutableLiveData<>();
-    public MutableLiveData<AssessListBean> assessListBean = new MutableLiveData<>();
+    public MutableLiveData<AssessListBean> assessNotPassListBean = new MutableLiveData<>();
+    public MutableLiveData<AssessListBean> assessPassListBean = new MutableLiveData<>();
+    public MutableLiveData<AssessListBean> assessTotalListBean = new MutableLiveData<>();
     public MutableLiveData<List<AssessDetailBean>> assessDetailList = new MutableLiveData<>();
 
     @ViewModelInject
@@ -40,10 +45,29 @@ public class FocusAssessViewModel extends BaseViewModel {
     }
 
     public void getAssessList(int pageIndex, int pageSize, String queryParams, int status) {
+        ListRequestBody body = new ListRequestBody();
+        body.setPageNum(pageIndex);
+        body.setPageSize(pageSize);
+        ListRequestBody.FiltersBean filtersBean = new ListRequestBody.FiltersBean();
+        filtersBean.setQueryParams(queryParams);
+        filtersBean.setStatus(status);
+        body.setFilters(filtersBean);
         Disposable disposable = RxJavaHelper.build(this,
-                apiService.getAssessList(pageIndex, pageSize, queryParams, status))
-                .getHelper().flow(assessListBean);
+                apiService.getAssessList(CommonUtils.getCommonRequestBody(body)))
+                .getHelper().flow(getListBeanByStatus(status));
     }
+
+    //根据类型设置返回的数据到liveData中
+    public MutableLiveData<AssessListBean> getListBeanByStatus(int status) {
+        if (status == 10) {
+            return assessNotPassListBean;
+        } else if (status == FocusAssessListFragment.PASS) {
+            return assessPassListBean;
+        } else {
+            return assessTotalListBean;
+        }
+    }
+
 
     public void getAssessDetail(int id, String contractNumber) {
         Disposable disposable = RxJavaHelper.build(this,

@@ -47,10 +47,7 @@ public class SafetyCenterActivity extends BaseToolbarActivity<ActivityWithToolba
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

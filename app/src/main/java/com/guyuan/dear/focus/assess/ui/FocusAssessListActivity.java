@@ -31,10 +31,7 @@ public class FocusAssessListActivity extends BaseToolbarActivity<ActivityWithout
 
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

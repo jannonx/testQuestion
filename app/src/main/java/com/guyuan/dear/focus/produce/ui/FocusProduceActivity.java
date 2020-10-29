@@ -71,8 +71,4 @@ public class FocusProduceActivity extends BaseTabActivity<ActivityBaseTabBinding
         return tabDrawableList;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
-
-    }
 }

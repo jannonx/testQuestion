@@ -46,10 +46,7 @@ public class MaterialListActivity extends BaseToolbarActivity<ActivityWithToolba
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

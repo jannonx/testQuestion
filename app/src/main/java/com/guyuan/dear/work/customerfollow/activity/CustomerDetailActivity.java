@@ -45,10 +45,7 @@ public class CustomerDetailActivity extends BaseToolbarActivity<ActivityWithTool
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

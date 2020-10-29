@@ -73,7 +73,7 @@ public class ApproveViewModel extends BaseViewModel {
                     @Override
                     protected void onError(ErrorBean errorBean) {
                         getTip().setValue(errorBean.getErrorResult());
-                        getCallBack().setValue(errorBean);
+                    //    getCallBack().setValue(errorBean);
                     }
                 }).getHelper().flow(applyNotApproveEvent);
         addSubscription(disposable);
@@ -94,7 +94,7 @@ public class ApproveViewModel extends BaseViewModel {
                     @Override
                     protected void onError(ErrorBean errorBean) {
                         getTip().setValue(errorBean.getErrorResult());
-                        getCallBack().setValue(errorBean);
+                     //   getCallBack().setValue(errorBean);
                     }
                 }).getHelper().flow(applyYetApproveEvent);
         addSubscription(disposable);

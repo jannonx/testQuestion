@@ -66,8 +66,5 @@ public class ContractHomeActivity extends BaseTabActivity<ActivityBaseTabBinding
         return tabDrawableList;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 }
