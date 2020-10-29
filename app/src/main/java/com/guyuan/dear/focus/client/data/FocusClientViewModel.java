@@ -83,6 +83,7 @@ public class FocusClientViewModel extends BaseViewModel {
                         getCallBack().setValue(errorBean);
                     }
                 }).getHelper().flow();
+        addSubscription(disposable);
     }
 
     /**
