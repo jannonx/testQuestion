@@ -1,6 +1,7 @@
 package com.guyuan.dear.focus.client.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
@@ -27,6 +28,8 @@ public class ClientPhoneAdapter extends BaseRecyclerAdapter<ClientContactBean> {
     @Override
     protected void bindDataToView(BaseRecyclerViewHolder holder, ClientContactBean item,
                                   int position) {
+
+        if (TextUtils.isEmpty(item.getName())) return;
         holder.setText(R.id.tv_contact_name, item.getName());
         holder.setText(R.id.tv_position, item.getPosition());
         holder.setText(R.id.tv_phone, item.getPhone());

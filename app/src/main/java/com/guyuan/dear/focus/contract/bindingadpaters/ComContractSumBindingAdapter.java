@@ -50,9 +50,12 @@ public class ComContractSumBindingAdapter {
         pieData.put("执行异常",data.getExceptionContracts()*1.f);
         pieData.put("已完成",data.getFinishedContracts()*1.f);
         view.setData(pieData,"");
-        view.getLegend().setEnabled(false);
+        view.getLegend().setEnabled(true);
         view.setUsePercentValues(false);
+        view.setDrawEntryLabels(true);
         view.getData().setDrawValues(true);
+        view.getData().setValueTextSize(10);
+        view.getData().setValueTextColor(Color.WHITE);
         view.getData().setValueFormatter(new IValueFormatter() {
             @Override
             public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
@@ -63,8 +66,6 @@ public class ComContractSumBindingAdapter {
         view.setHoleRadius(30f);
         view.setTransparentCircleRadius(31f);
         view.setDrawHoleEnabled(true);
-        view.setDrawEntryLabels(true);
-        view.setHighlightPerTapEnabled(true);
         view.animate();
     }
 

@@ -32,6 +32,7 @@ public class FocusClientViewModel extends BaseViewModel {
     private SingleLiveEvent<ResultBean<ClientCompanyBean>> clientBasicEvent;//基础信息
     private SingleLiveEvent<ResultBean<RefreshBean<CommentsBean>>> followListEvent;//跟进评论
 
+    private SingleLiveEvent<ResultBean<Integer>> followUserEvent;//填写用户跟进评价
     @ViewModelInject
     public FocusClientViewModel(FocusClientRepository focusClientRepository) {
         this.repository = focusClientRepository;
@@ -61,6 +62,12 @@ public class FocusClientViewModel extends BaseViewModel {
 
     }
 
+
+    public SingleLiveEvent<ResultBean<Integer>> getFollowUserEvent() {
+        followUserEvent = createLiveData(followUserEvent);
+        return followUserEvent;
+
+    }
     /**
      * 根据名称模糊查询客户列表
      *
@@ -156,6 +163,33 @@ public class FocusClientViewModel extends BaseViewModel {
                     protected void onError(ErrorBean errorBean) {
                         getTip().setValue(errorBean.getErrorResult());
                     //    getCallBack().setValue(errorBean);
+                    }
+                }).getHelper().flow();
+        addSubscription(disposable);
+    }
+
+
+    /**
+     * 填写用户跟进评价
+     *
+     * @param content  评价内容
+     * @param followId 跟进id
+     */
+    public void postCommentFollowUp(long followId, String content) {
+
+        Disposable disposable = RxJavaHelper.build(this, repository.postCommentFollowUp(followId, content))
+                .success(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        ResultBean<Integer> bean = (ResultBean<Integer>) o;
+                        followUserEvent.postValue(bean);
+                    }
+                })
+                .fail(new ErrorResultBean() {
+                    @Override
+                    protected void onError(ErrorBean errorBean) {
+                        getTip().setValue(errorBean.getErrorResult());
+                        getCallBack().setValue(errorBean);
                     }
                 }).getHelper().flow();
         addSubscription(disposable);

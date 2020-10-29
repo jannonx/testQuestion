@@ -6,7 +6,7 @@ package com.guyuan.dear.focus.contract.bean;
  * @since: 2020/10/27 12:06
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ExcptContractBean extends BaseContractBean {
+public class BaseContractExcptBean extends BaseContractBean {
     /**
      * 标签，如：“暂停”，“终止”
      */
@@ -20,7 +20,7 @@ public class ExcptContractBean extends BaseContractBean {
      */
     private String judgement;
 
-    public ExcptContractBean() {
+    public BaseContractExcptBean() {
     }
 
     public String getExceptionTag() {

@@ -7,7 +7,7 @@ import android.os.Bundle;
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.guyuan.dear.R;
-import com.guyuan.dear.focus.client.data.FocusClientViewModel;
+import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.client.data.WorkClientViewModel;
@@ -25,18 +25,19 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class WorkClientDetailActivity extends BaseToolbarActivity<ActivityWithToolbarBinding, WorkClientViewModel> {
 
-    public static void start(Context context, String title) {
+
+
+    public static void start(Context context, ClientCompanyBean data) {
         Intent intent = new Intent(context, WorkClientDetailActivity.class);
-        intent.putExtra(ConstantValue.KEY_TITLE, title);
+        intent.putExtra(ConstantValue.KEY_CONTENT, data);
         context.startActivity(intent);
     }
 
-
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-        String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
-        binding.toolbarContainer.titleTv.setText(title);
-        WorkClientDetailFragment mFragment = WorkClientDetailFragment.newInstance();
+        ClientCompanyBean bean = (ClientCompanyBean) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
+        binding.toolbarContainer.titleTv.setText("客户详情");
+        WorkClientDetailFragment mFragment = WorkClientDetailFragment.newInstance(bean);
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
                 WorkClientDetailFragment.TAG);
     }

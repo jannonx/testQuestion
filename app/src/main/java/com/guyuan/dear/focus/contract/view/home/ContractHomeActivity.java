@@ -9,6 +9,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.contract.view.contractExcptList.ExcptContractListFragment;
+import com.guyuan.dear.focus.contract.view.contractRestart.RestartContractListFragment;
 import com.guyuan.dear.focus.contract.view.contractSum.ComContractsSumFragment;
 import com.guyuan.dear.utils.ConstantValue;
 
@@ -37,6 +38,7 @@ public class ContractHomeActivity extends BaseTabActivity<ActivityBaseTabBinding
             {
                 add("合同概况");
                 add("合同异常");
+                add("合同重启");
             }
         };
     }
@@ -47,6 +49,7 @@ public class ContractHomeActivity extends BaseTabActivity<ActivityBaseTabBinding
             {
                 add(ComContractsSumFragment.getInstance());
                 add(ExcptContractListFragment.getInstance());
+                add(RestartContractListFragment.getInstance());
             }
         };
     }
@@ -61,6 +64,7 @@ public class ContractHomeActivity extends BaseTabActivity<ActivityBaseTabBinding
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
         return tabDrawableList;

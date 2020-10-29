@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
@@ -17,8 +18,10 @@ import com.guyuan.dear.R;
 
 import com.guyuan.dear.databinding.FragmentFoucsClientDetailBinding;
 import com.guyuan.dear.focus.client.activity.FocusClientDetailActivity;
+import com.guyuan.dear.focus.client.adapter.ClientPhoneHeaderAdapter;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
+import com.guyuan.dear.focus.client.bean.ClientContactBean;
 import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
@@ -30,6 +33,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.RequestBody;
+import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 import static com.guyuan.dear.utils.ConstantValue.FIRST_PAGE;
 import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
@@ -68,7 +73,8 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
 
     @Override
     protected void initialization() {
-        initView();
+        initHeaderView();
+        initViewPager();
         initData();
     }
 
@@ -91,20 +97,31 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
         });
     }
 
-    private RequestBody getListRequestBody(int pageNum) {
-        ListClientRequestBody body = new ListClientRequestBody();
-        ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
-        filtersBean.setId(clientData.getId());
-        body.setFilters(filtersBean);
-        body.setPageNum(pageNum);
-        body.setPageSize(PAGE_SIZE);
+    private void initHeaderView() {
+        ClientCompanyBean clientCompanyBean = new ClientCompanyBean();
+        List<ClientContactBean> childList = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            ClientContactBean contactBean = new ClientContactBean();
+            contactBean.setPhone("ClientContactBean" + i);
+            childList.add(contactBean);
+        }
+        clientCompanyBean.setList(childList);
+        ClientPhoneHeaderAdapter listAdapter = new ClientPhoneHeaderAdapter(getContext(), clientCompanyBean.getList(),
+                R.layout.item_focus_client_phone);
+        BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter(listAdapter);
+        binding.baseRecycleView.setAdapter(adapter);
+        binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.baseRecycleView.setLoadMoreEnabled(false);
+        binding.baseRecycleView.setPullRefreshEnabled(false);
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
 
-        String str = GsonUtil.objectToString(body);
-        return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
-                "charset=utf-8"), str);
+            }
+        });
     }
 
-    private void initView() {
+    private void initViewPager() {
         List<Fragment> tabFragmentList = new ArrayList<>();
         followStatusFragment = FollowStatusFragment.newInstance();
         basicInfoFragment = BasicInfoFragment.newInstance();
@@ -154,6 +171,21 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
             }
         }
     }
+
+
+    private RequestBody getListRequestBody(int pageNum) {
+        ListClientRequestBody body = new ListClientRequestBody();
+        ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
+        filtersBean.setId(clientData.getId());
+        body.setFilters(filtersBean);
+        body.setPageNum(pageNum);
+        body.setPageSize(PAGE_SIZE);
+
+        String str = GsonUtil.objectToString(body);
+        return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
+                "charset=utf-8"), str);
+    }
+
 
     private int getCustomViewId() {
         return R.layout.layout_tab_text;

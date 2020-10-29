@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.guyuan.dear.focus.contract.adapter.ComponentStatesAdapter;
 import com.guyuan.dear.focus.contract.adapter.ContractPrgDetailKnotAdapter;
-import com.guyuan.dear.focus.contract.adapter.ContractPrgKnotItemDecorator;
+import com.guyuan.dear.customizeview.itemDecorator.ContractPrgKnotItemDecorator;
 import com.guyuan.dear.focus.contract.bean.ComponentStateBean;
 import com.guyuan.dear.focus.contract.bean.ContractPrgKnot;
 

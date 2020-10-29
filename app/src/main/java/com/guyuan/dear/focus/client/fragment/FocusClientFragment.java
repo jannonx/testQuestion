@@ -8,27 +8,18 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
-import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
-import com.guyuan.dear.approve.adapter.ApprovedListAdapter;
-import com.guyuan.dear.approve.bean.ApplyBean;
-import com.guyuan.dear.approve.bean.ApprovalData;
-import com.guyuan.dear.base.bean.ListRequestBody;
-import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.client.activity.FocusClientActivity;
 import com.guyuan.dear.focus.client.activity.FocusClientDetailActivity;
 import com.guyuan.dear.focus.client.adapter.ClientListAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.focus.client.bean.ClientContactBean;
 import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
 import com.guyuan.dear.utils.GsonUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.RequestBody;
@@ -81,6 +72,7 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
     }
 
     private void initData() {
+        etSearch.setHint("输入客户名称、手机号");
         viewModel.getClientList(getListRequestBody(FIRST_PAGE));
         viewModel.getClientListEvent().observe(getActivity(), new Observer<ResultBean<List<ClientCompanyBean>>>() {
             @Override

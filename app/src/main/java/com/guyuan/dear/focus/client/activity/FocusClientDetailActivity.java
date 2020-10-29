@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 
 /**
- * @description: 我的关注-客户
+ * @description: 我的关注-客户详情
  * @author: Jannonx
  * @since: 2020/10/26 16:11
  * @company: 固远（深圳）信息技术有限公司
