@@ -9,6 +9,7 @@ import com.example.mvvmlibrary.databinding.ActivityWithoutToolbarBinding;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
 import com.guyuan.dear.scan.util.ConstanceValues;
+import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
 /**
@@ -28,9 +29,12 @@ public class FocusAssessListActivity extends BaseToolbarActivity<ActivityWithout
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-
+        String searchContent = getIntent().getStringExtra(ConstantValue.KEY_CONTENT);
+        FocusAssessListFragment listFragment = FocusAssessListFragment.newInstance
+                (FocusAssessListFragment.TOTAL, searchContent);
+        ActivityUtils.addFragmentToActivity(fragmentManager, listFragment, R.id.fragment_container,
+                FocusAssessListFragment.TAG);
     }
-
 
 
     @Override

@@ -40,9 +40,5 @@ public class ContractExcptDetailActivity extends BaseToolbarActivity<ActivityCon
                 .commit();
 
     }
-
-    @Override
-    public void viewModuleCallBack(Object o) {
-
-    }
+    
 }

@@ -189,7 +189,7 @@ public class FocusClientViewModel extends BaseViewModel {
                     @Override
                     protected void onError(ErrorBean errorBean) {
                         getTip().setValue(errorBean.getErrorResult());
-                        getCallBack().setValue(errorBean);
+                      //  getCallBack().setValue(errorBean);
                     }
                 }).getHelper().flow();
         addSubscription(disposable);
