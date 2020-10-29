@@ -6,16 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
+import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.work.client.activity.WorkClientActivity;
 import com.guyuan.dear.work.client.activity.WorkClientDetailActivity;
 import com.guyuan.dear.work.client.adapter.ClientFollowAdapter;
 import com.guyuan.dear.work.client.data.WorkClientViewModel;
+
+import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
@@ -55,12 +60,26 @@ public class ClientFollowFragment extends BaseListSearchFragment<SimpleTabBean, 
             }
         });
 
+        initData();
+    }
 
+    private void initData() {
+        viewModel.getMyClientList(1L);
+        viewModel.getMyClientListEvent().observe(getActivity(), new Observer<ResultBean<List<ClientCompanyBean>>>() {
+            @Override
+            public void onChanged(ResultBean<List<ClientCompanyBean>> dataRefreshBean) {
+            }
+        });
     }
 
     @Override
     protected void onSearch(String text) {
-        WorkClientDetailActivity.start(getContext(), "详情");
+        viewModel.getClientListByName(text);
+        viewModel.getClientListEvent().observe(getActivity(), new Observer<ResultBean<List<ClientCompanyBean>>>() {
+            @Override
+            public void onChanged(ResultBean<List<ClientCompanyBean>> dataRefreshBean) {
+            }
+        });
     }
 
     @Override

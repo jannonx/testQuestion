@@ -10,8 +10,10 @@ import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFollowStatusBinding;
 import com.guyuan.dear.focus.client.adapter.FollowStatusExAdapter;
+import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
+import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
 
 import java.util.ArrayList;
@@ -23,16 +25,22 @@ import java.util.List;
  * @since: 2020/10/27 14:31
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollowStatusBinding,FocusClientViewModel> {
+public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollowStatusBinding, FocusClientViewModel> {
 
     public static final String TAG = "FollowStatusFragment";
     private FocusClientViewModel viewModel;
     private List<CommentsBean> dataList = new ArrayList<>();
+    private boolean isFocus = false;
 
     public static FollowStatusFragment newInstance() {
-        Bundle args = new Bundle();
+        return newInstance(false);
+    }
+
+    public static FollowStatusFragment newInstance(boolean isFocus) {
+        Bundle bundle = new Bundle();
         FollowStatusFragment fragment = new FollowStatusFragment();
-        fragment.setArguments(args);
+        bundle.putBoolean(ConstantValue.KEY_CONTENT, isFocus);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -43,6 +51,9 @@ public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollow
 
     @Override
     protected void initialization() {
+        Bundle arguments = getArguments();
+        isFocus = arguments.getBoolean(ConstantValue.KEY_CONTENT);
+
         int parentIndex = 3;
         int childIndex = 5;
         for (int i = 0; i < parentIndex; i++) {
@@ -60,6 +71,8 @@ public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollow
 
         View footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_client_all, null);
         FollowStatusExAdapter adapter = new FollowStatusExAdapter(getContext(), dataList);
+        adapter.setCommentBtnVisible(isFocus);
+
         binding.elvComments.setAdapter(adapter);
 
         binding.elvComments.setGroupIndicator(null);
@@ -78,6 +91,16 @@ public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollow
         }
         adapter.notifyDataSetChanged();
 
+
+        adapter.setChildItemClickListener(new FollowStatusExAdapter.ChildItemClickListener() {
+
+            @Override
+            public void onCommentClicked(CommentsBean bean) {
+                viewModel.postCommentFollowUp(bean.getId(), "哈哈哈");
+            }
+
+
+        });
     }
 
     @Override

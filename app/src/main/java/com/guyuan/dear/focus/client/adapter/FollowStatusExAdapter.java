@@ -101,7 +101,7 @@ public class FollowStatusExAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 if (childItemClickListener != null) {
-                    childItemClickListener.onCommentClicked(bean.getDepartmentName());
+                    childItemClickListener.onCommentClicked(bean);
                 }
             }
         });
@@ -153,10 +153,13 @@ public class FollowStatusExAdapter extends BaseExpandableListAdapter {
         return false;
     }
 
-    public interface ChildItemClickListener {
-        void onChildClicked(String bean);
+    public void setCommentBtnVisible(boolean commentBtnVisible) {
+        isCommentBtnVisible = commentBtnVisible;
+    }
 
-        void onCommentClicked(String bean);
+    public interface ChildItemClickListener {
+
+        void onCommentClicked(CommentsBean bean);
     }
 
     public void setChildItemClickListener(ChildItemClickListener childItemClickListener) {

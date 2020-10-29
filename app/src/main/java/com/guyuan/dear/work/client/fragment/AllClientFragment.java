@@ -5,18 +5,26 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.client.adapter.ClientListAdapter;
+import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
+import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
+import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.work.client.activity.WorkClientActivity;
 import com.guyuan.dear.work.client.activity.WorkClientDetailActivity;
 import com.guyuan.dear.work.client.adapter.ClientAllAdapter;
 import com.guyuan.dear.work.client.data.WorkClientViewModel;
 
+import java.util.List;
+
+import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
@@ -56,11 +64,38 @@ public class AllClientFragment extends BaseListSearchFragment<SimpleTabBean, Fra
 //                ApplyDetailPageActivity.start(getContext(), bean);
             }
         });
+
+
+        initData();
+    }
+    private void initData() {
+        viewModel.getClientList(getListRequestBody(FIRST_PAGE));
+        viewModel.getClientListEvent().observe(getActivity(), new Observer<ResultBean<List<ClientCompanyBean>>>() {
+            @Override
+            public void onChanged(ResultBean<List<ClientCompanyBean>> dataRefreshBean) {
+            }
+        });
     }
 
+    private RequestBody getListRequestBody(int pageNum) {
+        ListClientRequestBody body = new ListClientRequestBody();
+        ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
+        body.setFilters(filtersBean);
+        body.setPageNum(pageNum);
+        body.setPageSize(PAGE_SIZE);
+
+        String str = GsonUtil.objectToString(body);
+        return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
+                "charset=utf-8"), str);
+    }
     @Override
     protected void onSearch(String text) {
-        WorkClientDetailActivity.start(getContext(), "详情");
+        viewModel.getClientListByName(text);
+        viewModel.getClientListEvent().observe(getActivity(), new Observer<ResultBean<List<ClientCompanyBean>>>() {
+            @Override
+            public void onChanged(ResultBean<List<ClientCompanyBean>> dataRefreshBean) {
+            }
+        });
     }
 
     @Override

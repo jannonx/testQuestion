@@ -11,7 +11,7 @@ import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.client.data.WorkClientViewModel;
 import com.guyuan.dear.work.client.fragment.AllClientFragment;
-import com.guyuan.dear.work.client.fragment.CustomerFollowFragment;
+import com.guyuan.dear.work.client.fragment.ClientFollowFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,7 +31,7 @@ public class WorkClientActivity extends BaseTabActivity<ActivityBaseTabBinding, 
 
     private AllClientFragment allClientFragment;
 
-    private CustomerFollowFragment customerFollowFragment;
+    private ClientFollowFragment clientFollowFragment;
 
     public static void start(Context context, String title) {
         Intent starter = new Intent(context, WorkClientActivity.class);
@@ -49,9 +49,9 @@ public class WorkClientActivity extends BaseTabActivity<ActivityBaseTabBinding, 
     protected List<Fragment> getFragments() {
         List<Fragment> fragmentList = new ArrayList<>();
         allClientFragment = AllClientFragment.newInstance();
-        customerFollowFragment = CustomerFollowFragment.newInstance();
+        clientFollowFragment = ClientFollowFragment.newInstance();
         fragmentList.add(allClientFragment);
-        fragmentList.add(customerFollowFragment);
+        fragmentList.add(clientFollowFragment);
         return fragmentList;
     }
 

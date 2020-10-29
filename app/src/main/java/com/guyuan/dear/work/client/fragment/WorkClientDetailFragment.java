@@ -7,22 +7,33 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
+import com.example.httplibrary.bean.RefreshBean;
+import com.example.httplibrary.bean.ResultBean;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
-import com.guyuan.dear.databinding.FragmentFoucsClientDetailBinding;
 import com.guyuan.dear.databinding.FragmentWorkClientDetailBinding;
-import com.guyuan.dear.focus.client.activity.FocusClientDetailActivity;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
+import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
+import com.guyuan.dear.focus.client.bean.CommentsBean;
+import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
+import com.guyuan.dear.focus.client.fragment.BasicInfoFragment;
+import com.guyuan.dear.focus.client.fragment.FollowStatusFragment;
+import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.work.client.activity.WorkClientDetailActivity;
 import com.guyuan.dear.work.client.data.WorkClientViewModel;
-import com.guyuan.dear.work.client.fragment.BasicInfoFragment;
-import com.guyuan.dear.work.client.fragment.FollowStatusFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import okhttp3.RequestBody;
+
+import static com.guyuan.dear.utils.ConstantValue.FIRST_PAGE;
+import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
 
 /**
  * @description: 我的关注--客户详情
@@ -36,16 +47,18 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
     private WorkClientViewModel viewModel;
     private FollowStatusFragment followStatusFragment;
     private BasicInfoFragment basicInfoFragment;
-
+    private ClientCompanyBean clientData;
 
     private int startPosition = 0;//起始选中位置
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
 
-    public static WorkClientDetailFragment newInstance() {
-        Bundle args = new Bundle();
+
+    public static WorkClientDetailFragment newInstance(ClientCompanyBean data) {
+        Bundle bundle = new Bundle();
         WorkClientDetailFragment fragment = new WorkClientDetailFragment();
-        fragment.setArguments(args);
+        bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -58,15 +71,63 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
     protected void initialization() {
         initView();
         initData();
+
     }
 
     private void initData() {
+        Bundle arguments = getArguments();
+        clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        viewModel.getClientBasicInfo(clientData.getId());
+        viewModel.getFollowCommentList(getListRequestBody(FIRST_PAGE));
+        viewModel.getClientBasicEvent().observe(getActivity(), new Observer<ResultBean<ClientCompanyBean>>() {
+            @Override
+            public void onChanged(ResultBean<ClientCompanyBean> dataRefreshBean) {
 
+            }
+        });
+        viewModel.getFollowListEvent().observe(getActivity(), new Observer<ResultBean<RefreshBean<CommentsBean>>>() {
+            @Override
+            public void onChanged(ResultBean<RefreshBean<CommentsBean>> dataRefreshBean) {
+
+            }
+        });
+        binding.tvEditFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editClientFollowComment();
+            }
+        });
+    }
+
+    /**
+     * 添加客户评论
+     */
+    private void editClientFollowComment() {
+        viewModel.postClientFollowUp(1L, "评论");
+        viewModel.getFollowClientEvent().observe(getActivity(), new Observer<ResultBean<Integer>>() {
+            @Override
+            public void onChanged(ResultBean<Integer> dataRefreshBean) {
+
+            }
+        });
+    }
+
+    private RequestBody getListRequestBody(int pageNum) {
+        ListClientRequestBody body = new ListClientRequestBody();
+        ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
+        filtersBean.setId(clientData.getId());
+        body.setFilters(filtersBean);
+        body.setPageNum(pageNum);
+        body.setPageSize(PAGE_SIZE);
+
+        String str = GsonUtil.objectToString(body);
+        return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
+                "charset=utf-8"), str);
     }
 
     private void initView() {
         List<Fragment> tabFragmentList = new ArrayList<>();
-        followStatusFragment = FollowStatusFragment.newInstance();
+        followStatusFragment = FollowStatusFragment.newInstance(true);
         basicInfoFragment = BasicInfoFragment.newInstance();
 
         tabFragmentList.add(followStatusFragment);

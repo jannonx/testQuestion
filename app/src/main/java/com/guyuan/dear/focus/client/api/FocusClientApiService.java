@@ -59,4 +59,19 @@ public interface FocusClientApiService extends BaseApiService {
      */
     @POST("base/tCustomer/findFollowById")
     Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getFollowCommentList(@Body RequestBody body);
+
+
+
+
+    /**
+     * 填写用户跟进评价
+     *
+     * @param content  评价内容
+     * @param followId 跟进id
+     * @return
+     */
+    @GET("base/tCustomer/followUp")
+    Observable<ResultBean<Integer>> postCommentFollowUp(@Query("followId") long followId,
+                                                        @Query("content") String content
+    );
 } 

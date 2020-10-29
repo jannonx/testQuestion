@@ -1,7 +1,15 @@
 package com.guyuan.dear.work.client.data;
 
 
+import com.example.httplibrary.bean.RefreshBean;
+import com.example.httplibrary.bean.ResultBean;
+import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.work.client.api.WorkClientApiService;
+
+import java.util.List;
+
+import io.reactivex.Observable;
+import okhttp3.RequestBody;
 
 /**
  * @description:
@@ -10,10 +18,34 @@ import com.guyuan.dear.work.client.api.WorkClientApiService;
  * @company: 固远（深圳）信息技术有限公司
  */
 public class WorkClientRepository {
-    private WorkClientApiService focusAfterSaleApiService;
+    private WorkClientApiService apiService;
 
     public WorkClientRepository(WorkClientApiService focusAfterSaleApiService) {
-        this.focusAfterSaleApiService = focusAfterSaleApiService;
+        this.apiService = focusAfterSaleApiService;
+    }
+
+    Observable<ResultBean<List<ClientCompanyBean>>> getClientListByName(String name) {
+        return apiService.getClientListByName(name);
+    }
+
+    Observable<ResultBean<List<ClientCompanyBean>>> getClientList(RequestBody body) {
+        return apiService.getClientList(body);
+    }
+
+    Observable<ResultBean<List<ClientCompanyBean>>> getMyClientList(long id) {
+        return apiService.getMyClientList(id);
+    }
+
+    Observable<ResultBean<ClientCompanyBean>> getClientBasicInfo(long id) {
+        return apiService.getClientBasicInfo(id);
+    }
+
+    Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getFollowCommentList(RequestBody body) {
+        return apiService.getFollowCommentList(body);
+    }
+
+    Observable<ResultBean<Integer>> postClientFollowUp(long customerId, String content) {
+        return apiService.postClientFollowUp(customerId, content);
     }
 
 
