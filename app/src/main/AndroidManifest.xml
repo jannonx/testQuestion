@@ -71,6 +71,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".focus.contract.view.contractExptDetail.ContractExcptDetailActivity"></activity>
+        <activity android:name=".focus.contract.view.zoomView.ZoomViewActivity" />
+        <activity android:name=".focus.contract.view.contractProgress.ContractPrgDetailActivity" />
+        <activity android:name=".focus.contract.view.contractList.ContractListActivity" />
+        <activity android:name=".focus.contract.view.contractDetail.ContractDetailActivity" />
+        <activity android:name=".focus.contract.view.home.ContractHomeActivity" />
         <activity android:name=".welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

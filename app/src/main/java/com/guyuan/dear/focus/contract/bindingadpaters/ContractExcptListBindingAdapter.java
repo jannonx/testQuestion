@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.guyuan.dear.focus.contract.adapter.ContractExcptListAdapter;
-import com.guyuan.dear.focus.contract.bean.ExcptContractBean;
+import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import java.util.List;
  **/
 public class ContractExcptListBindingAdapter {
     @BindingAdapter(value = {"setExcptContractList", "setOnItemClick"}, requireAll = true)
-    public static void setExcptContractList(RecyclerView view, List<ExcptContractBean> data,
+    public static void setExcptContractList(RecyclerView view, List<BaseContractExcptBean> data,
                                             ContractExcptListAdapter.ItemClickListener itemClickListener) {
         if (data == null) {
             return;

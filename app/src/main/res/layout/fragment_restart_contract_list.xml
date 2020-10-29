@@ -25,7 +25,9 @@
             android:background="@color/color_grey_e5e5e5"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            app:setRestartedContractData="@{fragment_restart_contract_list_vm.contractList}"
+            app:setRestartedContractClickListener="@{fragment_restart_contract_list_vm.onItemClickListener}"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

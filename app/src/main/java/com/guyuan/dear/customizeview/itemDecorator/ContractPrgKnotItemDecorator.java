@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.contract.adapter;
+package com.guyuan.dear.customizeview.itemDecorator;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
