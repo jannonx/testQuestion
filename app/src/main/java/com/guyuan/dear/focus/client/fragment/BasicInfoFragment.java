@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.client.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,13 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.databinding.FragmentBasicInfoBinding;
-import com.guyuan.dear.focus.client.adapter.ClientListAdapter;
 import com.guyuan.dear.focus.client.adapter.ClientPhoneAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.bean.ClientContactBean;
-import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/10/27 14:31
  * @company: 固远（深圳）信息技术有限公司
  */
-public class BasicInfoFragment extends BaseDataBindingFragment<FragmentBasicInfoBinding,FocusClientViewModel> {
+public class BasicInfoFragment extends BaseDataBindingFragment<FragmentBasicInfoBinding, FocusClientViewModel> {
 
     public static final String TAG = "BasicInfoFragment";
     private FocusClientViewModel viewModel;
@@ -50,9 +49,10 @@ public class BasicInfoFragment extends BaseDataBindingFragment<FragmentBasicInfo
     protected void initialization() {
         ClientCompanyBean clientCompanyBean = new ClientCompanyBean();
         List<ClientContactBean> childList = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             ClientContactBean contactBean = new ClientContactBean();
             contactBean.setMailbox("ClientContactBean" + i);
+            contactBean.setPhone("18123985606");
             childList.add(contactBean);
         }
         clientCompanyBean.setList(childList);
@@ -68,7 +68,8 @@ public class BasicInfoFragment extends BaseDataBindingFragment<FragmentBasicInfo
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + childList.get(position).getPhone()));
+                startActivity(dialIntent);
             }
         });
     }

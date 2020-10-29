@@ -1,5 +1,6 @@
 package com.guyuan.dear.work.client.activity;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 
@@ -60,13 +61,14 @@ public class WorkClientActivity extends BaseTabActivity<ActivityBaseTabBinding, 
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+        checkPermissions(Manifest.permission.CALL_PHONE);
     }
 
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.tab_work_client_all_selector);
+        tabDrawableList.add(R.drawable.tab_work_client_follow_selector);
         return tabDrawableList;
     }
 

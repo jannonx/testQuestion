@@ -1,6 +1,7 @@
 package com.guyuan.dear.focus.client.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * @description:
  * @author:Jannonx
- * @date: 2020/4/27 14:50
+ * @date: 2020/10/27 10:58
  */
 public class FollowStatusExAdapter extends BaseExpandableListAdapter {
     private List<CommentsBean> mList;
@@ -91,11 +92,7 @@ public class FollowStatusExAdapter extends BaseExpandableListAdapter {
 
 
         CommentsBean bean = mList.get(groupPosition);
-        GlideUtils.getInstance().loadUrlImage(ivAvatar, bean.getImgUrl());
-        tvName.setText(bean.getCreateName());
-        tvTime.setText(bean.getCreateTime());
-        tvDepartment.setText(bean.getDepartmentName());
-        tvComments.setText(bean.getContent());
+        LogUtils.showLog("isCommentBtnVisible=" + isCommentBtnVisible);
         tvRemarkBtn.setVisibility(isCommentBtnVisible ? View.VISIBLE : View.GONE);
         tvRemarkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +102,18 @@ public class FollowStatusExAdapter extends BaseExpandableListAdapter {
                 }
             }
         });
+
+
+        if (TextUtils.isEmpty(bean.getImgUrl())){
+            return convertView;
+        }
+        GlideUtils.getInstance().loadUrlImage(ivAvatar, bean.getImgUrl());
+        tvName.setText(bean.getCreateName());
+        tvTime.setText(bean.getCreateTime());
+        tvDepartment.setText(bean.getDepartmentName());
+        tvComments.setText(bean.getContent());
+
+
         return convertView;
     }
 
@@ -139,6 +148,9 @@ public class FollowStatusExAdapter extends BaseExpandableListAdapter {
 
 
         CommentsBean bean = mList.get(groupPosition);
+        if (TextUtils.isEmpty(bean.getImgUrl())){
+            return convertView;
+        }
         GlideUtils.getInstance().loadUrlImage(ivAvatar, bean.getImgUrl());
         tvName.setText(bean.getCreateName());
         tvTime.setText(bean.getCreateTime());

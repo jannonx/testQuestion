@@ -89,7 +89,7 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
                                 break;
 
                             case ConstantValue.WORK_CUSTOMER://客户跟进
-
+                                WorkClientActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.WORK_ASSESS://工程评审
@@ -105,7 +105,7 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
                                 break;
 
                             case ConstantValue.WORK_PROJECT_SITE://工程现场
-                                WorkClientActivity.start(getContext(), title);
+
                                 break;
 
 

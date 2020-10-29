@@ -4,8 +4,6 @@ import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.focus.client.bean.CommentsBean;
-import com.guyuan.dear.focus.security.data.beans.DangerProfileBean;
 
 import java.util.List;
 

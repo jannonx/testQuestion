@@ -12,8 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_30"
         android:layout_centerInParent="true"
-        android:layout_marginStart="@dimen/dp_12"
-        android:layout_marginEnd="@dimen/dp_12"
         android:background="@drawable/shape_rect_grey_eeeeee_round_corner_50dp"
         android:focusable="true"
         android:focusableInTouchMode="true">

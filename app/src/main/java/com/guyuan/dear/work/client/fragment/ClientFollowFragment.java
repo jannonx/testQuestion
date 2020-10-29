@@ -2,7 +2,6 @@ package com.guyuan.dear.work.client.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
@@ -31,7 +29,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司
  */
-public class ClientFollowFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding,WorkClientViewModel> {
+public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBean, FragmentListBinding,WorkClientViewModel> {
 
     public static final String TAG = ClientFollowFragment.class.getSimpleName();
     private WorkClientViewModel viewModel;
@@ -46,6 +44,12 @@ public class ClientFollowFragment extends BaseListSearchFragment<SimpleTabBean, 
 
     @Override
     protected void init() {
+        etSearch.setHint("输入客户名称");
+        for (int i = 0; i < 5; i++) {
+            ClientCompanyBean contactBean = new ClientCompanyBean();
+            contactBean.setCusName("ClientCompanyBean" + i);
+            listData.add(contactBean);
+        }
         ClientFollowAdapter listAdapter = new ClientFollowAdapter(getContext(), listData,
                 R.layout.item_work_follow);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
@@ -55,8 +59,7 @@ public class ClientFollowFragment extends BaseListSearchFragment<SimpleTabBean, 
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-//                ApplyBean bean = listData.get(position);
-//                ApplyDetailPageActivity.start(getContext(), bean);
+                WorkClientDetailActivity.start(getContext(), listData.get(position));
             }
         });
 
