@@ -78,7 +78,7 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
 
 
     private void setSearch() {
-        binding.include.findViewById(R.id.layout_search_bar_tv_search).setOnClickListener(new View.OnClickListener() {
+        binding.include.etSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Editable editable = binding.include.etSearch.getText();
