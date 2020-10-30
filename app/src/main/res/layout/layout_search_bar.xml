@@ -65,7 +65,7 @@
                 tools:visibility="gone" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/layout_search_bar_tv_search"
+                android:id="@+id/tv_search_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/dp_4"
