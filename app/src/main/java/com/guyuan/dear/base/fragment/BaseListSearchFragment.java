@@ -60,7 +60,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
     @Override
     protected void initView() {
         etSearch = rootView.findViewById(R.id.et_search);
-        searchBtn = rootView.findViewById(R.id.layout_search_bar_tv_search);
+        searchBtn = rootView.findViewById(R.id.tv_search_btn);
         //    initDate();
         initListener();
         init();

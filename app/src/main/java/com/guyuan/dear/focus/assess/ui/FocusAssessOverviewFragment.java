@@ -78,17 +78,17 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
 
 
     private void setSearch() {
-        binding.include.findViewById(R.id.layout_search_bar_tv_search).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Editable editable = binding.include.etSearch.getText();
-                if (editable != null && !TextUtils.isEmpty(editable)) {
-                    FocusAssessListActivity.start(getContext(), editable.toString());
-                } else {
-                    showToastTip(ConstantValue.TIP_SEARCH);
-                }
-            }
-        });
+//        binding.include.findViewById(R.id.tv_search_btn).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Editable editable = binding.include.etSearch.getText();
+//                if (editable != null && !TextUtils.isEmpty(editable)) {
+//                    FocusAssessListActivity.start(getContext(), editable.toString());
+//                } else {
+//                    showToastTip(ConstantValue.TIP_SEARCH);
+//                }
+//            }
+//        });
     }
 
     @Override
