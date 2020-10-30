@@ -1,12 +1,23 @@
 package com.guyuan.dear.mine.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+
+import androidx.annotation.NonNull;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
-import com.guyuan.dear.databinding.FragmentFocusAssessOverviewBinding;
+import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.FragmentUserInfoBinding;
+import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.mine.activity.UserInfoActivity;
 import com.guyuan.dear.mine.data.MineViewModel;
+import com.guyuan.dear.utils.CommonUtils;
+import com.guyuan.dear.utils.GlideUtils;
+import com.guyuan.dear.utils.LogUtils;
+
+import java.util.ArrayList;
 
 /**
  * @description: 我的--个人中心
@@ -14,9 +25,11 @@ import com.guyuan.dear.mine.data.MineViewModel;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class UserInfoFragment extends BaseDataBindingFragment<FragmentUserInfoBinding, MineViewModel> {
-
-    public static final String TAG = "FocusAssessOverviewFrag";
+public class UserInfoFragment extends BaseDataBindingFragment<FragmentUserInfoBinding, MineViewModel>
+        implements View.OnClickListener, BaseTabActivity.PhotoSelectListener {
+    protected ArrayList<String> photoList = new ArrayList<>();
+    public static final String TAG = "UserInfoFragment";
+    private UserInfoActivity activity;
 
     public static UserInfoFragment newInstance() {
         Bundle args = new Bundle();
@@ -26,17 +39,67 @@ public class UserInfoFragment extends BaseDataBindingFragment<FragmentUserInfoBi
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (getActivity() != null) {
+            activity = (UserInfoActivity) getActivity();
+            viewModel = activity.getViewModel();
+        }
+    }
+
+    @Override
     protected int getLayoutID() {
         return R.layout.fragment_user_info;
     }
 
     @Override
     protected void initialization() {
+        LoginBean user = CommonUtils.getLoginInfo();
+        if (user != null && user.getUserInfo() != null) {
+            binding.tvDepartment.setText(user.getUserInfo().getDeptIdName());
+            binding.tvPosition.setText(user.getUserInfo().getPointIdName());
+            String imgUrl = user.getUserInfo().getImgUrl();
+            GlideUtils.getInstance().loadUserCircleImageFromGuYuanServer(binding.ivAvatar, imgUrl);
+        } else {
+            showToastTip("用户信息为空/UserInfo为空。");
+        }
 
+        binding.rlAvatar.setOnClickListener(this);
+        binding.tvLogout.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            //选择头像
+            case R.id.rl_avatar:
+                activity.openAlbum(BaseTabActivity.FIRST);
+                break;
+            //退出账号
+            case R.id.tv_logout:
+                CommonUtils.logout(getContext());
+                break;
+        }
     }
 
     @Override
     protected int getVariableId() {
         return 0;
+    }
+
+
+
+    @Override
+    public ArrayList<String> getSelectedMediaList() {
+        return photoList;
+    }
+
+    @Override
+    public void onPhotoSelected(ArrayList<String> dataList) {
+        for (String path : dataList) {
+            LogUtils.showLog("path=" + path);
+        }
+        photoList.clear();
+        GlideUtils.getInstance().loadUserCircleImageFromGuYuanServer(binding.ivAvatar, dataList.get(0));
     }
 }

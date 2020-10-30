@@ -158,6 +158,24 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
         }
     }
 
+    /**
+     * 打开相册，获得单张照片
+     *
+     * @param type
+     */
+    public void pickSinglePhoto(int type) {
+        checkPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA);
+        currentFileType = type;
+        ArrayList<String> currentFileList = getCurrentFileList(currentFileType);
+        if (currentFileList != null) {
+            FilePickerBuilder.getInstance().setMaxCount(1)
+                    .setSelectedFiles(currentFileList)
+                    .enableVideoPicker(false)
+                    .setActivityTheme(R.style.LibAppTheme)
+                    .pickPhoto(this);
+        }
+    }
+
     private ArrayList<String> getCurrentPhotoList(int photoType) {
         switch (photoType) {
             case FIRST:

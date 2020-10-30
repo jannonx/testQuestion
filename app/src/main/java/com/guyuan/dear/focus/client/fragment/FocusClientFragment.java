@@ -19,6 +19,7 @@ import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
 import com.guyuan.dear.utils.GsonUtil;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.List;
 
@@ -99,6 +100,7 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
         viewModel.getClientListEvent().observe(getActivity(), new Observer<ResultBean<List<ClientCompanyBean>>>() {
             @Override
             public void onChanged(ResultBean<List<ClientCompanyBean>> dataRefreshBean) {
+
             }
         });
     }
