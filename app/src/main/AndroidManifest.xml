@@ -71,7 +71,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".focus.contract.view.contractRestartDetail.RestartedContractDetailActivity"></activity>
+        <activity android:name=".work.contractPause.views.home.ContractPauseHomeActivity"></activity>
+        <activity android:name=".focus.contract.view.contractRestartDetail.RestartedContractDetailActivity" />
         <activity android:name=".focus.contract.view.contractExptDetail.ContractExcptDetailActivity" />
         <activity android:name=".focus.contract.view.zoomView.ZoomViewActivity" />
         <activity android:name=".focus.contract.view.contractProgress.ContractPrgDetailActivity" />
