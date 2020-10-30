@@ -34,7 +34,7 @@ public class BaseViewModel extends ViewModel {
     private SingleLiveEvent<Map<String, Object>> startActivityEvent;//activity跳转
     private SingleLiveEvent<Void> finishEvent;  //关闭当前activity
     private SingleLiveEvent<Void> onBackPressedEvent; //点击返回键
-
+    private SingleLiveEvent<Void> listComplete;   //列表获取数据结束
 
     public SingleLiveEvent<String> getShowLoading() {
         showLoading = createLiveData(showLoading);
@@ -66,7 +66,12 @@ public class BaseViewModel extends ViewModel {
         return onBackPressedEvent;
     }
 
-    protected  <T> SingleLiveEvent<T> createLiveData(SingleLiveEvent<T> liveData) {
+    public SingleLiveEvent<Void> getListComplete() {
+        listComplete = createLiveData(listComplete);
+        return listComplete;
+    }
+
+    protected <T> SingleLiveEvent<T> createLiveData(SingleLiveEvent<T> liveData) {
         if (liveData == null) {
             liveData = new SingleLiveEvent<T>();
         }

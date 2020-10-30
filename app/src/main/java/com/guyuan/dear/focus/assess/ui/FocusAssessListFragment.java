@@ -34,6 +34,7 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
     public static final int TOTAL = 0;       //所有评审
     public static final int PASS = 30;       //已通过评审
     public static final int NOT_PASS = 40;   //未通过评审
+    public static final int OVERVIEW_SEARCH = -1;     //概览根据内容查询所有评审
     private int type;
 
     public static FocusAssessListFragment newInstance(int type, String searchContent) {

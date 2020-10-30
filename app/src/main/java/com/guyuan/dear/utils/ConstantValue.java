@@ -47,6 +47,7 @@ public class ConstantValue {
     public static final String KEY_CONTRACT_TYPE = "KEY_CONTRACT_TYPE";
     public static final String KEY_CONTRACT_LOGS = "KEY_CONTRACT_LOGS";
     public static final String KEY_DISPLAY_INDEX = "KEY_DISPLAY_INDEX";
+
     public static int isForground;   //app是否在前台
     public static boolean hasNewVersion = false;//是否有新版本
 
@@ -97,7 +98,7 @@ public class ConstantValue {
     public static final String FOCUS_MORNING_MEETING = "focus_morning_meeting";
     public static final String FOCUS_SMART_GUARD = "focus_smart_guard";
     public static final String FOCUS_CONSTRUCTION_MONITORING = "focus_construction_monitoring";
-    public static final String FOCUS_CONTRACT="focus_contract";
+    public static final String FOCUS_CONTRACT = "focus_contract";
 
 
     //我的工作
@@ -111,6 +112,8 @@ public class ConstantValue {
     public static final String WORK_AFTER_SERVICE = "work_after_service";
     public static final String WORK_MEETING = "work_meeting";
     public static final String WORK_APPROVE = "work_approve";
+    public static final String CONTRACT_PAUSE = "contract_pause";
+    public static final String CONTRACT_RESTART="contract_restart";
 
 
     //摄像头界面
@@ -252,4 +255,8 @@ public class ConstantValue {
     public static final String STOCK_TYPE = "stockType";
     public static final int STOCK_MATERIAL = 1;
     public static final int STOCK_PRODUCT = 2;
+
+    //提示语
+    public static final String TIP_SEARCH = "请填写搜索内容";
+    public static final String TIP_NO_DATA = "暂无数据";
 }

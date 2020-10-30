@@ -250,8 +250,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void showToastTip(String message) {
-        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(getApplicationContext(), null, Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setText(message);
         toast.show();
     }
 

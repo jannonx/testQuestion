@@ -40,8 +40,5 @@ public class RestartedContractDetailActivity extends BaseToolbarActivity<
                 .commit();
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 }
