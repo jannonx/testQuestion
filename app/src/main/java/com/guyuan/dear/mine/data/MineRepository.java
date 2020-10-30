@@ -1,7 +1,16 @@
 package com.guyuan.dear.mine.data;
 
 
+import com.example.httplibrary.bean.ResultBean;
+import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.mine.api.MineApiService;
+
+import java.util.List;
+import java.util.Map;
+
+import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.PartMap;
 
 /**
  * @description:
@@ -10,11 +19,17 @@ import com.guyuan.dear.mine.api.MineApiService;
  * @company: 固远（深圳）信息技术有限公司
  */
 public class MineRepository {
-    private MineApiService mineApiService;
+    private MineApiService apiService;
 
     public MineRepository(MineApiService mineApiService) {
-        this.mineApiService = mineApiService;
+        this.apiService = mineApiService;
     }
 
+    Observable<ResultBean<Integer>> editUserPassWord(String password, String newPassword) {
+        return apiService.editUserPassWord(password, newPassword);
+    }
 
+    Observable<ResultBean<List<UploadBean>>> uploadPic(@PartMap Map<String, RequestBody> map) {
+        return apiService.uploadPic(map);
+    }
 }

@@ -82,13 +82,6 @@ public class FocusClientViewModel extends BaseViewModel {
                         ResultBean<List<ClientCompanyBean>> bean = (ResultBean<List<ClientCompanyBean>>) o;
                         clientListByNameEvent.postValue(bean);
                     }
-                })
-                .fail(new ErrorResultBean() {
-                    @Override
-                    protected void onError(ErrorBean errorBean) {
-                        getTip().setValue(errorBean.getErrorResult());
-                        //getCallBack().setValue(errorBean);
-                    }
                 }).getHelper().flow();
         addSubscription(disposable);
     }
@@ -106,13 +99,6 @@ public class FocusClientViewModel extends BaseViewModel {
                     public void accept(Object o) throws Exception {
                         ResultBean<List<ClientCompanyBean>> bean = (ResultBean<List<ClientCompanyBean>>) o;
                         clientListEvent.postValue(bean);
-                    }
-                })
-                .fail(new ErrorResultBean() {
-                    @Override
-                    protected void onError(ErrorBean errorBean) {
-                        getTip().setValue(errorBean.getErrorResult());
-                     //   getCallBack().setValue(errorBean);
                     }
                 }).getHelper().flow();
         addSubscription(disposable);
@@ -132,13 +118,6 @@ public class FocusClientViewModel extends BaseViewModel {
                         ResultBean<ClientCompanyBean> bean = (ResultBean<ClientCompanyBean>) o;
                         clientBasicEvent.postValue(bean);
                     }
-                })
-                .fail(new ErrorResultBean() {
-                    @Override
-                    protected void onError(ErrorBean errorBean) {
-                        getTip().setValue(errorBean.getErrorResult());
-                     //   getCallBack().setValue(errorBean);
-                    }
                 }).getHelper().flow();
         addSubscription(disposable);
     }
@@ -156,13 +135,6 @@ public class FocusClientViewModel extends BaseViewModel {
                     public void accept(Object o) throws Exception {
                         ResultBean<RefreshBean<CommentsBean>> bean = (ResultBean<RefreshBean<CommentsBean>>) o;
                         followListEvent.postValue(bean);
-                    }
-                })
-                .fail(new ErrorResultBean() {
-                    @Override
-                    protected void onError(ErrorBean errorBean) {
-                        getTip().setValue(errorBean.getErrorResult());
-                    //    getCallBack().setValue(errorBean);
                     }
                 }).getHelper().flow();
         addSubscription(disposable);
@@ -183,13 +155,6 @@ public class FocusClientViewModel extends BaseViewModel {
                     public void accept(Object o) throws Exception {
                         ResultBean<Integer> bean = (ResultBean<Integer>) o;
                         followUserEvent.postValue(bean);
-                    }
-                })
-                .fail(new ErrorResultBean() {
-                    @Override
-                    protected void onError(ErrorBean errorBean) {
-                        getTip().setValue(errorBean.getErrorResult());
-                      //  getCallBack().setValue(errorBean);
                     }
                 }).getHelper().flow();
         addSubscription(disposable);

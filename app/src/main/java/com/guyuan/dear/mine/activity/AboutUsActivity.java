@@ -7,8 +7,6 @@ import android.os.Bundle;
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.guyuan.dear.R;
-import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
-import com.guyuan.dear.focus.purchase.fragment.ContractProgressDetailFragment;
 import com.guyuan.dear.mine.data.MineViewModel;
 import com.guyuan.dear.mine.fragment.AboutUsFragment;
 import com.guyuan.dear.utils.ActivityUtils;

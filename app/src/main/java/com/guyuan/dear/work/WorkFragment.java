@@ -16,6 +16,7 @@ import com.guyuan.dear.scan.ScanActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
 import com.guyuan.dear.work.client.activity.WorkClientActivity;
+import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeActivity;
 
 import java.util.ArrayList;
 
@@ -120,6 +121,13 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
 
                             case ConstantValue.WORK_APPROVE://审批处理
 
+                                break;
+
+                            case ConstantValue.CONTRACT_PAUSE://合同暂停
+                                ContractPauseHomeActivity.start(getContext(),title);
+                                break;
+
+                            case ConstantValue.CONTRACT_RESTART://合同重启
                                 break;
 
                             default:
