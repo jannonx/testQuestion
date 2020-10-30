@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.ItemContractExcptCommentBinding;
 import com.guyuan.dear.databinding.ItemContractExcptCommentTailBinding;
-import com.guyuan.dear.focus.contract.bean.ContractExcptComment;
+import com.guyuan.dear.focus.contract.bean.ContractApproveLog;
 
 import java.util.List;
 
@@ -24,13 +24,13 @@ import java.util.List;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class ContractCommentAdapter extends RecyclerView.Adapter<ContractCommentAdapter.ViewHolder> {
-    private List<ContractExcptComment> list;
+    private List<ContractApproveLog> list;
     private Context context;
     private long contractCreateDate;
     private String contractApplier;
     private static final int VIEW_TYPE_TAIL = 1;
 
-    public ContractCommentAdapter(List<ContractExcptComment> list, long contractCreateDate, String applier, Context context) {
+    public ContractCommentAdapter(List<ContractApproveLog> list, long contractCreateDate, String applier, Context context) {
         this.list = list;
         this.context = context;
         this.contractCreateDate = contractCreateDate;

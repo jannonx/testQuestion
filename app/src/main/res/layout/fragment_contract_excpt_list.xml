@@ -12,15 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_20"
-            android:background="@color/color_grey_e5e5e5"/>
         <include layout="@layout/layout_search_bar"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_10"
-            android:background="@color/color_grey_e5e5e5"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

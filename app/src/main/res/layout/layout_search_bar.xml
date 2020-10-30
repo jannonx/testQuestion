@@ -1,53 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_search_bar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_44"
+    android:paddingTop="@dimen/dp_7"
+    android:paddingBottom="@dimen/dp_7"
+    android:paddingLeft="@dimen/dp_12"
+    android:paddingRight="@dimen/dp_12"
+    android:background="@color/white">
 
-<layout>
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/rl_search_bar"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_search_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_44"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/dp_12"
-        android:paddingTop="@dimen/dp_7"
-        android:paddingRight="@dimen/dp_12"
-        android:paddingBottom="@dimen/dp_7">
+        android:layout_height="@dimen/dp_30"
+        android:layout_centerInParent="true"
+        android:background="@drawable/shape_rect_grey_eeeeee_round_corner_50dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_30"
-            android:layout_centerInParent="true"
-            android:background="@drawable/shape_rect_grey_eeeeee_round_corner_50dp"
-            android:focusable="true"
-            android:focusableInTouchMode="true">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_search"
+            android:layout_width="@dimen/dp_17"
+            android:layout_height="@dimen/dp_17"
+            android:layout_marginStart="@dimen/dp_13"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/et_search"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_svg_search" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_search"
-                android:layout_width="@dimen/dp_17"
-                android:layout_height="@dimen/dp_17"
-                android:layout_marginStart="@dimen/dp_13"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/et_search"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_svg_search" />
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_search"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dp_5"
-                android:background="@null"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textColor="#000000"
-                android:textSize="@dimen/sp_13"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/iv_search"
-                app:layout_constraintRight_toLeftOf="@id/iv_clear"
-                app:layout_constraintTop_toTopOf="parent" />
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp_5"
+            android:background="@null"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#000000"
+            android:textSize="@dimen/sp_13"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/iv_search"
+            app:layout_constraintRight_toLeftOf="@id/iv_clear"
+            app:layout_constraintTop_toTopOf="parent"
+            android:hint="输入客户名称或合同编号"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_clear"
@@ -83,5 +81,4 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </RelativeLayout>
-</layout>
 

@@ -71,7 +71,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".focus.contract.view.contractExptDetail.ContractExcptDetailActivity"></activity>
+        <activity android:name=".focus.contract.view.contractRestartDetail.RestartedContractDetailActivity"></activity>
+        <activity android:name=".focus.contract.view.contractExptDetail.ContractExcptDetailActivity" />
         <activity android:name=".focus.contract.view.zoomView.ZoomViewActivity" />
         <activity android:name=".focus.contract.view.contractProgress.ContractPrgDetailActivity" />
         <activity android:name=".focus.contract.view.contractList.ContractListActivity" />
@@ -84,7 +85,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- #############掌上办公############# -->
-        <activity android:name=".focus.sales.view.zoomView.ZoomViewActivity"/>
+        <activity android:name=".focus.sales.view.zoomView.ZoomViewActivity" />
         <activity android:name=".focus.sales.view.contractProgress.ContractPrgDetailActivity" />
         <activity android:name=".focus.sales.view.contractList.ContractListActivity" />
         <activity android:name=".focus.sales.view.contractDetail.ContractDetailActivity" />
@@ -101,7 +102,6 @@
 
         <activity android:name=".home.MainActivity" />
         <activity android:name=".login.ui.LoginActivity" />
-
         <activity
             android:name=".approve.ApproveActivity"
             android:launchMode="singleTop"
@@ -202,7 +202,6 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".work.client.activity.WorkClientActivity"
             android:launchMode="singleTop"
@@ -213,8 +212,6 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-
-
         <activity
             android:name=".focus.projectsite.activity.FocusProjectSiteActivity"
             android:launchMode="singleTop"

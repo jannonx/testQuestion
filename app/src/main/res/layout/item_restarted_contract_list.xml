@@ -8,55 +8,81 @@
             type="com.guyuan.dear.focus.contract.bean.RestartedContractBean"/>
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_10"
-        android:layout_margin="@dimen/dp_10"
-        android:background="@color/white">
-        <TableLayout
-            android:layout_width="0dp"
+        android:padding="@dimen/dp_12"
+        android:background="@drawable/bg_white_corner_4"
+        android:layout_margin="@dimen/dp_12"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.buyer}"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/color_black_333333"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.restartStateTag,default=xxx}"
+                android:paddingLeft="@dimen/dp_4"
+                android:paddingRight="@dimen/dp_4"
+                android:paddingBottom="@dimen/dp_2"
+                android:paddingTop="@dimen/dp_2"
+                android:textColor="#00B578"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:background="@drawable/bg_green_d4fff1_round_corner_2dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/item_restarted_contract_list_tv_tag"
-            app:layout_constraintTop_toTopOf="parent"
-            android:shrinkColumns="1"
+            android:layout_marginTop="@dimen/dp_8">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/color_black_333333"
+                android:textStyle="bold"
+                android:text="合同编号："/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/color_black_333333"
+                android:textStyle="bold"
+                android:text="@{data.contractId}"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-            >
-            <TableRow>
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:text="客户名称："
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:text="@{data.buyer}"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
-            </TableRow>
-            <TableRow>
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:text="合同编号：" />
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:text="@{data.contractId}"/>
-            </TableRow>
-            <TableRow>
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:text="重启原因：" />
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:text="@{data.restartCause}"/>
-            </TableRow>
-        </TableLayout>
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/item_restarted_contract_list_tv_tag"
-            android:layout_width="@dimen/dp_50"
-            android:layout_height="@dimen/dp_50"
-            android:text="@{data.restartStateTag}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:background="@drawable/ic_svg_round_filled_blue_1890ff_24dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/dp_8"
+            android:background="@color/color_grey_e5e5e5"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/color_grey_999999"
+                android:text="原因："/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_14"
+                android:textColor="@color/color_grey_999999"
+                android:text="@{data.restartCause}"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 </layout>

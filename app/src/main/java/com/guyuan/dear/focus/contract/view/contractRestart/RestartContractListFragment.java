@@ -6,6 +6,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentRestartContractListBinding;
 import com.guyuan.dear.focus.contract.adapter.RestartedContractListAdapter;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
+import com.guyuan.dear.focus.contract.view.contractRestartDetail.RestartedContractDetailActivity;
 
 /**
  * @author: 廖华凯
@@ -40,8 +41,7 @@ public class RestartContractListFragment extends BaseMvvmFragment<FragmentRestar
         viewModel.setOnItemClickListener(new RestartedContractListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RestartedContractBean item, int pos) {
-                //todo
-                showToastTip("待开发");
+                RestartedContractDetailActivity.start(getContext(),"合同重启详情",item.getContractId());
             }
         });
         viewModel.getRestartedContractListFromNet();

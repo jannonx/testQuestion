@@ -7,9 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.customizeview.layoutManager.FullyLinearLayoutManager;
 import com.guyuan.dear.focus.contract.adapter.ContractCommentAdapter;
-import com.guyuan.dear.focus.contract.bean.ContractExcptComment;
+import com.guyuan.dear.focus.contract.bean.ContractApproveLog;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.Vote;
 
 import java.util.List;
@@ -23,7 +22,7 @@ import java.util.List;
 public class ContractExcptDetailBindingAdapter {
     @BindingAdapter(value = {"setContractExcptDetailCommentList","setContractExcptDetailCreateDate","setContractExcptDetailApplier"},requireAll = true)
     public static void setContractExcptDetailCommentList(
-            RecyclerView view, List<ContractExcptComment> list, long contractDate,String applier){
+            RecyclerView view, List<ContractApproveLog> list, long contractDate, String applier){
         if(list==null){
             return;
         }

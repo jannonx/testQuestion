@@ -8,12 +8,12 @@ import com.guyuan.dear.focus.contract.bean.contractPrgLog.Vote;
  * @since: 2020/10/28 11:23
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ContractExcptComment extends Vote {
+public class ContractApproveLog extends Vote {
     private String dept;
     private String comment;
     private long date;
 
-    public ContractExcptComment() {
+    public ContractApproveLog() {
     }
 
     public String getDept() {
