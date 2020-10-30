@@ -180,10 +180,7 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Bas
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {

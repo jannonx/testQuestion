@@ -43,10 +43,7 @@ public class ApprovePrettyCashActivity extends BaseToolbarActivity<ActivityWithT
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

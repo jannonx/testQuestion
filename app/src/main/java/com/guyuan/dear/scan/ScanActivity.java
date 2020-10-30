@@ -145,8 +145,5 @@ public class ScanActivity extends BaseNoToolbarActivity<ActivityScanBinding, Bas
 
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 }

@@ -40,10 +40,7 @@ public interface FocusAssessApiService extends BaseApiService {
 
     //评审列表
     @POST(ASSESS_LIST)
-    Observable<ResultBean<AssessListBean>> getAssessList(@Field(PAGE_INDEX) int pageIndex,
-                                                         @Field(PAGE_SIZE) int pageSize,
-                                                         @Field(QUERY_PARAMS) String queryParams,
-                                                         @Field(STATUS) int status);
+    Observable<ResultBean<AssessListBean>> getAssessList(@Body RequestBody body);
 
     //评审详情
     @POST(ASSESS_DETAIL)

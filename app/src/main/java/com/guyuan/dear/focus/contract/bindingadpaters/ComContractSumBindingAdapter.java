@@ -1,18 +1,22 @@
 package com.guyuan.dear.focus.contract.bindingadpaters;
 
 import android.graphics.Color;
+import android.service.autofill.Dataset;
 
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.BindingAdapter;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
@@ -51,20 +55,29 @@ public class ComContractSumBindingAdapter {
         pieData.put("已完成",data.getFinishedContracts()*1.f);
         view.setData(pieData,"");
         view.getLegend().setEnabled(false);
-        view.setUsePercentValues(false);
-        view.getData().setDrawValues(true);
-        view.getData().setValueFormatter(new IValueFormatter() {
+        PieData dateSet = view.getData();
+        PieDataSet pieDataSet = (PieDataSet) dateSet.getDataSet();
+        pieDataSet.setYValuePosition(PieDataSet.ValuePosition.INSIDE_SLICE);
+        pieDataSet.setValueTextColor(Color.WHITE);
+        pieDataSet.setValueTextSize(20);
+        pieDataSet.setColors(new ArrayList<Integer>(){
+            {
+                add(Color.parseColor("#1890FF"));
+                add(Color.parseColor("#F04864"));
+                add(Color.parseColor("#2FC25B"));
+            }
+        });
+        dateSet.setDrawValues(true);
+        dateSet.setValueFormatter(new IValueFormatter() {
             @Override
             public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-                return String.format(Locale.CHINA,"%d",(int)value);
+                return String.format(Locale.CHINA,"%d",(int)entry.getY());
             }
         });
         view.setExtraOffsets(10, 10, 10, 10);
         view.setHoleRadius(30f);
         view.setTransparentCircleRadius(31f);
         view.setDrawHoleEnabled(true);
-        view.setDrawEntryLabels(true);
-        view.setHighlightPerTapEnabled(true);
         view.animate();
     }
 

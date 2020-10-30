@@ -34,10 +34,7 @@ public class FocusSecurityDetailActivity extends BaseToolbarActivity<ActivityFoc
 
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

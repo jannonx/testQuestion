@@ -61,10 +61,7 @@ public class UserInfoActivity extends BaseFileUploadActivity<ActivityWithToolbar
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

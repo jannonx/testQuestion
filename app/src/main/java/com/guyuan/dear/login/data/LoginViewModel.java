@@ -75,14 +75,14 @@ public class LoginViewModel extends BaseViewModel {
                         loginBean = (LoginBean) o;
                         getTip().setValue("登录成功");
                         saveLoginData(loginBean);
-                        getCallBack().postValue(loginBean);
+                        //getCallBack().postValue(loginBean);
                     }
                 })
                 .fail(new ErrorResultBean() {
                     @Override
                     protected void onError(ErrorBean errorBean) {
                         getTip().setValue(errorBean.getErrorResult());
-                        getCallBack().setValue(errorBean);
+                       // getCallBack().setValue(errorBean);
                     }
                 }).getHelper().flow();
         addSubscription(disposable);

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="applier"
+            type="String" />
+        <variable
+            name="applyDate"
+            type="Long" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+       <androidx.appcompat.widget.AppCompatImageView
+           android:id="@+id/item_contract_excpt_comment_tail_v_anchor_1"
+           android:layout_width="@dimen/dp_24"
+           android:layout_height="@dimen/dp_24"
+           app:layout_constraintLeft_toLeftOf="parent"
+           app:layout_constraintTop_toTopOf="parent"
+           app:srcCompat="@drawable/ic_svg_timer"
+           android:layout_marginLeft="@dimen/dp_12"
+           />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_contract_excpt_comment_tail_v_anchor_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/item_contract_excpt_comment_tail_v_anchor_1"
+            app:layout_constraintTop_toTopOf="@id/item_contract_excpt_comment_tail_v_anchor_1"
+            app:layout_constraintBottom_toBottomOf="@id/item_contract_excpt_comment_tail_v_anchor_1"
+            android:textSize="14sp"
+            android:layout_marginLeft="@dimen/dp_4"
+            android:textColor="#333333"
+            android:textStyle="bold"
+            android:text="申请人："/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_contract_excpt_comment_tail_tv_applier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/item_contract_excpt_comment_tail_v_anchor_2"
+            app:layout_constraintTop_toTopOf="@id/item_contract_excpt_comment_tail_v_anchor_1"
+            app:layout_constraintBottom_toBottomOf="@id/item_contract_excpt_comment_tail_v_anchor_1"
+            android:textSize="14sp"
+            android:layout_marginLeft="@dimen/dp_4"
+            android:textColor="#333333"
+            android:textStyle="bold"
+            android:text="@{applier}"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="@dimen/sp_14"
+            android:textColor="#999999"
+            setContractDate="@{applyDate}"
+            android:layout_marginBottom="@dimen/dp_24"
+            app:layout_constraintLeft_toLeftOf="@id/item_contract_excpt_comment_tail_v_anchor_2"
+            app:layout_constraintTop_toBottomOf="@id/item_contract_excpt_comment_tail_v_anchor_2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="申请日期"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

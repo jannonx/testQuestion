@@ -53,10 +53,7 @@ public class ApplyApproveByMeActivity extends BaseToolbarActivity<ActivityWithTo
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

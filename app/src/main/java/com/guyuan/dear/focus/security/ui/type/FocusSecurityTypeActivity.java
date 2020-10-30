@@ -37,10 +37,6 @@ public class FocusSecurityTypeActivity extends BaseToolbarActivity<ActivityWithT
                 FocusSecurityTypeFragment.TAG);
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
-
-    }
 
     @Override
     protected int getLayoutID() {

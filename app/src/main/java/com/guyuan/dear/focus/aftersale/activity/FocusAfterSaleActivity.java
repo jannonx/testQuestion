@@ -80,8 +80,5 @@ public class FocusAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBindi
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 }

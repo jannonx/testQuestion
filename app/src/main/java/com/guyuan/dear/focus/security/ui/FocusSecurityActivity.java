@@ -77,10 +77,4 @@ public class FocusSecurityActivity extends BaseTabActivity<ActivityBaseTabBindin
         return tabDrawableList;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
-
-    }
-
-
 }

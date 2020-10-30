@@ -10,7 +10,7 @@
         android:id="@+id/item_contract_prg_detail_round_knot_iv_sphere"
         android:layout_width="@dimen/dp_50"
         android:layout_height="@dimen/dp_50"
-        app:srcCompat="@drawable/ic_svg_round_filled_357ee2_24"/>
+        app:srcCompat="@drawable/ic_svg_round_filled_blue_1890ff_24dp"/>
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/item_contract_prg_detail_round_knot_tv_tag"
         android:layout_width="wrap_content"

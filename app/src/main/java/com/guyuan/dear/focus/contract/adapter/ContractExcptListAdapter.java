@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.ItemExcptContractListBinding;
-import com.guyuan.dear.focus.contract.bean.ExcptContractBean;
+import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 
 import java.util.List;
 
@@ -22,11 +22,11 @@ import java.util.List;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class ContractExcptListAdapter extends RecyclerView.Adapter<ContractExcptListAdapter.ViewHolder> {
-    private List<ExcptContractBean> list;
+    private List<BaseContractExcptBean> list;
     private Context context;
     private ItemClickListener itemClickListener;
 
-    public ContractExcptListAdapter(List<ExcptContractBean> list, Context context) {
+    public ContractExcptListAdapter(List<BaseContractExcptBean> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -41,7 +41,7 @@ public class ContractExcptListAdapter extends RecyclerView.Adapter<ContractExcpt
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ExcptContractBean bean = list.get(position);
+        BaseContractExcptBean bean = list.get(position);
         ItemExcptContractListBinding binding = DataBindingUtil.getBinding(holder.itemView);
         binding.setData(bean);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +67,7 @@ public class ContractExcptListAdapter extends RecyclerView.Adapter<ContractExcpt
     }
 
     public interface ItemClickListener {
-        void onItemClick(ExcptContractBean item, int position);
+        void onItemClick(BaseContractExcptBean item, int position);
     }
 
     public void setItemClickListener(ItemClickListener itemClickListener) {

@@ -47,10 +47,7 @@ public class FocusDeviceTypeActivity extends BaseToolbarActivity<ActivityWithToo
                 FocusDeviceTypeFragment.TAG);
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
-        overviewTypeListFragment.getTypeDeviceSuccess((List<EquipmentBean>) o);
-    }
+
 
     @Override
     protected int getLayoutID() {

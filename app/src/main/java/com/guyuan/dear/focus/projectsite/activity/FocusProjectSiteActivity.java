@@ -83,8 +83,5 @@ public class FocusProjectSiteActivity extends BaseTabActivity<ActivityBaseTabBin
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 }

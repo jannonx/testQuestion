@@ -16,8 +16,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="match_parent">
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -27,306 +27,457 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp_48"
                 android:gravity="center_vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginLeft="@dimen/dp_12"
                     android:padding="@dimen/dp_10"
                     android:text="日期"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/sp_20" />
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
 
                 <Space
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp_19"
-                    app:setContractsYear="@{fragment_contact_summary_vm.selectDate}"/>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="77dp"
+                    android:layout_height="24.5dp"
+                    android:layout_marginRight="@dimen/dp_12"
+                    android:background="@drawable/bg_white_ffffff_corner_12dp"
+                    android:gravity="center_vertical"
+                    android:onClick="@{fragment_contact_summary_vm.onClickSelectDate}">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/dp_10"
-                    android:padding="@dimen/dp_10"
-                    app:srcCompat="@drawable/ic_svg_arrow_grey_down"
-                    android:onClick="@{fragment_contact_summary_vm.onClickSelectDate}"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="2020"
+                        android:textColor="@color/color_black_333333"
+                        android:textSize="@dimen/sp_12"
+                        app:setContractsYear="@{fragment_contact_summary_vm.selectDate}" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/dp_16"
+                        android:layout_height="@dimen/dp_16"
+                        android:layout_marginRight="@dimen/dp_10"
+                        app:srcCompat="@drawable/ic_svg_arrow_grey_down" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginRight="@dimen/dp_20"
-                android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/dp_10">
+                android:layout_marginLeft="@dimen/dp_12"
+                android:layout_marginRight="@dimen/dp_12"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:background="@drawable/bg_white_corner_4"
+                android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_staff_icon_default" />
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:gravity="center_vertical">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_10"
-                    android:text="客户总数"
-                    android:textSize="@dimen/sp_18" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_10"
+                        android:text="客户总数"
+                        android:textColor="@color/color_black_333333"
+                        android:textSize="@dimen/sp_17"
+                        android:textStyle="bold" />
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_12"
+                        android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.clientTotal),default=xxx}"
+                        android:textColor="#0050B4"
+                        android:textSize="@dimen/sp_15" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_10"
-                    android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.clientTotal)}"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/sp_18" />
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:gravity="center_vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_10"
+                        android:text="合同总数"
+                        android:textColor="@color/color_black_333333"
+                        android:textSize="@dimen/sp_17"
+                        android:textStyle="bold" />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/dp_12"
+                        android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.contractsTotal),default=xxx}"
+                        android:textColor="#0050B4"
+                        android:textSize="@dimen/sp_15" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:onClick="@{fragment_contact_summary_vm.onClickShowPreAnnualDelivers}"
+                        android:padding="@dimen/dp_12">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_svg_last_year_deliver" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/dp_6"
+                            android:paddingRight="@dimen/dp_6"
+                            android:text="上年交付"
+                            android:textColor="@color/color_black_333333"
+                            android:textSize="@dimen/sp_14"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/dp_6"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:maxLines="10"
+                            android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.preAnnualDelivers)}"
+                            android:textColor="@color/color_grey_999999"
+                            android:textSize="@dimen/sp_15" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/dp_18"
+                            android:layout_height="@dimen/dp_18"
+                            app:srcCompat="@drawable/ic_svg_right_arrow" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <Space
+                        android:layout_width="@dimen/dp_24"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:onClick="@{fragment_contact_summary_vm.onClickShowNewContracts}"
+                        android:padding="@dimen/dp_12">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_svg_new_contract_this_year" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/dp_6"
+                            android:paddingRight="@dimen/dp_6"
+                            android:text="今年新签"
+                            android:textColor="@color/color_black_333333"
+                            android:textSize="@dimen/sp_14"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/dp_6"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:maxLines="10"
+                            android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.newContracts)}"
+                            android:textColor="@color/color_grey_999999"
+                            android:textSize="@dimen/sp_15" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/dp_18"
+                            android:layout_height="@dimen/dp_18"
+                            app:srcCompat="@drawable/ic_svg_right_arrow" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:onClick="@{fragment_contact_summary_vm.onClickShowFinished}"
+                        android:padding="@dimen/dp_12">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_svg_finished_contract" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/dp_6"
+                            android:paddingRight="@dimen/dp_6"
+                            android:text="已经完成"
+                            android:textColor="@color/color_black_333333"
+                            android:textSize="@dimen/sp_14"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/dp_6"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:maxLines="10"
+                            android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.finishedContracts)}"
+                            android:textColor="@color/color_grey_999999"
+                            android:textSize="@dimen/sp_15" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/dp_18"
+                            android:layout_height="@dimen/dp_18"
+                            app:srcCompat="@drawable/ic_svg_right_arrow" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <Space
+                        android:layout_width="@dimen/dp_24"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:onClick="@{fragment_contact_summary_vm.onClickShowExecuting}"
+                        android:padding="@dimen/dp_12">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_svg_executing_contract" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/dp_6"
+                            android:paddingRight="@dimen/dp_6"
+                            android:text="正在进行"
+                            android:textColor="@color/color_black_333333"
+                            android:textSize="@dimen/sp_14"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/dp_6"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:maxLines="10"
+                            android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.executingContracts)}"
+                            android:textColor="@color/color_grey_999999"
+                            android:textSize="@dimen/sp_15" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/dp_18"
+                            android:layout_height="@dimen/dp_18"
+                            app:srcCompat="@drawable/ic_svg_right_arrow" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:onClick="@{fragment_contact_summary_vm.onClickShowExceptions}"
+                        android:padding="@dimen/dp_12">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_svg_exception_contracts" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/dp_6"
+                            android:paddingRight="@dimen/dp_6"
+                            android:text="执行异常"
+                            android:textColor="@color/color_black_333333"
+                            android:textSize="@dimen/sp_14"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/dp_6"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:maxLines="10"
+                            android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.exceptionContracts)}"
+                            android:textColor="@color/color_grey_999999"
+                            android:textSize="@dimen/sp_15" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/dp_18"
+                            android:layout_height="@dimen/dp_18"
+                            app:srcCompat="@drawable/ic_svg_right_arrow" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <Space
+                        android:layout_width="@dimen/dp_24"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/dp_12"
+                        android:visibility="invisible">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:srcCompat="@drawable/ic_svg_new_contract_this_year" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="@dimen/dp_6"
+                            android:paddingRight="@dimen/dp_6"
+                            android:text="今年新签"
+                            android:textColor="@color/color_black_333333"
+                            android:textSize="@dimen/sp_14"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/dp_6"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:maxLines="10"
+                            android:text="100"
+                            android:textColor="@color/color_grey_999999"
+                            android:textSize="@dimen/sp_15" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/dp_18"
+                            android:layout_height="@dimen/dp_18"
+                            app:srcCompat="@drawable/ic_svg_right_arrow" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginRight="@dimen/dp_20"
-                android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/dp_10">
+                android:layout_marginLeft="@dimen/dp_12"
+                android:layout_marginRight="@dimen/dp_12"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:background="@drawable/bg_white_corner_4"
+                android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_staff_icon_default" />
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/dp_12">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_10"
-                    android:text="订单总数"
-                    android:textSize="@dimen/sp_18" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        app:srcCompat="@drawable/ic_svg_round_filled_blue_1890ff_24dp" />
 
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4.5dp"
+                        android:gravity="center_vertical"
+                        android:text="正在执行"
+                        android:textColor="@color/color_grey_999999"
+                        android:textSize="@dimen/sp_12"
+                        android:textStyle="bold" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_10"
-                    android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.contractsTotal)}"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/sp_18" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_marginLeft="@dimen/dp_16"
+                        app:srcCompat="@drawable/ic_svg_round_filled_red_f04864_24dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4.5dp"
+                        android:gravity="center_vertical"
+                        android:text="执行异常"
+                        android:textColor="@color/color_grey_999999"
+                        android:textSize="@dimen/sp_12"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_marginLeft="@dimen/dp_16"
+                        app:srcCompat="@drawable/ic_svg_round_filled_green_2fc25b_24dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4.5dp"
+                        android:gravity="center_vertical"
+                        android:text="已完成"
+                        android:textColor="@color/color_grey_999999"
+                        android:textSize="@dimen/sp_12"
+                        android:textStyle="bold" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <com.guyuan.dear.customizeview.PieChartView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_margin="@dimen/sp_10"
+                    app:setContractSumPieData="@{fragment_contact_summary_vm.comContractSum}" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginRight="@dimen/dp_20"
-                android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/dp_10">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_staff_icon_default" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="上年交付"
-                    android:textSize="@dimen/sp_16" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.preAnnualDelivers)}"
-                    android:textColor="@color/color_black"
-                    android:gravity="end"
-                    android:textSize="@dimen/sp_16" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:onClick="@{fragment_contact_summary_vm.onClickShowPreAnnualDelivers}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_right_arrow"
-                    android:padding="@dimen/dp_10"/>
-
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_staff_icon_default" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="今年新签"
-                    android:textSize="@dimen/sp_16" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.newContracts)}"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/sp_16" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:onClick="@{fragment_contact_summary_vm.onClickShowNewContracts}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_right_arrow"
-                    android:padding="@dimen/dp_10"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginRight="@dimen/dp_20"
-                android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/dp_10">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_staff_icon_default" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="已经完成"
-                    android:textSize="@dimen/sp_16" />
-
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.finishedContracts)}"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/sp_16" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:onClick="@{fragment_contact_summary_vm.onClickShowFinished}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_right_arrow"
-                    android:padding="@dimen/dp_10"/>
-
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_staff_icon_default" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="正在执行"
-                    android:textSize="@dimen/sp_16" />
-
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.executingContracts)}"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/sp_16" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:onClick="@{fragment_contact_summary_vm.onClickShowExecuting}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_right_arrow"
-                    android:padding="@dimen/dp_10"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginRight="@dimen/dp_20"
-                android:gravity="center_vertical"
-                android:layout_marginTop="@dimen/dp_10">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_staff_icon_default" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="未  完  成"
-                    android:textSize="@dimen/sp_16" />
-
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.unfinishedContracts)}"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/sp_16" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:onClick="@{fragment_contact_summary_vm.onClickShowUnfinished}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_right_arrow"
-                    android:padding="@dimen/dp_10"/>
-
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_staff_icon_default" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="执行异常"
-                    android:textSize="@dimen/sp_16" />
-
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(fragment_contact_summary_vm.comContractSum.exceptionContracts)}"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/sp_16" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:onClick="@{fragment_contact_summary_vm.onClickShowExceptions}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_right_arrow"
-                    android:padding="@dimen/dp_10"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <com.guyuan.dear.customizeview.PieChartView
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_margin="@dimen/sp_10"
-                app:setContractSumPieData="@{fragment_contact_summary_vm.comContractSum}"
-                />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </ScrollView>

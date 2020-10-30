@@ -73,6 +73,16 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
         });
     }
 
+
+    private void setSearch() {
+        binding.include.layoutSearchBarTvSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
     @Override
     protected int getVariableId() {
         return BR.assessViewModel;

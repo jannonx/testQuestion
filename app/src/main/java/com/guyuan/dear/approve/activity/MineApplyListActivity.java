@@ -51,10 +51,7 @@ public class MineApplyListActivity extends BaseToolbarActivity<ActivityWithToolb
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
 
     @Override

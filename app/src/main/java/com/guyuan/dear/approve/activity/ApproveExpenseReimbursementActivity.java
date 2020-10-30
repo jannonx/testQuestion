@@ -43,10 +43,7 @@ public class ApproveExpenseReimbursementActivity extends BaseToolbarActivity<Act
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

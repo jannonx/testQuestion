@@ -87,8 +87,4 @@ public class FocusQualityActivity extends BaseTabActivity<ActivityBaseTabBinding
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
-
-    }
 }

@@ -49,7 +49,8 @@ public class ListRequestBody {
         private String endTime;
         private int securityId;
         private int securityType;
-
+        private int status;
+        private String queryParams;
 
         public int getId() {
             return id;
@@ -121,6 +122,22 @@ public class ListRequestBody {
 
         public void setSecurityType(int securityType) {
             this.securityType = securityType;
+        }
+
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        public String getQueryParams() {
+            return queryParams;
+        }
+
+        public void setQueryParams(String queryParams) {
+            this.queryParams = queryParams;
         }
     }
 }

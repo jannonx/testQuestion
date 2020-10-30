@@ -42,10 +42,7 @@ public class ApproveSealActivity extends BaseToolbarActivity<ActivityWithToolbar
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

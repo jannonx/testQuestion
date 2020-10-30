@@ -77,10 +77,7 @@ public class ApprovalsEntranceActivity extends BaseTabActivity<ActivityBaseTabBi
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
 
 }

@@ -53,10 +53,7 @@ public class FocusDeviceDetailActivity extends BaseToolbarActivity<ActivityFocus
         binding.deviceIv.setOnClickListener(this);
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

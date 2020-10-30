@@ -43,8 +43,5 @@ public class ContractDetailActivity extends BaseToolbarActivity<ActivityContract
 
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 }

@@ -44,9 +44,6 @@ public class LoginActivity extends BaseNoToolbarActivity<ActivityWithoutToolbarB
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
 }

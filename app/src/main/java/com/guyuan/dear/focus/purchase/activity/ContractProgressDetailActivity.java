@@ -45,10 +45,7 @@ public class ContractProgressDetailActivity extends BaseToolbarActivity<Activity
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

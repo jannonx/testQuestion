@@ -45,10 +45,7 @@ public class FeedBackActivity extends BaseToolbarActivity<ActivityWithToolbarBin
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

@@ -75,8 +75,5 @@ public class FocusPurchaseActivity extends BaseTabActivity<ActivityBaseTabBindin
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 }

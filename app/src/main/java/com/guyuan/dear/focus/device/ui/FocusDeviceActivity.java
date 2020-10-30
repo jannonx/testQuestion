@@ -77,22 +77,6 @@ public class FocusDeviceActivity extends BaseTabActivity<ActivityBaseTabBinding,
     }
 
 
-    @Override
-    public void viewModuleCallBack(Object o) {
-        if (o instanceof DeviceNumberBean) {
-            DeviceNumberBean deviceNumberBean = (DeviceNumberBean) o;
-            overviewFragment.setUI(deviceNumberBean);
-        } else if (o instanceof DeviceExceptionBean) {
-            DeviceExceptionBean exceptionBean = (DeviceExceptionBean) o;
-            if (exceptionBean.getContent() != null) {
-                exceptionFragment.setListData(exceptionBean.getContent());
-            }
-        }  else if (o instanceof FactoryRealTimeBean) {
-            FactoryRealTimeBean realTimeBean = (FactoryRealTimeBean) o;
-            if (realTimeBean.getWorkshops() != null) {
-                profileFragment.setListData(realTimeBean.getWorkshops());
-            }
-        }
-    }
+
 
 }

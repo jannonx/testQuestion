@@ -5,7 +5,8 @@ import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentContractExcptListBinding;
 import com.guyuan.dear.focus.contract.adapter.ContractExcptListAdapter;
-import com.guyuan.dear.focus.contract.bean.ExcptContractBean;
+import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
+import com.guyuan.dear.focus.contract.view.contractExptDetail.ContractExcptDetailActivity;
 
 /**
  * @author: 廖华凯
@@ -38,9 +39,8 @@ public class ExcptContractListFragment extends BaseMvvmFragment<FragmentContract
     protected void initListeners() {
         getViewModel().setItemClickListener(new ContractExcptListAdapter.ItemClickListener() {
             @Override
-            public void onItemClick(ExcptContractBean item, int position) {
-                //todo
-                showToastTip("待补充");
+            public void onItemClick(BaseContractExcptBean item, int position) {
+                ContractExcptDetailActivity.start(getActivity(),"合同异常详情",item.getContractId());
             }
         });
         getViewModel().getExcptContractsFromNet();

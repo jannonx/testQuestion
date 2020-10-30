@@ -109,10 +109,7 @@ public class FullScreenShowActivity extends BaseNoToolbarActivity<ActivityImagev
         return null;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

@@ -49,10 +49,7 @@ public class FocusClientActivity extends BaseToolbarActivity<ActivityWithToolbar
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

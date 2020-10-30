@@ -45,10 +45,7 @@ public class AboutUsActivity extends BaseToolbarActivity<ActivityWithToolbarBind
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {

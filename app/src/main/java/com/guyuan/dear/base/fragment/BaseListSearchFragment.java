@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.ViewDataBinding;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
@@ -45,7 +46,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
     protected CalenderUtils calenderUtils;
 
     protected TextView mTvSelectStartTime, mTvSelectEndTime;
-    protected TextView searchBtn;
+    protected AppCompatTextView searchBtn;
     protected AppCompatEditText etSearch;
 
 
@@ -58,7 +59,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
     @Override
     protected void initView() {
         etSearch = rootView.findViewById(R.id.et_search);
-        searchBtn = rootView.findViewById(R.id.tv_search_btn);
+        searchBtn = rootView.findViewById(R.id.layout_search_bar_tv_search);
         //    initDate();
         initListener();
         init();

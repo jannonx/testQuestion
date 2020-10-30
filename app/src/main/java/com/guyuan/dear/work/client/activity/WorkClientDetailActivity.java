@@ -47,10 +47,7 @@ public class WorkClientDetailActivity extends BaseToolbarActivity<ActivityWithTo
         return viewModel;
     }
 
-    @Override
-    public void viewModuleCallBack(Object o) {
 
-    }
 
     @Override
     protected int getLayoutID() {
