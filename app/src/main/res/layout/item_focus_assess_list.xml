@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="assessListContentBean"
             type="com.guyuan.dear.focus.assess.data.bean.AssessListBean.ContentBean" />
     </data>
 
-    <androidx.cardview.widget.CardView style="@style/CardViewNoElevation">
+    <androidx.cardview.widget.CardView
+        style="@style/CardViewNoElevation">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white">
 
             <TextView
                 android:id="@+id/custom_title_tv"
@@ -29,14 +32,14 @@
 
             <TextView
                 android:id="@+id/custom_status_tv"
+                style="@style/TextAssess"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
+                app:assessStatus="@{assessListContentBean.status}"
                 app:layout_constraintBottom_toBottomOf="@+id/custom_title_tv"
                 app:layout_constraintStart_toEndOf="@+id/custom_title_tv"
                 app:layout_constraintTop_toTopOf="@+id/custom_title_tv"
-                app:assessStatus="@{assessListContentBean.status}"
-                tools:style="@style/TextNotPass"
                 tools:text="不通过" />
 
             <TextView
