@@ -3,6 +3,7 @@ package com.guyuan.dear.mine.fragment;
 import android.os.Bundle;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
+import com.guyuan.dear.BuildConfig;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentAboutUsBinding;
 import com.guyuan.dear.mine.data.MineViewModel;
@@ -31,7 +32,7 @@ public class AboutUsFragment extends BaseDataBindingFragment<FragmentAboutUsBind
 
     @Override
     protected void initialization() {
-
+        binding.tvVersion.setText("版本号：" + BuildConfig.BUILD_TYPE + "-" + BuildConfig.VERSION_NAME);
     }
 
     @Override
