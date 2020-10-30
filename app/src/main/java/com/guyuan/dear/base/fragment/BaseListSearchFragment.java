@@ -19,6 +19,7 @@ import com.example.mvvmlibrary.util.LogUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.utils.CalenderUtils;
+import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.ToastUtils;
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
@@ -100,7 +101,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
             public void onClick(View v) {
                 String key = etSearch.getText().toString();
                 if (TextUtils.isEmpty(key)) {
-                    ToastUtils.showShort(getContext(), "请填写搜索内容");
+                    ToastUtils.showShort(getContext(), ConstantValue.TIP_SEARCH);
                 } else {
                     onSearch(key);
                 }

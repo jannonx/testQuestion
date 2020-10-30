@@ -97,7 +97,7 @@ public class ConstantValue {
     public static final String FOCUS_MORNING_MEETING = "focus_morning_meeting";
     public static final String FOCUS_SMART_GUARD = "focus_smart_guard";
     public static final String FOCUS_CONSTRUCTION_MONITORING = "focus_construction_monitoring";
-    public static final String FOCUS_CONTRACT="focus_contract";
+    public static final String FOCUS_CONTRACT = "focus_contract";
 
 
     //我的工作
@@ -252,4 +252,8 @@ public class ConstantValue {
     public static final String STOCK_TYPE = "stockType";
     public static final int STOCK_MATERIAL = 1;
     public static final int STOCK_PRODUCT = 2;
+
+    //提示语
+    public static final String TIP_SEARCH = "请填写搜索内容";
+    public static final String TIP_NO_DATA = "暂无数据";
 }

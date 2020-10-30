@@ -22,18 +22,23 @@
 
         <!--        <include layout="@layout/layout_title_tab" />-->
 
-        <tl.com.easy_recycleview_library.BaseRecyclerView
-            android:id="@+id/base_recycleView"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/bg_window" />
+            android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/empty_view"
-            layout="@layout/empty"
-            android:visibility="gone"
-            tools:visibility="visible"
+            <tl.com.easy_recycleview_library.BaseRecyclerView
+                android:id="@+id/base_recycleView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_window" />
 
-            />
+            <include
+                android:id="@+id/empty_view"
+                layout="@layout/empty"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </FrameLayout>
+
+
     </LinearLayout>
 </layout>

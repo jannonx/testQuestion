@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <!--状态栏颜色-->
         <item name="colorPrimary">@color/color_white_ffffff</item>
@@ -558,6 +558,17 @@
     <style name="TextPass" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">#00B578</item>
+        <item name="paddingStart">4dp</item>
+        <item name="paddingEnd">4dp</item>
+        <item name="android:paddingTop">1.5dp</item>
+        <item name="android:paddingBottom">1.5dp</item>
+        <item name="background">@drawable/bg_pass</item>
+    </style>
+
+    <!--用文字表示评审状态样式-->
+    <style name="TextAssess" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#1677FF</item>
         <item name="paddingStart">4dp</item>
         <item name="paddingEnd">4dp</item>
         <item name="android:paddingTop">1.5dp</item>

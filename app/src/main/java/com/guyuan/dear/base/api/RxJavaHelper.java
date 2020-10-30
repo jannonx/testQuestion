@@ -88,6 +88,7 @@ public class RxJavaHelper<T, VM extends BaseViewModel> {
                     @Override
                     public void run() throws Exception {
                         viewModel.getHideLoading().call();
+                        viewModel.getListComplete().call();
                     }
                 })
                 .subscribe(getSuccessConsumer(data), getFailConsumer());
@@ -111,6 +112,7 @@ public class RxJavaHelper<T, VM extends BaseViewModel> {
                     @Override
                     public void run() throws Exception {
                         viewModel.getHideLoading().call();
+                        viewModel.getListComplete().call();
                     }
                 })
                 .subscribe(getSuccessConsumer(), getFailConsumer());

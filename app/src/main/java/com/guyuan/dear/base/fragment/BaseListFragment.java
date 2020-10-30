@@ -6,10 +6,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
+import com.google.android.material.button.MaterialButton;
 import com.guyuan.dear.R;
+import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +28,15 @@ import tl.com.easy_recycleview_library.interfaces.OnRefreshListener;
  * @since: 2020/9/7
  * @company : 固远（深圳）信息技术有限公司
  **/
-public abstract class BaseListFragment<T, VB extends ViewDataBinding,VM extends BaseViewModel> extends BaseDataBindingFragment<VB,VM> {
+public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends BaseViewModel> extends BaseDataBindingFragment<VB, VM> {
 
     protected BaseRecyclerView recycleView;
     protected View empty_view;
     protected ImageView no_data_iv;
     protected TextView tv_empty;
+    protected MaterialButton tv_refresh;
+    private int emptyImgID = R.mipmap.ic_no_data;
+    private String emptyTip = ConstantValue.TIP_NO_DATA;
 
     public final int LOAD_MORE = 0X0100;
     public final int REFRESH = 0X0101;
@@ -58,9 +64,19 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding,VM extends 
         empty_view = rootView.findViewById(R.id.empty_view);
         no_data_iv = rootView.findViewById(R.id.no_data_iv);
         tv_empty = rootView.findViewById(R.id.tv_empty);
+        tv_refresh = rootView.findViewById(R.id.tv_refresh);
+        tv_refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refresh();
+            }
+        });
+        recycleView.setEmptyView(empty_view);
         initView();
+        setEmptyView();
         canPull();
         canLoadMore();
+        setListCompleteObserver();
     }
 
 
@@ -89,6 +105,19 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding,VM extends 
         }
         recycleView.setPullRefreshEnabled(isPullEnable());
     }
+
+    //设置列表获取数据完成监听
+    private void setListCompleteObserver() {
+        if ((isPullEnable() || isLoadMoreEnable() && viewModel != null)) {
+            viewModel.getListComplete().observe(this, new Observer<Void>() {
+                @Override
+                public void onChanged(Void o) {
+                    recycleView.refreshComplete(PAGE_SIZE);
+                }
+            });
+        }
+    }
+
 
     /**
      * 是否开启上拉加载 (默认开启)
@@ -128,13 +157,17 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding,VM extends 
         }
     }
 
+    protected void setEmptyView() {
+        no_data_iv.setImageResource(emptyImgID);
+        tv_empty.setText(emptyTip);
+    }
 
     protected void setEmptyResByID(int resID) {
-        no_data_iv.setImageResource(resID);
+        this.emptyImgID = resID;
     }
 
     protected void setEmpty_tip(String tip) {
-        tv_empty.setText(tip);
+        this.emptyTip = tip;
     }
 
     /**
@@ -181,4 +214,5 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding,VM extends 
             baseRecyclerViewAdapter.addFooterView(view);
         }
     }
+
 }

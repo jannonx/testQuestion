@@ -25,23 +25,28 @@ public class AssessBindingAdapter {
     public static void setAssessStatus(TextView tv, int status) {
         switch (status) {
             case SAVED:
-
+                tv.setTextAppearance(R.style.TextAssess);
+                tv.setText("保存草稿");
                 break;
 
             case PREPARED:
-
+                tv.setTextAppearance(R.style.TextAssess);
+                tv.setText("待评审");
                 break;
 
             case ASSESSING:
-
+                tv.setTextAppearance(R.style.TextAssess);
+                tv.setText("评审中");
                 break;
 
             case PASSED:
                 tv.setTextAppearance(R.style.TextPass);
+                tv.setText("通过");
                 break;
 
             case NOT_PASSED:
                 tv.setTextAppearance(R.style.TextNotPass);
+                tv.setText("不通过");
                 break;
         }
     }

@@ -31,6 +31,7 @@ public class FocusAssessViewModel extends BaseViewModel {
     public MutableLiveData<AssessListBean> assessNotPassListBean = new MutableLiveData<>();
     public MutableLiveData<AssessListBean> assessPassListBean = new MutableLiveData<>();
     public MutableLiveData<AssessListBean> assessTotalListBean = new MutableLiveData<>();
+    public MutableLiveData<AssessListBean> assessOverviewSearchListBean = new MutableLiveData<>();
     public MutableLiveData<List<AssessDetailBean>> assessDetailList = new MutableLiveData<>();
 
     @ViewModelInject
@@ -50,19 +51,30 @@ public class FocusAssessViewModel extends BaseViewModel {
         body.setPageSize(pageSize);
         ListRequestBody.FiltersBean filtersBean = new ListRequestBody.FiltersBean();
         filtersBean.setQueryParams(queryParams);
-        filtersBean.setStatus(status);
+        filtersBean.setStatus(getRealStatus(status));
         body.setFilters(filtersBean);
         Disposable disposable = RxJavaHelper.build(this,
                 apiService.getAssessList(CommonUtils.getCommonRequestBody(body)))
                 .getHelper().flow(getListBeanByStatus(status));
     }
 
+    private int getRealStatus(int status) {
+        if (status == FocusAssessListFragment.OVERVIEW_SEARCH) {//如果是概览根据内容查询,为所有查询
+            return FocusAssessListFragment.OVERVIEW_SEARCH;
+        } else {
+            return status;
+        }
+    }
+
+
     //根据类型设置返回的数据到liveData中
     public MutableLiveData<AssessListBean> getListBeanByStatus(int status) {
-        if (status == 10) {
+        if (status == FocusAssessListFragment.NOT_PASS) {
             return assessNotPassListBean;
         } else if (status == FocusAssessListFragment.PASS) {
             return assessPassListBean;
+        } else if (status == FocusAssessListFragment.OVERVIEW_SEARCH) {
+            return assessOverviewSearchListBean;
         } else {
             return assessTotalListBean;
         }
