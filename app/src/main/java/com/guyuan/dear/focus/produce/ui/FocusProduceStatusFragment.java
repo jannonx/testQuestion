@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListFragment;
-import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.produce.adapter.FocusProduceAdapter;
+import com.guyuan.dear.focus.produce.adapter.FocusProduceStatusAdapter;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
@@ -22,15 +22,13 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/11/2 14:27
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusProduceExceptionFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding, FocusProduceViewModel> {
+public class FocusProduceStatusFragment extends BaseListFragment<SimpleTabBean, FragmentListBinding, FocusProduceViewModel> {
 
-    public static final String TAG = "FocusProduceExceptionFragment";
+    public static final String TAG = "FocusProduceStatusFragment";
 
-    public static FocusProduceExceptionFragment newInstance() {
-
+    public static FocusProduceStatusFragment newInstance() {
         Bundle args = new Bundle();
-
-        FocusProduceExceptionFragment fragment = new FocusProduceExceptionFragment();
+        FocusProduceStatusFragment fragment = new FocusProduceStatusFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -42,8 +40,8 @@ public class FocusProduceExceptionFragment extends BaseListSearchFragment<Simple
             contactBean.setId(i);
             listData.add(contactBean);
         }
-        FocusProduceAdapter listAdapter = new FocusProduceAdapter(getContext(), listData,
-                R.layout.item_focus_produce);
+        FocusProduceStatusAdapter listAdapter = new FocusProduceStatusAdapter(getContext(), listData,
+                R.layout.item_focus_produce_status);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
@@ -51,15 +49,10 @@ public class FocusProduceExceptionFragment extends BaseListSearchFragment<Simple
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                FocusProduceDetailActivity.start(getContext());
+
             }
         });
 
-
-    }
-
-    @Override
-    protected void init() {
 
     }
 

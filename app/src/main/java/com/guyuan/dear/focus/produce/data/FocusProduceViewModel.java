@@ -6,11 +6,11 @@ import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.focus.produce.api.FocusProduceApiService;
 
 /**
- * @author : tl
- * @description :
- * @since: 2020/10/10 11:05
- * @company : 固远（深圳）信息技术有限公司
- **/
+ * @description:
+ * @author: Jannonx
+ * @since: 2020/11/2 14:27
+ * @company: 固远（深圳）信息技术有限公司
+ */
 public class FocusProduceViewModel extends BaseViewModel {
     private FocusProduceApiService apiService;
 

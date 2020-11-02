@@ -18,11 +18,11 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
- * @author : tl
- * @description :
- * @since: 2020/10/10 10:59
- * @company : 固远（深圳）信息技术有限公司
- **/
+ * @description:
+ * @author: Jannonx
+ * @since: 2020/11/2 14:27
+ * @company: 固远（深圳）信息技术有限公司
+ */
 @AndroidEntryPoint
 public class FocusProduceActivity extends BaseTabActivity<ActivityBaseTabBinding, FocusProduceViewModel> {
 
