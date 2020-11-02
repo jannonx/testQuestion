@@ -1,5 +1,8 @@
 package com.guyuan.dear.focus.assess.data.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -9,7 +12,7 @@ import java.util.List;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class AssessDetailBean {
+public class AssessDetailBean implements Parcelable {
 
     /**
      * auditContentList : [{"id":0,"name":"","sort":0}]
@@ -40,7 +43,7 @@ public class AssessDetailBean {
      * sort : 0
      */
 
-    private List<AuditContentListBean> auditContentList;
+    private List<AuditContentBean> auditContentList;
     /**
      * auditExplain :
      * auditImgUrl :
@@ -48,7 +51,33 @@ public class AssessDetailBean {
      * auditUserName :
      */
 
-    private List<AuditFormResultVOListBean> auditFormResultVOList;
+    private List<AuditFormResultBean> auditFormResultVOList;
+
+    protected AssessDetailBean(Parcel in) {
+        auditType = in.readInt();
+        compereName = in.readString();
+        contractNumber = in.readString();
+        customerName = in.readString();
+        id = in.readInt();
+        meetingName = in.readString();
+        reserveEndTime = in.readString();
+        reserveStartTime = in.readString();
+        status = in.readInt();
+        auditContentList = in.createTypedArrayList(AuditContentBean.CREATOR);
+        auditFormResultVOList = in.createTypedArrayList(AuditFormResultBean.CREATOR);
+    }
+
+    public static final Creator<AssessDetailBean> CREATOR = new Creator<AssessDetailBean>() {
+        @Override
+        public AssessDetailBean createFromParcel(Parcel in) {
+            return new AssessDetailBean(in);
+        }
+
+        @Override
+        public AssessDetailBean[] newArray(int size) {
+            return new AssessDetailBean[size];
+        }
+    };
 
     public int getAuditType() {
         return auditType;
@@ -122,88 +151,40 @@ public class AssessDetailBean {
         this.status = status;
     }
 
-    public List<AuditContentListBean> getAuditContentList() {
+    public List<AuditContentBean> getAuditContentList() {
         return auditContentList;
     }
 
-    public void setAuditContentList(List<AuditContentListBean> auditContentList) {
+    public void setAuditContentList(List<AuditContentBean> auditContentList) {
         this.auditContentList = auditContentList;
     }
 
-    public List<AuditFormResultVOListBean> getAuditFormResultVOList() {
+    public List<AuditFormResultBean> getAuditFormResultVOList() {
         return auditFormResultVOList;
     }
 
-    public void setAuditFormResultVOList(List<AuditFormResultVOListBean> auditFormResultVOList) {
+    public void setAuditFormResultVOList(List<AuditFormResultBean> auditFormResultVOList) {
         this.auditFormResultVOList = auditFormResultVOList;
     }
 
-    public static class AuditContentListBean {
-        private int id;               //事项ID
-        private String name;          //评审项内容描述
-        private int sort;             //评审点
 
-        public int getId() {
-            return id;
-        }
-
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getSort() {
-            return sort;
-        }
-
-        public void setSort(int sort) {
-            this.sort = sort;
-        }
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public static class AuditFormResultVOListBean {
-        private String auditExplain;        //评审结论
-        private String auditImgUrl;         //附件集
-        private String auditResult;         //评审结果
-        private String auditUserName;       //评审人员名称
-
-        public String getAuditExplain() {
-            return auditExplain;
-        }
-
-        public void setAuditExplain(String auditExplain) {
-            this.auditExplain = auditExplain;
-        }
-
-        public String getAuditImgUrl() {
-            return auditImgUrl;
-        }
-
-        public void setAuditImgUrl(String auditImgUrl) {
-            this.auditImgUrl = auditImgUrl;
-        }
-
-        public String getAuditResult() {
-            return auditResult;
-        }
-
-        public void setAuditResult(String auditResult) {
-            this.auditResult = auditResult;
-        }
-
-        public String getAuditUserName() {
-            return auditUserName;
-        }
-
-        public void setAuditUserName(String auditUserName) {
-            this.auditUserName = auditUserName;
-        }
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(auditType);
+        dest.writeString(compereName);
+        dest.writeString(contractNumber);
+        dest.writeString(customerName);
+        dest.writeInt(id);
+        dest.writeString(meetingName);
+        dest.writeString(reserveEndTime);
+        dest.writeString(reserveStartTime);
+        dest.writeInt(status);
+        dest.writeTypedList(auditContentList);
+        dest.writeTypedList(auditFormResultVOList);
     }
 }

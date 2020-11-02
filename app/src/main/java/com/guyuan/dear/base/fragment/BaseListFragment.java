@@ -7,11 +7,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.button.MaterialButton;
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
+import com.guyuan.dear.focus.assess.adapter.AssessListAdapter;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
@@ -215,4 +218,10 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
         }
     }
 
+
+    protected <T extends BaseDBRecycleAdapter> void setDefaultAdapter(T listAdapter) {
+        adapter = new BaseRecyclerViewAdapter(listAdapter);
+        recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recycleView.setAdapter(adapter);
+    }
 }

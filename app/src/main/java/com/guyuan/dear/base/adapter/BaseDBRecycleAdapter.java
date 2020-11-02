@@ -45,7 +45,7 @@ public abstract class BaseDBRecycleAdapter<T, VDB extends ViewDataBinding> exten
     }
 
     //绑定数据到视图
-    protected abstract void bindDataToView(BaseDBRecycleAdapter.Holder holder, T item, int position);
+    protected abstract void bindDataToView(Holder holder, T item, int position);
 
     @Override
     public int getItemCount() {
@@ -57,7 +57,7 @@ public abstract class BaseDBRecycleAdapter<T, VDB extends ViewDataBinding> exten
     }
 
 
-    public class Holder extends RecyclerView.ViewHolder {
+     protected class Holder extends RecyclerView.ViewHolder {
         public VDB binding;
 
         public Holder(@NonNull VDB binding) {

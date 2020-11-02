@@ -36,7 +36,7 @@ public class FocusAssessListActivity extends BaseToolbarActivity<ActivityWithout
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-        setObserver();
+    //    setObserver();
         String searchContent = getIntent().getStringExtra(ConstantValue.KEY_CONTENT);
         listFragment = FocusAssessListFragment.newInstance(FocusAssessListFragment.OVERVIEW_SEARCH, searchContent);
         ActivityUtils.addFragmentToActivity(fragmentManager, listFragment, R.id.fragment_container,

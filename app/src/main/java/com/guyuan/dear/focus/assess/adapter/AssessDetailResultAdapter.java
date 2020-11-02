@@ -4,7 +4,11 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.guyuan.dear.BR;
+import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
+import com.guyuan.dear.databinding.ItemFocusAssessDetailResultBinding;
+import com.guyuan.dear.focus.assess.data.bean.AuditFormResultBean;
 
 import java.util.List;
 
@@ -17,13 +21,15 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class AssessDetailResultAdapter extends BaseRecyclerAdapter<Object> {
-    public AssessDetailResultAdapter(Context context, @NonNull List<Object> listData, int layoutID) {
-        super(context, listData, layoutID);
+public class AssessDetailResultAdapter extends BaseDBRecycleAdapter<AuditFormResultBean,
+        ItemFocusAssessDetailResultBinding> {
+
+    public AssessDetailResultAdapter(List<AuditFormResultBean> listData, int layoutID) {
+        super(listData, layoutID);
     }
 
     @Override
-    protected void bindDataToView(BaseRecyclerViewHolder holder, Object item, int position) {
-
+    protected void bindDataToView(Holder holder, AuditFormResultBean item, int position) {
+        holder.binding.setVariable(BR.focusAssessResultBean, item);
     }
 }

@@ -13,7 +13,9 @@ import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 
 /**
@@ -43,7 +45,6 @@ public interface FocusAssessApiService extends BaseApiService {
     Observable<ResultBean<AssessListBean>> getAssessList(@Body RequestBody body);
 
     //评审详情
-    @POST(ASSESS_DETAIL)
-    Observable<ResultBean<List<AssessDetailBean>>> getAssessDetail(@Field(ID) int id,
-                                                                   @Field(CONTRACT_NUMBER) String contractNumber);
+    @GET(ASSESS_DETAIL)
+    Observable<ResultBean<List<AssessDetailBean>>> getAssessDetail(@Query(ID) int id, @Query(CONTRACT_NUMBER) String contractNumber);
 }

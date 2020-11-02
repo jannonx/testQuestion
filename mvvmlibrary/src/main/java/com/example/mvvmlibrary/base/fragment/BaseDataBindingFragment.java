@@ -28,13 +28,14 @@ public abstract class BaseDataBindingFragment<VB extends ViewDataBinding, VM ext
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, getLayoutID(), container, false);
-        if (getVariableId() != 0) {
-            BaseDataBindingActivity activity = (BaseDataBindingActivity) getActivity();
-            if (activity != null) {
-                viewModel = (VM) activity.getViewModel();
+        BaseDataBindingActivity activity = (BaseDataBindingActivity) getActivity();
+        if (activity != null) {
+            viewModel = (VM) activity.getViewModel();
+            if (viewModel != null && getVariableId() != 0) {
                 binding.setVariable(getVariableId(), viewModel);
             }
         }
+
         rootView = binding.getRoot();
         binding.setLifecycleOwner(this);
         return rootView;

@@ -9,6 +9,7 @@ import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.base.bean.ListRequestBody;
 import com.guyuan.dear.focus.assess.api.FocusAssessApiService;
 import com.guyuan.dear.focus.assess.data.bean.AssessDetailBean;
+import com.guyuan.dear.focus.assess.data.bean.AssessDetailBody;
 import com.guyuan.dear.focus.assess.data.bean.AssessListBean;
 import com.guyuan.dear.focus.assess.data.bean.AssessOverviewBean;
 import com.guyuan.dear.focus.assess.ui.FocusAssessListFragment;
@@ -83,6 +84,7 @@ public class FocusAssessViewModel extends BaseViewModel {
 
     public void getAssessDetail(int id, String contractNumber) {
         Disposable disposable = RxJavaHelper.build(this,
-                apiService.getAssessDetail(id, contractNumber)).getHelper().flow(assessDetailList);
+                apiService.getAssessDetail(id, contractNumber))
+                .getHelper().flow(assessDetailList);
     }
 }

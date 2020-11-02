@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.assess.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.library.baseAdapters.BR;
@@ -15,9 +16,11 @@ import com.guyuan.dear.databinding.FragmentListSearchBinding;
 import com.guyuan.dear.focus.assess.adapter.AssessListAdapter;
 import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
 import com.guyuan.dear.focus.assess.data.bean.AssessListBean;
+import com.guyuan.dear.focus.assess.ui.detail.FocusAssessDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @author : tl
@@ -59,6 +62,15 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
             adapter = new BaseRecyclerViewAdapter(listAdapter);
             recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
             recycleView.setAdapter(adapter);
+
+            adapter.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int i) {
+                    AssessListBean.ContentBean contentBean = listData.get(i);
+                    FocusAssessDetailActivity.start(getContext(), contentBean.getCustomerName(),
+                            contentBean.getId(), contentBean.getContractNumber());
+                }
+            });
         }
 
     }

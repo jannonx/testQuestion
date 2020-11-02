@@ -31,6 +31,8 @@ public class TabLayoutHelper {
     private int startPosition;
     private TabLayoutListener listener;
 
+    public static final int UNDERLINE = 10;
+
     public TabLayoutHelper(FragmentActivity fa, TabLayout tabLayout, ViewPager2 viewPager2,
                            List<Fragment> fragmentList, int layoutID) {
         this.fa = fa;
@@ -48,7 +50,7 @@ public class TabLayoutHelper {
         this.fragmentList = fragmentList;
     }
 
-    public TabLayoutHelper(FragmentActivity fa,TabLayout tabLayout, int tabSize, int layoutID) {
+    public TabLayoutHelper(FragmentActivity fa, TabLayout tabLayout, int tabSize, int layoutID) {
         this.fa = fa;
         this.tabLayout = tabLayout;
         this.tabSize = tabSize;
@@ -56,7 +58,7 @@ public class TabLayoutHelper {
     }
 
 
-    public TabLayoutHelper(FragmentActivity fa,TabLayout tabLayout, int tabSize) {
+    public TabLayoutHelper(FragmentActivity fa, TabLayout tabLayout, int tabSize) {
         this.fa = fa;
         this.tabLayout = tabLayout;
         this.tabSize = tabSize;
@@ -99,7 +101,9 @@ public class TabLayoutHelper {
     }
 
     public void setCustomView() {
-        if (layoutID == 0) {
+        if (layoutID == UNDERLINE) {
+            layoutID = R.layout.tab_blue_under_line;
+        } else {
             layoutID = R.layout.tab_common;//默认tab布局
         }
 

@@ -1,69 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/person_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/tab_mine_select" />
+    <data>
 
-    <TextView
-        android:id="@+id/person_name_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/person_iv"
-        app:layout_constraintStart_toStartOf="@+id/person_iv"
-        app:layout_constraintTop_toBottomOf="@+id/person_iv"
-        tools:text="张三" />
+        <variable
+            name="focusAssessResultBean"
+            type="com.guyuan.dear.focus.assess.data.bean.AuditFormResultBean" />
+    </data>
 
-    <TextView
-        android:id="@+id/assess_result_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        app:layout_constraintStart_toEndOf="@+id/person_iv"
-        app:layout_constraintTop_toTopOf="@+id/person_iv"
-        tools:text="通过评审" />
-
-    <TextView
-        android:id="@+id/assess_discuss_title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="评审结论："
-        app:layout_constraintStart_toStartOf="@+id/assess_result_tv"
-        app:layout_constraintTop_toBottomOf="@+id/assess_result_tv" />
-
-    <TextView
-        android:id="@+id/assess_discuss_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/assess_discuss_title_tv"
-        app:layout_constraintTop_toTopOf="@+id/assess_discuss_title_tv"
-        tools:text="23213123123213123213213213213213213123123" />
-
-    <View
-        android:id="@+id/divider"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:background="@color/low_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/assess_discuss_tv" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="wrap_content"
+        android:paddingStart="12dp"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingEnd="@dimen/dp_12">
+
+        <ImageView
+            android:id="@+id/person_iv"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:pictureFromUrl="@{focusAssessResultBean.auditImgUrl}"
+            tools:srcCompat="@mipmap/tab_mine_select" />
+
+        <TextView
+            android:id="@+id/person_name_tv"
+            style="@style/TextNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@{focusAssessResultBean.auditUserName}"
+            app:layout_constraintBottom_toBottomOf="@+id/person_iv"
+            app:layout_constraintStart_toEndOf="@+id/person_iv"
+            app:layout_constraintTop_toTopOf="@+id/person_iv"
+            app:layout_constraintVertical_bias="0.608"
+            tools:text="张三" />
+
+        <TextView
+            android:id="@+id/assess_result_tv"
+            style="@style/TextSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:text="@{focusAssessResultBean.auditResult}"
+            app:layout_constraintBottom_toBottomOf="@+id/person_iv"
+            app:layout_constraintEnd_toStartOf="@+id/assess_focus_result_iv"
+            app:layout_constraintTop_toTopOf="@+id/person_iv"
+            tools:text="通过评审" />
+
+        <TextView
+            android:id="@+id/assess_discuss_title_tv"
+            style="@style/TextSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:text="评审结论："
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/assess_discuss_tv"
+            app:layout_constraintStart_toStartOf="@+id/person_name_tv"
+            app:layout_constraintTop_toBottomOf="@+id/person_name_tv"
+            app:visibilityByView="@{@id/assess_discuss_tv}"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/assess_discuss_tv"
+            style="@style/TextSmall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_12"
+            android:textColor="@color/color_black_333333"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/person_name_tv"
+            app:visibilityByContent="@{focusAssessResultBean.auditExplain}"
+            tools:text="23213123123213123213213213213213213123123"
+            tools:visibility="visible" />
+
+        <View
+            android:id="@+id/divider"
+            style="@style/DivideLine"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/assess_focus_result_iv"
+            app:layout_constraintStart_toStartOf="@+id/person_iv" />
+
+        <ImageView
+            android:id="@+id/assess_focus_result_iv"
+            android:layout_width="@dimen/dp_15"
+            android:layout_height="@dimen/dp_15"
+            app:assessStatus="@{focusAssessResultBean.auditExplain}"
+            app:layout_constraintBottom_toBottomOf="@+id/person_iv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/person_iv"
+            tools:srcCompat="@mipmap/right" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

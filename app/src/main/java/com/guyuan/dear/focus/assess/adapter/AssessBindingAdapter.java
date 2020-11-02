@@ -1,10 +1,19 @@
 package com.guyuan.dear.focus.assess.adapter;
 
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
+import androidx.lifecycle.MutableLiveData;
 
+import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
+import com.guyuan.dear.customizeview.TabLayoutHelper;
+import com.guyuan.dear.focus.assess.data.bean.AssessDetailBean;
+
+import java.util.List;
 
 /**
  * @author : tl
@@ -48,6 +57,15 @@ public class AssessBindingAdapter {
                 tv.setTextAppearance(R.style.TextNotPass);
                 tv.setText("不通过");
                 break;
+        }
+    }
+
+    @BindingAdapter("assessStatus")
+    public static void setAssessStatus(ImageView iv,String result){
+        if(result.contains("通过")){
+             iv.setImageResource(R.mipmap.right);
+        }else if(result.contains("不通过")){
+            iv.setImageResource(R.mipmap.wrong);
         }
     }
 }
