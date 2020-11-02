@@ -10,6 +10,7 @@ import com.guyuan.dear.base.api.RxJavaHelper;
 import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleRepository;
+import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,8 @@ public class MineViewModel extends BaseViewModel {
     private MineRepository repository;
     private SingleLiveEvent<ResultBean<Integer>> editUserPwEvent;//修改用户密码
     private SingleLiveEvent<ResultBean<List<UploadBean>>> uploadImageEvent;//上传图片
+    private SingleLiveEvent<ResultBean<Integer>> feedBackEvent;//上传留言
+    private SingleLiveEvent<ResultBean<Integer>> userAvatarEvent;//提交头像url
 
     @ViewModelInject
     public MineViewModel(MineRepository mineRepository) {
@@ -44,6 +47,18 @@ public class MineViewModel extends BaseViewModel {
     public SingleLiveEvent<ResultBean<List<UploadBean>>> getUploadImageEvent() {
         uploadImageEvent = createLiveData(uploadImageEvent);
         return uploadImageEvent;
+
+    }
+
+    public SingleLiveEvent<ResultBean<Integer>> getFeedBackEvent() {
+        feedBackEvent = createLiveData(feedBackEvent);
+        return feedBackEvent;
+
+    }
+
+    public SingleLiveEvent<ResultBean<Integer>> getUserAvatarEvent() {
+        userAvatarEvent = createLiveData(userAvatarEvent);
+        return userAvatarEvent;
 
     }
 
@@ -79,6 +94,42 @@ public class MineViewModel extends BaseViewModel {
                     public void accept(Object o) throws Exception {
                         ResultBean<List<UploadBean>> bean = (ResultBean<List<UploadBean>>) o;
                         uploadImageEvent.postValue(bean);
+                    }
+                }).getHelper().flow();
+        addSubscription(disposable);
+    }
+
+    /**
+     * 保存意见反馈表
+     *
+     * @param body 反馈信息
+     */
+    public void postFeedBack(RequestBody body) {
+
+        Disposable disposable = RxJavaHelper.build(this, repository.postFeedBack(body))
+                .success(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        ResultBean<Integer> bean = (ResultBean<Integer>) o;
+                        feedBackEvent.postValue(bean);
+                    }
+                }).getHelper().flow();
+        addSubscription(disposable);
+    }
+
+    /**
+     * 修改用户头像
+     *
+     * @param body 提交头像url
+     */
+    public void postUserAvatar(RequestBody body) {
+
+        Disposable disposable = RxJavaHelper.build(this, repository.postFeedBack(body))
+                .success(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        ResultBean<Integer> bean = (ResultBean<Integer>) o;
+                        userAvatarEvent.postValue(bean);
                     }
                 }).getHelper().flow();
         addSubscription(disposable);

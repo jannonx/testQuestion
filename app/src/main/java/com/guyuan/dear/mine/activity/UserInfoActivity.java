@@ -15,10 +15,14 @@ import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
 import com.guyuan.dear.focus.purchase.fragment.ContractProgressDetailFragment;
+import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.mine.bean.MineRequestBody;
 import com.guyuan.dear.mine.data.MineViewModel;
 import com.guyuan.dear.mine.fragment.UserInfoFragment;
 import com.guyuan.dear.utils.ActivityUtils;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
 
 import java.util.ArrayList;
@@ -26,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 
@@ -62,7 +67,6 @@ public class UserInfoActivity extends BaseFileUploadActivity<ActivityWithToolbar
     }
 
 
-
     @Override
     protected int getLayoutID() {
         return R.layout.activity_with_toolbar;
@@ -79,8 +83,27 @@ public class UserInfoActivity extends BaseFileUploadActivity<ActivityWithToolbar
                 //获取图片url
                 List<UploadBean> data = dataRefreshBean.getData();
                 LogUtils.showLog("data=" + data.get(0).getUrl());
+                postUserAvatar(data.get(0).getUrl());
             }
         });
+
+
+        viewModel.getUserAvatarEvent().observe(this, new Observer<ResultBean<Integer>>() {
+            @Override
+            public void onChanged(ResultBean<Integer> resultBean) {
+
+            }
+        });
+    }
+
+    private void postUserAvatar(String url) {
+        MineRequestBody body = new MineRequestBody();
+        body.setUrl(url);
+        String str = GsonUtil.objectToString(body);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                "charset=utf-8"), str);
+        viewModel.postUserAvatar(requestBody);
+
     }
 
 }

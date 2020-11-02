@@ -9,6 +9,7 @@ import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -44,4 +45,22 @@ public interface MineApiService extends BaseApiService {
     @Multipart
     @POST("file/file/uploadApp")
     Observable<ResultBean<List<UploadBean>>> uploadPic(@PartMap Map<String, RequestBody> map);
+
+    /**
+     * 保存意见反馈表
+     *
+     * @param body 反馈信息
+     * @return
+     */
+    @POST("base/tOpinion/save")
+    Observable<ResultBean<Integer>> postFeedBack(@Body RequestBody body);
+
+    /**
+     * 修改用户头像
+     *
+     * @param body 头像链接
+     * @return
+     */
+    @POST("base/user/updateUserHeadPortrait")
+    Observable<ResultBean<Integer>> postUserAvatar(@Body RequestBody body);
 } 

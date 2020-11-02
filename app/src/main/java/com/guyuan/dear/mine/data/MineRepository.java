@@ -32,4 +32,12 @@ public class MineRepository {
     Observable<ResultBean<List<UploadBean>>> uploadPic(@PartMap Map<String, RequestBody> map) {
         return apiService.uploadPic(map);
     }
+
+    Observable<ResultBean<Integer>> postFeedBack(RequestBody body) {
+        return apiService.postFeedBack(body);
+    }
+
+    Observable<ResultBean<Integer>> postUserAvatar(RequestBody body) {
+        return apiService.postUserAvatar(body);
+    }
 }

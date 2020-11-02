@@ -91,6 +91,14 @@
     <color name="control_text_yellow">#ED6F1A</color>
     <color name="control_text_red">#BE002F</color>
     <color name="bg_window">#F5F7FA</color>
+    <!--    红色-->
+    <color name="color_red_F04864">#F04864</color>
+
+
+    <!--    橘色-->
+    <color name="color_orange_FFECE3">#FFECE3</color>
+    <color name="color_orange_FF6010">#FF6010</color>
+
 
     <!--  蓝色-->
     <color name="color_blue_0665e1">#0665E1</color>
