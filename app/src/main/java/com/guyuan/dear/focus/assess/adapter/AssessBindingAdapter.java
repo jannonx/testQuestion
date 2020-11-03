@@ -1,5 +1,6 @@
 package com.guyuan.dear.focus.assess.adapter;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
@@ -61,11 +62,13 @@ public class AssessBindingAdapter {
     }
 
     @BindingAdapter("assessStatus")
-    public static void setAssessStatus(ImageView iv,String result){
-        if(result.contains("通过")){
-             iv.setImageResource(R.mipmap.right);
-        }else if(result.contains("不通过")){
-            iv.setImageResource(R.mipmap.wrong);
+    public static void setAssessStatus(ImageView iv, String result) {
+        if (!TextUtils.isEmpty(result)) {
+            if (result.contains("通过")) {
+                iv.setImageResource(R.mipmap.right);
+            } else if (result.contains("不通过")) {
+                iv.setImageResource(R.mipmap.wrong);
+            }
         }
     }
 }

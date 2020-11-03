@@ -29,23 +29,20 @@ public class FullScreenShowActivity extends BaseNoToolbarActivity<ActivityImagev
 
     private static final String URL = "url";
     private static final String POSITION = "position";
-    private ViewPager full_screen_vp = binding.fullScreenVp;
-    private ImageView back_iv = binding.backIv;
-    private TextView page_tv = binding.pageTv;
     private List<String> urlList;
     private List<Fragment> fragments;
     private int startPosition;
 
-    public static void start(Context context, String url) {
+    public static void start(Context context, List<String> urlList) {
         Intent starter = new Intent(context, FullScreenShowActivity.class);
-        starter.putExtra(URL, url);
+        starter.putStringArrayListExtra(URL, new ArrayList<>(urlList));
         context.startActivity(starter);
     }
 
 
-    public static void start(Context context, String url, int position) {
+    public static void start(Context context, List<String> urlList, int position) {
         Intent starter = new Intent(context, FullScreenShowActivity.class);
-        starter.putExtra(URL, url);
+        starter.putStringArrayListExtra(URL, new ArrayList<>(urlList));
         starter.putExtra(POSITION, position);
         context.startActivity(starter);
     }
@@ -53,11 +50,11 @@ public class FullScreenShowActivity extends BaseNoToolbarActivity<ActivityImagev
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         fragments = new ArrayList<>();
-        String urls = getIntent().getStringExtra(URL);
+        List<String> urls = getIntent().getStringArrayListExtra(URL);
         startPosition = getIntent().getIntExtra(POSITION, 0);
-        if (urls != null) {
-            urlList = StringUtils.splitPhotoUrl(urls);
-            page_tv.setText(startPosition + 1 + "/" + urlList.size());
+        if (urls != null&&urls.size()>0) {
+            urlList = urls;
+            binding.pageTv.setText(startPosition + 1 + "/" + urlList.size());
 
             for (String url : urlList) {
                 if (MediaFileUtils.isImageFileType(url) || !url.contains(".")) {
@@ -72,14 +69,14 @@ public class FullScreenShowActivity extends BaseNoToolbarActivity<ActivityImagev
 
             FullScreenFileAdapter fileAdapter = new FullScreenFileAdapter(getSupportFragmentManager(),
                     fragments, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-            full_screen_vp.setOffscreenPageLimit(2);
-            full_screen_vp.setAdapter(fileAdapter);
+            binding.fullScreenVp.setOffscreenPageLimit(2);
+            binding.fullScreenVp.setAdapter(fileAdapter);
             startPosition = Math.min(startPosition, fragments.size() - 1);
-            full_screen_vp.setCurrentItem(startPosition);
+            binding.fullScreenVp.setCurrentItem(startPosition);
         }
 
 
-        full_screen_vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        binding.fullScreenVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -87,7 +84,7 @@ public class FullScreenShowActivity extends BaseNoToolbarActivity<ActivityImagev
 
             @Override
             public void onPageSelected(int position) {
-                page_tv.setText(position + 1 + "/" + urlList.size());
+                binding.pageTv.setText(position + 1 + "/" + urlList.size());
             }
 
             @Override
@@ -96,7 +93,7 @@ public class FullScreenShowActivity extends BaseNoToolbarActivity<ActivityImagev
             }
         });
 
-        back_iv.setOnClickListener(new View.OnClickListener() {
+        binding.backIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -108,7 +105,6 @@ public class FullScreenShowActivity extends BaseNoToolbarActivity<ActivityImagev
     public BaseViewModel getViewModel() {
         return null;
     }
-
 
 
     @Override

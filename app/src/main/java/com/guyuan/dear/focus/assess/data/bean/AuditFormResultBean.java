@@ -15,12 +15,14 @@ public class AuditFormResultBean implements Parcelable {
     private String auditImgUrl;         //附件集
     private String auditResult;         //评审结果
     private String auditUserName;       //评审人员名称
+    private String auditUserPhotoUrl;   //评审人头像
 
     protected AuditFormResultBean(Parcel in) {
         auditExplain = in.readString();
         auditImgUrl = in.readString();
         auditResult = in.readString();
         auditUserName = in.readString();
+        auditUserPhotoUrl = in.readString();
     }
 
     public static final Creator<AuditFormResultBean> CREATOR = new Creator<AuditFormResultBean>() {
@@ -34,6 +36,14 @@ public class AuditFormResultBean implements Parcelable {
             return new AuditFormResultBean[size];
         }
     };
+
+    public String getAuditUserPhotoUrl() {
+        return auditUserPhotoUrl;
+    }
+
+    public void setAuditUserPhotoUrl(String auditUserPhotoUrl) {
+        this.auditUserPhotoUrl = auditUserPhotoUrl;
+    }
 
     public String getAuditExplain() {
         return auditExplain;
@@ -78,5 +88,6 @@ public class AuditFormResultBean implements Parcelable {
         dest.writeString(auditImgUrl);
         dest.writeString(auditResult);
         dest.writeString(auditUserName);
+        dest.writeString(auditUserPhotoUrl);
     }
 }

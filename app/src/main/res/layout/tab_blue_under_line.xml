@@ -6,7 +6,7 @@
     android:layout_height="42dp">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tab_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="TextView"
@@ -21,7 +21,7 @@
         android:layout_height="2dp"
         android:layout_marginTop="9dp"
         android:background="@drawable/selector_blue_to_transparent"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintEnd_toEndOf="@+id/tab_tv"
+        app:layout_constraintStart_toStartOf="@+id/tab_tv"
+        app:layout_constraintTop_toBottomOf="@+id/tab_tv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.device.ui.detail;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.R;
@@ -12,6 +13,7 @@ import com.guyuan.dear.focus.device.data.beans.DeviceExceptionBean;
 import com.guyuan.dear.focus.device.data.beans.EquipmentBean;
 import com.guyuan.dear.utils.GlideUtils;
 import com.guyuan.dear.utils.StringUtils;
+
 import java.util.List;
 
 /**
@@ -52,7 +54,6 @@ public class FocusDeviceDetailActivity extends BaseToolbarActivity<ActivityFocus
         binding.cameraTv.setOnClickListener(this);
         binding.deviceIv.setOnClickListener(this);
     }
-
 
 
     @Override
@@ -172,7 +173,7 @@ public class FocusDeviceDetailActivity extends BaseToolbarActivity<ActivityFocus
                 break;
 
             case R.id.device_iv:
-                FullScreenShowActivity.start(FocusDeviceDetailActivity.this, url);
+                FullScreenShowActivity.start(FocusDeviceDetailActivity.this, StringUtils.splitPhotoUrl(url));
                 break;
             default:
                 break;

@@ -136,6 +136,24 @@
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:background">@color/color_white_ffffff</item>
     </style>
+
+    <!--蓝色选中线导航栏容器统一基本样式-->
+    <style name="tab_blue_layout" parent="Widget.Design.TabLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">42dp</item>
+        <item name="tabMaxWidth">200dp</item>
+        <item name="tabMinWidth">20dp</item>
+        <item name="tabPaddingStart">60dp</item>
+        <item name="tabPaddingEnd">60dp</item>
+        <item name="tabGravity">center</item>
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabBackground">@null</item>
+        <item name="tabRippleColor">@null</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:background">@color/color_white_ffffff</item>
+    </style>
+
     <!--顶部导航栏容器统一基本样式2-->
     <style name="tab_i_layout" parent="Widget.Design.TabLayout">
         <item name="android:layout_width">match_parent</item>

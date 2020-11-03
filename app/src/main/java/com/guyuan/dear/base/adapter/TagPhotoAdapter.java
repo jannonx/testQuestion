@@ -49,7 +49,7 @@ public class TagPhotoAdapter extends TagAdapter<String> {
         photoIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FullScreenShowActivity.start(mContext, StringUtils.splicePhotoUrl(getTagDataList()),position);
+                FullScreenShowActivity.start(mContext, getTagDataList(),position);
             }
         });
 

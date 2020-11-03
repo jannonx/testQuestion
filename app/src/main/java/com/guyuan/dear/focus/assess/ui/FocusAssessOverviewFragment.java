@@ -74,6 +74,36 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
                 });
             }
         });
+
+        binding.totalCardViewContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int total = viewModel.assessOverviewBean.getValue().getSellOrderSumNumber();
+                if (total > 0) {
+                    FocusAssessListActivity.start(getContext(), "", FocusAssessListFragment.TOTAL);
+                }
+            }
+        });
+
+        binding.notPassCvContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int notPass = viewModel.assessOverviewBean.getValue().getNoPassSumNumber();
+                if (notPass > 0) {
+                    FocusAssessListActivity.start(getContext(), "", FocusAssessListFragment.NOT_PASS);
+                }
+            }
+        });
+
+        binding.passCvContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pass = viewModel.assessOverviewBean.getValue().getPassSumNumber();
+                if (pass > 0) {
+                    FocusAssessListActivity.start(getContext(), "", FocusAssessListFragment.PASS);
+                }
+            }
+        });
     }
 
 
@@ -83,7 +113,7 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
             public void onClick(View v) {
                 Editable editable = binding.include.etSearch.getText();
                 if (editable != null && !TextUtils.isEmpty(editable)) {
-                    FocusAssessListActivity.start(getContext(), editable.toString());
+                    FocusAssessListActivity.start(getContext(), editable.toString(), FocusAssessListFragment.TOTAL);
                 } else {
                     showToastTip(ConstantValue.TIP_SEARCH);
                 }

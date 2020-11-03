@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.assess.ui.detail;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -26,7 +27,7 @@ import java.util.List;
  **/
 
 public class FocusAssessDetailFragment extends BaseDataBindingFragment<FragmentFocusAssessDetailBinding,
-        FocusAssessViewModel> {
+        FocusAssessViewModel> implements TabLayoutHelper.TabLayoutListener {
 
     public static final String TAG = "FocusAssessDetailFragment";
     public static final String CONTRACT_NUMBER = "contractNumber";
@@ -59,19 +60,29 @@ public class FocusAssessDetailFragment extends BaseDataBindingFragment<FragmentF
     }
 
     public void initTab(List<AssessDetailBean> assessDetailBeans) {
-        List<Fragment> contentFragment = new ArrayList<>();
+        List<Fragment> contentFragmentList = new ArrayList<>();
         if (assessDetailBeans != null) {
             for (AssessDetailBean detailBean : assessDetailBeans) {
-                contentFragment.add(FocusAssessContentFragment.newInstance(detailBean));
+                contentFragmentList.add(FocusAssessContentFragment.newInstance(detailBean));
             }
 
+            if (contentFragmentList.size() <= 1) {
+                binding.focusAssessTl.setVisibility(View.GONE);
+            }
             new TabLayoutHelper(getActivity(), binding.focusAssessTl, binding.focusAssessVp,
-                    contentFragment, R.layout.tab_blue_under_line);
+                    contentFragmentList, TabLayoutHelper.UNDERLINE).setTab().setListener(this).setCustomView();
         }
     }
 
     @Override
     protected int getVariableId() {
         return 0;
+    }
+
+
+    @Override
+    public void setCustomContent(View customView, int currentPosition) {
+        TextView tv = customView.findViewById(R.id.tab_tv);
+        tv.setText("第" + (currentPosition + 1) + "次评审");
     }
 }

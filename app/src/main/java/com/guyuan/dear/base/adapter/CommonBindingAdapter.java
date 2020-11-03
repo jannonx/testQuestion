@@ -19,11 +19,24 @@ import com.guyuan.dear.utils.GlideUtils;
 
 public class CommonBindingAdapter {
 
-    //imageView设置圆形图片
-    @BindingAdapter("pictureFromUrl")
-    public static void setPicFromUrl(ImageView imageView, String url) {
-        GlideUtils.getInstance().loadUserCircleImageFromGuYuanServer(imageView, url);
+    //glide设置图片
+    @BindingAdapter(value={"imgUrl", "imgType","imgRadius"}, requireAll=false)
+    public static void setPic(ImageView imageView, String url, int type,int radius) {
+        switch (type) {
+            case GlideUtils.NORMAL:
+                GlideUtils.getInstance().loadUrlImage(imageView, url);
+                break;
+
+            case GlideUtils.ROUND_RADIUS:
+                GlideUtils.getInstance().loadRoundUriImage(imageView, url, radius);
+                break;
+
+            case GlideUtils.CIRCLE:
+                GlideUtils.getInstance().loadUserCircleImageFromGuYuanServer(imageView, url);
+                break;
+        }
     }
+
 
     //text设置字符串有数据显示，无数据隐藏
     @BindingAdapter("visibilityByContent")

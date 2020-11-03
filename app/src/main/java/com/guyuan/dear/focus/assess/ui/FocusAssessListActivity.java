@@ -28,32 +28,22 @@ public class FocusAssessListActivity extends BaseToolbarActivity<ActivityWithout
 
     private FocusAssessListFragment listFragment;
 
-    public static void start(Context context, String content) {
+    public static void start(Context context, String content, int type) {
         Intent starter = new Intent(context, FocusAssessListActivity.class);
         starter.putExtra(ConstantValue.KEY_CONTENT, content);
+        starter.putExtra(FocusAssessListFragment.TYPE, type);
         context.startActivity(starter);
     }
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-    //    setObserver();
         String searchContent = getIntent().getStringExtra(ConstantValue.KEY_CONTENT);
-        listFragment = FocusAssessListFragment.newInstance(FocusAssessListFragment.OVERVIEW_SEARCH, searchContent);
+        int type = getIntent().getIntExtra(FocusAssessListFragment.TYPE, 0);
+        listFragment = FocusAssessListFragment.newInstance(type, searchContent, FocusAssessListFragment.FROM_OVERVIEW);
         ActivityUtils.addFragmentToActivity(fragmentManager, listFragment, R.id.fragment_container,
                 FocusAssessListFragment.TAG);
     }
 
-
-    private void setObserver() {
-        if (viewModel != null) {
-            viewModel.assessOverviewSearchListBean.observe(this, new Observer<AssessListBean>() {
-                @Override
-                public void onChanged(AssessListBean assessListBean) {
-                    listFragment.setListData(assessListBean.getContent());
-                }
-            });
-        }
-    }
 
     @Override
     protected int getLayoutID() {
