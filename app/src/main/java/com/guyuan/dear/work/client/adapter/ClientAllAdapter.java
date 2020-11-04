@@ -27,8 +27,6 @@ public class ClientAllAdapter extends BaseRecyclerAdapter<ClientCompanyBean> {
     @Override
     protected void bindDataToView(BaseRecyclerViewHolder holder, ClientCompanyBean item,
                                   int position) {
-        if (TextUtils.isEmpty(item.getFollowUpTime())) return;
-
         holder.setText(R.id.tv_client_name, item.getCusName());
         holder.setText(R.id.tv_salesman, item.getSalesman());
         holder.setText(R.id.tv_time, item.getFollowUpTime());

@@ -1,6 +1,7 @@
 package com.guyuan.dear.work.client.data;
 
 import androidx.hilt.lifecycle.ViewModelInject;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.httplibrary.bean.ErrorResultBean;
 import com.example.httplibrary.bean.RefreshBean;
@@ -26,70 +27,48 @@ import okhttp3.RequestBody;
 public class WorkClientViewModel extends BaseViewModel {
     private WorkClientRepository repository;
 
-    private SingleLiveEvent<ResultBean<List<ClientCompanyBean>>> clientListByNameEvent;//模糊查询客户列表
-    private SingleLiveEvent<ResultBean<List<ClientCompanyBean>>> clientListEvent;//客户列表
-    private SingleLiveEvent<ResultBean<List<ClientCompanyBean>>> myClientListEvent;//我的客户列表
-    private SingleLiveEvent<ResultBean<ClientCompanyBean>> clientBasicEvent;//基础信息
-    private SingleLiveEvent<ResultBean<RefreshBean<CommentsBean>>> followListEvent;//跟进评论
-    private SingleLiveEvent<ResultBean<Integer>> followClientEvent;//填写客户跟进评论
+    private MutableLiveData<RefreshBean<ClientCompanyBean>> clientListEvent=new MutableLiveData<>();//客户列表
+    private MutableLiveData<RefreshBean<ClientCompanyBean>> myClientListEvent=new MutableLiveData<>() ;//我的客户列表
+    private MutableLiveData<ClientCompanyBean> clientBasicEvent=new MutableLiveData<>();//基础信息
+    private MutableLiveData<RefreshBean<CommentsBean>> followListEvent=new MutableLiveData<>();//跟进评论列表
+    private MutableLiveData<Integer> followClientEvent=new MutableLiveData<>();//填写客户跟进评论
+    private MutableLiveData<Integer> followUserEvent=new MutableLiveData<>();//填写用户跟进评论
 
     @ViewModelInject
     public WorkClientViewModel(WorkClientRepository focusAfterSaleRepository) {
         this.repository = focusAfterSaleRepository;
     }
 
-    public SingleLiveEvent<ResultBean<List<ClientCompanyBean>>> getClientListByNameEvent() {
-        clientListByNameEvent = createLiveData(clientListByNameEvent);
-        return clientListByNameEvent;
 
-    }
 
-    public SingleLiveEvent<ResultBean<List<ClientCompanyBean>>> getClientListEvent() {
-        clientListEvent = createLiveData(clientListEvent);
+    public MutableLiveData<RefreshBean<ClientCompanyBean>> getClientListEvent() {
         return clientListEvent;
 
     }
-    public SingleLiveEvent<ResultBean<List<ClientCompanyBean>>> getMyClientListEvent() {
-        myClientListEvent = createLiveData(myClientListEvent);
+    public MutableLiveData<RefreshBean<ClientCompanyBean>> getMyClientListEvent() {
         return myClientListEvent;
 
     }
 
-    public SingleLiveEvent<ResultBean<ClientCompanyBean>> getClientBasicEvent() {
-        clientBasicEvent = createLiveData(clientBasicEvent);
+    public MutableLiveData<ClientCompanyBean> getClientBasicEvent() {
         return clientBasicEvent;
 
     }
 
-    public SingleLiveEvent<ResultBean<RefreshBean<CommentsBean>>> getFollowListEvent() {
-        followListEvent = createLiveData(followListEvent);
+    public MutableLiveData<RefreshBean<CommentsBean>> getFollowListEvent() {
         return followListEvent;
 
     }
 
-    public SingleLiveEvent<ResultBean<Integer>> getFollowClientEvent() {
-        followClientEvent = createLiveData(followClientEvent);
+    public MutableLiveData<Integer> getFollowClientEvent() {
         return followClientEvent;
 
     }
+    public MutableLiveData<Integer> getFollowUserEvent() {
+        return followUserEvent;
 
-    /**
-     * 根据名称模糊查询客户列表
-     *
-     * @param name 客户名称
-     */
-    public void getClientListByName(String name) {
-
-        Disposable disposable = RxJavaHelper.build(this, repository.getClientListByName(name))
-                .success(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        ResultBean<List<ClientCompanyBean>> bean = (ResultBean<List<ClientCompanyBean>>) o;
-                        clientListByNameEvent.postValue(bean);
-                    }
-                }).getHelper().flow();
-        addSubscription(disposable);
     }
+
 
     /**
      * 获取用户列表
@@ -99,30 +78,18 @@ public class WorkClientViewModel extends BaseViewModel {
     public void getClientList(RequestBody body) {
 
         Disposable disposable = RxJavaHelper.build(this, repository.getClientList(body))
-                .success(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        ResultBean<List<ClientCompanyBean>> bean = (ResultBean<List<ClientCompanyBean>>) o;
-                        clientListEvent.postValue(bean);
-                    }
-                }).getHelper().flow();
+                .getHelper().flow(clientListEvent);
         addSubscription(disposable);
     }
     /**
-     * 根据用户id获取客户列表
+     * 获取我的客户列表
      *
-     * @param id 用户id
+     * @param body 列表参数
      */
-    public void getMyClientList(long id) {
+    public void getMyClientList(RequestBody body) {
 
-        Disposable disposable = RxJavaHelper.build(this, repository.getMyClientList(id))
-                .success(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        ResultBean<List<ClientCompanyBean>> bean = (ResultBean<List<ClientCompanyBean>>) o;
-                        myClientListEvent.postValue(bean);
-                    }
-                }).getHelper().flow();
+        Disposable disposable = RxJavaHelper.build(this, repository.getMyClientList(body))
+                .getHelper().flow(myClientListEvent);
         addSubscription(disposable);
     }
     /**
@@ -133,13 +100,7 @@ public class WorkClientViewModel extends BaseViewModel {
     public void getClientBasicInfo(int id) {
 
         Disposable disposable = RxJavaHelper.build(this, repository.getClientBasicInfo(id))
-                .success(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        ResultBean<ClientCompanyBean> bean = (ResultBean<ClientCompanyBean>) o;
-                        clientBasicEvent.postValue(bean);
-                    }
-                }).getHelper().flow();
+                .getHelper().flow(clientBasicEvent);
         addSubscription(disposable);
     }
 
@@ -151,18 +112,12 @@ public class WorkClientViewModel extends BaseViewModel {
     public void getFollowCommentList(RequestBody body) {
 
         Disposable disposable = RxJavaHelper.build(this, repository.getFollowCommentList(body))
-                .success(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        ResultBean<RefreshBean<CommentsBean>> bean = (ResultBean<RefreshBean<CommentsBean>>) o;
-                        followListEvent.postValue(bean);
-                    }
-                }).getHelper().flow();
+                .getHelper().flow(followListEvent);
         addSubscription(disposable);
     }
 
     /**
-     * 填写用户跟进
+     * 填写客户跟进
      *
      * @param content    评价内容
      * @param customerId 客户id
@@ -170,14 +125,23 @@ public class WorkClientViewModel extends BaseViewModel {
     public void postClientFollowUp(long customerId, String content) {
 
         Disposable disposable = RxJavaHelper.build(this, repository.postClientFollowUp(customerId, content))
-                .success(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        ResultBean<Integer> bean = (ResultBean<Integer>) o;
-                        followClientEvent.postValue(bean);
-                    }
-                }).getHelper().flow();
+                .getHelper().flow(followClientEvent);
         addSubscription(disposable);
     }
+
+
+    /**
+     * 填写用户跟进
+     *
+     * @param content    评价内容
+     * @param followId 客户id
+     */
+    public void postUserFollowUp(long followId, String content) {
+
+        Disposable disposable = RxJavaHelper.build(this, repository.postUserFollowUp(followId, content))
+                .getHelper().flow(followUserEvent);
+        addSubscription(disposable);
+    }
+
 
 }

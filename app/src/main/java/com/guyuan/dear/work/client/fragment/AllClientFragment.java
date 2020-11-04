@@ -1,26 +1,21 @@
 package com.guyuan.dear.work.client.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.httplibrary.bean.ResultBean;
+import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
 import com.guyuan.dear.utils.GsonUtil;
-import com.guyuan.dear.work.client.activity.WorkClientActivity;
 import com.guyuan.dear.work.client.activity.WorkClientDetailActivity;
 import com.guyuan.dear.work.client.adapter.ClientAllAdapter;
 import com.guyuan.dear.work.client.data.WorkClientViewModel;
-
-import java.util.List;
 
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
@@ -35,12 +30,10 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 public class AllClientFragment extends BaseListSearchFragment<ClientCompanyBean, FragmentListBinding, WorkClientViewModel> {
 
     public static final String TAG = AllClientFragment.class.getSimpleName();
-    private WorkClientViewModel viewModel;
+
 
     public static AllClientFragment newInstance() {
-
         Bundle args = new Bundle();
-
         AllClientFragment fragment = new AllClientFragment();
         fragment.setArguments(args);
         return fragment;
@@ -50,11 +43,6 @@ public class AllClientFragment extends BaseListSearchFragment<ClientCompanyBean,
     @Override
     protected void init() {
         etSearch.setHint("输入客户名称");
-        for (int i = 0; i < 5; i++) {
-            ClientCompanyBean contactBean = new ClientCompanyBean();
-            contactBean.setCusName("ClientCompanyBean" + i);
-            listData.add(contactBean);
-        }
         ClientAllAdapter listAdapter = new ClientAllAdapter(getContext(), listData,
                 R.layout.item_work_all_customer);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
@@ -73,19 +61,44 @@ public class AllClientFragment extends BaseListSearchFragment<ClientCompanyBean,
     }
 
     private void initData() {
-        viewModel.getClientList(getListRequestBody(FIRST_PAGE));
-        viewModel.getClientListEvent().observe(getActivity(), new Observer<ResultBean<List<ClientCompanyBean>>>() {
+        viewModel.getClientList(getListRequestBody(true));
+        viewModel.getClientListEvent().observe(getActivity(), new Observer<RefreshBean<ClientCompanyBean>>() {
             @Override
-            public void onChanged(ResultBean<List<ClientCompanyBean>> dataRefreshBean) {
+            public void onChanged(RefreshBean<ClientCompanyBean> dataRefreshBean) {
+                setListData(dataRefreshBean.getContent());
             }
         });
     }
 
-    private RequestBody getListRequestBody(int pageNum) {
+
+    @Override
+    protected void onSearch(String keyWord) {
+        viewModel.getClientList(getListRequestBody(true));
+    }
+
+    @Override
+    protected void editEmptyChange() {
+        viewModel.getClientList(getListRequestBody(true));
+    }
+
+    @Override
+    protected void refresh() {
+        viewModel.getClientList(getListRequestBody(true));
+    }
+
+    @Override
+    protected void loadMore() {
+        viewModel.getClientList(getListRequestBody(false));
+    }
+
+    private RequestBody getListRequestBody(boolean isRefresh) {
+        currentType = isRefresh ? REFRESH : LOAD_MORE;
+        currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListClientRequestBody body = new ListClientRequestBody();
         ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
+        filtersBean.setName(etSearch.getText().toString());
         body.setFilters(filtersBean);
-        body.setPageNum(pageNum);
+        body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);
 
         String str = GsonUtil.objectToString(body);
@@ -94,42 +107,13 @@ public class AllClientFragment extends BaseListSearchFragment<ClientCompanyBean,
     }
 
     @Override
-    protected void onSearch(String text) {
-        viewModel.getClientListByName(text);
-        viewModel.getClientListEvent().observe(getActivity(), new Observer<ResultBean<List<ClientCompanyBean>>>() {
-            @Override
-            public void onChanged(ResultBean<List<ClientCompanyBean>> dataRefreshBean) {
-            }
-        });
-    }
-
-    @Override
-    protected void refresh() {
-
-    }
-
-    @Override
-    protected void loadMore() {
-
-    }
-
-    @Override
     protected boolean isPullEnable() {
-        return false;
+        return true;
     }
 
     @Override
     protected boolean isLoadMoreEnable() {
-        return false;
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (getActivity() != null) {
-            WorkClientActivity activity = (WorkClientActivity) getActivity();
-            viewModel = activity.getViewModel();
-        }
+        return true;
     }
 
 

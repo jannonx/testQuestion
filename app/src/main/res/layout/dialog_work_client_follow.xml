@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:scrollbars="none">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:paddingStart="@dimen/dp_12"
+            android:paddingTop="@dimen/dp_7"
+            android:paddingEnd="@dimen/dp_12"
+            android:paddingBottom="@dimen/dp_12">
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_5"
+                android:layout_marginEnd="@dimen/dp_12"
+                android:background="@drawable/bg_gray_eeeee_round_4"
+                android:hint="输入跟进内容"
+                android:paddingStart="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_6"
+                android:paddingEnd="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_6"
+                android:textColor="@color/color_black_333333"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintEnd_toStartOf="@+id/tv_search_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_search_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_bg_grey_cccccc_to_blue_1677ff"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingTop="@dimen/dp_3"
+                android:paddingRight="@dimen/dp_8"
+                android:paddingBottom="@dimen/dp_3"
+                android:text="发送"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/et_search" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

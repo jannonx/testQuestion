@@ -4,6 +4,7 @@ package com.guyuan.dear.work.client.data;
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
+import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.work.client.api.WorkClientApiService;
 
 import java.util.List;
@@ -24,23 +25,19 @@ public class WorkClientRepository {
         this.apiService = focusAfterSaleApiService;
     }
 
-    Observable<ResultBean<List<ClientCompanyBean>>> getClientListByName(String name) {
-        return apiService.getClientListByName(name);
-    }
-
-    Observable<ResultBean<List<ClientCompanyBean>>> getClientList(RequestBody body) {
+    Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getClientList(RequestBody body) {
         return apiService.getClientList(body);
     }
 
-    Observable<ResultBean<List<ClientCompanyBean>>> getMyClientList(long id) {
-        return apiService.getMyClientList(id);
+    Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getMyClientList(RequestBody body) {
+        return apiService.getMyClientList(body);
     }
 
     Observable<ResultBean<ClientCompanyBean>> getClientBasicInfo(long id) {
         return apiService.getClientBasicInfo(id);
     }
 
-    Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getFollowCommentList(RequestBody body) {
+    Observable<ResultBean<RefreshBean<CommentsBean>>> getFollowCommentList(RequestBody body) {
         return apiService.getFollowCommentList(body);
     }
 
@@ -48,5 +45,8 @@ public class WorkClientRepository {
         return apiService.postClientFollowUp(customerId, content);
     }
 
+    Observable<ResultBean<Integer>> postUserFollowUp(long followId, String content) {
+        return apiService.postUserFollowUp(followId, content);
+    }
 
 }

@@ -1,12 +1,14 @@
-package com.guyuan.dear.focus.client.fragment;
+package com.guyuan.dear.work.client.fragment;
 
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
@@ -19,8 +21,12 @@ import com.guyuan.dear.focus.client.data.FocusClientViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.utils.ToastUtils;
+import com.guyuan.dear.work.client.data.WorkClientViewModel;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
@@ -29,32 +35,20 @@ import static com.guyuan.dear.utils.ConstantValue.FIRST_PAGE;
 import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
 
 /**
- * @description:
+ * @description: 填写跟进内容弹框
  * @author: Jannonx
- * @since: 2020/10/27 14:31
+ * @since: 2020/11/4 14:11
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollowStatusBinding, FocusClientViewModel> {
+public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollowStatusBinding, WorkClientViewModel> {
 
     public static final String TAG = "FollowStatusFragment";
     private List<CommentsBean> dataList = new ArrayList<>();
     private boolean isFocus = false;
     private ClientCompanyBean clientData;
     private View footerView;
-    //    private FollowStatusExAdapter adapter;
     private BaseRecyclerViewAdapter adapter;
 
-    public static FollowStatusFragment newInstance() {
-        return newInstance(false);
-    }
-
-    public static FollowStatusFragment newInstance(boolean isFocus) {
-        Bundle bundle = new Bundle();
-        FollowStatusFragment fragment = new FollowStatusFragment();
-        bundle.putBoolean(ConstantValue.KEY_BOOLEAN, isFocus);
-        fragment.setArguments(bundle);
-        return fragment;
-    }
 
     public static FollowStatusFragment newInstance(boolean isFocus, ClientCompanyBean data) {
         Bundle bundle = new Bundle();
@@ -72,14 +66,9 @@ public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollow
 
     @Override
     protected void initialization() {
-        Bundle arguments = getArguments();
-        isFocus = arguments.getBoolean(ConstantValue.KEY_BOOLEAN);
-        if (arguments.containsKey(ConstantValue.KEY_CONTENT)) {
-            clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
-            viewModel.getFollowCommentList(getListRequestBody(FIRST_PAGE));
 
-        }
         initView();
+        LogUtils.showLog("initialization=" + clientData.getCusName());
         viewModel.getFollowListEvent().observe(getActivity(), new Observer<RefreshBean<CommentsBean>>() {
             @Override
             public void onChanged(RefreshBean<CommentsBean> dataRefreshBean) {
@@ -94,7 +83,6 @@ public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollow
                 activateTime.setText(content.get(content.size() - 1).getCreateTime());
             }
         });
-
 
     }
 
@@ -112,19 +100,29 @@ public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollow
     }
 
     private void initView() {
+        Bundle arguments = getArguments();
+        isFocus = arguments.getBoolean(ConstantValue.KEY_BOOLEAN);
+        if (arguments.containsKey(ConstantValue.KEY_CONTENT)) {
+            clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+            viewModel.getFollowCommentList(getListRequestBody(FIRST_PAGE));
+
+        }
+
         footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_client_all, null);
         FollowStatusParentAdapter listAdapter = new FollowStatusParentAdapter(getContext(), dataList,
                 R.layout.item_follow_status_parent);
+        listAdapter.setCommentBtnVisible(true);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
         binding.baseRecycleView.setAdapter(adapter);
         binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.baseRecycleView.setLoadMoreEnabled(false);
         binding.baseRecycleView.setPullRefreshEnabled(false);
         adapter.addFooterView(footerView);
-        adapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
 
+        listAdapter.setClickListener(new FollowStatusParentAdapter.OnFollowClickListener() {
+            @Override
+            public void onClick(long followId) {
+                editUserFollowComment(followId);
             }
         });
 
@@ -160,6 +158,25 @@ public class FollowStatusFragment extends BaseDataBindingFragment<FragmentFollow
 //
 //
 //        });
+    }
+
+    /**
+     * 添加客户评论
+     */
+    private void editUserFollowComment(long followId) {
+        EditFollowCommentDialog.show(getContext(), new EditFollowCommentDialog.OnFollowClickListener() {
+            @Override
+            public void onClick(String content) {
+                viewModel.postUserFollowUp(followId, content);
+            }
+        });
+        viewModel.getFollowUserEvent().observe(getActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer dataRefreshBean) {
+                ToastUtils.showShort(getContext(), "评论成功!");
+                //刷新列表
+            }
+        });
     }
 
     @Override

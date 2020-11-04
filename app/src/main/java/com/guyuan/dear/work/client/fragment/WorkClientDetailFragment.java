@@ -9,20 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
-import com.example.httplibrary.bean.RefreshBean;
-import com.example.httplibrary.bean.ResultBean;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentWorkClientDetailBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.focus.client.bean.CommentsBean;
-import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
-import com.guyuan.dear.focus.client.fragment.BasicInfoFragment;
-import com.guyuan.dear.focus.client.fragment.FollowStatusFragment;
+import com.guyuan.dear.work.client.fragment.BasicInfoFragment;
+import com.guyuan.dear.work.client.fragment.FollowStatusFragment;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.GsonUtil;
+import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.client.activity.WorkClientDetailActivity;
 import com.guyuan.dear.work.client.data.WorkClientViewModel;
 
@@ -30,10 +26,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import okhttp3.RequestBody;
-
-import static com.guyuan.dear.utils.ConstantValue.FIRST_PAGE;
-import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
 
 /**
  * @description: 我的关注--客户详情
@@ -75,20 +67,13 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
     }
 
     private void initData() {
-        Bundle arguments = getArguments();
-        clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+
         viewModel.getClientBasicInfo(clientData.getId());
-        viewModel.getFollowCommentList(getListRequestBody(FIRST_PAGE));
-        viewModel.getClientBasicEvent().observe(getActivity(), new Observer<ResultBean<ClientCompanyBean>>() {
-            @Override
-            public void onChanged(ResultBean<ClientCompanyBean> dataRefreshBean) {
 
-            }
-        });
-        viewModel.getFollowListEvent().observe(getActivity(), new Observer<ResultBean<RefreshBean<CommentsBean>>>() {
+        viewModel.getClientBasicEvent().observe(getActivity(), new Observer<ClientCompanyBean>() {
             @Override
-            public void onChanged(ResultBean<RefreshBean<CommentsBean>> dataRefreshBean) {
-
+            public void onChanged(ClientCompanyBean dataRefreshBean) {
+                setCompanyData(dataRefreshBean);
             }
         });
         binding.tvEditFollow.setOnClickListener(new View.OnClickListener() {
@@ -99,42 +84,46 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
         });
     }
 
+    private void setCompanyData(ClientCompanyBean dataRefreshBean) {
+        basicInfoFragment.setData(dataRefreshBean);
+        binding.tvClientName.setText(dataRefreshBean.getCusName());
+        binding.tvSalesman.setText(dataRefreshBean.getSalesman());
+        binding.tvLatestTime.setText(dataRefreshBean.getFollowUpTime());
+
+    }
+
     /**
      * 添加客户评论
      */
     private void editClientFollowComment() {
-        viewModel.postClientFollowUp(1L, "评论");
-        viewModel.getFollowClientEvent().observe(getActivity(), new Observer<ResultBean<Integer>>() {
+        EditFollowCommentDialog.show(getContext(), new EditFollowCommentDialog.OnFollowClickListener() {
             @Override
-            public void onChanged(ResultBean<Integer> dataRefreshBean) {
-
+            public void onClick(String content) {
+                viewModel.postClientFollowUp(clientData.getId(), content);
+            }
+        });
+        viewModel.getFollowClientEvent().observe(getActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer dataRefreshBean) {
+                ToastUtils.showShort(getContext(), "评论成功!");
+                //刷新列表
             }
         });
     }
 
-    private RequestBody getListRequestBody(int pageNum) {
-        ListClientRequestBody body = new ListClientRequestBody();
-        ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
-        filtersBean.setId(clientData.getId());
-        body.setFilters(filtersBean);
-        body.setPageNum(pageNum);
-        body.setPageSize(PAGE_SIZE);
-
-        String str = GsonUtil.objectToString(body);
-        return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
-                "charset=utf-8"), str);
-    }
 
     private void initView() {
+        Bundle arguments = getArguments();
+        clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+
         List<Fragment> tabFragmentList = new ArrayList<>();
-        followStatusFragment = FollowStatusFragment.newInstance(true);
+        followStatusFragment = FollowStatusFragment.newInstance(true, clientData);
         basicInfoFragment = BasicInfoFragment.newInstance();
 
         tabFragmentList.add(followStatusFragment);
         tabFragmentList.add(basicInfoFragment);
 
-        titleList =
-                getResources().getStringArray(R.array.focus_client_tab);
+        titleList = getResources().getStringArray(R.array.focus_client_tab);
         TabAdapter tabAdapter = new
                 TabAdapter(getChildFragmentManager(), Arrays.asList(titleList), tabFragmentList, getContext(),
                 getCustomViewId());

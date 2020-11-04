@@ -1,25 +1,23 @@
 package com.guyuan.dear.work.client.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.httplibrary.bean.ResultBean;
+import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.work.client.activity.WorkClientActivity;
+import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
+import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.work.client.activity.WorkClientDetailActivity;
 import com.guyuan.dear.work.client.adapter.ClientFollowAdapter;
 import com.guyuan.dear.work.client.data.WorkClientViewModel;
 
-import java.util.List;
-
+import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
@@ -32,7 +30,6 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBean, FragmentListBinding,WorkClientViewModel> {
 
     public static final String TAG = ClientFollowFragment.class.getSimpleName();
-    private WorkClientViewModel viewModel;
 
     public static ClientFollowFragment newInstance() {
         Bundle args = new Bundle();
@@ -45,13 +42,9 @@ public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBe
     @Override
     protected void init() {
         etSearch.setHint("输入客户名称");
-        for (int i = 0; i < 5; i++) {
-            ClientCompanyBean contactBean = new ClientCompanyBean();
-            contactBean.setCusName("ClientCompanyBean" + i);
-            listData.add(contactBean);
-        }
+
         ClientFollowAdapter listAdapter = new ClientFollowAdapter(getContext(), listData,
-                R.layout.item_work_follow);
+                R.layout.item_work_follow_customer);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
@@ -63,37 +56,53 @@ public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBe
             }
         });
 
-        initData();
-    }
-
-    private void initData() {
-        viewModel.getMyClientList(1L);
-        viewModel.getMyClientListEvent().observe(getActivity(), new Observer<ResultBean<List<ClientCompanyBean>>>() {
+        viewModel.getMyClientList(getListRequestBody(true));
+        viewModel.getClientListEvent().observe(getActivity(), new Observer<RefreshBean<ClientCompanyBean>>() {
             @Override
-            public void onChanged(ResultBean<List<ClientCompanyBean>> dataRefreshBean) {
+            public void onChanged(RefreshBean<ClientCompanyBean> dataRefreshBean) {
+                setListData(dataRefreshBean.getContent());
             }
         });
+    }
+
+
+
+    @Override
+    protected void onSearch(String keyWord) {
+        viewModel.getMyClientList(getListRequestBody(true));
     }
 
     @Override
-    protected void onSearch(String text) {
-        viewModel.getClientListByName(text);
-        viewModel.getClientListEvent().observe(getActivity(), new Observer<ResultBean<List<ClientCompanyBean>>>() {
-            @Override
-            public void onChanged(ResultBean<List<ClientCompanyBean>> dataRefreshBean) {
-            }
-        });
+    protected void editEmptyChange() {
+        viewModel.getMyClientList(getListRequestBody(true));
     }
 
     @Override
     protected void refresh() {
-
+        viewModel.getMyClientList(getListRequestBody(true));
     }
 
     @Override
     protected void loadMore() {
-
+        viewModel.getMyClientList(getListRequestBody(false));
     }
+
+    private RequestBody getListRequestBody(boolean isRefresh) {
+        currentType = isRefresh ? REFRESH : LOAD_MORE;
+        currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
+        ListClientRequestBody body = new ListClientRequestBody();
+        ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
+        filtersBean.setName(etSearch.getText().toString());
+        body.setFilters(filtersBean);
+        body.setPageNum(currentPage);
+        body.setPageSize(PAGE_SIZE);
+
+        String str = GsonUtil.objectToString(body);
+        return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
+                "charset=utf-8"), str);
+    }
+
+
 
     @Override
     protected boolean isPullEnable() {
@@ -105,14 +114,7 @@ public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBe
         return false;
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (getActivity() != null) {
-            WorkClientActivity activity = (WorkClientActivity) getActivity();
-            viewModel = activity.getViewModel();
-        }
-    }
+
 
     @Override
     protected int getVariableId() {

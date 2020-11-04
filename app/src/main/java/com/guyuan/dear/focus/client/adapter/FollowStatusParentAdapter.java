@@ -15,6 +15,7 @@ import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 
 import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.utils.GlideUtils;
+import com.guyuan.dear.work.client.fragment.EditFollowCommentDialog;
 
 import java.util.List;
 
@@ -31,6 +32,9 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
  */
 public class FollowStatusParentAdapter extends BaseRecyclerAdapter<CommentsBean> {
     private boolean isCommentBtnVisible = false;
+    private OnFollowClickListener clickListener;
+
+
 
     public FollowStatusParentAdapter(Context context, @NonNull List<CommentsBean> listData, int layoutID) {
         super(context, listData, layoutID);
@@ -49,9 +53,9 @@ public class FollowStatusParentAdapter extends BaseRecyclerAdapter<CommentsBean>
         tvRemarkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if (childItemClickListener != null) {
-//                    childItemClickListener.onCommentClicked(bean);
-//                }
+                if (clickListener != null) {
+                    clickListener.onClick(item.getId());
+                }
             }
         });
 
@@ -68,5 +72,15 @@ public class FollowStatusParentAdapter extends BaseRecyclerAdapter<CommentsBean>
         baseRecycleView.setPullRefreshEnabled(false);
 
 
+    }
+
+    public void setCommentBtnVisible(boolean commentBtnVisible) {
+        isCommentBtnVisible = commentBtnVisible;
+    }
+    public void setClickListener(OnFollowClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
+    public interface OnFollowClickListener {
+        void onClick(long followId);
     }
 }
