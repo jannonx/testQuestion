@@ -281,6 +281,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="35dp"
+                app:assessLineChartData="@{assessViewModel.assessOverviewBean.auditYearInfoVOList}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

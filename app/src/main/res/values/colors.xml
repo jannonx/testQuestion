@@ -121,4 +121,7 @@
     <color name="color_blue_47abff">#47abff</color>
     <color name="color_blue_0050b4">#0050B4</color>
     <color name="color_blue_0081cd">#0081CD</color>
+
+    <color name="color_pass">#5AD8A6</color>
+    <color name="color_not_pass">#FA8C16</color>
 </resources>
