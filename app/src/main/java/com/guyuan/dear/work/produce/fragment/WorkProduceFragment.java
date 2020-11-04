@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.produce.ui;
+package com.guyuan.dear.work.produce.fragment;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,30 +7,29 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.bean.SimpleTabBean;
-import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.produce.adapter.FocusProduceAdapter;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
+import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
+import com.guyuan.dear.work.produce.data.WorkProduceViewModel;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
- * @description:
+ * @description: 我的关注--生产计划--分类查询
  * @author: Jannonx
- * @since: 2020/11/2 14:27
+ * @since: 2020/10/26 16:11
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusProduceExceptionFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding, FocusProduceViewModel> {
+public class WorkProduceFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding, WorkProduceViewModel> {
 
-    public static final String TAG = "FocusProduceExceptionFragment";
+    public static final String TAG = WorkProduceFragment.class.getSimpleName();
 
-    public static FocusProduceExceptionFragment newInstance() {
-
+    public static WorkProduceFragment newInstance() {
         Bundle args = new Bundle();
-
-        FocusProduceExceptionFragment fragment = new FocusProduceExceptionFragment();
+        WorkProduceFragment fragment = new WorkProduceFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -54,8 +53,6 @@ public class FocusProduceExceptionFragment extends BaseListSearchFragment<Simple
                 FocusProduceDetailActivity.start(getContext());
             }
         });
-
-
     }
 
     @Override

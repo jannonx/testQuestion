@@ -130,7 +130,7 @@ public class WorkClientViewModel extends BaseViewModel {
      *
      * @param id 客户id
      */
-    public void getClientBasicInfo(Long id) {
+    public void getClientBasicInfo(int id) {
 
         Disposable disposable = RxJavaHelper.build(this, repository.getClientBasicInfo(id))
                 .success(new Consumer<Object>() {

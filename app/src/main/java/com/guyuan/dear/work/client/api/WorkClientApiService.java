@@ -43,11 +43,10 @@ public interface WorkClientApiService extends BaseApiService {
     /**
      * 查询我的跟进记录
      *
-     * @param id 列表参数
      * @return
      */
     @POST("base/tCustomer/findCustomerFollowUpList")
-    Observable<ResultBean<List<ClientCompanyBean>>> getMyClientList(@Query("id") long id);
+    Observable<ResultBean<List<ClientCompanyBean>>> getMyClientList();
 
     /**
      * 根据客户id查看详情

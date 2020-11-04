@@ -27,6 +27,7 @@ import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,7 +49,6 @@ import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
 public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentFoucsClientDetailBinding, FocusClientViewModel> {
 
     public static final String TAG = "FocusClientDetailFragment";
-    private FocusClientViewModel viewModel;
     private FollowStatusFragment followStatusFragment;
     private BasicInfoFragment basicInfoFragment;
 
@@ -57,6 +57,9 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
     private ClientCompanyBean clientData;
+
+    private BaseRecyclerViewAdapter headerAdapter;
+    private List<ClientContactBean> headerData = new ArrayList<>();
 
     public static FocusClientDetailFragment newInstance(ClientCompanyBean data) {
         Bundle bundle = new Bundle();
@@ -73,47 +76,39 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
 
     @Override
     protected void initialization() {
-        initHeaderView();
-        initViewPager();
-        initData();
-    }
-
-    private void initData() {
         Bundle arguments = getArguments();
         clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        initHeaderView();
+        initViewPager();
         viewModel.getClientBasicInfo(clientData.getId());
-        viewModel.getFollowCommentList(getListRequestBody(FIRST_PAGE));
-        viewModel.getClientBasicEvent().observe(getActivity(), new Observer<ResultBean<ClientCompanyBean>>() {
-            @Override
-            public void onChanged(ResultBean<ClientCompanyBean> dataRefreshBean) {
 
-            }
-        });
-        viewModel.getFollowListEvent().observe(getActivity(), new Observer<ResultBean<RefreshBean<CommentsBean>>>() {
+        viewModel.getClientBasicEvent().observe(getActivity(), new Observer<ClientCompanyBean>() {
             @Override
-            public void onChanged(ResultBean<RefreshBean<CommentsBean>> dataRefreshBean) {
-
+            public void onChanged(ClientCompanyBean dataRefreshBean) {
+                setCompanyData(dataRefreshBean);
             }
         });
     }
 
+    private void setCompanyData(ClientCompanyBean dataRefreshBean) {
+        basicInfoFragment.setData(dataRefreshBean);
+        binding.tvClientName.setText(dataRefreshBean.getCusName());
+        headerData.clear();
+        headerData.addAll(dataRefreshBean.getList());
+        headerAdapter.refreshData();
+
+    }
+
+
     private void initHeaderView() {
-        ClientCompanyBean clientCompanyBean = new ClientCompanyBean();
-        List<ClientContactBean> childList = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            ClientContactBean contactBean = new ClientContactBean();
-            contactBean.setPhone("ClientContactBean" + i);
-            childList.add(contactBean);
-        }
-        clientCompanyBean.setList(childList);
-        ClientPhoneHeaderAdapter listAdapter = new ClientPhoneHeaderAdapter(getContext(), clientCompanyBean.getList(),
+        ClientPhoneHeaderAdapter adapter = new ClientPhoneHeaderAdapter(getContext(), headerData,
                 R.layout.item_focus_client_phone);
-        BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter(listAdapter);
-        binding.baseRecycleView.setAdapter(adapter);
+        headerAdapter = new BaseRecyclerViewAdapter(adapter);
+        binding.baseRecycleView.setAdapter(headerAdapter);
         binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.baseRecycleView.setLoadMoreEnabled(false);
         binding.baseRecycleView.setPullRefreshEnabled(false);
-        adapter.setOnItemClickListener(new OnItemClickListener() {
+        headerAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
 
@@ -123,7 +118,7 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
 
     private void initViewPager() {
         List<Fragment> tabFragmentList = new ArrayList<>();
-        followStatusFragment = FollowStatusFragment.newInstance();
+        followStatusFragment = FollowStatusFragment.newInstance(false, clientData);
         basicInfoFragment = BasicInfoFragment.newInstance();
 
         tabFragmentList.add(followStatusFragment);
@@ -173,20 +168,6 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
     }
 
 
-    private RequestBody getListRequestBody(int pageNum) {
-        ListClientRequestBody body = new ListClientRequestBody();
-        ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
-        filtersBean.setId(clientData.getId());
-        body.setFilters(filtersBean);
-        body.setPageNum(pageNum);
-        body.setPageSize(PAGE_SIZE);
-
-        String str = GsonUtil.objectToString(body);
-        return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
-                "charset=utf-8"), str);
-    }
-
-
     private int getCustomViewId() {
         return R.layout.layout_tab_text;
     }
@@ -217,14 +198,6 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
         tv.setText(Arrays.asList(titleList).get(position));
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (getActivity() != null) {
-            FocusClientDetailActivity activity = (FocusClientDetailActivity) getActivity();
-            viewModel = activity.getViewModel();
-        }
-    }
 
     @Override
     protected int getVariableId() {

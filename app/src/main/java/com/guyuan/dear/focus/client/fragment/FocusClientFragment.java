@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
@@ -36,7 +37,6 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBean, FragmentListBinding, FocusClientViewModel> {
 
     public static final String TAG = FocusClientFragment.class.getSimpleName();
-    private FocusClientViewModel viewModel;
 
     public static FocusClientFragment newInstance() {
 
@@ -50,11 +50,11 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
 
     @Override
     protected void init() {
-        for (int i = 0; i < 5; i++) {
-            ClientCompanyBean contactBean = new ClientCompanyBean();
-            contactBean.setCusName("ClientCompanyBean" + i);
-            listData.add(contactBean);
-        }
+//        for (int i = 0; i < 5; i++) {
+//            ClientCompanyBean contactBean = new ClientCompanyBean();
+//            contactBean.setCusName("ClientCompanyBean" + i);
+//            listData.add(contactBean);
+//        }
         ClientListAdapter listAdapter = new ClientListAdapter(getContext(), listData,
                 R.layout.item_focus_client);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
@@ -74,17 +74,20 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
 
     private void initData() {
         etSearch.setHint("输入客户名称、手机号");
-        viewModel.getClientList(getListRequestBody(FIRST_PAGE));
-        viewModel.getClientListEvent().observe(getActivity(), new Observer<ResultBean<List<ClientCompanyBean>>>() {
+        viewModel.getClientList(getListRequestBody(FIRST_PAGE, null));
+        viewModel.getClientListEvent().observe(getActivity(), new Observer<RefreshBean<ClientCompanyBean>>() {
             @Override
-            public void onChanged(ResultBean<List<ClientCompanyBean>> dataRefreshBean) {
+            public void onChanged(RefreshBean<ClientCompanyBean> dataRefreshBean) {
+                LogUtils.showLog("dataRefreshBean=" + dataRefreshBean.getContent().size());
+                setListData(dataRefreshBean.getContent());
             }
         });
     }
 
-    private RequestBody getListRequestBody(int pageNum) {
+    private RequestBody getListRequestBody(int pageNum, String name) {
         ListClientRequestBody body = new ListClientRequestBody();
         ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
+        filtersBean.setName(name);
         body.setFilters(filtersBean);
         body.setPageNum(pageNum);
         body.setPageSize(PAGE_SIZE);
@@ -96,13 +99,14 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
 
     @Override
     protected void onSearch(String keyWord) {
-        viewModel.getClientListByName(keyWord);
-        viewModel.getClientListEvent().observe(getActivity(), new Observer<ResultBean<List<ClientCompanyBean>>>() {
-            @Override
-            public void onChanged(ResultBean<List<ClientCompanyBean>> dataRefreshBean) {
+        currentType = REFRESH;
+        viewModel.getClientList(getListRequestBody(FIRST_PAGE, keyWord));
+    }
 
-            }
-        });
+    @Override
+    protected void editEmptyChange() {
+        currentType = REFRESH;
+        viewModel.getClientList(getListRequestBody(FIRST_PAGE, null));
     }
 
     @Override
@@ -125,14 +129,6 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
         return false;
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (getActivity() != null) {
-            FocusClientActivity activity = (FocusClientActivity) getActivity();
-            viewModel = activity.getViewModel();
-        }
-    }
 
     @Override
     protected int getVariableId() {

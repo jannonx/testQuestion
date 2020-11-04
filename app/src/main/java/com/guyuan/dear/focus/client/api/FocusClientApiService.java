@@ -4,6 +4,7 @@ import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
+import com.guyuan.dear.focus.client.bean.CommentsBean;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public interface FocusClientApiService extends BaseApiService {
      * @return
      */
     @POST("base/tCustomer/findByName")
-    Observable<ResultBean<List<ClientCompanyBean>>> getClientListByName(@Query("name") String name);
+    Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getClientListByName(@Query("name") String name);
     /**
      * 客户查询列表
      *
@@ -37,7 +38,7 @@ public interface FocusClientApiService extends BaseApiService {
      * @return
      */
     @POST("base/tCustomer/findCustomerQueryList")
-    Observable<ResultBean<List<ClientCompanyBean>>> getClientList(@Body RequestBody body);
+    Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getClientList(@Body RequestBody body);
 
 
     /**
@@ -47,7 +48,7 @@ public interface FocusClientApiService extends BaseApiService {
      * @return
      */
     @GET("base/tCustomer/findDetailsById")
-    Observable<ResultBean<ClientCompanyBean>> getClientBasicInfo(@Query("id") Long id);
+    Observable<ResultBean<ClientCompanyBean>> getClientBasicInfo(@Query("id") int id);
 
     /**
      * 根据客户id查询跟进
@@ -56,7 +57,7 @@ public interface FocusClientApiService extends BaseApiService {
      * @return
      */
     @POST("base/tCustomer/findFollowById")
-    Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getFollowCommentList(@Body RequestBody body);
+    Observable<ResultBean<RefreshBean<CommentsBean>>> getFollowCommentList(@Body RequestBody body);
 
 
 

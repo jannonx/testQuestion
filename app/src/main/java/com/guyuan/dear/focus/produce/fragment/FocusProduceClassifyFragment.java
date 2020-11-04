@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.produce.ui;
+package com.guyuan.dear.focus.produce.fragment;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +11,7 @@ import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.produce.adapter.FocusProduceAdapter;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
+import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;

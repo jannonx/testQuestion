@@ -12,12 +12,10 @@
         android:id="@+id/cl_order_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="@dimen/dp_60"
+        android:layout_marginStart="@dimen/dp_48"
         android:layout_marginEnd="@dimen/dp_12"
         tools:background="@color/color_grey_eeeeee"
         android:orientation="vertical"
-        android:padding="@dimen/dp_12"
         android:paddingBottom="@dimen/dp_8">
 
         <com.guyuan.dear.utils.view.roundedimageview.RoundedImageView

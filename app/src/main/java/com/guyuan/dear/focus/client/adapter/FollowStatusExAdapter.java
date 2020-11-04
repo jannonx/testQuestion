@@ -45,6 +45,7 @@ public class FollowStatusExAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
+        LogUtils.showLog("getChildrenCount..+" + groupPosition + "=" + mList.get(groupPosition).getBusinessDetails().size());
         return mList.get(groupPosition).getBusinessDetails().size();
     }
 
@@ -104,9 +105,6 @@ public class FollowStatusExAdapter extends BaseExpandableListAdapter {
         });
 
 
-        if (TextUtils.isEmpty(bean.getImgUrl())){
-            return convertView;
-        }
         GlideUtils.getInstance().loadUrlImage(ivAvatar, bean.getImgUrl());
         tvName.setText(bean.getCreateName());
         tvTime.setText(bean.getCreateTime());
@@ -147,10 +145,8 @@ public class FollowStatusExAdapter extends BaseExpandableListAdapter {
         TextView tvDepartment = convertView.findViewById(R.id.tv_department);
 
 
-        CommentsBean bean = mList.get(groupPosition);
-        if (TextUtils.isEmpty(bean.getImgUrl())){
-            return convertView;
-        }
+        CommentsBean bean = mList.get(groupPosition).getBusinessDetails().get(childPosition);
+        LogUtils.showLog(groupPosition + "-" + childPosition + " childBean=" + bean.getContent());
         GlideUtils.getInstance().loadUrlImage(ivAvatar, bean.getImgUrl());
         tvName.setText(bean.getCreateName());
         tvTime.setText(bean.getCreateTime());
@@ -176,5 +172,16 @@ public class FollowStatusExAdapter extends BaseExpandableListAdapter {
 
     public void setChildItemClickListener(ChildItemClickListener childItemClickListener) {
         this.childItemClickListener = childItemClickListener;
+    }
+
+    public void setNewList(List<CommentsBean> mList) {
+        this.mList.clear();
+        this.mList.addAll(mList);
+        notifyDataSetChanged();
+    }
+
+    public void appendDataList(List<CommentsBean> mList) {
+        this.mList.addAll(mList);
+        notifyDataSetChanged();
     }
 }

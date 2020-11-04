@@ -190,6 +190,7 @@ public class ConstantValue {
     public static final String KEY_USER_NAME = "KEY_USER_NAME";
     public static final String KEY_USER_PW = "KEY_USER_PW";
     public static final String KEY_CONTENT = "KEY_CONTENT";
+    public static final String KEY_BOOLEAN = "KEY_BOOLEAN";
     /**
      * 是否是审批人
      */

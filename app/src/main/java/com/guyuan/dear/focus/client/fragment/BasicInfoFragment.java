@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -31,7 +32,9 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 public class BasicInfoFragment extends BaseDataBindingFragment<FragmentBasicInfoBinding, FocusClientViewModel> {
 
     public static final String TAG = "BasicInfoFragment";
-    private FocusClientViewModel viewModel;
+    private List<ClientContactBean> listData = new ArrayList<>();
+    private View footerView;
+    private BaseRecyclerViewAdapter adapter;
 
     public static BasicInfoFragment newInstance() {
         Bundle args = new Bundle();
@@ -47,19 +50,10 @@ public class BasicInfoFragment extends BaseDataBindingFragment<FragmentBasicInfo
 
     @Override
     protected void initialization() {
-        ClientCompanyBean clientCompanyBean = new ClientCompanyBean();
-        List<ClientContactBean> childList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            ClientContactBean contactBean = new ClientContactBean();
-            contactBean.setMailbox("ClientContactBean" + i);
-            contactBean.setPhone("18123985606");
-            childList.add(contactBean);
-        }
-        clientCompanyBean.setList(childList);
-        View footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_client_basic_info, null);
-        ClientPhoneAdapter listAdapter = new ClientPhoneAdapter(getContext(), clientCompanyBean.getList(),
+        footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_client_basic_info, null);
+        ClientPhoneAdapter listAdapter = new ClientPhoneAdapter(getContext(), listData,
                 R.layout.item_client_phone);
-        BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter(listAdapter);
+        adapter = new BaseRecyclerViewAdapter(listAdapter);
         binding.baseRecycleView.setAdapter(adapter);
         binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.baseRecycleView.setLoadMoreEnabled(false);
@@ -68,10 +62,24 @@ public class BasicInfoFragment extends BaseDataBindingFragment<FragmentBasicInfo
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + childList.get(position).getPhone()));
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + listData.get(position).getPhone()));
                 startActivity(dialIntent);
             }
         });
+    }
+
+    public void setData(ClientCompanyBean dataRefreshBean) {
+        listData.clear();
+        listData.addAll(dataRefreshBean.getList());
+        adapter.refreshData();
+
+        TextView address = footerView.findViewById(R.id.tv_client_address);
+        TextView salesman = footerView.findViewById(R.id.tv_salesman);
+        TextView remark = footerView.findViewById(R.id.tv_remark);
+
+        address.setText(dataRefreshBean.getCusAddress());
+        salesman.setText(dataRefreshBean.getSalesman());
+        remark.setText(dataRefreshBean.getRemarks());
     }
 
     @Override

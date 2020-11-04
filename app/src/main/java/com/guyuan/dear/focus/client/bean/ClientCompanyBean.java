@@ -11,18 +11,37 @@ import java.util.List;
  */
 public class ClientCompanyBean implements Serializable {
     /**
-     * 主键id
+     * 联系人姓名
      */
-    private long id;
-
+    private String contactName;
+    /**
+     * 联系人电话
+     */
+    private String contactPhone;
     /**
      * 客户名称
      */
     private String cusName;
     /**
+     * 最后跟进人员
+     */
+    private String followUp;
+    /**
+     * 最后跟进时间
+     */
+    private String followUpTime;
+    /**
+     * 主键id
+     */
+    private int id;
+
+
+    /**
      * 客户详细地址
      */
     private String cusAddress;
+
+
     /**
      * 销售人员
      */
@@ -31,20 +50,17 @@ public class ClientCompanyBean implements Serializable {
      * 备注
      */
     private String remarks;
-    /**
-     * 最后跟进时间
-     */
-    private String followUpTime;
+
     /**
      * 客户联系人
      */
     private List<ClientContactBean> list;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -64,6 +80,22 @@ public class ClientCompanyBean implements Serializable {
         this.cusAddress = cusAddress;
     }
 
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
+    public String getContactPhone() {
+        return contactPhone;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
     public String getSalesman() {
         return salesman;
     }
@@ -78,6 +110,14 @@ public class ClientCompanyBean implements Serializable {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public String getFollowUp() {
+        return followUp;
+    }
+
+    public void setFollowUp(String followUp) {
+        this.followUp = followUp;
     }
 
     public String getFollowUpTime() {
