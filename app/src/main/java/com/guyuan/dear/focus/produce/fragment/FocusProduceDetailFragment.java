@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.produce.ui;
+package com.guyuan.dear.focus.produce.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,27 +7,16 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.httplibrary.bean.RefreshBean;
-import com.example.httplibrary.bean.ResultBean;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailBinding;
-import com.guyuan.dear.databinding.FragmentFoucsClientDetailBinding;
-import com.guyuan.dear.focus.client.activity.FocusClientDetailActivity;
-import com.guyuan.dear.focus.client.adapter.ClientPhoneHeaderAdapter;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.focus.client.bean.ClientContactBean;
-import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
-import com.guyuan.dear.focus.client.data.FocusClientViewModel;
-import com.guyuan.dear.focus.client.fragment.BasicInfoFragment;
-import com.guyuan.dear.focus.client.fragment.FollowStatusFragment;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
+import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 
@@ -36,10 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.RequestBody;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
-import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
-import static com.guyuan.dear.utils.ConstantValue.FIRST_PAGE;
 import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
 
 /**
@@ -138,7 +124,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
         tabFragmentList.add(statusFragment);
         tabFragmentList.add(planFragment);
 
-        titleList = getResources().getStringArray(R.array.focus_client_tab);
+        titleList = getResources().getStringArray(R.array.focus_produce_tab);
         TabAdapter tabAdapter = new
                 TabAdapter(getChildFragmentManager(), Arrays.asList(titleList), tabFragmentList, getContext(),
                 getCustomViewId());

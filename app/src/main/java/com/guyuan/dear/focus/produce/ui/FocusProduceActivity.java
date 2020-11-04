@@ -9,6 +9,9 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
+import com.guyuan.dear.focus.produce.fragment.FocusProduceExceptionFragment;
+import com.guyuan.dear.focus.produce.fragment.FocusProduceOverviewFragment;
+import com.guyuan.dear.focus.produce.fragment.FocusProduceTotalFragment;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
@@ -65,9 +68,9 @@ public class FocusProduceActivity extends BaseTabActivity<ActivityBaseTabBinding
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.tab_focus_produce_overview_selector);
+        tabDrawableList.add(R.drawable.tab_focus_produce_exception_selector);
+        tabDrawableList.add(R.drawable.tab_focus_produce_detail_selector);
         return tabDrawableList;
     }
 

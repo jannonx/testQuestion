@@ -17,6 +17,7 @@ import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
 import com.guyuan.dear.work.client.activity.WorkClientActivity;
 import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeActivity;
+import com.guyuan.dear.work.produce.activity.WorkProduceActivity;
 
 import java.util.ArrayList;
 
@@ -98,7 +99,7 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
                                 break;
 
                             case ConstantValue.WORK_PRODUCE://生产计划
-
+                                WorkProduceActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.WORK_PURCHASE://采购计划
@@ -124,7 +125,7 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
                                 break;
 
                             case ConstantValue.CONTRACT_PAUSE://合同暂停
-                                ContractPauseHomeActivity.start(getContext(),title);
+                                ContractPauseHomeActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.CONTRACT_RESTART://合同重启

@@ -61,7 +61,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/v_gray_8"
             app:tabIndicatorFullWidth="false"
-            app:tabRippleColor="@android:color/transparent" />
+        />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"

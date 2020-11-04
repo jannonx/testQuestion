@@ -92,6 +92,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
 //                ivClearBtn.setVisibility(TextUtils.isEmpty(editable.toString()) ? View.GONE : View.VISIBLE);
                 if (TextUtils.isEmpty(editable.toString())) {
                     etSearch.clearFocus();
+                    editEmptyChange();
                 }
                 editTextChanged(editable.toString());
             }
@@ -113,10 +114,27 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
 
     protected abstract void init();
 
+    /**
+     * 点击按钮搜索
+     *
+     * @param text 搜索内容
+     */
     protected void onSearch(String text) {
 
-    };
+    }
 
+    /**
+     * 清空editText,刷新列表
+     */
+    protected void editEmptyChange() {
+
+    }
+
+    /**
+     * 实时搜索
+     *
+     * @param text 搜索内容
+     */
     protected void editTextChanged(String text) {
 
     }

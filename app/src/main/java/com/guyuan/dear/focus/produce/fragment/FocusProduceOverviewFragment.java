@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.produce.ui;
+package com.guyuan.dear.focus.produce.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,7 +9,11 @@ import androidx.annotation.NonNull;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProduceOverviewBinding;
+import com.guyuan.dear.focus.contract.bean.ComContractsBean;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
+import com.guyuan.dear.focus.produce.ui.FocusProduceActivity;
+import com.guyuan.dear.focus.produce.ui.FocusProduceClassifyActivity;
+import com.guyuan.dear.focus.produce.util.ChartViewUtils;
 
 /**
  * @description:
@@ -41,6 +45,13 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
         binding.clProduceIng.setOnClickListener(this);
         binding.clProduceException.setOnClickListener(this);
         binding.clProduceDelay.setOnClickListener(this);
+
+        ComContractsBean comContractsBean = new ComContractsBean();
+        comContractsBean.setExecutingContracts(30);
+        comContractsBean.setExceptionContracts(20);
+        comContractsBean.setFinishedContracts(25);
+
+        ChartViewUtils.setFocusChartView(binding.chartView, comContractsBean);
     }
 
     @Override

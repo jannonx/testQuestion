@@ -4,6 +4,7 @@ import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
+import com.guyuan.dear.focus.client.bean.CommentsBean;
 
 import java.util.List;
 
@@ -22,14 +23,6 @@ import retrofit2.http.Query;
  */
 public interface WorkClientApiService extends BaseApiService {
 
-    /**
-     * 根据名称模糊查询客户列表
-     *
-     * @param name 客户名称
-     * @return
-     */
-    @POST("base/tCustomer/findByName")
-    Observable<ResultBean<List<ClientCompanyBean>>> getClientListByName(@Query("name") String name);
 
     /**
      * 客户查询列表
@@ -38,16 +31,15 @@ public interface WorkClientApiService extends BaseApiService {
      * @return
      */
     @POST("base/tCustomer/findCustomerQueryList")
-    Observable<ResultBean<List<ClientCompanyBean>>> getClientList(@Body RequestBody body);
+    Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getClientList(@Body RequestBody body);
 
     /**
      * 查询我的跟进记录
      *
-     * @param id 列表参数
      * @return
      */
     @POST("base/tCustomer/findCustomerFollowUpList")
-    Observable<ResultBean<List<ClientCompanyBean>>> getMyClientList(@Query("id") long id);
+    Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getMyClientList(@Body RequestBody body);
 
     /**
      * 根据客户id查看详情
@@ -65,7 +57,8 @@ public interface WorkClientApiService extends BaseApiService {
      * @return
      */
     @POST("base/tCustomer/findFollowById")
-    Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getFollowCommentList(@Body RequestBody body);
+    Observable<ResultBean<RefreshBean<CommentsBean>>> getFollowCommentList(@Body RequestBody body);
+
     /**
      * 填写用户跟进
      *
@@ -76,6 +69,18 @@ public interface WorkClientApiService extends BaseApiService {
     @GET("base/tCustomer/followUp")
     Observable<ResultBean<Integer>> postClientFollowUp(@Query("customerId") long customerId,
                                                        @Query("content") String content
+    );
+
+    /**
+     * 填写用户跟进评价
+     *
+     * @param content  评价内容
+     * @param followId 跟进条目id
+     * @return
+     */
+    @GET("base/tCustomer/followUpComment")
+    Observable<ResultBean<Integer>> postUserFollowUp(@Query("followId") long followId,
+                                                     @Query("content") String content
     );
 
 } 

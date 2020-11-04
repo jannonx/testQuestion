@@ -205,6 +205,10 @@
         <item>跟进动态</item>
         <item>基础信息</item>
     </array>
+    <array name="focus_produce_tab">
+        <item>生产动态</item>
+        <item>生产计划</item>
+    </array>
     <array name="real_time_quality">
         <item>质量概况</item>
         <item>质量异常</item>

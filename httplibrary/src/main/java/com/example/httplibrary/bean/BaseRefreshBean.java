@@ -6,40 +6,50 @@ package com.example.httplibrary.bean;
  * @date: 2020/5/8 17:02
  */
 public class BaseRefreshBean {
-  private int pageNum;
-  private int pageSize;
-  private int totalPages;
-  private int totalSize;
+    private int pageNum;
+    private int pageSize;
+    private int totalPages;
+    private int totalSize;
+    private String updateTime;
 
-  public int getPageNum() {
-    return pageNum;
-  }
 
-  public void setPageNum(int pageNum) {
-    this.pageNum = pageNum;
-  }
+    public String getUpdateTime() {
+        return updateTime;
+    }
 
-  public int getPageSize() {
-    return pageSize;
-  }
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
+    }
 
-  public void setPageSize(int pageSize) {
-    this.pageSize = pageSize;
-  }
+    public int getPageNum() {
+        return pageNum;
+    }
 
-  public int getTotalPages() {
-    return totalPages;
-  }
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
 
-  public void setTotalPages(int totalPages) {
-    this.totalPages = totalPages;
-  }
+    public int getPageSize() {
+        return pageSize;
+    }
 
-  public int getTotalSize() {
-    return totalSize;
-  }
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 
-  public void setTotalSize(int totalSize) {
-    this.totalSize = totalSize;
-  }
+    public int getTotalPages() {
+        return totalPages;
+    }
+
+    public void setTotalPages(int totalPages) {
+        this.totalPages = totalPages;
+    }
+
+    public int getTotalSize() {
+        return totalSize;
+    }
+
+    public void setTotalSize(int totalSize) {
+        this.totalSize = totalSize;
+    }
 }

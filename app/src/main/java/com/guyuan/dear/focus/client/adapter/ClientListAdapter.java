@@ -31,25 +31,19 @@ public class ClientListAdapter extends BaseRecyclerAdapter<ClientCompanyBean> {
     @Override
     protected void bindDataToView(BaseRecyclerViewHolder holder, ClientCompanyBean item,
                                   int position) {
-        if (TextUtils.isEmpty(item.getCusAddress())) return;
         holder.setText(R.id.tv_client_name, item.getCusName());
-        List<ClientContactBean> list = item.getList();
-        if (!list.isEmpty()) {
-            holder.setText(R.id.tv_client_contact, "联系人：" + list.get(0).getName());
-            holder.setText(R.id.tv_client_phone, list.get(0).getPhone());
-        }
+        holder.setText(R.id.tv_client_contact, "联系人：" + item.getContactName());
+        holder.setText(R.id.tv_client_phone, item.getContactPhone());
 
-        holder.setText(R.id.tv_salesman, item.getSalesman());
+        holder.setText(R.id.tv_salesman, item.getFollowUp());
         holder.setText(R.id.tv_latest_time, item.getFollowUpTime());
 
 
         holder.getView(R.id.iv_phone).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!list.isEmpty()) {
-                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + list.get(0).getPhone()));
-                    context.startActivity(dialIntent);
-                }
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + item.getContactName()));
+                context.startActivity(dialIntent);
 
             }
         });

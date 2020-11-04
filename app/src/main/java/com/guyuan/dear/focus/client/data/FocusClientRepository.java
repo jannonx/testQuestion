@@ -6,6 +6,7 @@ import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.approve.bean.ApprovalData;
 import com.guyuan.dear.focus.client.api.FocusClientApiService;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
+import com.guyuan.dear.focus.client.bean.CommentsBean;
 
 import java.util.List;
 
@@ -30,19 +31,19 @@ public class FocusClientRepository {
     }
 
 
-    Observable<ResultBean<List<ClientCompanyBean>>> getClientListByName(String name) {
+    Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getClientListByName(String name) {
         return apiService.getClientListByName(name);
     }
 
-    Observable<ResultBean<List<ClientCompanyBean>>> getClientList(RequestBody body) {
+    Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getClientList(RequestBody body) {
         return apiService.getClientList(body);
     }
 
-    Observable<ResultBean<ClientCompanyBean>> getClientBasicInfo(long id) {
+    Observable<ResultBean<ClientCompanyBean>> getClientBasicInfo(int id) {
         return apiService.getClientBasicInfo(id);
     }
 
-    Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getFollowCommentList(RequestBody body) {
+    Observable<ResultBean<RefreshBean<CommentsBean>>> getFollowCommentList(RequestBody body) {
         return apiService.getFollowCommentList(body);
     }
 

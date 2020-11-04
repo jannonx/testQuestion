@@ -28,7 +28,6 @@ public class ClientPhoneHeaderAdapter extends BaseRecyclerAdapter<ClientContactB
     protected void bindDataToView(BaseRecyclerViewHolder holder, ClientContactBean item,
                                   int position) {
 
-        if (TextUtils.isEmpty(item.getName())) return;
         holder.setText(R.id.tv_client_contact, item.getName());
         holder.setText(R.id.tv_client_phone, item.getPhone());
 
