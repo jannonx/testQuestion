@@ -5,7 +5,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg_window">
+        android:background="@color/white">
 
         <tl.com.easy_recycleview_library.BaseRecyclerView
             android:id="@+id/base_recycleView"

@@ -52,7 +52,7 @@ public class SecurityReportAdapter extends BaseRecyclerAdapter<SecurityContentBe
             @Override
             public void onClick(View v) {
                 if (!TextUtils.isEmpty(item.getImgUrl())) {
-                    FullScreenShowActivity.start(context, imgUrl);
+                    FullScreenShowActivity.start(context, StringUtils.splitPhotoUrl(imgUrl));
                 }
             }
         });

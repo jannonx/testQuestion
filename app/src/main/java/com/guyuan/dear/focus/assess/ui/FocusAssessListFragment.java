@@ -34,17 +34,21 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
 
     public static final String TAG = "FocusListFragment";
     public static final String TYPE = "type";
+    public static final String ENTRY_TYPE = "entryType";
     public static final int TOTAL = 0;       //所有评审
     public static final int PASS = 30;       //已通过评审
     public static final int NOT_PASS = 40;   //未通过评审
-    public static final int OVERVIEW_SEARCH = -1;     //概览根据内容查询所有评审
+    public static final int FROM_OVERVIEW = 100;  //从概览进入
+    public static final int FROM_OTHER = 101;   //从其他进入
     private int type;
+    private int entryType;
 
-    public static FocusAssessListFragment newInstance(int type, String searchContent) {
+    public static FocusAssessListFragment newInstance(int type, String searchContent, int entryType) {
 
         Bundle args = new Bundle();
         args.putInt(TYPE, type);
         args.putString(ConstantValue.KEY_CONTENT, searchContent);
+        args.putInt(ENTRY_TYPE, entryType);
         FocusAssessListFragment fragment = new FocusAssessListFragment();
         fragment.setArguments(args);
         return fragment;
@@ -54,9 +58,10 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
     protected void init() {
         if (getArguments() != null) {
             type = getArguments().getInt(TYPE);
+            entryType = getArguments().getInt(ENTRY_TYPE);
             String searchContent = getArguments().getString(ConstantValue.KEY_CONTENT);
             etSearch.setText(searchContent);
-            viewModel.getAssessList(ConstantValue.FIRST_PAGE, ConstantValue.PAGE_SIZE, searchContent, type);
+            getListData(entryType, ConstantValue.FIRST_PAGE, ConstantValue.PAGE_SIZE, searchContent, type);
             AssessListAdapter listAdapter = new AssessListAdapter(listData,
                     R.layout.item_focus_assess_list);
             adapter = new BaseRecyclerViewAdapter(listAdapter);
@@ -79,13 +84,13 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
     protected void refresh() {
         String searchContent = etSearch.getText() == null ? "" : etSearch.getText().toString();
         currentPage = ConstantValue.FIRST_PAGE;
-        viewModel.getAssessList(currentPage, ConstantValue.PAGE_SIZE, searchContent, type);
+        getListData(entryType, currentPage, ConstantValue.PAGE_SIZE, searchContent, type);
     }
 
     @Override
     protected void loadMore() {
         String searchContent = etSearch.getText() == null ? "" : etSearch.getText().toString();
-        viewModel.getAssessList(++currentPage, ConstantValue.PAGE_SIZE, searchContent, type);
+        getListData(entryType, ++currentPage, ConstantValue.PAGE_SIZE, searchContent, type);
     }
 
     @Override
@@ -101,5 +106,23 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
     @Override
     protected int getVariableId() {
         return BR.assessViewModel;
+    }
+
+    @Override
+    protected void onSearch(String text) {
+        super.onSearch(text);
+        getListData(entryType, ++currentPage, ConstantValue.PAGE_SIZE, text, type);
+    }
+
+    private void getListData(int entryType, int pageIndex, int pageSize, String content, int type) {
+        switch (entryType) {
+            case FROM_OVERVIEW:
+                viewModel.getAssessSearchList(pageIndex, pageSize, content, type);
+                break;
+
+            case FROM_OTHER:
+                viewModel.getAssessList(pageIndex, pageSize, content, type);
+                break;
+        }
     }
 }
