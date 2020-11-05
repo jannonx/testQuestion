@@ -99,7 +99,7 @@ public class ConstantValue {
     public static final String FOCUS_SMART_GUARD = "focus_smart_guard";
     public static final String FOCUS_CONSTRUCTION_MONITORING = "focus_construction_monitoring";
     public static final String FOCUS_CONTRACT = "focus_contract";
-
+    public static final String FOCUS_CUSTOMER = "focus_customer";
 
     //我的工作
     public static final String WORK_SECURITY = "work_security";
@@ -113,7 +113,7 @@ public class ConstantValue {
     public static final String WORK_MEETING = "work_meeting";
     public static final String WORK_APPROVE = "work_approve";
     public static final String CONTRACT_PAUSE = "contract_pause";
-    public static final String CONTRACT_RESTART="contract_restart";
+    public static final String CONTRACT_RESTART = "contract_restart";
 
 
     //摄像头界面

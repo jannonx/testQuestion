@@ -12,7 +12,7 @@ import java.util.List;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class AssessDetailBean implements Parcelable {
+public class    AssessDetailBean implements Parcelable {
 
     /**
      * auditContentList : [{"id":0,"name":"","sort":0}]
