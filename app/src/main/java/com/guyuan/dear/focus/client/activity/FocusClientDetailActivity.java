@@ -31,7 +31,6 @@ public class FocusClientDetailActivity extends BaseToolbarActivity<ActivityWithT
         context.startActivity(intent);
     }
 
-
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         ClientCompanyBean bean = (ClientCompanyBean) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
@@ -45,7 +44,6 @@ public class FocusClientDetailActivity extends BaseToolbarActivity<ActivityWithT
     public FocusClientViewModel getViewModel() {
         return viewModel;
     }
-
 
 
     @Override

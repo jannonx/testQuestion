@@ -3,7 +3,6 @@ package com.guyuan.dear.focus.client.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -11,14 +10,13 @@ import androidx.annotation.NonNull;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.focus.client.bean.ClientContactBean;
 
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
- * @description:
+ * @description: 我的关注--客户列表适配器
  * @author: Jannonx
  * @since: 2020/10/27 10:58
  * @company: 固远（深圳）信息技术有限公司

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 客户模块--公司
  * @author: Jannonx
  * @since: 2020/10/28 14:46
  * @company: 固远（深圳）信息技术有限公司
@@ -34,7 +34,6 @@ public class ClientCompanyBean implements Serializable {
      * 主键id
      */
     private int id;
-
 
     /**
      * 客户详细地址

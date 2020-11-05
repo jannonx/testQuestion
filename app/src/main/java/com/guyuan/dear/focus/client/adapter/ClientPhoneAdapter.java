@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
-import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.focus.client.bean.ClientContactBean;
 import com.guyuan.dear.R;
 
@@ -15,7 +14,7 @@ import java.util.List;
 import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
- * @description:
+ * @description: 我的关注-客户详情--基础信息:手机列表适配器
  * @author: Jannonx
  * @since: 2020/10/27 10:58
  * @company: 固远（深圳）信息技术有限公司

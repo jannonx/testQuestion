@@ -6,7 +6,6 @@ import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.bean.CommentsBean;
 
-import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -16,7 +15,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
- * @description:
+ * @description: 我的关注--客户--接口定义
  * @author: Jannonx
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司
@@ -31,6 +30,7 @@ public interface FocusClientApiService extends BaseApiService {
      */
     @POST("base/tCustomer/findByName")
     Observable<ResultBean<RefreshBean<ClientCompanyBean>>> getClientListByName(@Query("name") String name);
+
     /**
      * 客户查询列表
      *
@@ -58,8 +58,6 @@ public interface FocusClientApiService extends BaseApiService {
      */
     @POST("base/tCustomer/findFollowById")
     Observable<ResultBean<RefreshBean<CommentsBean>>> getFollowCommentList(@Body RequestBody body);
-
-
 
 
     /**

@@ -10,10 +10,8 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.httplibrary.bean.RefreshBean;
-import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
-import com.guyuan.dear.databinding.FragmentFollowStatusBinding;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.client.adapter.FollowStatusParentAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
@@ -25,7 +23,6 @@ import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.client.data.WorkClientViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.RequestBody;
@@ -33,7 +30,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
 
 /**
- * @description: 填写跟进内容弹框
+ * @description: 我的工作-客户详情--跟进动态
  * @author: Jannonx
  * @since: 2020/11/4 14:11
  * @company: 固远（深圳）信息技术有限公司
@@ -148,35 +145,5 @@ public class FollowStatusFragment extends BaseListFragment<CommentsBean, Fragmen
         return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
                 "charset=utf-8"), str);
     }
-    //        adapter = new FollowStatusExAdapter(getContext(), dataList);
-//        LogUtils.showLog("isFocus=" + isFocus);
-//        adapter.setCommentBtnVisible(isFocus);
-//
-//        binding.elvComments.setAdapter(adapter);
-//        binding.elvComments.setGroupIndicator(null);
-//        binding.elvComments.setChildIndicator(null);
-//        binding.elvComments.addFooterView(footerView);
-//        binding.elvComments.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-//            @Override
-//            public boolean onGroupClick(ExpandableListView parent, View v,
-//                                        int groupPosition, long id) {
-//                return true;
-//            }
-//        });
-//
-//        for (int i = 0; i < dataList.size(); i++) {
-//            binding.elvComments.expandGroup(i);
-//        }
-//        adapter.notifyDataSetChanged();
-//
-//
-//        adapter.setChildItemClickListener(new FollowStatusExAdapter.ChildItemClickListener() {
-//
-//            @Override
-//            public void onCommentClicked(CommentsBean bean) {
-//                LogUtils.showLog("评论哈哈哈哈");
-//            }
-//
-//
-//        });
+
 }

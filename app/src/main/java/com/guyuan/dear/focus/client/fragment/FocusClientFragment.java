@@ -39,9 +39,7 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
     public static final String TAG = FocusClientFragment.class.getSimpleName();
 
     public static FocusClientFragment newInstance() {
-
         Bundle args = new Bundle();
-
         FocusClientFragment fragment = new FocusClientFragment();
         fragment.setArguments(args);
         return fragment;
@@ -50,11 +48,6 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
 
     @Override
     protected void init() {
-//        for (int i = 0; i < 5; i++) {
-//            ClientCompanyBean contactBean = new ClientCompanyBean();
-//            contactBean.setCusName("ClientCompanyBean" + i);
-//            listData.add(contactBean);
-//        }
         ClientListAdapter listAdapter = new ClientListAdapter(getContext(), listData,
                 R.layout.item_focus_client);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
@@ -68,13 +61,15 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
             }
         });
 
-
         initData();
     }
 
+    /**
+     * 设置数据
+     */
     private void initData() {
         etSearch.setHint("输入客户名称、手机号");
-        viewModel.getClientList(getListRequestBody(FIRST_PAGE, null));
+        viewModel.getClientList(getListRequestBody(true));
         viewModel.getClientListEvent().observe(getActivity(), new Observer<RefreshBean<ClientCompanyBean>>() {
             @Override
             public void onChanged(RefreshBean<ClientCompanyBean> dataRefreshBean) {
@@ -84,12 +79,21 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
         });
     }
 
-    private RequestBody getListRequestBody(int pageNum, String name) {
+
+    /**
+     * 客户列表请求参数配置
+     *
+     * @param isRefresh 是否刷新
+     * @return
+     */
+    private RequestBody getListRequestBody(boolean isRefresh) {
+        currentType = isRefresh ? REFRESH : LOAD_MORE;
+        currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListClientRequestBody body = new ListClientRequestBody();
         ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
-        filtersBean.setName(name);
+        filtersBean.setName(etSearch.getText().toString());
         body.setFilters(filtersBean);
-        body.setPageNum(pageNum);
+        body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);
 
         String str = GsonUtil.objectToString(body);
@@ -99,34 +103,32 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
 
     @Override
     protected void onSearch(String keyWord) {
-        currentType = REFRESH;
-        viewModel.getClientList(getListRequestBody(FIRST_PAGE, keyWord));
+        viewModel.getClientList(getListRequestBody(true));
     }
 
     @Override
     protected void editEmptyChange() {
-        currentType = REFRESH;
-        viewModel.getClientList(getListRequestBody(FIRST_PAGE, null));
+        viewModel.getClientList(getListRequestBody(true));
     }
 
     @Override
     protected void refresh() {
-
+        viewModel.getClientList(getListRequestBody(true));
     }
 
     @Override
     protected void loadMore() {
-
+        viewModel.getClientList(getListRequestBody(false));
     }
 
     @Override
     protected boolean isPullEnable() {
-        return false;
+        return true;
     }
 
     @Override
     protected boolean isLoadMoreEnable() {
-        return false;
+        return true;
     }
 
 
