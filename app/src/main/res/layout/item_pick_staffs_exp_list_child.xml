@@ -35,6 +35,7 @@
             android:layout_weight="1" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
+            android:enabled="@{!data.disabled}"
             android:id="@+id/item_pick_staffs_exp_list_child_cbx_select_staff"
             android:layout_width="@dimen/dp_22"
             android:layout_height="@dimen/dp_22"

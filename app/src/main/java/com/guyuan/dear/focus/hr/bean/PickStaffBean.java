@@ -11,6 +11,7 @@ import com.guyuan.dear.work.contractPause.beans.StaffBean;
 public class PickStaffBean extends StaffBean {
     private boolean isPick;
     private boolean isHidden;
+    private boolean isDisabled;
 
     public boolean isPick() {
         return isPick;
@@ -36,7 +37,11 @@ public class PickStaffBean extends StaffBean {
                 '}';
     }
 
+    public boolean isDisabled() {
+        return isDisabled;
+    }
 
-
-
+    public void setDisabled(boolean disabled) {
+        isDisabled = disabled;
+    }
 }

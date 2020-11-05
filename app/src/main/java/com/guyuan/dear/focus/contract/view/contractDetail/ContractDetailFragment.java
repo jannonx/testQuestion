@@ -1,5 +1,6 @@
 package com.guyuan.dear.focus.contract.view.contractDetail;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
@@ -53,6 +54,7 @@ public class ContractDetailFragment extends BaseMvvmFragment<FragmentContractDet
     protected void initViews() {
         ViewPager2 viewPager = getViewDataBinding().fragmentContractDetailViewPager;
         TabLayout tabLayout = getViewDataBinding().fragmentContractDetailTabLayout;
+        tabLayout.setTabTextColors(Color.BLACK,Color.BLUE);
         ContractDetailPagerAdapter adapter = new ContractDetailPagerAdapter(
                 getParentFragmentManager(), getLifecycle(), System.currentTimeMillis()
         );

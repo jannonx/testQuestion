@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.hr.view.pickStaffs;
 import android.view.View;
 import android.widget.CompoundButton;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
@@ -26,6 +27,7 @@ public class PickStaffsViewModel extends BaseViewModel {
     private MutableLiveData<List<PickStaffBean>> allStaffs = new MutableLiveData<>(new ArrayList<>());
     private List<StaffBean> preSelectedStaffs = new ArrayList<>();
     private List<StaffBean> hiddenStaffs = new ArrayList<>();
+    private List<StaffBean> disabledStaffs = new ArrayList<>();
     private MutableLiveData<List<PickStaffBean>> historyStaffs = new MutableLiveData<>(new ArrayList<>());
     private MutableLiveData<List<PickStaffsExpParentBean>> grpBeans = new MutableLiveData<>(new ArrayList<>());
     private MutableLiveData<Integer> selectCount = new MutableLiveData<>();
@@ -87,11 +89,21 @@ public class PickStaffsViewModel extends BaseViewModel {
         return grpBeans;
     }
 
-    public void init(ArrayList<StaffBean> preSelected, ArrayList<StaffBean> hiddenStaffs, int maxSelect) {
+    public void init(@Nullable ArrayList<StaffBean> preSelected,
+                     @Nullable ArrayList<StaffBean> hiddenStaffs,
+                     @Nullable ArrayList<StaffBean> disabled,
+                     int maxSelect) {
         this.maxSelectCount = maxSelect;
-        this.selectCount.setValue(preSelected.size());
-        this.preSelectedStaffs.addAll(preSelected);
-        this.hiddenStaffs.addAll(hiddenStaffs);
+        if(preSelected!=null){
+            this.selectCount.setValue(preSelected.size());
+            this.preSelectedStaffs.addAll(preSelected);
+        }
+        if(hiddenStaffs!=null){
+            this.hiddenStaffs.addAll(hiddenStaffs);
+        }
+        if(disabled!=null){
+            this.disabledStaffs.addAll(disabled);
+        }
         loadAllStaffsFromLocal();
     }
 
@@ -142,18 +154,35 @@ public class PickStaffsViewModel extends BaseViewModel {
         }
         //判断是否已经被选了
         for (PickStaffBean bean : staffList) {
-            if (preSelectedStaffs.contains(bean)) {
-                bean.setPick(true);
+            for (StaffBean preSelect : preSelectedStaffs) {
+                if(preSelect.getId().equals(bean.getId())){
+                    bean.setPick(true);
+                    break;
+                }
             }
         }
         //判断是否需要屏蔽
         ListIterator<PickStaffBean> iterator = staffList.listIterator();
         while (iterator.hasNext()) {
             PickStaffBean next = iterator.next();
-            if (hiddenStaffs.contains(next)) {
-                iterator.remove();
+            for (StaffBean hiddenStaff : hiddenStaffs) {
+                if(hiddenStaff.getId().equals(next.getId())){
+                    iterator.remove();
+                    break;
+                }
             }
         }
+        //判断是否需要只能显示，不能操作
+        for (PickStaffBean bean : staffList) {
+            for (StaffBean disabled : disabledStaffs) {
+                if(disabled.getId().equals(bean.getId())){
+                    bean.setDisabled(true);
+                    break;
+                }
+            }
+        }
+
+
         allStaffs.postValue(staffList);
 
         //分组
@@ -219,12 +248,14 @@ public class PickStaffsViewModel extends BaseViewModel {
     public ArrayList<StaffBean> getSelectedStaffs() {
         ArrayList<StaffBean> result = new ArrayList<>();
         for (PickStaffBean bean : allStaffs.getValue()) {
-            StaffBean staffBean = new StaffBean();
-            staffBean.setName(bean.getName());
-            staffBean.setDept(bean.getDept());
-            staffBean.setId(bean.getId());
-            staffBean.setImgUrl(bean.getImgUrl());
-            result.add(staffBean);
+            if(bean.isPick()){
+                StaffBean staffBean = new StaffBean();
+                staffBean.setName(bean.getName());
+                staffBean.setDept(bean.getDept());
+                staffBean.setId(bean.getId());
+                staffBean.setImgUrl(bean.getImgUrl());
+                result.add(staffBean);
+            }
         }
         return result;
     }

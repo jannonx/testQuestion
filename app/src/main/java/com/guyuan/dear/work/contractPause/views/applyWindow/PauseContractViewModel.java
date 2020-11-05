@@ -182,12 +182,12 @@ public class PauseContractViewModel extends BaseViewModel {
     public void updateSendList(ArrayList<StaffBean> list) {
         PauseContractBean value = pauseBean.getValue();
         value.setSendList(list);
-        pauseBean.postValue(pauseBean.getValue());
+        pauseBean.setValue(pauseBean.getValue());
     }
 
     public void updateCopyList(ArrayList<StaffBean> list) {
         PauseContractBean value = pauseBean.getValue();
         value.setCopyList(list);
-        pauseBean.postValue(pauseBean.getValue());
+        pauseBean.setValue(pauseBean.getValue());
     }
 }

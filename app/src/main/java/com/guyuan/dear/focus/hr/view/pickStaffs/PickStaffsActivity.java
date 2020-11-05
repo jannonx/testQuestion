@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
@@ -29,11 +30,22 @@ public class PickStaffsActivity extends BaseToolbarActivity<ActivityPickStaffsBi
      * @param hiddenStaffs
      * @param maxSelectCount
      */
-    public static void startForResult(Activity context, int reqCode, String title, ArrayList<StaffBean> preSelect, ArrayList<StaffBean> hiddenStaffs, int maxSelectCount) {
+    public static void startForResult(Activity context, int reqCode, String title,
+                                      @Nullable ArrayList<StaffBean> preSelect,
+                                      @Nullable ArrayList<StaffBean> hiddenStaffs,
+                                      @Nullable ArrayList<StaffBean> disableStaffs,
+                                      int maxSelectCount) {
         Intent starter = new Intent(context, PickStaffsActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE, title);
-        starter.putParcelableArrayListExtra(ConstantValue.KEY_PRE_SELECTED_STAFFS, preSelect);
-        starter.putParcelableArrayListExtra(ConstantValue.KEY_HIDDEN_STAFFS, hiddenStaffs);
+        if(preSelect!=null){
+            starter.putParcelableArrayListExtra(ConstantValue.KEY_PRE_SELECTED_STAFFS, preSelect);
+        }
+        if(hiddenStaffs!=null){
+            starter.putParcelableArrayListExtra(ConstantValue.KEY_HIDDEN_STAFFS, hiddenStaffs);
+        }
+        if(disableStaffs!=null){
+            starter.putParcelableArrayListExtra(ConstantValue.KEY_DISABLE_STAFFS,disableStaffs);
+        }
         starter.putExtra(ConstantValue.KEY_MAX_SELECT_COUNT, maxSelectCount);
         context.startActivityForResult(starter, reqCode);
     }
@@ -47,11 +59,22 @@ public class PickStaffsActivity extends BaseToolbarActivity<ActivityPickStaffsBi
      * @param hiddenStaffs
      * @param maxSelectCount
      */
-    public static void startForResult(Fragment context, int reqCode, String title, ArrayList<StaffBean> preSelect, ArrayList<StaffBean> hiddenStaffs, int maxSelectCount) {
+    public static void startForResult(Fragment context, int reqCode, String title,
+                                      @Nullable ArrayList<StaffBean> preSelect,
+                                      @Nullable ArrayList<StaffBean> hiddenStaffs,
+                                      @Nullable ArrayList<StaffBean> disableStaffs,
+                                      int maxSelectCount) {
         Intent starter = new Intent(context.getContext(), PickStaffsActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE, title);
-        starter.putParcelableArrayListExtra(ConstantValue.KEY_PRE_SELECTED_STAFFS, preSelect);
-        starter.putParcelableArrayListExtra(ConstantValue.KEY_HIDDEN_STAFFS, hiddenStaffs);
+        if(preSelect!=null){
+            starter.putParcelableArrayListExtra(ConstantValue.KEY_PRE_SELECTED_STAFFS, preSelect);
+        }
+        if(hiddenStaffs!=null){
+            starter.putParcelableArrayListExtra(ConstantValue.KEY_HIDDEN_STAFFS, hiddenStaffs);
+        }
+        if(disableStaffs!=null){
+            starter.putParcelableArrayListExtra(ConstantValue.KEY_DISABLE_STAFFS,disableStaffs);
+        }
         starter.putExtra(ConstantValue.KEY_MAX_SELECT_COUNT, maxSelectCount);
         context.startActivityForResult(starter, reqCode);
     }
@@ -68,9 +91,10 @@ public class PickStaffsActivity extends BaseToolbarActivity<ActivityPickStaffsBi
         setTitleCenter(title);
         ArrayList<StaffBean> preSelect = intent.getParcelableArrayListExtra(ConstantValue.KEY_PRE_SELECTED_STAFFS);
         ArrayList<StaffBean> hiddenStaffs = intent.getParcelableArrayListExtra(ConstantValue.KEY_HIDDEN_STAFFS);
+        ArrayList<StaffBean> disableStaffs = intent.getParcelableArrayListExtra(ConstantValue.KEY_DISABLE_STAFFS);
         int maxSelect = intent.getIntExtra(ConstantValue.KEY_MAX_SELECT_COUNT, 10);
         getSupportFragmentManager().beginTransaction().add(R.id.activity_pick_staffs_frame_layout,
-                PickStaffsFragment.getInstance(preSelect, hiddenStaffs, maxSelect)).commit();
+                PickStaffsFragment.getInstance(preSelect, hiddenStaffs,disableStaffs, maxSelect)).commit();
 
     }
 

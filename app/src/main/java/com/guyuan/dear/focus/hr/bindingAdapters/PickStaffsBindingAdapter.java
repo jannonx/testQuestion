@@ -69,7 +69,6 @@ public class PickStaffsBindingAdapter {
 
     @BindingAdapter("setExpListParentRightArrowIndicator")
     public static void setExpListParentRightArrowIndicator(AppCompatImageView view, boolean isExpanded){
-        LogUtils.showLog(view.toString()+":"+isExpanded);
         if(isExpanded){
             view.setImageResource(R.drawable.ic_svg_bottom_arrow);
         }else {

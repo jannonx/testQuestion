@@ -11,8 +11,10 @@ import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.databinding.ItemPickStaffsHistoryStaffsBinding;
 import com.guyuan.dear.focus.hr.bean.PickStaffBean;
+import com.guyuan.dear.utils.ToastUtils;
 
 import java.util.List;
 
@@ -48,11 +50,16 @@ public class PickStaffsHistoryStaffsAdapter extends RecyclerView.Adapter<PickSta
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bean.setPick(!bean.isPick());
-                notifyItemChanged(position);
-                if(itemClickListener !=null){
-                    itemClickListener.onItemClick(bean,position);
+                if(bean.isDisabled()){
+                    ToastUtils.showShort(DearApplication.getInstance(),"无法操作该人员。");
+                }else {
+                    bean.setPick(!bean.isPick());
+                    notifyItemChanged(position);
+                    if(itemClickListener !=null){
+                        itemClickListener.onItemClick(bean,position);
+                    }
                 }
+
             }
         });
     }

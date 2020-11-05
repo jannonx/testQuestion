@@ -8,6 +8,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,10 +35,20 @@ import java.util.List;
  **/
 public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBinding, PickStaffsViewModel> {
 
-    public static PickStaffsFragment getInstance(ArrayList<StaffBean> preSelected,ArrayList<StaffBean> hidden,int maxSelectCount) {
+    public static PickStaffsFragment getInstance(@Nullable ArrayList<StaffBean> preSelected,
+                                                 @Nullable ArrayList<StaffBean> hidden,
+                                                 @Nullable ArrayList<StaffBean> disabled,
+                                                 int maxSelectCount) {
         Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(ConstantValue.KEY_PRE_SELECTED_STAFFS,preSelected);
-        bundle.putParcelableArrayList(ConstantValue.KEY_HIDDEN_STAFFS,hidden);
+        if(preSelected!=null){
+            bundle.putParcelableArrayList(ConstantValue.KEY_PRE_SELECTED_STAFFS,preSelected);
+        }
+        if(hidden!=null){
+            bundle.putParcelableArrayList(ConstantValue.KEY_HIDDEN_STAFFS,hidden);
+        }
+        if(disabled!=null){
+            bundle.putParcelableArrayList(ConstantValue.KEY_DISABLE_STAFFS,disabled);
+        }
         bundle.putInt(ConstantValue.KEY_MAX_SELECT_COUNT,maxSelectCount);
         PickStaffsFragment fragment = new PickStaffsFragment();
         fragment.setArguments(bundle);
@@ -54,8 +65,9 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
         Bundle bundle = getArguments();
         ArrayList<StaffBean> preSelected = bundle.getParcelableArrayList(ConstantValue.KEY_PRE_SELECTED_STAFFS);
         ArrayList<StaffBean> hiddenStaffs = bundle.getParcelableArrayList(ConstantValue.KEY_HIDDEN_STAFFS);
+        ArrayList<StaffBean> disabled = bundle.getParcelableArrayList(ConstantValue.KEY_DISABLE_STAFFS);
         int maxSelect = bundle.getInt(ConstantValue.KEY_MAX_SELECT_COUNT);
-        getViewModel().init(preSelected,hiddenStaffs,maxSelect);
+        getViewModel().init(preSelected,hiddenStaffs,disabled,maxSelect);
 
     }
 

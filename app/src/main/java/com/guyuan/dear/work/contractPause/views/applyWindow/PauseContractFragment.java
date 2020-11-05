@@ -16,6 +16,7 @@ import com.guyuan.dear.databinding.FragmentPauseContractBinding;
 import com.guyuan.dear.dialog.SimpleRecyclerViewDialog;
 import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.contractPause.beans.PauseContractBean;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
@@ -86,17 +87,19 @@ public class PauseContractFragment extends BaseMvvmFragment<FragmentPauseContrac
             @Override
             public void onClick(View v) {
                 ArrayList<StaffBean> sendList = getViewModel().getPreSelectSendList();
+                ArrayList<StaffBean> copyList = getViewModel().getPreSelectCopyList();
                 PickStaffsActivity.startForResult(PauseContractFragment.this, REQUEST_CODE_PICK_SEND_LIST, "请选择审批人",
-                        sendList, new ArrayList<StaffBean>(), 10);
+                        sendList, null, copyList, 10);
             }
         });
 
         viewModel.setOnClickAddCopyList(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ArrayList<StaffBean> sendList = getViewModel().getPreSelectSendList();
                 ArrayList<StaffBean> copyList = getViewModel().getPreSelectCopyList();
                 PickStaffsActivity.startForResult(PauseContractFragment.this, REQUEST_CODE_PICK_COPY_LIST, "请选择抄送人",
-                        copyList, new ArrayList<StaffBean>(), 10);
+                        copyList, null, sendList, 10);
 
             }
         });
@@ -202,15 +205,17 @@ public class PauseContractFragment extends BaseMvvmFragment<FragmentPauseContrac
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE_PICK_SEND_LIST){
-            if(resultCode==RESULT_OK){
-                ArrayList<StaffBean> list = data.getParcelableArrayListExtra(ConstantValue.KEY_STAFF_LIST);
+        if (requestCode == REQUEST_CODE_PICK_SEND_LIST) {
+            if (resultCode == RESULT_OK) {
+                ArrayList<StaffBean> list = data.getParcelableArrayListExtra(ConstantValue.KEY_SELECTED_STAFFS);
+                for (StaffBean bean : list) {
+                    LogUtils.showLog(bean.toString());
+                }
                 getViewModel().updateSendList(list);
             }
-        }else if(requestCode==REQUEST_CODE_PICK_COPY_LIST){
-            if(resultCode==RESULT_OK){
-                ArrayList<StaffBean> list = data.getParcelableArrayListExtra(ConstantValue.KEY_STAFF_LIST);
+        } else if (requestCode == REQUEST_CODE_PICK_COPY_LIST) {
+            if (resultCode == RESULT_OK) {
+                ArrayList<StaffBean> list = data.getParcelableArrayListExtra(ConstantValue.KEY_SELECTED_STAFFS);
                 getViewModel().updateCopyList(list);
             }
         }
