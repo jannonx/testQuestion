@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.assess.adapter;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewOutlineProvider;
@@ -9,11 +11,18 @@ import android.widget.TextView;
 import androidx.databinding.BindingAdapter;
 import androidx.lifecycle.MutableLiveData;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.customizeview.TabLayoutHelper;
 import com.guyuan.dear.focus.assess.data.bean.AssessDetailBean;
+import com.guyuan.dear.focus.assess.data.bean.AssessOverviewBean;
+import com.guyuan.dear.utils.Graph.GraphUtil;
+import com.guyuan.dear.utils.Graph.formatter.MonthXAxisValueFormatter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -69,6 +78,42 @@ public class AssessBindingAdapter {
             } else if (result.contains("不通过")) {
                 iv.setImageResource(R.mipmap.wrong);
             }
+        }
+    }
+
+    @BindingAdapter("assessLineChartData")
+    public static void setAssessLineChartData(LineChart lineChart,
+                                              List<AssessOverviewBean.AuditYearInfoVOListBean> list) {
+        if (list != null && list.size() > 0) {
+            Resources resources = DearApplication.getInstance().getResources();
+            List<Entry> passList = new ArrayList<>();
+            List<Entry> notPassList = new ArrayList<>();
+            for (int i = 0; i < list.size(); i++) {
+                AssessOverviewBean.AuditYearInfoVOListBean bean = list.get(i);
+                Entry passEntry = new Entry(i, bean.getPass());
+                Entry notPassEntry = new Entry(i, bean.getNoPass());
+                passList.add(passEntry);
+                notPassList.add(notPassEntry);
+            }
+
+            //准备通过和不通过的数据集合
+            List<List<Entry>> dataList = new ArrayList<>();
+            dataList.add(passList);
+            dataList.add(notPassList);
+
+            //准备线的颜色集合
+            List<Integer> colorList = new ArrayList<>();
+            colorList.add(resources.getColor(R.color.color_pass));
+            colorList.add(resources.getColor(R.color.color_not_pass));
+
+            //准备图标提示文字
+            List<String> legendList = new ArrayList<>();
+            legendList.add("通过");
+            legendList.add("不通过");
+
+            MonthXAxisValueFormatter monthXAxisValueFormatter = new MonthXAxisValueFormatter();
+            GraphUtil.showLineChart(lineChart, dataList, legendList, colorList,12,
+                    monthXAxisValueFormatter, null);
         }
     }
 }
