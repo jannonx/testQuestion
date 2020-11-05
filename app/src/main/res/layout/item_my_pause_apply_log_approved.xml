@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogApproved"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_my_pause_apply_log_approved_view_anchor_1"
+            android:layout_width="8.5dp"
+            android:layout_height="8.5dp"
+            android:layout_marginLeft="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_18"
+            android:layout_marginBottom="31.5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_svg_round_filled_green_2fc25b_24dp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:background="@color/color_grey_e5e5e5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/item_my_pause_apply_log_approved_view_anchor_1"
+            app:layout_constraintRight_toRightOf="@id/item_my_pause_apply_log_approved_view_anchor_1"
+            app:layout_constraintTop_toBottomOf="@id/item_my_pause_apply_log_approved_view_anchor_1" />
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_my_pause_apply_log_approved_view_anchor_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:text="方案通过"
+            android:textColor="@color/color_black_333333"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/item_my_pause_apply_log_approved_view_anchor_1"
+            app:layout_constraintLeft_toRightOf="@id/item_my_pause_apply_log_approved_view_anchor_1"
+            app:layout_constraintTop_toTopOf="@id/item_my_pause_apply_log_approved_view_anchor_1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_my_pause_apply_log_approved_tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:layout_marginTop="@dimen/dp_8"
+            android:textColor="@color/color_grey_999999"
+            app:layout_constraintLeft_toLeftOf="@id/item_my_pause_apply_log_approved_view_anchor_2"
+            app:layout_constraintTop_toBottomOf="@id/item_my_pause_apply_log_approved_view_anchor_2"
+            android:text="2020/11/2"
+            app:setContractDate="@{data.date}"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/item_my_pause_apply_log_approved_recycler_view_vote_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:layout_marginTop="@dimen/dp_12"
+            app:setPauseApplyVotingList="@{data.voteList}"
+            app:layout_constraintLeft_toLeftOf="@id/item_my_pause_apply_log_approved_tv_date"
+            app:layout_constraintTop_toBottomOf="@id/item_my_pause_apply_log_approved_tv_date"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_my_pause_apply_log_approved_view_anchor_3"
+            android:layout_width="wrap_content"
+            android:textColor="@color/color_grey_999999"
+            android:textSize="@dimen/sp_12"
+            android:layout_height="wrap_content"
+            android:text="来自：会议评审"
+            app:layout_constraintLeft_toLeftOf="@id/item_my_pause_apply_log_approved_recycler_view_vote_list"
+            app:layout_constraintTop_toBottomOf="@id/item_my_pause_apply_log_approved_recycler_view_vote_list"
+            android:layout_marginTop="@dimen/dp_12"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_12"
+            app:layout_constraintLeft_toLeftOf="@id/item_my_pause_apply_log_approved_recycler_view_vote_list"
+            app:layout_constraintRight_toRightOf="@id/item_my_pause_apply_log_approved_recycler_view_vote_list"
+            app:layout_constraintTop_toBottomOf="@id/item_my_pause_apply_log_approved_view_anchor_3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/dp_12"
+            app:setPauseApplyCommentList="@{data.comments}"
+            />
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

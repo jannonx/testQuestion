@@ -1,9 +1,9 @@
-package com.guyuan.dear.work.contractPause.views.home;
-
-import androidx.fragment.app.Fragment;
+package com.guyuan.dear.work.contractRestart.view.home;
 
 import android.content.Context;
 import android.content.Intent;
+
+import androidx.fragment.app.Fragment;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
@@ -15,23 +15,20 @@ import com.guyuan.dear.work.contractPause.views.myAppliedList.MyPauseApplyListFr
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Leo
- */
-public class ContractPauseHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, ContractPauseHomeViewModel> {
-
+public class ContractRestartHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, ContractRestartHomeViewModel> {
 
     public static void start(Context context,String title) {
-        Intent starter = new Intent(context, ContractPauseHomeActivity.class);
+        Intent starter = new Intent(context, ContractRestartHomeActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE,title);
         context.startActivity(starter);
     }
+
 
     @Override
     protected List<String> getTitles() {
         return new ArrayList<String>(){
             {
-                add("合同暂停");
+                add("合同重启");
                 add("我的申请");
             }
         };
@@ -51,6 +48,7 @@ public class ContractPauseHomeActivity extends BaseTabActivity<ActivityBaseTabBi
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+
     }
 
     @Override

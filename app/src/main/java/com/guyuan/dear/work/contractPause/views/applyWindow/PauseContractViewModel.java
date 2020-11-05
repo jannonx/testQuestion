@@ -11,6 +11,7 @@ import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.contractPause.beans.PauseContractBean;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +32,16 @@ public class PauseContractViewModel extends BaseViewModel {
     private MutableLiveData<View.OnClickListener> onClickSelectJudgement = new MutableLiveData<>();
     private MutableLiveData<View.OnClickListener> onClickAddSendList = new MutableLiveData<>();
     private MutableLiveData<View.OnClickListener> onClickAddCopyList = new MutableLiveData<>();
+
+    public ArrayList<StaffBean> getPreSelectSendList() {
+        return pauseBean.getValue().getSendList();
+    }
+
+
+
+    public ArrayList<StaffBean> getPreSelectCopyList() {
+        return pauseBean.getValue().getCopyList();
+    }
 
 
     public MutableLiveData<PauseContractBean> getPauseBean() {
@@ -136,5 +147,47 @@ public class PauseContractViewModel extends BaseViewModel {
 
     public void setOnClickAddCopyList(View.OnClickListener onClickAddCopyList) {
         this.onClickAddCopyList.postValue(onClickAddCopyList);
+    }
+
+    /**
+     * 测试专用
+     */
+    public void loadSendList(){
+        PauseContractBean value = pauseBean.getValue();
+        ArrayList<StaffBean> staffs = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            StaffBean bean = new StaffBean();
+            bean.setName("测试"+(i+1));
+            staffs.add(bean);
+        }
+        value.setSendList(staffs);
+        pauseBean.postValue(pauseBean.getValue());
+    }
+
+    /**
+     * 测试专用
+     */
+    public void loadCopyList(){
+        PauseContractBean value = pauseBean.getValue();
+        ArrayList<StaffBean> staffs = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            StaffBean bean = new StaffBean();
+            bean.setName("测试"+(i+1));
+            staffs.add(bean);
+        }
+        value.setCopyList(staffs);
+        pauseBean.postValue(pauseBean.getValue());
+    }
+
+    public void updateSendList(ArrayList<StaffBean> list) {
+        PauseContractBean value = pauseBean.getValue();
+        value.setSendList(list);
+        pauseBean.postValue(pauseBean.getValue());
+    }
+
+    public void updateCopyList(ArrayList<StaffBean> list) {
+        PauseContractBean value = pauseBean.getValue();
+        value.setCopyList(list);
+        pauseBean.postValue(pauseBean.getValue());
     }
 }
