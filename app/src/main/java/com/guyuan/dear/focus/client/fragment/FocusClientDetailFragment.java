@@ -118,7 +118,7 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
 
     private void initViewPager() {
         List<Fragment> tabFragmentList = new ArrayList<>();
-        followStatusFragment = FollowStatusFragment.newInstance(false, clientData);
+        followStatusFragment = FollowStatusFragment.newInstance(clientData);
         basicInfoFragment = BasicInfoFragment.newInstance();
 
         tabFragmentList.add(followStatusFragment);

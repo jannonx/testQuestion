@@ -212,6 +212,7 @@
             android:name=".work.client.activity.WorkClientDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".focus.projectsite.activity.FocusProjectSiteActivity"
