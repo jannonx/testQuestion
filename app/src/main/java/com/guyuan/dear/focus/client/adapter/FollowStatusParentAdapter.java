@@ -2,7 +2,6 @@ package com.guyuan.dear.focus.client.adapter;
 
 import android.content.Context;
 
-import android.view.TextureView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +14,6 @@ import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 
 import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.utils.GlideUtils;
-import com.guyuan.dear.work.client.fragment.EditFollowCommentDialog;
 
 import java.util.List;
 

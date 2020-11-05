@@ -15,8 +15,6 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentWorkClientDetailBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.work.client.fragment.BasicInfoFragment;
-import com.guyuan.dear.work.client.fragment.FollowStatusFragment;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.client.activity.WorkClientDetailActivity;
@@ -35,8 +33,7 @@ import java.util.List;
  */
 public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWorkClientDetailBinding, WorkClientViewModel> {
 
-    public static final String TAG = "FocusClientDetailFragment";
-    private WorkClientViewModel viewModel;
+    public static final String TAG = WorkClientDetailFragment.class.getSimpleName();
     private FollowStatusFragment followStatusFragment;
     private BasicInfoFragment basicInfoFragment;
     private ClientCompanyBean clientData;
@@ -84,19 +81,23 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
         });
     }
 
+
+    /**
+     * 设置数据
+     */
     private void setCompanyData(ClientCompanyBean dataRefreshBean) {
         basicInfoFragment.setData(dataRefreshBean);
         binding.tvClientName.setText(dataRefreshBean.getCusName());
         binding.tvSalesman.setText(dataRefreshBean.getSalesman());
         binding.tvLatestTime.setText(dataRefreshBean.getFollowUpTime());
-
     }
 
     /**
      * 添加客户评论
      */
     private void editClientFollowComment() {
-        EditFollowCommentDialog.show(getContext(), new EditFollowCommentDialog.OnFollowClickListener() {
+
+        FollowCommentDialog.show(getActivity(), new FollowCommentDialog.OnFollowClickListener() {
             @Override
             public void onClick(String content) {
                 viewModel.postClientFollowUp(clientData.getId(), content);
@@ -106,6 +107,7 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
             @Override
             public void onChanged(Integer dataRefreshBean) {
                 ToastUtils.showShort(getContext(), "评论成功!");
+                followStatusFragment.refresh();
                 //刷新列表
             }
         });
@@ -117,7 +119,7 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
         clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
 
         List<Fragment> tabFragmentList = new ArrayList<>();
-        followStatusFragment = FollowStatusFragment.newInstance(true, clientData);
+        followStatusFragment = FollowStatusFragment.newInstance(clientData);
         basicInfoFragment = BasicInfoFragment.newInstance();
 
         tabFragmentList.add(followStatusFragment);
@@ -196,14 +198,6 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
         tv.setText(Arrays.asList(titleList).get(position));
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (getActivity() != null) {
-            WorkClientDetailActivity activity = (WorkClientDetailActivity) getActivity();
-            viewModel = activity.getViewModel();
-        }
-    }
 
     @Override
     protected int getVariableId() {
