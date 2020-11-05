@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatCheckedTextView;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -47,7 +48,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
     protected CalenderUtils calenderUtils;
 
     protected TextView mTvSelectStartTime, mTvSelectEndTime;
-    protected AppCompatTextView searchBtn;
+    protected AppCompatCheckedTextView tvSearchBtn;
     protected AppCompatEditText etSearch;
 
 
@@ -60,7 +61,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
     @Override
     protected void initView() {
         etSearch = rootView.findViewById(R.id.et_search);
-        searchBtn = rootView.findViewById(R.id.tv_search_btn);
+        tvSearchBtn = rootView.findViewById(R.id.tv_search_btn);
         //    initDate();
         initListener();
         init();
@@ -78,6 +79,9 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
 
 
     protected void initListener() {
+       tvSearchBtn.setClickable(false);
+       tvSearchBtn.setEnabled(false);
+       tvSearchBtn.setChecked(false);
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -95,9 +99,12 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
                     editEmptyChange();
                 }
                 editTextChanged(editable.toString());
+                tvSearchBtn.setClickable(!TextUtils.isEmpty(editable.toString()));
+                tvSearchBtn.setEnabled(!TextUtils.isEmpty(editable.toString()));
+                tvSearchBtn.setChecked(!TextUtils.isEmpty(editable.toString()));
             }
         });
-        searchBtn.setOnClickListener(new View.OnClickListener() {
+        tvSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String key = etSearch.getText().toString();

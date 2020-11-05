@@ -14,7 +14,7 @@ import java.util.List;
 import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
- * @description:
+ * @description: 我的关注--全部客户--列表适配器
  * @author: Jannonx
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司

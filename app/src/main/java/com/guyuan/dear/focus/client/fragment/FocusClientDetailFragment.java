@@ -48,10 +48,8 @@ import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
  */
 public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentFoucsClientDetailBinding, FocusClientViewModel> {
 
-    public static final String TAG = "FocusClientDetailFragment";
-    private FollowStatusFragment followStatusFragment;
+    public static final String TAG = FocusClientDetailFragment.class.getSimpleName();
     private BasicInfoFragment basicInfoFragment;
-
 
     private int startPosition = 0;//起始选中位置
     private String[] titleList;
@@ -118,7 +116,7 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
 
     private void initViewPager() {
         List<Fragment> tabFragmentList = new ArrayList<>();
-        followStatusFragment = FollowStatusFragment.newInstance(false, clientData);
+        FollowStatusFragment followStatusFragment = FollowStatusFragment.newInstance(clientData);
         basicInfoFragment = BasicInfoFragment.newInstance();
 
         tabFragmentList.add(followStatusFragment);

@@ -15,7 +15,6 @@ import com.guyuan.dear.databinding.FragmentBasicInfoBinding;
 import com.guyuan.dear.focus.client.adapter.ClientPhoneAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.bean.ClientContactBean;
-import com.guyuan.dear.focus.client.data.FocusClientViewModel;
 import com.guyuan.dear.work.client.data.WorkClientViewModel;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
- * @description: 填写跟进内容弹框
+ * @description: 我的工作-客户详情--基础信息
  * @author: Jannonx
  * @since: 2020/11/4 14:11
  * @company: 固远（深圳）信息技术有限公司

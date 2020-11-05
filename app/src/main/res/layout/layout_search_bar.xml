@@ -64,12 +64,12 @@
                 app:srcCompat="@drawable/ic_svg_cross_no_bg_32dp"
                 tools:visibility="gone" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatCheckedTextView
                 android:id="@+id/tv_search_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/dp_4"
-                android:background="@drawable/bg_grey_cccccc_corner_15dp"
+                android:background="@drawable/selector_bg_grey_cccccc_to_blue_1677ff"
                 android:paddingLeft="@dimen/dp_8"
                 android:paddingTop="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_8"

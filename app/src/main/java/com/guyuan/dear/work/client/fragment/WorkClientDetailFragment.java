@@ -15,8 +15,6 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentWorkClientDetailBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.work.client.fragment.BasicInfoFragment;
-import com.guyuan.dear.work.client.fragment.FollowStatusFragment;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.client.activity.WorkClientDetailActivity;
@@ -28,15 +26,14 @@ import java.util.List;
 
 
 /**
- * @description: 我的关注--客户详情
+ * @description: 我的工作-客户详情
  * @author: Jannonx
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司
  */
 public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWorkClientDetailBinding, WorkClientViewModel> {
 
-    public static final String TAG = "FocusClientDetailFragment";
-    private WorkClientViewModel viewModel;
+    public static final String TAG = WorkClientDetailFragment.class.getSimpleName();
     private FollowStatusFragment followStatusFragment;
     private BasicInfoFragment basicInfoFragment;
     private ClientCompanyBean clientData;
@@ -66,10 +63,12 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
 
     }
 
+
+    /**
+     * 发起请求数据
+     */
     private void initData() {
-
         viewModel.getClientBasicInfo(clientData.getId());
-
         viewModel.getClientBasicEvent().observe(getActivity(), new Observer<ClientCompanyBean>() {
             @Override
             public void onChanged(ClientCompanyBean dataRefreshBean) {
@@ -84,19 +83,23 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
         });
     }
 
+
+    /**
+     * 设置数据
+     */
     private void setCompanyData(ClientCompanyBean dataRefreshBean) {
         basicInfoFragment.setData(dataRefreshBean);
         binding.tvClientName.setText(dataRefreshBean.getCusName());
         binding.tvSalesman.setText(dataRefreshBean.getSalesman());
         binding.tvLatestTime.setText(dataRefreshBean.getFollowUpTime());
-
     }
 
     /**
      * 添加客户评论
      */
     private void editClientFollowComment() {
-        EditFollowCommentDialog.show(getContext(), new EditFollowCommentDialog.OnFollowClickListener() {
+
+        FollowCommentDialog.show(getActivity(), new FollowCommentDialog.OnFollowClickListener() {
             @Override
             public void onClick(String content) {
                 viewModel.postClientFollowUp(clientData.getId(), content);
@@ -106,18 +109,22 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
             @Override
             public void onChanged(Integer dataRefreshBean) {
                 ToastUtils.showShort(getContext(), "评论成功!");
+                followStatusFragment.refresh();
                 //刷新列表
             }
         });
     }
 
 
+    /**
+     * 初始化视图view
+     */
     private void initView() {
         Bundle arguments = getArguments();
         clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
 
         List<Fragment> tabFragmentList = new ArrayList<>();
-        followStatusFragment = FollowStatusFragment.newInstance(true, clientData);
+        followStatusFragment = FollowStatusFragment.newInstance(clientData);
         basicInfoFragment = BasicInfoFragment.newInstance();
 
         tabFragmentList.add(followStatusFragment);
@@ -170,6 +177,11 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
         return R.layout.layout_tab_text;
     }
 
+    /**
+     * 设置被选择tab属性
+     *
+     * @param tab
+     */
     protected void setTabSelect(TabLayout.Tab tab) {
         TextView tv = tab.getCustomView().findViewById(R.id.tv_tab_text);
         if (selectedTextColor == 0) {
@@ -180,6 +192,11 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
         tv.setTextSize(15f);
     }
 
+    /**
+     * 设置未选择tab属性
+     *
+     * @param tab tab
+     */
     protected void setTabUnselected(TabLayout.Tab tab) {
         TextView tv = tab.getCustomView().findViewById(R.id.tv_tab_text);
         if (unSelectedTextColor == 0) {
@@ -191,19 +208,17 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
     }
 
 
+    /**
+     * 设置tab标题
+     *
+     * @param position   下标
+     * @param customView tab
+     */
     private void setContent(int position, View customView) {
         TextView tv = customView.findViewById(R.id.tv_tab_text);
         tv.setText(Arrays.asList(titleList).get(position));
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (getActivity() != null) {
-            WorkClientDetailActivity activity = (WorkClientDetailActivity) getActivity();
-            viewModel = activity.getViewModel();
-        }
-    }
 
     @Override
     protected int getVariableId() {

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 客户模块--跟进动态内容
  * @author: Jannonx
  * @since: 2020/10/28 11:35
  * @company: 固远（深圳）信息技术有限公司

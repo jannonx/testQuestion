@@ -2,7 +2,6 @@ package com.guyuan.dear.focus.client.adapter;
 
 import android.content.Context;
 
-import android.view.TextureView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +14,6 @@ import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 
 import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.utils.GlideUtils;
-import com.guyuan.dear.work.client.fragment.EditFollowCommentDialog;
 
 import java.util.List;
 
@@ -25,7 +23,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 
 /**
- * @description:
+ * @description: 我的关注-客户详情--跟进动态：评价列表适配器
  * @author: Jannonx
  * @since: 2020/10/27 10:58
  * @company: 固远（深圳）信息技术有限公司
@@ -33,7 +31,6 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 public class FollowStatusParentAdapter extends BaseRecyclerAdapter<CommentsBean> {
     private boolean isCommentBtnVisible = false;
     private OnFollowClickListener clickListener;
-
 
 
     public FollowStatusParentAdapter(Context context, @NonNull List<CommentsBean> listData, int layoutID) {
@@ -77,9 +74,11 @@ public class FollowStatusParentAdapter extends BaseRecyclerAdapter<CommentsBean>
     public void setCommentBtnVisible(boolean commentBtnVisible) {
         isCommentBtnVisible = commentBtnVisible;
     }
+
     public void setClickListener(OnFollowClickListener clickListener) {
         this.clickListener = clickListener;
     }
+
     public interface OnFollowClickListener {
         void onClick(long followId);
     }

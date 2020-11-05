@@ -84,7 +84,7 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
                         String title = menuList.get(position).getTitle();
                         Bundle cBundle = new Bundle();
                         cBundle.putString(ConstantValue.KEY_TITLE, title);
-
+                        LogUtils.showLog("url=" + url);
                         switch (url) {
                             case ConstantValue.FOCUS_STAFF://人员
                                 HrHomeActivity.start(getContext(), title);
@@ -131,7 +131,7 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
                                 break;
 
                             case ConstantValue.FOCUS_AFTER_SERVICE://售后服务
-                                FocusClientActivity.start(getContext(),title);
+
                                 break;
 
                             case ConstantValue.FOCUS_MORNING_MEETING://晨会
@@ -147,8 +147,10 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
 
                                 break;
                             case ConstantValue.FOCUS_CONTRACT://合同
-                                ContractHomeActivity.start(getContext(),title);
+                                ContractHomeActivity.start(getContext(), title);
                                 break;
+                            case ConstantValue.FOCUS_CUSTOMER://客户
+                                FocusClientActivity.start(getContext(), title);
                             default:
                                 break;
                         }
