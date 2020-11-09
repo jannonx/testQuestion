@@ -9,6 +9,7 @@ import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.fragment.FocusClientDetailFragment;
+import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailFragment;
 import com.guyuan.dear.utils.ActivityUtils;
@@ -26,22 +27,17 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class FocusProduceDetailActivity extends BaseToolbarActivity<ActivityWithToolbarBinding, FocusProduceViewModel> {
 
-    public static void start(Context context, ClientCompanyBean data) {
+    public static void start(Context context, FocusProduceBean data) {
         Intent intent = new Intent(context, FocusProduceDetailActivity.class);
         intent.putExtra(ConstantValue.KEY_CONTENT, data);
-        context.startActivity(intent);
-    }
-    public static void start(Context context) {
-        Intent intent = new Intent(context, FocusProduceDetailActivity.class);
         context.startActivity(intent);
     }
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-//        ClientCompanyBean bean = (ClientCompanyBean) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
+        FocusProduceBean bean = (FocusProduceBean) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
         binding.toolbarContainer.titleTv.setText("生产详情");
-//        FocusProduceDetailFragment mFragment = FocusProduceDetailFragment.newInstance(bean);
-        FocusProduceDetailFragment mFragment = FocusProduceDetailFragment.newInstance();
+        FocusProduceDetailFragment mFragment = FocusProduceDetailFragment.newInstance(bean);
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
                 FocusClientDetailFragment.TAG);
     }

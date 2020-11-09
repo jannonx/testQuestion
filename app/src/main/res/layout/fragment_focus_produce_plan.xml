@@ -178,7 +178,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/line_date_provided_time" />
 
             <TextView
-                android:id="@+id/tv_label_drawings_issued_time"
+                android:id="@+id/tv_drawings_issued_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2020-10-02 16:58"

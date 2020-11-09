@@ -1,6 +1,14 @@
 package com.guyuan.dear.focus.produce.data;
 
+import com.example.httplibrary.bean.RefreshBean;
+import com.example.httplibrary.bean.ResultBean;
+import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.produce.api.FocusProduceApiService;
+import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
+import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
+
+import io.reactivex.Observable;
+import okhttp3.RequestBody;
 
 /**
  * @description:
@@ -17,5 +25,26 @@ public class FocusProduceRepository {
 
     public FocusProduceApiService getApiService() {
         return apiService;
+    }
+
+
+    Observable<ResultBean<ProduceOverViewBean>> getProduceOverView(RequestBody body) {
+        return apiService.getProduceOverView(body);
+    }
+
+    Observable<ResultBean<RefreshBean<FocusProduceBean>>> getProduceListByStatus(RequestBody body) {
+        return apiService.getProduceListByStatus(body);
+    }
+
+    Observable<ResultBean<RefreshBean<FocusProduceBean>>> getProduceExceptionList(RequestBody body) {
+        return apiService.getProduceExceptionList(body);
+    }
+
+    Observable<ResultBean<RefreshBean<FocusProduceBean>>> getProduceList(RequestBody body) {
+        return apiService.getProduceList(body);
+    }
+
+    Observable<ResultBean<FocusProduceBean>> getBasicInfoById(long getBasicInfoById) {
+        return apiService.getBasicInfoById(getBasicInfoById);
     }
 }

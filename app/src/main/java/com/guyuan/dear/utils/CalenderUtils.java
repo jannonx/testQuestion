@@ -19,6 +19,7 @@ public class CalenderUtils {
 
     private SimpleDateFormat simpleDateFormatFull;
     private SimpleDateFormat simpleDateFormatByDay;
+    private SimpleDateFormat simpleDateFormatByHour;
     private SimpleDateFormat simpleDateFormatByYear;
     private SimpleDateFormat simpleDateFormatByYearMonth;
     private SimpleDateFormat simpleDateFormatByChineseDay;
@@ -37,6 +38,7 @@ public class CalenderUtils {
     //2019-11-28 08:56:36
     private CalenderUtils() {
         simpleDateFormatFull = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
+        simpleDateFormatByHour = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
         simpleDateFormatByDay = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
         simpleDateFormatByYear = new SimpleDateFormat("yyyy", Locale.CHINA);
         simpleDateFormatByChineseDay = new SimpleDateFormat("yyyy年MM月dd日", Locale.CHINA);
@@ -207,6 +209,10 @@ public class CalenderUtils {
 
     public String toSmartFactoryDateFormatByDay(long time) {
         return simpleDateFormatByDay.format(new Date(time));
+    }
+
+    public String formatByHour(long time) {
+        return simpleDateFormatByHour.format(new Date(time));
     }
 
     public String toChineseMonthAndDay(long time) {
@@ -405,8 +411,8 @@ public class CalenderUtils {
     public String toDateAndWeekDayFormat(long startTime) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(startTime);
-        int index = calendar.get(Calendar.DAY_OF_WEEK)-1;
+        int index = calendar.get(Calendar.DAY_OF_WEEK) - 1;
         String format = simpleDateFormatByDay.format(new Date(startTime));
-        return format + " (" + weekDays[index]+")";
+        return format + " (" + weekDays[index] + ")";
     }
 }

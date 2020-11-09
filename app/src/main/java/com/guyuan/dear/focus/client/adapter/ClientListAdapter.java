@@ -32,7 +32,6 @@ public class ClientListAdapter extends BaseRecyclerAdapter<ClientCompanyBean> {
         holder.setText(R.id.tv_client_name, item.getCusName());
         holder.setText(R.id.tv_client_contact, "联系人：" + item.getContactName());
         holder.setText(R.id.tv_client_phone, item.getContactPhone());
-
         holder.setText(R.id.tv_salesman, item.getFollowUp());
         holder.setText(R.id.tv_latest_time, item.getFollowUpTime());
 

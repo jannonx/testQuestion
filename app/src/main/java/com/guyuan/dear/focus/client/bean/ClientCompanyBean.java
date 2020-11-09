@@ -11,6 +11,10 @@ import java.util.List;
  */
 public class ClientCompanyBean implements Serializable {
     /**
+     * 主键id
+     */
+    private int id;
+    /**
      * 联系人姓名
      */
     private String contactName;
@@ -30,10 +34,6 @@ public class ClientCompanyBean implements Serializable {
      * 最后跟进时间
      */
     private String followUpTime;
-    /**
-     * 主键id
-     */
-    private int id;
 
     /**
      * 客户详细地址

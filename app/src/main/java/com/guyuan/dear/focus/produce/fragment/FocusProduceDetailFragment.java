@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -15,10 +16,13 @@ import com.guyuan.dear.databinding.FragmentFocusProduceDetailBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
+import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
+import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,15 +49,10 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     private int startPosition = 0;//起始选中位置
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
-    private ClientCompanyBean clientData;
+    private FocusProduceBean produceBean;
 
-    public static FocusProduceDetailFragment newInstance() {
-        Bundle bundle = new Bundle();
-        FocusProduceDetailFragment fragment = new FocusProduceDetailFragment();
-        return fragment;
-    }
 
-    public static FocusProduceDetailFragment newInstance(ClientCompanyBean data) {
+    public static FocusProduceDetailFragment newInstance(FocusProduceBean data) {
         Bundle bundle = new Bundle();
         FocusProduceDetailFragment fragment = new FocusProduceDetailFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
@@ -70,26 +69,37 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     protected void initialization() {
         initHeaderView();
         initViewPager();
-//        initData();
+        initData();
     }
 
     private void initData() {
-//        Bundle arguments = getArguments();
-//        clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
-//        viewModel.getClientBasicInfo(clientData.getId());
-//        viewModel.getFollowCommentList(getListRequestBody(FIRST_PAGE));
-//        viewModel.getClientBasicEvent().observe(getActivity(), new Observer<ResultBean<ClientCompanyBean>>() {
-//            @Override
-//            public void onChanged(ResultBean<ClientCompanyBean> dataRefreshBean) {
-//
-//            }
-//        });
-//        viewModel.getFollowListEvent().observe(getActivity(), new Observer<ResultBean<RefreshBean<CommentsBean>>>() {
-//            @Override
-//            public void onChanged(ResultBean<RefreshBean<CommentsBean>> dataRefreshBean) {
-//
-//            }
-//        });
+        Bundle arguments = getArguments();
+        produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        viewModel.getBasicInfoById(produceBean.getEquipmentId());
+
+        viewModel.getBasicInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
+            @Override
+            public void onChanged(FocusProduceBean data) {
+//                LogUtils.showLog("data" + data.getCompletionRate());
+                setProduceData(data);
+            }
+        });
+    }
+
+    private void setProduceData(FocusProduceBean data) {
+        planFragment.setProduceData(data);
+        binding.tvProductName.setText(data.getName());
+        binding.tvProductCode.setText(data.getCode());
+        binding.tvDutyUnit.setText(data.getPrincipalDept());
+
+        binding.tvProjectName.setText(data.getProjectName());
+
+        binding.tvActualStart.setText(data.getActualStartTime());
+        binding.tvPlanStart.setText(data.getPlanStartTime());
+        binding.tvActualComplete.setText(data.getActualEndTime());
+        binding.tvPlanComplete.setText(data.getPlanEndTime());
+
+
     }
 
     private void initHeaderView() {
@@ -165,20 +175,6 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
                 }
             }
         }
-    }
-
-
-    private RequestBody getListRequestBody(int pageNum) {
-        ListClientRequestBody body = new ListClientRequestBody();
-        ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
-        filtersBean.setId(clientData.getId());
-        body.setFilters(filtersBean);
-        body.setPageNum(pageNum);
-        body.setPageSize(PAGE_SIZE);
-
-        String str = GsonUtil.objectToString(body);
-        return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
-                "charset=utf-8"), str);
     }
 
 

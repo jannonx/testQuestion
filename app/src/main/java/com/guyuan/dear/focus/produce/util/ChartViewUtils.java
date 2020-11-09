@@ -21,6 +21,7 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.guyuan.dear.customizeview.PieChartView;
 import com.guyuan.dear.focus.contract.bean.ComContractsBean;
+import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
 import com.guyuan.dear.utils.CalenderUtils;
 
 import java.util.ArrayList;
@@ -37,15 +38,15 @@ import java.util.Locale;
 public class ChartViewUtils {
 
 
-    public static void setFocusChartView(PieChartView view, ComContractsBean data) {
+    public static void setFocusChartView(PieChartView view, ProduceOverViewBean data) {
         if (data == null) {
             return;
         }
         LinkedHashMap<String, Float> pieData = new LinkedHashMap<>();
-        pieData.put("待生产", data.getExecutingContracts() * 1.f);
-        pieData.put("生产完成", data.getExceptionContracts() * 1.f);
-        pieData.put("生产中", data.getFinishedContracts() * 1.f);
-        pieData.put("生产异常", data.getFinishedContracts() * 1.f);
+        pieData.put("待生产", data.getPrepareNum() * 1.f);
+        pieData.put("生产完成", data.getCompleteNum() * 1.f);
+        pieData.put("生产中", data.getProcessingNum() * 1.f);
+        pieData.put("生产异常", data.getAbnormalNum() * 1.f);
         view.setData(pieData, "");
         view.getLegend().setEnabled(false);
         PieData dateSet = view.getData();

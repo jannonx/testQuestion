@@ -40,7 +40,7 @@ public class FocusClientActivity extends BaseToolbarActivity<ActivityWithToolbar
         FocusClientFragment mFragment = FocusClientFragment.newInstance();
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
                 FocusClientFragment.TAG);
-
+        //获得用户打电话权限
         checkPermissions(Manifest.permission.CALL_PHONE);
     }
 

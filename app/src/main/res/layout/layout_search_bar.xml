@@ -68,7 +68,7 @@
                 android:id="@+id/tv_search_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/dp_4"
+                android:layout_marginEnd="@dimen/dp_4"
                 android:background="@drawable/selector_bg_grey_cccccc_to_blue_1677ff"
                 android:paddingLeft="@dimen/dp_8"
                 android:paddingTop="@dimen/dp_3"
