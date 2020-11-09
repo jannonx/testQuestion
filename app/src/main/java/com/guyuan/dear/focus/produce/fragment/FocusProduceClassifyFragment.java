@@ -10,6 +10,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.focus.produce.adapter.FocusProduceAdapter;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProductStatusType;
+import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
@@ -47,7 +48,7 @@ public class FocusProduceClassifyFragment extends BaseProduceFragment {
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-//                FocusProduceDetailActivity.start(getContext());
+                FocusProduceDetailActivity.start(getContext(),listData.get(position));
             }
         });
         viewModel.getProduceListByStatus(getListRequestBody(true));

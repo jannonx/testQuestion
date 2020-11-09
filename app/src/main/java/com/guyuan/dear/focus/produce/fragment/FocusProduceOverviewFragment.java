@@ -29,6 +29,7 @@ import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
@@ -141,8 +142,8 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
      */
     private RequestBody getRequestBody() {
         ProduceRequestBody body = new ProduceRequestBody();
-        body.setStartTime(calenderUtils.formatByHour(dates[0].getTime()));
-        body.setEndTime(calenderUtils.formatByHour(dates[1].getTime()));
+        body.setStartTime(calenderUtils.toSmartFactoryDateStringFormat(dates[0].getTime()));
+        body.setEndTime(calenderUtils.toSmartFactoryDateStringFormat(dates[1].getTime()));
         body.setName(etSearch.getText().toString());
         String str = GsonUtil.objectToString(body);
         return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
@@ -153,9 +154,9 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cl_produce_wait:
-                FocusProduceClassifyActivity.start(
-                        getContext(), ProductStatusType.TYPE_PRODUCE_WAIT);
-
+//                FocusProduceClassifyActivity.start(
+//                        getContext(), ProductStatusType.TYPE_PRODUCE_WAIT);
+                ProduceApplyDialog.show(getActivity(), null);
                 break;
             case R.id.cl_produce_complete:
                 FocusProduceClassifyActivity.start(

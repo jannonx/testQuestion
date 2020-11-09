@@ -15,9 +15,9 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.approve.activity.MineApplyListActivity;
 
 import com.guyuan.dear.base.adapter.TagStaffAdapter;
-import com.guyuan.dear.customizeview.flowlayout.TagAdapter;
-import com.guyuan.dear.customizeview.flowlayout.TagFlowLayout;
-import com.guyuan.dear.net.smartfactory.bean.StaffBean;
+import com.guyuan.dear.utils.view.flowlayout.TagFlowLayout;
+import com.guyuan.dear.utils.view.flowlayout.TagAdapter;
+import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
@@ -311,8 +311,8 @@ public abstract class BaseApproveFragment<VB extends ViewDataBinding, VM extends
 //        }
     }
 
-    protected ArrayList<Long> getPartners() {
-        ArrayList<Long> partners = new ArrayList<>();
+    protected ArrayList<String> getPartners() {
+        ArrayList<String> partners = new ArrayList<>();
         for (StaffBean bean : partnerList) {
             partners.add(bean.getId());
         }
@@ -320,8 +320,8 @@ public abstract class BaseApproveFragment<VB extends ViewDataBinding, VM extends
         return partners;
     }
 
-    protected ArrayList<Long> getApproves() {
-        ArrayList<Long> approves = new ArrayList<>();
+    protected ArrayList<String> getApproves() {
+        ArrayList<String> approves = new ArrayList<>();
         for (StaffBean bean : approveList) {
             approves.add(bean.getId());
         }
@@ -329,8 +329,8 @@ public abstract class BaseApproveFragment<VB extends ViewDataBinding, VM extends
         return approves;
     }
 
-    protected ArrayList<Long> getCopys() {
-        ArrayList<Long> copys = new ArrayList<>();
+    protected ArrayList<String> getCopys() {
+        ArrayList<String> copys = new ArrayList<>();
         for (StaffBean bean : copyList) {
             copys.add(bean.getId());
         }

@@ -621,6 +621,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <TextView
+            android:id="@+id/tv_commit_btn"
+            style="@style/commit_btn"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:text="开始生产"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+          />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

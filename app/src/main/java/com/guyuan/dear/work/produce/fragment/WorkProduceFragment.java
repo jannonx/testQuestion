@@ -51,7 +51,7 @@ public class WorkProduceFragment extends BaseListSearchFragment<FocusProduceBean
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                FocusProduceDetailActivity.start(getContext());
+//                FocusProduceDetailActivity.start(getContext());
             }
         });
     }

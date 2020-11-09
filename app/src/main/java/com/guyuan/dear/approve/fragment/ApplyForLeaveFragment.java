@@ -14,7 +14,7 @@ import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.databinding.FragmentApproceLeaveBinding;
 import com.guyuan.dear.databinding.FragmentApproveBinding;
 import com.guyuan.dear.dialog.SimpleRecyclerViewDialog;
-import com.guyuan.dear.net.smartfactory.bean.StaffBean;
+import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -102,12 +102,12 @@ public class ApplyForLeaveFragment extends BaseApproveFragment<FragmentApproceLe
         }
         BodyApprovalSubmit requestBody = new BodyApprovalSubmit();
         requestBody.setArType(ApplyConstant.INT_LEAVE);
-        ArrayList<Long> copies = new ArrayList<>();
+        ArrayList<String> copies = new ArrayList<>();
         for (StaffBean staff : copyList) {
             copies.add(staff.getId());
         }
         requestBody.setCopy(copies);
-        ArrayList<Long> users = new ArrayList<>();
+        ArrayList<String> users = new ArrayList<>();
         for (StaffBean staff : approveList) {
             users.add(staff.getId());
         }

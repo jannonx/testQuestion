@@ -1,21 +1,25 @@
 package com.guyuan.dear.focus.produce.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.adapter.TagStaffAdapter;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
+import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
@@ -23,6 +27,9 @@ import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.utils.ToastUtils;
+import com.guyuan.dear.work.contractPause.beans.StaffBean;
+import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,6 +48,8 @@ import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
 public class FocusProduceDetailFragment extends BaseDataBindingFragment<FragmentFocusProduceDetailBinding, FocusProduceViewModel> {
 
     public static final String TAG = "FocusProduceDetailFragment";
+    private static final int REQUEST_SEND_SELECT_PERSON = 0x001;
+    private static final int REQUEST_COPY_SELECT_PERSON = 0x002;
     private FocusProduceViewModel viewModel;
     private FocusProduceStatusFragment statusFragment;
     private FollowProducePlanFragment planFragment;
@@ -50,6 +59,8 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
     private FocusProduceBean produceBean;
+
+    private ProduceApplyDialog dialog;
 
 
     public static FocusProduceDetailFragment newInstance(FocusProduceBean data) {
@@ -84,6 +95,46 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
                 setProduceData(data);
             }
         });
+
+        binding.tvCommitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showApplyDialog();
+            }
+        });
+    }
+
+    private void showApplyDialog() {
+        ProduceApplyDialog.OnDialogClickListener dialogListener = new ProduceApplyDialog.OnDialogClickListener() {
+            @Override
+            public void onCommitInfo(String content) {
+
+            }
+
+            @Override
+            public void onSendClick(TagStaffAdapter adapter) {
+                PickStaffsActivity.startForResult(FocusProduceDetailFragment.this,
+                        REQUEST_SEND_SELECT_PERSON,
+                        "请选审批送人",
+                        adapter == null ? new ArrayList<>() : adapter.getTagDataList(),
+                        new ArrayList<>(),
+                        new ArrayList<>(),
+                        ConstantValue.CONST_MAX_STAFF_COUNT);
+            }
+
+            @Override
+            public void onCopyClick(TagStaffAdapter adapter) {
+                PickStaffsActivity.startForResult(FocusProduceDetailFragment.this,
+                        REQUEST_COPY_SELECT_PERSON,
+                        "请选审抄送人",
+                        adapter == null ? new ArrayList<>() : adapter.getTagDataList(),
+                        new ArrayList<>(),
+                        new ArrayList<>(),
+                        ConstantValue.CONST_MAX_STAFF_COUNT);
+            }
+        };
+        dialog = new ProduceApplyDialog(getActivity(), dialogListener);
+        dialog.show();
     }
 
     private void setProduceData(FocusProduceBean data) {
@@ -125,6 +176,31 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
 //            }
 //        });
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data == null) {
+            ToastUtils.showLong(getActivity(), "选择人员失败");
+            return;
+        }
+        ArrayList<StaffBean> list = data.getParcelableArrayListExtra(ConstantValue.KEY_SELECTED_STAFFS);
+        if (list == null) {
+            ToastUtils.showLong(getActivity(), "选择人员失败");
+            return;
+        }
+        switch (requestCode) {
+            case REQUEST_SEND_SELECT_PERSON:
+                dialog.setSendToList(list);
+                break;
+            case REQUEST_COPY_SELECT_PERSON:
+                dialog.setCopyToList(list);
+                break;
+            default:
+        }
+
+    }
+
 
     private void initViewPager() {
         List<Fragment> tabFragmentList = new ArrayList<>();
