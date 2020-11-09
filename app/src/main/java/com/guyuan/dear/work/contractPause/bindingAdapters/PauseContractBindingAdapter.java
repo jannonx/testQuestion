@@ -5,8 +5,11 @@ import android.text.TextUtils;
 
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.BindingAdapter;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.guyuan.dear.customizeview.itemDecorator.AddSendListItemDecorator;
+import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 import java.util.List;
@@ -24,8 +27,11 @@ public class PauseContractBindingAdapter {
         if (staffs == null) {
             return;
         }
-
-
+        AddSendListAdapter adapter = new AddSendListAdapter(staffs,view.getContext());
+        GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(),5,RecyclerView.VERTICAL,false);
+        view.setLayoutManager(layoutManager);
+        view.setAdapter(adapter);
+//        view.addItemDecoration(new AddSendListItemDecorator());
     }
 
     @BindingAdapter("setPauseContractCopyList")

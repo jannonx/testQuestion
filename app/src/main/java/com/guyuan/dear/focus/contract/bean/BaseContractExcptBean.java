@@ -1,12 +1,17 @@
 package com.guyuan.dear.focus.contract.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import kotlin.jvm.Transient;
+
 /**
  * @author: 廖华凯
  * @description:
  * @since: 2020/10/27 12:06
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class BaseContractExcptBean extends BaseContractBean {
+public class BaseContractExcptBean extends BaseContractBean implements Parcelable {
     /**
      * 标签，如：“暂停”，“终止”
      */
@@ -22,6 +27,25 @@ public class BaseContractExcptBean extends BaseContractBean {
 
     public BaseContractExcptBean() {
     }
+
+    protected BaseContractExcptBean(Parcel in) {
+        super(in);
+        exceptionTag = in.readString();
+        cause = in.readString();
+        judgement = in.readString();
+    }
+
+    public static final Creator<BaseContractExcptBean> CREATOR = new Creator<BaseContractExcptBean>() {
+        @Override
+        public BaseContractExcptBean createFromParcel(Parcel in) {
+            return new BaseContractExcptBean(in);
+        }
+
+        @Override
+        public BaseContractExcptBean[] newArray(int size) {
+            return new BaseContractExcptBean[size];
+        }
+    };
 
     public String getExceptionTag() {
         return exceptionTag;
@@ -45,5 +69,18 @@ public class BaseContractExcptBean extends BaseContractBean {
 
     public void setJudgement(String judgement) {
         this.judgement = judgement;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest,flags);
+        dest.writeString(exceptionTag);
+        dest.writeString(cause);
+        dest.writeString(judgement);
     }
 }
