@@ -1,6 +1,5 @@
 package com.guyuan.dear.focus.hr.view.pickStaffs;
 
-import android.os.Handler;
 import android.view.View;
 import android.widget.CompoundButton;
 
@@ -11,11 +10,11 @@ import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.db.DearDbManager;
-import com.guyuan.dear.db.dao.StaffDao;
 import com.guyuan.dear.db.entities.DeptEntity;
 import com.guyuan.dear.db.entities.StaffAndDepts;
 import com.guyuan.dear.db.entities.StaffDeptCrosRef;
 import com.guyuan.dear.db.entities.StaffEntity;
+import com.guyuan.dear.db.entities.StaffSelectHistoryEntity;
 import com.guyuan.dear.focus.hr.adapter.PickStaffsExpListAdapter;
 import com.guyuan.dear.focus.hr.adapter.PickStaffsHistoryStaffsAdapter;
 import com.guyuan.dear.focus.hr.bean.PickStaffBean;
@@ -120,7 +119,6 @@ public class PickStaffsViewModel extends BaseViewModel {
         loadAllStaffsFromLocal();
     }
 
-    private String zhNum = "一二三四五六七八九十";
 
 //    private void loadAllStaffsFromLocal() {
 //        List<PickStaffBean> staffList = allStaffs.getValue();
@@ -253,11 +251,11 @@ public class PickStaffsViewModel extends BaseViewModel {
                 List<StaffEntity> staffEntities = DearDbManager.getInstance().getDataBase().getStaffDao().loadAll();
                 List<StaffDeptCrosRef> crosRefs = DearDbManager.getInstance().getDataBase().getStaffDeptCroRefDao().loadAll();
                 for (StaffEntity entity : staffEntities) {
-                    StaffAndDepts bean =new StaffAndDepts();
-                    bean.staffEntity=entity;
-                    bean.deptEntities=new ArrayList<>();
+                    StaffAndDepts bean = new StaffAndDepts();
+                    bean.staffEntity = entity;
+                    bean.deptEntities = new ArrayList<>();
                     for (StaffDeptCrosRef ref : crosRefs) {
-                        if(entity.userId==ref.userId){
+                        if (entity.userId == ref.userId) {
                             long deptId = ref.deptId;
                             DeptEntity deptEntity = DearDbManager.getInstance().getDataBase().getDeptDao().findById(deptId);
                             bean.deptEntities.add(deptEntity);
@@ -275,8 +273,8 @@ public class PickStaffsViewModel extends BaseViewModel {
 
     private Comparator<DeptEntity> comparator = new Comparator<DeptEntity>() {
         @Override
-        public int compare(DeptEntity o1, DeptEntity o2)  {
-            return o2.level-o1.level;
+        public int compare(DeptEntity o1, DeptEntity o2) {
+            return o2.level - o1.level;
         }
     };
 
@@ -327,10 +325,16 @@ public class PickStaffsViewModel extends BaseViewModel {
             //分组
             groupStaffByDept();
 
-            //造假数据-历史选择
-            for (int i = 0; i < staffList.size() / 2; i++) {
-                PickStaffBean temp = staffList.get(i);
-                historyStaffs.getValue().add(temp);
+            //历史选择
+            List<StaffSelectHistoryEntity> recent = DearDbManager.getInstance()
+                    .getDataBase().getStaffSelectHistoryDao().loadRecentByDate(10);
+            for (StaffSelectHistoryEntity entity : recent) {
+                for (PickStaffBean bean : staffList) {
+                    if (bean.getId() == entity.staffId) {
+                        historyStaffs.getValue().add(bean);
+                        break;
+                    }
+                }
             }
             historyStaffs.postValue(historyStaffs.getValue());
         }
@@ -342,10 +346,10 @@ public class PickStaffsViewModel extends BaseViewModel {
         for (PickStaffBean staffBean : motherList) {
             boolean isFoundDept = false;
             List<DeptBean> depts = staffBean.getDepts();
-            if(depts==null||depts.isEmpty()){
+            if (depts == null || depts.isEmpty()) {
                 continue;
             }
-            String deptName =depts.get(0).getDeptName();
+            String deptName = depts.get(0).getDeptName();
             for (PickStaffsExpParentBean grp : grpList) {
                 if (grp.getDept().equals(deptName)) {
                     isFoundDept = true;
@@ -383,6 +387,16 @@ public class PickStaffsViewModel extends BaseViewModel {
         List<PickStaffBean> value = historyStaffs.getValue();
         if (value != null) {
             for (PickStaffBean bean : value) {
+                boolean isSkip=false;
+                for (StaffBean staff : disabledStaffs) {
+                    if(staff.getId().equals(bean.getId())){
+                        isSkip = true;
+                        break;
+                    }
+                }
+                if(isSkip){
+                    continue;
+                }
                 bean.setPick(isToSelect);
             }
         }
@@ -410,5 +424,9 @@ public class PickStaffsViewModel extends BaseViewModel {
         if (liveData != null) {
             liveData.removeObserver(observer);
         }
+    }
+
+    public void updateSelectStaffHistory(ArrayList<StaffBean> staffs) {
+        DearDbManager.getInstance().updateStaffSelectHistory(staffs);
     }
 }

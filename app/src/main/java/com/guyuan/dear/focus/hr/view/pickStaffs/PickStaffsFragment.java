@@ -155,6 +155,7 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
             @Override
             public void onClick(View v) {
                 ArrayList<StaffBean> staffs = getViewModel().getSelectedStaffs();
+                getViewModel().updateSelectStaffHistory(staffs);
                 FragmentActivity activity = getActivity();
                 Intent intent = new Intent();
                 intent.putParcelableArrayListExtra(ConstantValue.KEY_SELECTED_STAFFS,staffs);
