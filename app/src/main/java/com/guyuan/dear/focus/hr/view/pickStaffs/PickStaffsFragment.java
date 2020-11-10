@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.BaseExpandableListAdapter;
 import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
@@ -155,7 +153,8 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
             @Override
             public void onClick(View v) {
                 ArrayList<StaffBean> staffs = getViewModel().getSelectedStaffs();
-                getViewModel().updateSelectStaffHistory(staffs);
+                //保存选择记录
+                getViewModel().saveStaffSelectHistoryToLocal(staffs);
                 FragmentActivity activity = getActivity();
                 Intent intent = new Intent();
                 intent.putParcelableArrayListExtra(ConstantValue.KEY_SELECTED_STAFFS,staffs);

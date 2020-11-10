@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * @author: 廖华凯
- * @description:
+ * @description: 人员概况主界面的视图模型
  * @since: 2020/9/18 11:18
  * @company: 固远（深圳）信息技术有限公司
  **/
@@ -32,6 +32,10 @@ public class HrSummaryViewModel extends BaseViewModel {
         return mode;
     }
 
+    /**
+     * 切换显示类型。
+     * @param mode  0为显示公司总人员概况；1为显示公司外勤人员概况
+     */
     public void setMode(int mode) {
         this.mode = mode;
         HrSummary value = (HrSummary) cacheData.get(mode);
@@ -47,6 +51,10 @@ public class HrSummaryViewModel extends BaseViewModel {
         staffTotal.postValue(value.getStaffTotal());
     }
 
+    /**
+     * 生成外勤人员的模拟数据，显示UI
+     * @return
+     */
     private HrSummary createConstructionSiteStaffOverView() {
         HrSummary overView = new HrSummary();
         List<HrStatusGroup> list = new ArrayList<HrStatusGroup>();
@@ -74,6 +82,10 @@ public class HrSummaryViewModel extends BaseViewModel {
         return overView;
     }
 
+    /**
+     * 生成公司人员的出勤数据，更新UI
+     * @return
+     */
     private HrSummary createAllStaffOverView() {
         HrSummary overView = new HrSummary();
         List<HrStatusGroup> list = new ArrayList<HrStatusGroup>();
