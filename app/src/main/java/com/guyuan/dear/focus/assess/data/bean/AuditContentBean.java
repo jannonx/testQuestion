@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize;
 
 /**
  * @author : tl
- * @description :
+ * @description :我的关注-评审点bean
  * @since: 2020/11/2 15:32
  * @company : 固远（深圳）信息技术有限公司
  **/

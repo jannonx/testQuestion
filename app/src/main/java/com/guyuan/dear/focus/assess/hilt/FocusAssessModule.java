@@ -11,7 +11,7 @@ import dagger.hilt.android.components.ActivityComponent;
 
 /**
  * @author : tl
- * @description :
+ * @description :我的关注-评审module
  * @since: 2020/9/16 17:27
  * @company : 固远（深圳）信息技术有限公司
  **/

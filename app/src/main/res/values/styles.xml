@@ -30,6 +30,7 @@
         <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
         <item name="android:windowFrame">@null</item>
     </style>
+
     <style name="TabLayoutStyle" parent="Base.Widget.Design.TabLayout">
         <item name="tabBackground">@color/white</item>
         <item name="tabIndicatorColor">@color/color_blue_1677ff</item>
@@ -38,6 +39,7 @@
         <item name="android:textSize">@dimen/sp_15</item>
         <item name="android:textColor">@color/color_black_333333</item>
     </style>
+
     <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@android:color/transparent</item>
     </style>
@@ -566,6 +568,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="TextBig" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
     <!--item 字体中样式-->
     <style name="TextNormal" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">14sp</item>
@@ -617,4 +624,27 @@
         <item name="android:layout_height">1sp</item>
         <item name="android:background">#E5E5E5</item>
     </style>
+
+    <!--MaterialButton基本样式-->
+    <style name="MaterialButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="cornerRadius">18dp</item>
+        <item name="android:layout_width">162dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="rippleColor">@color/transparent</item>
+    </style>
+
+    <!--MaterialButton白底灰色边框-->
+    <style name="MaterialButtonStroke" parent="MaterialButtonStyle">
+        <item name="strokeColor">@color/color_grey_e5e5e5</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!--MaterialButton白底灰色边框-->
+    <style name="MaterialButtonBlue" parent="MaterialButtonStyle">
+        <item name="backgroundTint">#0050B4</item>
+    </style>
+
 </resources>

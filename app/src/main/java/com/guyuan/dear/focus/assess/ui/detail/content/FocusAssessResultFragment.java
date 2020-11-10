@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * @author : tl
- * @description :
+ * @description :我的关注-评审结果fragment
  * @since: 2020/10/21 11:24
  * @company : 固远（深圳）信息技术有限公司
  **/

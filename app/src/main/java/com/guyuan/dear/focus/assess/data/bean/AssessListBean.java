@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author : tl
- * @description :
+ * @description :我的关注-评审列表bean
  * @since: 2020/10/27 10:34
  * @company : 固远（深圳）信息技术有限公司
  **/
