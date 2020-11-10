@@ -1,8 +1,6 @@
 package com.guyuan.dear.focus.produce.fragment;
 
-import androidx.databinding.ViewDataBinding;
 
-import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
@@ -23,7 +21,7 @@ public abstract class BaseProduceFragment extends BaseListSearchFragment<FocusPr
     protected ProductStatusType statusType;
 
     /**
-     * 客户列表请求参数配置
+     * 生产列表请求参数配置
      *
      * @param isRefresh 是否刷新
      * @return

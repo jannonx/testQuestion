@@ -35,6 +35,25 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tv_sub_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_12"
+            android:background="@drawable/bg_green_d4fff1_corner_2"
+            android:paddingStart="@dimen/dp_4"
+            android:paddingTop="@dimen/dp_2"
+            android:paddingEnd="@dimen/dp_4"
+            android:paddingBottom="@dimen/dp_2"
+            android:text="完成"
+            android:textColor="@color/color_green_00B578"
+            android:textSize="@dimen/sp_12"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_product_name"
+            app:layout_constraintStart_toEndOf="@+id/tv_product_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_product_name"
+            tools:visibility="visible" />
+
+        <TextView
             android:id="@+id/tv_produce_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,20 +67,31 @@
             android:textColor="@color/color_orange_FF6010"
             android:textSize="@dimen/sp_12"
             app:layout_constraintBottom_toBottomOf="@+id/tv_product_name"
-            app:layout_constraintStart_toEndOf="@+id/tv_product_name"
+            app:layout_constraintStart_toEndOf="@+id/tv_sub_status"
             app:layout_constraintTop_toTopOf="@+id/tv_product_name" />
+
+        <TextView
+            android:id="@+id/label_product_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_8"
+            android:text="产品代号："
+            android:textColor="@color/color_black_333333"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_product_name" />
 
         <TextView
             android:id="@+id/tv_product_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_12"
-            android:layout_marginTop="@dimen/dp_8"
-            android:text="产品代号：CPDH54562"
+            android:text="CPDH54562"
             android:textColor="@color/color_black_333333"
             android:textSize="@dimen/sp_14"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_product_name" />
+            app:layout_constraintBottom_toBottomOf="@+id/label_product_code"
+            app:layout_constraintStart_toEndOf="@+id/label_product_code"
+            app:layout_constraintTop_toTopOf="@+id/label_product_code" />
 
         <TextView
             android:id="@+id/tv_produce_company"
@@ -72,103 +102,109 @@
             android:textColor="@color/color_grey_999999"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-            app:layout_constraintTop_toBottomOf="@+id/tv_product_code" />
+            app:layout_constraintTop_toBottomOf="@+id/label_product_code" />
 
-        <View
-            android:id="@+id/v_line"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="@dimen/dp_8"
-            android:background="@color/color_grey_e5e5e5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_produce_company"
-
-            />
-
-        <TextView
-            android:id="@+id/label_operator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
-            android:text="操作员："
-            android:textColor="@color/color_blue_1890ff"
-            android:textSize="@dimen/sp_12"
-            app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-            app:layout_constraintTop_toBottomOf="@+id/v_line" />
-
-        <TextView
-            android:id="@+id/tv_operator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="小江"
-            android:textColor="@color/color_blue_1890ff"
-            android:textSize="@dimen/sp_12"
-            app:layout_constraintBottom_toBottomOf="@+id/label_operator"
-            app:layout_constraintStart_toEndOf="@+id/label_operator"
-            app:layout_constraintTop_toTopOf="@+id/label_operator" />
-
-        <TextView
-            android:id="@+id/label_activate_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
-            android:text="实际开始时间："
-            android:textColor="@color/color_blue_1890ff"
-            android:textSize="@dimen/sp_12"
-            app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-            app:layout_constraintTop_toBottomOf="@+id/label_operator" />
-
-        <TextView
-            android:id="@+id/tv_activate_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2020-10-22 15:10"
-            android:textColor="@color/color_blue_1890ff"
-            android:textSize="@dimen/sp_12"
-            app:layout_constraintBottom_toBottomOf="@+id/label_activate_time"
-            app:layout_constraintStart_toEndOf="@+id/label_activate_time"
-            app:layout_constraintTop_toTopOf="@+id/label_activate_time" />
-
-        <View
-            android:id="@+id/v_line_2"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="@dimen/dp_8"
-            android:background="@color/color_grey_e5e5e5"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_activate_time"
-            tools:visibility="visible"
-
-            />
-
-        <TextView
-            android:id="@+id/label_reason"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
-            android:text="暂停原因："
-            android:textColor="@color/color_grey_999999"
-            android:textSize="@dimen/sp_12"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-            app:layout_constraintTop_toBottomOf="@+id/v_line_2"
-            tools:visibility="visible" />
-
-        <TextView
-            android:id="@+id/tv_reason"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_middle_content"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/sp_12"
-            android:text="目前生产原材料不到位，问了采购需要等待…"
-            android:textColor="@color/color_grey_999999"
-            android:textSize="@dimen/sp_12"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/label_reason"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/label_reason"
-            app:layout_constraintTop_toTopOf="@+id/label_reason"
-            tools:visibility="visible" />
+            app:layout_constraintStart_toStartOf="@+id/tv_product_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_produce_company">
+
+            <View
+                android:id="@+id/v_line"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/dp_8"
+                android:background="@color/color_grey_e5e5e5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
+
+            <TextView
+                android:id="@+id/tv_operator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="操作员：小江"
+                android:textColor="@color/color_blue_1890ff"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v_line" />
+
+
+            <TextView
+                android:id="@+id/label_activate_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="实际开始时间："
+                android:textColor="@color/color_blue_1890ff"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_operator" />
+
+            <TextView
+                android:id="@+id/tv_activate_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2020-10-22 15:10"
+                android:textColor="@color/color_blue_1890ff"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="@+id/label_activate_time"
+                app:layout_constraintStart_toEndOf="@+id/label_activate_time"
+                app:layout_constraintTop_toTopOf="@+id/label_activate_time" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_footer_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_activate_time">
+
+                <View
+                    android:id="@+id/v_line_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:background="@color/color_grey_e5e5e5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    />
+
+                <TextView
+                    android:id="@+id/label_reason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:text="暂停原因："
+                    android:textColor="@color/color_grey_999999"
+                    android:textSize="@dimen/sp_12"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/v_line_2" />
+
+                <TextView
+                    android:id="@+id/tv_reason"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/sp_12"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="目前生产原材料不到位，问了采购需要等待问了采购需要等待问了采购需要等待问了采购需要等待"
+                    android:textColor="@color/color_grey_999999"
+                    android:textSize="@dimen/sp_12"
+                    app:layout_constraintBottom_toBottomOf="@+id/label_reason"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/label_reason"
+                    app:layout_constraintTop_toTopOf="@+id/label_reason" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

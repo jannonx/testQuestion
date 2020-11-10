@@ -311,8 +311,8 @@ public abstract class BaseApproveFragment<VB extends ViewDataBinding, VM extends
 //        }
     }
 
-    protected ArrayList<String> getPartners() {
-        ArrayList<String> partners = new ArrayList<>();
+    protected ArrayList<Long> getPartners() {
+        ArrayList<Long> partners = new ArrayList<>();
         for (StaffBean bean : partnerList) {
             partners.add(bean.getId());
         }
@@ -320,8 +320,8 @@ public abstract class BaseApproveFragment<VB extends ViewDataBinding, VM extends
         return partners;
     }
 
-    protected ArrayList<String> getApproves() {
-        ArrayList<String> approves = new ArrayList<>();
+    protected ArrayList<Long> getApproves() {
+        ArrayList<Long> approves = new ArrayList<>();
         for (StaffBean bean : approveList) {
             approves.add(bean.getId());
         }
@@ -329,8 +329,8 @@ public abstract class BaseApproveFragment<VB extends ViewDataBinding, VM extends
         return approves;
     }
 
-    protected ArrayList<String> getCopys() {
-        ArrayList<String> copys = new ArrayList<>();
+    protected ArrayList<Long> getCopys() {
+        ArrayList<Long> copys = new ArrayList<>();
         for (StaffBean bean : copyList) {
             copys.add(bean.getId());
         }

@@ -1,6 +1,12 @@
 package com.guyuan.dear.work.produce.data;
 
+import com.example.httplibrary.bean.RefreshBean;
+import com.example.httplibrary.bean.ResultBean;
+import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.work.produce.api.WorkProduceApiService;
+
+import io.reactivex.Observable;
+import okhttp3.RequestBody;
 
 /**
  * @description:
@@ -18,4 +24,9 @@ public class WorkProduceRepository {
     public WorkProduceApiService getApiService() {
         return apiService;
     }
+
+    Observable<ResultBean<RefreshBean<FocusProduceBean>>> getProduceList(RequestBody body) {
+        return apiService.getProduceList(body);
+    }
+
 }

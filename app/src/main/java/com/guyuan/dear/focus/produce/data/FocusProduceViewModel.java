@@ -29,10 +29,7 @@ public class FocusProduceViewModel extends BaseViewModel {
     private MutableLiveData<RefreshBean<FocusProduceBean>> produceListEvent = new MutableLiveData<>();
     private MutableLiveData<FocusProduceBean> basicInfoEvent = new MutableLiveData<>();
 
-    //    @ViewModelInject
-//    public FocusProduceViewModel(FocusProduceRepository focusProduceRepository) {
-//        apiService = focusProduceRepository.getApiService();
-//    }
+
     @ViewModelInject
     public FocusProduceViewModel(FocusProduceRepository focusClientRepository) {
         this.repository = focusClientRepository;

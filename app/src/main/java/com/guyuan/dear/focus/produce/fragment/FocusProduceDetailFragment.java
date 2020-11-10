@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
@@ -19,11 +20,14 @@ import com.guyuan.dear.databinding.FragmentFocusProduceDetailBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
+import com.guyuan.dear.focus.client.fragment.FocusClientDetailFragment;
 import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
+import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
+import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
@@ -48,11 +52,12 @@ import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
 public class FocusProduceDetailFragment extends BaseDataBindingFragment<FragmentFocusProduceDetailBinding, FocusProduceViewModel> {
 
     public static final String TAG = "FocusProduceDetailFragment";
+
     private static final int REQUEST_SEND_SELECT_PERSON = 0x001;
     private static final int REQUEST_COPY_SELECT_PERSON = 0x002;
     private FocusProduceViewModel viewModel;
     private FocusProduceStatusFragment statusFragment;
-    private FollowProducePlanFragment planFragment;
+    private FollowProducePlanFragment planFragment, singleFragment;
 
 
     private int startPosition = 0;//起始选中位置
@@ -61,7 +66,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     private FocusProduceBean produceBean;
 
     private ProduceApplyDialog dialog;
-
+    private boolean isProduceWait = false;
 
     public static FocusProduceDetailFragment newInstance(FocusProduceBean data) {
         Bundle bundle = new Bundle();
@@ -79,13 +84,25 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     @Override
     protected void initialization() {
         initHeaderView();
-        initViewPager();
+        Bundle arguments = getArguments();
+        produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        isProduceWait = ProductStatusType.TYPE_PRODUCE_WAIT == produceBean.getStatusType();
+
+        binding.fragmentContainer.setVisibility(isProduceWait ? View.VISIBLE : View.GONE);
+        binding.tabLayout.setVisibility(isProduceWait ? View.GONE : View.VISIBLE);
+        binding.viewPager.setVisibility(isProduceWait ? View.GONE : View.VISIBLE);
+        if (isProduceWait) {
+            FragmentManager fragmentManager = getChildFragmentManager();
+            singleFragment = (FollowProducePlanFragment) fragmentManager.findFragmentById(R.id.factory_view);
+        } else {
+            initViewPager();
+        }
+
         initData();
     }
 
     private void initData() {
-        Bundle arguments = getArguments();
-        produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+
         viewModel.getBasicInfoById(produceBean.getEquipmentId());
 
         viewModel.getBasicInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
@@ -138,11 +155,23 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     }
 
     private void setProduceData(FocusProduceBean data) {
-        planFragment.setProduceData(data);
+        if (isProduceWait) {
+            singleFragment.setProduceData(data);
+        } else {
+            planFragment.setProduceData(data);
+        }
+
         binding.tvProductName.setText(data.getName());
         binding.tvProductCode.setText(data.getCode());
         binding.tvDutyUnit.setText(data.getPrincipalDept());
 
+        //设置生产状态
+        binding.tvProduceStatus.setText(data.getStatusText());
+        binding.tvProduceStatus.setBackgroundResource(data.getStatusTextBg());
+        int color_blue_ff1b97fc = data.getStatusTextColor();
+        binding.tvProduceStatus.setTextColor(getActivity().getResources().getColor(color_blue_ff1b97fc));
+        binding.tvSubStatus.setVisibility(ProductStatusType.TYPE_PRODUCE_DELAY == data.getStatusType()
+                ? View.VISIBLE : View.GONE);
         binding.tvProjectName.setText(data.getProjectName());
 
         binding.tvActualStart.setText(data.getActualStartTime());

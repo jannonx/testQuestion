@@ -2,6 +2,9 @@ package com.guyuan.dear.focus.produce.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -71,14 +74,6 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
     protected void initialization() {
         initView();
         initDate();
-        getOverViewData();
-    }
-
-
-    /**
-     * 概览
-     */
-    private void getOverViewData() {
         viewModel.getProduceOverView(getRequestBody());
         viewModel.getOverViewEvent().observe(getActivity(), new Observer<ProduceOverViewBean>() {
             @Override
@@ -88,7 +83,6 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
             }
         });
     }
-
 
     private void initView() {
         View root = binding.getRoot();
@@ -120,8 +114,37 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
         dataArr[1] = calenderUtils.toSmartFactoryDateFormatByDay(dates[1].getTime());
         mTvSelectStartTime.setText(dataArr[0]);
         mTvSelectEndTime.setText(dataArr[1]);
+
+        tvSearchBtn.setClickable(false);
+        tvSearchBtn.setEnabled(false);
+        tvSearchBtn.setChecked(false);
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (TextUtils.isEmpty(editable.toString())) {
+                    etSearch.clearFocus();
+                    viewModel.getProduceOverView(getRequestBody());
+                }
+                tvSearchBtn.setClickable(!TextUtils.isEmpty(editable.toString()));
+                tvSearchBtn.setEnabled(!TextUtils.isEmpty(editable.toString()));
+                tvSearchBtn.setChecked(!TextUtils.isEmpty(editable.toString()));
+            }
+        });
     }
 
+    /**
+     * 设置数据
+     *
+     * @param data
+     */
     private void setOverViewData(ProduceOverViewBean data) {
 
         binding.tvPlanTotal.setText(String.valueOf(data.getTotalNum()));
@@ -135,28 +158,13 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
         ChartViewUtils.setFocusChartView(binding.chartView, data);
     }
 
-    /**
-     * 请求参数配置
-     *
-     * @return
-     */
-    private RequestBody getRequestBody() {
-        ProduceRequestBody body = new ProduceRequestBody();
-        body.setStartTime(calenderUtils.toSmartFactoryDateStringFormat(dates[0].getTime()));
-        body.setEndTime(calenderUtils.toSmartFactoryDateStringFormat(dates[1].getTime()));
-        body.setName(etSearch.getText().toString());
-        String str = GsonUtil.objectToString(body);
-        return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
-                "charset=utf-8"), str);
-    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cl_produce_wait:
-//                FocusProduceClassifyActivity.start(
-//                        getContext(), ProductStatusType.TYPE_PRODUCE_WAIT);
-                ProduceApplyDialog.show(getActivity(), null);
+                FocusProduceClassifyActivity.start(
+                        getContext(), ProductStatusType.TYPE_PRODUCE_WAIT);
                 break;
             case R.id.cl_produce_complete:
                 FocusProduceClassifyActivity.start(
@@ -185,12 +193,29 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
                 selectEndDate();
                 break;
             case R.id.tv_search_btn:
-                getOverViewData();
+                viewModel.getProduceOverView(getRequestBody());
                 break;
         }
     }
 
+    /**
+     * 请求参数配置
+     *
+     * @return
+     */
+    private RequestBody getRequestBody() {
+        ProduceRequestBody body = new ProduceRequestBody();
+        body.setStartTime(calenderUtils.toSmartFactoryDateStringFormat(dates[0].getTime()));
+        body.setEndTime(calenderUtils.toSmartFactoryDateStringFormat(dates[1].getTime()));
+        body.setName(etSearch.getText().toString());
+        String str = GsonUtil.objectToString(body);
+        return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
+                "charset=utf-8"), str);
+    }
 
+    /**
+     * 选择起始日期
+     */
     private void selectStartDate() {
         AlertDialogUtils.pickTime(getFragmentManager(), "请选择起始日期", dates[0].getTime(),
                 Type.YEAR_MONTH_DAY, new OnDateSetListener() {
@@ -203,12 +228,15 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
                             String yearMonthDay = calenderUtils.getDateByDate(millSeconds);
                             dataArr[0] = yearMonthDay;
                             mTvSelectStartTime.setText(yearMonthDay);
-                            getOverViewData();
+                            viewModel.getProduceOverView(getRequestBody());
                         }
                     }
                 });
     }
 
+    /**
+     * 选择截止日期
+     */
     private void selectEndDate() {
         AlertDialogUtils.pickTime(getFragmentManager(), "请选择截止日期", dates[1].getTime(),
                 Type.YEAR_MONTH_DAY, new OnDateSetListener() {
@@ -222,7 +250,7 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
                             String yearMonthDay = calenderUtils.getDateByDate(millSeconds + 86399000);
                             dataArr[1] = yearMonthDay;
                             mTvSelectEndTime.setText(yearMonthDay);
-                            getOverViewData();
+                            viewModel.getProduceOverView(getRequestBody());
                         }
                     }
                 });

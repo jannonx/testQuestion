@@ -57,8 +57,7 @@ public class FollowStatusExAdapter extends BaseExpandableListAdapter {
     @Override
     public Object getChild(int groupPosition, int childPosition) {
         return mList.get(groupPosition).getBusinessDetails().get(childPosition);
-//    DepartmentDataBean group = (DepartmentDataBean) getGroup(groupPosition);
-//    return group.getStaffs().get(childPosition);
+
     }
 
     @Override
