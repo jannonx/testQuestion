@@ -4,7 +4,7 @@ import com.guyuan.dear.focus.assess.api.FocusAssessApiService;
 
 /**
  * @author : tl
- * @description :
+ * @description :我的关注-评审repository
  * @since: 2020/9/16 17:22
  * @company : 固远（深圳）信息技术有限公司
  **/

@@ -27,7 +27,7 @@ import java.util.List;
 
 /**
  * @author : tl
- * @description :
+ * @description :我的关注布局绑定方法
  * @since: 2020/10/29 15:39
  * @company : 固远（深圳）信息技术有限公司
  **/
@@ -40,6 +40,10 @@ public class AssessBindingAdapter {
     private static final int PASSED = 30;
     private static final int NOT_PASSED = 40;
 
+    /**
+     * @param tv     目标view
+     * @param status 评审状态
+     */
     @BindingAdapter("assessStatus")
     public static void setAssessStatus(TextView tv, int status) {
         switch (status) {
@@ -70,6 +74,10 @@ public class AssessBindingAdapter {
         }
     }
 
+    /**
+     * @param iv
+     * @param result 评审结果
+     */
     @BindingAdapter("assessStatus")
     public static void setAssessStatus(ImageView iv, String result) {
         if (!TextUtils.isEmpty(result)) {
@@ -81,6 +89,11 @@ public class AssessBindingAdapter {
         }
     }
 
+
+    /**
+     * @param lineChart
+     * @param list      线形图数据源
+     */
     @BindingAdapter("assessLineChartData")
     public static void setAssessLineChartData(LineChart lineChart,
                                               List<AssessOverviewBean.AuditYearInfoVOListBean> list) {
@@ -112,7 +125,7 @@ public class AssessBindingAdapter {
             legendList.add("不通过");
 
             MonthXAxisValueFormatter monthXAxisValueFormatter = new MonthXAxisValueFormatter();
-            GraphUtil.showLineChart(lineChart, dataList, legendList, colorList,12,
+            GraphUtil.showLineChart(lineChart, dataList, legendList, colorList, 12,
                     monthXAxisValueFormatter, null);
         }
     }

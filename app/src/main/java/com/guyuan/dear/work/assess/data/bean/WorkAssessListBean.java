@@ -22,16 +22,16 @@ public class WorkAssessListBean {
      * status : 0
      */
 
-    private String auditEndTime;
-    private String auditStartTime;
-    private String auditTime;
-    private String auditUserName;
-    private String compereName;
-    private String contractNumber;
-    private String customerName;
-    private int id;
-    private String meetingName;
-    private int status;
+    private String auditEndTime;            //评审截止时间
+    private String auditStartTime;          //评审开始时间
+    private String auditTime;               //评审时间
+    private String auditUserName;           //评审用户名称
+    private String compereName;             //会议主持人
+    private String contractNumber;          //销售合同编号
+    private String customerName;            //客户名称
+    private int id;                         //主键ID
+    private String meetingName;            //会议室名称
+    private int status;                    //评审状态，0:保存草稿、10:待评审、20:评审中、30:评审通过、40:评审不通过)
 
     public String getAuditEndTime() {
         return auditEndTime;

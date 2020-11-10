@@ -114,6 +114,7 @@ public class ConstantValue {
     public static final String WORK_APPROVE = "work_approve";
     public static final String CONTRACT_PAUSE = "contract_pause";
     public static final String CONTRACT_RESTART = "contract_restart";
+    public static final String WORK_CONTRACT_ASSESS = "work_contract_assess";
 
 
     //摄像头界面
