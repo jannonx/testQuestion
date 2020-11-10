@@ -14,7 +14,7 @@ import com.guyuan.dear.work.contractPause.adapters.MyApplyHistoryLogsAdapter;
 import com.guyuan.dear.work.contractPause.adapters.PauseApplyCommentAdapter;
 import com.guyuan.dear.work.contractPause.adapters.VoteAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
-import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.BaseApproveLog;
+import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.GenericApproveLog;
 
 import java.util.Iterator;
 import java.util.List;
@@ -85,7 +85,7 @@ public class MyPauseApplyDetailBindingAdapter {
     }
 
     @BindingAdapter("setMyPauseApplyLogs")
-    public static void setMyPauseApplyLogs(RecyclerView view, List<BaseApproveLog> data) {
+    public static void setMyPauseApplyLogs(RecyclerView view, List<GenericApproveLog> data) {
         if (data == null) {
             return;
         }

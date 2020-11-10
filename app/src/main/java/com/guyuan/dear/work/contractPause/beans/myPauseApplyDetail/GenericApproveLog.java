@@ -6,7 +6,7 @@ package com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail;
  * @since: 2020/11/2 16:44
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class BaseApproveLog {
+public class GenericApproveLog {
     private int type;
     private String json;
     public static final int LOG_TYPE_FIRST_CREATE_DATE=0;

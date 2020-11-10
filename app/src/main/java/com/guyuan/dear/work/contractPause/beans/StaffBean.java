@@ -3,6 +3,7 @@ package com.guyuan.dear.work.contractPause.beans;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -13,18 +14,61 @@ import java.util.Objects;
  **/
 public class StaffBean implements Parcelable {
     private String name;
-    private String id;
+    private Long id;
     private String imgUrl;
-    private String dept;
+    private String workId;
+    private List<DeptBean> depts;
 
     public StaffBean() {
     }
 
+
     protected StaffBean(Parcel in) {
         name = in.readString();
-        id = in.readString();
+        id = in.readLong();
         imgUrl = in.readString();
-        dept = in.readString();
+        workId = in.readString();
+        depts = in.createTypedArrayList(DeptBean.CREATOR);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getWorkId() {
+        return workId;
+    }
+
+    public void setWorkId(String workId) {
+        this.workId = workId;
+    }
+
+    public List<DeptBean> getDepts() {
+        return depts;
+    }
+
+    public void setDepts(List<DeptBean> depts) {
+        this.depts = depts;
     }
 
     public static final Creator<StaffBean> CREATOR = new Creator<StaffBean>() {
@@ -39,48 +83,6 @@ public class StaffBean implements Parcelable {
         }
     };
 
-    public String getDept() {
-        return dept;
-    }
-
-    public void setDept(String dept) {
-        this.dept = dept;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
-    @Override
-    public String toString() {
-        return "StaffBean{" +
-                "name='" + name + '\'' +
-                ", id='" + id + '\'' +
-                ", imgUrl='" + imgUrl + '\'' +
-                ", dept='" + dept + '\'' +
-                '}';
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -89,21 +91,9 @@ public class StaffBean implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
-        dest.writeString(id);
+        dest.writeLong(id);
         dest.writeString(imgUrl);
-        dest.writeString(dept);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        StaffBean bean = (StaffBean) o;
-        return id.equals(bean.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+        dest.writeString(workId);
+        dest.writeTypedList(depts);
     }
 }

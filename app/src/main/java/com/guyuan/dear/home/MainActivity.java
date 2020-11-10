@@ -28,6 +28,7 @@ import com.guyuan.dear.service.BackService;
 import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.StaffUpdateManager;
 import com.guyuan.dear.work.WorkFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -71,6 +72,8 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Bas
         }
         startBackService();
         setListeners();
+        //在子线程更新人员最新清单 by leo
+        StaffUpdateManager.getInstance().initiateStaffUpdate();
     }
 
     private void initFragments() {

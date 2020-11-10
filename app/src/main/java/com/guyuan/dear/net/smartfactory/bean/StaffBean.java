@@ -3,17 +3,15 @@ package com.guyuan.dear.net.smartfactory.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
-import com.guyuan.dear.db.entities.UserEntity;
-
 import java.util.List;
 import java.util.Objects;
 
 /**
- * 历史遗留产物，能不用尽量别用。用 {@link StaffBean2P0} 代替。
- * @deprecated 先别删这个类
+ * 历史遗留产物，能不用尽量别用。
+ *
  * @author 廖华凯
  * @since 2019/12/24 9:46
+ * @deprecated 先别删这个类
  **/
 public class StaffBean implements Parcelable {
 
@@ -204,7 +202,6 @@ public class StaffBean implements Parcelable {
     public List<String> getSingleLeaveTime() {
         return singleLeaveTime;
     }
-
 
 
     public void setSingleLeaveTime(List<String> singleLeaveTime) {
@@ -635,55 +632,56 @@ public class StaffBean implements Parcelable {
         return "未知";
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return "StaffBean{" +
-            "id=" + id +
-            ", createBy='" + createBy + '\'' +
-            ", createTime=" + createTime +
-            ", lastUpdateBy='" + lastUpdateBy + '\'' +
-            ", lastUpdateTime=" + lastUpdateTime +
-            ", name='" + name + '\'' +
-            ", password='" + password + '\'' +
-            ", salt='" + salt + '\'' +
-            ", email='" + email + '\'' +
-            ", mobile='" + mobile + '\'' +
-            ", status=" + status +
-            ", deptId=" + deptId +
-            ", deptName='" + deptName + '\'' +
-            ", delFlag=" + delFlag +
-            ", staffId=" + staffId +
-            ", code='" + code + '\'' +
-            ", realName='" + realName + '\'' +
-            ", identity='" + identity + '\'' +
-            ", factoryId=" + factoryId +
-            ", workshopId=" + workshopId +
-            ", lineId=" + lineId +
-            ", pointId=" + pointId +
-            ", attachmentId=" + attachmentId +
-            ", isSelected=" + isSelected +
-            ", imgUrl='" + imgUrl + '\'' +
-            ", isEnable=" + isEnable +
-            ", userRoles=" + userRoles +
-            ", empNo='" + empNo + '\'' +
-            ", factoryIdName='" + factoryIdName + '\'' +
-            ", workshopIdName='" + workshopIdName + '\'' +
-            ", lineIdName='" + lineIdName + '\'' +
-            ", pointIdName='" + pointIdName + '\'' +
-            ", salary=" + salary +
-            ", workStarttime='" + workStarttime + '\'' +
-            ", workStoptime='" + workStoptime + '\'' +
-            ", dvrSeriesNum='" + dvrSeriesNum + '\'' +
-            ", cameraChannel='" + cameraChannel + '\'' +
-            ", nameRole='" + nameRole + '\'' +
-            ", nameDept='" + nameDept + '\'' +
-            ", staffTotal=" + staffTotal +
-            ", address='" + address + '\'' +
-            ", birthDay='" + birthDay + '\'' +
-            ", enterTime='" + enterTime + '\'' +
-            ", gender='" + gender + '\'' +
-            ", marryStatus='" + marryStatus + '\'' +
-            ", rNational='" + rNational + '\'' +
-            '}';
+                "id=" + id +
+                ", createBy='" + createBy + '\'' +
+                ", createTime=" + createTime +
+                ", lastUpdateBy='" + lastUpdateBy + '\'' +
+                ", lastUpdateTime=" + lastUpdateTime +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", status=" + status +
+                ", deptId=" + deptId +
+                ", deptName='" + deptName + '\'' +
+                ", delFlag=" + delFlag +
+                ", staffId=" + staffId +
+                ", code='" + code + '\'' +
+                ", realName='" + realName + '\'' +
+                ", identity='" + identity + '\'' +
+                ", factoryId=" + factoryId +
+                ", workshopId=" + workshopId +
+                ", lineId=" + lineId +
+                ", pointId=" + pointId +
+                ", attachmentId=" + attachmentId +
+                ", isSelected=" + isSelected +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", isEnable=" + isEnable +
+                ", userRoles=" + userRoles +
+                ", empNo='" + empNo + '\'' +
+                ", factoryIdName='" + factoryIdName + '\'' +
+                ", workshopIdName='" + workshopIdName + '\'' +
+                ", lineIdName='" + lineIdName + '\'' +
+                ", pointIdName='" + pointIdName + '\'' +
+                ", salary=" + salary +
+                ", workStarttime='" + workStarttime + '\'' +
+                ", workStoptime='" + workStoptime + '\'' +
+                ", dvrSeriesNum='" + dvrSeriesNum + '\'' +
+                ", cameraChannel='" + cameraChannel + '\'' +
+                ", nameRole='" + nameRole + '\'' +
+                ", nameDept='" + nameDept + '\'' +
+                ", staffTotal=" + staffTotal +
+                ", address='" + address + '\'' +
+                ", birthDay='" + birthDay + '\'' +
+                ", enterTime='" + enterTime + '\'' +
+                ", gender='" + gender + '\'' +
+                ", marryStatus='" + marryStatus + '\'' +
+                ", rNational='" + rNational + '\'' +
+                '}';
     }
 
     @Override
@@ -701,22 +699,6 @@ public class StaffBean implements Parcelable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    public UserEntity toUserEntity(){
-        UserEntity entity = new UserEntity();
-        entity.setName(name);
-        entity.setImgUrl(imgUrl);
-        entity.setId(id);
-        return entity;
-    }
-
-    public static StaffBean from(UserEntity entity){
-        StaffBean bean = new StaffBean();
-        bean.setName(entity.getName());
-        bean.setId(entity.getId());
-        bean.setImgUrl(entity.getImgUrl());
-        return bean;
     }
 
 

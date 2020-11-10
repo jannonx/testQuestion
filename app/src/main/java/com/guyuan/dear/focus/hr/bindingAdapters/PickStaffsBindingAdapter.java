@@ -15,9 +15,11 @@ import com.guyuan.dear.focus.hr.adapter.PickStaffsHistoryStaffsAdapter.PickStaff
 import com.guyuan.dear.focus.hr.bean.PickStaffBean;
 import com.guyuan.dear.focus.hr.bean.PickStaffsExpParentBean;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.work.contractPause.beans.DeptBean;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author: 廖华凯
@@ -35,9 +37,12 @@ public class PickStaffsBindingAdapter {
         PickStaffsExpListAdapter adapter = new PickStaffsExpListAdapter(data, view.getContext());
         view.setAdapter(adapter);
         view.setDividerHeight(0);
+        AtomicBoolean isCollapseInvokedByUser = new AtomicBoolean(true);
         view.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
+                //设置一个flag标记事件：某一个item展开而导致其他item收起。
+                isCollapseInvokedByUser.set(false);
                 for (int i = 0; i < data.size(); i++) {
                     data.get(i).setExpanded(i == groupPosition);
                     if (i != groupPosition) {
@@ -45,6 +50,20 @@ public class PickStaffsBindingAdapter {
                     }
                 }
                 adapter.notifyDataSetChanged();
+                isCollapseInvokedByUser.set(true);
+            }
+        });
+        view.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+            @Override
+            public void onGroupCollapse(int groupPosition) {
+                //根据flag判断本次收起是否因为：1，item本来展开，用户直接点击item，导致这个item收起。
+                //还是：2，用户点击了其他item，在其他item展开时，收起这个item
+                //如果是1，才需要更新data的数据和更新UI。避免重复调用notifyDataSetChanged影响app性能。
+                if(isCollapseInvokedByUser.get()){
+                    data.get(groupPosition).setExpanded(false);
+                    adapter.notifyDataSetChanged();
+                }
+
             }
         });
         adapter.setItemCallback(callback);
@@ -86,6 +105,14 @@ public class PickStaffsBindingAdapter {
             }
         }
         view.setText(String.format(Locale.CHINA,"%d/%d",selectCount,total));
+    }
+
+    @BindingAdapter("setShowStaffDept")
+    public static void setShowStaffDept(AppCompatTextView view,List<DeptBean> depts){
+        if(depts == null|| depts.isEmpty()){
+            return;
+        }
+        view.setText(depts.get(0).getDeptName());
     }
 
 

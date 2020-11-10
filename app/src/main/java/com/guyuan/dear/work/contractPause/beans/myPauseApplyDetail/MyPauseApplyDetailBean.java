@@ -12,7 +12,7 @@ import java.util.List;
  **/
 public class MyPauseApplyDetailBean extends MyPauseApplyBean {
     private String detailCause;
-    private List<BaseApproveLog> logs;
+    private List<GenericApproveLog> logs;
 
     public String getDetailCause() {
         return detailCause;
@@ -22,11 +22,11 @@ public class MyPauseApplyDetailBean extends MyPauseApplyBean {
         this.detailCause = detailCause;
     }
 
-    public List<BaseApproveLog> getLogs() {
+    public List<GenericApproveLog> getLogs() {
         return logs;
     }
 
-    public void setLogs(List<BaseApproveLog> logs) {
+    public void setLogs(List<GenericApproveLog> logs) {
         this.logs = logs;
     }
 }

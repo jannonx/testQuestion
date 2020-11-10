@@ -4,13 +4,18 @@ import android.view.View;
 import android.widget.CompoundButton;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
+import com.guyuan.dear.db.DearDbManager;
+import com.guyuan.dear.db.entities.StaffAndDepts;
 import com.guyuan.dear.focus.hr.adapter.PickStaffsExpListAdapter;
 import com.guyuan.dear.focus.hr.adapter.PickStaffsHistoryStaffsAdapter;
 import com.guyuan.dear.focus.hr.bean.PickStaffBean;
 import com.guyuan.dear.focus.hr.bean.PickStaffsExpParentBean;
+import com.guyuan.dear.utils.BeanMapper;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 import java.util.ArrayList;
@@ -94,14 +99,14 @@ public class PickStaffsViewModel extends BaseViewModel {
                      @Nullable ArrayList<StaffBean> disabled,
                      int maxSelect) {
         this.maxSelectCount = maxSelect;
-        if(preSelected!=null){
+        if (preSelected != null) {
             this.selectCount.setValue(preSelected.size());
             this.preSelectedStaffs.addAll(preSelected);
         }
-        if(hiddenStaffs!=null){
+        if (hiddenStaffs != null) {
             this.hiddenStaffs.addAll(hiddenStaffs);
         }
-        if(disabled!=null){
+        if (disabled != null) {
             this.disabledStaffs.addAll(disabled);
         }
         loadAllStaffsFromLocal();
@@ -109,91 +114,184 @@ public class PickStaffsViewModel extends BaseViewModel {
 
     private String zhNum = "一二三四五六七八九十";
 
+//    private void loadAllStaffsFromLocal() {
+//        List<PickStaffBean> staffList = allStaffs.getValue();
+//
+//        //生产一部
+//        for (int i = 0; i < 10; i++) {
+//            PickStaffBean bean = new PickStaffBean();
+//            bean.setDept("生产一部");
+//            bean.setName("陈" + zhNum.charAt(i) + "平");
+//            bean.setId(bean.getName());
+//            staffList.add(bean);
+//        }
+//        //生产二部
+//        for (int i = 0; i < 10; i++) {
+//            PickStaffBean bean = new PickStaffBean();
+//            bean.setDept("生产二部");
+//            bean.setName("黄" + zhNum.charAt(i));
+//            bean.setId(bean.getName());
+//            staffList.add(bean);
+//        }
+//        //销售部
+//        for (int i = 0; i < 10; i++) {
+//            PickStaffBean bean = new PickStaffBean();
+//            bean.setDept("销售部");
+//            bean.setName("赵" + zhNum.charAt(i));
+//            bean.setId(bean.getName());
+//            staffList.add(bean);
+//        }
+//        //行政部
+//        for (int i = 0; i < 10; i++) {
+//            PickStaffBean bean = new PickStaffBean();
+//            bean.setDept("行政部");
+//            bean.setName("张" + zhNum.charAt(i));
+//            bean.setId(bean.getName());
+//            staffList.add(bean);
+//        }
+//        //工程部
+//        for (int i = 0; i < 10; i++) {
+//            PickStaffBean bean = new PickStaffBean();
+//            bean.setDept("工程部");
+//            bean.setName("李" + zhNum.charAt(i));
+//            bean.setId(bean.getName());
+//            staffList.add(bean);
+//        }
+//        //判断是否已经被选了
+//        for (PickStaffBean bean : staffList) {
+//            if (preSelectedStaffs.contains(bean)) {
+//                bean.setPick(true);
+//                for (StaffBean preSelect : preSelectedStaffs) {
+//                    if (preSelect.getId().equals(bean.getId())) {
+//                        bean.setPick(true);
+//                        break;
+//                    }
+//                }
+//            }
+//            //判断是否需要屏蔽
+//            ListIterator<PickStaffBean> iterator = staffList.listIterator();
+//            while (iterator.hasNext()) {
+//                PickStaffBean next = iterator.next();
+//                if (hiddenStaffs.contains(next)) {
+//                    iterator.remove();
+//                    for (StaffBean hiddenStaff : hiddenStaffs) {
+//                        if (hiddenStaff.getId().equals(next.getId())) {
+//                            iterator.remove();
+//                            break;
+//                        }
+//                    }
+//                }
+//                //判断是否需要只能显示，不能操作
+//                for (PickStaffBean bean : staffList) {
+//                    for (StaffBean disabled : disabledStaffs) {
+//                        if (disabled.getId().equals(bean.getId())) {
+//                            bean.setDisabled(true);
+//                            break;
+//                        }
+//                    }
+//                }
+//
+//
+//                allStaffs.postValue(staffList);
+//
+//                //分组
+//                groupStaffByDept();
+//
+//                //造假数据-历史选择
+//                for (int i = 0; i < 10; i++) {
+//                    PickStaffBean temp = staffList.get(i);
+//                    historyStaffs.getValue().add(temp);
+//                }
+//                historyStaffs.postValue(historyStaffs.getValue());
+//
+//            }
+//        }
+//    }
+
+//        private void groupStaffByDept () {
+//            List<PickStaffBean> motherList = allStaffs.getValue();
+//            List<PickStaffsExpParentBean> grpList = grpBeans.getValue();
+//            for (PickStaffBean staffBean : motherList) {
+//                boolean isFoundDept = false;
+//                for (PickStaffsExpParentBean grp : grpList) {
+//                    if (grp.getDept().equals(staffBean.getDept())) {
+//                        isFoundDept = true;
+//                        grp.getStaffs().add(staffBean);
+//                        grp.setStaffTotal(grp.getStaffs().size());
+//                        break;
+//                    }
+//                }
+//                if (!isFoundDept) {
+//                    PickStaffsExpParentBean newGrp = new PickStaffsExpParentBean();
+//                    newGrp.setDept(staffBean.getDept());
+//                    newGrp.setStaffs(new ArrayList<>());
+//                    newGrp.getStaffs().add(staffBean);
+//                    newGrp.setStaffTotal(newGrp.getStaffs().size());
+//                    grpList.add(newGrp);
+//                }
+//            }
+//            grpBeans.postValue(grpList);
+//
+//        }
+
+
     private void loadAllStaffsFromLocal() {
         List<PickStaffBean> staffList = allStaffs.getValue();
 
-        //生产一部
-        for (int i = 0; i < 10; i++) {
-            PickStaffBean bean = new PickStaffBean();
-            bean.setDept("生产一部");
-            bean.setName("陈" + zhNum.charAt(i) + "平");
-            bean.setId(bean.getName());
-            staffList.add(bean);
-        }
-        //生产二部
-        for (int i = 0; i < 10; i++) {
-            PickStaffBean bean = new PickStaffBean();
-            bean.setDept("生产二部");
-            bean.setName("黄" + zhNum.charAt(i));
-            bean.setId(bean.getName());
-            staffList.add(bean);
-        }
-        //销售部
-        for (int i = 0; i < 10; i++) {
-            PickStaffBean bean = new PickStaffBean();
-            bean.setDept("销售部");
-            bean.setName("赵" + zhNum.charAt(i));
-            bean.setId(bean.getName());
-            staffList.add(bean);
-        }
-        //行政部
-        for (int i = 0; i < 10; i++) {
-            PickStaffBean bean = new PickStaffBean();
-            bean.setDept("行政部");
-            bean.setName("张" + zhNum.charAt(i));
-            bean.setId(bean.getName());
-            staffList.add(bean);
-        }
-        //工程部
-        for (int i = 0; i < 10; i++) {
-            PickStaffBean bean = new PickStaffBean();
-            bean.setDept("工程部");
-            bean.setName("李" + zhNum.charAt(i));
-            bean.setId(bean.getName());
-            staffList.add(bean);
-        }
-        //判断是否已经被选了
-        for (PickStaffBean bean : staffList) {
-            for (StaffBean preSelect : preSelectedStaffs) {
-                if(preSelect.getId().equals(bean.getId())){
-                    bean.setPick(true);
-                    break;
+        LiveData<List<StaffAndDepts>> liveData = DearDbManager.getInstance().getDataBase().getStaffDao().loadAll();
+        liveData.observeForever(new Observer<List<StaffAndDepts>>() {
+            @Override
+            public void onChanged(List<StaffAndDepts> staffAndDepts) {
+                for (StaffAndDepts entity : staffAndDepts) {
+                    StaffBean staffBean = BeanMapper.entityToStaffBean(entity);
+                    PickStaffBean pickStaffBean = BeanMapper.StaffBeanToPickStaffBean(staffBean);
+                    staffList.add(pickStaffBean);
                 }
-            }
-        }
-        //判断是否需要屏蔽
-        ListIterator<PickStaffBean> iterator = staffList.listIterator();
-        while (iterator.hasNext()) {
-            PickStaffBean next = iterator.next();
-            for (StaffBean hiddenStaff : hiddenStaffs) {
-                if(hiddenStaff.getId().equals(next.getId())){
-                    iterator.remove();
-                    break;
+                //判断是否已经被选了
+                for (PickStaffBean bean : staffList) {
+                    for (StaffBean preSelect : preSelectedStaffs) {
+                        if (preSelect.getId() == bean.getId()) {
+                            bean.setPick(true);
+                            break;
+                        }
+                    }
                 }
-            }
-        }
-        //判断是否需要只能显示，不能操作
-        for (PickStaffBean bean : staffList) {
-            for (StaffBean disabled : disabledStaffs) {
-                if(disabled.getId().equals(bean.getId())){
-                    bean.setDisabled(true);
-                    break;
+                //判断是否需要屏蔽
+                ListIterator<PickStaffBean> iterator = staffList.listIterator();
+                while (iterator.hasNext()) {
+                    PickStaffBean next = iterator.next();
+                    for (StaffBean hiddenStaff : hiddenStaffs) {
+                        if (hiddenStaff.getId() == next.getId()) {
+                            iterator.remove();
+                            break;
+                        }
+                    }
                 }
+                //判断是否需要只能显示，不能操作
+                for (PickStaffBean bean : staffList) {
+                    for (StaffBean disabled : disabledStaffs) {
+                        if (disabled.getId() == bean.getId()) {
+                            bean.setDisabled(true);
+                            break;
+                        }
+                    }
+                }
+
+
+                allStaffs.postValue(staffList);
+
+                //分组
+                groupStaffByDept();
+
+                //造假数据-历史选择
+                for (int i = 0; i < staffList.size() / 2; i++) {
+                    PickStaffBean temp = staffList.get(i);
+                    historyStaffs.getValue().add(temp);
+                }
+                historyStaffs.postValue(historyStaffs.getValue());
             }
-        }
+        });
 
-
-        allStaffs.postValue(staffList);
-
-        //分组
-        groupStaffByDept();
-
-        //造假数据-历史选择
-        for (int i = 0; i < 10; i++) {
-            PickStaffBean temp = staffList.get(i);
-            historyStaffs.getValue().add(temp);
-        }
-        historyStaffs.postValue(historyStaffs.getValue());
 
     }
 
@@ -203,16 +301,16 @@ public class PickStaffsViewModel extends BaseViewModel {
         for (PickStaffBean staffBean : motherList) {
             boolean isFoundDept = false;
             for (PickStaffsExpParentBean grp : grpList) {
-                if (grp.getDept().equals(staffBean.getDept())) {
+                if (grp.getDept().equals(staffBean.getDepts())) {
                     isFoundDept = true;
                     grp.getStaffs().add(staffBean);
                     grp.setStaffTotal(grp.getStaffs().size());
                     break;
                 }
             }
-            if (!isFoundDept) {
+            if (!isFoundDept && staffBean.getDepts() != null && !staffBean.getDepts().isEmpty()) {
                 PickStaffsExpParentBean newGrp = new PickStaffsExpParentBean();
-                newGrp.setDept(staffBean.getDept());
+                newGrp.setDept(staffBean.getDepts().get(0).getDeptName());
                 newGrp.setStaffs(new ArrayList<>());
                 newGrp.getStaffs().add(staffBean);
                 newGrp.setStaffTotal(newGrp.getStaffs().size());
@@ -248,10 +346,10 @@ public class PickStaffsViewModel extends BaseViewModel {
     public ArrayList<StaffBean> getSelectedStaffs() {
         ArrayList<StaffBean> result = new ArrayList<>();
         for (PickStaffBean bean : allStaffs.getValue()) {
-            if(bean.isPick()){
+            if (bean.isPick()) {
                 StaffBean staffBean = new StaffBean();
                 staffBean.setName(bean.getName());
-                staffBean.setDept(bean.getDept());
+                staffBean.setDepts(bean.getDepts());
                 staffBean.setId(bean.getId());
                 staffBean.setImgUrl(bean.getImgUrl());
                 result.add(staffBean);
