@@ -160,7 +160,7 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
     }
 
     /**
-     * 显示处理人数据
+     * 显示抄送人数据
      */
     public void setCopyToList(List<StaffBean> staffBeanList) {
         copyStaffList.clear();
