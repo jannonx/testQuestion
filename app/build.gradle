@@ -35,6 +35,8 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += [eventBusIndex: 'com.bandeng.MyEventBusIndex']
+                arguments += ["room.schemaLocation":
+                                      "$projectDir/schemas".toString()]
             }
         }
 
@@ -153,6 +155,7 @@ android {
         main {
             jniLibs.srcDirs = ['libs']
         }
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
 
     repositories {
@@ -178,6 +181,9 @@ dependencies {
     implementation AndroidX.lifeCycleExtension
     implementation AndroidX.lifecycleRuntime
     implementation AndroidX.lifeCycleKT
+    annotationProcessor Room.compiler
+    implementation Room.runtime
+    kapt "android.arch.persistence.room:compiler:1.1.1"
     //google官方下拉刷新控件
     implementation AndroidX.swiperefreshlayout
     //为了使用谷歌最新的MergeAdapter导入新版本的库 by Leo
@@ -218,7 +224,7 @@ dependencies {
     //时间选择器
     implementation TimePickerDialog.timePickerDialog
     //数据库
-    implementation GreenDao.greendao
+//    implementation GreenDao.greendao
     //gson
     implementation Gson.runtime
 

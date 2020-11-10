@@ -22,7 +22,7 @@ import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogFir
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogProcessing;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogReject;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogToBePrc;
-import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.BaseApproveLog;
+import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.GenericApproveLog;
 
 import java.util.List;
 
@@ -35,17 +35,17 @@ import tl.com.easy_recycleview_library.BaseRecyclerView;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class MyApplyHistoryLogsAdapter extends BaseRecyclerView.Adapter<MyApplyHistoryLogsAdapter.ViewHolder> {
-    private List<BaseApproveLog> list;
+    private List<GenericApproveLog> list;
     private Context context;
 
-    public MyApplyHistoryLogsAdapter(List<BaseApproveLog> list, Context context) {
+    public MyApplyHistoryLogsAdapter(List<GenericApproveLog> list, Context context) {
         this.list = list;
         this.context = context;
     }
 
     @Override
     public int getItemViewType(int position) {
-        BaseApproveLog log = list.get(position);
+        GenericApproveLog log = list.get(position);
         return log.getType();
     }
 
@@ -55,19 +55,19 @@ public class MyApplyHistoryLogsAdapter extends BaseRecyclerView.Adapter<MyApplyH
         ViewDataBinding binding = null;
         LayoutInflater inflater = LayoutInflater.from(context);
         switch (viewType) {
-            case BaseApproveLog.LOG_TYPE_FIRST_CREATE_DATE:
+            case GenericApproveLog.LOG_TYPE_FIRST_CREATE_DATE:
                 binding = DataBindingUtil.inflate(inflater, R.layout.item_my_pause_apply_log_first_create_date, parent, false);
                 break;
-            case BaseApproveLog.LOG_TYPE_TO_BE_PROCESS:
+            case GenericApproveLog.LOG_TYPE_TO_BE_PROCESS:
                 binding = DataBindingUtil.inflate(inflater, R.layout.item_my_pause_apply_log_to_be_proc, parent, false);
                 break;
-            case BaseApproveLog.LOG_TYPE_PROCESSING:
+            case GenericApproveLog.LOG_TYPE_PROCESSING:
                 binding = DataBindingUtil.inflate(inflater, R.layout.item_my_pause_apply_log_processing, parent, false);
                 break;
-            case BaseApproveLog.LOG_TYPE_REJECT:
+            case GenericApproveLog.LOG_TYPE_REJECT:
                 binding = DataBindingUtil.inflate(inflater, R.layout.item_my_pause_apply_log_reject, parent, false);
                 break;
-            case BaseApproveLog.LOG_TYPE_APPROVED:
+            case GenericApproveLog.LOG_TYPE_APPROVED:
                 binding = DataBindingUtil.inflate(inflater, R.layout.item_my_pause_apply_log_approved, parent, false);
                 break;
             default:
@@ -82,31 +82,31 @@ public class MyApplyHistoryLogsAdapter extends BaseRecyclerView.Adapter<MyApplyH
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ViewDataBinding binding = DataBindingUtil.getBinding(holder.itemView);
-        BaseApproveLog log = list.get(position);
+        GenericApproveLog log = list.get(position);
         Gson gson = new Gson();
         int viewType = getItemViewType(position);
         switch (viewType) {
-            case BaseApproveLog.LOG_TYPE_APPROVED:
+            case GenericApproveLog.LOG_TYPE_APPROVED:
                 ApproveLogApproved approved = gson.fromJson(log.getJson(),ApproveLogApproved.class);
                 ItemMyPauseApplyLogApprovedBinding approvedBinding = (ItemMyPauseApplyLogApprovedBinding) binding;
                 approvedBinding.setData(approved);
                 break;
-            case BaseApproveLog.LOG_TYPE_FIRST_CREATE_DATE:
+            case GenericApproveLog.LOG_TYPE_FIRST_CREATE_DATE:
                 ApproveLogFirstCreateDate firstCreateDate = gson.fromJson(log.getJson(),ApproveLogFirstCreateDate.class);
                 ItemMyPauseApplyLogFirstCreateDateBinding firstCreateDateBinding= (ItemMyPauseApplyLogFirstCreateDateBinding) binding;
                 firstCreateDateBinding.setData(firstCreateDate);
                 break;
-            case BaseApproveLog.LOG_TYPE_PROCESSING:
+            case GenericApproveLog.LOG_TYPE_PROCESSING:
                 ApproveLogProcessing processing = gson.fromJson(log.getJson(),ApproveLogProcessing.class);
                 ItemMyPauseApplyLogProcessingBinding processingBinding = (ItemMyPauseApplyLogProcessingBinding) binding;
                 processingBinding.setData(processing);
                 break;
-            case BaseApproveLog.LOG_TYPE_REJECT:
+            case GenericApproveLog.LOG_TYPE_REJECT:
                 ApproveLogReject reject = gson.fromJson(log.getJson(),ApproveLogReject.class);
                 ItemMyPauseApplyLogRejectBinding rejectBinding = (ItemMyPauseApplyLogRejectBinding) binding;
                 rejectBinding.setData(reject);
                 break;
-            case BaseApproveLog.LOG_TYPE_TO_BE_PROCESS:
+            case GenericApproveLog.LOG_TYPE_TO_BE_PROCESS:
                 ApproveLogToBePrc toBePrc = gson.fromJson(log.getJson(),ApproveLogToBePrc.class);
                 ItemMyPauseApplyLogToBeProcBinding beProcBinding = (ItemMyPauseApplyLogToBeProcBinding) binding;
                 beProcBinding.setData(toBePrc);

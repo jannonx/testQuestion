@@ -6,10 +6,19 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
+import androidx.lifecycle.LiveData;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+
 import com.example.mvvmlibrary.app.BaseApplication;
 import com.guyuan.dear.BuildConfig;
+import com.guyuan.dear.db.DearDb;
+import com.guyuan.dear.db.DearDbManager;
+import com.guyuan.dear.db.entities.StaffAndDepts;
 import com.guyuan.dear.service.BackService;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.SharedPreferencesUtils;
+import com.guyuan.dear.utils.StaffUpdateManager;
 
 import java.util.List;
 import java.util.Map;

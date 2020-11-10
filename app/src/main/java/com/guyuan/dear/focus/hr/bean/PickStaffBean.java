@@ -13,6 +13,8 @@ public class PickStaffBean extends StaffBean {
     private boolean isHidden;
     private boolean isDisabled;
 
+    public PickStaffBean(){}
+
     public boolean isPick() {
         return isPick;
     }

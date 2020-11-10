@@ -13,7 +13,7 @@ import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogFir
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogProcessing;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogReject;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogToBePrc;
-import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.BaseApproveLog;
+import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.GenericApproveLog;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.MyPauseApplyDetailBean;
 
 import java.util.ArrayList;
@@ -58,13 +58,13 @@ public class MyPauseApplyDetailViewModel extends BaseViewModel {
                 "　　“唉，你看你看！现在的青年怎么办，现在的青年！”\n" +
                 "　　这晚他没命地喝了许多酒，嘴里嘶嘶地骂着那些小伙子。他打碎了一只茶杯。\n" +
                 "　　密司黄扶着他上了床，他忽然打个寒噤说：“明天十点钟有个集会……”");
-        List<BaseApproveLog> logList = new ArrayList<>();
+        List<GenericApproveLog> logList = new ArrayList<>();
         //first create data
         ApproveLogFirstCreateDate logFirstCreateDate = new ApproveLogFirstCreateDate();
         logFirstCreateDate.setApplier(detailBean.getApplier());
         logFirstCreateDate.setCreateDate(System.currentTimeMillis());
-        BaseApproveLog l1 = new BaseApproveLog();
-        l1.setType(BaseApproveLog.LOG_TYPE_FIRST_CREATE_DATE);
+        GenericApproveLog l1 = new GenericApproveLog();
+        l1.setType(GenericApproveLog.LOG_TYPE_FIRST_CREATE_DATE);
         l1.setJson(new Gson().toJson(logFirstCreateDate));
         logList.add(l1);
         //to be process
@@ -78,22 +78,22 @@ public class MyPauseApplyDetailViewModel extends BaseViewModel {
         sendList.add(bean2);
         toBePrc.setSendList(sendList);
 
-        BaseApproveLog l2 = new BaseApproveLog();
-        l2.setType(BaseApproveLog.LOG_TYPE_TO_BE_PROCESS);
+        GenericApproveLog l2 = new GenericApproveLog();
+        l2.setType(GenericApproveLog.LOG_TYPE_TO_BE_PROCESS);
         l2.setJson(new Gson().toJson(toBePrc));
         logList.add(l2);
         //processing
         ApproveLogProcessing processing = new ApproveLogProcessing();
         processing.setCurrentTurn(toBePrc.getSendList().get(0));
-        BaseApproveLog l3 =new BaseApproveLog();
-        l3.setType(BaseApproveLog.LOG_TYPE_PROCESSING);
+        GenericApproveLog l3 =new GenericApproveLog();
+        l3.setType(GenericApproveLog.LOG_TYPE_PROCESSING);
         l3.setJson(new Gson().toJson(processing));
         logList.add(l3);
         //processing
         ApproveLogProcessing processing1 = new ApproveLogProcessing();
         processing1.setCurrentTurn(toBePrc.getSendList().get(1));
-        BaseApproveLog l4 = new BaseApproveLog();
-        l4.setType(BaseApproveLog.LOG_TYPE_PROCESSING);
+        GenericApproveLog l4 = new GenericApproveLog();
+        l4.setType(GenericApproveLog.LOG_TYPE_PROCESSING);
         l4.setJson(new Gson().toJson(processing1));
         logList.add(l4);
         //reject
@@ -122,8 +122,8 @@ public class MyPauseApplyDetailViewModel extends BaseViewModel {
             comment2.setContent("利润不足以盈利，建议重新商议价格。");
             meetingComments.add(comment2);
             reject.setComments(meetingComments);
-            BaseApproveLog l5= new BaseApproveLog();
-            l5.setType(BaseApproveLog.LOG_TYPE_REJECT);
+            GenericApproveLog l5= new GenericApproveLog();
+            l5.setType(GenericApproveLog.LOG_TYPE_REJECT);
             l5.setJson(new Gson().toJson(reject));
             logList.add(l5);
         }else {
@@ -152,8 +152,8 @@ public class MyPauseApplyDetailViewModel extends BaseViewModel {
             comment2.setContent("同意。");
             meetingComments.add(comment2);
             approved.setComments(meetingComments);
-            BaseApproveLog l5= new BaseApproveLog();
-            l5.setType(BaseApproveLog.LOG_TYPE_APPROVED);
+            GenericApproveLog l5= new GenericApproveLog();
+            l5.setType(GenericApproveLog.LOG_TYPE_APPROVED);
             l5.setJson(new Gson().toJson(approved));
             logList.add(l5);
         }

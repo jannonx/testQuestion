@@ -29,12 +29,20 @@ import java.util.List;
 
 /**
  * @author: 廖华凯
- * @description:
+ * @description: 选人界面
  * @since: 2020/11/3 12:05
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBinding, PickStaffsViewModel> {
 
+    /**
+     *
+     * @param preSelected 已选的人。这部分默认显示选中，用户可以取消或重新选中。
+     * @param hidden 隐藏的人。这部分不显示出来，不能操作。
+     * @param disabled 不能操作的打人。这部分用户能看到，但不能操作。可以和已选的人重叠。
+     * @param maxSelectCount 最大选择人数
+     * @return
+     */
     public static PickStaffsFragment getInstance(@Nullable ArrayList<StaffBean> preSelected,
                                                  @Nullable ArrayList<StaffBean> hidden,
                                                  @Nullable ArrayList<StaffBean> disabled,
