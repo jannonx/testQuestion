@@ -11,15 +11,19 @@
             type="android.view.View.OnClickListener"/>
     </data>
 
-    <FrameLayout
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_10">
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/item_add_send_list_view_anchor_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="@dimen/dp_36"
                 android:layout_height="@dimen/dp_36"
@@ -37,7 +41,10 @@
             android:layout_height="@dimen/dp_16"
             app:srcCompat="@drawable/ic_svg_delete_red_circle"
             android:layout_gravity="end|top"
-            android:onClick="@{onClickDelete}"/>
+            android:onClick="@{onClickDelete}"
+            app:layout_constraintRight_toRightOf="@id/item_add_send_list_view_anchor_1"
+            app:layout_constraintTop_toTopOf="@id/item_add_send_list_view_anchor_1"/>
 
-    </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

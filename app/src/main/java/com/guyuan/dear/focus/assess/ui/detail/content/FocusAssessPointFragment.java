@@ -19,7 +19,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
 /**
  * @author : tl
- * @description :
+ * @description :我的关注-评审点fragment
  * @since: 2020/10/21 11:36
  * @company : 固远（深圳）信息技术有限公司
  **/

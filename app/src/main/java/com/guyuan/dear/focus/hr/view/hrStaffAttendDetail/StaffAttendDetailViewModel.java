@@ -36,6 +36,10 @@ public class StaffAttendDetailViewModel extends BaseViewModel {
     private MutableLiveData<List<LeaveEarlyAttendRecords.LeaveEarlyIncident>> leaveEarlyRecords = new MutableLiveData<>(new ArrayList<>());
     private MutableLiveData<List<AbsentAttendRecords.AbsentIncident>> absentRecords = new MutableLiveData<>(new ArrayList<>());
 
+    /**
+     * 根据用户ID获取用户出勤信息
+     * @param staffId
+     */
     public void loadUserData(long staffId) {
         StaffWorkInfo info = new StaffWorkInfo();
         info.setName("张三");
@@ -57,6 +61,11 @@ public class StaffAttendDetailViewModel extends BaseViewModel {
         return staffInfo;
     }
 
+    /**
+     * 更新正常出勤的UI
+     * @param staffId
+     * @param selectDate
+     */
     public void updateNormalAttendList(long staffId, Date selectDate) {
         normalRecords.getValue().clear();
         int countValue = normalCount.getValue();
@@ -69,6 +78,11 @@ public class StaffAttendDetailViewModel extends BaseViewModel {
         normalRecords.postValue(normalRecords.getValue());
     }
 
+    /**
+     * 更新迟到状况的UI
+     * @param staffId
+     * @param selectDate
+     */
     public void updateLateAttendList(long staffId, Date selectDate) {
         lateRecords.getValue().clear();
         int count = lateCount.getValue();
@@ -98,6 +112,11 @@ public class StaffAttendDetailViewModel extends BaseViewModel {
     }
 
 
+    /**
+     * 更新早退的UI
+     * @param staffId
+     * @param selectDate
+     */
     public void updateLeaveEarlyAttendList(long staffId, Date selectDate) {
         int count = leaveEarlyCount.getValue();
         leaveEarlyRecords.getValue().clear();
@@ -110,6 +129,11 @@ public class StaffAttendDetailViewModel extends BaseViewModel {
         leaveEarlyRecords.postValue(leaveEarlyRecords.getValue());
     }
 
+    /**
+     * 更新缺席的UI
+     * @param staffId
+     * @param selectDate
+     */
     public void updateAbsentAttendList(long staffId, Date selectDate) {
         Integer count = absentCount.getValue();
         absentRecords.getValue().clear();
@@ -158,6 +182,11 @@ public class StaffAttendDetailViewModel extends BaseViewModel {
         return onClickSelectDate;
     }
 
+    /**
+     * 更新出勤概况的数据
+     * @param staffId
+     * @param millseconds
+     */
     public void loadAttendSummary(long staffId, long millseconds) {
         Random random = new Random(System.currentTimeMillis());
         selectDate.setValue(millseconds);
@@ -172,6 +201,11 @@ public class StaffAttendDetailViewModel extends BaseViewModel {
         return selectDate;
     }
 
+    /**
+     * 同时更新四种出勤详情的UI
+     * @param staffId
+     * @param date
+     */
     public void updateAttendDetails(long staffId, long date) {
         Date selectDate = new Date(date);
         updateNormalAttendList(staffId, selectDate);

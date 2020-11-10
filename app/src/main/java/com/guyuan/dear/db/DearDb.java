@@ -6,9 +6,11 @@ import androidx.room.RoomDatabase;
 import com.guyuan.dear.db.dao.DeptDao;
 import com.guyuan.dear.db.dao.StaffDao;
 import com.guyuan.dear.db.dao.StaffDeptCroRefDao;
+import com.guyuan.dear.db.dao.StaffSelectHistoryDao;
 import com.guyuan.dear.db.entities.DeptEntity;
 import com.guyuan.dear.db.entities.StaffDeptCrosRef;
 import com.guyuan.dear.db.entities.StaffEntity;
+import com.guyuan.dear.db.entities.StaffSelectHistoryEntity;
 
 /**
  * @author: 廖华凯
@@ -16,7 +18,7 @@ import com.guyuan.dear.db.entities.StaffEntity;
  * @since: 2020/11/9 11:16
  * @company: 固远（深圳）信息技术有限公司
  **/
-@Database(entities = {StaffEntity.class, DeptEntity.class, StaffDeptCrosRef.class}, version = 1)
+@Database(entities = {StaffEntity.class, DeptEntity.class, StaffDeptCrosRef.class, StaffSelectHistoryEntity.class}, version = 2)
 public abstract class DearDb extends RoomDatabase {
 
     public abstract StaffDao getStaffDao();
@@ -24,5 +26,7 @@ public abstract class DearDb extends RoomDatabase {
     public abstract DeptDao getDeptDao();
 
     public abstract StaffDeptCroRefDao getStaffDeptCroRefDao();
+
+    public abstract StaffSelectHistoryDao getStaffSelectHistoryDao();
 
 }

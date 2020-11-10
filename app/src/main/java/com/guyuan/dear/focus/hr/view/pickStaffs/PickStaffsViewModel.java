@@ -10,37 +10,77 @@ import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.db.DearDbManager;
+import com.guyuan.dear.db.entities.DeptEntity;
 import com.guyuan.dear.db.entities.StaffAndDepts;
+import com.guyuan.dear.db.entities.StaffDeptCrosRef;
+import com.guyuan.dear.db.entities.StaffEntity;
+import com.guyuan.dear.db.entities.StaffSelectHistoryEntity;
 import com.guyuan.dear.focus.hr.adapter.PickStaffsExpListAdapter;
 import com.guyuan.dear.focus.hr.adapter.PickStaffsHistoryStaffsAdapter;
 import com.guyuan.dear.focus.hr.bean.PickStaffBean;
 import com.guyuan.dear.focus.hr.bean.PickStaffsExpParentBean;
 import com.guyuan.dear.utils.BeanMapper;
+import com.guyuan.dear.work.contractPause.beans.DeptBean;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ListIterator;
 
 /**
  * @author: 廖华凯
- * @description:
+ * @description: 选人界面的视图模型
  * @since: 2020/11/3 12:01
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class PickStaffsViewModel extends BaseViewModel {
+    /**
+     * 表示所有人，作为本界面的基础数据源，其他数据都从这里获取，以及同步。
+     */
     private MutableLiveData<List<PickStaffBean>> allStaffs = new MutableLiveData<>(new ArrayList<>());
+    /**
+     * 已经选的人，进入界面时需要提供
+     */
     private List<StaffBean> preSelectedStaffs = new ArrayList<>();
+    /**
+     * 隐藏起来的人，进入界面时需要提供
+     */
     private List<StaffBean> hiddenStaffs = new ArrayList<>();
+    /**
+     * 能看到，但不能操作的人，进入界面时需要提供
+     */
     private List<StaffBean> disabledStaffs = new ArrayList<>();
+    /**
+     * 历史被选过人的列表，用来显示方便用户重新选择。
+     */
     private MutableLiveData<List<PickStaffBean>> historyStaffs = new MutableLiveData<>(new ArrayList<>());
     private MutableLiveData<List<PickStaffsExpParentBean>> grpBeans = new MutableLiveData<>(new ArrayList<>());
+    /**
+     * 当前选择人数
+     */
     private MutableLiveData<Integer> selectCount = new MutableLiveData<>();
+    /**
+     * 点击事件：点击历史选人头像的回调
+     */
     private MutableLiveData<PickStaffsHistoryStaffsAdapter.PickStaffsHistoryItemClickListener> onClickHistoryStaff = new MutableLiveData<>();
+    /**
+     * 点击事件：点击人员，切换选择状态的回调
+     */
     private MutableLiveData<PickStaffsExpListAdapter.ItemCallback> onToggleStaff = new MutableLiveData<>();
+    /**
+     * 点击事件：点击历史选人列表右上角“选择全部”的回调
+     */
     private MutableLiveData<CompoundButton.OnCheckedChangeListener> onToggleSelectAllHistoryStaffs = new MutableLiveData<>();
+    /**
+     * 点击事件：点击提交
+     */
     private MutableLiveData<View.OnClickListener> onClickSubmit = new MutableLiveData<>();
+    /**
+     * 最大可选人数
+     */
     private int maxSelectCount = 10;
+    private LiveData<List<StaffAndDepts>> liveData;
 
     public MutableLiveData<View.OnClickListener> getOnClickSubmit() {
         return onClickSubmit;
@@ -94,6 +134,13 @@ public class PickStaffsViewModel extends BaseViewModel {
         return grpBeans;
     }
 
+    /**
+     * 初始化视图模型
+     * @param preSelected 默认进来就显示被选择了的人员
+     * @param hiddenStaffs 需要隐藏起来的人员
+     * @param disabled 能显示，但不能操作的人员
+     * @param maxSelect 最大选择人数
+     */
     public void init(@Nullable ArrayList<StaffBean> preSelected,
                      @Nullable ArrayList<StaffBean> hiddenStaffs,
                      @Nullable ArrayList<StaffBean> disabled,
@@ -112,205 +159,131 @@ public class PickStaffsViewModel extends BaseViewModel {
         loadAllStaffsFromLocal();
     }
 
-    private String zhNum = "一二三四五六七八九十";
 
-//    private void loadAllStaffsFromLocal() {
-//        List<PickStaffBean> staffList = allStaffs.getValue();
-//
-//        //生产一部
-//        for (int i = 0; i < 10; i++) {
-//            PickStaffBean bean = new PickStaffBean();
-//            bean.setDept("生产一部");
-//            bean.setName("陈" + zhNum.charAt(i) + "平");
-//            bean.setId(bean.getName());
-//            staffList.add(bean);
-//        }
-//        //生产二部
-//        for (int i = 0; i < 10; i++) {
-//            PickStaffBean bean = new PickStaffBean();
-//            bean.setDept("生产二部");
-//            bean.setName("黄" + zhNum.charAt(i));
-//            bean.setId(bean.getName());
-//            staffList.add(bean);
-//        }
-//        //销售部
-//        for (int i = 0; i < 10; i++) {
-//            PickStaffBean bean = new PickStaffBean();
-//            bean.setDept("销售部");
-//            bean.setName("赵" + zhNum.charAt(i));
-//            bean.setId(bean.getName());
-//            staffList.add(bean);
-//        }
-//        //行政部
-//        for (int i = 0; i < 10; i++) {
-//            PickStaffBean bean = new PickStaffBean();
-//            bean.setDept("行政部");
-//            bean.setName("张" + zhNum.charAt(i));
-//            bean.setId(bean.getName());
-//            staffList.add(bean);
-//        }
-//        //工程部
-//        for (int i = 0; i < 10; i++) {
-//            PickStaffBean bean = new PickStaffBean();
-//            bean.setDept("工程部");
-//            bean.setName("李" + zhNum.charAt(i));
-//            bean.setId(bean.getName());
-//            staffList.add(bean);
-//        }
-//        //判断是否已经被选了
-//        for (PickStaffBean bean : staffList) {
-//            if (preSelectedStaffs.contains(bean)) {
-//                bean.setPick(true);
-//                for (StaffBean preSelect : preSelectedStaffs) {
-//                    if (preSelect.getId().equals(bean.getId())) {
-//                        bean.setPick(true);
-//                        break;
-//                    }
-//                }
-//            }
-//            //判断是否需要屏蔽
-//            ListIterator<PickStaffBean> iterator = staffList.listIterator();
-//            while (iterator.hasNext()) {
-//                PickStaffBean next = iterator.next();
-//                if (hiddenStaffs.contains(next)) {
-//                    iterator.remove();
-//                    for (StaffBean hiddenStaff : hiddenStaffs) {
-//                        if (hiddenStaff.getId().equals(next.getId())) {
-//                            iterator.remove();
-//                            break;
-//                        }
-//                    }
-//                }
-//                //判断是否需要只能显示，不能操作
-//                for (PickStaffBean bean : staffList) {
-//                    for (StaffBean disabled : disabledStaffs) {
-//                        if (disabled.getId().equals(bean.getId())) {
-//                            bean.setDisabled(true);
-//                            break;
-//                        }
-//                    }
-//                }
-//
-//
-//                allStaffs.postValue(staffList);
-//
-//                //分组
-//                groupStaffByDept();
-//
-//                //造假数据-历史选择
-//                for (int i = 0; i < 10; i++) {
-//                    PickStaffBean temp = staffList.get(i);
-//                    historyStaffs.getValue().add(temp);
-//                }
-//                historyStaffs.postValue(historyStaffs.getValue());
-//
-//            }
-//        }
-//    }
-
-//        private void groupStaffByDept () {
-//            List<PickStaffBean> motherList = allStaffs.getValue();
-//            List<PickStaffsExpParentBean> grpList = grpBeans.getValue();
-//            for (PickStaffBean staffBean : motherList) {
-//                boolean isFoundDept = false;
-//                for (PickStaffsExpParentBean grp : grpList) {
-//                    if (grp.getDept().equals(staffBean.getDept())) {
-//                        isFoundDept = true;
-//                        grp.getStaffs().add(staffBean);
-//                        grp.setStaffTotal(grp.getStaffs().size());
-//                        break;
-//                    }
-//                }
-//                if (!isFoundDept) {
-//                    PickStaffsExpParentBean newGrp = new PickStaffsExpParentBean();
-//                    newGrp.setDept(staffBean.getDept());
-//                    newGrp.setStaffs(new ArrayList<>());
-//                    newGrp.getStaffs().add(staffBean);
-//                    newGrp.setStaffTotal(newGrp.getStaffs().size());
-//                    grpList.add(newGrp);
-//                }
-//            }
-//            grpBeans.postValue(grpList);
-//
-//        }
-
-
+    /**
+     * 从本地数据库加载全部人员，并按照部门分组
+     */
     private void loadAllStaffsFromLocal() {
-        List<PickStaffBean> staffList = allStaffs.getValue();
-
-        LiveData<List<StaffAndDepts>> liveData = DearDbManager.getInstance().getDataBase().getStaffDao().loadAll();
-        liveData.observeForever(new Observer<List<StaffAndDepts>>() {
+        new Thread(new Runnable() {
             @Override
-            public void onChanged(List<StaffAndDepts> staffAndDepts) {
-                for (StaffAndDepts entity : staffAndDepts) {
-                    StaffBean staffBean = BeanMapper.entityToStaffBean(entity);
-                    PickStaffBean pickStaffBean = BeanMapper.StaffBeanToPickStaffBean(staffBean);
-                    staffList.add(pickStaffBean);
-                }
-                //判断是否已经被选了
-                for (PickStaffBean bean : staffList) {
-                    for (StaffBean preSelect : preSelectedStaffs) {
-                        if (preSelect.getId() == bean.getId()) {
-                            bean.setPick(true);
-                            break;
+            public void run() {
+                List<StaffAndDepts> staffAndDepts = new ArrayList<>();
+                List<StaffEntity> staffEntities = DearDbManager.getInstance().getDataBase().getStaffDao().loadAll();
+                List<StaffDeptCrosRef> crosRefs = DearDbManager.getInstance().getDataBase().getStaffDeptCroRefDao().loadAll();
+                for (StaffEntity entity : staffEntities) {
+                    StaffAndDepts bean = new StaffAndDepts();
+                    bean.staffEntity = entity;
+                    bean.deptEntities = new ArrayList<>();
+                    for (StaffDeptCrosRef ref : crosRefs) {
+                        if (entity.userId == ref.userId) {
+                            long deptId = ref.deptId;
+                            DeptEntity deptEntity = DearDbManager.getInstance().getDataBase().getDeptDao().findById(deptId);
+                            bean.deptEntities.add(deptEntity);
                         }
                     }
-                }
-                //判断是否需要屏蔽
-                ListIterator<PickStaffBean> iterator = staffList.listIterator();
-                while (iterator.hasNext()) {
-                    PickStaffBean next = iterator.next();
-                    for (StaffBean hiddenStaff : hiddenStaffs) {
-                        if (hiddenStaff.getId() == next.getId()) {
-                            iterator.remove();
-                            break;
-                        }
-                    }
-                }
-                //判断是否需要只能显示，不能操作
-                for (PickStaffBean bean : staffList) {
-                    for (StaffBean disabled : disabledStaffs) {
-                        if (disabled.getId() == bean.getId()) {
-                            bean.setDisabled(true);
-                            break;
-                        }
-                    }
+                    bean.deptEntities.sort(comparator);
+                    staffAndDepts.add(bean);
                 }
 
-
-                allStaffs.postValue(staffList);
-
-                //分组
-                groupStaffByDept();
-
-                //造假数据-历史选择
-                for (int i = 0; i < staffList.size() / 2; i++) {
-                    PickStaffBean temp = staffList.get(i);
-                    historyStaffs.getValue().add(temp);
-                }
-                historyStaffs.postValue(historyStaffs.getValue());
+                observer.onChanged(staffAndDepts);
             }
-        });
-
+        }).start();
 
     }
 
+    private Comparator<DeptEntity> comparator = new Comparator<DeptEntity>() {
+        @Override
+        public int compare(DeptEntity o1, DeptEntity o2) {
+            return o2.level - o1.level;
+        }
+    };
+
+    private Observer<List<StaffAndDepts>> observer = new Observer<List<StaffAndDepts>>() {
+
+        List<PickStaffBean> staffList = allStaffs.getValue();
+
+        @Override
+        public void onChanged(List<StaffAndDepts> staffAndDepts) {
+            for (StaffAndDepts entity : staffAndDepts) {
+                StaffBean staffBean = BeanMapper.entityToStaffBean(entity);
+                PickStaffBean pickStaffBean = BeanMapper.StaffBeanToPickStaffBean(staffBean);
+                staffList.add(pickStaffBean);
+            }
+            //判断是否已经被选了
+            for (PickStaffBean bean : staffList) {
+                for (StaffBean preSelect : preSelectedStaffs) {
+                    if (preSelect.getId().equals(bean.getId())) {
+                        bean.setPick(true);
+                        break;
+                    }
+                }
+            }
+            //判断是否需要屏蔽
+            ListIterator<PickStaffBean> iterator = staffList.listIterator();
+            while (iterator.hasNext()) {
+                PickStaffBean next = iterator.next();
+                for (StaffBean hiddenStaff : hiddenStaffs) {
+                    if (hiddenStaff.getId().equals(next.getId())) {
+                        iterator.remove();
+                        break;
+                    }
+                }
+            }
+            //判断是否需要只能显示，不能操作
+            for (PickStaffBean bean : staffList) {
+                for (StaffBean disabled : disabledStaffs) {
+                    if (disabled.getId().equals(bean.getId())) {
+                        bean.setDisabled(true);
+                        break;
+                    }
+                }
+            }
+
+
+            allStaffs.postValue(staffList);
+
+            //分组
+            groupStaffByDept();
+
+            //历史选择
+            List<StaffSelectHistoryEntity> recent = DearDbManager.getInstance()
+                    .getDataBase().getStaffSelectHistoryDao().loadRecentByDate(10);
+            for (StaffSelectHistoryEntity entity : recent) {
+                for (PickStaffBean bean : staffList) {
+                    if (bean.getId() == entity.staffId) {
+                        historyStaffs.getValue().add(bean);
+                        break;
+                    }
+                }
+            }
+            historyStaffs.postValue(historyStaffs.getValue());
+        }
+    };
+
+    /**
+     * 遍历人员列表，并按部门分组，显示在二级列表中
+     */
     private void groupStaffByDept() {
         List<PickStaffBean> motherList = allStaffs.getValue();
         List<PickStaffsExpParentBean> grpList = grpBeans.getValue();
         for (PickStaffBean staffBean : motherList) {
             boolean isFoundDept = false;
+            List<DeptBean> depts = staffBean.getDepts();
+            if (depts == null || depts.isEmpty()) {
+                continue;
+            }
+            String deptName = depts.get(0).getDeptName();
             for (PickStaffsExpParentBean grp : grpList) {
-                if (grp.getDept().equals(staffBean.getDepts())) {
+                if (grp.getDept().equals(deptName)) {
                     isFoundDept = true;
                     grp.getStaffs().add(staffBean);
                     grp.setStaffTotal(grp.getStaffs().size());
                     break;
                 }
             }
-            if (!isFoundDept && staffBean.getDepts() != null && !staffBean.getDepts().isEmpty()) {
+            if (!isFoundDept) {
                 PickStaffsExpParentBean newGrp = new PickStaffsExpParentBean();
-                newGrp.setDept(staffBean.getDepts().get(0).getDeptName());
+                newGrp.setDept(deptName);
                 newGrp.setStaffs(new ArrayList<>());
                 newGrp.getStaffs().add(staffBean);
                 newGrp.setStaffTotal(newGrp.getStaffs().size());
@@ -321,7 +294,9 @@ public class PickStaffsViewModel extends BaseViewModel {
 
     }
 
-
+    /**
+     * 重新检查一遍人员列表，计算、更新当前被选的人数的数值。
+     */
     public void updateSelectCount() {
         int count = 0;
         List<PickStaffBean> value = allStaffs.getValue();
@@ -333,16 +308,34 @@ public class PickStaffsViewModel extends BaseViewModel {
         selectCount.setValue(count);
     }
 
+    /**
+     * 全部选择/反选历史选择人员
+     * @param isToSelect 是否要全选或者反选全部历史选择人员。
+     */
     public void selectAllHistoryStaffs(boolean isToSelect) {
         List<PickStaffBean> value = historyStaffs.getValue();
         if (value != null) {
             for (PickStaffBean bean : value) {
+                boolean isSkip = false;
+                for (StaffBean staff : disabledStaffs) {
+                    if (staff.getId().equals(bean.getId())) {
+                        isSkip = true;
+                        break;
+                    }
+                }
+                if (isSkip) {
+                    continue;
+                }
                 bean.setPick(isToSelect);
             }
         }
         updateSelectCount();
     }
 
+    /**
+     * 遍历人员列表，获取最新的被选人列表
+     * @return
+     */
     public ArrayList<StaffBean> getSelectedStaffs() {
         ArrayList<StaffBean> result = new ArrayList<>();
         for (PickStaffBean bean : allStaffs.getValue()) {
@@ -356,5 +349,21 @@ public class PickStaffsViewModel extends BaseViewModel {
             }
         }
         return result;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (liveData != null) {
+            liveData.removeObserver(observer);
+        }
+    }
+
+    /**
+     * 保存最新的被选人到数据库中，下次进来选人界面将在“历史选择”中显示这些人员。
+     * @param staffs 本次被选的人员列表
+     */
+    public void saveStaffSelectHistoryToLocal(ArrayList<StaffBean> staffs) {
+        DearDbManager.getInstance().updateStaffSelectHistory(staffs);
     }
 }

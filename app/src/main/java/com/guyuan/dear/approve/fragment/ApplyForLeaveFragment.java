@@ -104,12 +104,12 @@ public class ApplyForLeaveFragment extends BaseApproveFragment<FragmentApproceLe
         requestBody.setArType(ApplyConstant.INT_LEAVE);
         ArrayList<Long> copies = new ArrayList<>();
         for (StaffBean staff : copyList) {
-            copies.add(staff.getId());
+//            copies.add(staff.getId());
         }
         requestBody.setCopy(copies);
         ArrayList<Long> users = new ArrayList<>();
         for (StaffBean staff : approveList) {
-            users.add(staff.getId());
+//            users.add(staff.getId());
         }
         requestBody.setUsers(users);
         requestBody.setDescription(binding.etApproveDes.getText().toString().trim());

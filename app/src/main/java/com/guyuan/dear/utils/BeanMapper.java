@@ -16,12 +16,16 @@ import java.util.List;
 
 /**
  * 这个公共类专门用来处理本地bean，数据库entity以及网络返回的bean的相互转换
+ *
  * @author: 廖华凯
  * @description:
  * @since: 2020/11/9 15:12
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class BeanMapper {
+
+    private static final int MAX_LEVEL = 3;
+
     /**
      * 把网络返回的staffbean分解成本地数据库的staffEntity和deptEntity
      *
@@ -30,8 +34,8 @@ public class BeanMapper {
      * @param deptEntities
      * @param crosRefs
      */
-    public static void staffBeanToEntities(NetStaffBean bean, List<StaffEntity> staffEntities,
-                                           List<DeptEntity> deptEntities, List<StaffDeptCrosRef> crosRefs) {
+    public static void netStaffBeanToEntities(NetStaffBean bean, List<StaffEntity> staffEntities,
+                                              List<DeptEntity> deptEntities, List<StaffDeptCrosRef> crosRefs) {
         StaffEntity staff = new StaffEntity();
         staff.userId = bean.getUserId();
         staff.deleteFlag = bean.getDeleteFlag();
@@ -55,62 +59,33 @@ public class BeanMapper {
         String[] idSplits = department.split(",");
         //逐个检查返回的部门并加入列表，避免重复
         if (nameSpits.length == idSplits.length) {
-            if (nameSpits.length >= 1) {
-                DeptEntity lv1Dept = new DeptEntity();
-                lv1Dept.deptId = Long.parseLong(idSplits[0]);
-                lv1Dept.deptName = nameSpits[0];
-                lv1Dept.level = 0;
+            for (int i = 0; i < nameSpits.length && i < MAX_LEVEL; i++) {
 
-                if (!deptEntities.contains(lv1Dept)) {
-                    deptEntities.add(lv1Dept);
-                }
-                StaffDeptCrosRef crosRef = new StaffDeptCrosRef();
-                crosRef.userId = staff.userId;
-                crosRef.deptId = lv1Dept.deptId;
-                crosRef.level = lv1Dept.level;
-                if (!crosRefs.contains(crosRef)) {
-                    crosRefs.add(crosRef);
-                }
+                DeptEntity dept = new DeptEntity();
+                dept.deptId = Long.parseLong(idSplits[i]);
+                dept.deptName = nameSpits[i];
+                dept.level = i;
 
-            }
-            if (nameSpits.length >= 2) {
-                DeptEntity lv2Dept = new DeptEntity();
-                lv2Dept.deptId = Long.parseLong(idSplits[1]);
-                lv2Dept.deptName = nameSpits[1];
-                lv2Dept.level = 1;
-                if (!deptEntities.contains(lv2Dept)) {
-                    deptEntities.add(lv2Dept);
+                if (!deptEntities.contains(dept)) {
+                    deptEntities.add(dept);
                 }
                 StaffDeptCrosRef crosRef = new StaffDeptCrosRef();
                 crosRef.userId = staff.userId;
-                crosRef.deptId = lv2Dept.deptId;
-                crosRef.level = lv2Dept.level;
+                crosRef.deptId = dept.deptId;
+//                crosRef.level = dept.level;
                 if (!crosRefs.contains(crosRef)) {
                     crosRefs.add(crosRef);
                 }
             }
-            if (nameSpits.length >= 3) {
-                DeptEntity lv3Dept = new DeptEntity();
-                lv3Dept.deptId = Long.parseLong(idSplits[2]);
-                lv3Dept.deptName = nameSpits[2];
-                lv3Dept.level = 2;
-                if (!deptEntities.contains(lv3Dept)) {
-                    deptEntities.add(lv3Dept);
-                }
-                StaffDeptCrosRef crosRef = new StaffDeptCrosRef();
-                crosRef.userId = staff.userId;
-                crosRef.deptId = lv3Dept.deptId;
-                crosRef.level = lv3Dept.level;
-                if (!crosRefs.contains(crosRef)) {
-                    crosRefs.add(crosRef);
-                }
-            }
+
+
         }
     }
 
 
     /**
      * 把本地数据库的用户信息转成本地bean
+     *
      * @param entity
      * @return
      */
@@ -134,10 +109,11 @@ public class BeanMapper {
 
     /**
      * 把基础用户bean转成选人界面的用户bean
+     *
      * @param bean
      * @return
      */
-    public static PickStaffBean StaffBeanToPickStaffBean(StaffBean bean){
+    public static PickStaffBean StaffBeanToPickStaffBean(StaffBean bean) {
         PickStaffBean pickStaffBean = new PickStaffBean();
         pickStaffBean.setWorkId(bean.getWorkId());
         pickStaffBean.setImgUrl(bean.getImgUrl());

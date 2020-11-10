@@ -1,7 +1,6 @@
 package com.example.mvvmlibrary.base.fragment;
 
 import android.os.Bundle;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +45,7 @@ public abstract class BaseMvvmFragment<VDB extends ViewDataBinding, VM extends B
     /**
      * 全称为：get view model binding resource id。如果在xml中设置了view model作为数据提供者，这里要把view model的
      * 绑定资源id(即Binding Resource Id，由android studio自动生成)返回来。
+     *
      * @return
      */
     protected abstract int getViewModelBrId();
@@ -67,4 +67,12 @@ public abstract class BaseMvvmFragment<VDB extends ViewDataBinding, VM extends B
     protected abstract void initViews();
 
     protected abstract void initListeners();
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (getViewModel() != null) {
+            getViewModel().onDestroy();
+        }
+    }
 }

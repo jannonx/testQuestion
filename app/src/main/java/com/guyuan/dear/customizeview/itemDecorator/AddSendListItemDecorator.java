@@ -32,7 +32,7 @@ public class AddSendListItemDecorator extends RecyclerView.ItemDecoration {
         RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
         if (layoutManager instanceof GridLayoutManager) {
             int orientation = ((GridLayoutManager) layoutManager).getOrientation();
-            if (orientation == GridLayoutManager.VERTICAL && ((GridLayoutManager) layoutManager).getReverseLayout()) {
+            if (orientation == GridLayoutManager.VERTICAL) {
                 int spanCount = ((GridLayoutManager) layoutManager).getSpanCount();
                 int childCount = parent.getChildCount();
                 for (int i = 0; i < childCount; i++) {
@@ -43,7 +43,7 @@ public class AddSendListItemDecorator extends RecyclerView.ItemDecoration {
                         View pre = parent.getChildAt(i - 1);
                         View cur = parent.getChildAt(i);
                         if(pre!=null&&cur!=null){
-                            Bitmap bitmap = BitmapFactory.decodeResource(parent.getResources(), R.drawable.ic_svg_right_arrow);
+                            Bitmap bitmap = BitmapFactory.decodeResource(parent.getResources(), R.drawable.ic_svg_right_arrow_for_send_list);
                             if(bitmap!=null){
                                 int left = pre.getLeft()-((pre.getLeft()-cur.getRight())/2+bitmap.getWidth()/2);
                                 int top = pre.getTop()+(pre.getHeight()/2-bitmap.getHeight()/2);

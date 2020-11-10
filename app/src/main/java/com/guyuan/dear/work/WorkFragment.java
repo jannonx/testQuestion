@@ -15,6 +15,7 @@ import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.scan.ScanActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
+import com.guyuan.dear.work.assess.ui.WorkAssessActivity;
 import com.guyuan.dear.work.client.activity.WorkClientActivity;
 import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeActivity;
 import com.guyuan.dear.work.produce.activity.WorkProduceActivity;
@@ -131,6 +132,10 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
 
                             case ConstantValue.CONTRACT_RESTART://合同重启
                                 ContractRestartHomeActivity.start(getContext(),title);
+                                break;
+
+                            case ConstantValue.WORK_CONTRACT_ASSESS://合同评审
+                                WorkAssessActivity.start(getContext(), title);
                                 break;
 
                             default:

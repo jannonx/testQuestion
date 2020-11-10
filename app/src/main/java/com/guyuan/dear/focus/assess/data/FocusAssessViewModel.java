@@ -22,7 +22,7 @@ import okhttp3.RequestBody;
 
 /**
  * @author : tl
- * @description :
+ * @description :我的关注-评审viewModel
  * @since: 2020/9/16 17:21
  * @company : 固远（深圳）信息技术有限公司
  **/
@@ -46,6 +46,14 @@ public class FocusAssessViewModel extends BaseViewModel {
         addSubscription(disposable);
     }
 
+    /**
+     * 评审列表查询
+     *
+     * @param pageIndex   页码
+     * @param pageSize    每页数量
+     * @param queryParams 查询内容
+     * @param status      查询类别
+     */
     public void getAssessList(int pageIndex, int pageSize, String queryParams, int status) {
         ListRequestBody body = new ListRequestBody();
         body.setPageNum(pageIndex);
@@ -57,9 +65,17 @@ public class FocusAssessViewModel extends BaseViewModel {
         Disposable disposable = RxJavaHelper.build(this,
                 apiService.getAssessList(CommonUtils.getCommonRequestBody(body)))
                 .getHelper().flow(getListBeanByStatus(status));
+        addSubscription(disposable);
     }
 
-    //概览查询
+    /**
+     * 概览评审列表查询
+     *
+     * @param pageIndex   页码
+     * @param pageSize    每页数量
+     * @param queryParams 查询内容
+     * @param status      查询类别
+     */
     public void getAssessSearchList(int pageIndex, int pageSize, String queryParams, int status) {
         ListRequestBody body = new ListRequestBody();
         body.setPageNum(pageIndex);
@@ -71,6 +87,7 @@ public class FocusAssessViewModel extends BaseViewModel {
         Disposable disposable = RxJavaHelper.build(this,
                 apiService.getAssessList(CommonUtils.getCommonRequestBody(body)))
                 .getHelper().flow(assessOverviewSearchListBean);
+        addSubscription(disposable);
     }
 
     //根据类型设置返回的数据到liveData中
@@ -84,10 +101,16 @@ public class FocusAssessViewModel extends BaseViewModel {
         }
     }
 
-
+    /**
+     * 评审详情
+     *
+     * @param id             id
+     * @param contractNumber 合同编号
+     */
     public void getAssessDetail(int id, String contractNumber) {
         Disposable disposable = RxJavaHelper.build(this,
                 apiService.getAssessDetail(id, contractNumber))
                 .getHelper().flow(assessDetailList);
+        addSubscription(disposable);
     }
 }

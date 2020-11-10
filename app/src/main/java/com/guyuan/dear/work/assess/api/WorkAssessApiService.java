@@ -2,6 +2,7 @@ package com.guyuan.dear.work.assess.api;
 
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.BaseApiService;
+import com.guyuan.dear.work.assess.data.bean.CustomerBean;
 import com.guyuan.dear.work.assess.data.bean.WorkAssessDetailBean;
 import com.guyuan.dear.work.assess.data.bean.WorkAssessListBean;
 
@@ -28,6 +29,7 @@ public interface WorkAssessApiService extends BaseApiService {
     String ASSESS_DETAIL = BASE + "audit/queryAuditFormDetailByMyWork";
     String ASSESS_VOTE = BASE + "audit/auditCommit";
     String ASSESS_COMMIT = BASE + "audit/save";
+    String CUSTOMER_LIST = BASE + "tCustomer/findAllCustomer";
 
     //我的新建列表
     @POST(MY_CREATED_ASSESS_LIST)
@@ -48,4 +50,8 @@ public interface WorkAssessApiService extends BaseApiService {
     //新建评审提交或修改
     @POST(ASSESS_COMMIT)
     Observable<ResultBean<Integer>> assessCommit(@Body RequestBody body);
+
+    //查询所有客户及客户的合同
+    @GET(CUSTOMER_LIST)
+    Observable<ResultBean<List<CustomerBean>>> getAllCustomerList();
 }

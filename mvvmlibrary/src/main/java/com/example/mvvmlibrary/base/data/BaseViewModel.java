@@ -138,4 +138,11 @@ public class BaseViewModel extends ViewModel {
             mCompositeSubscription.dispose();
         }
     }
+
+    /**
+     * 这里可以处理一些内存释放
+     */
+    public void onDestroy(){
+
+    }
 }

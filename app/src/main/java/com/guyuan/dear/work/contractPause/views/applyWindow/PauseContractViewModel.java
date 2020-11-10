@@ -16,21 +16,42 @@ import java.util.List;
 
 /**
  * @author: 廖华凯
- * @description:
+ * @description: 合同暂停的申请界面的视图模型
  * @since: 2020/10/30 12:00
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class PauseContractViewModel extends BaseViewModel {
+    /**
+     * 本次操作的bean类
+     */
     private MutableLiveData<PauseContractBean> pauseBean =new MutableLiveData<PauseContractBean>(){
         {
             setValue(new PauseContractBean());
         }
     };
+    /**
+     * 点击事件：提交申请
+     */
     private MutableLiveData<View.OnClickListener> onClickSubmit = new MutableLiveData<>();
+    /**
+     * 点击事件：选择买家
+     */
     private MutableLiveData<View.OnClickListener> onClickSelectBuyer = new MutableLiveData<>();
+    /**
+     * 点击事件：选择合同
+     */
     private MutableLiveData<View.OnClickListener> onClickSelectContract = new MutableLiveData<>();
+    /**
+     * 点击事件：选择维度
+     */
     private MutableLiveData<View.OnClickListener> onClickSelectJudgement = new MutableLiveData<>();
+    /**
+     * 点击事件：增加审批人
+     */
     private MutableLiveData<View.OnClickListener> onClickAddSendList = new MutableLiveData<>();
+    /**
+     * 点击事件：增加抄送人
+     */
     private MutableLiveData<View.OnClickListener> onClickAddCopyList = new MutableLiveData<>();
 
     public ArrayList<StaffBean> getPreSelectSendList() {
@@ -57,6 +78,7 @@ public class PauseContractViewModel extends BaseViewModel {
         this.onClickSubmit.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //在这里检查提交内容的合法性
                 PauseContractBean value = pauseBean.getValue();
                 String buyer = value.getBuyer();
                 if(TextUtils.isEmpty(buyer)){
@@ -114,6 +136,7 @@ public class PauseContractViewModel extends BaseViewModel {
         this.onClickSelectContract.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //必须先选择好客户才能选择合同
                 PauseContractBean value = pauseBean.getValue();
                 String buyer = value.getBuyer();
                 if(TextUtils.isEmpty(buyer)){
@@ -179,12 +202,20 @@ public class PauseContractViewModel extends BaseViewModel {
         pauseBean.postValue(pauseBean.getValue());
     }
 
+    /**
+     * 在主界面更新审批人列表的UI
+     * @param list
+     */
     public void updateSendList(ArrayList<StaffBean> list) {
         PauseContractBean value = pauseBean.getValue();
         value.setSendList(list);
         pauseBean.setValue(pauseBean.getValue());
     }
 
+    /**
+     * 在主界面更新抄送人列表的UI
+     * @param list
+     */
     public void updateCopyList(ArrayList<StaffBean> list) {
         PauseContractBean value = pauseBean.getValue();
         value.setCopyList(list);

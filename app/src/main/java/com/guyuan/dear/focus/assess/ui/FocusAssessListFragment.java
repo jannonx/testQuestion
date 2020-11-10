@@ -24,7 +24,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @author : tl
- * @description :
+ * @description :我的关注-评审列表fragment
  * @since: 2020/10/21 10:24
  * @company : 固远（深圳）信息技术有限公司
  **/
@@ -36,6 +36,8 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
     public static final String TYPE = "type";
     public static final String ENTRY_TYPE = "entryType";
     public static final int TOTAL = 0;       //所有评审
+    public static final int NOT_START_ASSESS = 10;  //待评审
+    public static final int ASSESSING = 20;    //评审中
     public static final int PASS = 30;       //已通过评审
     public static final int NOT_PASS = 40;   //未通过评审
     public static final int FROM_OVERVIEW = 100;  //从概览进入
@@ -105,7 +107,7 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
 
     @Override
     protected int getVariableId() {
-        return BR.assessViewModel;
+        return 0;
     }
 
     @Override

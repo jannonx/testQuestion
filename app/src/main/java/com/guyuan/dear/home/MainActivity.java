@@ -20,6 +20,7 @@ import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.busbean.LoginBusBean;
 import com.guyuan.dear.busbean.TokenBusBean;
 import com.guyuan.dear.databinding.ActivityMainBinding;
+import com.guyuan.dear.db.DearDbManager;
 import com.guyuan.dear.focus.FocusFragment;
 import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.mine.MineFragment;
@@ -28,7 +29,6 @@ import com.guyuan.dear.service.BackService;
 import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.StaffUpdateManager;
 import com.guyuan.dear.work.WorkFragment;
 
 import org.greenrobot.eventbus.EventBus;
@@ -73,7 +73,7 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Bas
         startBackService();
         setListeners();
         //在子线程更新人员最新清单 by leo
-        StaffUpdateManager.getInstance().initiateStaffUpdate();
+        DearDbManager.getInstance().initiateStaffUpdate();
     }
 
     private void initFragments() {
@@ -182,7 +182,6 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Bas
     public BaseViewModel getViewModel() {
         return viewModel;
     }
-
 
 
     @Override

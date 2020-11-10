@@ -43,6 +43,13 @@
         <item>采购原材料</item>
         <item>采购关键零部件</item>
     </array>
+
+    <array name="work_assess_title">
+        <item>合同评审</item>
+        <item>新建评审</item>
+        <item>我的新建</item>
+    </array>
+
     <array name="control">
         <item>安全管理</item>
         <item>人员管理</item>

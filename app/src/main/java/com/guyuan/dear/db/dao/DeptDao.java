@@ -27,4 +27,7 @@ public interface DeptDao {
     @Query("SELECT * FROM DEPTENTITY")
     public List<DeptEntity> loadAll();
 
+    @Query("SELECT * FROM DeptEntity WHERE deptId = :id")
+    public DeptEntity findById(long id);
+
 }

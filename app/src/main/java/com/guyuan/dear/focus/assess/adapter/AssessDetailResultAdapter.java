@@ -16,7 +16,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
  * @author : tl
- * @description :
+ * @description :评审结果adapter
  * @since: 2020/10/21 14:57
  * @company : 固远（深圳）信息技术有限公司
  **/

@@ -22,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 /**
  * @author : tl
- * @description :
+ * @description :我的关注-评审页
  * @since: 2020/9/16 17:12
  * @company : 固远（深圳）信息技术有限公司
  **/
