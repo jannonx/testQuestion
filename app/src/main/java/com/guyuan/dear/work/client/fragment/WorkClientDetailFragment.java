@@ -26,7 +26,7 @@ import java.util.List;
 
 
 /**
- * @description: 我的关注--客户详情
+ * @description: 我的工作-客户详情
  * @author: Jannonx
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司
@@ -63,10 +63,12 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
 
     }
 
+
+    /**
+     * 发起请求数据
+     */
     private void initData() {
-
         viewModel.getClientBasicInfo(clientData.getId());
-
         viewModel.getClientBasicEvent().observe(getActivity(), new Observer<ClientCompanyBean>() {
             @Override
             public void onChanged(ClientCompanyBean dataRefreshBean) {
@@ -114,6 +116,9 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
     }
 
 
+    /**
+     * 初始化视图view
+     */
     private void initView() {
         Bundle arguments = getArguments();
         clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
@@ -172,6 +177,11 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
         return R.layout.layout_tab_text;
     }
 
+    /**
+     * 设置被选择tab属性
+     *
+     * @param tab
+     */
     protected void setTabSelect(TabLayout.Tab tab) {
         TextView tv = tab.getCustomView().findViewById(R.id.tv_tab_text);
         if (selectedTextColor == 0) {
@@ -182,6 +192,11 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
         tv.setTextSize(15f);
     }
 
+    /**
+     * 设置未选择tab属性
+     *
+     * @param tab tab
+     */
     protected void setTabUnselected(TabLayout.Tab tab) {
         TextView tv = tab.getCustomView().findViewById(R.id.tv_tab_text);
         if (unSelectedTextColor == 0) {
@@ -193,6 +208,12 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
     }
 
 
+    /**
+     * 设置tab标题
+     *
+     * @param position   下标
+     * @param customView tab
+     */
     private void setContent(int position, View customView) {
         TextView tv = customView.findViewById(R.id.tv_tab_text);
         tv.setText(Arrays.asList(titleList).get(position));

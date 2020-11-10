@@ -47,6 +47,10 @@ public class ConstantValue {
     public static final String KEY_CONTRACT_TYPE = "KEY_CONTRACT_TYPE";
     public static final String KEY_CONTRACT_LOGS = "KEY_CONTRACT_LOGS";
     public static final String KEY_DISPLAY_INDEX = "KEY_DISPLAY_INDEX";
+    public static final String KEY_USER_ID = "KEY_USER_ID";
+    public static final String KEY_MY_PAUSE_APPLY_BEAN = "KEY_MY_PAUSE_APPLY_BEAN";
+    public static final String KEY_HIDDEN_STAFFS = "KEY_HIDDEN_STAFFS";
+    public static final String KEY_SELECTED_STAFFS = "KEY_SELECTED_STAFFS";
 
     public static int isForground;   //app是否在前台
     public static boolean hasNewVersion = false;//是否有新版本

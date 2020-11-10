@@ -11,6 +11,7 @@ import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.produce.adapter.FocusProduceStatusAdapter;
+import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
@@ -22,9 +23,9 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/11/2 14:27
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusProduceStatusFragment extends BaseListFragment<SimpleTabBean, FragmentListBinding, FocusProduceViewModel> {
+public class FocusProduceStatusFragment extends BaseListFragment<FocusProduceBean, FragmentListBinding, FocusProduceViewModel> {
 
-    public static final String TAG = "FocusProduceStatusFragment";
+    public static final String TAG = FocusProduceStatusFragment.class.getSimpleName();
 
     public static FocusProduceStatusFragment newInstance() {
         Bundle args = new Bundle();
@@ -35,11 +36,6 @@ public class FocusProduceStatusFragment extends BaseListFragment<SimpleTabBean, 
 
     @Override
     protected void initView() {
-        for (int i = 0; i < 5; i++) {
-            SimpleTabBean contactBean = new SimpleTabBean();
-            contactBean.setId(i);
-            listData.add(contactBean);
-        }
         View footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_focus_produce_status, null);
         FocusProduceStatusAdapter listAdapter = new FocusProduceStatusAdapter(getContext(), listData,
                 R.layout.item_focus_produce_status);

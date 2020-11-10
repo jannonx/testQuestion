@@ -10,10 +10,8 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.httplibrary.bean.RefreshBean;
-import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
-import com.guyuan.dear.databinding.FragmentFollowStatusBinding;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.client.adapter.FollowStatusParentAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
@@ -24,26 +22,22 @@ import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
-import static com.guyuan.dear.utils.ConstantValue.FIRST_PAGE;
-import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
 
 /**
- * @description:
+ * @description: 我的关注-客户详情--跟进动态页面
  * @author: Jannonx
  * @since: 2020/10/27 14:31
  * @company: 固远（深圳）信息技术有限公司
  */
 public class FollowStatusFragment extends BaseListFragment<CommentsBean, FragmentListBinding, FocusClientViewModel> {
 
-    public static final String TAG = "FollowStatusFragment";
-    private ClientCompanyBean clientData;
+    public static final String TAG = FollowStatusFragment.class.getSimpleName();
     private View footerView;
 
     public static FollowStatusFragment newInstance(ClientCompanyBean data) {
@@ -58,7 +52,7 @@ public class FollowStatusFragment extends BaseListFragment<CommentsBean, Fragmen
     @Override
     protected void initView() {
         Bundle arguments = getArguments();
-        clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        ClientCompanyBean clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         viewModel.getFollowCommentList(getListRequestBody(true));
 
 

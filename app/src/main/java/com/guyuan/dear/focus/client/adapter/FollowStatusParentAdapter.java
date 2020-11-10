@@ -23,7 +23,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 
 /**
- * @description:
+ * @description: 我的关注-客户详情--跟进动态：评价列表适配器
  * @author: Jannonx
  * @since: 2020/10/27 10:58
  * @company: 固远（深圳）信息技术有限公司
@@ -31,7 +31,6 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 public class FollowStatusParentAdapter extends BaseRecyclerAdapter<CommentsBean> {
     private boolean isCommentBtnVisible = false;
     private OnFollowClickListener clickListener;
-
 
 
     public FollowStatusParentAdapter(Context context, @NonNull List<CommentsBean> listData, int layoutID) {
@@ -75,9 +74,11 @@ public class FollowStatusParentAdapter extends BaseRecyclerAdapter<CommentsBean>
     public void setCommentBtnVisible(boolean commentBtnVisible) {
         isCommentBtnVisible = commentBtnVisible;
     }
+
     public void setClickListener(OnFollowClickListener clickListener) {
         this.clickListener = clickListener;
     }
+
     public interface OnFollowClickListener {
         void onClick(long followId);
     }

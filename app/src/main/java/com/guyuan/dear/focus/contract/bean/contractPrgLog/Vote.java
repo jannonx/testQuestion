@@ -13,6 +13,8 @@ public class Vote {
     private int result;
     public static final int VOTE_RESULT_PASS = 1;
     public static final int VOTE_RESULT_REJECT = 0;
+    public static final int VOTE_RESULT_DEFAULT=2;
+    public static final int VOTE_RESULT_FORFEIT=3;
 
     public int getResult() {
         return result;

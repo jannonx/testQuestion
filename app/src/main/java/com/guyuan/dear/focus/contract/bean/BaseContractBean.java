@@ -1,5 +1,8 @@
 package com.guyuan.dear.focus.contract.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 import kotlin.jvm.Transient;
@@ -10,7 +13,7 @@ import kotlin.jvm.Transient;
  * @since: 2020/10/12 10:46
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class BaseContractBean {
+public class BaseContractBean implements Parcelable {
     /**
      * 合同编号
      */
@@ -52,6 +55,32 @@ public class BaseContractBean {
     public static final int CONTRACT_TYPE_UNFINISHED_CONTRACTS = 4;
     @Transient
     public static final int CONTRACT_TYPE_EXCEPTION_CONTRACTS = 5;
+
+
+    public BaseContractBean() {
+    }
+
+    protected BaseContractBean(Parcel in) {
+        contractId = in.readString();
+        salesPerson = in.readString();
+        buyer = in.readString();
+        date = in.readLong();
+        productName = in.readString();
+        productModel = in.readString();
+        tags = in.createStringArrayList();
+    }
+
+    public static final Creator<BaseContractBean> CREATOR = new Creator<BaseContractBean>() {
+        @Override
+        public BaseContractBean createFromParcel(Parcel in) {
+            return new BaseContractBean(in);
+        }
+
+        @Override
+        public BaseContractBean[] newArray(int size) {
+            return new BaseContractBean[size];
+        }
+    };
 
     public String getContractId() {
         return contractId;
@@ -107,5 +136,21 @@ public class BaseContractBean {
 
     public void setProductModel(String productModel) {
         this.productModel = productModel;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(contractId);
+        dest.writeString(salesPerson);
+        dest.writeString(buyer);
+        dest.writeLong(date);
+        dest.writeString(productName);
+        dest.writeString(productModel);
+        dest.writeStringList(tags);
     }
 }

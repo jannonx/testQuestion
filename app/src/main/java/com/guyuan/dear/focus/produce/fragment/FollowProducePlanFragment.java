@@ -7,6 +7,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProducePlanBinding;
 import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
+import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 
 import java.util.ArrayList;
@@ -21,9 +22,6 @@ import java.util.List;
 public class FollowProducePlanFragment extends BaseDataBindingFragment<FragmentFocusProducePlanBinding, FocusProduceViewModel> {
 
     public static final String TAG = "FollowStatusFragment";
-    private FocusProduceViewModel viewModel;
-    private List<CommentsBean> dataList = new ArrayList<>();
-    private boolean isFocus = false;
 
 
     public static FollowProducePlanFragment newInstance() {
@@ -41,6 +39,20 @@ public class FollowProducePlanFragment extends BaseDataBindingFragment<FragmentF
     @Override
     protected void initialization() {
 
+
+    }
+
+    public void setProduceData(FocusProduceBean data) {
+        binding.tvDutyPerson.setText(data.getPrincipalPerson());
+        binding.tvProductNumber.setText(String.valueOf(data.getNum()));
+        binding.tvProductUnit.setText(data.getUnit());
+
+        binding.tvDateProvidedTime.setText(data.getActualStartTime());
+        binding.tvDrawingsIssuedTime.setText(data.getDrawingIssuedTime());
+        binding.tvMaterialListIssuedTime.setText(data.getDrawingIssuedTime());
+        binding.tvMaterialToFactoryTime.setText(data.getMaterialReceiveTime());
+        binding.tvOutBuyTime.setText(data.getPurchaseReceiveTime());
+        binding.tvPlanPutInTime.setText(data.getPlanStockTime());
     }
 
     @Override

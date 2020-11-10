@@ -24,14 +24,14 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
- * @description:
+ * @description: 我的关注-客户详情--基础信息页面
  * @author: Jannonx
  * @since: 2020/10/27 14:31
  * @company: 固远（深圳）信息技术有限公司
  */
 public class BasicInfoFragment extends BaseDataBindingFragment<FragmentBasicInfoBinding, FocusClientViewModel> {
 
-    public static final String TAG = "BasicInfoFragment";
+    public static final String TAG = BasicInfoFragment.class.getSimpleName();
     private List<ClientContactBean> listData = new ArrayList<>();
     private View footerView;
     private BaseRecyclerViewAdapter adapter;
@@ -68,6 +68,11 @@ public class BasicInfoFragment extends BaseDataBindingFragment<FragmentBasicInfo
         });
     }
 
+    /**
+     * 设置数据
+     *
+     * @param dataRefreshBean 数据实体
+     */
     public void setData(ClientCompanyBean dataRefreshBean) {
         listData.clear();
         listData.addAll(dataRefreshBean.getList());

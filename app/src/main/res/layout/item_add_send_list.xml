@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.guyuan.dear.work.contractPause.beans.StaffBean" />
+        <variable
+            name="onClickDelete"
+            type="android.view.View.OnClickListener"/>
+    </data>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/dp_36"
+                android:layout_height="@dimen/dp_36"
+                app:srcCompat="@drawable/ic_svg_staff_icon_default"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.name,default=xxxx}"
+                android:textColor="@color/color_grey_999999"
+                android:textSize="@dimen/sp_12"
+                android:layout_marginTop="@dimen/dp_4"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/dp_16"
+            android:layout_height="@dimen/dp_16"
+            app:srcCompat="@drawable/ic_svg_delete_red_circle"
+            android:layout_gravity="end|top"
+            android:onClick="@{onClickDelete}"/>
+
+    </FrameLayout>
+</layout>

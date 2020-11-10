@@ -10,6 +10,7 @@ import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.views.applyWindow.PauseContractFragment;
+import com.guyuan.dear.work.contractPause.views.myAppliedList.MyPauseApplyListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ public class ContractPauseHomeActivity extends BaseTabActivity<ActivityBaseTabBi
         return new ArrayList<String>(){
             {
                 add("合同暂停");
+                add("我的申请");
             }
         };
     }
@@ -40,6 +42,7 @@ public class ContractPauseHomeActivity extends BaseTabActivity<ActivityBaseTabBi
         return new ArrayList<Fragment>(){
             {
                 add(PauseContractFragment.getInstance());
+                add(MyPauseApplyListFragment.getInstance("当前用户ID"));
             }
         };
     }
@@ -53,6 +56,7 @@ public class ContractPauseHomeActivity extends BaseTabActivity<ActivityBaseTabBi
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
         return tabDrawableList;
     }

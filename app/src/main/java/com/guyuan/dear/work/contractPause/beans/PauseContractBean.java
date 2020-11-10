@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,8 +16,8 @@ import java.util.List;
  **/
 public class PauseContractBean extends BaseContractExcptBean {
     private String detailPauseReason;
-    private List<StaffBean> sendList;
-    private List<StaffBean> copyList;
+    private ArrayList<StaffBean> sendList = new ArrayList<>();
+    private ArrayList<StaffBean> copyList = new ArrayList<>();
 
     public String getDetailPauseReason() {
         return detailPauseReason;
@@ -26,19 +27,19 @@ public class PauseContractBean extends BaseContractExcptBean {
         this.detailPauseReason = detailPauseReason;
     }
 
-    public List<StaffBean> getSendList() {
+    public ArrayList<StaffBean> getSendList() {
         return sendList;
     }
 
-    public void setSendList(List<StaffBean> sendList) {
+    public void setSendList(ArrayList<StaffBean> sendList) {
         this.sendList = sendList;
     }
 
-    public List<StaffBean> getCopyList() {
+    public ArrayList<StaffBean> getCopyList() {
         return copyList;
     }
 
-    public void setCopyList(List<StaffBean> copyList) {
+    public void setCopyList(ArrayList<StaffBean> copyList) {
         this.copyList = copyList;
     }
 }

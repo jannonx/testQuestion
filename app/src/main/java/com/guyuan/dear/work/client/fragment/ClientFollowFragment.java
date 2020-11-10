@@ -22,7 +22,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
- * @description: 我的关注--售后
+ * @description: 我的工作-我的跟进
  * @author: Jannonx
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司

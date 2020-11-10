@@ -327,7 +327,7 @@
                     android:id="@+id/iv_partner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/add_icon" />
+                    android:src="@mipmap/ic_add_blue" />
             </LinearLayout>
 
             <LinearLayout
@@ -360,7 +360,7 @@
                     android:id="@+id/iv_approver"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/add_icon" />
+                    android:src="@mipmap/ic_add_blue" />
             </LinearLayout>
 
             <LinearLayout
@@ -393,7 +393,7 @@
                     android:id="@+id/iv_copy_to"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/add_icon" />
+                    android:src="@mipmap/ic_add_blue" />
             </LinearLayout>
 
             <TextView

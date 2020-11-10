@@ -1,19 +1,29 @@
 package com.guyuan.dear.work.contractPause.views.applyWindow;
 
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentPauseContractBinding;
 import com.guyuan.dear.dialog.SimpleRecyclerViewDialog;
+import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
+import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.work.contractPause.beans.PauseContractBean;
+import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * @author: 廖华凯
@@ -21,9 +31,12 @@ import java.util.List;
  * @since: 2020/10/30 11:59
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class PauseContractFragment extends BaseMvvmFragment<FragmentPauseContractBinding,PauseContractViewModel> {
+public class PauseContractFragment extends BaseMvvmFragment<FragmentPauseContractBinding, PauseContractViewModel> {
 
-    public static PauseContractFragment getInstance(){
+    private static final int REQUEST_CODE_PICK_SEND_LIST = 123;
+    private static final int REQUEST_CODE_PICK_COPY_LIST = 321;
+
+    public static PauseContractFragment getInstance() {
         return new PauseContractFragment();
     }
 
@@ -70,17 +83,23 @@ public class PauseContractFragment extends BaseMvvmFragment<FragmentPauseContrac
         });
 
 
-
         viewModel.setOnClickAddSendList(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ArrayList<StaffBean> sendList = getViewModel().getPreSelectSendList();
+                ArrayList<StaffBean> copyList = getViewModel().getPreSelectCopyList();
+                PickStaffsActivity.startForResult(PauseContractFragment.this, REQUEST_CODE_PICK_SEND_LIST, "请选择审批人",
+                        sendList, null, copyList, 10);
             }
         });
 
         viewModel.setOnClickAddCopyList(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ArrayList<StaffBean> sendList = getViewModel().getPreSelectSendList();
+                ArrayList<StaffBean> copyList = getViewModel().getPreSelectCopyList();
+                PickStaffsActivity.startForResult(PauseContractFragment.this, REQUEST_CODE_PICK_COPY_LIST, "请选择抄送人",
+                        copyList, null, sendList, 10);
 
             }
         });
@@ -88,7 +107,7 @@ public class PauseContractFragment extends BaseMvvmFragment<FragmentPauseContrac
         viewModel.setOnClickSubmit(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                showToastTip("提交成功！");
             }
         });
 
@@ -106,7 +125,9 @@ public class PauseContractFragment extends BaseMvvmFragment<FragmentPauseContrac
 
             @Override
             public void afterTextChanged(Editable s) {
-                viewModel.getPauseBean().getValue().setDetailPauseReason(s.toString());
+                MutableLiveData<PauseContractBean> liveData = viewModel.getPauseBean();
+                liveData.getValue().setDetailPauseReason(s.toString());
+                liveData.postValue(liveData.getValue());
             }
         });
 
@@ -114,7 +135,7 @@ public class PauseContractFragment extends BaseMvvmFragment<FragmentPauseContrac
     }
 
     private void showDialogPickJudgement() {
-        List<String> buyers =new ArrayList<String>(){
+        List<String> buyers = new ArrayList<String>() {
             {
                 add("国家政策维度");
                 add("生产成本维度");
@@ -122,17 +143,19 @@ public class PauseContractFragment extends BaseMvvmFragment<FragmentPauseContrac
                 add("售后服务成本维度");
 
             }
-        } ;
+        };
         SimpleRecyclerViewDialog.show(getContext(), buyers, new SimpleRecyclerViewDialog.OnSelectItemClickListener() {
             @Override
             public void onItemClick(String bean, int position) {
-                getViewModel().getPauseBean().getValue().setJudgement(bean);
+                MutableLiveData<PauseContractBean> liveData = getViewModel().getPauseBean();
+                liveData.getValue().setJudgement(bean);
+                liveData.postValue(liveData.getValue());
             }
         });
     }
 
     private void showDialogSelectContract() {
-        List<String> buyers =new ArrayList<String>(){
+        List<String> buyers = new ArrayList<String>() {
             {
                 add("DEAR-SALES-CONTRACT-001");
                 add("DEAR-SALES-CONTRACT-002");
@@ -143,17 +166,19 @@ public class PauseContractFragment extends BaseMvvmFragment<FragmentPauseContrac
                 add("DEAR-SALES-CONTRACT-007");
                 add("DEAR-SALES-CONTRACT-008");
             }
-        } ;
+        };
         SimpleRecyclerViewDialog.show(getContext(), buyers, new SimpleRecyclerViewDialog.OnSelectItemClickListener() {
             @Override
             public void onItemClick(String bean, int position) {
-                getViewModel().getPauseBean().getValue().setContractId(bean);
+                MutableLiveData<PauseContractBean> liveData = getViewModel().getPauseBean();
+                liveData.getValue().setContractId(bean);
+                liveData.postValue(liveData.getValue());
             }
         });
     }
 
     private void showDialogPickBuyer() {
-        List<String> buyers =new ArrayList<String>(){
+        List<String> buyers = new ArrayList<String>() {
             {
                 add("北京天行健科技有限公司");
                 add("东莞金大金五金塑料厂");
@@ -161,11 +186,14 @@ public class PauseContractFragment extends BaseMvvmFragment<FragmentPauseContrac
                 add("东莞星河生物有限公司");
                 add("东莞时脉特塑料有限公司");
             }
-        } ;
+        };
         SimpleRecyclerViewDialog.show(getContext(), buyers, new SimpleRecyclerViewDialog.OnSelectItemClickListener() {
             @Override
             public void onItemClick(String bean, int position) {
-                getViewModel().getPauseBean().getValue().setBuyer(bean);
+                MutableLiveData<PauseContractBean> liveData = getViewModel().getPauseBean();
+                liveData.getValue().setBuyer(bean);
+                liveData.getValue().setContractId("");
+                liveData.postValue(liveData.getValue());
             }
         });
     }
@@ -173,5 +201,23 @@ public class PauseContractFragment extends BaseMvvmFragment<FragmentPauseContrac
     @Override
     protected int getLayoutID() {
         return R.layout.fragment_pause_contract;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == REQUEST_CODE_PICK_SEND_LIST) {
+            if (resultCode == RESULT_OK) {
+                ArrayList<StaffBean> list = data.getParcelableArrayListExtra(ConstantValue.KEY_SELECTED_STAFFS);
+                for (StaffBean bean : list) {
+                    LogUtils.showLog(bean.toString());
+                }
+                getViewModel().updateSendList(list);
+            }
+        } else if (requestCode == REQUEST_CODE_PICK_COPY_LIST) {
+            if (resultCode == RESULT_OK) {
+                ArrayList<StaffBean> list = data.getParcelableArrayListExtra(ConstantValue.KEY_SELECTED_STAFFS);
+                getViewModel().updateCopyList(list);
+            }
+        }
     }
 }

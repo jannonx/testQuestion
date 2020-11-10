@@ -27,22 +27,17 @@ public class FocusClientViewModel extends BaseViewModel {
 
     private FocusClientRepository repository;
 
-    private MutableLiveData<RefreshBean<ClientCompanyBean>> clientListByNameEvent = new MutableLiveData<>();//模糊查询客户列表
     private MutableLiveData<RefreshBean<ClientCompanyBean>> clientListEvent = new MutableLiveData<>();//客户列表
     private MutableLiveData<ClientCompanyBean> clientBasicEvent = new MutableLiveData<>();//基础信息
     private MutableLiveData<RefreshBean<CommentsBean>> followListEvent = new MutableLiveData<>();//跟进评论
 
-    private MutableLiveData<Integer> followUserEvent = new MutableLiveData<>();//填写用户跟进评价
 
     @ViewModelInject
     public FocusClientViewModel(FocusClientRepository focusClientRepository) {
         this.repository = focusClientRepository;
     }
 
-    public MutableLiveData<RefreshBean<ClientCompanyBean>> getClientListByNameEvent() {
-        return clientListByNameEvent;
 
-    }
 
     public MutableLiveData<RefreshBean<ClientCompanyBean>> getClientListEvent() {
         return clientListEvent;
@@ -60,23 +55,6 @@ public class FocusClientViewModel extends BaseViewModel {
 
     }
 
-
-    public MutableLiveData<Integer> getFollowUserEvent() {
-        return followUserEvent;
-
-    }
-
-    /**
-     * 根据名称模糊查询客户列表
-     *
-     * @param name 客户名称
-     */
-    public void getClientListByName(String name) {
-
-        Disposable disposable = RxJavaHelper.build(this, repository.getClientListByName(name))
-                .getHelper().flow(clientListByNameEvent);
-        addSubscription(disposable);
-    }
 
     /**
      * 获取用户列表
@@ -115,16 +93,4 @@ public class FocusClientViewModel extends BaseViewModel {
     }
 
 
-    /**
-     * 填写用户跟进评价
-     *
-     * @param content  评价内容
-     * @param followId 跟进id
-     */
-    public void postCommentFollowUp(long followId, String content) {
-
-        Disposable disposable = RxJavaHelper.build(this, repository.postCommentFollowUp(followId, content))
-               .getHelper().flow(followUserEvent);
-        addSubscription(disposable);
-    }
 }

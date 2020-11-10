@@ -17,15 +17,13 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 
 /**
- * @description: 我的关注-客户
+ * @description: 我的工作-客户详情
  * @author: Jannonx
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司
  */
 @AndroidEntryPoint
 public class WorkClientDetailActivity extends BaseToolbarActivity<ActivityWithToolbarBinding, WorkClientViewModel> {
-
-
 
     public static void start(Context context, ClientCompanyBean data) {
         Intent intent = new Intent(context, WorkClientDetailActivity.class);
@@ -46,7 +44,6 @@ public class WorkClientDetailActivity extends BaseToolbarActivity<ActivityWithTo
     public WorkClientViewModel getViewModel() {
         return viewModel;
     }
-
 
 
     @Override
