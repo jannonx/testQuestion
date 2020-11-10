@@ -10,11 +10,26 @@ import java.util.Objects;
  * @since: 2020/11/9 11:08
  * @company: 固远（深圳）信息技术有限公司
  **/
-@Entity(primaryKeys = {"userId","level"})
+@Entity(primaryKeys = {"userId","deptId"})
 public class StaffDeptCrosRef {
     public long userId;
     public long deptId;
-    public int level;
+//    public int level;
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof StaffDeptCrosRef)) return false;
+//        StaffDeptCrosRef crosRef = (StaffDeptCrosRef) o;
+//        return userId == crosRef.userId &&
+//                deptId == crosRef.deptId &&
+//                level == crosRef.level;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(userId, deptId, level);
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -22,12 +37,11 @@ public class StaffDeptCrosRef {
         if (!(o instanceof StaffDeptCrosRef)) return false;
         StaffDeptCrosRef crosRef = (StaffDeptCrosRef) o;
         return userId == crosRef.userId &&
-                deptId == crosRef.deptId &&
-                level == crosRef.level;
+                deptId == crosRef.deptId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, deptId, level);
+        return Objects.hash(userId, deptId);
     }
 }

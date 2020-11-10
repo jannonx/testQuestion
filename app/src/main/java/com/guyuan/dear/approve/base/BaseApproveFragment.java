@@ -313,27 +313,27 @@ public abstract class BaseApproveFragment<VB extends ViewDataBinding, VM extends
 
     protected ArrayList<String> getPartners() {
         ArrayList<String> partners = new ArrayList<>();
-        for (StaffBean bean : partnerList) {
-            partners.add(bean.getId());
-        }
+//        for (StaffBean bean : partnerList) {
+//            partners.add(bean.getId());
+//        }
 
         return partners;
     }
 
     protected ArrayList<String> getApproves() {
         ArrayList<String> approves = new ArrayList<>();
-        for (StaffBean bean : approveList) {
-            approves.add(bean.getId());
-        }
+//        for (StaffBean bean : approveList) {
+//            approves.add(bean.getId());
+//        }
 
         return approves;
     }
 
     protected ArrayList<String> getCopys() {
         ArrayList<String> copys = new ArrayList<>();
-        for (StaffBean bean : copyList) {
-            copys.add(bean.getId());
-        }
+//        for (StaffBean bean : copyList) {
+//            copys.add(bean.getId());
+//        }
 
         return copys;
     }

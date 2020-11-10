@@ -65,15 +65,15 @@ public class StaffUpdateManager {
                     public void onGetResult(BasePageResultBean<NetStaffBean> result) {
                         int totalPages = result.getTotalPages();
                         int pageIndex = result.getPageIndex();
-                        List<NetStaffBean> content = result.getContent();
-                        if (content != null) {
+                        List<NetStaffBean> netStaffBeans = result.getContent();
+                        if (netStaffBeans != null) {
                             List<StaffEntity> staffEntities = new ArrayList<>();
                             List<DeptEntity> deptEntities = new ArrayList<>();
                             List<StaffDeptCrosRef> crosRefs = new ArrayList<>();
 
                             //1,分解，重新包装
-                            for (NetStaffBean bean : content) {
-                                BeanMapper.staffBeanToEntities(bean, staffEntities, deptEntities, crosRefs);
+                            for (NetStaffBean bean : netStaffBeans) {
+                                BeanMapper.netStaffBeanToEntities(bean, staffEntities, deptEntities, crosRefs);
                             }
                             //2，保存到本地
                             for (StaffEntity entity : staffEntities) {

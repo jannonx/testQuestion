@@ -34,7 +34,7 @@ public interface StaffDao {
 
     @Query("SELECT * FROM StaffEntity")
     @Transaction
-    public LiveData<List<StaffAndDepts>> loadAll();
+    public List<StaffEntity> loadAll();
 
 
 }
