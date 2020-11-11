@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.produce.bean;
 
+import android.text.TextUtils;
+
 import java.util.List;
 
 /**
@@ -10,6 +12,14 @@ import java.util.List;
  */
 public class ProduceStateBean {
 
+    //0.审批中 1.已同意 2.已拒绝
+    public static final int APPLY_ING = 0;
+    public static final int APPLY_PASS = 1;
+    public static final int APPLY_REJECT = 2;
+
+    //10502，暂停；10503，激活
+    public static final int TYPE_PAUSE = 10502;
+    public static final int TYPE_ACTIVATE = 10503;
 
     /**
      * id : 51
@@ -34,11 +44,15 @@ public class ProduceStateBean {
      */
     private long mainId;
     /**
+     * title:生产状态文本,空显示申请状态文本
+     */
+    private String prodStatus;
+    /**
      * 序号（第几步）默认1
      */
     private int sort;
     /**
-     * 审批类型
+     * 审批类型：10502，暂停；10503，激活
      */
     private int arType;
     /**
@@ -94,12 +108,35 @@ public class ProduceStateBean {
      */
     private List<ProduceStateBean> texamineFlows;
 
+
+    public String getTitle() {
+        if (TextUtils.isEmpty(getProdStatus())) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(TYPE_PAUSE == arType ? "暂停" : "激活");
+            stringBuilder.append(APPLY_ING == status ? "申请" :
+                    APPLY_PASS == status ? "申请通过" : "申请被驳回");
+            return stringBuilder.toString();
+
+        }
+
+        return getProdStatus();
+    }
+
+
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getProdStatus() {
+        return prodStatus;
+    }
+
+    public void setProdStatus(String prodStatus) {
+        this.prodStatus = prodStatus;
     }
 
     public long getMainId() {

@@ -46,10 +46,16 @@ public class FocusProduceRepository {
     Observable<ResultBean<RefreshBean<FocusProduceBean>>> getProduceList(RequestBody body) {
         return apiService.getProduceList(body);
     }
+
     Observable<ResultBean<FocusProduceBean>> getBasicInfoById(long playId) {
         return apiService.getBasicInfoById(playId);
     }
+
     Observable<ResultBean<List<ProduceStateBean>>> getProduceStateList(long playId) {
         return apiService.getProduceStateList(playId);
+    }
+
+    Observable<ResultBean<Integer>> postExecuteProduceInfo(RequestBody body) {
+        return apiService.postExecuteProduceInfo(body);
     }
 }

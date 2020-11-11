@@ -37,11 +37,13 @@ public class FocusProduceStatusAdapter extends BaseRecyclerAdapter<ProduceStateB
         ImageView imageView = holder.getView(R.id.iv_avatar);
         GlideUtils.getInstance().loadUrlImage(imageView, item.getImgUrl());
 
-//        View vBall = holder.getView(R.id.view_ball);
-//
+        View vBall = holder.getView(R.id.view_ball);
+
 //        tvStatus.setBackgroundResource(item.getStatusTextColor());
 
+        holder.setText(R.id.tv_produce_status, item.getTitle());
         holder.setText(R.id.tv_time, item.getCreateTime());
+
         holder.setText(R.id.tv_name, item.getCreateName());
         holder.setText(R.id.tv_comment, item.getRemark());
         holder.setText(R.id.tv_department, item.getDepartmentName());

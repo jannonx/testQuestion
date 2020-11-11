@@ -32,6 +32,7 @@ public class FocusProduceViewModel extends BaseViewModel {
     private MutableLiveData<RefreshBean<FocusProduceBean>> produceListEvent = new MutableLiveData<>();
     private MutableLiveData<List<ProduceStateBean>> statusListEvent = new MutableLiveData<>();
     private MutableLiveData<FocusProduceBean> basicInfoEvent = new MutableLiveData<>();
+    private MutableLiveData<Integer> executeEvent = new MutableLiveData<>();
 
 
     @ViewModelInject
@@ -61,6 +62,10 @@ public class FocusProduceViewModel extends BaseViewModel {
 
     public MutableLiveData<FocusProduceBean> getBasicInfoEvent() {
         return basicInfoEvent;
+    }
+
+    public MutableLiveData<Integer> getExecuteEvent() {
+        return executeEvent;
     }
 
     /**
@@ -127,6 +132,18 @@ public class FocusProduceViewModel extends BaseViewModel {
     public void getProduceStateList(long planId) {
         Disposable disposable = RxJavaHelper.build(this, repository.getProduceStateList(planId))
                 .getHelper().flow(statusListEvent);
+        addSubscription(disposable);
+    }
+
+    /**
+     * 根据设备id和操作类型执行操作
+     *
+     * @param body 提交信息
+     * @return
+     */
+    public void postExecuteProduceInfo(RequestBody body) {
+        Disposable disposable = RxJavaHelper.build(this, repository.postExecuteProduceInfo(body))
+                .getHelper().flow(executeEvent);
         addSubscription(disposable);
     }
 }

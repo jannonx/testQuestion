@@ -65,11 +65,11 @@ public interface FocusProduceApiService extends BaseApiService {
     /**
      * 生产详情--生产动态
      *
-     * @param planId 主生产计划id
+     * @param subPlanId 主生产计划id
      * @return
      */
-    @GET("base/projectplan/findExamineById")
-    Observable<ResultBean<List<ProduceStateBean>>> getProduceStateList(@Query("planId") long planId);
+    @GET("base/projectplan/findExamineBySubId")
+    Observable<ResultBean<List<ProduceStateBean>>> getProduceStateList(@Query("subPlanId") long subPlanId);
 
     /**
      * 生产详情--基本信息
@@ -79,5 +79,14 @@ public interface FocusProduceApiService extends BaseApiService {
      */
     @GET("base/projectplan/findsubPlanById")
     Observable<ResultBean<FocusProduceBean>> getBasicInfoById(@Query("equipmentId") long equipmentId);
+
+    /**
+     * 根据设备id和操作类型执行操作
+     *
+     * @param body 提交信息
+     * @return
+     */
+    @GET("base/projectplan/executeByType")
+    Observable<ResultBean<Integer>> postExecuteProduceInfo(@Body RequestBody body);
 
 }
