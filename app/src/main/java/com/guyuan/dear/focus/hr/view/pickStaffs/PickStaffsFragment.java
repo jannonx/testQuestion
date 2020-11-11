@@ -89,15 +89,20 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
             @Override
             public void onItemClick(PickStaffBean bean, int pos) {
                 List<PickStaffsExpParentBean> grpBeans = getViewModel().getGrpBeans().getValue();
+                //遍历二级选人列表，找到被点选/反选的人，更新UI
                 for (int i = 0; i < grpBeans.size(); i++) {
+                    //从一级菜单开始
                     PickStaffsExpParentBean temp = grpBeans.get(i);
                     List<PickStaffBean> staffs = temp.getStaffs();
+                    //遍历二级菜单
                     for (int i1 = 0; i1 < staffs.size(); i1++) {
                         PickStaffBean staffBean = staffs.get(i1);
                         if(staffBean.getId().equals(bean.getId())){
+                            //如果找到了被点选/反选的人，更新adapter，刷新UI
                             ExpandableListView expListView = getViewDataBinding().fragmentPickStaffsExpListView;
                             PickStaffsExpListAdapter adapter = (PickStaffsExpListAdapter) expListView.getExpandableListAdapter();
                             adapter.notifyDataSetChanged();
+                            //expListView 更新UI时需要重新收起/展开，否则子菜单不会刷新
                             if(expListView.isGroupExpanded(i)){
                                 expListView.collapseGroup(i);
                                 expListView.expandGroup(i);

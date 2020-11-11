@@ -99,6 +99,7 @@ public class PickStaffsExpListAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 bean.setPick(!bean.isPick());
+                bean.setPickTime(System.currentTimeMillis());
                 notifyDataSetChanged();
                 if(itemCallback!=null){
                     itemCallback.onTogglePickStaff(groupPosition,childPosition,bean);

@@ -24,10 +24,10 @@ import com.guyuan.dear.R;
  * @since: 2020/11/2 10:42
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class AddSendListItemDecorator extends RecyclerView.ItemDecoration {
+public class AddCopyListItemDecorator extends RecyclerView.ItemDecoration {
     private Paint paint;
 
-    public AddSendListItemDecorator() {
+    public AddCopyListItemDecorator() {
         paint = new Paint();
         paint.setAntiAlias(true);
     }
@@ -65,7 +65,7 @@ public class AddSendListItemDecorator extends RecyclerView.ItemDecoration {
             if (curAvatarView == null || preAvatarView == null) {
                 return;
             }
-            Bitmap bitmap = getBitmapRightArrow(pre.getContext());
+            Bitmap bitmap = getBitmapAddIcon(pre.getContext());
             if (bitmap != null) {
                 int left = pre.getRight() + (cur.getLeft() - pre.getRight()) / 2 - bitmap.getWidth() / 2;
                 int top = pre.getTop() + pre.getPaddingTop() + preAvatarView.getHeight() / 2 - bitmap.getHeight() / 2;
@@ -92,8 +92,8 @@ public class AddSendListItemDecorator extends RecyclerView.ItemDecoration {
      * @param context
      * @return
      */
-    private Bitmap getBitmapRightArrow(Context context) {
-        Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_svg_right_arrow_for_send_list);
+    private Bitmap getBitmapAddIcon(Context context) {
+        Drawable drawable = ContextCompat.getDrawable(context, R.drawable.ic_svg_add_to_copy_list_16dp);
         Bitmap bitmap = null;
         if (drawable instanceof BitmapDrawable) {
             bitmap = ((BitmapDrawable) drawable).getBitmap();
