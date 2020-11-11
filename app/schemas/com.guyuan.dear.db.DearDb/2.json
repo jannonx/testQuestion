@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 1,
-    "identityHash": "a7457bc2b87af59264430e3199ccfa2c",
+    "version": 2,
+    "identityHash": "0c1fbbd4dd0838718029f3c54474027a",
     "entities": [
       {
         "tableName": "StaffEntity",
@@ -106,11 +106,52 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "StaffSelectHistoryEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `staffId` INTEGER NOT NULL, `selectDate` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "staffId",
+            "columnName": "staffId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "selectDate",
+            "columnName": "selectDate",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_StaffSelectHistoryEntity_staffId",
+            "unique": true,
+            "columnNames": [
+              "staffId"
+            ],
+            "createSql": "CREATE UNIQUE INDEX `index_StaffSelectHistoryEntity_staffId` ON `${TABLE_NAME}` (`staffId`)"
+          }
+        ],
+        "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a7457bc2b87af59264430e3199ccfa2c\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"0c1fbbd4dd0838718029f3c54474027a\")"
     ]
   }
 }
