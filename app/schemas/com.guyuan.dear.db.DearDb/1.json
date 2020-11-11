@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "fc930801cd30cca10f703647459d8477",
+    "identityHash": "a7457bc2b87af59264430e3199ccfa2c",
     "entities": [
       {
         "tableName": "StaffEntity",
@@ -82,7 +82,7 @@
       },
       {
         "tableName": "StaffDeptCrosRef",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` INTEGER NOT NULL, `deptId` INTEGER NOT NULL, `level` INTEGER NOT NULL, PRIMARY KEY(`userId`, `level`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` INTEGER NOT NULL, `deptId` INTEGER NOT NULL, PRIMARY KEY(`userId`, `deptId`))",
         "fields": [
           {
             "fieldPath": "userId",
@@ -95,18 +95,12 @@
             "columnName": "deptId",
             "affinity": "INTEGER",
             "notNull": true
-          },
-          {
-            "fieldPath": "level",
-            "columnName": "level",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
             "userId",
-            "level"
+            "deptId"
           ],
           "autoGenerate": false
         },
@@ -116,7 +110,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"fc930801cd30cca10f703647459d8477\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a7457bc2b87af59264430e3199ccfa2c\")"
     ]
   }
 }
