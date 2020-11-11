@@ -8,6 +8,7 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.guyuan.dear.customizeview.itemDecorator.AddCopyListItemDecorator;
 import com.guyuan.dear.customizeview.itemDecorator.AddSendListItemDecorator;
 import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
 import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
@@ -43,6 +44,7 @@ public class PauseContractBindingAdapter {
         AddCopyListAdapter adapter = new AddCopyListAdapter(staffs,view.getContext());
         GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(),5,RecyclerView.VERTICAL,false);
         view.setLayoutManager(layoutManager);
+        view.addItemDecoration(new AddCopyListItemDecorator());
         view.setAdapter(adapter);
     }
 

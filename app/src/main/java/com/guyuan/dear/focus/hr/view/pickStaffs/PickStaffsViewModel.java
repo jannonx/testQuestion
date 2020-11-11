@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.CompoundButton;
 
 import androidx.annotation.Nullable;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
@@ -42,15 +41,15 @@ public class PickStaffsViewModel extends BaseViewModel {
     /**
      * 已经选的人，进入界面时需要提供
      */
-    private List<StaffBean> preSelectedStaffs = new ArrayList<>();
+    private ArrayList<StaffBean> preSelectedStaffs = new ArrayList<>();
     /**
      * 隐藏起来的人，进入界面时需要提供
      */
-    private List<StaffBean> hiddenStaffs = new ArrayList<>();
+    private ArrayList<StaffBean> hiddenStaffs = new ArrayList<>();
     /**
      * 能看到，但不能操作的人，进入界面时需要提供
      */
-    private List<StaffBean> disabledStaffs = new ArrayList<>();
+    private ArrayList<StaffBean> disabledStaffs = new ArrayList<>();
     /**
      * 历史被选过人的列表，用来显示方便用户重新选择。
      */
@@ -80,7 +79,6 @@ public class PickStaffsViewModel extends BaseViewModel {
      * 最大可选人数
      */
     private int maxSelectCount = 10;
-    private LiveData<List<StaffAndDepts>> liveData;
 
     public MutableLiveData<View.OnClickListener> getOnClickSubmit() {
         return onClickSubmit;
@@ -136,10 +134,11 @@ public class PickStaffsViewModel extends BaseViewModel {
 
     /**
      * 初始化视图模型
-     * @param preSelected 默认进来就显示被选择了的人员
+     *
+     * @param preSelected  默认进来就显示被选择了的人员
      * @param hiddenStaffs 需要隐藏起来的人员
-     * @param disabled 能显示，但不能操作的人员
-     * @param maxSelect 最大选择人数
+     * @param disabled     能显示，但不能操作的人员
+     * @param maxSelect    最大选择人数
      */
     public void init(@Nullable ArrayList<StaffBean> preSelected,
                      @Nullable ArrayList<StaffBean> hiddenStaffs,
@@ -156,6 +155,7 @@ public class PickStaffsViewModel extends BaseViewModel {
         if (disabled != null) {
             this.disabledStaffs.addAll(disabled);
         }
+
         loadAllStaffsFromLocal();
     }
 
@@ -214,6 +214,7 @@ public class PickStaffsViewModel extends BaseViewModel {
                 for (StaffBean preSelect : preSelectedStaffs) {
                     if (preSelect.getId().equals(bean.getId())) {
                         bean.setPick(true);
+                        bean.setPickTime(System.currentTimeMillis());
                         break;
                     }
                 }
@@ -310,6 +311,7 @@ public class PickStaffsViewModel extends BaseViewModel {
 
     /**
      * 全部选择/反选历史选择人员
+     *
      * @param isToSelect 是否要全选或者反选全部历史选择人员。
      */
     public void selectAllHistoryStaffs(boolean isToSelect) {
@@ -327,6 +329,9 @@ public class PickStaffsViewModel extends BaseViewModel {
                     continue;
                 }
                 bean.setPick(isToSelect);
+                if (isToSelect) {
+                    bean.setPickTime(System.currentTimeMillis());
+                }
             }
         }
         updateSelectCount();
@@ -334,11 +339,23 @@ public class PickStaffsViewModel extends BaseViewModel {
 
     /**
      * 遍历人员列表，获取最新的被选人列表
+     *
      * @return
      */
     public ArrayList<StaffBean> getSelectedStaffs() {
         ArrayList<StaffBean> result = new ArrayList<>();
-        for (PickStaffBean bean : allStaffs.getValue()) {
+        List<PickStaffBean> value = allStaffs.getValue();
+        if (value == null) {
+            return result;
+        }
+        //重新排序，按人员被选的时间先后排序，保证返回的顺序跟当初选择的顺序一致
+        value.sort(new Comparator<PickStaffBean>() {
+            @Override
+            public int compare(PickStaffBean o1, PickStaffBean o2) {
+                return (int) (o1.getPickTime() - o2.getPickTime());
+            }
+        });
+        for (PickStaffBean bean : value) {
             if (bean.isPick()) {
                 StaffBean staffBean = new StaffBean();
                 staffBean.setName(bean.getName());
@@ -348,22 +365,21 @@ public class PickStaffsViewModel extends BaseViewModel {
                 result.add(staffBean);
             }
         }
+
         return result;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (liveData != null) {
-            liveData.removeObserver(observer);
-        }
     }
 
     /**
      * 保存最新的被选人到数据库中，下次进来选人界面将在“历史选择”中显示这些人员。
+     *
      * @param staffs 本次被选的人员列表
      */
-    public void saveStaffSelectHistoryToLocal(ArrayList<StaffBean> staffs) {
+    public void saveStaffSelectHistoryToLocal(List<StaffBean> staffs) {
         DearDbManager.getInstance().updateStaffSelectHistory(staffs);
     }
 }
