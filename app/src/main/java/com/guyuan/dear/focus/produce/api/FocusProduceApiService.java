@@ -8,6 +8,8 @@ import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
 import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
@@ -67,7 +69,7 @@ public interface FocusProduceApiService extends BaseApiService {
      * @return
      */
     @GET("base/projectplan/findExamineById")
-    Observable<ResultBean<RefreshBean<ProduceStateBean>>> getProduceStateList(@Query("planId") long planId);
+    Observable<ResultBean<List<ProduceStateBean>>> getProduceStateList(@Query("planId") long planId);
 
     /**
      * 生产详情--基本信息

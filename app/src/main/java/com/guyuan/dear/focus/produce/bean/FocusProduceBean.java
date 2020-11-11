@@ -78,6 +78,9 @@ public class FocusProduceBean implements Serializable {
      */
     private String updateName;
 
+    private int peopleType;
+    private OperatorType operatorType;
+
     /**
      * 实际生产结束时间
      */
@@ -259,6 +262,28 @@ public class FocusProduceBean implements Serializable {
         }
     }
 
+
+    //    /**
+//     * 生产动态圆点颜色
+//     *
+//     * @return
+//     */
+//    public int getStatusPointColor() {
+//        statusType = ProductStatusType.toType(status);
+//        switch (statusType) {
+//            case TYPE_PRODUCE_EXCEPTION:
+//                return R.drawable.bg_red_f04864_round;
+//            case TYPE_PRODUCE_WAIT:
+//            case TYPE_PRODUCE_ING:
+//                return R.drawable.bg_green_2fc25b_round;
+//            case TYPE_PRODUCE_COMPLETE:
+//                return R.drawable.bg_green_2fc25b_round;
+//            case TYPE_PRODUCE_DELAY:
+//                return R.drawable.bg_green_2fc25b_round;
+//            default:
+//                return R.color.transparent;
+//        }
+//    }
     public int getStatusTextColor() {
         statusType = ProductStatusType.toType(status);
         switch (statusType) {
@@ -317,7 +342,8 @@ public class FocusProduceBean implements Serializable {
         statusType = ProductStatusType.toType(status);
         approvalStatusType = ApprovalStatusType.toType(approvalStatus);
         if (ProductStatusType.TYPE_PRODUCE_ING == statusType) {
-            if (ApprovalStatusType.TYPE_APPROVAL_ACTIVATE_PASS == approvalStatusType) {
+            if (ApprovalStatusType.TYPE_APPROVAL_NOT_APPLY == approvalStatusType
+                    || ApprovalStatusType.TYPE_APPROVAL_PAUSE_PASS == approvalStatusType) {
                 return "操作员：" + updateName;
             }
         } else if (ProductStatusType.TYPE_PRODUCE_COMPLETE == statusType
@@ -339,6 +365,18 @@ public class FocusProduceBean implements Serializable {
 
     public String getUpdateName() {
         return updateName;
+    }
+
+    public int getPeopleType() {
+        return peopleType;
+    }
+
+    public OperatorType getOperatorType() {
+        return OperatorType.getEnum(peopleType);
+    }
+
+    public void setPeopleType(int peopleType) {
+        this.peopleType = peopleType;
     }
 
     public void setUpdateName(String updateName) {

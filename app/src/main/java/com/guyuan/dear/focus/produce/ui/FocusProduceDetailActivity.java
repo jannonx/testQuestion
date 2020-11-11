@@ -5,13 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
+import com.example.mvvmlibrary.base.fragment.BaseFragment;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.guyuan.dear.R;
-import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.focus.client.fragment.FocusClientDetailFragment;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
+import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
-import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailFragment;
+import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailComplexFragment;
+import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment;
 import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
@@ -37,9 +38,15 @@ public class FocusProduceDetailActivity extends BaseToolbarActivity<ActivityWith
     protected void initFragment(Bundle savedInstanceState) {
         FocusProduceBean bean = (FocusProduceBean) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
         binding.toolbarContainer.titleTv.setText("生产详情");
-        FocusProduceDetailFragment mFragment = FocusProduceDetailFragment.newInstance(bean);
+        BaseFragment mFragment;
+        if (ProductStatusType.TYPE_PRODUCE_WAIT == bean.getStatusType()) {
+            mFragment = FocusProduceDetailSimpleFragment.newInstance(bean);
+
+        } else {
+            mFragment = FocusProduceDetailComplexFragment.newInstance(bean);
+        }
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
-                FocusClientDetailFragment.TAG);
+                FocusProduceDetailComplexFragment.TAG);
     }
 
     @Override

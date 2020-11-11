@@ -17,20 +17,14 @@ import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.TagStaffAdapter;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailBinding;
+import com.guyuan.dear.databinding.FragmentFocusProduceDetailComplexBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
-import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
-import com.guyuan.dear.focus.client.fragment.FocusClientDetailFragment;
 import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
-import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
 import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
-import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.GsonUtil;
-import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
@@ -39,25 +33,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import okhttp3.RequestBody;
-
-import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
-
 /**
- * @description: 我的关注--客户详情
+ * @description: 我的关注--客户详情(CoordinatorLayout)
  * @author: Jannonx
- * @since: 2020/9/17 11:42
+ * @since: 2020/11/11 11:20
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusProduceDetailFragment extends BaseDataBindingFragment<FragmentFocusProduceDetailBinding, FocusProduceViewModel> {
+public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<FragmentFocusProduceDetailComplexBinding, FocusProduceViewModel> {
 
-    public static final String TAG = "FocusProduceDetailFragment";
+    public static final String TAG = FocusProduceDetailComplexFragment.class.getSimpleName();
 
     private static final int REQUEST_SEND_SELECT_PERSON = 0x001;
     private static final int REQUEST_COPY_SELECT_PERSON = 0x002;
     private FocusProduceViewModel viewModel;
     private FocusProduceStatusFragment statusFragment;
-    private FollowProducePlanFragment planFragment, singleFragment;
+    private FollowProducePlanFragment planFragment;
 
 
     private int startPosition = 0;//起始选中位置
@@ -68,9 +58,9 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     private ProduceApplyDialog dialog;
     private boolean isProduceWait = false;
 
-    public static FocusProduceDetailFragment newInstance(FocusProduceBean data) {
+    public static FocusProduceDetailComplexFragment newInstance(FocusProduceBean data) {
         Bundle bundle = new Bundle();
-        FocusProduceDetailFragment fragment = new FocusProduceDetailFragment();
+        FocusProduceDetailComplexFragment fragment = new FocusProduceDetailComplexFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
         fragment.setArguments(bundle);
         return fragment;
@@ -78,26 +68,15 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
 
     @Override
     protected int getLayoutID() {
-        return R.layout.fragment_focus_produce_detail;
+        return R.layout.fragment_focus_produce_detail_complex;
     }
 
     @Override
     protected void initialization() {
-        initHeaderView();
         Bundle arguments = getArguments();
         produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
-        isProduceWait = ProductStatusType.TYPE_PRODUCE_WAIT == produceBean.getStatusType();
 
-        binding.fragmentContainer.setVisibility(isProduceWait ? View.VISIBLE : View.GONE);
-        binding.tabLayout.setVisibility(isProduceWait ? View.GONE : View.VISIBLE);
-        binding.viewPager.setVisibility(isProduceWait ? View.GONE : View.VISIBLE);
-        if (isProduceWait) {
-            FragmentManager fragmentManager = getChildFragmentManager();
-            singleFragment = (FollowProducePlanFragment) fragmentManager.findFragmentById(R.id.factory_view);
-        } else {
-            initViewPager();
-        }
-
+        initViewPager();
         initData();
     }
 
@@ -108,7 +87,6 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
         viewModel.getBasicInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
             @Override
             public void onChanged(FocusProduceBean data) {
-//                LogUtils.showLog("data" + data.getCompletionRate());
                 setProduceData(data);
             }
         });
@@ -130,7 +108,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
 
             @Override
             public void onSendClick(TagStaffAdapter adapter) {
-                PickStaffsActivity.startForResult(FocusProduceDetailFragment.this,
+                PickStaffsActivity.startForResult(FocusProduceDetailComplexFragment.this,
                         REQUEST_SEND_SELECT_PERSON,
                         "请选审批送人",
                         adapter == null ? new ArrayList<>() : adapter.getTagDataList(),
@@ -141,7 +119,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
 
             @Override
             public void onCopyClick(TagStaffAdapter adapter) {
-                PickStaffsActivity.startForResult(FocusProduceDetailFragment.this,
+                PickStaffsActivity.startForResult(FocusProduceDetailComplexFragment.this,
                         REQUEST_COPY_SELECT_PERSON,
                         "请选审抄送人",
                         adapter == null ? new ArrayList<>() : adapter.getTagDataList(),
@@ -155,11 +133,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     }
 
     private void setProduceData(FocusProduceBean data) {
-        if (isProduceWait) {
-            singleFragment.setProduceData(data);
-        } else {
-            planFragment.setProduceData(data);
-        }
+        planFragment.setProduceData(data);
 
         binding.tvProductName.setText(data.getName());
         binding.tvProductCode.setText(data.getCode());
@@ -182,29 +156,6 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
 
     }
 
-    private void initHeaderView() {
-//        ClientCompanyBean clientCompanyBean = new ClientCompanyBean();
-//        List<ClientContactBean> childList = new ArrayList<>();
-//        for (int i = 0; i < 2; i++) {
-//            ClientContactBean contactBean = new ClientContactBean();
-//            contactBean.setPhone("ClientContactBean" + i);
-//            childList.add(contactBean);
-//        }
-//        clientCompanyBean.setList(childList);
-//        ClientPhoneHeaderAdapter listAdapter = new ClientPhoneHeaderAdapter(getContext(), clientCompanyBean.getList(),
-//                R.layout.item_focus_client_phone);
-//        BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter(listAdapter);
-//        binding.baseRecycleView.setAdapter(adapter);
-//        binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
-//        binding.baseRecycleView.setLoadMoreEnabled(false);
-//        binding.baseRecycleView.setPullRefreshEnabled(false);
-//        adapter.setOnItemClickListener(new OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-//
-//            }
-//        });
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
