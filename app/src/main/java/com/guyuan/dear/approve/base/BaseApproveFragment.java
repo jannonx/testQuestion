@@ -15,8 +15,8 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.approve.activity.MineApplyListActivity;
 
 import com.guyuan.dear.base.adapter.TagStaffAdapter;
-import com.guyuan.dear.utils.view.flowlayout.TagFlowLayout;
-import com.guyuan.dear.utils.view.flowlayout.TagAdapter;
+import com.guyuan.dear.customizeview.flowlayout.TagFlowLayout;
+import com.guyuan.dear.customizeview.flowlayout.TagAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.AlertDialogUtils;

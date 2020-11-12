@@ -8,6 +8,7 @@ import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
@@ -37,6 +38,7 @@ public interface BaseApiService {
     String WORKSHOP = BASE + "tWorkshop/findPage";
     String FACTORY = BASE + "tFactory/findPage";
     String UPLOAD = FILE + "file/uploadApp";
+    String MEETING_ROOM = BASE + "tMeetingRoom/findPage";
 
     //查询厂房
     @POST(FACTORY)
@@ -47,4 +49,8 @@ public interface BaseApiService {
     @POST(UPLOAD)
     @Multipart
     Observable<ResultBean<List<UploadBean>>> uploadPic(@PartMap Map<String, RequestBody> map);
+
+    //获取会议室
+    @POST(MEETING_ROOM)
+    Observable<ResultBean<List<String>>> getMeetingRoomList(@Body RequestBody body);
 }

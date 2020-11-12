@@ -1,4 +1,4 @@
-package com.guyuan.dear.utils.view.roundedimageview;
+package com.guyuan.dear.customizeview.roundedimageview;
 
 
 import androidx.annotation.IntDef;

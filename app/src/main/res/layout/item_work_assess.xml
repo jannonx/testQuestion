@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="workAssessListBean"
-            type="com.guyuan.dear.work.assess.data.bean.WorkAssessListBean" />
+            name="workAssessItemBean"
+            type="com.guyuan.dear.work.assess.data.bean.WorkAssessItemBean" />
     </data>
 
     <androidx.cardview.widget.CardView style="@style/CardViewNoElevation">
@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
-                android:text="@{workAssessListBean.customerName}"
+                android:text="@{workAssessItemBean.customerName}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="深圳固远" />
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                app:assessStatus="@{workAssessListBean.status}"
+                app:assessStatus="@{workAssessItemBean.status}"
                 app:layout_constraintBottom_toBottomOf="@+id/custom_title_tv"
                 app:layout_constraintStart_toEndOf="@+id/custom_title_tv"
                 app:layout_constraintTop_toTopOf="@+id/custom_title_tv"
@@ -56,7 +56,7 @@
                 style="@style/TextNormal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{workAssessListBean.contractNumber}"
+                android:text="@{workAssessItemBean.contractNumber}"
                 app:layout_constraintStart_toEndOf="@+id/contract_title_tv"
                 app:layout_constraintTop_toTopOf="@+id/contract_title_tv"
                 tools:text="2312312" />
@@ -76,7 +76,7 @@
                 style="@style/TextNormal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{workAssessListBean.compereName}"
+                android:text="@{workAssessItemBean.compereName}"
                 app:layout_constraintStart_toEndOf="@+id/assess_person_title"
                 app:layout_constraintTop_toTopOf="@+id/assess_person_title"
                 tools:text="张三" />
@@ -87,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
-                android:text="@{workAssessListBean.auditStartTime+'~'+workAssessListBean.auditEndTime}"
+                android:text="@{workAssessItemBean.auditStartTime+'~'+workAssessItemBean.auditEndTime}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/assess_room_title_tv"
                 tools:text="2012-11-21" />
@@ -96,7 +96,7 @@
                 android:id="@+id/assess_room_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{workAssessListBean.meetingName}"
+                android:text="@{workAssessItemBean.meetingName}"
                 app:layout_constraintStart_toEndOf="@+id/assess_room_title_tv"
                 app:layout_constraintTop_toTopOf="@+id/assess_room_title_tv"
                 tools:text="2号" />
@@ -131,8 +131,8 @@
                 android:paddingBottom="7dp"
                 android:textColor="@color/white"
                 android:visibility="gone"
-                app:countDown="@{workAssessListBean.status}"
-                app:startTime="@{workAssessListBean.auditStartTime}"
+                app:countDown="@{workAssessItemBean.status}"
+                app:startTime="@{workAssessItemBean.auditStartTime}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

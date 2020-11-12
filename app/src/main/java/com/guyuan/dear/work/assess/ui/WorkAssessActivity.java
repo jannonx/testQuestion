@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.assess.data.WorkAssessViewModel;
+import com.guyuan.dear.work.assess.data.bean.WorkAssessDetailBean;
+import com.guyuan.dear.work.assess.data.bean.WorkAssessListBean;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,9 +61,23 @@ public class WorkAssessActivity extends BaseTabActivity<ActivityBaseTabBinding, 
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+        setObserver();
     }
 
     private void setObserver() {
+        viewModel.workAssessCreateList.observe(this, new Observer<WorkAssessListBean>() {
+            @Override
+            public void onChanged(WorkAssessListBean workAssessListBean) {
+                myCreateListFragment.setListData(workAssessListBean.getContent());
+            }
+        });
+
+        viewModel.workAssessList.observe(this, new Observer<WorkAssessListBean>() {
+            @Override
+            public void onChanged(WorkAssessListBean workAssessListBean) {
+                listFragment.setListData(workAssessListBean.getContent());
+            }
+        });
 
     }
 

@@ -4,16 +4,15 @@ import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
-import com.guyuan.dear.R;
 import com.guyuan.dear.base.api.RxJavaHelper;
 import com.guyuan.dear.base.bean.ListRequestBody;
-import com.guyuan.dear.focus.contract.bean.ComContractsBean;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.assess.api.WorkAssessApiService;
 import com.guyuan.dear.work.assess.data.bean.CustomerBean;
 import com.guyuan.dear.work.assess.data.bean.WorkAssessCommitBody;
 import com.guyuan.dear.work.assess.data.bean.WorkAssessDetailBean;
+import com.guyuan.dear.work.assess.data.bean.WorkAssessItemBean;
 import com.guyuan.dear.work.assess.data.bean.WorkAssessListBean;
 import com.guyuan.dear.work.assess.data.bean.WorkAssessVoteBody;
 import com.guyuan.dear.work.assess.ui.WorkAssessListFragment;
@@ -31,26 +30,15 @@ import io.reactivex.functions.Consumer;
 
 public class WorkAssessViewModel extends BaseViewModel {
     private WorkAssessApiService apiService;
-    public MutableLiveData<List<WorkAssessListBean>> workAssessList;
-    public MutableLiveData<List<WorkAssessListBean>> workAssessCreateList;
-    public MutableLiveData<WorkAssessDetailBean> workAssessListDetail;
-    public MutableLiveData<WorkAssessDetailBean> myAssessDetail;
-    public MutableLiveData<List<CustomerBean>> customerList;
+    public MutableLiveData<WorkAssessListBean> workAssessList = new MutableLiveData<>();
+    public MutableLiveData<WorkAssessListBean> workAssessCreateList = new MutableLiveData<>();
+    public MutableLiveData<WorkAssessDetailBean> workAssessListDetail = new MutableLiveData<>();
+    public MutableLiveData<List<CustomerBean>> customerList = new MutableLiveData<>();
+    public MutableLiveData<List<String>> meetingRoomList = new MutableLiveData<>();
 
     @ViewModelInject
     public WorkAssessViewModel(WorkAssessRepository workAssessRepository) {
         this.apiService = workAssessRepository.getAssessApiService();
-    }
-
-    //查询我的新建评审列表
-    public void getMyCreatedAssessList(int pageIndex, String content) {
-        ListRequestBody requestBody = new ListRequestBody();
-        requestBody.setPageSize(ConstantValue.PAGE_SIZE);
-        requestBody.setPageNum(pageIndex);
-        ListRequestBody.FiltersBean filtersBean = new ListRequestBody.FiltersBean();
-        filtersBean.setQueryParams(content);
-        requestBody.setFilters(filtersBean);
-        apiService.getMyCreatedAssessList(CommonUtils.getCommonRequestBody(requestBody));
     }
 
     //查询评审列表
@@ -61,14 +49,26 @@ public class WorkAssessViewModel extends BaseViewModel {
         ListRequestBody.FiltersBean filtersBean = new ListRequestBody.FiltersBean();
         filtersBean.setQueryParams(content);
         requestBody.setFilters(filtersBean);
-        RxJavaHelper.build(this, apiService.getAssessList(
-                CommonUtils.getCommonRequestBody(requestBody))).getHelper().flow(getObserverListType(type));
+        switch (type) {
+            case WorkAssessListFragment.TOTAL:
+                RxJavaHelper.build(this,
+                        apiService.getAssessList(CommonUtils.getCommonRequestBody(requestBody)))
+                        .getHelper().flow(workAssessList);
+                break;
+
+            case WorkAssessListFragment.CREATE:
+                RxJavaHelper.build(this,
+                        apiService.getMyCreatedAssessList(CommonUtils.getCommonRequestBody(requestBody)))
+                        .getHelper().flow(workAssessCreateList);
+                break;
+        }
+
     }
 
     //评审详情
-    public void getAssessDetail(int id, int type) {
+    public void getAssessDetail(int id) {
         RxJavaHelper.build(this, apiService.getAssessDetail(id)).getHelper()
-                .flow(getObserverDetailType(type));
+                .flow(workAssessListDetail);
     }
 
 
@@ -127,31 +127,11 @@ public class WorkAssessViewModel extends BaseViewModel {
         RxJavaHelper.build(this, apiService.getAllCustomerList()).getHelper().flow(customerList);
     }
 
-
-    private MutableLiveData<List<WorkAssessListBean>> getObserverListType(int type) {
-        switch (type) {
-            case WorkAssessListFragment.TOTAL:
-                return workAssessList;
-
-            case WorkAssessListFragment.CREATE:
-                return workAssessCreateList;
-
-            default:
-                return workAssessList;
-        }
+    //获取会议室列表
+    public void getMeetingRoomList() {
+        ListRequestBody requestBody = new ListRequestBody();
+        RxJavaHelper.build(this, apiService.getMeetingRoomList(
+                CommonUtils.getCommonRequestBody(requestBody))).getHelper().flow(meetingRoomList);
     }
 
-
-    private MutableLiveData<WorkAssessDetailBean> getObserverDetailType(int type) {
-        switch (type) {
-            case WorkAssessListFragment.TOTAL:
-                return workAssessListDetail;
-
-            case WorkAssessListFragment.CREATE:
-                return myAssessDetail;
-
-            default:
-                return workAssessListDetail;
-        }
-    }
 }

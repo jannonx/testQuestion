@@ -380,7 +380,7 @@
         <item name="android:paddingBottom">12dp</item>
         <item name="android:paddingLeft">5dp</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:maxLength">100</item>
+        <item name="android:maxLength">240</item>
         <item name="android:textColor">@color/color_black_333333</item>
         <item name="android:background">@drawable/bg_white_solid_round_corner_4_dadada_stroke</item>
     </style>
@@ -631,16 +631,19 @@
 
     <!--MaterialButton基本样式-->
     <style name="MaterialButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:textSize">16sp</item>
         <item name="android:textStyle">normal</item>
-        <item name="cornerRadius">18dp</item>
-        <item name="android:layout_width">162dp</item>
-        <item name="android:layout_height">wrap_content</item>
         <item name="rippleColor">@color/transparent</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:padding">0dp</item>
     </style>
 
     <!--MaterialButton白底灰色边框-->
     <style name="MaterialButtonStroke" parent="MaterialButtonStyle">
+        <item name="cornerRadius">18dp</item>
+        <item name="android:layout_width">162dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="strokeColor">@color/color_grey_e5e5e5</item>
         <item name="strokeWidth">1dp</item>
         <item name="android:textColor">@color/black</item>
@@ -648,6 +651,10 @@
 
     <!--MaterialButton白底灰色边框-->
     <style name="MaterialButtonBlue" parent="MaterialButtonStyle">
+        <item name="cornerRadius">18dp</item>
+        <item name="android:layout_width">162dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="backgroundTint">#0050B4</item>
     </style>
 

@@ -4,6 +4,7 @@ import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.work.assess.data.bean.CustomerBean;
 import com.guyuan.dear.work.assess.data.bean.WorkAssessDetailBean;
+import com.guyuan.dear.work.assess.data.bean.WorkAssessItemBean;
 import com.guyuan.dear.work.assess.data.bean.WorkAssessListBean;
 
 import java.util.List;
@@ -33,11 +34,12 @@ public interface WorkAssessApiService extends BaseApiService {
 
     //我的新建列表
     @POST(MY_CREATED_ASSESS_LIST)
-    Observable<ResultBean<List<WorkAssessListBean>>> getMyCreatedAssessList(@Body RequestBody body);
+    Observable<ResultBean<WorkAssessListBean>> getMyCreatedAssessList(@Body RequestBody body);
+
 
     //评审列表
     @POST(ASSESS_LIST)
-    Observable<ResultBean<List<WorkAssessListBean>>> getAssessList(@Body RequestBody body);
+    Observable<ResultBean<WorkAssessListBean>> getAssessList(@Body RequestBody body);
 
     //评审详情
     @GET(ASSESS_DETAIL)
