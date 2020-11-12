@@ -86,7 +86,7 @@ public interface FocusProduceApiService extends BaseApiService {
      * @param body 提交信息
      * @return
      */
-    @GET("base/projectplan/executeByType")
+    @POST("base/projectplan/executeByType")
     Observable<ResultBean<Integer>> postExecuteProduceInfo(@Body RequestBody body);
 
 }

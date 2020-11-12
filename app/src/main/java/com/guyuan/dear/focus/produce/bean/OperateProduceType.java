@@ -12,9 +12,9 @@ public enum OperateProduceType {
      * 操作类型：1.点击开始，2.点击完成，3.点击暂停，4.点击激活
      */
     TYPE_EXECUTE_START(1, "点击开始"),
-    TYPE_EXECUTE_ACTIVATE(2, "点击完成"),
+    TYPE_EXECUTE_COMPLETE(2, "点击完成"),
     TYPE_EXECUTE_PAUSE(3, "点击暂停"),
-    TYPE_EXECUTE_COMPLETE(4, "点击激活"),
+    TYPE_EXECUTE_ACTIVATE(4, "点击激活"),
     TYPE_UNKNOWN(5, "未知操作");
 
     private int code;

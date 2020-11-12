@@ -1,7 +1,6 @@
 package com.guyuan.dear.work.client.adapter;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 

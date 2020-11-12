@@ -17,7 +17,7 @@ public class ExecuteRequestBody implements Serializable {
     /**
      * 配套设备id
      */
-    private String equipmentId;
+    private long equipmentId;
     /**
      * 抄送人id的集合
      */
@@ -29,6 +29,45 @@ public class ExecuteRequestBody implements Serializable {
     /**
      * 操作类型：1.点击开始，2.点击完成，3.点击暂停，4.点击激活
      */
-    private String type;
+    private long type;
 
+    public List<Long> getApprovers() {
+        return approvers;
+    }
+
+    public void setApprovers(List<Long> approvers) {
+        this.approvers = approvers;
+    }
+
+    public long getEquipmentId() {
+        return equipmentId;
+    }
+
+    public void setEquipmentId(long equipmentId) {
+        this.equipmentId = equipmentId;
+    }
+
+    public List<Long> getNoticedPeople() {
+        return noticedPeople;
+    }
+
+    public void setNoticedPeople(List<Long> noticedPeople) {
+        this.noticedPeople = noticedPeople;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public long getType() {
+        return type;
+    }
+
+    public void setType(long type) {
+        this.type = type;
+    }
 }

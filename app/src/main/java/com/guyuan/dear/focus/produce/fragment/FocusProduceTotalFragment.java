@@ -45,7 +45,7 @@ public class FocusProduceTotalFragment extends BaseProduceFragment {
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                FocusProduceDetailActivity.start(getContext(), listData.get(position));
+                FocusProduceDetailActivity.start(getContext(), listData.get(position),false);
             }
         });
         viewModel.getProduceList(getListRequestBody(true));

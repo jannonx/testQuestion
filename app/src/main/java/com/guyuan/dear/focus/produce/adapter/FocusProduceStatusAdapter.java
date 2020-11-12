@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.produce.adapter;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -29,6 +30,24 @@ public class FocusProduceStatusAdapter extends BaseRecyclerAdapter<ProduceStateB
     @Override
     protected void bindDataToView(BaseRecyclerViewHolder holder, ProduceStateBean item,
                                   int position) {
+
+        //只有一条数据
+        boolean onlyOneData = listData != null && listData.size() == 1;
+        //最后一条数据
+        boolean listOneItem = listData != null && (listData.size() - 1) == position;
+        View specialView = holder.getView(R.id.rl_first_view);
+        View normalView = holder.getView(R.id.cl_order_detail);
+        View firstAboveLie = holder.getView(R.id.v_first_above);
+        View vAboveLie = holder.getView(R.id.v_line_above);
+        specialView.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
+        firstAboveLie.setVisibility(onlyOneData ? View.GONE : View.VISIBLE);
+        normalView.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
+        vAboveLie.setVisibility(listOneItem ? View.GONE : View.VISIBLE);
+
+        //specialData
+        holder.setText(R.id.tv_activate_name, item.getCreateName() + "：生产开始");
+        holder.setText(R.id.tv_activate_time, item.getCreateTime());
+        //normalData
 
         ImageView imageView = holder.getView(R.id.iv_avatar);
         GlideUtils.getInstance().loadUrlImage(imageView, item.getImgUrl());

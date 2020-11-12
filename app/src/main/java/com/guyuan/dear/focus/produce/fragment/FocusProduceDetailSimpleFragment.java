@@ -1,29 +1,27 @@
 package com.guyuan.dear.focus.produce.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.TagStaffAdapter;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailSimpleBinding;
-import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
+import com.guyuan.dear.dialog.SimpleConfirmViewDialog;
+
+import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
+import com.guyuan.dear.focus.produce.bean.OperateProduceType;
 import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.ToastUtils;
-import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
-import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
-import com.guyuan.dear.work.contractPause.beans.StaffBean;
-import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
 
-import java.util.ArrayList;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 /**
  * @description: 我的关注--客户详情(NestedScrollView)
@@ -35,17 +33,15 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
 
     public static final String TAG = FocusProduceDetailSimpleFragment.class.getSimpleName();
 
-    private static final int REQUEST_SEND_SELECT_PERSON = 0x001;
-    private static final int REQUEST_COPY_SELECT_PERSON = 0x002;
     private FollowProducePlanFragment planFragment;
     private FocusProduceBean produceBean;
-    private ProduceApplyDialog dialog;
+    private boolean isFooterBtnShow;
 
-
-    public static FocusProduceDetailSimpleFragment newInstance(FocusProduceBean data) {
+    public static FocusProduceDetailSimpleFragment newInstance(FocusProduceBean data, boolean isFooterBtnShow) {
         Bundle bundle = new Bundle();
         FocusProduceDetailSimpleFragment fragment = new FocusProduceDetailSimpleFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
+        bundle.putSerializable(ConstantValue.KEY_BOOLEAN, isFooterBtnShow);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -61,19 +57,46 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
         planFragment = (FollowProducePlanFragment) fragmentManager.findFragmentById(R.id.factory_view);
         Bundle arguments = getArguments();
         produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
-        viewModel.getBasicInfoById(produceBean.getEquipmentId());
+        isFooterBtnShow = arguments.getBoolean(ConstantValue.KEY_BOOLEAN, false);
 
+        initDataAndListener();
+
+    }
+
+    private void initDataAndListener() {
+        binding.tvCommitBtn.setVisibility(isFooterBtnShow ? View.VISIBLE : View.GONE);
+        viewModel.getBasicInfoById(produceBean.getEquipmentId());
         viewModel.getBasicInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
             @Override
             public void onChanged(FocusProduceBean data) {
                 setProduceData(data);
             }
         });
+        SimpleConfirmViewDialog.OnClickListener listener = new SimpleConfirmViewDialog.OnClickListener() {
+            @Override
+            public void onConfirm() {
+                ExecuteRequestBody body = new ExecuteRequestBody();
+                body.setEquipmentId(produceBean.getEquipmentId());
+                body.setType(OperateProduceType.TYPE_EXECUTE_START.getCode());
+                String str = GsonUtil.objectToString(body);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), str);
+                viewModel.postExecuteProduceInfo(requestBody);
+            }
+        };
 
         binding.tvCommitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showApplyDialog();
+                SimpleConfirmViewDialog.showTitle(getContext(), "确认提交生产开始吗？", listener);
+            }
+        });
+
+        viewModel.getExecuteEvent().observe(getActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer dataRefreshBean) {
+                ToastUtils.showLong(getContext(), "提交成功!");
+                getActivity().finish();
             }
         });
     }
@@ -100,63 +123,6 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
         binding.tvActualComplete.setText(data.getActualEndTime());
         binding.tvPlanComplete.setText(data.getPlanEndTime());
 
-
-    }
-
-    private void showApplyDialog() {
-        ProduceApplyDialog.OnDialogClickListener dialogListener = new ProduceApplyDialog.OnDialogClickListener() {
-            @Override
-            public void onCommitInfo(String content) {
-
-            }
-
-            @Override
-            public void onSendClick(AddSendListAdapter adapter) {
-                PickStaffsActivity.startForResult(FocusProduceDetailSimpleFragment.this,
-                        REQUEST_SEND_SELECT_PERSON,
-                        "请选审批送人",
-                        adapter == null ? new ArrayList<>() : adapter.getList(),
-                        new ArrayList<>(),
-                        new ArrayList<>(),
-                        ConstantValue.CONST_MAX_STAFF_COUNT);
-            }
-
-            @Override
-            public void onCopyClick(AddCopyListAdapter adapter) {
-                PickStaffsActivity.startForResult(FocusProduceDetailSimpleFragment.this,
-                        REQUEST_COPY_SELECT_PERSON,
-                        "请选审抄送人",
-                        adapter == null ? new ArrayList<>() : adapter.getList(),
-                        new ArrayList<>(),
-                        new ArrayList<>(),
-                        ConstantValue.CONST_MAX_STAFF_COUNT);
-            }
-        };
-        dialog = new ProduceApplyDialog(getActivity(), dialogListener);
-        dialog.show();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (data == null) {
-            ToastUtils.showLong(getActivity(), "选择人员失败");
-            return;
-        }
-        ArrayList<StaffBean> list = data.getParcelableArrayListExtra(ConstantValue.KEY_SELECTED_STAFFS);
-        if (list == null) {
-            ToastUtils.showLong(getActivity(), "选择人员失败");
-            return;
-        }
-        switch (requestCode) {
-            case REQUEST_SEND_SELECT_PERSON:
-                dialog.setSendToList(list);
-                break;
-            case REQUEST_COPY_SELECT_PERSON:
-                dialog.setCopyToList(list);
-                break;
-            default:
-        }
 
     }
 

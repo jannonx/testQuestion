@@ -22,7 +22,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.TagStaffAdapter;
+import com.guyuan.dear.customizeview.itemDecorator.AddCopyListItemDecorator;
 import com.guyuan.dear.customizeview.itemDecorator.AddSendListItemDecorator;
+import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
+import com.guyuan.dear.focus.produce.bean.OperateProduceType;
 import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
 import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
@@ -31,6 +34,8 @@ import com.guyuan.dear.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
 /**
  * @description:
@@ -46,8 +51,10 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
     private DialogWorkProduceBinding viewBinding;
     private AddSendListAdapter sendAdapter;
     private AddCopyListAdapter copyAdapter;
+    private BaseRecyclerViewAdapter baseSendAdapter, baseCopyAdapter;
     private List<StaffBean> sendStaffList = new ArrayList<>();
     private List<StaffBean> copyStaffList = new ArrayList<>();
+    private OperateProduceType operateProduceType;
 
 
     public ProduceApplyDialog(@NonNull Context context, @StyleRes int theme, Activity activity) {
@@ -55,14 +62,15 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
         this.activity = activity;
     }
 
-    public ProduceApplyDialog(Activity activity, OnDialogClickListener clickListener) {
+    public ProduceApplyDialog(Activity activity, OperateProduceType type, OnDialogClickListener clickListener) {
         this(activity, 0, activity);
         this.clickListener = clickListener;
+        this.operateProduceType = type;
     }
 
 
-    public static void show(Activity activity, OnDialogClickListener clickListener) {
-        ProduceApplyDialog customerDialog = new ProduceApplyDialog(activity, clickListener);
+    public static void show(Activity activity, OperateProduceType type, OnDialogClickListener clickListener) {
+        ProduceApplyDialog customerDialog = new ProduceApplyDialog(activity, type, clickListener);
         customerDialog.show();
     }
 
@@ -93,6 +101,9 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
         viewBinding.tvCancel.setOnClickListener(this);
         viewBinding.ivSentTo.setOnClickListener(this);
         viewBinding.ivCopyTo.setOnClickListener(this);
+
+        viewBinding.tvTitle.setText(OperateProduceType.TYPE_EXECUTE_ACTIVATE == operateProduceType
+                ? "激活申请" : "提交暂停");
     }
 
 
@@ -118,34 +129,37 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
     }
 
     private void commitApplyInfo() {
+        ExecuteRequestBody body = new ExecuteRequestBody();
         if (TextUtils.isEmpty(viewBinding.etSearch.getText().toString())) {
             ToastUtils.showLong(getContext(), "请填内容");
             return;
         }
+        body.setType(operateProduceType.getCode());
+        body.setReason(viewBinding.etSearch.getText().toString());
         //审批人
-        StringBuilder sendBuilder = new StringBuilder();
+//        StringBuilder sendBuilder = new StringBuilder();
+
         if (sendAdapter != null) {
+            List<Long> sendArrList = new ArrayList<>();
             ArrayList<StaffBean> tagDataList = (ArrayList<StaffBean>) sendAdapter.getList();
             for (int ik = 0; ik < tagDataList.size(); ik++) {
                 StaffBean staffBean = tagDataList.get(ik);
-                sendBuilder.append(ik == 0 ? staffBean.getId() : "," + staffBean.getId());
+                sendArrList.add(staffBean.getId());
             }
-
-//            reportBody.setHandleBy(stringBuilder.toString());
+            body.setApprovers(sendArrList);
         }
         //抄送人
-        StringBuilder copyBuilder = new StringBuilder();
         if (copyAdapter != null) {
+            List<Long> copyArrList = new ArrayList<>();
             ArrayList<StaffBean> tagDataList = (ArrayList<StaffBean>) copyAdapter.getList();
             for (int ik = 0; ik < tagDataList.size(); ik++) {
                 StaffBean staffBean = tagDataList.get(ik);
-                copyBuilder.append(ik == 0 ? staffBean.getId() : "," + staffBean.getId());
+                copyArrList.add(staffBean.getId());
             }
-
-//            reportBody.setHandleBy(stringBuilder.toString());
+            body.setNoticedPeople(copyArrList);
         }
         if (clickListener != null) {
-            clickListener.onCommitInfo(viewBinding.etSearch.getText().toString());
+            clickListener.onCommitInfo(body);
             dismiss();
         }
 
@@ -159,14 +173,15 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
         sendStaffList.addAll(staffBeanList);
         if (sendAdapter == null) {
             sendAdapter = new AddSendListAdapter(sendStaffList, getContext());
-            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 5, RecyclerView.VERTICAL, false);
+            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4, RecyclerView.VERTICAL, false);
             viewBinding.rvSent.setLayoutManager(layoutManager);
             viewBinding.rvSent.addItemDecoration(new AddSendListItemDecorator());
+//            baseSendAdapter = new BaseRecyclerViewAdapter(sendAdapter);
             viewBinding.rvSent.setAdapter(sendAdapter);
         } else {
             sendAdapter.setDataList(sendStaffList, false);
         }
-
+//        baseSendAdapter.refreshData();
 
     }
 
@@ -178,13 +193,15 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
         copyStaffList.addAll(staffBeanList);
         if (copyAdapter == null) {
             copyAdapter = new AddCopyListAdapter(copyStaffList, getContext());
-            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 5, RecyclerView.VERTICAL, false);
+            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4, RecyclerView.VERTICAL, false);
             viewBinding.rvCopyTo.setLayoutManager(layoutManager);
-            viewBinding.rvCopyTo.addItemDecoration(new AddSendListItemDecorator());
+            viewBinding.rvCopyTo.addItemDecoration(new AddCopyListItemDecorator());
+//            baseSendAdapter = new BaseRecyclerViewAdapter(sendAdapter);
             viewBinding.rvCopyTo.setAdapter(copyAdapter);
         } else {
             copyAdapter.setDataList(copyStaffList, false);
         }
+//        baseCopyAdapter.refreshData();
     }
 
     private void initListener() {
@@ -233,7 +250,7 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
     }
 
     public interface OnDialogClickListener {
-        void onCommitInfo(String content);
+        void onCommitInfo(ExecuteRequestBody data);
 
         void onSendClick(AddSendListAdapter adapter);
 

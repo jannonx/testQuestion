@@ -29,6 +29,7 @@ public class FocusProduceClassifyActivity extends BaseToolbarActivity<ActivityWi
     public static void start(Context context, ProductStatusType data) {
         Intent intent = new Intent(context, FocusProduceClassifyActivity.class);
         intent.putExtra(ConstantValue.KEY_CONTENT, data);
+
         context.startActivity(intent);
     }
 

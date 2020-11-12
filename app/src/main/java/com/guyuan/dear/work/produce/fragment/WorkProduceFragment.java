@@ -8,13 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.produce.adapter.FocusProduceAdapter;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ListProduceRequestBody;
-import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
@@ -53,7 +51,8 @@ public class WorkProduceFragment extends BaseListSearchFragment<FocusProduceBean
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-//                FocusProduceDetailActivity.start(getContext());
+                com.example.mvvmlibrary.util.LogUtils.showLog("listData="+(listData.get(position)==null));
+                FocusProduceDetailActivity.start(getContext(),listData.get(position),true);
             }
         });
         viewModel.getProduceList(getListRequestBody(true));

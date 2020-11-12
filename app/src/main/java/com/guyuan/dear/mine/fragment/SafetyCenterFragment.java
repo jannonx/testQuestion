@@ -8,7 +8,6 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 
-import com.example.httplibrary.bean.ResultBean;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentSafetyCenterBinding;
@@ -48,9 +47,11 @@ public class SafetyCenterFragment extends BaseDataBindingFragment<FragmentSafety
             }
         });
 
-        viewModel.getEditUserPwEvent().observe(getActivity(), new Observer<ResultBean<Integer>>() {
+        viewModel.getEditUserPwEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
-            public void onChanged(ResultBean<Integer> dataRefreshBean) {
+            public void onChanged(Integer dataRefreshBean) {
+                ToastUtils.showShort(getContext(), "修改密码成功！");
+                getActivity().finish();
             }
         });
     }

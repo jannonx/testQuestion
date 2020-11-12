@@ -1,9 +1,7 @@
 package com.guyuan.dear.focus.produce.fragment;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,7 +20,6 @@ import java.util.Collections;
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
-import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @description: 我的关注--生产详情
@@ -49,12 +46,12 @@ public class FocusProduceStatusFragment extends BaseListFragment<ProduceStateBea
         Bundle arguments = getArguments();
         produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
 
-        footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_focus_produce_status, null);
+//        footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_focus_produce_status, null);
         FocusProduceStatusAdapter listAdapter = new FocusProduceStatusAdapter(getContext(), listData,
                 R.layout.item_focus_produce_status);
 
         adapter = new BaseRecyclerViewAdapter(listAdapter);
-        adapter.addFooterView(footerView);
+//        adapter.addFooterView(footerView);
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -76,24 +73,16 @@ public class FocusProduceStatusFragment extends BaseListFragment<ProduceStateBea
      */
     private void dealStateDataList(List<ProduceStateBean> data) {
         List<ProduceStateBean> tempList = new ArrayList<>();
-        //第一次加载，去除开始生产的条目;追加从第一条开始遍历
-        int startIndex = listData.size() == 0 ? 1 : 0;
 
-        for (int i = startIndex; i < data.size(); i++) {
+        for (int i = 0; i < data.size(); i++) {
             ProduceStateBean parentBean = data.get(i);
             tempList.add(parentBean);
             List<ProduceStateBean> texamineFlows = parentBean.getTexamineFlows();
             if (texamineFlows != null && texamineFlows.size() != 0) {
                 tempList.addAll(texamineFlows);
             }
+        }
 
-        }
-        if (listData.size() == 0) {
-            TextView activatePerson = footerView.findViewById(R.id.tv_name);
-            TextView activateTime = footerView.findViewById(R.id.tv_activate_time);
-            activatePerson.setText(data.get(0).getCreateName()+"：生产开始");
-            activateTime.setText(data.get(0).getCreateTime());
-        }
         Collections.reverse(tempList);
         setListData(tempList);
     }
