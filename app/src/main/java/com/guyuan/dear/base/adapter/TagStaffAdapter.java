@@ -7,8 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.utils.view.flowlayout.FlowLayout;
-import com.guyuan.dear.utils.view.flowlayout.TagAdapter;
+import com.guyuan.dear.customizeview.flowlayout.FlowLayout;
+import com.guyuan.dear.customizeview.flowlayout.TagAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.utils.GlideUtils;
 

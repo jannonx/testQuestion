@@ -89,7 +89,7 @@
                 android:layout_toStartOf="@id/iv_sent_to"
                 android:layout_toEndOf="@+id/label_sent_to">
 
-                <com.guyuan.dear.utils.view.flowlayout.TagFlowLayout
+                <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
                     android:id="@+id/tfL_sent_to"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
                 android:layout_toStartOf="@id/iv_copy_to"
                 android:layout_toEndOf="@+id/label_copy_to">
 
-                <com.guyuan.dear.utils.view.flowlayout.TagFlowLayout
+                <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
                     android:id="@+id/tfL_copy_to"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

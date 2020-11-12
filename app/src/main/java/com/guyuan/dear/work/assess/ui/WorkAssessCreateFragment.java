@@ -4,8 +4,12 @@ import android.os.Bundle;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
+import com.guyuan.dear.customizeview.editListView.EditListViewBean;
 import com.guyuan.dear.databinding.FragmentWorkAssessCreateBinding;
 import com.guyuan.dear.work.assess.data.WorkAssessViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : tl
@@ -42,5 +46,11 @@ public class WorkAssessCreateFragment extends BaseDataBindingFragment<FragmentWo
         if (viewModel != null) {
             viewModel.getCustomerList();
         }
+        setElv();
+    }
+
+    private void setElv() {
+        binding.workAssessElv.setEditable(true);
+        binding.workAssessElv.setFragmentManager(childFragmentManager);
     }
 }

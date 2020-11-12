@@ -1,5 +1,6 @@
 package com.guyuan.dear.work.assess.adapter;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,9 +18,10 @@ import com.guyuan.dear.utils.CalenderUtils;
 
 public class WorkAssessBindingAdapter {
 
+    //设置列表倒计时
     @BindingAdapter(value = {"countDown", "startTime"})
     public static void setCountDown(TextView tv, int status, String startTime) {
-        if (status == FocusAssessListFragment.NOT_START_ASSESS) {  //待评审
+        if (status == FocusAssessListFragment.NOT_START_ASSESS && !TextUtils.isEmpty(startTime)) {  //待评审
             setCountDownByText(tv, startTime);
         } else {
             tv.setVisibility(View.GONE);
@@ -39,4 +41,5 @@ public class WorkAssessBindingAdapter {
             tv.setVisibility(View.GONE);
         }
     }
+
 }

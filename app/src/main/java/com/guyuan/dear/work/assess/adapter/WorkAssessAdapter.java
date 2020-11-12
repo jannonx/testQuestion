@@ -3,7 +3,7 @@ package com.guyuan.dear.work.assess.adapter;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemWorkAssessBinding;
-import com.guyuan.dear.work.assess.data.bean.WorkAssessListBean;
+import com.guyuan.dear.work.assess.data.bean.WorkAssessItemBean;
 
 import java.util.List;
 
@@ -14,14 +14,14 @@ import java.util.List;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class WorkAssessAdapter extends BaseDBRecycleAdapter<WorkAssessListBean, ItemWorkAssessBinding> {
+public class WorkAssessAdapter extends BaseDBRecycleAdapter<WorkAssessItemBean, ItemWorkAssessBinding> {
 
-    public WorkAssessAdapter(List<WorkAssessListBean> listData, int layoutID) {
+    public WorkAssessAdapter(List<WorkAssessItemBean> listData, int layoutID) {
         super(listData, layoutID);
     }
 
     @Override
-    protected void bindDataToView(Holder holder, WorkAssessListBean item, int position) {
-        holder.binding.setVariable(BR.workAssessListBean, item);
+    protected void bindDataToView(Holder holder, WorkAssessItemBean item, int position) {
+        holder.binding.setVariable(BR.workAssessItemBean, item);
     }
 }

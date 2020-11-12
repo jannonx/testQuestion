@@ -1,21 +1,18 @@
 package com.guyuan.dear.focus.client.adapter;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import androidx.appcompat.widget.AppCompatTextView;
-
 
 import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.utils.GlideUtils;
 import com.guyuan.dear.utils.LogUtils;
-import com.guyuan.dear.utils.view.roundedimageview.RoundedImageView;
+import com.guyuan.dear.customizeview.roundedimageview.RoundedImageView;
 
 import java.util.List;
 

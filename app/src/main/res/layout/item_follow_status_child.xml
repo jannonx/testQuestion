@@ -18,7 +18,7 @@
         android:orientation="vertical"
         android:paddingBottom="@dimen/dp_8">
 
-        <com.guyuan.dear.utils.view.roundedimageview.RoundedImageView
+        <com.guyuan.dear.customizeview.roundedimageview.RoundedImageView
             android:id="@+id/iv_avatar"
             android:layout_width="@dimen/dp_36"
             android:layout_height="@dimen/dp_36"

@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="workAssessViewModel"
+            type="com.guyuan.dear.work.assess.data.WorkAssessViewModel" />
+    </data>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,6 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="12dp"
+                    android:text="@{workAssessViewModel.workAssessListDetail.customerName}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="深圳固远" />
@@ -39,6 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
+                    app:assessStatus="@{workAssessViewModel.workAssessListDetail.status}"
                     app:layout_constraintBottom_toBottomOf="@+id/assess_detail_custom_tv"
                     app:layout_constraintStart_toEndOf="@+id/assess_detail_custom_tv"
                     app:layout_constraintTop_toTopOf="@+id/assess_detail_custom_tv"
@@ -71,6 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
+                    android:text="@{workAssessViewModel.workAssessListDetail.contractNumber}"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView9"
                     app:layout_constraintStart_toEndOf="@+id/textView9"
@@ -94,6 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
+                    android:text="@{workAssessViewModel.workAssessListDetail.compereName}"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView12"
                     app:layout_constraintStart_toEndOf="@+id/textView12"
@@ -117,6 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
+                    android:text="@{workAssessViewModel.workAssessListDetail.auditStartTime+'~'+workAssessViewModel.workAssessListDetail.auditEndTime}"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView14"
                     app:layout_constraintStart_toEndOf="@+id/textView14"
@@ -140,6 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
+                    android:text="@{workAssessViewModel.workAssessListDetail.meetingName}"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView16"
                     app:layout_constraintStart_toEndOf="@+id/textView16"
@@ -268,7 +281,7 @@
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.476" />
+                            app:layout_constraintVertical_bias="0.5" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/assess_detail_pass_mb"
@@ -279,7 +292,7 @@
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toEndOf="@+id/assess_detail_not_pass_mb"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.476" />
+                            app:layout_constraintVertical_bias="0.5" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

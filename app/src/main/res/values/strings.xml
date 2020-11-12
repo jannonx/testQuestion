@@ -335,7 +335,7 @@
         2，开发设计过程中需要的新材料应优先在原材料中挑用，便于增强库存材料的通用性，减少品号数量
         3，加强销售、生产计划性，合理安排成品库存，当部分产品及滞销或面临淘汰时及时调整相应安全库存额定量，压缩对应原材料采购量，从而避免呆滞。</string>
     <string name="please_input_search_item">请输入搜索内容</string>
-
     <string name="security_report">报&#8194;警&#8194;人</string>
     <string name="please_input_name_to_search">请输入姓名搜索</string>
+    <string name="textLength">%d/240</string>
 </resources>

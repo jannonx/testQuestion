@@ -1,10 +1,12 @@
-package com.guyuan.dear.work.assess.ui;
+package com.guyuan.dear.work.assess.ui.detail;
 
 import android.os.Bundle;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
+import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentWorkAssessDetailBinding;
+import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.assess.data.WorkAssessViewModel;
 
 /**
@@ -18,10 +20,10 @@ public class WorkAssessDetailFragment extends BaseDataBindingFragment<FragmentWo
 
     public static final String TAG = "WorkAssessDetailFragment";
 
-    public static WorkAssessDetailFragment newInstance() {
+    public static WorkAssessDetailFragment newInstance(int id) {
 
         Bundle args = new Bundle();
-
+        args.putInt(ConstantValue.KEY_ID, id);
         WorkAssessDetailFragment fragment = new WorkAssessDetailFragment();
         fragment.setArguments(args);
         return fragment;
@@ -29,7 +31,7 @@ public class WorkAssessDetailFragment extends BaseDataBindingFragment<FragmentWo
 
     @Override
     protected int getVariableId() {
-        return 0;
+        return BR.workAssessViewModel;
     }
 
     @Override
@@ -39,6 +41,12 @@ public class WorkAssessDetailFragment extends BaseDataBindingFragment<FragmentWo
 
     @Override
     protected void initialization() {
+        if (getArguments() != null) {
+            int id = getArguments().getInt(ConstantValue.KEY_ID);
+            if (viewModel != null) {
+                viewModel.getAssessDetail(id);
+            }
 
+        }
     }
 }
