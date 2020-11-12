@@ -12,6 +12,7 @@ public class PickStaffBean extends StaffBean {
     private boolean isPick;
     private boolean isHidden;
     private boolean isDisabled;
+    private long pickTime;
 
     public PickStaffBean(){}
 
@@ -29,6 +30,14 @@ public class PickStaffBean extends StaffBean {
 
     public void setHidden(boolean hidden) {
         isHidden = hidden;
+    }
+
+    public long getPickTime() {
+        return pickTime;
+    }
+
+    public void setPickTime(long pickTime) {
+        this.pickTime = pickTime;
     }
 
     @Override

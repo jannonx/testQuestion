@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * @author: 廖华凯
- * @description:
+ * @description: 这个视图模型按照当前出勤状况给所有人员分组
  * @since: 2020/9/21 17:54
  * @company: 固远（深圳）信息技术有限公司
  **/
@@ -30,6 +30,9 @@ public class HrStatusGrpViewModel extends BaseViewModel {
         this.grpType = grpType;
     }
 
+    /**
+     * 生成模拟数据，显示UI
+     */
     public void loadDataFromNet() {
         int count=10;
         List<HrStaffsByDept> list = new ArrayList<>();
@@ -57,6 +60,13 @@ public class HrStatusGrpViewModel extends BaseViewModel {
         this.callback = callback;
     }
 
+    /**
+     * 下来加载更多时，生成更多模拟数据。
+     * @param grpType
+     * @param deptId
+     * @param startPos
+     * @param size
+     */
     public void loadMoreStaffs(int grpType, long deptId, int startPos, int size) {
         if(staffs.getValue()==null){
             return;

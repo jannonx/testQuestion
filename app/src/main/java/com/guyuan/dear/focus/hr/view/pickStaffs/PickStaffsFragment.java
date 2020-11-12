@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.BaseExpandableListAdapter;
 import android.widget.CompoundButton;
 import android.widget.ExpandableListView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
@@ -91,15 +89,20 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
             @Override
             public void onItemClick(PickStaffBean bean, int pos) {
                 List<PickStaffsExpParentBean> grpBeans = getViewModel().getGrpBeans().getValue();
+                //遍历二级选人列表，找到被点选/反选的人，更新UI
                 for (int i = 0; i < grpBeans.size(); i++) {
+                    //从一级菜单开始
                     PickStaffsExpParentBean temp = grpBeans.get(i);
                     List<PickStaffBean> staffs = temp.getStaffs();
+                    //遍历二级菜单
                     for (int i1 = 0; i1 < staffs.size(); i1++) {
                         PickStaffBean staffBean = staffs.get(i1);
                         if(staffBean.getId().equals(bean.getId())){
+                            //如果找到了被点选/反选的人，更新adapter，刷新UI
                             ExpandableListView expListView = getViewDataBinding().fragmentPickStaffsExpListView;
                             PickStaffsExpListAdapter adapter = (PickStaffsExpListAdapter) expListView.getExpandableListAdapter();
                             adapter.notifyDataSetChanged();
+                            //expListView 更新UI时需要重新收起/展开，否则子菜单不会刷新
                             if(expListView.isGroupExpanded(i)){
                                 expListView.collapseGroup(i);
                                 expListView.expandGroup(i);
@@ -155,7 +158,8 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
             @Override
             public void onClick(View v) {
                 ArrayList<StaffBean> staffs = getViewModel().getSelectedStaffs();
-                getViewModel().updateSelectStaffHistory(staffs);
+                //保存选择记录
+                getViewModel().saveStaffSelectHistoryToLocal(staffs);
                 FragmentActivity activity = getActivity();
                 Intent intent = new Intent();
                 intent.putParcelableArrayListExtra(ConstantValue.KEY_SELECTED_STAFFS,staffs);

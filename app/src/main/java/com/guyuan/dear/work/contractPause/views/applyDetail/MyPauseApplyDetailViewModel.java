@@ -32,6 +32,10 @@ public class MyPauseApplyDetailViewModel extends BaseViewModel {
         return applyBean;
     }
 
+    /**
+     * 生成模拟数据，显示在主界面
+     * @param bean
+     */
     public void loadApplyDetailDataFromNet(MyPauseApplyBean bean){
         MyPauseApplyDetailBean detailBean = new MyPauseApplyDetailBean();
         detailBean.setBuyer(bean.getBuyer());
@@ -48,16 +52,7 @@ public class MyPauseApplyDetailViewModel extends BaseViewModel {
                 "　　什么背景，你老实告诉我！”\n" +
                 "　　对方似乎也动了火：\n" +
                 "　　“什么背景呢，都是中华民族！部务会议议决的，怎么是秘密行动呢。……华\n" +
-                "　　先生又不到会，开会也不终席，来找又找不到……我们总不能把部里的工作停顿起\n" +
-                "　　来。”\n" +
-                "　　“混蛋！”他咬着牙，嘴唇在颤抖着。“你们小心！你们，哼，你们！你们！\n" +
-                "　　……”他倒到了沙发上，嘴巴痛苦地抽得歪着。“妈的！这个这个——你们青年！\n" +
-                "　　……”\n" +
-                "　　五分钟之后他抬起头来，害怕地四面看一看。那两个客人已经走了。他叹一口\n" +
-                "　　长气，对我说：\n" +
-                "　　“唉，你看你看！现在的青年怎么办，现在的青年！”\n" +
-                "　　这晚他没命地喝了许多酒，嘴里嘶嘶地骂着那些小伙子。他打碎了一只茶杯。\n" +
-                "　　密司黄扶着他上了床，他忽然打个寒噤说：“明天十点钟有个集会……”");
+                "　　先生又不到会，开会也不终席，来找又找不到……我们总不能把部里的工作停顿起来");
         List<GenericApproveLog> logList = new ArrayList<>();
         //first create data
         ApproveLogFirstCreateDate logFirstCreateDate = new ApproveLogFirstCreateDate();

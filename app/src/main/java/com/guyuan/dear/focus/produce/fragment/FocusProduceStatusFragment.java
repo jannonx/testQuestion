@@ -3,58 +3,99 @@ package com.guyuan.dear.focus.produce.fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.produce.adapter.FocusProduceStatusAdapter;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
+import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
+import com.guyuan.dear.utils.ConstantValue;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
- * @description:
+ * @description: 我的关注--生产详情
  * @author: Jannonx
  * @since: 2020/11/2 14:27
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusProduceStatusFragment extends BaseListFragment<FocusProduceBean, FragmentListBinding, FocusProduceViewModel> {
+public class FocusProduceStatusFragment extends BaseListFragment<ProduceStateBean, FragmentListBinding, FocusProduceViewModel> {
 
     public static final String TAG = FocusProduceStatusFragment.class.getSimpleName();
+    private FocusProduceBean produceBean;
+    private View footerView;
 
-    public static FocusProduceStatusFragment newInstance() {
-        Bundle args = new Bundle();
+    public static FocusProduceStatusFragment newInstance(FocusProduceBean data) {
+        Bundle bundle = new Bundle();
         FocusProduceStatusFragment fragment = new FocusProduceStatusFragment();
-        fragment.setArguments(args);
+        bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
+        fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
     protected void initView() {
-        View footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_focus_produce_status, null);
+        Bundle arguments = getArguments();
+        produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+
+        footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_focus_produce_status, null);
         FocusProduceStatusAdapter listAdapter = new FocusProduceStatusAdapter(getContext(), listData,
                 R.layout.item_focus_produce_status);
 
         adapter = new BaseRecyclerViewAdapter(listAdapter);
-        recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recycleView.setAdapter(adapter);
-        recycleView.setLoadMoreEnabled(false);
-        recycleView.setPullRefreshEnabled(false);
         adapter.addFooterView(footerView);
-        adapter.notifyDataSetChanged();
-        adapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
+        recycleView.setAdapter(adapter);
+        recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+
+        viewModel.getProduceStateList(produceBean.getPlanId());
+
+        viewModel.getStatusListEvent().observe(getActivity(), new Observer<List<ProduceStateBean>>() {
+            @Override
+            public void onChanged(List<ProduceStateBean> data) {
+                dealStateDataList(data);
             }
         });
+    }
 
+    /**
+     * 处理嵌套数据->列表数据
+     *
+     * @param data
+     */
+    private void dealStateDataList(List<ProduceStateBean> data) {
+        List<ProduceStateBean> tempList = new ArrayList<>();
+        //第一次加载，去除开始生产的条目;追加从第一条开始遍历
+        int startIndex = listData.size() == 0 ? 1 : 0;
 
+        for (int i = startIndex; i < data.size(); i++) {
+            ProduceStateBean parentBean = data.get(i);
+            tempList.add(parentBean);
+            List<ProduceStateBean> texamineFlows = parentBean.getTexamineFlows();
+            if (texamineFlows != null && texamineFlows.size() != 0) {
+                tempList.addAll(texamineFlows);
+            }
+
+        }
+        if (listData.size() == 0) {
+            TextView activatePerson = footerView.findViewById(R.id.tv_name);
+            TextView activateTime = footerView.findViewById(R.id.tv_activate_time);
+            activatePerson.setText(data.get(0).getCreateName()+"：生产开始");
+            activateTime.setText(data.get(0).getCreateTime());
+        }
+        Collections.reverse(tempList);
+        setListData(tempList);
     }
 
     @Override

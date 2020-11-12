@@ -71,7 +71,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".focus.hr.view.pickStaffs.PickStaffsActivity"></activity>
+        <activity android:name=".focus.qc.views.home.QcHomeActivity"></activity>
+        <activity android:name=".focus.hr.view.pickStaffs.PickStaffsActivity" />
         <activity android:name=".work.contractRestart.view.home.ContractRestartHomeActivity" />
         <activity android:name=".work.contractPause.views.applyDetail.MyPauseApplyDetailActivity" />
         <activity android:name=".work.contractPause.views.home.ContractPauseHomeActivity" />

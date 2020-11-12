@@ -39,6 +39,7 @@ public class FollowStatusFragment extends BaseListFragment<CommentsBean, Fragmen
 
     public static final String TAG = FollowStatusFragment.class.getSimpleName();
     private View footerView;
+    private ClientCompanyBean clientData;
 
     public static FollowStatusFragment newInstance(ClientCompanyBean data) {
         Bundle bundle = new Bundle();
@@ -52,7 +53,7 @@ public class FollowStatusFragment extends BaseListFragment<CommentsBean, Fragmen
     @Override
     protected void initView() {
         Bundle arguments = getArguments();
-        ClientCompanyBean clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         viewModel.getFollowCommentList(getListRequestBody(true));
 
 
@@ -76,9 +77,8 @@ public class FollowStatusFragment extends BaseListFragment<CommentsBean, Fragmen
                 LogUtils.showLog("CommentsBean=" + dataRefreshBean.getContent().size());
                 List<CommentsBean> content = dataRefreshBean.getContent();
                 setListData(content);
-
-                TextView activateTime = footerView.findViewById(R.id.tv_activate_time);
                 if (content.size() > 0) {
+                    TextView activateTime = footerView.findViewById(R.id.tv_activate_time);
                     activateTime.setText(content.get(content.size() - 1).getCreateTime());
                 }
             }
@@ -110,6 +110,7 @@ public class FollowStatusFragment extends BaseListFragment<CommentsBean, Fragmen
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListClientRequestBody body = new ListClientRequestBody();
         ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
+        filtersBean.setId(clientData.getId());
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);

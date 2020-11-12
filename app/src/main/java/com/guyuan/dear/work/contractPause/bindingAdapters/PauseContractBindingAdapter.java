@@ -8,7 +8,9 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.guyuan.dear.customizeview.itemDecorator.AddCopyListItemDecorator;
 import com.guyuan.dear.customizeview.itemDecorator.AddSendListItemDecorator;
+import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
 import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
@@ -30,13 +32,20 @@ public class PauseContractBindingAdapter {
         AddSendListAdapter adapter = new AddSendListAdapter(staffs,view.getContext());
         GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(),5,RecyclerView.VERTICAL,false);
         view.setLayoutManager(layoutManager);
+        view.addItemDecoration(new AddSendListItemDecorator());
         view.setAdapter(adapter);
-//        view.addItemDecoration(new AddSendListItemDecorator());
     }
 
     @BindingAdapter("setPauseContractCopyList")
     public static void setPauseContractCopyList(RecyclerView view, List<StaffBean> staffs) {
-        setPauseContractSendList(view, staffs);
+        if (staffs == null) {
+            return;
+        }
+        AddCopyListAdapter adapter = new AddCopyListAdapter(staffs,view.getContext());
+        GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(),5,RecyclerView.VERTICAL,false);
+        view.setLayoutManager(layoutManager);
+        view.addItemDecoration(new AddCopyListItemDecorator());
+        view.setAdapter(adapter);
     }
 
     private static final int MAX_LEN = 240;

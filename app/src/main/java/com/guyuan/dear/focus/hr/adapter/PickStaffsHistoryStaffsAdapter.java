@@ -54,6 +54,7 @@ public class PickStaffsHistoryStaffsAdapter extends RecyclerView.Adapter<PickSta
                     ToastUtils.showShort(DearApplication.getInstance(),"无法操作该人员。");
                 }else {
                     bean.setPick(!bean.isPick());
+                    bean.setPickTime(System.currentTimeMillis());
                     notifyItemChanged(position);
                     if(itemClickListener !=null){
                         itemClickListener.onItemClick(bean,position);

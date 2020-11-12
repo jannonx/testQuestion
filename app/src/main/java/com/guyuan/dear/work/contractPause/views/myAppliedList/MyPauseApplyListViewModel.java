@@ -33,6 +33,10 @@ public class MyPauseApplyListViewModel extends BaseViewModel {
         this.onClickListItem.postValue(onClickListItem);
     }
 
+    /**
+     * 生成模拟数据，显示在主界面UI
+     * @param uid
+     */
     public void getListFromNet(String uid){
         List<MyPauseApplyBean> list = new ArrayList<>();
         int states[] = new int[]{MyPauseApplyBean.APPLY_PENDING_FOR_START,

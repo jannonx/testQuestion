@@ -19,4 +19,32 @@ public class ProduceConstant {
     public static final int INT_PRODUCE_COMPLETE = 4;
     //生产拖期
     public static final int INT_PRODUCE_DELAY = 6;
+
+
+    //----------------------生产状态原因
+
+    //暂停原因
+    public static final int INT_REASON_PAUSE = 1;
+    //激活原因
+    public static final int INT_REASON_ACTIVATE = 2;
+    //驳回原因
+    public static final int INT_REASON_REJECT = 3;
+    //通过原因
+    public static final int INT_REASON_PASS = 4;
+
+    //----------------------生产审批状态
+
+    //暂停审批中
+    public static final int INT_APPROVAL_PAUSE_ING = 0;
+    //暂停审批通过
+    public static final int INT_APPROVAL_PAUSE_PASS = 2;
+    //暂停审批被驳回
+    public static final int INT_APPROVAL_PAUSE_REJECT = 3;
+    //激活审批中
+    public static final int INT_APPROVAL_ACTIVATE_ING = 4;
+    //激活审批通过
+    public static final int INT_APPROVAL_ACTIVATE_PASS = 6;
+    //激活审批被驳回
+    public static final int INT_APPROVAL_ACTIVATE_REJECT = 7;
+
 }

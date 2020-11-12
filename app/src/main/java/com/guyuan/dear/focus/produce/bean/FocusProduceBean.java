@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.produce.bean;
 
+import com.guyuan.dear.R;
+
 import java.io.Serializable;
 
 /**
@@ -16,6 +18,7 @@ public class FocusProduceBean implements Serializable {
      * 6.激活审批通过，7.激活审批被驳回
      */
     private int approvalStatus;
+    private ApprovalStatusType approvalStatusType;
 
     /**
      * 产品代号
@@ -25,6 +28,7 @@ public class FocusProduceBean implements Serializable {
      * 显示原因的类型：1.暂停原因；2.激活原因；3.驳回原因；4.通过原因
      */
     private int reasonType;
+    private ProduceReasonType produceReasonType;
     /**
      * 显示原因
      */
@@ -61,6 +65,8 @@ public class FocusProduceBean implements Serializable {
      * 4.完成，5.拖期未完成，6.拖期已完成
      */
     private int status;
+
+    private ProductStatusType statusType;
     /**
      * 显示时间的类型：
      * 1.实际完成时间；2.拖期完成时间；3.实际开始时间；
@@ -71,6 +77,9 @@ public class FocusProduceBean implements Serializable {
      * 操作人
      */
     private String updateName;
+
+    private int peopleType;
+    private OperatorType operatorType;
 
     /**
      * 实际生产结束时间
@@ -144,14 +153,19 @@ public class FocusProduceBean implements Serializable {
     private String unit;
 
 
-
     public int getApprovalStatus() {
         return approvalStatus;
     }
 
+    public ApprovalStatusType getApprovalStatusType() {
+        return ApprovalStatusType.toType(approvalStatus);
+    }
+
+
     public void setApprovalStatus(int approvalStatus) {
         this.approvalStatus = approvalStatus;
     }
+
 
     public String getCode() {
         return code;
@@ -163,6 +177,14 @@ public class FocusProduceBean implements Serializable {
 
     public int getReasonType() {
         return reasonType;
+    }
+
+    /**
+     * 显示原因的类型：1.暂停原因；2.激活原因；3.驳回原因；4.通过原因
+     */
+
+    public String getReasonTypeStr() {
+        return ProduceReasonType.toText(reasonType);
     }
 
     public void setReasonType(int reasonType) {
@@ -217,8 +239,95 @@ public class FocusProduceBean implements Serializable {
         this.principalDept = principalDept;
     }
 
+    /**
+     * 生产计划状态：
+     * 0.暂停，1.待开始，2.生产中，3.激活生产中，
+     * 4.完成，5.拖期未完成，6.拖期已完成
+     */
+    public String getStatusText() {
+        statusType = ProductStatusType.toType(status);
+        switch (statusType) {
+            case TYPE_PRODUCE_EXCEPTION:
+                return "暂停";
+            case TYPE_PRODUCE_WAIT:
+                return "待生产";
+            case TYPE_PRODUCE_ING:
+                return "生产中";
+            case TYPE_PRODUCE_COMPLETE:
+                return "完成";
+            case TYPE_PRODUCE_DELAY:
+                return "已拖期";
+            default:
+                return "未知";
+        }
+    }
+
+
+    //    /**
+//     * 生产动态圆点颜色
+//     *
+//     * @return
+//     */
+//    public int getStatusPointColor() {
+//        statusType = ProductStatusType.toType(status);
+//        switch (statusType) {
+//            case TYPE_PRODUCE_EXCEPTION:
+//                return R.drawable.bg_red_f04864_round;
+//            case TYPE_PRODUCE_WAIT:
+//            case TYPE_PRODUCE_ING:
+//                return R.drawable.bg_green_2fc25b_round;
+//            case TYPE_PRODUCE_COMPLETE:
+//                return R.drawable.bg_green_2fc25b_round;
+//            case TYPE_PRODUCE_DELAY:
+//                return R.drawable.bg_green_2fc25b_round;
+//            default:
+//                return R.color.transparent;
+//        }
+//    }
+    public int getStatusTextColor() {
+        statusType = ProductStatusType.toType(status);
+        switch (statusType) {
+            case TYPE_PRODUCE_EXCEPTION:
+                return R.color.color_orange_FF6010;
+            case TYPE_PRODUCE_WAIT:
+            case TYPE_PRODUCE_ING:
+                return R.color.color_blue_1677ff;
+            case TYPE_PRODUCE_COMPLETE:
+                return R.color.color_green_00B578;
+            case TYPE_PRODUCE_DELAY:
+                return R.color.color_orange_FF8F1F;
+            default:
+                return R.color.transparent;
+        }
+    }
+
+    public int getStatusTextBg() {
+        statusType = ProductStatusType.toType(status);
+        switch (statusType) {
+            case TYPE_PRODUCE_EXCEPTION:
+                return R.drawable.bg_orange_ffece3_corner_2;
+            case TYPE_PRODUCE_WAIT:
+            case TYPE_PRODUCE_ING:
+                return R.drawable.bg_blue_e7f1ff_corner_2;
+            case TYPE_PRODUCE_COMPLETE:
+                return R.drawable.bg_green_d4fff1_corner_2;
+            case TYPE_PRODUCE_DELAY:
+                return R.drawable.bg_orange_ffefdf_corner_2;
+            default:
+                return R.drawable.bg_blue_0aad33_corner_4;
+        }
+    }
+
     public int getStatus() {
         return status;
+    }
+
+    public ProductStatusType getStatusType() {
+        return ProductStatusType.toType(status);
+    }
+
+    public void setStatusType(int status) {
+        this.statusType = ProductStatusType.toType(status);
     }
 
     public void setStatus(int status) {
@@ -229,12 +338,45 @@ public class FocusProduceBean implements Serializable {
         return timeType;
     }
 
+    public String getOperatorStr() {
+        statusType = ProductStatusType.toType(status);
+        approvalStatusType = ApprovalStatusType.toType(approvalStatus);
+        if (ProductStatusType.TYPE_PRODUCE_ING == statusType) {
+            if (ApprovalStatusType.TYPE_APPROVAL_NOT_APPLY == approvalStatusType
+                    || ApprovalStatusType.TYPE_APPROVAL_PAUSE_PASS == approvalStatusType) {
+                return "操作员：" + updateName;
+            }
+        } else if (ProductStatusType.TYPE_PRODUCE_COMPLETE == statusType
+                || ProductStatusType.TYPE_PRODUCE_DELAY == statusType) {
+            return "操作员：" + updateName;
+        }
+
+        return getApprovalStatusType().getDes();
+    }
+
+    public String getTimeTypeStr() {
+        DisPlayTimeType disPlayTimeType = DisPlayTimeType.toType(timeType);
+        return disPlayTimeType == null ? "未知时间" : disPlayTimeType.getMessage();
+    }
+
     public void setTimeType(int timeType) {
         this.timeType = timeType;
     }
 
     public String getUpdateName() {
         return updateName;
+    }
+
+    public int getPeopleType() {
+        return peopleType;
+    }
+
+    public OperatorType getOperatorType() {
+        return OperatorType.getEnum(peopleType);
+    }
+
+    public void setPeopleType(int peopleType) {
+        this.peopleType = peopleType;
     }
 
     public void setUpdateName(String updateName) {

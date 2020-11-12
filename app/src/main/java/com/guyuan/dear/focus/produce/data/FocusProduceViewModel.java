@@ -11,6 +11,9 @@ import com.guyuan.dear.focus.client.data.FocusClientRepository;
 import com.guyuan.dear.focus.produce.api.FocusProduceApiService;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
+import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
+
+import java.util.List;
 
 import io.reactivex.disposables.Disposable;
 import okhttp3.RequestBody;
@@ -27,12 +30,11 @@ public class FocusProduceViewModel extends BaseViewModel {
     private MutableLiveData<RefreshBean<FocusProduceBean>> statusEvent = new MutableLiveData<>();
     private MutableLiveData<RefreshBean<FocusProduceBean>> exceptionListEvent = new MutableLiveData<>();
     private MutableLiveData<RefreshBean<FocusProduceBean>> produceListEvent = new MutableLiveData<>();
+    private MutableLiveData<List<ProduceStateBean>> statusListEvent = new MutableLiveData<>();
     private MutableLiveData<FocusProduceBean> basicInfoEvent = new MutableLiveData<>();
+    private MutableLiveData<Integer> executeEvent = new MutableLiveData<>();
 
-    //    @ViewModelInject
-//    public FocusProduceViewModel(FocusProduceRepository focusProduceRepository) {
-//        apiService = focusProduceRepository.getApiService();
-//    }
+
     @ViewModelInject
     public FocusProduceViewModel(FocusProduceRepository focusClientRepository) {
         this.repository = focusClientRepository;
@@ -54,8 +56,16 @@ public class FocusProduceViewModel extends BaseViewModel {
         return produceListEvent;
     }
 
+    public MutableLiveData<List<ProduceStateBean>> getStatusListEvent() {
+        return statusListEvent;
+    }
+
     public MutableLiveData<FocusProduceBean> getBasicInfoEvent() {
         return basicInfoEvent;
+    }
+
+    public MutableLiveData<Integer> getExecuteEvent() {
+        return executeEvent;
     }
 
     /**
@@ -102,7 +112,6 @@ public class FocusProduceViewModel extends BaseViewModel {
         addSubscription(disposable);
     }
 
-
     /**
      * 生产详情--基本信息
      *
@@ -111,6 +120,30 @@ public class FocusProduceViewModel extends BaseViewModel {
     public void getBasicInfoById(long equipmentId) {
         Disposable disposable = RxJavaHelper.build(this, repository.getBasicInfoById(equipmentId))
                 .getHelper().flow(basicInfoEvent);
+        addSubscription(disposable);
+    }
+
+    /**
+     * 生产详情--生产动态
+     *
+     * @param planId 主生产计划id
+     * @return
+     */
+    public void getProduceStateList(long planId) {
+        Disposable disposable = RxJavaHelper.build(this, repository.getProduceStateList(planId))
+                .getHelper().flow(statusListEvent);
+        addSubscription(disposable);
+    }
+
+    /**
+     * 根据设备id和操作类型执行操作
+     *
+     * @param body 提交信息
+     * @return
+     */
+    public void postExecuteProduceInfo(RequestBody body) {
+        Disposable disposable = RxJavaHelper.build(this, repository.postExecuteProduceInfo(body))
+                .getHelper().flow(executeEvent);
         addSubscription(disposable);
     }
 }

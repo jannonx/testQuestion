@@ -22,8 +22,8 @@ public class BodyApprovalSubmit {
     private String sleaveTime;
     private String eleaveTime;
     private String remarks;
-    private ArrayList<String> users;
-    private ArrayList<String> copy;
+    private ArrayList<Long> users;
+    private ArrayList<Long> copy;
 
     public long getId() {
         return id;
@@ -117,19 +117,19 @@ public class BodyApprovalSubmit {
         this.remarks = remarks;
     }
 
-    public ArrayList<String> getUsers() {
+    public ArrayList<Long> getUsers() {
         return users;
     }
 
-    public void setUsers(ArrayList<String> users) {
+    public void setUsers(ArrayList<Long> users) {
         this.users = users;
     }
 
-    public ArrayList<String> getCopy() {
+    public ArrayList<Long> getCopy() {
         return copy;
     }
 
-    public void setCopy(ArrayList<String> copy) {
+    public void setCopy(ArrayList<Long> copy) {
         this.copy = copy;
     }
 }

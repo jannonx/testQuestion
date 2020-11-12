@@ -92,6 +92,11 @@
     <color name="control_text_yellow">#ED6F1A</color>
     <color name="control_text_red">#BE002F</color>
     <color name="bg_window">#F5F7FA</color>
+    <!--    绿色-->
+    <color name="color_green_00B578">#00B578</color>
+    <color name="color_green_D4FFF1">#D4FFF1</color>
+
+
     <!--    红色-->
     <color name="color_red_F04864">#F04864</color>
 
@@ -99,6 +104,8 @@
     <!--    橘色-->
     <color name="color_orange_FFECE3">#FFECE3</color>
     <color name="color_orange_FF6010">#FF6010</color>
+    <color name="color_orange_FF8F1F">#FF8F1F</color>
+    <color name="color_orange_FFEFDF">#FFEFDF</color>
 
 
     <!--  蓝色-->
