@@ -81,20 +81,12 @@
                 android:textColor="@color/color_black_333333"
                 android:textSize="@dimen/sp_16" />
 
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nsv_sent_to"
+            <tl.com.easy_recycleview_library.BaseRecyclerView
+                android:id="@+id/rv_sent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_12"
-                android:layout_toStartOf="@id/iv_sent_to"
-                android:layout_toEndOf="@+id/label_sent_to">
-
-                <com.guyuan.dear.utils.view.flowlayout.TagFlowLayout
-                    android:id="@+id/tfL_sent_to"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true" />
-            </androidx.core.widget.NestedScrollView>
+                android:layout_toStartOf="@id/label_sent_to"
+                android:layout_toEndOf="@+id/label_sent_to" />
 
             <ImageView
                 android:id="@+id/iv_sent_to"
@@ -132,20 +124,12 @@
                 android:textColor="@color/color_black_333333"
                 android:textSize="@dimen/sp_16" />
 
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nsv_copy_to"
+            <tl.com.easy_recycleview_library.BaseRecyclerView
+                android:id="@+id/rv_copy_to"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_12"
-                android:layout_toStartOf="@id/iv_copy_to"
-                android:layout_toEndOf="@+id/label_copy_to">
-
-                <com.guyuan.dear.utils.view.flowlayout.TagFlowLayout
-                    android:id="@+id/tfL_copy_to"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true" />
-            </androidx.core.widget.NestedScrollView>
+                android:layout_toStartOf="@id/label_copy_to"
+                android:layout_toEndOf="@+id/label_copy_to" />
 
             <ImageView
                 android:id="@+id/iv_copy_to"

@@ -14,6 +14,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.ItemAddSendListBinding;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,5 +62,14 @@ public class AddCopyListAdapter extends RecyclerView.Adapter<AddCopyListAdapter.
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
+    }
+
+    public void setDataList(List<StaffBean> dataList, boolean isAdd) {
+        if (isAdd) list.clear();
+        list.addAll(dataList);
+        notifyDataSetChanged();
+    }
+    public ArrayList<StaffBean> getList() {
+        return (ArrayList<StaffBean>) list;
     }
 }

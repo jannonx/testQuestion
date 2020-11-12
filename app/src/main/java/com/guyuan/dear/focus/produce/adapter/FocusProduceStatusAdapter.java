@@ -1,17 +1,13 @@
 package com.guyuan.dear.focus.produce.adapter;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
-import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.R;
-import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
 import com.guyuan.dear.utils.GlideUtils;
 
@@ -20,7 +16,7 @@ import java.util.List;
 import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
- * @description:
+ * @description: 生产详情--生产动态适配器
  * @author: Jannonx
  * @since: 2020/11/2 14:27
  * @company: 固远（深圳）信息技术有限公司
@@ -39,9 +35,9 @@ public class FocusProduceStatusAdapter extends BaseRecyclerAdapter<ProduceStateB
 
         View vBall = holder.getView(R.id.view_ball);
 
-//        tvStatus.setBackgroundResource(item.getStatusTextColor());
+        vBall.setBackgroundResource(item.getBallBg());
 
-        holder.setText(R.id.tv_produce_status, item.getTitle());
+        holder.setText(R.id.tv_product_status, item.getTitle());
         holder.setText(R.id.tv_time, item.getCreateTime());
 
         holder.setText(R.id.tv_name, item.getCreateName());

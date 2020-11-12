@@ -122,36 +122,36 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     }
 
     private void showApplyDialog() {
-        ProduceApplyDialog.OnDialogClickListener dialogListener = new ProduceApplyDialog.OnDialogClickListener() {
-            @Override
-            public void onCommitInfo(String content) {
-
-            }
-
-            @Override
-            public void onSendClick(TagStaffAdapter adapter) {
-                PickStaffsActivity.startForResult(FocusProduceDetailFragment.this,
-                        REQUEST_SEND_SELECT_PERSON,
-                        "请选审批送人",
-                        adapter == null ? new ArrayList<>() : adapter.getTagDataList(),
-                        new ArrayList<>(),
-                        new ArrayList<>(),
-                        ConstantValue.CONST_MAX_STAFF_COUNT);
-            }
-
-            @Override
-            public void onCopyClick(TagStaffAdapter adapter) {
-                PickStaffsActivity.startForResult(FocusProduceDetailFragment.this,
-                        REQUEST_COPY_SELECT_PERSON,
-                        "请选审抄送人",
-                        adapter == null ? new ArrayList<>() : adapter.getTagDataList(),
-                        new ArrayList<>(),
-                        new ArrayList<>(),
-                        ConstantValue.CONST_MAX_STAFF_COUNT);
-            }
-        };
-        dialog = new ProduceApplyDialog(getActivity(), dialogListener);
-        dialog.show();
+//        ProduceApplyDialog.OnDialogClickListener dialogListener = new ProduceApplyDialog.OnDialogClickListener() {
+//            @Override
+//            public void onCommitInfo(String content) {
+//
+//            }
+//
+//            @Override
+//            public void onSendClick(TagStaffAdapter adapter) {
+//                PickStaffsActivity.startForResult(FocusProduceDetailFragment.this,
+//                        REQUEST_SEND_SELECT_PERSON,
+//                        "请选审批送人",
+//                        adapter == null ? new ArrayList<>() : adapter.getTagDataList(),
+//                        new ArrayList<>(),
+//                        new ArrayList<>(),
+//                        ConstantValue.CONST_MAX_STAFF_COUNT);
+//            }
+//
+//            @Override
+//            public void onCopyClick(TagStaffAdapter adapter) {
+//                PickStaffsActivity.startForResult(FocusProduceDetailFragment.this,
+//                        REQUEST_COPY_SELECT_PERSON,
+//                        "请选审抄送人",
+//                        adapter == null ? new ArrayList<>() : adapter.getTagDataList(),
+//                        new ArrayList<>(),
+//                        new ArrayList<>(),
+//                        ConstantValue.CONST_MAX_STAFF_COUNT);
+//            }
+//        };
+//        dialog = new ProduceApplyDialog(getActivity(), dialogListener);
+//        dialog.show();
     }
 
     private void setProduceData(FocusProduceBean data) {

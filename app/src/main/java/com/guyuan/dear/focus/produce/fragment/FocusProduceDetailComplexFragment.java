@@ -26,6 +26,8 @@ import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.ToastUtils;
+import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
+import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
 
@@ -107,22 +109,22 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
             }
 
             @Override
-            public void onSendClick(TagStaffAdapter adapter) {
+            public void onSendClick(AddSendListAdapter adapter) {
                 PickStaffsActivity.startForResult(FocusProduceDetailComplexFragment.this,
                         REQUEST_SEND_SELECT_PERSON,
                         "请选审批送人",
-                        adapter == null ? new ArrayList<>() : adapter.getTagDataList(),
+                        adapter == null ? new ArrayList<>() : adapter.getList(),
                         new ArrayList<>(),
                         new ArrayList<>(),
                         ConstantValue.CONST_MAX_STAFF_COUNT);
             }
 
             @Override
-            public void onCopyClick(TagStaffAdapter adapter) {
+            public void onCopyClick(AddCopyListAdapter adapter) {
                 PickStaffsActivity.startForResult(FocusProduceDetailComplexFragment.this,
                         REQUEST_COPY_SELECT_PERSON,
                         "请选审抄送人",
-                        adapter == null ? new ArrayList<>() : adapter.getTagDataList(),
+                        adapter == null ? new ArrayList<>() : adapter.getList(),
                         new ArrayList<>(),
                         new ArrayList<>(),
                         ConstantValue.CONST_MAX_STAFF_COUNT);

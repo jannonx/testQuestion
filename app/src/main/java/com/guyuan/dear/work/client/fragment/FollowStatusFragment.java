@@ -137,6 +137,7 @@ public class FollowStatusFragment extends BaseListFragment<CommentsBean, Fragmen
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListClientRequestBody body = new ListClientRequestBody();
         ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
+        filtersBean.setId(clientData.getId());
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);

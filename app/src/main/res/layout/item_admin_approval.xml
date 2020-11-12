@@ -31,7 +31,7 @@
         android:layout_height="@dimen/dp_8"
         android:layout_marginStart="@dimen/dp_20p5"
         android:layout_marginTop="@dimen/dp_16p5"
-        android:src="@mipmap/ic_arrow_gray_left"
+        android:src="@mipmap/ic_arrow_gray_right_s"
         android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/iv_avatar"
         app:layout_constraintTop_toTopOf="parent"

@@ -2,6 +2,8 @@ package com.guyuan.dear.focus.produce.bean;
 
 import android.text.TextUtils;
 
+import com.guyuan.dear.R;
+
 import java.util.List;
 
 /**
@@ -108,7 +110,6 @@ public class ProduceStateBean {
      */
     private List<ProduceStateBean> texamineFlows;
 
-
     public String getTitle() {
         if (TextUtils.isEmpty(getProdStatus())) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -120,6 +121,16 @@ public class ProduceStateBean {
         }
 
         return getProdStatus();
+    }
+
+    /**
+     * 圆点的背景
+     */
+    public int getBallBg() {
+        if (TextUtils.isEmpty(getProdStatus())) {
+            return R.drawable.bg_blue_1890ff_round;
+        }
+        return R.drawable.bg_green_2fc25b_round;
     }
 
 
