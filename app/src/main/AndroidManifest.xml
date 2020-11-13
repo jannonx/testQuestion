@@ -229,22 +229,7 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".focus.purchase.activity.ContractProgressDetailActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".focus.purchase.activity.FocusPurchaseActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".focus.purchase.activity.MaterialListActivity"
-            android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".focus.purchase.activity.ProviderDetailActivity"
+            android:name=".focus.purchase.ui.FocusPurchaseActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
@@ -390,6 +375,11 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".work.assess.ui.detail.WorkAssessDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.purchase.ui.detail.FocusPurchaseDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

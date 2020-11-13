@@ -14,7 +14,6 @@ import com.guyuan.dear.base.activity.BaseFileUploadActivity;
 import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
-import com.guyuan.dear.focus.purchase.fragment.ContractProgressDetailFragment;
 import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.mine.bean.MineRequestBody;
 import com.guyuan.dear.mine.data.MineViewModel;

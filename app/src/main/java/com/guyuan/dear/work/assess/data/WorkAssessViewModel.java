@@ -10,6 +10,7 @@ import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.assess.api.WorkAssessApiService;
 import com.guyuan.dear.work.assess.data.bean.CustomerBean;
+import com.guyuan.dear.work.assess.data.bean.MeetingRoomBean;
 import com.guyuan.dear.work.assess.data.bean.WorkAssessCommitBody;
 import com.guyuan.dear.work.assess.data.bean.WorkAssessDetailBean;
 import com.guyuan.dear.work.assess.data.bean.WorkAssessItemBean;
@@ -34,7 +35,7 @@ public class WorkAssessViewModel extends BaseViewModel {
     public MutableLiveData<WorkAssessListBean> workAssessCreateList = new MutableLiveData<>();
     public MutableLiveData<WorkAssessDetailBean> workAssessListDetail = new MutableLiveData<>();
     public MutableLiveData<List<CustomerBean>> customerList = new MutableLiveData<>();
-    public MutableLiveData<List<String>> meetingRoomList = new MutableLiveData<>();
+    public MutableLiveData<MeetingRoomBean> meetingRoomList = new MutableLiveData<>();
 
     @ViewModelInject
     public WorkAssessViewModel(WorkAssessRepository workAssessRepository) {
@@ -130,6 +131,8 @@ public class WorkAssessViewModel extends BaseViewModel {
     //获取会议室列表
     public void getMeetingRoomList() {
         ListRequestBody requestBody = new ListRequestBody();
+        requestBody.setPageNum(ConstantValue.FIRST_PAGE);
+        requestBody.setPageSize(ConstantValue.PAGE_SIZE);
         RxJavaHelper.build(this, apiService.getMeetingRoomList(
                 CommonUtils.getCommonRequestBody(requestBody))).getHelper().flow(meetingRoomList);
     }

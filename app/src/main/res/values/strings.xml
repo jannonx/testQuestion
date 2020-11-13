@@ -6,8 +6,9 @@
         <item>评审详情</item>
     </array>
     <array name="focus_purchase_title">
-        <item>客户端查询</item>
-        <item>订单进度</item>
+        <item>采购概况</item>
+        <item>采购异常</item>
+        <item>采购详情</item>
     </array>
     <array name="focus_project_title">
         <item>清点货物</item>
@@ -338,4 +339,21 @@
     <string name="security_report">报&#8194;警&#8194;人</string>
     <string name="please_input_name_to_search">请输入姓名搜索</string>
     <string name="textLength">%d/240</string>
+
+    <!--我的关注-采购-->
+    <string name="focus_purchase_code">代号：%d</string>
+    <string name="focus_purchase_spec">规格：%d</string>
+    <string name="focus_purchase_quality">材质：%d</string>
+    <string name="focus_purchase_return">退货数量：%d</string>
+    <string name="focus_purchase_replace">换货数量：%d</string>
+    <string name="focus_purchase_result">质检结果：%d</string>
+    <string name="focus_purchase_reason">换货原因：%d</string>
+    <string name="focus_purchase_project_code">项目编号：%d</string>
+    <string name="focus_purchase_person">操作人：%d</string>
+    <string name="focus_purchase_provide">供应商&#12288;&#12288;&#12288;&#12288;&#12288;<font color='#757575'>%d</font></string>
+    <string name="focus_purchase_contract_code">合同编号&#12288;&#12288;&#12288;&#12288;<font color='#757575'>%d</font></string>
+    <string name="focus_purchase_sign_time">签订时间&#12288;&#12288;&#12288;&#12288;<font color='#757575'>%d</font></string>
+    <string name="focus_purchase_arrive_time">到货时间&#12288;&#12288;&#12288;&#12288;<font color='#757575'>%d</font></string>
+    <string name="focus_purchase_person_in">采购跟进人&#12288;&#12288;&#12288;<font color='#757575'>%d</font></string>
+    <string name="focus_purchase_sign_person">签订人员&#12288;&#12288;&#12288;&#12288;<font color='#757575'>%d</font></string>
 </resources>
