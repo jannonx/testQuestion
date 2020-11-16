@@ -38,14 +38,14 @@
 
                 <TextView
                     android:id="@+id/custom_name_tv"
-                    style="@style/TextBig"
+                    style="@style/TextSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
+                    android:text="请选择"
                     app:layout_constraintBottom_toBottomOf="@+id/custom_title_tv"
                     app:layout_constraintEnd_toStartOf="@+id/right_icon1"
-                    app:layout_constraintTop_toTopOf="@+id/custom_title_tv"
-                    tools:text="深圳固远" />
+                    app:layout_constraintTop_toTopOf="@+id/custom_title_tv" />
 
                 <ImageView
                     android:id="@+id/right_icon1"
@@ -59,7 +59,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout6"
+                android:id="@+id/contract_cl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
@@ -83,7 +83,7 @@
 
                 <TextView
                     android:id="@+id/contract_choose_tv"
-                    style="@style/text_normal"
+                    style="@style/TextSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
@@ -110,10 +110,10 @@
                 android:layout_height="wrap_content"
                 app:itemTitle="评审点"
                 app:layout_constraintVertical_bias="0"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout7"
+                app:layout_constraintBottom_toTopOf="@+id/start_time_cl"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
+                app:layout_constraintTop_toBottomOf="@+id/contract_cl"
                 app:title="评审内容要点事项" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -241,7 +241,7 @@
 
                 <TextView
                     android:id="@+id/room_name_tv"
-                    style="@style/text_normal"
+                    style="@style/TextSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
@@ -262,7 +262,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout5"
+                android:id="@+id/end_time_cl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
@@ -285,7 +285,7 @@
 
                 <TextView
                     android:id="@+id/end_time_name_tv"
-                    style="@style/text_normal"
+                    style="@style/TextSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
@@ -306,12 +306,12 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout7"
+                android:id="@+id/start_time_cl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
                 android:background="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
+                app:layout_constraintBottom_toTopOf="@+id/end_time_cl"
                 tools:layout_editor_absoluteX="0dp">
 
                 <TextView
@@ -329,7 +329,7 @@
 
                 <TextView
                     android:id="@+id/start_time_name_tv"
-                    style="@style/text_normal"
+                    style="@style/TextSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"

@@ -2,6 +2,7 @@ package com.guyuan.dear.base.api;
 
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.focus.device.data.beans.FactoryBean;
+import com.guyuan.dear.work.assess.data.bean.MeetingRoomBean;
 
 import java.util.List;
 import java.util.Map;
@@ -52,5 +53,5 @@ public interface BaseApiService {
 
     //获取会议室
     @POST(MEETING_ROOM)
-    Observable<ResultBean<List<String>>> getMeetingRoomList(@Body RequestBody body);
+    Observable<ResultBean<MeetingRoomBean>> getMeetingRoomList(@Body RequestBody body);
 }

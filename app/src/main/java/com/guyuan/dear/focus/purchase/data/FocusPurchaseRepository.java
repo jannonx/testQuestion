@@ -5,7 +5,7 @@ import com.guyuan.dear.focus.purchase.api.FocusPurchaseApiService;
 
 /**
  * @description:
- * @author: Jannonx
+ * @author: 唐力
  * @since: 2020/9/17 11:07
  * @company: 固远（深圳）信息技术有限公司
  */
@@ -16,5 +16,7 @@ public class FocusPurchaseRepository {
         this.focusPurchaseApiService = focusPurchaseApiService;
     }
 
-
+    public FocusPurchaseApiService getFocusPurchaseApiService() {
+        return focusPurchaseApiService;
+    }
 }

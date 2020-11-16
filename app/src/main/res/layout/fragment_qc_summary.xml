@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -10,45 +11,353 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#F5F7FA">
 
         <include layout="@layout/layout_search_bar"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp_12">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/sp_16"
+                android:textColor="@color/color_black_333333"
+                android:textStyle="bold"
                 android:text="日期"/>
             <Space
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:onClick="@{fragment_qc_summary_vm.onClickSetTimePeriod}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/shape_round_corner_50dp_white_solid">
+                android:background="@drawable/shape_round_corner_50dp_white_solid"
+                android:paddingLeft="@dimen/dp_12"
+                android:paddingRight="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_4"
+                android:paddingBottom="@dimen/dp_4"
+                android:gravity="center_vertical">
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/sp_12"
                     android:textColor="@color/color_black_333333"
-                    android:text="2010-1"/>
+                    android:text="2010-1"
+                    app:showYearMonthByDate="@{fragment_qc_summary_vm.qcSummaryBean.startPeriod}"/>
+                <View
+                    android:layout_width="@dimen/dp_12"
+                    android:layout_height="0.5dp"
+                    android:textSize="@dimen/sp_12"
+                    android:background="@color/color_grey_999999"
+                    android:layout_marginLeft="@dimen/dp_12"
+                    android:layout_marginRight="@dimen/dp_12"/>
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/sp_12"
                     android:textColor="@color/color_black_333333"
-                    android:text="-"/>
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp_12"
-                    android:textColor="@color/color_black_333333"
-                    android:text="2020-2"/>
+                    android:text="2020-2"
+                    app:showYearMonthByDate="@{fragment_qc_summary_vm.qcSummaryBean.endPeriod}"/>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/dp_16"
+                    android:layout_height="@dimen/dp_16"
+                    app:srcCompat="@drawable/ic_svg_arrow_grey_down"
+                    android:layout_marginLeft="@dimen/dp_4"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_black_333333"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold"
+            android:padding="@dimen/dp_12"
+            android:text="成品"/>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_white_corner_4"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_12"
+            android:paddingBottom="@dimen/dp_12">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp_17"
+                    android:textColor="@color/color_black_333333"
+                    android:text="检测总数"/>
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#0050B4"
+                    android:textSize="@dimen/sp_15"
+                    android:text="@{String.valueOf(fragment_qc_summary_vm.qcSummaryBean.productSum.sampleSize)}"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_24"
+                android:gravity="center_vertical">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="合格率"
+                    android:textSize="@dimen/sp_17"
+                    android:textColor="@color/color_black_333333"/>
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#0050B4"
+                    android:textSize="@dimen/sp_15"
+                    android:text="0%"
+                    app:setQcPassCount="@{fragment_qc_summary_vm.qcSummaryBean.productSum.passNum}"
+                    app:setQcSampleSize="@{fragment_qc_summary_vm.qcSummaryBean.productSum.sampleSize}"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_24"
+                android:gravity="center_vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:onClick="@{fragment_qc_summary_vm.onClickShowProductPassReport}">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="16dp"
+                        android:layout_height="@dimen/dp_16"
+                        app:srcCompat="@drawable/ic_svg_check_green_78c06e_24dp"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_black_333333"
+                        android:textSize="@dimen/sp_14"
+                        android:layout_marginLeft="@dimen/dp_4"
+                        android:text="合格"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_grey_999999"
+                        android:textSize="@dimen/sp_15"
+                        android:text="@{String.valueOf(fragment_qc_summary_vm.qcSummaryBean.productSum.passNum)}"
+                        android:layout_marginRight="@dimen/dp_6"/>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        app:srcCompat="@drawable/ic_svg_right_arrow"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:onClick="@{fragment_qc_summary_vm.onClickShowProductRejectReport}">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="16dp"
+                        android:layout_height="@dimen/dp_16"
+                        app:srcCompat="@drawable/ic_svg_exclaimation_mark_round_red_bg"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_black_333333"
+                        android:textSize="@dimen/sp_14"
+                        android:layout_marginLeft="@dimen/dp_4"
+                        android:text="异常"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_grey_999999"
+                        android:textSize="@dimen/sp_15"
+                        android:layout_marginRight="@dimen/dp_6"
+                        android:text="@{String.valueOf(fragment_qc_summary_vm.qcSummaryBean.productSum.rejectNum)}"/>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        app:srcCompat="@drawable/ic_svg_right_arrow"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_black_333333"
+            android:textSize="@dimen/sp_16"
+            android:textStyle="bold"
+            android:padding="@dimen/dp_12"
+            android:text="原材料"/>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_marginRight="@dimen/dp_12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_white_corner_4"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="@dimen/dp_12"
+            android:paddingBottom="@dimen/dp_12">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp_17"
+                    android:textColor="@color/color_black_333333"
+                    android:text="检测总数"/>
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#0050B4"
+                    android:textSize="@dimen/sp_15"
+                    android:text="@{String.valueOf(fragment_qc_summary_vm.qcSummaryBean.materialSum.sampleSize)}"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_24"
+                android:gravity="center_vertical">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="合格率"
+                    android:textSize="@dimen/sp_17"
+                    android:textColor="@color/color_black_333333"/>
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#0050B4"
+                    android:textSize="@dimen/sp_15"
+                    android:text="0%"
+                    app:setQcPassCount="@{fragment_qc_summary_vm.qcSummaryBean.materialSum.passNum}"
+                    app:setQcSampleSize="@{fragment_qc_summary_vm.qcSummaryBean.materialSum.sampleSize}"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_24"
+                android:gravity="center_vertical">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:onClick="@{fragment_qc_summary_vm.onClickShowMaterialPassReport}">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="16dp"
+                        android:layout_height="@dimen/dp_16"
+                        app:srcCompat="@drawable/ic_svg_check_green_78c06e_24dp"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_black_333333"
+                        android:textSize="@dimen/sp_14"
+                        android:layout_marginLeft="@dimen/dp_4"
+                        android:text="合格"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_grey_999999"
+                        android:textSize="@dimen/sp_15"
+                        android:text="@{String.valueOf(fragment_qc_summary_vm.qcSummaryBean.materialSum.passNum)}"
+                        android:layout_marginRight="@dimen/dp_6"/>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        app:srcCompat="@drawable/ic_svg_right_arrow"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_marginLeft="@dimen/dp_24"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:onClick="@{fragment_qc_summary_vm.onClickShowMaterialRejectReport}">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="16dp"
+                        android:layout_height="@dimen/dp_16"
+                        app:srcCompat="@drawable/ic_svg_exclaimation_mark_round_red_bg"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_black_333333"
+                        android:textSize="@dimen/sp_14"
+                        android:layout_marginLeft="@dimen/dp_4"
+                        android:text="异常"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_grey_999999"
+                        android:textSize="@dimen/sp_15"
+                        android:layout_marginRight="@dimen/dp_6"
+                        android:text="@{String.valueOf(fragment_qc_summary_vm.qcSummaryBean.materialSum.rejectNum)}"/>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/dp_18"
+                        android:layout_height="@dimen/dp_18"
+                        app:srcCompat="@drawable/ic_svg_right_arrow"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

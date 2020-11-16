@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
+import com.guyuan.dear.focus.qc.views.qcReportList.AllQcReportListFragment;
+import com.guyuan.dear.focus.qc.views.qcReportList.QcReportListActivity;
+import com.guyuan.dear.focus.qc.views.qcSum.QcSummaryFragment;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
@@ -15,6 +18,7 @@ import java.util.List;
 
 /**
  * 我的关注-质检-首页
+ *
  * @author 廖华凯
  * @date 2020/11/11
  */
@@ -29,16 +33,24 @@ public class QcHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, QcHo
 
     @Override
     protected List<String> getTitles() {
-        return new ArrayList<String>(){
+        return new ArrayList<String>() {
             {
                 add("质检概况");
+                add("质检异常");
+                add("质检详情");
             }
         };
     }
 
     @Override
     protected List<Fragment> getFragments() {
-        return null;
+        return new ArrayList<Fragment>() {
+            {
+                add(QcSummaryFragment.getInstance());
+                add(AllQcReportListFragment.getInstance(AllQcReportListFragment.REPORT_TYPE_ONLY_REJECTED_REPORTS));
+                add(AllQcReportListFragment.getInstance(AllQcReportListFragment.REPORT_TYPE_SHOW_ALL_REPORTS));
+            }
+        };
     }
 
     @Override
@@ -52,6 +64,8 @@ public class QcHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, QcHo
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
         return tabDrawableList;
     }

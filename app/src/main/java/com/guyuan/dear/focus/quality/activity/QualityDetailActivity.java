@@ -8,7 +8,7 @@ import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
-import com.guyuan.dear.focus.purchase.fragment.ContractProgressDetailFragment;
+
 import com.guyuan.dear.focus.quality.fragment.QualityDetailFragment;
 import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
@@ -37,8 +37,8 @@ public class QualityDetailActivity extends BaseToolbarActivity<ActivityWithToolb
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         binding.toolbarContainer.titleTv.setText(title);
         QualityDetailFragment mFragment = QualityDetailFragment.newInstance();
-        ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
-                ContractProgressDetailFragment.TAG);
+//        ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
+//                ContractProgressDetailFragment.TAG);
     }
 
     @Override

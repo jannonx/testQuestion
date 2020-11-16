@@ -11,6 +11,8 @@ import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.assess.data.WorkAssessViewModel;
+import com.guyuan.dear.work.assess.data.bean.CustomerBean;
+import com.guyuan.dear.work.assess.data.bean.MeetingRoomBean;
 import com.guyuan.dear.work.assess.data.bean.WorkAssessDetailBean;
 import com.guyuan.dear.work.assess.data.bean.WorkAssessListBean;
 
@@ -65,6 +67,7 @@ public class WorkAssessActivity extends BaseTabActivity<ActivityBaseTabBinding, 
     }
 
     private void setObserver() {
+        //我的新建列表
         viewModel.workAssessCreateList.observe(this, new Observer<WorkAssessListBean>() {
             @Override
             public void onChanged(WorkAssessListBean workAssessListBean) {
@@ -72,6 +75,7 @@ public class WorkAssessActivity extends BaseTabActivity<ActivityBaseTabBinding, 
             }
         });
 
+        //我收到的评审列表
         viewModel.workAssessList.observe(this, new Observer<WorkAssessListBean>() {
             @Override
             public void onChanged(WorkAssessListBean workAssessListBean) {
@@ -79,6 +83,21 @@ public class WorkAssessActivity extends BaseTabActivity<ActivityBaseTabBinding, 
             }
         });
 
+        //客户列表
+        viewModel.customerList.observe(this, new Observer<List<CustomerBean>>() {
+            @Override
+            public void onChanged(List<CustomerBean> customerBeans) {
+                createFragment.setCustomer(customerBeans);
+            }
+        });
+
+        //会议室列表
+        viewModel.meetingRoomList.observe(this, new Observer<MeetingRoomBean>() {
+            @Override
+            public void onChanged(MeetingRoomBean list) {
+                createFragment.setMeetingRoom(list);
+            }
+        });
     }
 
     @Override

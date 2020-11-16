@@ -7,7 +7,6 @@ import android.os.Bundle;
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.guyuan.dear.R;
-import com.guyuan.dear.focus.purchase.fragment.ContractProgressDetailFragment;
 import com.guyuan.dear.mine.data.MineViewModel;
 import com.guyuan.dear.mine.fragment.SafetyCenterFragment;
 import com.guyuan.dear.utils.ActivityUtils;
@@ -37,8 +36,8 @@ public class SafetyCenterActivity extends BaseToolbarActivity<ActivityWithToolba
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         binding.toolbarContainer.titleTv.setText(title);
         SafetyCenterFragment mFragment = SafetyCenterFragment.newInstance();
-        ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
-                ContractProgressDetailFragment.TAG);
+//        ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
+//                ContractProgressDetailFragment.TAG);
     }
 
     @Override
