@@ -99,6 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_8"
             android:text="深圳固远空气设备制造二厂"
+            android:visibility="gone"
+            tools:visibility="visible"
             android:textColor="@color/color_grey_999999"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="@+id/tv_product_name"

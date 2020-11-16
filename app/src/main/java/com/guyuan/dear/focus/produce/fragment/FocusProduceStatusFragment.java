@@ -14,6 +14,7 @@ import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -72,19 +73,25 @@ public class FocusProduceStatusFragment extends BaseListFragment<ProduceStateBea
      * @param data
      */
     private void dealStateDataList(List<ProduceStateBean> data) {
-        List<ProduceStateBean> tempList = new ArrayList<>();
+        List<ProduceStateBean> tempListO = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
             ProduceStateBean parentBean = data.get(i);
-            tempList.add(parentBean);
+            tempListO.add(parentBean);
+            LogUtils.showLog("tempListO="+tempListO.get(i).getProdStatus());
             List<ProduceStateBean> texamineFlows = parentBean.getTexamineFlows();
             if (texamineFlows != null && texamineFlows.size() != 0) {
-                tempList.addAll(texamineFlows);
+                tempListO.addAll(texamineFlows);
+                LogUtils.showLog("texamineFlows="+tempListO.get(i).getProdStatus());
             }
         }
+        List<ProduceStateBean> tempListT = new ArrayList<>();
+        for (int i = tempListO.size() - 1; i >= 0; i--) {
+            LogUtils.showLog("tempListT="+tempListO.get(i).getProdStatus());
+            tempListT.add(tempListO.get(i));
+        }
 
-        Collections.reverse(tempList);
-        setListData(tempList);
+        setListData(tempListT);
     }
 
     @Override

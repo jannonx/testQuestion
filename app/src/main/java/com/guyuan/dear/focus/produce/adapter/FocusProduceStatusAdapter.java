@@ -11,6 +11,7 @@ import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
 import com.guyuan.dear.utils.GlideUtils;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.List;
 
@@ -34,15 +35,20 @@ public class FocusProduceStatusAdapter extends BaseRecyclerAdapter<ProduceStateB
         //只有一条数据
         boolean onlyOneData = listData != null && listData.size() == 1;
         //最后一条数据
-        boolean listOneItem = listData != null && (listData.size() - 1) == position;
+        boolean lastOneItem = listData != null && (listData.size() - 1) == position;
+
+        LogUtils.showLog("size=" + listData.size() + "...position=" + position);
+        LogUtils.showLog("onlyOneData=" + onlyOneData + "...lastOneItem=" + lastOneItem);
         View specialView = holder.getView(R.id.rl_first_view);
         View normalView = holder.getView(R.id.cl_order_detail);
         View firstAboveLie = holder.getView(R.id.v_first_above);
         View vAboveLie = holder.getView(R.id.v_line_above);
-        specialView.setVisibility(position == 0 ? View.VISIBLE : View.GONE);
+
+        specialView.setVisibility(lastOneItem ? View.VISIBLE : View.GONE);
         firstAboveLie.setVisibility(onlyOneData ? View.GONE : View.VISIBLE);
-        normalView.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
-        vAboveLie.setVisibility(listOneItem ? View.GONE : View.VISIBLE);
+
+        normalView.setVisibility(lastOneItem ? View.GONE : View.VISIBLE);
+        vAboveLie.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
 
         //specialData
         holder.setText(R.id.tv_activate_name, item.getCreateName() + "：生产开始");

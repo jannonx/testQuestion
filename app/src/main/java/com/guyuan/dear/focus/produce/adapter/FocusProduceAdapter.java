@@ -43,6 +43,8 @@ public class FocusProduceAdapter extends BaseRecyclerAdapter<FocusProduceBean> {
                 ? View.VISIBLE : View.GONE);
 
         holder.setText(R.id.tv_product_code, item.getCode());
+        holder.getView(R.id.tv_produce_company).setVisibility(
+                TextUtils.isEmpty(item.getPrincipalDept()) ? View.GONE : View.VISIBLE);
         holder.setText(R.id.tv_produce_company, item.getPrincipalDept());
 
         //生产状态:待生产，只显示上部分内容

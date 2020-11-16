@@ -45,7 +45,7 @@ import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
 
 /**
  * @description: 我的关注--客户详情
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
