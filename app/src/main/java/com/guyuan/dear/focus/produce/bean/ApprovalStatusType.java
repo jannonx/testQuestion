@@ -8,15 +8,45 @@ package com.guyuan.dear.focus.produce.bean;
  * @company: 固远（深圳）信息技术有限公司
  */
 public enum ApprovalStatusType {
+    /**
+     * 从未提交过暂停和激活审批
+     */
     TYPE_APPROVAL_NOT_APPLY(-1, "从未提交过暂停和激活审批"),
+    /**
+     * 暂停审批中
+     */
     TYPE_APPROVAL_PAUSE_PENDING(0, "暂停审批中"),
+    /**
+     * 暂停审批中
+     */
     TYPE_APPROVAL_PAUSE_ING(1, "暂停审批中"),
+    /**
+     * 暂停审批通过
+     */
     TYPE_APPROVAL_PAUSE_PASS(2, "暂停审批通过"),
+    /**
+     * 暂停审批被驳回
+     */
     TYPE_APPROVAL_PAUSE_REJECT(3, "暂停审批被驳回"),
+    /**
+     * 激活审批中
+     */
     TYPE_APPROVAL_ACTIVATE_PENDING(4, "激活审批中"),
+    /**
+     * 激活审批中
+     */
     TYPE_APPROVAL_ACTIVATE_ING(5, "激活审批中"),
+    /**
+     * 激活审批通过
+     */
     TYPE_APPROVAL_ACTIVATE_PASS(6, "激活审批通过"),
+    /**
+     * 激活审批被驳回
+     */
     TYPE_APPROVAL_ACTIVATE_REJECT(7, "激活审批被驳回"),
+    /**
+     * 未知状态
+     */
     TYPE_UNKNOWN(8, "未知状态");
 
     private int code;

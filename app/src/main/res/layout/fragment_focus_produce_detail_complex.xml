@@ -318,7 +318,7 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/dp_20"
             android:text="激活申请"
-            tools:visibility="visible" />
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/ll_apply_panel"

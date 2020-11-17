@@ -78,7 +78,9 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
     @Override
     protected void initialization() {
         Bundle arguments = getArguments();
-
+        if (arguments == null) {
+            return;
+        }
         produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         isFooterBtnShow = arguments.getBoolean(ConstantValue.KEY_BOOLEAN, false);
         LogUtils.showLog("listData=" + (produceBean == null));
@@ -166,6 +168,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
 
                 SimpleConfirmViewDialog.showTitle(getContext(), "确认完成生产吗？", listener);
                 break;
+            default:
         }
     }
 

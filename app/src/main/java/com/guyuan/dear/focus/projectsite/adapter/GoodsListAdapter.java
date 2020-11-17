@@ -12,13 +12,13 @@ import java.util.List;
 import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
- * @description:
- * @author: Jannonx
+ * @description: 2020/11/17 12:26
+ * @author: 许建宁
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class CheckGoodsAdapter extends BaseRecyclerAdapter<SimpleTabBean> {
-    public CheckGoodsAdapter(Context context, @NonNull List<SimpleTabBean> listData, int layoutID) {
+public class GoodsListAdapter extends BaseRecyclerAdapter<SimpleTabBean> {
+    public GoodsListAdapter(Context context, @NonNull List<SimpleTabBean> listData, int layoutID) {
         super(context, listData, layoutID);
     }
 
@@ -26,7 +26,6 @@ public class CheckGoodsAdapter extends BaseRecyclerAdapter<SimpleTabBean> {
     protected void bindDataToView(BaseRecyclerViewHolder holder, SimpleTabBean item,
                                   int position) {
 //        holder.setText(R.id.tv_produce_type_name, item.getProductName());
-
 
 
     }
