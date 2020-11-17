@@ -1,11 +1,428 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="focusPurchaseVM"
+            type="com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include
+            android:id="@+id/purchase_search_rl"
+            layout="@layout/layout_search_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/TextBig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:text="日期"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/purchase_search_rl" />
+
+        <TextView
+            android:id="@+id/focus_purchase_date_tv"
+            style="@style/TextDate"
+            app:layout_constraintBottom_toBottomOf="@+id/textView5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView5"
+            tools:text="2020-11-21" />
+
+
+        <TextView
+            android:id="@+id/textView11"
+            style="@style/TextBigBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="25dp"
+            android:text="采购的产品"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/purchase_product_cv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@color/white"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:paddingStart="@dimen/dp_12"
+                    android:paddingEnd="@dimen/dp_12">
+
+                    <TextView
+                        style="@style/TextBig"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="总数" />
+
+                    <TextView
+                        android:id="@+id/purchase_product_total_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(focusPurchaseVM.purchaseOverviewMLD.equipmentData.totalNum)}"
+                        android:textColor="#0050B4"
+                        android:textSize="@dimen/sp_15"
+                        tools:text="2312" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_12">
+
+                    <RelativeLayout
+                        android:id="@+id/purchase_product_return_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_12">
+
+                        <TextView
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:drawableStart="@mipmap/return_num"
+                            android:drawablePadding="6dp"
+                            android:text="退货" />
+
+                        <TextView
+                            android:id="@+id/purchase_return_tv"
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawableEnd="@mipmap/right_direction"
+                            android:drawablePadding="6dp"
+                            android:text="@{String.valueOf(focusPurchaseVM.purchaseOverviewMLD.equipmentData.returnNum)}"
+                            android:textColor="#999999"
+                            android:textSize="@dimen/sp_15"
+                            tools:text="200" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/purchase_product_replace_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_12">
+
+                        <TextView
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:drawableStart="@mipmap/replace"
+                            android:drawablePadding="6dp"
+                            android:text="换货" />
+
+                        <TextView
+                            android:id="@+id/purchase_replace_tv"
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawableEnd="@mipmap/right_direction"
+                            android:drawablePadding="6dp"
+                            android:text="@{String.valueOf(focusPurchaseVM.purchaseOverviewMLD.equipmentData.exchangeNum)}"
+                            android:textColor="#999999"
+                            android:textSize="@dimen/sp_15"
+                            tools:text="200" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_12">
+
+                        <TextView
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:drawableStart="@mipmap/return_rate"
+                            android:drawablePadding="6dp"
+                            android:text="退货率" />
+
+                        <TextView
+                            android:id="@+id/purchase_return_rate_tv"
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawableEnd="@mipmap/right_direction"
+                            android:drawablePadding="6dp"
+                            android:text="@{String.valueOf(focusPurchaseVM.purchaseOverviewMLD.equipmentData.returnRate)}"
+                            android:textColor="#999999"
+                            android:textSize="@dimen/sp_15"
+                            tools:text="200" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_12">
+
+                        <TextView
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:drawableStart="@mipmap/replace_rate"
+                            android:drawablePadding="6dp"
+                            android:text="换货率" />
+
+                        <TextView
+                            android:id="@+id/purchase_replace_rate_tv"
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawableEnd="@mipmap/right_direction"
+                            android:drawablePadding="6dp"
+                            android:text="@{String.valueOf(focusPurchaseVM.purchaseOverviewMLD.equipmentData.exchangeRate)}"
+                            android:textColor="#999999"
+                            android:textSize="@dimen/sp_15"
+                            tools:text="200" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textView12"
+            style="@style/TextBigBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="采购的原材料"
+            app:layout_constraintStart_toStartOf="@+id/textView5"
+            app:layout_constraintTop_toBottomOf="@+id/purchase_product_cv" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@color/white"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:paddingStart="@dimen/dp_12"
+                    android:paddingEnd="@dimen/dp_12">
+
+                    <TextView
+                        style="@style/TextBig"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="总数" />
+
+                    <TextView
+                        android:id="@+id/purchase_material_total_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(focusPurchaseVM.purchaseOverviewMLD.materialsData.totalNum)}"
+                        android:textColor="#0050B4"
+                        android:textSize="@dimen/sp_15"
+                        tools:text="2312" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_12">
+
+                    <RelativeLayout
+                        android:id="@+id/purchase_material_return_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_12">
+
+                        <TextView
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:drawableStart="@mipmap/return_num"
+                            android:drawablePadding="6dp"
+                            android:text="退货" />
+
+                        <TextView
+                            android:id="@+id/purchase_material_return_tv"
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawableEnd="@mipmap/right_direction"
+                            android:drawablePadding="6dp"
+                            android:text="@{String.valueOf(focusPurchaseVM.purchaseOverviewMLD.materialsData.returnNum)}"
+                            android:textColor="#999999"
+                            android:textSize="@dimen/sp_15"
+                            tools:text="200" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/purchase_material_replace_rl"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_12">
+
+                        <TextView
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:drawableStart="@mipmap/replace"
+                            android:drawablePadding="6dp"
+                            android:text="换货" />
+
+                        <TextView
+                            android:id="@+id/purchase_material_replace_tv"
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawableEnd="@mipmap/right_direction"
+                            android:drawablePadding="6dp"
+                            android:text="@{String.valueOf(focusPurchaseVM.purchaseOverviewMLD.materialsData.exchangeNum)}"
+                            android:textColor="#999999"
+                            android:textSize="@dimen/sp_15"
+                            tools:text="200" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_12">
+
+                        <TextView
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:drawableStart="@mipmap/return_rate"
+                            android:drawablePadding="6dp"
+                            android:text="退货率" />
+
+                        <TextView
+                            android:id="@+id/purchase_material_return_rate_tv"
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawableEnd="@mipmap/right_direction"
+                            android:drawablePadding="6dp"
+                            android:text="@{String.valueOf(focusPurchaseVM.purchaseOverviewMLD.materialsData.returnRate)}"
+                            android:textColor="#999999"
+                            android:textSize="@dimen/sp_15"
+                            tools:text="200" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="@dimen/dp_12">
+
+                        <TextView
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:drawableStart="@mipmap/replace_rate"
+                            android:drawablePadding="6dp"
+                            android:text="换货率" />
+
+                        <TextView
+                            android:id="@+id/purchase_material_replace_rate_tv"
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:drawableEnd="@mipmap/right_direction"
+                            android:drawablePadding="6dp"
+                            android:text="@{String.valueOf(focusPurchaseVM.purchaseOverviewMLD.materialsData.exchangeRate)}"
+                            android:textColor="#999999"
+                            android:textSize="@dimen/sp_15"
+                            tools:text="200" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

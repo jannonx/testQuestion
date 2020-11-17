@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
+import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusPurchaseDetailBinding;
 import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
@@ -31,7 +32,7 @@ public class FocusPurchaseDetailFragment extends BaseDataBindingFragment<Fragmen
 
     @Override
     protected int getVariableId() {
-        return 0;
+        return BR.focusPurchaseVM;
     }
 
     @Override

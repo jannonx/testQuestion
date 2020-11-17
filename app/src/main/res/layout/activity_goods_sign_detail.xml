@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/toolbar_container"
+                layout="@layout/toolbar" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:id="@+id/customer_name_tv"
+            style="@style/TextBigBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar"
+            tools:text="深圳固远" />
+
+        <View
+            android:id="@+id/view19"
+            style="@style/DivideLine"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customer_name_tv" />
+
+        <TextView
+            android:id="@+id/contract_name_tv"
+            style="@style/TextNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
+            app:layout_constraintTop_toBottomOf="@+id/view19"
+            tools:text="@string/work_goods_sign_contract" />
+
+        <TextView
+            android:id="@+id/follow_person_name_tv"
+            style="@style/TextNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
+            app:layout_constraintTop_toBottomOf="@+id/contract_name_tv"
+            tools:text="@string/work_goods_sign_person" />
+
+        <TextView
+            android:id="@+id/textView23"
+            style="@style/TextNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="#1890FF"
+            app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
+            app:layout_constraintTop_toBottomOf="@+id/follow_person_name_tv"
+            tools:text="@string/work_goods_sign_time" />
+
+        <View
+            android:id="@+id/view20"
+            style="@style/DivideLine"
+            android:layout_height="@dimen/dp_8"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+        <TextView
+            android:id="@+id/textView25"
+            style="@style/TextBigBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="产品列表"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
+            app:layout_constraintTop_toBottomOf="@+id/view20" />
+
+        <tl.com.easy_recycleview_library.BaseRecyclerView
+            android:id="@+id/goods_product_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView25" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

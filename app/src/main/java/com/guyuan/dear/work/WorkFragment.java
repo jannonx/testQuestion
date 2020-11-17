@@ -127,15 +127,19 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
                                 break;
 
                             case ConstantValue.CONTRACT_PAUSE://合同暂停
-                                ContractPauseHomeActivity.start(getContext(),title);
+                                ContractPauseHomeActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.CONTRACT_RESTART://合同重启
-                                ContractRestartHomeActivity.start(getContext(),title);
+                                ContractRestartHomeActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.WORK_CONTRACT_ASSESS://合同评审
                                 WorkAssessActivity.start(getContext(), title);
+                                break;
+
+                            case ConstantValue.WORK_GOODS_SIGN://货物签收
+
                                 break;
 
                             default:

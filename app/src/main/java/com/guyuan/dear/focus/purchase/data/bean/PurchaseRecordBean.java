@@ -24,6 +24,15 @@ public class PurchaseRecordBean {
     private int operateNum;         //操作数量
     private String reason;          //退货原因
     private int type;               //退货类型:1.退货，2.换货
+    private String imgUrl;          //头像地址
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
     public String getCreateName() {
         return createName;
