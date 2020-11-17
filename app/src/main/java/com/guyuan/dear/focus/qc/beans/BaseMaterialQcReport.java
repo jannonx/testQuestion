@@ -29,6 +29,25 @@ public class BaseMaterialQcReport implements Parcelable {
      * 材质
      */
     private String materialType;
+    /**
+     * 表示审批状态，如：待审批，审批中，同意，拒绝等。
+     * {@link BaseMaterialQcReport#REPORT_STATE_PASS},{@link BaseMaterialQcReport#REPORT_STATE_PENDING_FOR_APPROVAL},
+     * {@link BaseMaterialQcReport#REPORT_STATE_REJECT}
+     */
+    private int state;
+    /**
+     * 通过
+     */
+    public static final int REPORT_STATE_PASS = 3;
+    /**
+     * 待审批
+     */
+    public static final int REPORT_STATE_PENDING_FOR_APPROVAL = 1;
+    /**
+     * 驳回
+     */
+    public static final int REPORT_STATE_REJECT = 2;
+
 
     public BaseMaterialQcReport() {
     }
@@ -42,6 +61,7 @@ public class BaseMaterialQcReport implements Parcelable {
         tag = in.readInt();
         isNeedVerify = in.readByte()>0;
         materialType = in.readString();
+        state = in.readInt();
     }
 
     public static final Creator<BaseMaterialQcReport> CREATOR = new Creator<BaseMaterialQcReport>() {
@@ -116,6 +136,14 @@ public class BaseMaterialQcReport implements Parcelable {
         return materialType;
     }
 
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     public void setMaterialType(String materialType) {
         this.materialType = materialType;
     }
@@ -135,6 +163,7 @@ public class BaseMaterialQcReport implements Parcelable {
         dest.writeInt(tag);
         dest.writeByte((byte) (isNeedVerify?1:0));
         dest.writeString(materialType);
+        dest.writeInt(state);
     }
 
     @Override

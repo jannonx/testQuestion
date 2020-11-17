@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.text.TextUtils"/>
+        <import type="android.view.View"/>
         <variable
             name="data"
             type="com.guyuan.dear.focus.qc.beans.BaseProductQcReport" />
@@ -38,6 +40,16 @@
                 android:textColor="#FF6010"
                 android:text="不合格"
                 app:setQcReportTag="@{data.tag}"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:paddingLeft="@dimen/dp_4"
+                android:paddingRight="@dimen/dp_4"
+                android:paddingTop="@dimen/dp_2"
+                android:paddingBottom="@dimen/dp_2"
+                android:gravity="center"
+                app:showQcReportState="@{data.state}"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -86,6 +98,7 @@
             android:gravity="center_vertical"
             >
             <androidx.appcompat.widget.AppCompatTextView
+                android:visibility="@{TextUtils.isEmpty(data.qualityChecker)?View.GONE:View.VISIBLE}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#1890FF"
@@ -97,8 +110,13 @@
                 android:textColor="#1890FF"
                 android:textSize="@dimen/sp_12"
                 android:text="@{data.qualityChecker}"/>
+            <Space
+                android:visibility="@{TextUtils.isEmpty(data.qualityChecker)?View.GONE:View.VISIBLE}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:textColor="#1890FF"

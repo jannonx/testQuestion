@@ -71,9 +71,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".focus.qc.views.materialQcDetail.MaterialQcReportDetailActivity"></activity>
+        <activity android:name=".work.qc.views.home.QcHomeActivity"></activity>
+        <activity android:name=".focus.qc.views.materialQcDetail.MaterialQcReportDetailActivity" />
         <activity android:name=".focus.qc.views.productQcDetail.ProductQcReportDetailActivity" />
-        <activity android:name=".focus.qc.views.qcReportList.QcReportListActivity" />
+        <activity android:name=".focus.qc.views.qcReportList.QcSumListActivity" />
         <activity android:name=".focus.qc.views.home.QcHomeActivity" />
         <activity android:name=".focus.hr.view.pickStaffs.PickStaffsActivity" />
         <activity android:name=".work.contractRestart.view.home.ContractRestartHomeActivity" />

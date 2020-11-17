@@ -16,7 +16,7 @@ import com.guyuan.dear.utils.ConstantValue;
  *
  * @author 廖华凯
  */
-public class QcReportListActivity extends BaseToolbarActivity<ActivityQcReportListBinding, QcReportListViewModel> {
+public class QcSumListActivity extends BaseToolbarActivity<ActivityQcReportListBinding, QcReportListViewModel> {
 
     /**
      * 成品通过的QC列表
@@ -44,14 +44,14 @@ public class QcReportListActivity extends BaseToolbarActivity<ActivityQcReportLi
      *
      * @param context
      * @param title    标题
-     * @param type     参考 {@link QcReportListActivity#REPORT_TYPE_PRODUCT_PASS_REPORT}，{@link QcReportListActivity#REPORT_TYPE_PRODUCT_REJECT_REPORT},
-     *                 {@link QcReportListActivity#REPORT_TYPE_MATERIAL_PASS_REPORT},{@link QcReportListActivity#REPORT_TYPE_MATERIAL_REJECT_REPORT},
-     *                 {@link QcReportListActivity#REPORT_TYPE_ALL}
+     * @param type     参考 {@link QcSumListActivity#REPORT_TYPE_PRODUCT_PASS_REPORT}，{@link QcSumListActivity#REPORT_TYPE_PRODUCT_REJECT_REPORT},
+     *                 {@link QcSumListActivity#REPORT_TYPE_MATERIAL_PASS_REPORT},{@link QcSumListActivity#REPORT_TYPE_MATERIAL_REJECT_REPORT},
+     *                 {@link QcSumListActivity#REPORT_TYPE_ALL}
      * @param dateFrom 起始日期
      * @param dateTo   结束日期
      */
     public static void start(Context context, String title, int type, long dateFrom, long dateTo) {
-        Intent starter = new Intent(context, QcReportListActivity.class);
+        Intent starter = new Intent(context, QcSumListActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE, title);
         starter.putExtra(ConstantValue.KEY_REPORT_TYPE, type);
         starter.putExtra(ConstantValue.KEY_DATE_START, dateFrom);

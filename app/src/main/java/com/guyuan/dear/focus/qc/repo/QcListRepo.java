@@ -5,6 +5,7 @@ import com.guyuan.dear.focus.qc.beans.BaseProductQcReport;
 import com.guyuan.dear.focus.qc.beans.GenericQcReport;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -170,6 +171,71 @@ public class QcListRepo {
                     list.add(report.toGenericQcReport());
                 }
                     break;
+            }
+        }
+        return list;
+    }
+
+    public List<GenericQcReport> getMyQcReports(long dateFrom, long dateTo, int pageIndex, int pageSize) {
+        List<GenericQcReport> list = new ArrayList<>();
+        for (int i = 0; i < pageSize; i++) {
+            int j = i % 4;
+            switch (j) {
+                case 0:
+                {
+                    BaseProductQcReport report = new BaseProductQcReport();
+                    report.setBatchId("BD20201112");
+                    report.setDate(System.currentTimeMillis());
+                    report.setNeedVerify(i / 2 % 2 == 0);
+                    report.setProductId("DEAR001" + i);
+                    report.setProductName("产品" + i + 1);
+                    report.setTag(BaseProductQcReport.TAG_TYPE_REJECT);
+                    report.setState(BaseMaterialQcReport.REPORT_STATE_PASS);
+                    list.add(report.toGenericQcReport());
+                }
+                break;
+                case 1:
+                {
+                    BaseProductQcReport report = new BaseProductQcReport();
+                    report.setBatchId("BD20201112");
+                    report.setDate(System.currentTimeMillis());
+                    report.setNeedVerify(i / 2 % 2 == 0);
+                    report.setProductId("DEAR001" + i);
+                    report.setProductName("产品" + i + 1);
+                    report.setTag(BaseProductQcReport.TAG_TYPE_PASS);
+                    report.setState(BaseMaterialQcReport.REPORT_STATE_PENDING_FOR_APPROVAL);
+                    list.add(report.toGenericQcReport());
+                }
+                break;
+                case 2:
+                {
+                    BaseMaterialQcReport report = new BaseMaterialQcReport();
+                    report.setDate(System.currentTimeMillis());
+                    report.setMaterialId("MT999910" + i);
+                    report.setMaterialName("原材料" + i + 1);
+                    report.setNeedVerify(i / 2 % 2 == 0);
+                    report.setSpec("203*504");
+                    report.setMaterialType("金属");
+                    report.setTag(BaseProductQcReport.TAG_TYPE_REJECT);
+                    report.setState(BaseMaterialQcReport.REPORT_STATE_REJECT);
+                    list.add(report.toGenericQcReport());
+                }
+                break;
+                case 3:
+                default:
+                {
+                    BaseMaterialQcReport report = new BaseMaterialQcReport();
+                    report.setDate(System.currentTimeMillis());
+                    report.setMaterialId("MT999910" + i);
+                    report.setMaterialName("原材料" + i + 1);
+                    report.setNeedVerify(i / 2 % 2 == 0);
+                    report.setSpec("203*504");
+                    report.setMaterialType("金属");
+                    report.setTag(BaseProductQcReport.TAG_TYPE_PASS);
+                    report.setState(BaseMaterialQcReport.REPORT_STATE_REJECT);
+                    list.add(report.toGenericQcReport());
+                }
+                break;
             }
         }
         return list;

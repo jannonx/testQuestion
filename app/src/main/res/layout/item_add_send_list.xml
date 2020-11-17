@@ -3,49 +3,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="data"
             type="com.guyuan.dear.work.contractPause.beans.StaffBean" />
+
         <variable
             name="onClickDelete"
-            type="android.view.View.OnClickListener"/>
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/dp_10">
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/item_add_send_list_view_anchor_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent">
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/item_add_send_list_iv_user_avatar"
                 android:layout_width="@dimen/dp_36"
                 android:layout_height="@dimen/dp_36"
-                app:srcCompat="@drawable/ic_svg_staff_icon_default"
-                app:setUserCircleNetImage="@{data.imgUrl}"/>
+                app:setUserCircleNetImage="@{data.imgUrl}"
+                app:srcCompat="@drawable/ic_svg_staff_icon_default" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_4"
                 android:text="@{data.name,default=xxxx}"
                 android:textColor="@color/color_grey_999999"
-                android:textSize="@dimen/sp_12"
-                android:layout_marginTop="@dimen/dp_4"/>
+                android:textSize="@dimen/sp_12" />
         </androidx.appcompat.widget.LinearLayoutCompat>
+
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="@dimen/dp_16"
             android:layout_height="@dimen/dp_16"
-            app:srcCompat="@drawable/ic_svg_delete_red_circle"
             android:layout_gravity="end|top"
             android:onClick="@{onClickDelete}"
             app:layout_constraintRight_toRightOf="@id/item_add_send_list_view_anchor_1"
-            app:layout_constraintTop_toTopOf="@id/item_add_send_list_view_anchor_1"/>
+            app:layout_constraintTop_toTopOf="@id/item_add_send_list_view_anchor_1"
+            app:srcCompat="@drawable/ic_svg_delete_red_circle" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
