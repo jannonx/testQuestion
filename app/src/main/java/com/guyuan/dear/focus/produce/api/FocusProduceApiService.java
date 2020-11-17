@@ -19,7 +19,7 @@ import retrofit2.http.Query;
 
 /**
  * @description:
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/11/2 14:27
  * @company: 固远（深圳）信息技术有限公司
  */
@@ -86,7 +86,7 @@ public interface FocusProduceApiService extends BaseApiService {
      * @param body 提交信息
      * @return
      */
-    @GET("base/projectplan/executeByType")
+    @POST("base/projectplan/executeByType")
     Observable<ResultBean<Integer>> postExecuteProduceInfo(@Body RequestBody body);
 
 }

@@ -18,8 +18,9 @@ import com.guyuan.dear.utils.NetworkUtils;
 import com.guyuan.dear.work.assess.ui.WorkAssessActivity;
 import com.guyuan.dear.work.client.activity.WorkClientActivity;
 import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeActivity;
-import com.guyuan.dear.work.produce.activity.WorkProduceActivity;
 import com.guyuan.dear.work.contractRestart.view.home.ContractRestartHomeActivity;
+import com.guyuan.dear.work.produce.activity.WorkProduceActivity;
+import com.guyuan.dear.work.qc.views.home.QcHomeActivity;
 
 import java.util.ArrayList;
 
@@ -136,6 +137,9 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
 
                             case ConstantValue.WORK_CONTRACT_ASSESS://合同评审
                                 WorkAssessActivity.start(getContext(), title);
+                                break;
+                            case ConstantValue.WORK_QC://质检
+                                QcHomeActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.WORK_GOODS_SIGN://货物签收

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @description: 客户模块--联系人
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/10/28 14:45
  * @company: 固远（深圳）信息技术有限公司
  */

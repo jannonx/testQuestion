@@ -1,22 +1,16 @@
 package com.guyuan.dear.mine.data;
 
 import androidx.hilt.lifecycle.ViewModelInject;
+import androidx.lifecycle.MutableLiveData;
 
-import com.example.httplibrary.bean.ErrorResultBean;
-import com.example.httplibrary.bean.ResultBean;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
-import com.example.mvvmlibrary.data.SingleLiveEvent;
 import com.guyuan.dear.base.api.RxJavaHelper;
 import com.guyuan.dear.base.api.UploadBean;
-import com.guyuan.dear.base.app.DearApplication;
-import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleRepository;
-import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 
 import java.util.List;
 import java.util.Map;
 
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import okhttp3.RequestBody;
 import retrofit2.http.PartMap;
 
@@ -28,36 +22,32 @@ import retrofit2.http.PartMap;
  */
 public class MineViewModel extends BaseViewModel {
     private MineRepository repository;
-    private SingleLiveEvent<ResultBean<Integer>> editUserPwEvent;//修改用户密码
-    private SingleLiveEvent<ResultBean<List<UploadBean>>> uploadImageEvent;//上传图片
-    private SingleLiveEvent<ResultBean<Integer>> feedBackEvent;//上传留言
-    private SingleLiveEvent<ResultBean<Integer>> userAvatarEvent;//提交头像url
+    private MutableLiveData<Integer> editUserPwEvent = new MutableLiveData<>();//修改用户密码
+    private MutableLiveData<List<UploadBean>> uploadImageEvent = new MutableLiveData<>();//上传图片
+    private MutableLiveData<Integer> feedBackEvent = new MutableLiveData<>();//上传留言
+    private MutableLiveData<Integer> userAvatarEvent = new MutableLiveData<>();//提交头像url
 
     @ViewModelInject
     public MineViewModel(MineRepository mineRepository) {
         this.repository = mineRepository;
     }
 
-    public SingleLiveEvent<ResultBean<Integer>> getEditUserPwEvent() {
-        editUserPwEvent = createLiveData(editUserPwEvent);
+    public MutableLiveData<Integer> getEditUserPwEvent() {
         return editUserPwEvent;
 
     }
 
-    public SingleLiveEvent<ResultBean<List<UploadBean>>> getUploadImageEvent() {
-        uploadImageEvent = createLiveData(uploadImageEvent);
+    public MutableLiveData<List<UploadBean>> getUploadImageEvent() {
         return uploadImageEvent;
 
     }
 
-    public SingleLiveEvent<ResultBean<Integer>> getFeedBackEvent() {
-        feedBackEvent = createLiveData(feedBackEvent);
+    public MutableLiveData<Integer> getFeedBackEvent() {
         return feedBackEvent;
 
     }
 
-    public SingleLiveEvent<ResultBean<Integer>> getUserAvatarEvent() {
-        userAvatarEvent = createLiveData(userAvatarEvent);
+    public MutableLiveData<Integer> getUserAvatarEvent() {
         return userAvatarEvent;
 
     }
@@ -71,13 +61,7 @@ public class MineViewModel extends BaseViewModel {
     public void editUserPassWord(String password, String newPassword) {
 
         Disposable disposable = RxJavaHelper.build(this, repository.editUserPassWord(password, newPassword))
-                .success(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        ResultBean<Integer> bean = (ResultBean<Integer>) o;
-                        editUserPwEvent.postValue(bean);
-                    }
-                }).getHelper().flow();
+                .getHelper().flow(editUserPwEvent);
         addSubscription(disposable);
     }
 
@@ -89,13 +73,7 @@ public class MineViewModel extends BaseViewModel {
     public void uploadPic(@PartMap Map<String, RequestBody> map) {
 
         Disposable disposable = RxJavaHelper.build(this, repository.uploadPic(map))
-                .success(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        ResultBean<List<UploadBean>> bean = (ResultBean<List<UploadBean>>) o;
-                        uploadImageEvent.postValue(bean);
-                    }
-                }).getHelper().flow();
+                .getHelper().flow(uploadImageEvent);
         addSubscription(disposable);
     }
 
@@ -107,13 +85,7 @@ public class MineViewModel extends BaseViewModel {
     public void postFeedBack(RequestBody body) {
 
         Disposable disposable = RxJavaHelper.build(this, repository.postFeedBack(body))
-                .success(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        ResultBean<Integer> bean = (ResultBean<Integer>) o;
-                        feedBackEvent.postValue(bean);
-                    }
-                }).getHelper().flow();
+                .getHelper().flow(feedBackEvent);
         addSubscription(disposable);
     }
 
@@ -125,13 +97,7 @@ public class MineViewModel extends BaseViewModel {
     public void postUserAvatar(RequestBody body) {
 
         Disposable disposable = RxJavaHelper.build(this, repository.postFeedBack(body))
-                .success(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        ResultBean<Integer> bean = (ResultBean<Integer>) o;
-                        userAvatarEvent.postValue(bean);
-                    }
-                }).getHelper().flow();
+                .getHelper().flow(userAvatarEvent);
         addSubscription(disposable);
     }
 }

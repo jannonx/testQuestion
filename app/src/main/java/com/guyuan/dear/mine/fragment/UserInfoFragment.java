@@ -5,19 +5,29 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.activity.BaseFileUploadActivity;
 import com.guyuan.dear.base.activity.BaseTabActivity;
+import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.databinding.FragmentUserInfoBinding;
 import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.mine.activity.UserInfoActivity;
+import com.guyuan.dear.mine.bean.MineRequestBody;
 import com.guyuan.dear.mine.data.MineViewModel;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.GlideUtils;
+import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.utils.ToastUtils;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 /**
  * @description: 我的--个人中心
@@ -26,7 +36,7 @@ import java.util.ArrayList;
  * @company: 固远（深圳）信息技术有限公司
  */
 public class UserInfoFragment extends BaseDataBindingFragment<FragmentUserInfoBinding, MineViewModel>
-        implements View.OnClickListener, BaseTabActivity.PhotoSelectListener {
+        implements View.OnClickListener, BaseFileUploadActivity.PhotoSelectListener {
     protected ArrayList<String> photoList = new ArrayList<>();
     public static final String TAG = "UserInfoFragment";
     private UserInfoActivity activity;
@@ -66,6 +76,40 @@ public class UserInfoFragment extends BaseDataBindingFragment<FragmentUserInfoBi
 
         binding.rlAvatar.setOnClickListener(this);
         binding.tvLogout.setOnClickListener(this);
+
+
+        initData();
+    }
+
+    private void initData() {
+        viewModel.getUploadImageEvent().observe(this, new Observer<List<UploadBean>>() {
+            @Override
+            public void onChanged(List<UploadBean> dataRefreshBean) {
+                //获取图片url
+//                List<UploadBean> data = dataRefreshBean.getData();
+                LogUtils.showLog("data=" + dataRefreshBean.get(0).getUrl());
+                postUserAvatar(dataRefreshBean.get(0).getUrl());
+            }
+        });
+
+
+        viewModel.getUserAvatarEvent().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer resultBean) {
+                ToastUtils.showShort(getContext(), "修改头像成功！");
+                getActivity().finish();
+            }
+        });
+    }
+
+    private void postUserAvatar(String url) {
+        MineRequestBody body = new MineRequestBody();
+        body.setUrl(url);
+        String str = GsonUtil.objectToString(body);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                "charset=utf-8"), str);
+        viewModel.postUserAvatar(requestBody);
+
     }
 
     @Override
@@ -73,6 +117,7 @@ public class UserInfoFragment extends BaseDataBindingFragment<FragmentUserInfoBi
         switch (v.getId()) {
             //选择头像
             case R.id.rl_avatar:
+//                workReportCommitActivity.openAlbum(BaseTabActivity.FIRST);
                 activity.openAlbum(BaseTabActivity.FIRST);
                 break;
             //退出账号
@@ -86,7 +131,6 @@ public class UserInfoFragment extends BaseDataBindingFragment<FragmentUserInfoBi
     protected int getVariableId() {
         return 0;
     }
-
 
 
     @Override

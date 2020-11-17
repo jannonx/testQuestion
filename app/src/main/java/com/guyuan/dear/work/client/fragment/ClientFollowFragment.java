@@ -13,6 +13,7 @@ import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
 import com.guyuan.dear.utils.GsonUtil;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.client.activity.WorkClientDetailActivity;
 import com.guyuan.dear.work.client.adapter.ClientFollowAdapter;
 import com.guyuan.dear.work.client.data.WorkClientViewModel;
@@ -23,11 +24,11 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @description: 我的工作-我的跟进
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司
  */
-public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBean, FragmentListBinding,WorkClientViewModel> {
+public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBean, FragmentListBinding, WorkClientViewModel> {
 
     public static final String TAG = ClientFollowFragment.class.getSimpleName();
 
@@ -57,14 +58,14 @@ public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBe
         });
 
         viewModel.getMyClientList(getListRequestBody(true));
-        viewModel.getClientListEvent().observe(getActivity(), new Observer<RefreshBean<ClientCompanyBean>>() {
+        viewModel.getMyClientListEvent().observe(getActivity(), new Observer<RefreshBean<ClientCompanyBean>>() {
             @Override
             public void onChanged(RefreshBean<ClientCompanyBean> dataRefreshBean) {
+                LogUtils.showLog("size=" + dataRefreshBean.getContent().size());
                 setListData(dataRefreshBean.getContent());
             }
         });
     }
-
 
 
     @Override
@@ -103,17 +104,15 @@ public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBe
     }
 
 
-
     @Override
     protected boolean isPullEnable() {
-        return false;
+        return true;
     }
 
     @Override
     protected boolean isLoadMoreEnable() {
-        return false;
+        return true;
     }
-
 
 
     @Override

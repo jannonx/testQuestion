@@ -63,8 +63,9 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
         etSearch = rootView.findViewById(R.id.et_search);
         tvSearchBtn = rootView.findViewById(R.id.tv_search_btn);
         //    initDate();
-        initListener();
+
         init();
+        initListener();
     }
 
     private void initDate() {
@@ -79,9 +80,9 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
 
 
     protected void initListener() {
-       tvSearchBtn.setClickable(false);
-       tvSearchBtn.setEnabled(false);
-       tvSearchBtn.setChecked(false);
+        tvSearchBtn.setClickable(false);
+        tvSearchBtn.setEnabled(false);
+        tvSearchBtn.setChecked(false);
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -97,7 +98,10 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
                 if (TextUtils.isEmpty(editable.toString())) {
                     etSearch.clearFocus();
                     editEmptyChange();
+                    return;
                 }
+
+                LogUtils.showLog("editable=" + editable.toString());
                 editTextChanged(editable.toString());
                 tvSearchBtn.setClickable(!TextUtils.isEmpty(editable.toString()));
                 tvSearchBtn.setEnabled(!TextUtils.isEmpty(editable.toString()));

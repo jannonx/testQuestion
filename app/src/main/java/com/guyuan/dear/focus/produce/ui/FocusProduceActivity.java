@@ -21,8 +21,8 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
- * @description:
- * @author: Jannonx
+ * @description: 我的关注--生产
+ * @author: 许建宁
  * @since: 2020/11/2 14:27
  * @company: 固远（深圳）信息技术有限公司
  */

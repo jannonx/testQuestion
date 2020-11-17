@@ -31,7 +31,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @description: 我的关注-客户详情--跟进动态页面
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/10/27 14:31
  * @company: 固远（深圳）信息技术有限公司
  */

@@ -18,7 +18,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
  * @description:
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/11/2 14:27
  * @company: 固远（深圳）信息技术有限公司
  */
@@ -43,6 +43,8 @@ public class FocusProduceAdapter extends BaseRecyclerAdapter<FocusProduceBean> {
                 ? View.VISIBLE : View.GONE);
 
         holder.setText(R.id.tv_product_code, item.getCode());
+        holder.getView(R.id.tv_produce_company).setVisibility(
+                TextUtils.isEmpty(item.getPrincipalDept()) ? View.GONE : View.VISIBLE);
         holder.setText(R.id.tv_produce_company, item.getPrincipalDept());
 
         //生产状态:待生产，只显示上部分内容

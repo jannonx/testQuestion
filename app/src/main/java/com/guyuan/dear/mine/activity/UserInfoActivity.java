@@ -4,32 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.lifecycle.Observer;
 
-import com.example.httplibrary.bean.ResultBean;
-import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseFileUploadActivity;
-import com.guyuan.dear.base.api.UploadBean;
-import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
-import com.guyuan.dear.login.data.LoginBean;
-import com.guyuan.dear.mine.bean.MineRequestBody;
 import com.guyuan.dear.mine.data.MineViewModel;
 import com.guyuan.dear.mine.fragment.UserInfoFragment;
 import com.guyuan.dear.utils.ActivityUtils;
-import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import dagger.hilt.android.AndroidEntryPoint;
-import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 
@@ -55,16 +42,16 @@ public class UserInfoActivity extends BaseFileUploadActivity<ActivityWithToolbar
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         binding.toolbarContainer.titleTv.setText(title);
         UserInfoFragment mFragment = UserInfoFragment.newInstance();
+        setFirstPhotoListener(mFragment);
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
                 UserInfoFragment.TAG);
-        setFirstPhotoListener(mFragment);
+
     }
 
     @Override
     public MineViewModel getViewModel() {
         return viewModel;
     }
-
 
     @Override
     protected int getLayoutID() {
@@ -76,33 +63,7 @@ public class UserInfoActivity extends BaseFileUploadActivity<ActivityWithToolbar
         super.upLoadPicAndVideo(currentType, fileMap);
         LogUtils.showLog("upLoadPicAndVideo..11111");
         viewModel.uploadPic(fileMap);
-        viewModel.getUploadImageEvent().observe(this, new Observer<ResultBean<List<UploadBean>>>() {
-            @Override
-            public void onChanged(ResultBean<List<UploadBean>> dataRefreshBean) {
-                //获取图片url
-                List<UploadBean> data = dataRefreshBean.getData();
-                LogUtils.showLog("data=" + data.get(0).getUrl());
-                postUserAvatar(data.get(0).getUrl());
-            }
-        });
-
-
-        viewModel.getUserAvatarEvent().observe(this, new Observer<ResultBean<Integer>>() {
-            @Override
-            public void onChanged(ResultBean<Integer> resultBean) {
-
-            }
-        });
     }
 
-    private void postUserAvatar(String url) {
-        MineRequestBody body = new MineRequestBody();
-        body.setUrl(url);
-        String str = GsonUtil.objectToString(body);
-        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
-                "charset=utf-8"), str);
-        viewModel.postUserAvatar(requestBody);
-
-    }
 
 }

@@ -64,9 +64,9 @@ public class FeedBackFragment extends BaseDataBindingFragment<FragmentFeedBackBi
 
             }
         });
-        viewModel.getFeedBackEvent().observe(getActivity(), new Observer<ResultBean<Integer>>() {
+        viewModel.getFeedBackEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
-            public void onChanged(ResultBean<Integer> resultBean) {
+            public void onChanged(Integer resultBean) {
                 ToastUtils.showShort(getContext(), "提交反馈成功！");
                 getActivity().finish();
             }
@@ -87,7 +87,7 @@ public class FeedBackFragment extends BaseDataBindingFragment<FragmentFeedBackBi
         MineRequestBody body = new MineRequestBody();
         LoginBean loginInfo = CommonUtils.getLoginInfo();
         LogUtils.showLog("getId=" + loginInfo.getId());
-        body.setCreateBy(loginInfo.getId());
+//        body.setCreateBy(loginInfo.getId());
         body.setRemark(binding.etFeedBack.getText().toString());
 
         String str = GsonUtil.objectToString(body);

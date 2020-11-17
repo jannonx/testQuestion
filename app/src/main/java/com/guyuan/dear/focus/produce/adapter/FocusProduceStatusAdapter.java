@@ -10,6 +10,7 @@ import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
 import com.guyuan.dear.utils.GlideUtils;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
  * @description: 生产详情--生产动态适配器
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/11/2 14:27
  * @company: 固远（深圳）信息技术有限公司
  */
@@ -29,6 +30,29 @@ public class FocusProduceStatusAdapter extends BaseRecyclerAdapter<ProduceStateB
     @Override
     protected void bindDataToView(BaseRecyclerViewHolder holder, ProduceStateBean item,
                                   int position) {
+
+        //只有一条数据
+        boolean onlyOneData = listData != null && listData.size() == 1;
+        //最后一条数据
+        boolean lastOneItem = listData != null && (listData.size() - 1) == position;
+
+        LogUtils.showLog("size=" + listData.size() + "...position=" + position);
+        LogUtils.showLog("onlyOneData=" + onlyOneData + "...lastOneItem=" + lastOneItem);
+        View specialView = holder.getView(R.id.rl_first_view);
+        View normalView = holder.getView(R.id.cl_order_detail);
+        View firstAboveLie = holder.getView(R.id.v_first_above);
+        View vAboveLie = holder.getView(R.id.v_line_above);
+
+        specialView.setVisibility(lastOneItem ? View.VISIBLE : View.GONE);
+        firstAboveLie.setVisibility(onlyOneData ? View.GONE : View.VISIBLE);
+
+        normalView.setVisibility(lastOneItem ? View.GONE : View.VISIBLE);
+        vAboveLie.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
+
+        //specialData
+        holder.setText(R.id.tv_activate_name, item.getCreateName() + "：生产开始");
+        holder.setText(R.id.tv_activate_time, item.getCreateTime());
+        //normalData
 
         ImageView imageView = holder.getView(R.id.iv_avatar);
         GlideUtils.getInstance().loadUrlImage(imageView, item.getImgUrl());

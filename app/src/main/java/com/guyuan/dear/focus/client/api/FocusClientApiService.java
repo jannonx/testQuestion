@@ -16,7 +16,7 @@ import retrofit2.http.Query;
 
 /**
  * @description: 我的关注--客户--接口定义
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司
  */

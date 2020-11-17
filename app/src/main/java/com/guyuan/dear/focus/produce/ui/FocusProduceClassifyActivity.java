@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 /**
  * @description: 我的关注--生产计划--分类查询
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/10/26 16:11
  * @company: 固远（深圳）信息技术有限公司
  */
@@ -29,6 +29,7 @@ public class FocusProduceClassifyActivity extends BaseToolbarActivity<ActivityWi
     public static void start(Context context, ProductStatusType data) {
         Intent intent = new Intent(context, FocusProduceClassifyActivity.class);
         intent.putExtra(ConstantValue.KEY_CONTENT, data);
+
         context.startActivity(intent);
     }
 

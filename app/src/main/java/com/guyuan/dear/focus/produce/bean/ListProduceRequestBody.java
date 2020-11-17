@@ -2,7 +2,7 @@ package com.guyuan.dear.focus.produce.bean;
 
 /**
  * @description: 生产模块--列表请求体(参数配置)
- * @author: jannonx
+ * @author: 许建宁
  * @since: 2020/11/9 10:22
  * @company: 固远（深圳）信息技术有限公司
  */

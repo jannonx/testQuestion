@@ -2,12 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_root_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:paddingStart="@dimen/dp_12"
     android:paddingEnd="@dimen/dp_12"
     android:paddingBottom="@dimen/dp_16"
+    android:paddingTop="@dimen/dp_12"
     tools:background="@color/color_orange_FFECE3">
 
     <LinearLayout

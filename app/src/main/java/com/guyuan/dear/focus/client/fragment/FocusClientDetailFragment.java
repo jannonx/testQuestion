@@ -1,48 +1,36 @@
 package com.guyuan.dear.focus.client.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.httplibrary.bean.RefreshBean;
-import com.example.httplibrary.bean.ResultBean;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 
 import com.guyuan.dear.databinding.FragmentFoucsClientDetailBinding;
-import com.guyuan.dear.focus.client.activity.FocusClientDetailActivity;
 import com.guyuan.dear.focus.client.adapter.ClientPhoneHeaderAdapter;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.bean.ClientContactBean;
-import com.guyuan.dear.focus.client.bean.CommentsBean;
-import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
 import com.guyuan.dear.focus.client.data.FocusClientViewModel;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.GsonUtil;
-import com.guyuan.dear.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
-import static com.guyuan.dear.utils.ConstantValue.FIRST_PAGE;
-import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
 
 /**
  * @description: 我的关注--客户详情
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
@@ -51,7 +39,7 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
     public static final String TAG = FocusClientDetailFragment.class.getSimpleName();
     private BasicInfoFragment basicInfoFragment;
 
-    private int startPosition = 0;//起始选中位置
+    private final static int START_INDEX = 0;
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
     private ClientCompanyBean clientData;
@@ -75,6 +63,9 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
     @Override
     protected void initialization() {
         Bundle arguments = getArguments();
+        if (arguments == null) {
+            return;
+        }
         clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         initHeaderView();
         initViewPager();
@@ -155,7 +146,7 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
             if (tab != null) {
                 setContent(i, view);
                 tab.setCustomView(view);
-                if (i == startPosition) {
+                if (i == START_INDEX) {
                     setTabSelect(tab);
                     tab.select();
                 } else {
@@ -173,9 +164,9 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
     protected void setTabSelect(TabLayout.Tab tab) {
         TextView tv = tab.getCustomView().findViewById(R.id.tv_tab_text);
         if (selectedTextColor == 0) {
-            tv.setTextColor(getResources().getColor(R.color.color_blue_1677ff));
+            tv.setTextColor(getResources().getColor(R.color.color_blue_1677ff, null));
         } else {
-            tv.setTextColor(getResources().getColor(R.color.color_black_333333));
+            tv.setTextColor(getResources().getColor(R.color.color_black_333333, null));
         }
         tv.setTextSize(15f);
     }
@@ -183,9 +174,9 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
     protected void setTabUnselected(TabLayout.Tab tab) {
         TextView tv = tab.getCustomView().findViewById(R.id.tv_tab_text);
         if (unSelectedTextColor == 0) {
-            tv.setTextColor(getResources().getColor(R.color.color_black_333333));
+            tv.setTextColor(getResources().getColor(R.color.color_black_333333, null));
         } else {
-            tv.setTextColor(getResources().getColor(R.color.color_blue_1677ff));
+            tv.setTextColor(getResources().getColor(R.color.color_blue_1677ff, null));
         }
         tv.setTextSize(15f);
     }

@@ -1,30 +1,29 @@
 package com.guyuan.dear.focus.produce.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.TagStaffAdapter;
-import com.guyuan.dear.databinding.FragmentFocusProduceDetailBinding;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailComplexBinding;
+import com.guyuan.dear.dialog.SimpleConfirmViewDialog;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
+import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
+import com.guyuan.dear.focus.produce.bean.OperateProduceType;
 import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
-import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.GsonUtil;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
 import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
@@ -35,35 +34,38 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+
 /**
  * @description: 我的关注--客户详情(CoordinatorLayout)
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/11/11 11:20
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<FragmentFocusProduceDetailComplexBinding, FocusProduceViewModel> {
+public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<FragmentFocusProduceDetailComplexBinding, FocusProduceViewModel>
+        implements View.OnClickListener {
 
     public static final String TAG = FocusProduceDetailComplexFragment.class.getSimpleName();
 
     private static final int REQUEST_SEND_SELECT_PERSON = 0x001;
     private static final int REQUEST_COPY_SELECT_PERSON = 0x002;
-    private FocusProduceViewModel viewModel;
     private FocusProduceStatusFragment statusFragment;
     private FollowProducePlanFragment planFragment;
-
 
     private int startPosition = 0;//起始选中位置
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
     private FocusProduceBean produceBean;
+    private boolean isFooterBtnShow, isProducePause, isProduceIng;
 
     private ProduceApplyDialog dialog;
-    private boolean isProduceWait = false;
 
-    public static FocusProduceDetailComplexFragment newInstance(FocusProduceBean data) {
+    public static FocusProduceDetailComplexFragment newInstance(FocusProduceBean data, boolean isFooterBtnShow) {
         Bundle bundle = new Bundle();
         FocusProduceDetailComplexFragment fragment = new FocusProduceDetailComplexFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
+        bundle.putSerializable(ConstantValue.KEY_BOOLEAN, isFooterBtnShow);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -76,14 +78,20 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
     @Override
     protected void initialization() {
         Bundle arguments = getArguments();
+        if (arguments == null) {
+            return;
+        }
         produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
-
+        isFooterBtnShow = arguments.getBoolean(ConstantValue.KEY_BOOLEAN, false);
+        LogUtils.showLog("listData=" + (produceBean == null));
         initViewPager();
         initData();
     }
 
     private void initData() {
-
+        binding.tvActivateBtn.setOnClickListener(this);
+        binding.tvPauseBtn.setOnClickListener(this);
+        binding.tvCompleteBtn.setOnClickListener(this);
         viewModel.getBasicInfoById(produceBean.getEquipmentId());
 
         viewModel.getBasicInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
@@ -92,20 +100,87 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
                 setProduceData(data);
             }
         });
-
-        binding.tvCommitBtn.setOnClickListener(new View.OnClickListener() {
+        //操作
+        viewModel.getExecuteEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
-            public void onClick(View v) {
-                showApplyDialog();
+            public void onChanged(Integer dataRefreshBean) {
+                ToastUtils.showLong(getContext(), "提交成功!");
+                getActivity().finish();
             }
         });
+
     }
 
-    private void showApplyDialog() {
+
+    private void setProduceData(FocusProduceBean data) {
+        //暂停状态
+        isProducePause = ProductStatusType.TYPE_PRODUCE_EXCEPTION == data.getStatusType();
+        //生产状态
+        isProduceIng = ProductStatusType.TYPE_PRODUCE_ING == data.getStatusType();
+        binding.tvActivateBtn.setVisibility(isFooterBtnShow && isProducePause ? View.VISIBLE : View.GONE);
+        binding.llApplyPanel.setVisibility(isFooterBtnShow && isProduceIng ? View.VISIBLE : View.GONE);
+
+        planFragment.setProduceData(data);
+
+        binding.tvProductName.setText(data.getName());
+        binding.tvProductCode.setText(data.getCode());
+        binding.tvDutyUnit.setText(data.getPrincipalDept());
+
+        //设置生产状态
+        binding.tvProduceStatus.setText(data.getStatusText());
+        binding.tvProduceStatus.setBackgroundResource(data.getStatusTextBg());
+        int color_blue_ff1b97fc = data.getStatusTextColor();
+        binding.tvProduceStatus.setTextColor(getActivity().getResources().getColor(color_blue_ff1b97fc));
+        binding.tvSubStatus.setVisibility(ProductStatusType.TYPE_PRODUCE_DELAY == data.getStatusType()
+                ? View.VISIBLE : View.GONE);
+        binding.tvProjectName.setText(data.getProjectName());
+
+        binding.tvActualStart.setText(data.getActualStartTime());
+        binding.tvPlanStart.setText(data.getPlanStartTime());
+        binding.tvActualComplete.setText(data.getActualEndTime());
+        binding.tvPlanComplete.setText(data.getPlanEndTime());
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_activate_btn:
+                showApplyDialog(OperateProduceType.TYPE_EXECUTE_ACTIVATE);
+                break;
+            case R.id.tv_pause_btn:
+                showApplyDialog(OperateProduceType.TYPE_EXECUTE_PAUSE);
+                break;
+            case R.id.tv_complete_btn:
+                SimpleConfirmViewDialog.OnClickListener listener = new SimpleConfirmViewDialog.OnClickListener() {
+                    @Override
+                    public void onConfirm() {
+                        ExecuteRequestBody body = new ExecuteRequestBody();
+                        body.setEquipmentId(produceBean.getEquipmentId());
+                        body.setType(OperateProduceType.TYPE_EXECUTE_COMPLETE.getCode());
+                        String str = GsonUtil.objectToString(body);
+                        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                                "charset=utf-8"), str);
+                        viewModel.postExecuteProduceInfo(requestBody);
+                    }
+                };
+
+                SimpleConfirmViewDialog.showTitle(getContext(), "确认完成生产吗？", listener);
+                break;
+            default:
+        }
+    }
+
+    private void showApplyDialog(OperateProduceType type) {
         ProduceApplyDialog.OnDialogClickListener dialogListener = new ProduceApplyDialog.OnDialogClickListener() {
             @Override
-            public void onCommitInfo(String content) {
-
+            public void onCommitInfo(ExecuteRequestBody content) {
+                content.setEquipmentId(produceBean.getEquipmentId());
+                String str = GsonUtil.objectToString(content);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), str);
+                viewModel.postExecuteProduceInfo(requestBody);
             }
 
             @Override
@@ -130,34 +205,9 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
                         ConstantValue.CONST_MAX_STAFF_COUNT);
             }
         };
-        dialog = new ProduceApplyDialog(getActivity(), dialogListener);
+        dialog = new ProduceApplyDialog(getActivity(), type, dialogListener);
         dialog.show();
     }
-
-    private void setProduceData(FocusProduceBean data) {
-        planFragment.setProduceData(data);
-
-        binding.tvProductName.setText(data.getName());
-        binding.tvProductCode.setText(data.getCode());
-        binding.tvDutyUnit.setText(data.getPrincipalDept());
-
-        //设置生产状态
-        binding.tvProduceStatus.setText(data.getStatusText());
-        binding.tvProduceStatus.setBackgroundResource(data.getStatusTextBg());
-        int color_blue_ff1b97fc = data.getStatusTextColor();
-        binding.tvProduceStatus.setTextColor(getActivity().getResources().getColor(color_blue_ff1b97fc));
-        binding.tvSubStatus.setVisibility(ProductStatusType.TYPE_PRODUCE_DELAY == data.getStatusType()
-                ? View.VISIBLE : View.GONE);
-        binding.tvProjectName.setText(data.getProjectName());
-
-        binding.tvActualStart.setText(data.getActualStartTime());
-        binding.tvPlanStart.setText(data.getPlanStartTime());
-        binding.tvActualComplete.setText(data.getActualEndTime());
-        binding.tvPlanComplete.setText(data.getPlanEndTime());
-
-
-    }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -266,17 +316,11 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
         tv.setText(Arrays.asList(titleList).get(position));
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (getActivity() != null) {
-            FocusProduceDetailActivity activity = (FocusProduceDetailActivity) getActivity();
-            viewModel = activity.getViewModel();
-        }
-    }
 
     @Override
     protected int getVariableId() {
         return 0;
     }
+
+
 }

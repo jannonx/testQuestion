@@ -17,6 +17,9 @@ import com.guyuan.dear.focus.device.ui.FocusDeviceActivity;
 import com.guyuan.dear.focus.hr.view.home.HrHomeActivity;
 import com.guyuan.dear.focus.contract.view.home.ContractHomeActivity;
 import com.guyuan.dear.focus.produce.ui.FocusProduceActivity;
+import com.guyuan.dear.focus.projectsite.activity.FocusProjectSiteActivity;
+import com.guyuan.dear.focus.projectsite.activity.ResultReportDetailActivity;
+import com.guyuan.dear.focus.qc.views.home.QcHomeActivity;
 import com.guyuan.dear.focus.purchase.ui.FocusPurchaseActivity;
 import com.guyuan.dear.focus.security.ui.FocusSecurityActivity;
 import com.guyuan.dear.focus.stock.ui.FocusStockActivity;
@@ -116,7 +119,7 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
                                 break;
 
                             case ConstantValue.FOCUS_QUALITY://质检
-
+                                QcHomeActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.FOCUS_STOCK://库存
@@ -128,7 +131,7 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
                                 break;
 
                             case ConstantValue.FOCUS_PROJECT_SITE://工程现场
-
+                                FocusProjectSiteActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.FOCUS_AFTER_SERVICE://售后服务

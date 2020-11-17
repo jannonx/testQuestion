@@ -18,7 +18,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @description: 我的关注--生产计划--分类查询
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/11/2 14:27
  * @company: 固远（深圳）信息技术有限公司
  */
@@ -48,7 +48,7 @@ public class FocusProduceClassifyFragment extends BaseProduceFragment {
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                FocusProduceDetailActivity.start(getContext(),listData.get(position));
+                FocusProduceDetailActivity.start(getContext(),listData.get(position),false);
             }
         });
         viewModel.getProduceListByStatus(getListRequestBody(true));

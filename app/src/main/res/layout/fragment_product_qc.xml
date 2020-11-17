@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="fragment_product_qc_vm"
+            type="com.guyuan.dear.work.qc.views.productQc.ProductQcViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:onClick="@{fragment_product_qc_vm.onClickSelectProject}"
+                android:padding="@dimen/dp_12">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="项目名称"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:paddingRight="@dimen/dp_5"
+                    android:text='@{fragment_product_qc_vm.projectInfo.projectName}'
+                    android:textColor="@color/color_grey_999999"
+                    android:textSize="@dimen/sp_15" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_svg_right_arrow" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_12">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="项目编号："
+                    android:textColor="@color/color_grey_999999"
+                    android:textSize="@dimen/sp_14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{fragment_product_qc_vm.projectInfo.projectId}" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <include
+                layout="@layout/view_divider_horizontal_grey_e5e5e5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_8" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:onClick="@{fragment_product_qc_vm.onClickSelectBatch}"
+                android:padding="@dimen/dp_12">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="出厂编号"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_16" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='@{fragment_product_qc_vm.batchInfo.batchId}'
+                    android:textColor="@color/color_grey_999999"
+                    android:textSize="@dimen/sp_15" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_svg_right_arrow" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_12">
+
+               <tl.com.easy_recycleview_library.BaseRecyclerView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   app:setProductionInfos="@{fragment_product_qc_vm.batchInfo.products}"/>
+            </FrameLayout>
+
+            <include
+                layout="@layout/view_divider_horizontal_grey_e5e5e5"
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:onClick="@{fragment_product_qc_vm.onClickSelectQcApproach}"
+                android:padding="@dimen/dp_12">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="质检方式"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="请选择"
+                    android:textColor="@color/color_grey_999999"
+                    android:textSize="@dimen/sp_15"
+                    app:showQcApproachName="@{fragment_product_qc_vm.qcApproach}"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_svg_right_arrow" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dp_12">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="判定条件"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/fragment_product_qc_radio_grp_judge_conditions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_48"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/fragment_product_qc_radio_btn_judge_conditions_by_scheme"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:enabled="true"
+                        android:button="@drawable/selector_ic_svg_unchecked_to_checked"
+                        android:padding="@dimen/dp_8"
+                        android:text="设计图样" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:enabled="true"
+                        android:id="@+id/fragment_product_qc_radio_btn_judge_conditions_by_nation_standard"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/selector_ic_svg_unchecked_to_checked"
+                        android:padding="@dimen/dp_8"
+                        android:text="国家标准" />
+                </RadioGroup>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_12">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="质检数量"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/fragment_product_qc_edt_sample_size"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:hint="请输入数量"
+                    android:inputType="numberDecimal"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_12"
+                    android:text="质检人"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    app:setPauseContractCopyList="@{fragment_product_qc_vm.qcCheckers}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:onClick="@{fragment_product_qc_vm.onClickAddQcCheckers}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_12"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@mipmap/add" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dp_12"
+                android:onClick="@{fragment_product_qc_vm.onClickSelectResult}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="判定结果"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:paddingRight="@dimen/dp_5"
+                    android:text="请选择"
+                    android:textColor="@color/color_grey_999999"
+                    android:textSize="@dimen/sp_15"
+                    app:showQcResult="@{fragment_product_qc_vm.reportResult}"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_svg_right_arrow" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_12"
+                android:text="原因"
+                android:textColor="@color/color_black_333333"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:layout_marginRight="@dimen/dp_12"
+                android:layout_marginBottom="@dimen/dp_12"
+                android:background="@drawable/bg_white_rect_grey_stoke"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dp_12"
+                android:paddingRight="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_12">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_120"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/fragment_product_qc_edt_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:gravity="start|top"
+                        android:hint="请输入原因，最长不超过240个字符。"
+                        android:padding="@dimen/dp_12"
+                        android:text="@={fragment_product_qc_vm.comments}"/>
+                </FrameLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    app:showInputCount="@{fragment_product_qc_vm.comments}"
+                    android:text="0/240" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dp_12"
+                android:onClick="@{fragment_product_qc_vm.onClickSelectIfNeedVerify}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="是否审批"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="是"
+                    android:textColor="@color/color_grey_999999"
+                    android:textSize="@dimen/sp_15"
+                    app:showNegativePositive="@{fragment_product_qc_vm.isNeedVerify}"
+                    />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_svg_right_arrow" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <include layout="@layout/view_divider_horizontal_grey_e5e5e5"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:visibility="@{fragment_product_qc_vm.isNeedVerify?View.VISIBLE:View.GONE}">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_12"
+                    android:text="审批人"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:setPauseContractSendList="@{fragment_product_qc_vm.verifiers}"/>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_12"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@mipmap/add"
+                    android:onClick="@{fragment_product_qc_vm.onClickAddVerifiers}"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_12"
+                android:background="@drawable/bg_blue_0050b4_corner_50"
+                android:text="提交质检报告"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:onClick="@{fragment_product_qc_vm.onClickSubmit}"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</layout>

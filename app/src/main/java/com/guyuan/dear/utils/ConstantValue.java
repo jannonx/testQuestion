@@ -51,6 +51,8 @@ public class ConstantValue {
     public static final String KEY_MY_PAUSE_APPLY_BEAN = "KEY_MY_PAUSE_APPLY_BEAN";
     public static final String KEY_HIDDEN_STAFFS = "KEY_HIDDEN_STAFFS";
     public static final String KEY_SELECTED_STAFFS = "KEY_SELECTED_STAFFS";
+    public static final String KEY_DATE_START = "KEY_DATE_START";
+    public static final String KEY_DATE_TO = "KEY_DATE_TO";
 
     public static int isForground;   //app是否在前台
     public static boolean hasNewVersion = false;//是否有新版本
@@ -120,6 +122,8 @@ public class ConstantValue {
     public static final String CONTRACT_RESTART = "contract_restart";
     public static final String WORK_CONTRACT_ASSESS = "work_contract_assess";
     public static final String WORK_GOODS_SIGN = "work_goods_sign";
+    public static final String WORK_QC="work_qc";
+
 
     //摄像头界面
     public static final String SURVEILLANCE_ACTIVITY = "surveillanceActivity";
