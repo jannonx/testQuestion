@@ -44,9 +44,20 @@ public abstract class BaseProduceFragment extends BaseListSearchFragment<FocusPr
                 "charset=utf-8"), str);
     }
 
-    @Override
-    protected void init() {
 
+    protected RequestBody getListRequestBody(String name) {
+        currentType = REFRESH ;
+        currentPage = FIRST_PAGE ;
+        ListProduceRequestBody body = new ListProduceRequestBody();
+        ListProduceRequestBody.FiltersBean filtersBean = new ListProduceRequestBody.FiltersBean();
+        filtersBean.setName(name);
+        body.setFilters(filtersBean);
+        body.setPageNum(currentPage);
+        body.setPageSize(PAGE_SIZE);
+
+        String str = GsonUtil.objectToString(body);
+        return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
+                "charset=utf-8"), str);
     }
 
     @Override

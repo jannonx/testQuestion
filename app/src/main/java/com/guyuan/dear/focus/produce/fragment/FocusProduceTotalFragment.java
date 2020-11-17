@@ -18,7 +18,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @description:
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/11/2 14:27
  * @company: 固远（深圳）信息技术有限公司
  */
@@ -36,6 +36,7 @@ public class FocusProduceTotalFragment extends BaseProduceFragment {
 
     @Override
     protected void init() {
+        etSearch.setHint("输入产品名称、产品代号");
         FocusProduceAdapter listAdapter = new FocusProduceAdapter(getContext(), listData,
                 R.layout.item_focus_produce);
         adapter = new BaseRecyclerViewAdapter(listAdapter);

@@ -3,7 +3,6 @@ package com.guyuan.dear.focus.produce.adapter;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -19,7 +18,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
  * @description: 生产详情--生产动态适配器
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/11/2 14:27
  * @company: 固远（深圳）信息技术有限公司
  */

@@ -2,7 +2,7 @@ package com.guyuan.dear.focus.produce.bean;
 
 /**
  * @description: 操作者的角色
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/11/11 12:17
  * @company: 固远（深圳）信息技术有限公司
  */

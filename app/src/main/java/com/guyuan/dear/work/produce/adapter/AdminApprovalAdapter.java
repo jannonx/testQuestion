@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * @description: 管理者审批适配器
- * @author:Jannonx
+ * @author: 许建宁
  * @date: 2020/6/4 10:10
  */
 public class AdminApprovalAdapter extends TagAdapter<StaffBean> {

@@ -19,6 +19,7 @@ import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
 import com.guyuan.dear.focus.produce.bean.ProduceRequestBody;
 import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
+import com.guyuan.dear.focus.produce.ui.FocusOneProduceActivity;
 import com.guyuan.dear.focus.produce.ui.FocusProduceClassifyActivity;
 import com.guyuan.dear.focus.produce.util.ChartViewUtils;
 import com.guyuan.dear.utils.AlertDialogUtils;
@@ -185,7 +186,8 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
                 selectEndDate();
                 break;
             case R.id.tv_search_btn:
-                viewModel.getProduceOverView(getRequestBody());
+//                viewModel.getProduceOverView(getRequestBody());
+                FocusOneProduceActivity.start(getContext(), etSearch.getText().toString());
                 break;
         }
     }

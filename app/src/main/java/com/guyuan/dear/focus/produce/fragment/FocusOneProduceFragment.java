@@ -1,6 +1,7 @@
 package com.guyuan.dear.focus.produce.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import androidx.lifecycle.Observer;
@@ -8,30 +9,31 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.bean.SimpleTabBean;
-import com.guyuan.dear.base.fragment.BaseListSearchFragment;
-import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.produce.adapter.FocusProduceAdapter;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
-import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
+import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.LogUtils;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
- * @description:
- * @author: 许建宁
+ * @description: 一个产品(或者所有产品)下的所有生产列表
+ * @author: 2020/11/16 16:45
  * @since: 2020/11/2 14:27
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusProduceExceptionFragment extends BaseProduceFragment {
+public class FocusOneProduceFragment extends BaseProduceFragment {
 
-    public static final String TAG = FocusProduceExceptionFragment.class.getSimpleName();
+    public static final String TAG = FocusOneProduceFragment.class.getSimpleName();
+    private String produceName;
 
-    public static FocusProduceExceptionFragment newInstance() {
+
+    public static FocusOneProduceFragment newInstance(String name) {
         Bundle args = new Bundle();
-        FocusProduceExceptionFragment fragment = new FocusProduceExceptionFragment();
+        FocusOneProduceFragment fragment = new FocusOneProduceFragment();
+        args.putString(ConstantValue.KEY_CONTENT, name);
         fragment.setArguments(args);
         return fragment;
     }
@@ -40,6 +42,8 @@ public class FocusProduceExceptionFragment extends BaseProduceFragment {
     @Override
     protected void init() {
         etSearch.setHint("输入产品名称、产品代号");
+        produceName = getArguments().getString(ConstantValue.KEY_CONTENT);
+
         FocusProduceAdapter listAdapter = new FocusProduceAdapter(getContext(), listData,
                 R.layout.item_focus_produce);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
@@ -49,28 +53,33 @@ public class FocusProduceExceptionFragment extends BaseProduceFragment {
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                FocusProduceDetailActivity.start(getContext(),listData.get(position),false);
+                FocusProduceDetailActivity.start(getContext(), listData.get(position), false);
             }
         });
 
-        viewModel.getProduceExceptionList(getListRequestBody(true));
-        viewModel.getExceptionListEvent().observe(getActivity(), new Observer<RefreshBean<FocusProduceBean>>() {
+
+        etSearch.setText(produceName);
+
+        viewModel.getProduceList(getListRequestBody(produceName));
+        viewModel.getProduceListEvent().observe(getActivity(), new Observer<RefreshBean<FocusProduceBean>>() {
             @Override
             public void onChanged(RefreshBean<FocusProduceBean> dataRefreshBean) {
-
+                LogUtils.showLog("size=" + dataRefreshBean.getContent().size());
                 setListData(dataRefreshBean.getContent());
             }
         });
     }
 
-    @Override
-    public void bindRefresh() {
-        viewModel.getProduceExceptionList(getListRequestBody(true));
-    }
 
     @Override
     protected void loadMore() {
-        viewModel.getProduceExceptionList(getListRequestBody(false));
+        viewModel.getProduceList(getListRequestBody(false));
     }
+
+    @Override
+    public void bindRefresh() {
+        viewModel.getProduceList(getListRequestBody(true));
+    }
+
 
 }

@@ -3,7 +3,7 @@ package com.guyuan.dear.focus.produce.bean;
 
 /**
  * @description: 生产状态原因
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/11/9 12:28
  * @company: 固远（深圳）信息技术有限公司
  */
