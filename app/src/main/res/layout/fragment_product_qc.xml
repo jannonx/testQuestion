@@ -5,9 +5,6 @@
     <data>
 
         <import type="android.view.View"/>
-        <import
-            alias="ProductQcFragmentConverter"
-            type="com.guyuan.dear.work.qc.bindingAdpaters.ProductQcFragmentConverter" />
 
         <variable
             name="fragment_product_qc_vm"
