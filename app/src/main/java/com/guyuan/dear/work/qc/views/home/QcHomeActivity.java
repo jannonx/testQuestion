@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.qc.views.home;
+package com.guyuan.dear.work.qc.views.home;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,54 +9,50 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.qc.views.qcReportList.QcReportListFragment;
-import com.guyuan.dear.focus.qc.views.qcSum.QcSummaryFragment;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.work.qc.views.materialQc.MaterialQcFragment;
+import com.guyuan.dear.work.qc.views.productQc.ProductQcFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 我的关注-质检-首页
- *
+ * 我的工作-质检首页
  * @author 廖华凯
- * @date 2020/11/11
  */
 public class QcHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, QcHomeViewModel> {
 
-    public static void start(Context context, String title) {
+    public static void start(Context context,String title) {
         Intent starter = new Intent(context, QcHomeActivity.class);
-        starter.putExtra(ConstantValue.KEY_TITLE, title);
+        starter.putExtra(ConstantValue.KEY_TITLE,title);
         context.startActivity(starter);
     }
 
-
     @Override
     protected List<String> getTitles() {
-        return new ArrayList<String>() {
+        return new ArrayList<String>(){
             {
-                add("质检概况");
-                add("质检异常");
-                add("质检详情");
+                add("成品质检");
+                add("原材料质检");
+                add("我的质检");
             }
         };
     }
 
     @Override
     protected List<Fragment> getFragments() {
-        return new ArrayList<Fragment>() {
+        return new ArrayList<Fragment>(){
             {
-                add(QcSummaryFragment.getInstance());
-                add(QcReportListFragment.getInstance(QcReportListFragment.REPORT_TYPE_ONLY_REJECTED_REPORTS));
-                add(QcReportListFragment.getInstance(QcReportListFragment.REPORT_TYPE_SHOW_ALL_REPORTS));
+                add(ProductQcFragment.getInstance());
+                add(MaterialQcFragment.getInstance());
+                add(QcReportListFragment.getInstance(QcReportListFragment.REPORT_TYPE_ONLY_MY_REPORTS));
             }
         };
     }
 
     @Override
     protected void init() {
-        Intent intent = getIntent();
-        String title = intent.getStringExtra(ConstantValue.KEY_TITLE);
-        setTitleCenter(title);
+
 
     }
 

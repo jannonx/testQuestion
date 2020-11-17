@@ -38,7 +38,7 @@ import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;
  * @since: 2020/11/13 16:14
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class AllQcReportListFragment extends BaseMvvmFragment<FragmentAllQcReportListBinding, QcReportListViewModel> {
+public class QcReportListFragment extends BaseMvvmFragment<FragmentAllQcReportListBinding, QcReportListViewModel> {
 
     /**
      * 只显示异常报告
@@ -48,6 +48,10 @@ public class AllQcReportListFragment extends BaseMvvmFragment<FragmentAllQcRepor
      * 显示所有类型的报告
      */
     public static final int REPORT_TYPE_SHOW_ALL_REPORTS = 0;
+    /**
+     * 只显示当前用户提交的所有类型的报告
+     */
+    public static final int REPORT_TYPE_ONLY_MY_REPORTS=2;
 
 
     private int reportType = 0;
@@ -56,14 +60,16 @@ public class AllQcReportListFragment extends BaseMvvmFragment<FragmentAllQcRepor
     private long dateFrom;
     private long dateTo;
     private List<GenericQcReport> list;
+    private BaseRecyclerView recyclerView;
 
     /**
-     * @param reportType 参考 {@link AllQcReportListFragment#REPORT_TYPE_ONLY_REJECTED_REPORTS},
-     *                   {@link AllQcReportListFragment#REPORT_TYPE_SHOW_ALL_REPORTS}
+     * @param reportType 参考 {@link QcReportListFragment#REPORT_TYPE_ONLY_REJECTED_REPORTS},
+     *                   {@link QcReportListFragment#REPORT_TYPE_SHOW_ALL_REPORTS},
+     *                   {@link QcReportListFragment#REPORT_TYPE_ONLY_MY_REPORTS}
      * @return
      */
-    public static AllQcReportListFragment getInstance(int reportType) {
-        AllQcReportListFragment fragment = new AllQcReportListFragment();
+    public static QcReportListFragment getInstance(int reportType) {
+        QcReportListFragment fragment = new QcReportListFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ConstantValue.KEY_REPORT_TYPE, reportType);
         fragment.setArguments(bundle);
@@ -133,24 +139,32 @@ public class AllQcReportListFragment extends BaseMvvmFragment<FragmentAllQcRepor
 
     private void resetQcReportsByTimePeriod(long dateFrom, long dateTo) {
         pageIndex = 1;
+        if(recyclerView!=null){
+            recyclerView.setLoadMoreEnabled(true);
+        }
         if (reportType == REPORT_TYPE_ONLY_REJECTED_REPORTS) {
             getViewModel().getRejectedReportList().getValue().clear();
             getViewModel().updateAllRejectedReports(dateFrom, dateTo, pageIndex++, pageSize);
         } else if (reportType == REPORT_TYPE_SHOW_ALL_REPORTS) {
             getViewModel().getAllReportList().getValue().clear();
             getViewModel().updateAllReports(dateFrom, dateTo, pageIndex++, pageSize);
+        }else if(reportType == REPORT_TYPE_ONLY_MY_REPORTS){
+            getViewModel().getMyQcReports().getValue().clear();
+            getViewModel().updateMyQcReports(dateFrom,dateTo,pageIndex++,pageSize);
         }
         getViewModel().setDateFrom(dateFrom);
         getViewModel().setDateTo(dateTo);
     }
 
     private void initRecyclerView() {
-        BaseRecyclerView recyclerView = getViewDataBinding().fragmentAllQcReportListRecyclerView;
+        recyclerView = getViewDataBinding().fragmentAllQcReportListRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         if (reportType == REPORT_TYPE_ONLY_REJECTED_REPORTS) {
             list = getViewModel().getRejectedReportList().getValue();
-        } else {
+        } else if(reportType == REPORT_TYPE_SHOW_ALL_REPORTS) {
             list = getViewModel().getAllReportList().getValue();
+        } else {
+            list= getViewModel().getMyQcReports().getValue();
         }
         AllQcListAdapter adapter = new AllQcListAdapter(list, getContext());
         BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
@@ -170,8 +184,10 @@ public class AllQcReportListFragment extends BaseMvvmFragment<FragmentAllQcRepor
                 }
                 if (reportType == REPORT_TYPE_ONLY_REJECTED_REPORTS) {
                     getViewModel().updateAllRejectedReports(dateFrom, dateTo, pageIndex++, pageSize);
-                } else {
+                } else if(reportType ==REPORT_TYPE_SHOW_ALL_REPORTS) {
                     getViewModel().updateAllReports(dateFrom, dateTo, pageIndex++, pageSize);
+                }else {
+                    getViewModel().updateMyQcReports(dateFrom,dateTo,pageIndex++,pageSize);
                 }
                 recyclerView.refreshComplete(pageSize);
             }

@@ -39,6 +39,12 @@ public class BaseProductQcReport implements Parcelable {
     public static final int TAG_TYPE_PASS = 0;
     public static final int TAG_TYPE_REJECT=1;
     /**
+     * 表示审批状态，如：待审批，审批中，同意，拒绝等。
+     * {@link BaseMaterialQcReport#REPORT_STATE_PASS},{@link BaseMaterialQcReport#REPORT_STATE_PENDING_FOR_APPROVAL},
+     * {@link BaseMaterialQcReport#REPORT_STATE_REJECT}
+     */
+    private int state;
+    /**
      * 是否需要审批
      */
     private boolean isNeedVerify;
@@ -53,6 +59,7 @@ public class BaseProductQcReport implements Parcelable {
         qualityChecker = in.readString();
         date = in.readLong();
         tag = in.readInt();
+        state = in.readInt();
         isNeedVerify = in.readByte()>0;
     }
 
@@ -124,6 +131,14 @@ public class BaseProductQcReport implements Parcelable {
         this.tag = tag;
     }
 
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -137,6 +152,7 @@ public class BaseProductQcReport implements Parcelable {
         dest.writeString(qualityChecker);
         dest.writeLong(date);
         dest.writeInt(tag);
+        dest.writeInt(state);
         dest.writeByte((byte) (isNeedVerify?1:0));
     }
 

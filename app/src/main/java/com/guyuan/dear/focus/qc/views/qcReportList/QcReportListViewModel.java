@@ -33,6 +33,10 @@ public class QcReportListViewModel extends BaseViewModel {
      */
     private MutableLiveData<List<GenericQcReport>> rejectedReportList = new MutableLiveData<>(new ArrayList<>());
     /**
+     * 当前用户提交的报告
+     */
+    private MutableLiveData<List<GenericQcReport>> myQcReports = new MutableLiveData<>(new ArrayList<>());
+    /**
      * 所有QC报告
      */
     private MutableLiveData<List<GenericQcReport>> allReportList = new MutableLiveData<>(new ArrayList<>());
@@ -73,6 +77,10 @@ public class QcReportListViewModel extends BaseViewModel {
 
     public MutableLiveData<Long> getDateTo() {
         return dateTo;
+    }
+
+    public MutableLiveData<List<GenericQcReport>> getMyQcReports() {
+        return myQcReports;
     }
 
     public void setDateFrom(long dateFrom) {
@@ -133,5 +141,10 @@ public class QcReportListViewModel extends BaseViewModel {
     public void updateAllReports(long dateFrom, long dateTo, int pageIndex, int pageSize){
         this.allReportList.getValue().addAll(qcListRepo.getAllQcList(dateFrom,dateTo,pageIndex,pageSize));
         this.allReportList.postValue(this.allReportList.getValue());
+    }
+
+    public void updateMyQcReports(long dateFrom, long dateTo, int pageIndex, int pageSize){
+        this.myQcReports.getValue().addAll(qcListRepo.getMyQcReports(dateFrom,dateTo,pageIndex,pageSize));
+        this.myQcReports.postValue(this.myQcReports.getValue());
     }
 }
