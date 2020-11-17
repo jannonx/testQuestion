@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * @description:
- * @author:Jannonx
+ * @author:许建宁
  * @date: 2020/10/27 10:58
  */
 public class FollowStatusExAdapter extends BaseExpandableListAdapter {

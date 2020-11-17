@@ -19,17 +19,25 @@ import okhttp3.RequestBody;
 
 /**
  * @description:
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/10/27 16:36
  * @company: 固远（深圳）信息技术有限公司
  */
 public class FocusClientViewModel extends BaseViewModel {
 
     private FocusClientRepository repository;
-
-    private MutableLiveData<RefreshBean<ClientCompanyBean>> clientListEvent = new MutableLiveData<>();//客户列表
-    private MutableLiveData<ClientCompanyBean> clientBasicEvent = new MutableLiveData<>();//基础信息
-    private MutableLiveData<RefreshBean<CommentsBean>> followListEvent = new MutableLiveData<>();//跟进评论
+    /**
+     * 客户列表
+     */
+    private MutableLiveData<RefreshBean<ClientCompanyBean>> clientListEvent = new MutableLiveData<>();
+    /**
+     * 基础信息
+     */
+    private MutableLiveData<ClientCompanyBean> clientBasicEvent = new MutableLiveData<>();
+    /**
+     * 基础信息
+     */
+    private MutableLiveData<RefreshBean<CommentsBean>> followListEvent = new MutableLiveData<>();
 
 
     @ViewModelInject

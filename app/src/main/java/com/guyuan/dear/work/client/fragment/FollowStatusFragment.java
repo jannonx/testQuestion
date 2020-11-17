@@ -31,7 +31,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
 /**
  * @description: 我的工作-客户详情--跟进动态
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/11/4 14:11
  * @company: 固远（深圳）信息技术有限公司
  */

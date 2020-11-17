@@ -1,19 +1,15 @@
 package com.guyuan.dear.focus.client.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.httplibrary.bean.RefreshBean;
-import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
-import com.guyuan.dear.focus.client.activity.FocusClientActivity;
 import com.guyuan.dear.focus.client.activity.FocusClientDetailActivity;
 import com.guyuan.dear.focus.client.adapter.ClientListAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
@@ -22,7 +18,6 @@ import com.guyuan.dear.focus.client.data.FocusClientViewModel;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
 
-import java.util.List;
 
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
@@ -30,7 +25,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @description: 我的关注-客户
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/10/26 16:11
  * @company: 固远（深圳）信息技术有限公司
  */

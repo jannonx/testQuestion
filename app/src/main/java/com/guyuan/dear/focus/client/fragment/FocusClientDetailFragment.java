@@ -30,7 +30,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @description: 我的关注--客户详情
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
@@ -39,7 +39,7 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
     public static final String TAG = FocusClientDetailFragment.class.getSimpleName();
     private BasicInfoFragment basicInfoFragment;
 
-    private int startPosition = 0;//起始选中位置
+    private final static int START_INDEX = 0;
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
     private ClientCompanyBean clientData;
@@ -63,6 +63,9 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
     @Override
     protected void initialization() {
         Bundle arguments = getArguments();
+        if (arguments == null) {
+            return;
+        }
         clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         initHeaderView();
         initViewPager();
@@ -143,7 +146,7 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
             if (tab != null) {
                 setContent(i, view);
                 tab.setCustomView(view);
-                if (i == startPosition) {
+                if (i == START_INDEX) {
                     setTabSelect(tab);
                     tab.select();
                 } else {
@@ -161,9 +164,9 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
     protected void setTabSelect(TabLayout.Tab tab) {
         TextView tv = tab.getCustomView().findViewById(R.id.tv_tab_text);
         if (selectedTextColor == 0) {
-            tv.setTextColor(getResources().getColor(R.color.color_blue_1677ff));
+            tv.setTextColor(getResources().getColor(R.color.color_blue_1677ff, null));
         } else {
-            tv.setTextColor(getResources().getColor(R.color.color_black_333333));
+            tv.setTextColor(getResources().getColor(R.color.color_black_333333, null));
         }
         tv.setTextSize(15f);
     }
@@ -171,9 +174,9 @@ public class FocusClientDetailFragment extends BaseDataBindingFragment<FragmentF
     protected void setTabUnselected(TabLayout.Tab tab) {
         TextView tv = tab.getCustomView().findViewById(R.id.tv_tab_text);
         if (unSelectedTextColor == 0) {
-            tv.setTextColor(getResources().getColor(R.color.color_black_333333));
+            tv.setTextColor(getResources().getColor(R.color.color_black_333333, null));
         } else {
-            tv.setTextColor(getResources().getColor(R.color.color_blue_1677ff));
+            tv.setTextColor(getResources().getColor(R.color.color_blue_1677ff, null));
         }
         tv.setTextSize(15f);
     }
