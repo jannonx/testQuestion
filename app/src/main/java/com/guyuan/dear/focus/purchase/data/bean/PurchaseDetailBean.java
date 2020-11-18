@@ -9,64 +9,39 @@ import java.util.List;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class PurchaseContentBean {
+public class PurchaseDetailBean {
 
-    /**
-     * arriveTime :
-     * code :
-     * contractCode :
-     * createName :
-     * createTime :
-     * exchangeSum : 0
-     * followName :
-     * id : 0
-     * material :
-     * modelCode :
-     * name :
-     * number : 0
-     * projectCode :
-     * projectName :
-     * qualityResult : 0
-     * reason :
-     * receiveStatus : 0
-     * recordsList : [{"createName":"","createTime":"","deptName":"","operateNum":0,"reason":"","type":0}]
-     * returnSum : 0
-     * signName :
-     * signTime :
-     * suppName :
-     * type : 0
-     */
+    private String arriveTime;         //采购合同到货时间
+    private String code;               //商品代号
+    private String contractCode;       //采购合同编号
+    private String createName;         //操作人（采购合同创建人）
+    private String createTime;         //采购合同创建时间
+    private int exchangeSum;           //换货总数
+    private String followName;         //采购跟进人名称
+    private int id;                    //主键id
+    private String material;           //商品材质
+    private String modelCode;          //商品规格型号
+    private String name;               //商品名称
+    private int number;                //采购数量
+    private String projectCode;        //项目编号
+    private String projectName;        //项目名称
+    private int qualityResult;         //质检结果：1.合格，2.不合格
+    private String reason;             //退货原因
+    private int receiveStatus;         //签收状态：1.待签收，2.已签收
+    private int returnSum;             //退货总数
+    private String signName;           //签订人名称
+    private String signTime;           //采购合同签订时间
+    private String suppName;           //供应商名称
+    private int type;                  //商品类型：1.原材料，2.配套设备
+    private int status;                //即时状态：1.退货，2.换货，3.待签收，4.已到货，5.拖期
 
-    private String arriveTime;
-    private String code;
-    private String contractCode;
-    private String createName;
-    private String createTime;
-    private int exchangeSum;
-    private String followName;
-    private int id;
-    private String material;
-    private String modelCode;
-    private String name;
-    private int number;
-    private String projectCode;
-    private String projectName;
-    private int qualityResult;
-    private String reason;
-    private int receiveStatus;
-    private int returnSum;
-    private String signName;
-    private String signTime;
-    private String suppName;
-    private int type;
-    /**
-     * createName :
-     * createTime :
-     * deptName :
-     * operateNum : 0
-     * reason :
-     * type : 0
-     */
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     private List<PurchaseRecordBean> recordsList;
 

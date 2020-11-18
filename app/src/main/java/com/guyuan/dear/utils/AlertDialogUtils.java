@@ -218,6 +218,30 @@ public class AlertDialogUtils {
     }
 
 
+    public static void pickYearAndMouth(Context context, String title, YearStringListener listener) {
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_year_picker, null);
+        DatePicker picker = view.findViewById(R.id.dialog_date_picker_selector);
+        AppCompatButton btnConfirm = view.findViewById(R.id.dialog_date_picker_btn_confirm);
+        Calendar calendar = Calendar.getInstance();
+        picker.init(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH), null);
+        btnConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+                listener.onSelected(picker.getYear() + "年" + (picker.getMonth() + 1) + "月");
+            }
+        });
+        hideDay(picker);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        alertDialog = builder.setCancelable(true)
+                .setTitle(title)
+                .setView(view)
+                .create();
+        alertDialog.show();
+    }
+
+
     public interface DatePickerListener {
         void onGetDatePicked(Date date);
     }
@@ -350,6 +374,16 @@ public class AlertDialogUtils {
         }
     }
 
+
+    private static void hideDay(DatePicker mDatePicker) {
+        int daySpinnerId = Resources.getSystem().getIdentifier("day", "id", "android");
+        if (daySpinnerId != 0) {
+            View daySpinner = mDatePicker.findViewById(daySpinnerId);
+            if (daySpinner != null) {
+                daySpinner.setVisibility(View.GONE);
+            }
+        }
+    }
 
     public interface ImagePickerCallback {
         void onGetLastTakenPicture(String path);

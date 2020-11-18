@@ -141,6 +141,11 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
                             case ConstantValue.WORK_QC://质检
                                 QcHomeActivity.start(getContext(), title);
                                 break;
+
+                            case ConstantValue.WORK_GOODS_SIGN://货物签收
+
+                                break;
+
                             default:
 
                                 break;

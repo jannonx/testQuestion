@@ -121,6 +121,7 @@ public class ConstantValue {
     public static final String CONTRACT_PAUSE = "contract_pause";
     public static final String CONTRACT_RESTART = "contract_restart";
     public static final String WORK_CONTRACT_ASSESS = "work_contract_assess";
+    public static final String WORK_GOODS_SIGN = "work_goods_sign";
     public static final String WORK_QC="work_qc";
 
 

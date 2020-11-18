@@ -680,4 +680,17 @@
         <item name="backgroundTint">#0050B4</item>
     </style>
 
+    <style name="TextDate" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/dp_12</item>
+       <item name="android:background">@drawable/bg_white_corner_12</item>
+        <item name="android:drawableRight">@mipmap/arrow_head_down</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:paddingStart">@dimen/dp_12</item>
+        <item name="android:paddingEnd">@dimen/dp_12</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
 </resources>

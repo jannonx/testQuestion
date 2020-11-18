@@ -51,6 +51,10 @@ public class ListRequestBody {
         private int securityType;
         private int status;
         private String queryParams;
+        private String name;
+        private String mouthDate;
+        private int returnType;
+        private int productType;
 
         public int getId() {
             return id;
@@ -138,6 +142,38 @@ public class ListRequestBody {
 
         public void setQueryParams(String queryParams) {
             this.queryParams = queryParams;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getMouthDate() {
+            return mouthDate;
+        }
+
+        public void setMouthDate(String mouthDate) {
+            this.mouthDate = mouthDate;
+        }
+
+        public int getReturnType() {
+            return returnType;
+        }
+
+        public void setReturnType(int returnType) {
+            this.returnType = returnType;
+        }
+
+        public int getProductType() {
+            return productType;
+        }
+
+        public void setProductType(int productType) {
+            this.productType = productType;
         }
     }
 }
