@@ -8,8 +8,11 @@ import android.view.WindowManager;
 
 import com.example.mvvmlibrary.app.BaseApplication;
 import com.guyuan.dear.BuildConfig;
+import com.guyuan.dear.ezCloud.net.EzApiService;
+import com.guyuan.dear.ezCloud.utils.EzNetManager;
 import com.guyuan.dear.service.BackService;
 import com.guyuan.dear.utils.SharedPreferencesUtils;
+import com.videogo.openapi.EZOpenSDK;
 
 import java.util.List;
 import java.util.Map;
@@ -53,6 +56,13 @@ public class DearApplication extends BaseApplication {
         sharedPreferencesUtils = SharedPreferencesUtils.getInstance(this);
         WindowManager winManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         winManager.getDefaultDisplay().getMetrics(displayMetrics);
+
+        //初始化萤石云平台
+        EZOpenSDK.showSDKLog(true);
+        EZOpenSDK.enableP2P(false);
+        EZOpenSDK.initLib(this, EzApiService.APP_KEY);
+        //保证萤石云口令有效可用。
+        EzNetManager.getInstance().makeSureAccessTokenValid();
     }
 
     /**
