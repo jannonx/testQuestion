@@ -5,7 +5,6 @@ import android.os.Bundle;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentAcceptanceRecordBinding;
-import com.guyuan.dear.databinding.FragmentCheckSafeContentBinding;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 

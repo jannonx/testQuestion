@@ -10,7 +10,6 @@ import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
-import com.guyuan.dear.focus.projectsite.fragment.FocusInstallationDebugDetailFragment;
 import com.guyuan.dear.focus.projectsite.fragment.InstallationDebugAllFragment;
 import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;

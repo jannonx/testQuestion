@@ -1,45 +1,26 @@
 package com.guyuan.dear.focus.projectsite.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailComplexBinding;
-import com.guyuan.dear.dialog.SimpleConfirmViewDialog;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
-import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
-import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
-import com.guyuan.dear.focus.produce.bean.OperateProduceType;
-import com.guyuan.dear.focus.produce.bean.ProductStatusType;
-import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
-import com.guyuan.dear.focus.produce.fragment.FocusProduceStatusFragment;
-import com.guyuan.dear.focus.produce.fragment.FollowProducePlanFragment;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.GsonUtil;
-import com.guyuan.dear.utils.LogUtils;
-import com.guyuan.dear.utils.ToastUtils;
-import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
-import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
-import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 
 /**
  * @description: 我的关注--工程现场--现场勘查报告--详情页面

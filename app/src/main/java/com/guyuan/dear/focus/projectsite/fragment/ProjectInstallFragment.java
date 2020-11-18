@@ -11,7 +11,6 @@ import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectInstallAdapter;
-import com.guyuan.dear.focus.projectsite.adapter.ProjectSiteStatusAdapter;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
