@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text='@{goodsSignListBean.arriveStatus==1?"待收货":"收货"}'
+                android:text='@{goodsSignListBean.arriveStatus==1?"":""}'
                 app:layout_constraintBottom_toBottomOf="@+id/goods_customer_name_tv"
                 app:layout_constraintStart_toEndOf="@+id/goods_customer_name_tv"
                 app:layout_constraintTop_toTopOf="@+id/goods_customer_name_tv"
