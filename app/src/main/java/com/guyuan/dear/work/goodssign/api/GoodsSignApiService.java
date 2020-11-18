@@ -2,6 +2,9 @@ package com.guyuan.dear.work.goodssign.api;
 
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.BaseApiService;
+import com.guyuan.dear.work.goodssign.data.bean.GoodsDetailBean;
+import com.guyuan.dear.work.goodssign.data.bean.GoodsSignDetailBean;
+import com.guyuan.dear.work.goodssign.data.bean.GoodsSignListBean;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -30,21 +33,21 @@ public interface GoodsSignApiService extends BaseApiService {
 
     //获取货物签收列表
     @POST(GOODS_SIGN_LIST)
-    Observable<ResultBean<Object>> getGoodsSignList(@Body RequestBody body);
+    Observable<ResultBean<GoodsSignListBean>> getGoodsSignList(@Body RequestBody body);
 
     //获取货物签收详情
     @GET(GOODS_SIGN_DETAIL)
-    Observable<ResultBean<Object>> getGoodsSignDetail(@Query(CONTRACT_ID) int contractID);
+    Observable<ResultBean<GoodsSignDetailBean>> getGoodsSignDetail(@Query(CONTRACT_ID) int contractID);
 
     //获取货物详情
     @GET(GOODS_SIGN_ITEM_DETAIL)
-    Observable<ResultBean<Object>> getGoodsSignItemDetail(@Query(PRODUCT_ID) int productID);
+    Observable<ResultBean<GoodsDetailBean>> getGoodsSignItemDetail(@Query(PRODUCT_ID) int productID);
 
     //全部签收
     @GET(GOODS_SIGN_ALL_SIGN)
-    Observable<ResultBean<Object>> signAll(@Query(CONTRACT_ID) int contractID);
+    Observable<ResultBean<Integer>> signAll(@Query(CONTRACT_ID) int contractID);
 
     //签收
     @GET(GOODS_SIGN)
-    Observable<ResultBean<Object>> sign(@Query(ITEM_ID) int itemID);
+    Observable<ResultBean<Integer>> sign(@Query(ITEM_ID) int itemID);
 }

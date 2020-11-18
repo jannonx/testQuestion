@@ -181,11 +181,9 @@ dependencies {
     implementation AndroidX.lifeCycleExtension
     implementation AndroidX.lifecycleRuntime
     implementation AndroidX.lifeCycleKT
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     annotationProcessor Room.compiler
     implementation Room.runtime
-    kapt "android.arch.persistence.room:compiler:1.1.1"
+    kapt Room.persistence
     //google官方下拉刷新控件
     implementation AndroidX.swiperefreshlayout
     //为了使用谷歌最新的MergeAdapter导入新版本的库 by Leo
