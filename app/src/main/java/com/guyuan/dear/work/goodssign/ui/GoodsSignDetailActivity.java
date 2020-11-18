@@ -31,6 +31,7 @@ public class GoodsSignDetailActivity extends BaseToolbarActivity<ActivityGoodsSi
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
+        binding.setVariable(getLayoutID(), viewModel);
         int id = getIntent().getIntExtra(ConstantValue.KEY_ID, 0);
     }
 

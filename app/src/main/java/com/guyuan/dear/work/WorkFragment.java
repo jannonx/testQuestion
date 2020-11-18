@@ -19,6 +19,7 @@ import com.guyuan.dear.work.assess.ui.WorkAssessActivity;
 import com.guyuan.dear.work.client.activity.WorkClientActivity;
 import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeActivity;
 import com.guyuan.dear.work.contractRestart.view.home.ContractRestartHomeActivity;
+import com.guyuan.dear.work.goodssign.ui.GoodsSignActivity;
 import com.guyuan.dear.work.produce.activity.WorkProduceActivity;
 import com.guyuan.dear.work.qc.views.home.QcHomeActivity;
 
@@ -144,7 +145,7 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
                                 break;
 
                             case ConstantValue.WORK_GOODS_SIGN://货物签收
-
+                                GoodsSignActivity.start(getContext(), title);
                                 break;
 
                             default:

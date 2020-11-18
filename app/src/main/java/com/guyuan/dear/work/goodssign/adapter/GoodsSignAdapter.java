@@ -1,8 +1,10 @@
 package com.guyuan.dear.work.goodssign.adapter;
 
+import com.guyuan.dear.BR;
 import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.databinding.ItemWorkGoodsSignBinding;
+import com.guyuan.dear.work.goodssign.data.bean.GoodsSignListBean;
 
 import java.util.List;
 
@@ -13,13 +15,13 @@ import java.util.List;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class GoodsSignAdapter extends BaseDBRecycleAdapter<Object, ItemWorkGoodsSignBinding> {
-    public GoodsSignAdapter(List<Object> listData, int layoutID) {
+public class GoodsSignAdapter extends BaseDBRecycleAdapter<GoodsSignListBean.ContentBean, ItemWorkGoodsSignBinding> {
+    public GoodsSignAdapter(List<GoodsSignListBean.ContentBean> listData, int layoutID) {
         super(listData, layoutID);
     }
 
     @Override
-    protected void bindDataToView(Holder holder, Object item, int position) {
-
+    protected void bindDataToView(Holder holder, GoodsSignListBean.ContentBean item, int position) {
+        holder.binding.setVariable(BR.goodsSignListBean, item);
     }
 }

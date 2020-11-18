@@ -33,6 +33,30 @@ public class GoodsSignViewModel extends BaseViewModel {
         apiService = repository.getApiService();
     }
 
+    public GoodsSignApiService getApiService() {
+        return apiService;
+    }
+
+    public MutableLiveData<GoodsSignListBean> getGoodsSignListMLD() {
+        return goodsSignListMLD;
+    }
+
+    public MutableLiveData<GoodsSignDetailBean> getGoodsSignDetailMLD() {
+        return goodsSignDetailMLD;
+    }
+
+    public MutableLiveData<GoodsDetailBean> getGoodsDetailMLD() {
+        return goodsDetailMLD;
+    }
+
+    public MutableLiveData<Integer> getAllSignMLD() {
+        return allSignMLD;
+    }
+
+    public MutableLiveData<Integer> getSignMLD() {
+        return signMLD;
+    }
+
     //获取货物签收列表
     public void getGoodsSignList(int pageIndex, String name) {
         ListRequestBody body = new ListRequestBody();

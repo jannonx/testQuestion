@@ -6,6 +6,9 @@
 
     <data>
 
+        <variable
+            name="goodsSignViewModel"
+            type="com.guyuan.dear.work.goodssign.data.GoodsSignViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
+            android:text="@{goodsSignViewModel.goodsSignDetailMLD.supplierName}"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/app_bar"
@@ -54,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:text="@{goodsSignViewModel.goodsSignDetailMLD.contractCode}"
             app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
             app:layout_constraintTop_toBottomOf="@+id/view19"
             tools:text="@string/work_goods_sign_contract" />
@@ -64,6 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:text="@{goodsSignViewModel.goodsSignDetailMLD.followName}"
             app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
             app:layout_constraintTop_toBottomOf="@+id/contract_name_tv"
             tools:text="@string/work_goods_sign_person" />
@@ -74,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:text="@{goodsSignViewModel.goodsSignDetailMLD.arrivalTime}"
             android:textColor="#1890FF"
             app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
             app:layout_constraintTop_toBottomOf="@+id/follow_person_name_tv"
@@ -88,26 +95,62 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
-        <TextView
-            android:id="@+id/textView25"
-            style="@style/TextBigBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="产品列表"
-            android:textSize="@dimen/sp_14"
-            app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/view20" />
-
-        <tl.com.easy_recycleview_library.BaseRecyclerView
-            android:id="@+id/goods_product_rv"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_12"
+            app:layout_constraintBottom_toTopOf="@+id/commit_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView25" />
+            app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
+            app:layout_constraintTop_toBottomOf="@+id/view20">
+
+            <TextView
+                android:id="@+id/textView25"
+                style="@style/TextBigBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="产品列表"
+                android:textSize="@dimen/sp_14" />
+
+            <tl.com.easy_recycleview_library.BaseRecyclerView
+                android:id="@+id/goods_product_rv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:signGoods="@{goodsSignViewModel.goodsSignDetailMLD.equipmentList}"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/textView26"
+                style="@style/TextBigBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_24"
+                android:text="原材料列表"
+                android:textSize="@dimen/sp_14" />
+
+            <tl.com.easy_recycleview_library.BaseRecyclerView
+                android:id="@+id/goods_material_rv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+                app:signGoods="@{goodsSignViewModel.goodsSignDetailMLD.materialList}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView26" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/commit_tv"
+            style="@style/commit_btn"
+            android:layout_marginBottom="24dp"
+            android:text="全部到货"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:text='@{focusPurchaseRecordBean.type==1?"退货":"换货"}'
+            android:text='@{focusPurchaseRecordBean.type==1?"":""}'
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/textView7"
             app:layout_constraintTop_toTopOf="parent"
