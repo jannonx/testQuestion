@@ -298,6 +298,11 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
+            android:name=".work.projectsite.activity.WorkProjectReportClassifyActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".work.projectsite.activity.WorkProjectSiteActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"

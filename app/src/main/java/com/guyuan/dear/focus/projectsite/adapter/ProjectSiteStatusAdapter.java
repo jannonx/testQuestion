@@ -26,6 +26,7 @@ public class ProjectSiteStatusAdapter extends BaseRecyclerAdapter<SimpleTabBean>
     protected void bindDataToView(BaseRecyclerViewHolder holder, SimpleTabBean item,
                                   int position) {
 //        holder.setText(R.id.tv_produce_type_name, item.getProductName());
+//        holder.setText(R.id.tv_produce_type_name, item.getProductName());
 
 
     }
