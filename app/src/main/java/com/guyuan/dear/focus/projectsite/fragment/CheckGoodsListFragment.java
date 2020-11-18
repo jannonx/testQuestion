@@ -10,9 +10,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.databinding.FragmentGoodListBinding;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
-import com.guyuan.dear.focus.projectsite.activity.FocusInstallationDebugDetailActivity;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 
 import java.util.ArrayList;

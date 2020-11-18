@@ -8,12 +8,14 @@ import androidx.fragment.app.Fragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
+import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 import com.guyuan.dear.work.projectsite.fragment.CheckGoodsFragment;
 import com.guyuan.dear.work.projectsite.fragment.CheckSafetyFragment;
 import com.guyuan.dear.work.projectsite.fragment.CustomerAcceptanceFragment;
 import com.guyuan.dear.work.projectsite.fragment.SiteExplorationFragment;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.work.projectsite.fragment.WorkProjectReportListFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,11 +32,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class WorkProjectSiteActivity extends BaseTabActivity<ActivityBaseTabBinding, WorkProjectSiteViewModel> {
 
-    private CheckGoodsFragment checkGoodsFragment;
-    private CheckSafetyFragment checkSafetyFragment;
-    private SiteExplorationFragment siteExplorationFragment;
-    private CustomerAcceptanceFragment customerAcceptanceFragment;
-
 
     public static void start(Context context, String title) {
         Intent starter = new Intent(context, WorkProjectSiteActivity.class);
@@ -44,24 +41,20 @@ public class WorkProjectSiteActivity extends BaseTabActivity<ActivityBaseTabBind
 
     @Override
     protected List<String> getTitles() {
-        String[] titles = getResources().getStringArray(R.array.focus_project_title);
+        String[] titles = getResources().getStringArray(R.array.work_project_title);
         return Arrays.asList(titles);
     }
 
     @Override
     protected List<Fragment> getFragments() {
         List<Fragment> fragmentList = new ArrayList<>();
-        checkGoodsFragment = CheckGoodsFragment.newInstance();
-        checkSafetyFragment = CheckSafetyFragment.newInstance();
-        siteExplorationFragment = SiteExplorationFragment.newInstance();
-        customerAcceptanceFragment = CustomerAcceptanceFragment.newInstance();
-        fragmentList.add(checkGoodsFragment);
-        fragmentList.add(checkSafetyFragment);
-        fragmentList.add(siteExplorationFragment);
-        fragmentList.add(customerAcceptanceFragment);
+        fragmentList.add(WorkProjectReportListFragment.newInstance(ProjectReportType.TYPE_SITE_EXPLORATION));
+        fragmentList.add(WorkProjectReportListFragment.newInstance(ProjectReportType.TYPE_CHECK_GOODS));
+        fragmentList.add(WorkProjectReportListFragment.newInstance(ProjectReportType.TYPE_CHECK_SAFE));
+        fragmentList.add(WorkProjectReportListFragment.newInstance(ProjectReportType.TYPE_INSTALLATION_DEBUG));
+        fragmentList.add(WorkProjectReportListFragment.newInstance(ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE));
         return fragmentList;
     }
-
 
 
     @Override
@@ -72,9 +65,14 @@ public class WorkProjectSiteActivity extends BaseTabActivity<ActivityBaseTabBind
 
     @Override
     protected List<Integer> setTabIconList() {
-        return null;
+        List<Integer> tabDrawableList = new ArrayList<>();
+        tabDrawableList.add(R.drawable.tab_focus_produce_overview_selector);
+        tabDrawableList.add(R.drawable.tab_focus_produce_exception_selector);
+        tabDrawableList.add(R.drawable.tab_focus_produce_detail_selector);
+        tabDrawableList.add(R.drawable.tab_focus_produce_detail_selector);
+        tabDrawableList.add(R.drawable.tab_focus_produce_detail_selector);
+        return tabDrawableList;
     }
-
 
 
     @Override

@@ -3,24 +3,15 @@ package com.guyuan.dear.focus.projectsite.fragment;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
-import com.guyuan.dear.focus.produce.adapter.FocusProduceStatusAdapter;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
-import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
-import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectSiteStatusAdapter;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
-import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.LogUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 

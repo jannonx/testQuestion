@@ -30,7 +30,7 @@ public class PauseContractBindingAdapter {
             return;
         }
         AddSendListAdapter adapter = new AddSendListAdapter(staffs,view.getContext());
-        GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(),5,RecyclerView.VERTICAL,false);
+        GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(),4,RecyclerView.VERTICAL,false);
         view.setLayoutManager(layoutManager);
         view.addItemDecoration(new AddSendListItemDecorator());
         view.setAdapter(adapter);
@@ -42,7 +42,7 @@ public class PauseContractBindingAdapter {
             return;
         }
         AddCopyListAdapter adapter = new AddCopyListAdapter(staffs,view.getContext());
-        GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(),5,RecyclerView.VERTICAL,false);
+        GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(),4,RecyclerView.VERTICAL,false);
         view.setLayoutManager(layoutManager);
         view.addItemDecoration(new AddCopyListItemDecorator());
         view.setAdapter(adapter);

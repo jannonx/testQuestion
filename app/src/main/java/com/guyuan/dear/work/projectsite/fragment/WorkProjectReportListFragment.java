@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.projectsite.fragment;
+package com.guyuan.dear.work.projectsite.fragment;
 
 import android.os.Bundle;
 import android.view.View;
@@ -23,20 +23,20 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
- * @description: 我的关注--工程现场
+ * @description: 我的工作--工程现场
  * --现场勘查报告/货物清点报告/安全排查报告/安装调试报告/客户验收报告/
  * --列表页面
  * @author: 许建宁
- * @since: 2020/9/17 11:42
+ * @since: 2020/11/18 10:27
  * @company: 固远（深圳）信息技术有限公司
  */
-public class ProjectReportClassifyFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding, FocusProjectSiteViewModel> {
+public class WorkProjectReportListFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding, FocusProjectSiteViewModel> {
 
-    public static final String TAG = ProjectReportClassifyFragment.class.getSimpleName();
+    public static final String TAG = WorkProjectReportListFragment.class.getSimpleName();
 
-    public static ProjectReportClassifyFragment newInstance(ProjectReportType type) {
+    public static WorkProjectReportListFragment newInstance(ProjectReportType type) {
         Bundle args = new Bundle();
-        ProjectReportClassifyFragment fragment = new ProjectReportClassifyFragment();
+        WorkProjectReportListFragment fragment = new WorkProjectReportListFragment();
         args.putSerializable(ConstantValue.KEY_CONTENT, type);
         fragment.setArguments(args);
         return fragment;

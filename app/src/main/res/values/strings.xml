@@ -10,10 +10,11 @@
         <item>采购异常</item>
         <item>采购详情</item>
     </array>
-    <array name="focus_project_title">
+    <array name="work_project_title">
+        <item>现场勘查</item>
         <item>清点货物</item>
         <item>安全排查</item>
-        <item>现场勘查</item>
+        <item>安装调试</item>
         <item>客户验收</item>
     </array>
     <array name="focus_quality_title">
