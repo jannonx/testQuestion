@@ -36,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
-            android:text="@{goodsSignViewModel.goodsSignDetailMLD.supplierName}"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/app_bar"
@@ -58,7 +57,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@{goodsSignViewModel.goodsSignDetailMLD.contractCode}"
             app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
             app:layout_constraintTop_toBottomOf="@+id/view19"
             tools:text="@string/work_goods_sign_contract" />
@@ -69,7 +67,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@{goodsSignViewModel.goodsSignDetailMLD.followName}"
             app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
             app:layout_constraintTop_toBottomOf="@+id/contract_name_tv"
             tools:text="@string/work_goods_sign_person" />
@@ -80,7 +77,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@{goodsSignViewModel.goodsSignDetailMLD.arrivalTime}"
             android:textColor="#1890FF"
             app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
             app:layout_constraintTop_toBottomOf="@+id/follow_person_name_tv"
@@ -118,7 +114,6 @@
                 android:id="@+id/goods_product_rv"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:signGoods="@{goodsSignViewModel.goodsSignDetailMLD.equipmentList}"
                 android:layout_marginTop="12dp"
                 android:layout_weight="1" />
 
@@ -137,7 +132,6 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="12dp"
                 android:layout_weight="1"
-                app:signGoods="@{goodsSignViewModel.goodsSignDetailMLD.materialList}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView26" />
