@@ -23,8 +23,8 @@ public interface FocusProjectSiteApiService extends BaseApiService {
      *
      * @return
      */
-    @GET("base/auditProspect/siteList")
-    Observable<ResultBean<ProjectOverViewBean>> getProjectSiteOverViewData();
+//    @GET("base/auditProspect/siteList")
+//    Observable<ResultBean<ProjectOverViewBean>> getProjectSiteOverViewData();
 
 
     /**
