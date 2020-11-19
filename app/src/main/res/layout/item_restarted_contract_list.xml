@@ -55,7 +55,7 @@
                 android:textSize="@dimen/sp_14"
                 android:textColor="@color/color_black_333333"
                 android:textStyle="bold"
-                android:text="@{data.contractId}"/>
+                android:text="@{data.contractNum}"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <View

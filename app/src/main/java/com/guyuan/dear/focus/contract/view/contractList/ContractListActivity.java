@@ -16,10 +16,23 @@ import com.guyuan.dear.utils.ConstantValue;
  */
 public class ContractListActivity extends BaseToolbarActivity<ActivityContractListBinding, ContractListViewModel> {
 
-    public static void start(Context context, String title,int contractType) {
+    /**
+     *
+     * @param context
+     * @param title
+     * @param contractType {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_EXCEPTION_CONTRACTS}
+     * {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_EXECUTING_CONTRACTS}
+     * {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_FINISHED_CONTRACTS}
+     * {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_NEW_CONTRACTS}
+     * {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_PRE_ANNUAL_DELIVERS}
+     * {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_UNFINISHED_CONTRACTS}
+     * @param date
+     */
+    public static void start(Context context, String title,int contractType,long date) {
         Intent starter = new Intent(context, ContractListActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE, title);
         starter.putExtra(ConstantValue.KEY_CONTRACT_TYPE,contractType);
+        starter.putExtra(ConstantValue.KEY_DATE,date);
         context.startActivity(starter);
     }
 
@@ -34,11 +47,12 @@ public class ContractListActivity extends BaseToolbarActivity<ActivityContractLi
         Intent intent = getIntent();
         String title = intent.getStringExtra(ConstantValue.KEY_TITLE);
         int contractType = intent.getIntExtra(ConstantValue.KEY_CONTRACT_TYPE,0);
+        long date= intent.getLongExtra(ConstantValue.KEY_DATE,System.currentTimeMillis());
         setTitleCenter(title);
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.activity_contract_list_frame_layout,
-                        ContractListFragment.getInstance(contractType))
+                        ContractListFragment.getInstance(contractType,date))
                 .commit();
 
     }

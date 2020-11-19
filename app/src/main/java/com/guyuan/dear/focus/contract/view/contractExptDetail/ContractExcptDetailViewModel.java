@@ -25,7 +25,7 @@ public class ContractExcptDetailViewModel extends BaseViewModel {
 
     public void getContractDetailFromNet(String contractId) {
         ContractExcptDetailBean bean = new ContractExcptDetailBean();
-        bean.setContractId(contractId);
+        bean.setContractNum(contractId);
         bean.setBuyer("北京天行健科技有限公司");
         bean.setDetailCause("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         bean.setExceptionTag("暂停");

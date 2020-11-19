@@ -40,7 +40,7 @@ public class ExcptContractListFragment extends BaseMvvmFragment<FragmentContract
         getViewModel().setItemClickListener(new ContractExcptListAdapter.ItemClickListener() {
             @Override
             public void onItemClick(BaseContractExcptBean item, int position) {
-                ContractExcptDetailActivity.start(getActivity(),"合同异常详情",item.getContractId());
+                ContractExcptDetailActivity.start(getActivity(),"合同异常详情",item.getContractNum());
             }
         });
         getViewModel().getExcptContractsFromNet();

@@ -31,7 +31,7 @@
                             android:padding="@dimen/dp_5"
                             android:textColor="@color/black" />
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:text="@{fragment_contract_prg_detail_vm.detailBean.contractId}"
+                            android:text="@{fragment_contract_prg_detail_vm.detailBean.contractNum}"
                             android:padding="@dimen/dp_5"
                             android:textColor="@color/black"/>
                     </TableRow>

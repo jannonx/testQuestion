@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.focus.contract.bean.ContractApproveLog;
-import com.guyuan.dear.focus.contract.bean.ContractExcptDetailBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractDetailBean;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.Vote;
 
@@ -30,7 +29,7 @@ public class RestartedContractDetailViewModel extends BaseViewModel {
 
     public void getRestartedContractDetailFromNet(String contractId){
         RestartedContractDetailBean bean = new RestartedContractDetailBean();
-        bean.setContractId(contractId);
+        bean.setContractNum(contractId);
         bean.setBuyer("北京天行健科技有限公司");
         bean.setDetailCause("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         bean.setApplier("兰特芳");

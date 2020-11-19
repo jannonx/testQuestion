@@ -27,7 +27,7 @@ public class ContractListAdapter extends BaseRecyclerAdapter<BaseContractBean> {
 
     @Override
     protected void bindDataToView(BaseRecyclerViewHolder holder, BaseContractBean item, int position) {
-        holder.setText(R.id.item_contract_list_tv_contact_id,item.getContractId());
+        holder.setText(R.id.item_contract_list_tv_contact_id,item.getContractNum());
         holder.setText(R.id.item_contract_list_tv_buyer,item.getBuyer());
         holder.setText(R.id.item_contract_list_tv_sales_person,item.getSalesPerson());
         holder.setText(R.id.item_contract_list_tv_date,

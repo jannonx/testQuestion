@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_black_333333"
                 android:textSize="@dimen/sp_14"
-                android:text="@{data.contractId}"/>
+                android:text="@{data.contractNum}"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"

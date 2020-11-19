@@ -1,5 +1,7 @@
 package com.guyuan.dear.net.resultBeans;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * @author: 廖华凯
  * @description:
@@ -23,8 +25,10 @@ public class NetContractSumBean {
     private int lastYearNum;
     private int thisYearNum;
     private int completeNum;
-    private int inNum;
-    private int executionNum;
+    @SerializedName("inNum")
+    private int executingCount;
+    @SerializedName("executionNum")
+    private int exceptionCount;
 
     public int getCusNum() {
         return cusNum;
@@ -66,19 +70,19 @@ public class NetContractSumBean {
         this.completeNum = completeNum;
     }
 
-    public int getInNum() {
-        return inNum;
+    public int getExecutingCount() {
+        return executingCount;
     }
 
-    public void setInNum(int inNum) {
-        this.inNum = inNum;
+    public void setExecutingCount(int executingCount) {
+        this.executingCount = executingCount;
     }
 
-    public int getExecutionNum() {
-        return executionNum;
+    public int getExceptionCount() {
+        return exceptionCount;
     }
 
-    public void setExecutionNum(int executionNum) {
-        this.executionNum = executionNum;
+    public void setExceptionCount(int exceptionCount) {
+        this.exceptionCount = exceptionCount;
     }
 }

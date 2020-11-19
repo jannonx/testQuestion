@@ -74,7 +74,7 @@ public class ContractPrgHomeFragment extends BaseMvvmFragment<FragmentContractPr
             @Override
             public void onItemClick(View view, int i) {
                 BaseContractBean bean = mList.get(i);
-                ContractPrgDetailActivity.start(getActivity(),"合同订单进度详情",bean.getContractId());
+                ContractPrgDetailActivity.start(getActivity(),"合同订单进度详情",bean.getContractNum());
             }
         });
         getViewModel().getContractList().observe(getViewLifecycleOwner(), new Observer<List<BaseContractBean>>() {
