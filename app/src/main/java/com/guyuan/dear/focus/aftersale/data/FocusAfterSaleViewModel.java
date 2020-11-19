@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.focus.aftersale.api.FocusAfterSaleApiService;
 
 /**
  * @description:
@@ -12,11 +13,11 @@ import com.guyuan.dear.base.app.DearApplication;
  * @company: 固远（深圳）信息技术有限公司
  */
 public class FocusAfterSaleViewModel extends BaseViewModel {
-    private FocusAfterSaleRepository focusAfterSaleRepository;
+    private FocusAfterSaleApiService apiService;
 
     @ViewModelInject
     public FocusAfterSaleViewModel(FocusAfterSaleRepository focusAfterSaleRepository) {
-        this.focusAfterSaleRepository = focusAfterSaleRepository;
+        apiService = focusAfterSaleRepository.getFocusAfterSaleApiService();
     }
 
 

@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.aftersale.activity;
+package com.guyuan.dear.focus.aftersale.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,8 +9,6 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
-import com.guyuan.dear.focus.aftersale.fragment.ContractProgressFragment;
-import com.guyuan.dear.focus.aftersale.fragment.ProviderFragment;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
@@ -21,17 +19,15 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 /**
  * @description: 我的关注--售后
- * @author: Jannonx
+ * @author: 唐力
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
 @AndroidEntryPoint
 public class FocusAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBinding, FocusAfterSaleViewModel> {
 
-    //    private FocusAssessOverviewFragment overviewFragment;
-//    private FocusPlanAssessFragment planAssessFragment;
-    private ProviderFragment providerFragment;
-    private ContractProgressFragment contractProgressFragment;
+    private FocusAfterSaleFragment qualifiedFragment;
+    private FocusAfterSaleFragment unqualifiedFragment;
 
 
     public static void start(Context context, String title) {
@@ -42,24 +38,19 @@ public class FocusAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBindi
 
     @Override
     protected List<String> getTitles() {
-        String[] titles = getResources().getStringArray(R.array.focus_assess_title);
+        String[] titles = getResources().getStringArray(R.array.focus_after_sale_title);
         return Arrays.asList(titles);
     }
 
     @Override
     protected List<Fragment> getFragments() {
         List<Fragment> fragmentList = new ArrayList<>();
-//        overviewFragment = FocusAssessOverviewFragment.newInstance();
-        providerFragment = ProviderFragment.newInstance();
-//        planAssessFragment = FocusPlanAssessFragment.newInstance();
-        contractProgressFragment = ContractProgressFragment.newInstance();
-        fragmentList.add(providerFragment);
-        fragmentList.add(contractProgressFragment);
-//        fragmentList.add(planAssessFragment);
-//        fragmentList.add(projectAssessFragment);
+        qualifiedFragment = FocusAfterSaleFragment.newInstance(FocusAfterSaleFragment.QUALIFIED, "");
+        unqualifiedFragment = FocusAfterSaleFragment.newInstance(FocusAfterSaleFragment.UNQUALIFIED, "");
+        fragmentList.add(qualifiedFragment);
+        fragmentList.add(unqualifiedFragment);
         return fragmentList;
     }
-
 
 
     @Override
@@ -70,15 +61,9 @@ public class FocusAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBindi
 
     @Override
     protected List<Integer> setTabIconList() {
-        return null;
+        List<Integer> tabDrawableList = new ArrayList<>();
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        return tabDrawableList;
     }
-
-
-
-    @Override
-    public FocusAfterSaleViewModel getViewModel() {
-        return viewModel;
-    }
-
-
 }

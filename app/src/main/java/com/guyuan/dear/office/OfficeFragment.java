@@ -78,14 +78,20 @@ public class OfficeFragment extends BaseListFragment<LoginBean.AppMenusBean.Chil
                         String url = menuList.get(position).getUrl();
                         String title = menuList.get(position).getTitle();
                         switch (url) {
-                            case ConstantValue.MOBILE_OFFICE_APPROVALS_BROWSER://审核
-                                ArrayList<LoginBean.AppMenusBean.ChildrenBean> approveMenuList =
-                                        new ArrayList<>(menuList.get(position).getChildren());
-                                if (approveMenuList.size() > 0) {
-                                    ApproveActivity.start(getActivity(), approveMenuList, title);
-                                } else {
-                                    showToastTip("该账号未设置审批菜单");
-                                }
+                            case ConstantValue.OFFICE_HANDLE_ASSESS://审批处理
+
+                                break;
+
+                            case ConstantValue.OFFICE_WORK_REPORT://工作报告
+
+                                break;
+
+                            case ConstantValue.OFFICE_LEAVE://请假申请
+
+                                break;
+
+                            case ConstantValue.OFFICE_SIGN://考勤打卡
+
                                 break;
                         }
                     } else {
@@ -100,7 +106,7 @@ public class OfficeFragment extends BaseListFragment<LoginBean.AppMenusBean.Chil
         binding.homeBarLl.homeQrIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //    QRActivity.start("", getContext());
+                //    QRActivity.start("", getContext());
             }
         });
     }

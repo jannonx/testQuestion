@@ -16,5 +16,7 @@ public class FocusAfterSaleRepository {
         this.focusAfterSaleApiService = focusAfterSaleApiService;
     }
 
-
+    public FocusAfterSaleApiService getFocusAfterSaleApiService() {
+        return focusAfterSaleApiService;
+    }
 }

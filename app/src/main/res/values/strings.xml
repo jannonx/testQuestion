@@ -37,6 +37,11 @@
         <item>生产详情</item>
     </array>
 
+    <array name="focus_after_sale_title">
+        <item>验收合格</item>
+        <item>验收不合格</item>
+    </array>
+
     <array name="work_customer_title">
         <item>全部客户</item>
         <item>我的跟进</item>
@@ -373,4 +378,13 @@
     <string name="work_goods_sign_material">材质：%s</string>
     <string name="work_goods_sign_remark">备注：%s</string>
     <string name="piece_number">%d&#12288;件</string>
+    
+    <!--我的关注-售后-->
+    <string name="focus_after_sale_project_name">项目名称：%s</string>
+    <string name="focus_after_sale_customer_name">客户名称：%s</string>
+    <string name="focus_after_sale_address">施工地址：%s</string>
+    <string name="focus_after_sale_person">排查人员：%s</string>
+    <string name="focus_after_sale_question_type">问题类型：%s</string>
+    <string name="focus_after_sale_idea">处理意见：%s</string>
+    <string name="focus_after_sale_description_">描述：%s</string>
 </resources>

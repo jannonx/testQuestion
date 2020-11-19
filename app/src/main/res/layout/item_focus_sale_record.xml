@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp_12"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingRight="@dimen/dp_12">
+
+        <ImageView
+            android:id="@+id/sale_record_head_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/sale_record_name_tv"
+            style="@style/TextNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            app:layout_constraintStart_toEndOf="@+id/sale_record_head_iv"
+            app:layout_constraintTop_toTopOf="@+id/sale_record_head_iv"
+            tools:text="TextView" />
+
+        <TextView
+            android:id="@+id/textView19"
+            style="@style/TextNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#999999"
+            app:layout_constraintBottom_toBottomOf="@+id/sale_record_name_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/sale_record_name_tv"
+            tools:text="2020-11-22 15:22:11" />
+
+        <TextView
+            android:id="@+id/sale_record_content_tv"
+            style="@style/TextNormal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/sale_record_name_tv"
+            app:layout_constraintTop_toBottomOf="@+id/sale_record_name_tv"
+            tools:text="Tex23123123213123234234234234232342342131231tView" />
+
+        <TextView
+            android:id="@+id/sale_record_from_tv"
+            style="@style/TextNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="#999999"
+            app:layout_constraintStart_toStartOf="@+id/sale_record_content_tv"
+            app:layout_constraintTop_toBottomOf="@+id/sale_record_content_tv"
+            tools:text="来自部门：" />
+
+        <View
+            style="@style/DivideLine"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sale_record_from_tv" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
