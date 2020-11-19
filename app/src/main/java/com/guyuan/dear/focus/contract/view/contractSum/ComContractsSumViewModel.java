@@ -5,9 +5,12 @@ import android.view.View;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
+import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.contract.bean.ComContractsBean;
+import com.guyuan.dear.net.DearNetHelper;
+import com.guyuan.dear.utils.ToastUtils;
 
-import java.util.Random;
+import io.reactivex.disposables.Disposable;
 
 /**
  * @author: 廖华凯
@@ -19,13 +22,13 @@ public class ComContractsSumViewModel extends BaseViewModel {
     private MutableLiveData<ComContractsBean> comContractSum = new MutableLiveData<>();
     private MutableLiveData<View.OnClickListener> onClickSelectDate = new MutableLiveData<>();
     private MutableLiveData<View.OnClickListener> onClickShowPreAnnualDelivers = new MutableLiveData<>();
-    private MutableLiveData<View.OnClickListener> onClickShowNewContracts=new MutableLiveData<>();
-    private MutableLiveData<View.OnClickListener> onClickShowFinished=new MutableLiveData<>();
-    private MutableLiveData<View.OnClickListener> onClickShowExecuting=new MutableLiveData<>();
-    private MutableLiveData<View.OnClickListener> onClickShowUnfinished=new MutableLiveData<>();
-    private MutableLiveData<View.OnClickListener> onClickShowExceptions=new MutableLiveData<>();
+    private MutableLiveData<View.OnClickListener> onClickShowNewContracts = new MutableLiveData<>();
+    private MutableLiveData<View.OnClickListener> onClickShowFinished = new MutableLiveData<>();
+    private MutableLiveData<View.OnClickListener> onClickShowExecuting = new MutableLiveData<>();
+    private MutableLiveData<View.OnClickListener> onClickShowUnfinished = new MutableLiveData<>();
+    private MutableLiveData<View.OnClickListener> onClickShowExceptions = new MutableLiveData<>();
 
-    private MutableLiveData<Long> selectDate = new MutableLiveData<Long>(0L);
+    private MutableLiveData<Long> selectDate = new MutableLiveData<Long>(System.currentTimeMillis());
 
     public MutableLiveData<ComContractsBean> getComContractSum() {
         return comContractSum;
@@ -92,25 +95,32 @@ public class ComContractsSumViewModel extends BaseViewModel {
         return selectDate;
     }
 
-    public void setSelectDate(long date) {
+    public Disposable updateSummary(long date) {
         this.selectDate.postValue(date);
-        updateComContractSumByDate(date);
+        return updateComContractSumByDate(date);
     }
 
-    private void updateComContractSumByDate(long date) {
-        ComContractsBean value = comContractSum.getValue();
-        if(value==null){
-            value = new ComContractsBean();
-        }
-        Random random = new Random(System.currentTimeMillis());
-        value.setClientTotal(random.nextInt(25));
-        value.setContractsTotal(random.nextInt(100));
-        value.setPreAnnualDelivers(random.nextInt(50));
-        value.setNewContracts(random.nextInt(50));
-        value.setFinishedContracts(random.nextInt(10));
-        value.setExecutingContracts(random.nextInt(10));
-        value.setUnfinishedContracts(random.nextInt(50));
-        value.setExceptionContracts(random.nextInt(10));
-        comContractSum.postValue(value);
+    private Disposable updateComContractSumByDate(long date) {
+
+        return DearNetHelper.getInstance().getContractSumByDate(date,
+                new DearNetHelper.NetCallback<ComContractsBean>() {
+            @Override
+            public void onStart(Disposable disposable) {
+                isShowLoading.postValue(true);
+
+            }
+
+            @Override
+            public void onGetResult(ComContractsBean result) {
+                isShowLoading.postValue(false);
+                comContractSum.postValue(result);
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                isShowLoading.postValue(false);
+                ToastUtils.showShort(DearApplication.getInstance(),error.getMessage());
+            }
+        });
     }
 }

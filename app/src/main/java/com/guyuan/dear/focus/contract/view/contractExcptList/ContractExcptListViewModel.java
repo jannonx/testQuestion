@@ -35,7 +35,7 @@ public class ContractExcptListViewModel extends BaseViewModel {
         List<BaseContractExcptBean> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             BaseContractExcptBean bean = new BaseContractExcptBean();
-            bean.setContractId(System.currentTimeMillis()+"");
+            bean.setContractNum(System.currentTimeMillis()+"");
             bean.setBuyer("深圳固远智能机器人有限公司");
             if(i%2==0){
                 bean.setJudgement("国家政策暂停");

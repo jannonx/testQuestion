@@ -36,7 +36,7 @@ public class RestartContractListViewModel extends BaseViewModel {
         List<RestartedContractBean> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             RestartedContractBean bean = new RestartedContractBean();
-            bean.setContractId(System.currentTimeMillis()+"");
+            bean.setContractNum(System.currentTimeMillis()+"");
             bean.setBuyer("深圳科大旭飞导航有限公司");
             if(i%2==0){
                 bean.setRestartCause("客户重新设计了需求");

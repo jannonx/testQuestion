@@ -44,7 +44,7 @@ public class ContractDetailViewModel extends BaseViewModel {
         bean.setDate(System.currentTimeMillis());
         bean.setBuyer("深圳固远智能机器人有限公司");
         bean.setSalesPerson("兰特芳");
-        bean.setContractId("DEAR-2020/10/10");
+        bean.setContractNum("DEAR-2020/10/10");
         bean.setProductName("空气压缩机");
         bean.setBuyerAddress("深圳南山科技园11栋1102");
         bean.setReceivePerson("周全贵");

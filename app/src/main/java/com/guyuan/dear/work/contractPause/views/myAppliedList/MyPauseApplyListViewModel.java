@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.work.contractPause.adapters.MyPauseApplyListAdapter;
-import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import com.guyuan.dear.work.contractPause.beans.MyPauseApplyBean;
 
 import java.util.ArrayList;
@@ -51,7 +50,7 @@ public class MyPauseApplyListViewModel extends BaseViewModel {
             bean.setBuyer("北京天行健科技有限公司");
             bean.setJudgement(judements[i%judements.length]);
             bean.setDate(System.currentTimeMillis());
-            bean.setContractId(System.currentTimeMillis()+"");
+            bean.setContractNum(System.currentTimeMillis()+"");
             list.add(bean);
         }
         applyList.postValue(list);

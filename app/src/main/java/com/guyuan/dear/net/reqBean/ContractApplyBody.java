@@ -42,7 +42,7 @@ public class ContractApplyBody {
     public ContractApplyBody(ContractApplyBean bean) {
         int id = 0;
         try {
-            id = Integer.valueOf(bean.getContractId());
+            id = Integer.valueOf(bean.getContractNum());
         }catch (NumberFormatException e){
             e.printStackTrace();
         }
