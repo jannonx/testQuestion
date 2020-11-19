@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="goodsSignViewModel"
             type="com.guyuan.dear.work.goodssign.data.GoodsSignViewModel" />
@@ -36,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
+            android:text="@{goodsSignViewModel.goodsSignDetailMLD.supplierName}"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/app_bar"
@@ -57,6 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:text="@{String.format(@string/work_goods_sign_contract,goodsSignViewModel.goodsSignDetailMLD.contractCode)}"
             app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
             app:layout_constraintTop_toBottomOf="@+id/view19"
             tools:text="@string/work_goods_sign_contract" />
@@ -67,6 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:text="@{String.format(@string/work_goods_sign_person,goodsSignViewModel.goodsSignDetailMLD.followName)}"
             app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
             app:layout_constraintTop_toBottomOf="@+id/contract_name_tv"
             tools:text="@string/work_goods_sign_person" />
@@ -77,6 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:text="@{String.format(@string/work_goods_sign_time,goodsSignViewModel.goodsSignDetailMLD.arrivalTime) }"
             android:textColor="#1890FF"
             app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
             app:layout_constraintTop_toBottomOf="@+id/follow_person_name_tv"
@@ -96,7 +102,7 @@
             android:layout_height="0dp"
             android:orientation="vertical"
             android:padding="@dimen/dp_12"
-            app:layout_constraintBottom_toTopOf="@+id/commit_tv"
+            app:layout_constraintBottom_toTopOf="@+id/goods_all_commit_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
             app:layout_constraintTop_toBottomOf="@+id/view20">
@@ -115,7 +121,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="12dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                app:signGoods="@{goodsSignViewModel.goodsSignDetailMLD.equipmentList}" />
 
             <TextView
                 android:id="@+id/textView26"
@@ -134,12 +141,13 @@
                 android:layout_weight="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView26" />
+                app:layout_constraintTop_toBottomOf="@id/textView26"
+                app:signGoods="@{goodsSignViewModel.goodsSignDetailMLD.materialList}" />
         </LinearLayout>
 
 
         <TextView
-            android:id="@+id/commit_tv"
+            android:id="@+id/goods_all_commit_tv"
             style="@style/commit_btn"
             android:layout_marginBottom="24dp"
             android:text="全部到货"

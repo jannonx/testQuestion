@@ -1,8 +1,10 @@
 package com.guyuan.dear.work.goodssign.adapter;
 
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.app.DearApplication;
@@ -25,17 +27,29 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 public class GoodsSignBindingAdapter {
 
     @BindingAdapter("signGoods")
-    public void setSignProductList(BaseRecyclerView rv, List<GoodsSignBean> goodsSignBeanList) {
+    public static void setSignProductList(BaseRecyclerView rv, List<GoodsSignBean> goodsSignBeanList) {
         GoodsSignDetailAdapter goodsSignAdapter = new GoodsSignDetailAdapter(goodsSignBeanList, R.layout.item_work_goods_sign_detail);
         BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter(goodsSignAdapter);
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-                GoodsSignItemDetailActivity.start(DearApplication.getInstance(), goodsSignBeanList.get(i).getId());
+                GoodsSignBean bean = goodsSignBeanList.get(i);
+                GoodsSignItemDetailActivity.start(rv.getContext(), bean.getName(), bean.getId());
             }
         });
+        rv.setLayoutManager(new LinearLayoutManager(DearApplication.getInstance()));
         rv.setAdapter(adapter);
         rv.setPullRefreshEnabled(false);
         rv.setLoadMoreEnabled(false);
     }
+
+    @BindingAdapter("goodsStatus")
+    public static void setGoodsStatus(TextView tv, int status) {
+        if (status == 1) {
+            tv.setText("待签收");
+        } else if (status == 2) {
+            tv.setText("已签收");
+        }
+    }
+
 }

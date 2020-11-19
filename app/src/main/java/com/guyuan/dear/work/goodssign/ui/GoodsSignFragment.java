@@ -41,7 +41,8 @@ public class GoodsSignFragment extends BaseListSearchFragment<GoodsSignListBean.
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-                GoodsSignDetailActivity.start(getContext(), listData.get(i).getId());
+                GoodsSignListBean.ContentBean contentBean = listData.get(i);
+                GoodsSignDetailActivity.start(getContext(), contentBean.getSupplierName(), contentBean.getId());
             }
         });
         viewModel.getGoodsSignList(ConstantValue.FIRST_PAGE, content);
@@ -61,7 +62,20 @@ public class GoodsSignFragment extends BaseListSearchFragment<GoodsSignListBean.
     @Override
     protected void onSearch(String text) {
         super.onSearch(text);
+        refresh();
+    }
+
+    @Override
+    protected void editTextChanged(String text) {
+        super.editTextChanged(text);
         content = text;
+    }
+
+    @Override
+    protected void editEmptyChange() {
+        super.editEmptyChange();
+        content = "";
+        refresh();
     }
 
     @Override

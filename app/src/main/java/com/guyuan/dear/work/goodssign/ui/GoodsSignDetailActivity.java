@@ -3,9 +3,11 @@ package com.guyuan.dear.work.goodssign.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
+import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.ActivityGoodsSignDetailBinding;
 import com.guyuan.dear.utils.ConstantValue;
@@ -22,21 +24,36 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class GoodsSignDetailActivity extends BaseToolbarActivity<ActivityGoodsSignDetailBinding, GoodsSignViewModel> {
 
-    public static void start(Context context, int id) {
+    public static void start(Context context, String title, int id) {
         Intent starter = new Intent(context, GoodsSignDetailActivity.class);
         starter.putExtra(ConstantValue.KEY_ID, id);
+        starter.putExtra(ConstantValue.KEY_TITLE, title);
         context.startActivity(starter);
     }
 
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-        binding.setVariable(getLayoutID(), viewModel);
+        String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         int id = getIntent().getIntExtra(ConstantValue.KEY_ID, 0);
+        setTitleCenter(title);
+        viewModel.getGoodsSignDetail(id);
+
+        binding.goodsAllCommitTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewModel.signAll(id);
+            }
+        });
     }
 
     @Override
     protected int getLayoutID() {
         return R.layout.activity_goods_sign_detail;
+    }
+
+    @Override
+    protected int getVariableId() {
+        return BR.goodsSignViewModel;
     }
 }

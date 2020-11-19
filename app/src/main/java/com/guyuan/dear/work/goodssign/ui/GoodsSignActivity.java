@@ -47,7 +47,7 @@ public class GoodsSignActivity extends BaseToolbarActivity<ActivityWithToolbarBi
             @Override
             public void onChanged(GoodsSignListBean goodsSignListBean) {
                 List<GoodsSignListBean.ContentBean> dataList = goodsSignListBean.getContent();
-                if (dataList != null && dataList.size() > 0) {
+                if (dataList != null) {
                     goodsSignFragment.setListData(dataList);
                 }
             }

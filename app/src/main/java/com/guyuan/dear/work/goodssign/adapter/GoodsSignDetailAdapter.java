@@ -1,5 +1,6 @@
 package com.guyuan.dear.work.goodssign.adapter;
 
+import com.guyuan.dear.BR;
 import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemWorkGoodsSignDetailBinding;
 import com.guyuan.dear.work.goodssign.data.bean.GoodsSignBean;
@@ -21,6 +22,6 @@ public class GoodsSignDetailAdapter extends BaseDBRecycleAdapter<GoodsSignBean, 
 
     @Override
     protected void bindDataToView(Holder holder, GoodsSignBean item, int position) {
-
+        holder.binding.setVariable(BR.goodsSignBean, item);
     }
 }

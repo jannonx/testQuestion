@@ -13,6 +13,8 @@ import com.guyuan.dear.work.goodssign.data.bean.GoodsDetailBean;
 import com.guyuan.dear.work.goodssign.data.bean.GoodsSignDetailBean;
 import com.guyuan.dear.work.goodssign.data.bean.GoodsSignListBean;
 
+import io.reactivex.functions.Consumer;
+
 /**
  * @author : 唐力
  * @description :
@@ -73,22 +75,46 @@ public class GoodsSignViewModel extends BaseViewModel {
     //获取货物签收详情
     public void getGoodsSignDetail(int contractID) {
         RxJavaHelper.build(this, apiService.getGoodsSignDetail(contractID))
-                .getHelper().flow(goodsSignDetailMLD);
+                .getHelper()
+                .flow(goodsSignDetailMLD);
     }
 
     //获取货物详情
     public void getGoodsDetail(int productID) {
         RxJavaHelper.build(this, apiService.getGoodsSignItemDetail(productID))
-                .getHelper().flow(goodsDetailMLD);
+                .getHelper()
+                .flow(goodsDetailMLD);
     }
 
     //全部签收
     public void signAll(int contractID) {
-        RxJavaHelper.build(this, apiService.signAll(contractID)).getHelper().flow(allSignMLD);
+        RxJavaHelper.build(this, apiService.signAll(contractID))
+                .setPreTip("正在签收...")
+                .success(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        int result = (int) o;
+                        if (result == 0) {//成功关闭当前界面
+                            finish();
+                        }
+                    }
+                })
+                .getHelper().flow();
     }
 
     //签收
     public void sign(int itemID) {
-        RxJavaHelper.build(this, apiService.sign(itemID)).getHelper().flow(signMLD);
+        RxJavaHelper.build(this, apiService.sign(itemID))
+                .setPreTip("正在签收...")
+                .success(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        int result = (int) o;
+                        if (result == 0) {//成功关闭当前界面
+                            finish();
+                        }
+                    }
+                })
+                .getHelper().flow();
     }
 }
