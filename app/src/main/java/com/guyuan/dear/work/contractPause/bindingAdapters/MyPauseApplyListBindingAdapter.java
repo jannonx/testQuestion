@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 import com.guyuan.dear.work.contractPause.adapters.MyPauseApplyListAdapter;
 import com.guyuan.dear.work.contractPause.beans.MyPauseApplyBean;
 

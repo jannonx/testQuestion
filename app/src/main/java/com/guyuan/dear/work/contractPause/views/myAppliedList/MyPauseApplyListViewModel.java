@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.work.contractPause.adapters.MyPauseApplyListAdapter;
+import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import com.guyuan.dear.work.contractPause.beans.MyPauseApplyBean;
 
 import java.util.ArrayList;
@@ -40,9 +41,9 @@ public class MyPauseApplyListViewModel extends BaseViewModel {
     public void getListFromNet(String uid){
         List<MyPauseApplyBean> list = new ArrayList<>();
         int states[] = new int[]{MyPauseApplyBean.APPLY_PENDING_FOR_START,
-        MyPauseApplyBean.APPLY_PROCESSING,MyPauseApplyBean.APPLY_APPROVED,MyPauseApplyBean.APPLY_REJECTED};
+                MyPauseApplyBean.APPLY_PROCESSING,MyPauseApplyBean.APPLY_APPROVED,MyPauseApplyBean.APPLY_REJECTED};
         String judements[] = new String[]{
-          "国际政策维度","项目成本维度","维护成本维度"
+                "国际政策维度","项目成本维度","维护成本维度"
         };
         for (int i = 0; i < 25; i++) {
             MyPauseApplyBean bean = new MyPauseApplyBean();

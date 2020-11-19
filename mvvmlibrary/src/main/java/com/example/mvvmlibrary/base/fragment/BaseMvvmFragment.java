@@ -14,6 +14,10 @@ import com.example.mvvmlibrary.base.data.BaseViewModel;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * @author: 廖华凯
@@ -23,6 +27,8 @@ import java.lang.reflect.Type;
  **/
 public abstract class BaseMvvmFragment<VDB extends ViewDataBinding, VM extends BaseViewModel> extends BaseViewModelFragment<VDB> {
     private VM viewModel;
+    private List<Disposable> disposableList= new ArrayList<>();
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,9 +74,19 @@ public abstract class BaseMvvmFragment<VDB extends ViewDataBinding, VM extends B
 
     protected abstract void initListeners();
 
+    public void addDisposable(Disposable disposable){
+        disposableList.add(disposable);
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
+        for (Disposable disposable : disposableList) {
+            if(disposable.isDisposed()){
+                continue;
+            }
+            disposable.dispose();
+        }
         if (getViewModel() != null) {
             getViewModel().onDestroy();
         }

@@ -26,6 +26,7 @@ public class BaseContractBean implements Parcelable {
      * 买方
      */
     private String buyer;
+    private int buyerId;
     /**
      * 合同签订日期
      */
@@ -64,6 +65,7 @@ public class BaseContractBean implements Parcelable {
         contractId = in.readString();
         salesPerson = in.readString();
         buyer = in.readString();
+        buyerId = in.readInt();
         date = in.readLong();
         productName = in.readString();
         productModel = in.readString();
@@ -138,6 +140,14 @@ public class BaseContractBean implements Parcelable {
         this.productModel = productModel;
     }
 
+    public int getBuyerId() {
+        return buyerId;
+    }
+
+    public void setBuyerId(int buyerId) {
+        this.buyerId = buyerId;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -148,6 +158,7 @@ public class BaseContractBean implements Parcelable {
         dest.writeString(contractId);
         dest.writeString(salesPerson);
         dest.writeString(buyer);
+        dest.writeInt(buyerId);
         dest.writeLong(date);
         dest.writeString(productName);
         dest.writeString(productModel);

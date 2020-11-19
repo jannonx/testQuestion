@@ -8,6 +8,7 @@ import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.ActivityMyPauseApplyDetailBinding;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import com.guyuan.dear.work.contractPause.beans.MyPauseApplyBean;
 
 public class MyPauseApplyDetailActivity extends BaseToolbarActivity<ActivityMyPauseApplyDetailBinding, MyPauseApplyDetailViewModel> {

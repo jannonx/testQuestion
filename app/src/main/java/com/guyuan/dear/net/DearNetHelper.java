@@ -8,9 +8,18 @@ import com.example.httplibrary.bean.ErrorResultBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.example.httplibrary.rx.SchedulersCompat;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.focus.contract.bean.ComContractsBean;
 import com.guyuan.dear.net.api.DearNetApiService;
+import com.guyuan.dear.net.reqBean.ContractApplyBody;
+import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
+import com.guyuan.dear.net.resultBeans.NetClientInfo;
+import com.guyuan.dear.net.resultBeans.NetContractSumBean;
+import com.guyuan.dear.net.resultBeans.NetServerParam;
 import com.guyuan.dear.net.resultBeans.NetStaffBean;
 import com.guyuan.dear.utils.CalenderUtils;
+import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
@@ -44,10 +53,11 @@ public class DearNetHelper {
 
     /**
      * 获取所有人员
-     * @param pageIndex 分页页码，从1开始
-     * @param pageSize 分页容量
+     *
+     * @param pageIndex      分页页码，从1开始
+     * @param pageSize       分页容量
      * @param lastUpdateTime 上次更新时间，服务器返回这个时间段后改动的人员清单。如果为空，则返回所有人员。
-     * @param callback 回调
+     * @param callback       回调
      * @return
      */
     public Disposable getAllStaffs(int pageIndex, int pageSize, long lastUpdateTime, NetCallback<BasePageResultBean<NetStaffBean>> callback) {
@@ -57,6 +67,79 @@ public class DearNetHelper {
         body.setUpdateTime(CalenderUtils.getInstance().toSmartFactoryDateStringFormat(lastUpdateTime));
         Observable<ResultBean<BasePageResultBean<NetStaffBean>>> observable = netApiService.getAllStaffs(body);
         return getDisposal(observable, callback, null);
+    }
+
+    /**
+     * 获取所有客户清单
+     *
+     * @param callback
+     * @return
+     */
+    public Disposable getClientList(NetCallback<BasePageResultBean<NetClientInfo>> callback) {
+        BasePageReqBean body = new BasePageReqBean();
+        body.setPageNum(0);
+        body.setPageSize(-1);
+        Observable<ResultBean<BasePageResultBean<NetClientInfo>>> observable = netApiService.getClientInfos(body);
+        return getDisposalAsync(observable, callback, null);
+    }
+
+    /**
+     * 根据客户id获取客户合同列表，列表信息为基本信息。
+     *
+     * @param id
+     * @param callback
+     * @return
+     */
+    public Disposable getBaseContractListByClientId(long id, NetCallback<List<NetBaseContractInfo>> callback) {
+        Observable<ResultBean<List<NetBaseContractInfo>>> observable = netApiService.getContractBaseInfosByClientId(id);
+        return getDisposalAsync(observable, callback, null);
+    }
+
+    /**
+     * 获取判断维度列表
+     *
+     * @param callback
+     * @return
+     */
+    public Disposable getJudgeConditions(NetCallback<List<NetServerParam.JudgeCondition>> callback) {
+        Observable<ResultBean<NetServerParam>> observable = netApiService.getNetServerParams();
+        Mapper<NetServerParam, List<NetServerParam.JudgeCondition>> mapper =
+                new Mapper<NetServerParam, List<NetServerParam.JudgeCondition>>() {
+                    @Override
+                    public List<NetServerParam.JudgeCondition> map(NetServerParam src) {
+                        return src.getJudgeConditions();
+                    }
+                };
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
+    /**
+     * 提交合同暂停/重启申请
+     * @param bean 提交内容
+     * @param callback
+     * @return
+     */
+    public Disposable submitContractApply(ContractApplyBean bean, NetCallback<Integer> callback){
+        ContractApplyBody body = new ContractApplyBody(bean);
+        Observable<ResultBean<Integer>> observable = netApiService.submitContractApply(body);
+        return getDisposalAsync(observable,callback,null);
+    }
+
+    /**
+     * 查询合同概况
+     * @param date 截至日期
+     * @return
+     */
+    public Disposable getContractSumByDate(long date,NetCallback<ComContractsBean> callback){
+        Observable<ResultBean<NetContractSumBean>> observable =
+                netApiService.getContractSumByDate(CalenderUtils.getInstance().toSmartFactoryDateStringFormat(date));
+        Mapper<NetContractSumBean, ComContractsBean> mapper = new Mapper<NetContractSumBean, ComContractsBean>() {
+            @Override
+            public ComContractsBean map(NetContractSumBean src) {
+                return null;
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
     }
 
 
@@ -120,6 +203,7 @@ public class DearNetHelper {
 
     /**
      * 注意：这个回调是在子线程中的，不能在回调中修改UI
+     *
      * @param mapper         把Data类转换成ReturnType的适配器
      * @param <Response>     网络请求的返回类型，必须继承ResultBean
      * @param <ResponseData> 必须为Response的变量data代表的类，否则会报错
