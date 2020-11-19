@@ -72,7 +72,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".work.qc.views.home.QcHomeActivity"/>
+        <activity android:name=".work.qc.views.home.QcHomeActivity" />
         <activity android:name=".focus.qc.views.materialQcDetail.MaterialQcReportDetailActivity" />
         <activity android:name=".focus.qc.views.productQcDetail.ProductQcReportDetailActivity" />
         <activity android:name=".focus.qc.views.qcReportList.QcSumListActivity" />
@@ -106,14 +106,16 @@
             android:name="design_height_in_dp"
             android:value="675" />
 
-        <activity android:name=".home.MainActivity"
+        <activity
+            android:name=".home.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".login.ui.LoginActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".login.ui.LoginActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".approve.ApproveActivity"
             android:launchMode="singleTop"
@@ -455,14 +457,26 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".focus.aftersale.ui.detail.FocusAfterSaleDetailActivity"
+        <activity
+            android:name=".focus.aftersale.ui.detail.FocusAfterSaleDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
-        <activity android:name=".focus.aftersale.ui.FocusAfterSaleActivity"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.aftersale.ui.FocusAfterSaleActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.transport.ui.TransportActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.transport.ui.detail.TransportDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
 
         <service android:name=".service.BackService" />
     </application>

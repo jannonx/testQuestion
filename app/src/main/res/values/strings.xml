@@ -25,6 +25,11 @@
         <item>质检异常</item>
     </array>
 
+    <array name="focus_transport_title">
+        <item>运输跟踪</item>
+        <item>已送达</item>
+    </array>
+
     <array name="focus_device_title">
         <item>设备概况</item>
         <item>设备异常</item>
