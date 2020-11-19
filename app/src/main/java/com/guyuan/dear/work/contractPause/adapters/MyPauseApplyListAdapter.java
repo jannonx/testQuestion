@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.ItemMyPauseApplyListBinding;
+import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import com.guyuan.dear.work.contractPause.beans.MyPauseApplyBean;
 
 import java.util.List;

@@ -57,7 +57,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
     @Override
     protected int getLayoutID() {
-        return R.layout.fragment_focus_produce_detail_complex;
+        return R.layout.fragment_focus_site_exploration;
     }
 
     @Override

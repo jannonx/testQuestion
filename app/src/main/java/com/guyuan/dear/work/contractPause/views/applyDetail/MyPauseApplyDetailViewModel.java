@@ -6,6 +6,7 @@ import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.google.gson.Gson;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.MeetingComment;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.Vote;
+import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import com.guyuan.dear.work.contractPause.beans.MyPauseApplyBean;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogApproved;
@@ -13,6 +14,7 @@ import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogFir
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogProcessing;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogReject;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogToBePrc;
+import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ContractApplyDetailBean;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.GenericApproveLog;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.MyPauseApplyDetailBean;
 
@@ -47,12 +49,12 @@ public class MyPauseApplyDetailViewModel extends BaseViewModel {
         detailBean.setApplier("谷村新司");
         detailBean.setDetailCause(
                 "　　“什么！什么！日本问题座谈会？怎么我不知道，怎么不告诉我？”\n" +
-                "　　“我们那天部务会议决议了的。我来找过华先生，华先生又是不在家——”\n" +
-                "　　“好啊，你们秘密行动！”他瞪着眼。“你老实告诉我——这个座谈会到底是\n" +
-                "　　什么背景，你老实告诉我！”\n" +
-                "　　对方似乎也动了火：\n" +
-                "　　“什么背景呢，都是中华民族！部务会议议决的，怎么是秘密行动呢。……华\n" +
-                "　　先生又不到会，开会也不终席，来找又找不到……我们总不能把部里的工作停顿起来");
+                        "　　“我们那天部务会议决议了的。我来找过华先生，华先生又是不在家——”\n" +
+                        "　　“好啊，你们秘密行动！”他瞪着眼。“你老实告诉我——这个座谈会到底是\n" +
+                        "　　什么背景，你老实告诉我！”\n" +
+                        "　　对方似乎也动了火：\n" +
+                        "　　“什么背景呢，都是中华民族！部务会议议决的，怎么是秘密行动呢。……华\n" +
+                        "　　先生又不到会，开会也不终席，来找又找不到……我们总不能把部里的工作停顿起来");
         List<GenericApproveLog> logList = new ArrayList<>();
         //first create data
         ApproveLogFirstCreateDate logFirstCreateDate = new ApproveLogFirstCreateDate();

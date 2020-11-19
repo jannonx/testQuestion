@@ -152,16 +152,22 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
 
     private void showDialogSelectSpec() {
         List<MaterialSpec> list = getViewModel().loadMaterialSpecsFromNet();
-        SelectionDialog<MaterialSpec> dialog = new SelectionDialog<MaterialSpec>(
-                getContext(),
-                list,
-                new SelectionDialog.OnSelectItemClickListener<MaterialSpec>() {
+        SelectionDialog<MaterialSpec> dialog = new SelectionDialog<MaterialSpec>(getContext()) {
+            @Override
+            public List<MaterialSpec> setListData() {
+                return list;
+            }
+
+            @Override
+            public OnSelectItemClickListener<MaterialSpec> setOnItemClick() {
+                return new OnSelectItemClickListener<MaterialSpec>() {
                     @Override
                     public void onItemClick(MaterialSpec bean, int position) {
                         getViewModel().updateMaterialSpec(bean);
                     }
-                }
-        ) {
+                };
+            }
+
             @Override
             public String getItemLabel(MaterialSpec item) {
                 return item.getMaterialSpecName();
@@ -172,16 +178,22 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
 
     private void showDialogSelectMaterial() {
         List<MaterialInfo> materialInfos = getViewModel().loadMaterialInfosFromNet();
-        SelectionDialog<MaterialInfo> dialog = new SelectionDialog<MaterialInfo>(
-                getContext(),
-                materialInfos,
-                new SelectionDialog.OnSelectItemClickListener<MaterialInfo>() {
+        SelectionDialog<MaterialInfo> dialog = new SelectionDialog<MaterialInfo>(getContext()) {
+            @Override
+            public List<MaterialInfo> setListData() {
+                return materialInfos;
+            }
+
+            @Override
+            public OnSelectItemClickListener<MaterialInfo> setOnItemClick() {
+                return new OnSelectItemClickListener<MaterialInfo>() {
                     @Override
                     public void onItemClick(MaterialInfo bean, int position) {
                         getViewModel().updateMaterialInfo(bean);
                     }
-                }
-        ) {
+                };
+            }
+
             @Override
             public String getItemLabel(MaterialInfo item) {
                 return item.getMaterialName();
@@ -197,16 +209,22 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
                 add(0);
             }
         };
-        SelectionDialog<Integer> dialog = new SelectionDialog<Integer>(
-                getContext(),
-                list,
-                new SelectionDialog.OnSelectItemClickListener<Integer>() {
+        SelectionDialog<Integer> dialog = new SelectionDialog<Integer>(getContext()) {
+            @Override
+            public List<Integer> setListData() {
+                return list;
+            }
+
+            @Override
+            public OnSelectItemClickListener<Integer> setOnItemClick() {
+                return new OnSelectItemClickListener<Integer>() {
                     @Override
                     public void onItemClick(Integer bean, int position) {
                         getViewModel().updateQcResult(bean);
                     }
-                }
-        ) {
+                };
+            }
+
             @Override
             public String getItemLabel(Integer item) {
                 if (item > 0) {
@@ -220,16 +238,22 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
 
     private void showDialogSelectQcApproach() {
         List<BaseQcApproachBean> approaches = getViewModel().getQcApproaches();
-        SelectionDialog<BaseQcApproachBean> dialog = new SelectionDialog<BaseQcApproachBean>(
-                getContext(),
-                approaches,
-                new SelectionDialog.OnSelectItemClickListener<BaseQcApproachBean>() {
+        SelectionDialog<BaseQcApproachBean> dialog = new SelectionDialog<BaseQcApproachBean>(getContext()) {
+            @Override
+            public List<BaseQcApproachBean> setListData() {
+                return approaches;
+            }
+
+            @Override
+            public OnSelectItemClickListener<BaseQcApproachBean> setOnItemClick() {
+                return new OnSelectItemClickListener<BaseQcApproachBean>() {
                     @Override
                     public void onItemClick(BaseQcApproachBean bean, int position) {
                         getViewModel().updateQcApproach(bean);
                     }
-                }
-        ) {
+                };
+            }
+
             @Override
             public String getItemLabel(BaseQcApproachBean item) {
                 return item.getApproachName();
@@ -240,16 +264,22 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
 
     private void showDialogSelectProjects() {
         List<BaseProjectBean> list = getViewModel().getProjectListFromNet();
-        SelectionDialog<BaseProjectBean> dialog = new SelectionDialog<BaseProjectBean>(
-                getContext(),
-                list,
-                new SelectionDialog.OnSelectItemClickListener<BaseProjectBean>() {
+        SelectionDialog<BaseProjectBean> dialog = new SelectionDialog<BaseProjectBean>(getContext()) {
+            @Override
+            public List<BaseProjectBean> setListData() {
+                return list;
+            }
+
+            @Override
+            public OnSelectItemClickListener<BaseProjectBean> setOnItemClick() {
+                return new OnSelectItemClickListener<BaseProjectBean>() {
                     @Override
                     public void onItemClick(BaseProjectBean bean, int position) {
                         getViewModel().updateProjectInfo(bean);
                     }
-                }
-        ) {
+                };
+            }
+
             @Override
             public String getItemLabel(BaseProjectBean item) {
                 return item.getProjectName();
@@ -265,16 +295,22 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
                 add(false);
             }
         };
-        SelectionDialog<Boolean> dialog = new SelectionDialog<Boolean>(
-                getContext(),
-                selections,
-                new SelectionDialog.OnSelectItemClickListener<Boolean>() {
+        SelectionDialog<Boolean> dialog = new SelectionDialog<Boolean>(getContext()) {
+            @Override
+            public List<Boolean> setListData() {
+                return selections;
+            }
+
+            @Override
+            public OnSelectItemClickListener<Boolean> setOnItemClick() {
+                return new OnSelectItemClickListener<Boolean>() {
                     @Override
                     public void onItemClick(Boolean bean, int position) {
                         getViewModel().updateIsVerify(bean);
                     }
-                }
-        ) {
+                };
+            }
+
             @Override
             public String getItemLabel(Boolean item) {
                 if (item) {

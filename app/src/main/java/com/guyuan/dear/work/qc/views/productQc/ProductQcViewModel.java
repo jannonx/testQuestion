@@ -9,8 +9,6 @@ import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.qc.beans.BaseProductBatchInfo;
 import com.guyuan.dear.work.qc.beans.BaseProjectBean;
 import com.guyuan.dear.work.qc.beans.BaseQcApproachBean;
-import com.guyuan.dear.work.qc.beans.ProductInfo;
-import com.guyuan.dear.work.qc.beans.ProductQcSubmitBean;
 import com.guyuan.dear.work.qc.repo.ProductQcRepo;
 
 import java.util.ArrayList;
