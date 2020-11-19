@@ -7,7 +7,11 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
+import com.guyuan.dear.net.resultBeans.NetClientInfo;
+import com.guyuan.dear.net.resultBeans.NetServerParam;
 import com.guyuan.dear.utils.ToastUtils;
+import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import com.guyuan.dear.work.contractPause.beans.PauseContractBean;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
@@ -20,15 +24,25 @@ import java.util.List;
  * @since: 2020/10/30 12:00
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class PauseContractViewModel extends BaseViewModel {
+public class ContractApplyViewModel extends BaseViewModel {
     /**
-     * 本次操作的bean类
+     * 数据源
      */
-    private MutableLiveData<PauseContractBean> pauseBean =new MutableLiveData<PauseContractBean>(){
-        {
-            setValue(new PauseContractBean());
-        }
-    };
+    private MutableLiveData<String> clientName =new MutableLiveData<>();
+    private MutableLiveData<String> contractNum = new MutableLiveData<>();
+    private MutableLiveData<String> judgeCondition = new MutableLiveData<>();
+    public MutableLiveData<String> description = new MutableLiveData<>();
+    public MutableLiveData<ArrayList<StaffBean>> sendList = new MutableLiveData<>(new ArrayList<>());
+    public MutableLiveData<ArrayList<StaffBean>> copyList = new MutableLiveData<>(new ArrayList<>());
+    private int clientId;
+    private int contractId;
+    private String judgeConditionKey;
+    /**
+     * {@link ContractApplyBean#APPLY_TYPE_PAUSE} {@link ContractApplyBean#APPLY_TYPE_RESUME}
+     */
+    private int applyType;
+
+
     /**
      * 点击事件：提交申请
      */
@@ -54,59 +68,61 @@ public class PauseContractViewModel extends BaseViewModel {
      */
     private MutableLiveData<View.OnClickListener> onClickAddCopyList = new MutableLiveData<>();
 
-    public ArrayList<StaffBean> getPreSelectSendList() {
-        return pauseBean.getValue().getSendList();
-    }
-
-
-
-    public ArrayList<StaffBean> getPreSelectCopyList() {
-        return pauseBean.getValue().getCopyList();
-    }
-
-
-    public MutableLiveData<PauseContractBean> getPauseBean() {
-        return pauseBean;
-    }
 
     public MutableLiveData<View.OnClickListener> getOnClickSubmit() {
         return onClickSubmit;
     }
 
+    public void setApplyType(int applyType) {
+        this.applyType = applyType;
+    }
+
+    public MutableLiveData<String> getClientName() {
+        return clientName;
+    }
+
+
+    public MutableLiveData<String> getContractNum() {
+        return contractNum;
+    }
+
+
+
+    public MutableLiveData<String> getJudgeCondition() {
+        return judgeCondition;
+    }
+
+
     private static final int MAX_LEN=240;
+
     public void setOnClickSubmit(View.OnClickListener onClickSubmit) {
         this.onClickSubmit.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //在这里检查提交内容的合法性
-                PauseContractBean value = pauseBean.getValue();
-                String buyer = value.getBuyer();
-                if(TextUtils.isEmpty(buyer)){
+                if(TextUtils.isEmpty(clientName.getValue())){
                     ToastUtils.showShort(DearApplication.getInstance(),"客户名字不能为空。");
                     return;
                 }
-                String contractId = value.getContractId();
-                if(TextUtils.isEmpty(contractId)){
+                if(TextUtils.isEmpty(contractNum.getValue())){
                     ToastUtils.showShort(DearApplication.getInstance(),"合同编号不能为空。");
                     return;
                 }
-                String judgement = value.getJudgement();
-                if(TextUtils.isEmpty(judgement)){
+                if(TextUtils.isEmpty(judgeCondition.getValue())){
                     ToastUtils.showShort(DearApplication.getInstance(),"判定维度不能为空。");
                     return;
                 }
-                String reason = value.getDetailPauseReason();
-                if(TextUtils.isEmpty(reason)){
+                if(TextUtils.isEmpty(description.getValue())){
                     ToastUtils.showShort(DearApplication.getInstance(),"暂停原因需要说明。");
                     return;
                 }else {
-                    if(reason.length()>=MAX_LEN){
+                    if(description.getValue().length()>=MAX_LEN){
                         ToastUtils.showShort(DearApplication.getInstance(),"暂停原因字数不能超过240个字符串。");
                         return;
                     }
                 }
-                List<StaffBean> copyList = value.getCopyList();
-                if(copyList == null ||copyList.isEmpty()){
+                List<StaffBean> sendList = ContractApplyViewModel.this.sendList.getValue();
+                if(sendList == null ||sendList.isEmpty()){
                     ToastUtils.showShort(DearApplication.getInstance(),"审批人不能为空。");
                     return;
                 }
@@ -137,8 +153,7 @@ public class PauseContractViewModel extends BaseViewModel {
             @Override
             public void onClick(View v) {
                 //必须先选择好客户才能选择合同
-                PauseContractBean value = pauseBean.getValue();
-                String buyer = value.getBuyer();
+                String buyer = clientName.getValue();
                 if(TextUtils.isEmpty(buyer)){
                     ToastUtils.showShort(DearApplication.getInstance(),"请先选择客户");
                     return;
@@ -150,6 +165,10 @@ public class PauseContractViewModel extends BaseViewModel {
 
     public MutableLiveData<View.OnClickListener> getOnClickSelectJudgement() {
         return onClickSelectJudgement;
+    }
+
+    public int getClientId() {
+        return clientId;
     }
 
     public void setOnClickSelectJudgement(View.OnClickListener onClickSelectJudgement) {
@@ -172,53 +191,31 @@ public class PauseContractViewModel extends BaseViewModel {
         this.onClickAddCopyList.postValue(onClickAddCopyList);
     }
 
-    /**
-     * 测试专用
-     */
-    public void loadSendList(){
-        PauseContractBean value = pauseBean.getValue();
-        ArrayList<StaffBean> staffs = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            StaffBean bean = new StaffBean();
-            bean.setName("测试"+(i+1));
-            staffs.add(bean);
-        }
-        value.setSendList(staffs);
-        pauseBean.postValue(pauseBean.getValue());
+    public void updateClient(NetClientInfo clientInfo){
+        this.clientName.postValue(clientInfo.getCusName());
+        this.clientId = clientInfo.getId();
     }
 
-    /**
-     * 测试专用
-     */
-    public void loadCopyList(){
-        PauseContractBean value = pauseBean.getValue();
-        ArrayList<StaffBean> staffs = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            StaffBean bean = new StaffBean();
-            bean.setName("测试"+(i+1));
-            staffs.add(bean);
-        }
-        value.setCopyList(staffs);
-        pauseBean.postValue(pauseBean.getValue());
+    public void updateContract(NetBaseContractInfo contractInfo){
+        this.contractNum.postValue(contractInfo.getContractNum());
+        this.contractId = contractInfo.getId();
     }
 
-    /**
-     * 在主界面更新审批人列表的UI
-     * @param list
-     */
-    public void updateSendList(ArrayList<StaffBean> list) {
-        PauseContractBean value = pauseBean.getValue();
-        value.setSendList(list);
-        pauseBean.setValue(pauseBean.getValue());
+    public void updateJudgeCondition(NetServerParam.JudgeCondition con){
+        this.judgeCondition.postValue(con.getValue());
+        this.judgeConditionKey = con.getKey();
     }
 
-    /**
-     * 在主界面更新抄送人列表的UI
-     * @param list
-     */
-    public void updateCopyList(ArrayList<StaffBean> list) {
-        PauseContractBean value = pauseBean.getValue();
-        value.setCopyList(list);
-        pauseBean.setValue(pauseBean.getValue());
+
+    public ContractApplyBean genApplyBean() {
+        ContractApplyBean bean = new ContractApplyBean();
+        bean.setBuyerId(getClientId());
+        bean.setContractId(String.valueOf(contractId));
+        bean.setJudgementKey(judgeConditionKey);
+        bean.setDetailReason(description.getValue());
+        bean.setSendList(sendList.getValue());
+        bean.setCopyList(copyList.getValue());
+        bean.setApplyType(applyType);
+        return bean;
     }
 }

@@ -8,6 +8,7 @@ import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentMyPauseApplyDetailBinding;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import com.guyuan.dear.work.contractPause.beans.MyPauseApplyBean;
 
 /**

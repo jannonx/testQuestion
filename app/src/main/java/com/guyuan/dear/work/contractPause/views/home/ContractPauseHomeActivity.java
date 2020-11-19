@@ -9,7 +9,8 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.work.contractPause.views.applyWindow.PauseContractFragment;
+import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
+import com.guyuan.dear.work.contractPause.views.applyWindow.ContractApplyFragment;
 import com.guyuan.dear.work.contractPause.views.myAppliedList.MyPauseApplyListFragment;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class ContractPauseHomeActivity extends BaseTabActivity<ActivityBaseTabBi
     protected List<Fragment> getFragments() {
         return new ArrayList<Fragment>(){
             {
-                add(PauseContractFragment.getInstance());
+                add(ContractApplyFragment.getInstance(ContractApplyBean.APPLY_TYPE_PAUSE));
                 add(MyPauseApplyListFragment.getInstance("当前用户ID"));
             }
         };

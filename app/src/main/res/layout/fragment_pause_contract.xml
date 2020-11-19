@@ -5,7 +5,7 @@
     <data>
         <variable
             name="fragment_pause_contract_vm"
-            type="com.guyuan.dear.work.contractPause.views.applyWindow.PauseContractViewModel" />
+            type="com.guyuan.dear.work.contractPause.views.applyWindow.ContractApplyViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -36,7 +36,7 @@
                         android:hint="请选择"
                         android:textColorHint="@color/color_grey_999999"
                         android:textColor="@color/color_black_333333"
-                        android:text="@{fragment_pause_contract_vm.pauseBean.buyer}"/>
+                        android:text="@{fragment_pause_contract_vm.clientName}"/>
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="@dimen/dp_18"
                         android:layout_height="@dimen/dp_18"
@@ -64,7 +64,7 @@
                         android:onClick="@{fragment_pause_contract_vm.onClickSelectContract}"
                         android:textColorHint="@color/color_grey_999999"
                         android:textColor="@color/color_black_333333"
-                        android:text="@{fragment_pause_contract_vm.pauseBean.contractId}"/>
+                        android:text="@{fragment_pause_contract_vm.contractNum}"/>
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="@dimen/dp_18"
                         android:layout_height="@dimen/dp_18"
@@ -92,7 +92,7 @@
                         android:hint="请选择"
                         android:textColorHint="@color/color_grey_999999"
                         android:textColor="@color/color_black_333333"
-                        android:text="@{fragment_pause_contract_vm.pauseBean.judgement}"/>
+                        android:text="@{fragment_pause_contract_vm.judgeCondition}"/>
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="@dimen/dp_18"
                         android:layout_height="@dimen/dp_18"
@@ -126,7 +126,8 @@
                     android:textSize="@dimen/sp_17"
                     android:padding="@dimen/dp_12"
                     android:textColorHint="#CCCCCC"
-                    android:hint="请输入描述"/>
+                    android:hint="请输入描述"
+                    android:text="@={fragment_pause_contract_vm.description}"/>
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -136,7 +137,7 @@
                     android:textColor="#999999"
                     android:gravity="end"
                     android:text="0/240"
-                    app:showInputCount="@{fragment_pause_contract_vm.pauseBean.detailPauseReason}"
+                    app:showInputCount="@{fragment_pause_contract_vm.description}"
                     android:background="@color/white"
                     />
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -159,7 +160,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:setPauseContractSendList="@{fragment_pause_contract_vm.pauseBean.sendList}" />
+                    app:setPauseContractSendList="@{fragment_pause_contract_vm.sendList}" />
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -191,7 +192,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:setPauseContractCopyList="@{fragment_pause_contract_vm.pauseBean.copyList}"/>
+                    app:setPauseContractCopyList="@{fragment_pause_contract_vm.copyList}"/>
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

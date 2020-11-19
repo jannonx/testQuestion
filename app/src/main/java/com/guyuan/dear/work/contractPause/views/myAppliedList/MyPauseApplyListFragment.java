@@ -17,7 +17,7 @@ import com.guyuan.dear.work.contractPause.views.applyDetail.MyPauseApplyDetailAc
  * @since: 2020/11/2 12:00
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class MyPauseApplyListFragment extends BaseMvvmFragment<FragmentMyPauseApplyListBinding,MyPauseApplyListViewModel> {
+public class MyPauseApplyListFragment extends BaseMvvmFragment<FragmentMyPauseApplyListBinding, MyPauseApplyListViewModel> {
 
     public static MyPauseApplyListFragment getInstance(String uid){
         Bundle bundle = new Bundle();

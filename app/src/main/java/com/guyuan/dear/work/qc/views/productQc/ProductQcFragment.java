@@ -1,8 +1,6 @@
 package com.guyuan.dear.work.qc.views.productQc;
 
 import android.content.Intent;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -153,16 +151,22 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
                 add(0);
             }
         };
-        SelectionDialog<Integer> dialog = new SelectionDialog<Integer>(
-                getContext(),
-                list,
-                new SelectionDialog.OnSelectItemClickListener<Integer>() {
+        SelectionDialog<Integer> dialog = new SelectionDialog<Integer>(getContext()) {
+            @Override
+            public List<Integer> setListData() {
+                return list;
+            }
+
+            @Override
+            public OnSelectItemClickListener<Integer> setOnItemClick() {
+                return new OnSelectItemClickListener<Integer>() {
                     @Override
                     public void onItemClick(Integer bean, int position) {
                         getViewModel().updateQcResult(bean);
                     }
-                }
-        ) {
+                };
+            }
+
             @Override
             public String getItemLabel(Integer item) {
                 if (item > 0) {
@@ -176,16 +180,22 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
 
     private void showDialogSelectQcApproach() {
         List<BaseQcApproachBean> approaches = getViewModel().getQcApproaches();
-        SelectionDialog<BaseQcApproachBean> dialog = new SelectionDialog<BaseQcApproachBean>(
-                getContext(),
-                approaches,
-                new SelectionDialog.OnSelectItemClickListener<BaseQcApproachBean>() {
+        SelectionDialog<BaseQcApproachBean> dialog = new SelectionDialog<BaseQcApproachBean>(getContext()) {
+            @Override
+            public List<BaseQcApproachBean> setListData() {
+                return approaches;
+            }
+
+            @Override
+            public OnSelectItemClickListener<BaseQcApproachBean> setOnItemClick() {
+                return new OnSelectItemClickListener<BaseQcApproachBean>() {
                     @Override
                     public void onItemClick(BaseQcApproachBean bean, int position) {
                         getViewModel().updateQcApproach(bean);
                     }
-                }
-        ) {
+                };
+            }
+
             @Override
             public String getItemLabel(BaseQcApproachBean item) {
                 return item.getApproachName();
@@ -196,16 +206,22 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
 
     private void showDialogSelectProjects() {
         List<BaseProjectBean> list = getViewModel().getProjectListFromNet();
-        SelectionDialog<BaseProjectBean> dialog = new SelectionDialog<BaseProjectBean>(
-                getContext(),
-                list,
-                new SelectionDialog.OnSelectItemClickListener<BaseProjectBean>() {
+        SelectionDialog<BaseProjectBean> dialog = new SelectionDialog<BaseProjectBean>(getContext()) {
+            @Override
+            public List<BaseProjectBean> setListData() {
+                return list;
+            }
+
+            @Override
+            public OnSelectItemClickListener<BaseProjectBean> setOnItemClick() {
+                return new OnSelectItemClickListener<BaseProjectBean>() {
                     @Override
                     public void onItemClick(BaseProjectBean bean, int position) {
                         getViewModel().updateProjectInfo(bean);
                     }
-                }
-        ) {
+                };
+            }
+
             @Override
             public String getItemLabel(BaseProjectBean item) {
                 return item.getProjectName();
@@ -221,16 +237,22 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
                 add(false);
             }
         };
-        SelectionDialog<Boolean> dialog = new SelectionDialog<Boolean>(
-                getContext(),
-                selections,
-                new SelectionDialog.OnSelectItemClickListener<Boolean>() {
+        SelectionDialog<Boolean> dialog = new SelectionDialog<Boolean>(getContext()) {
+            @Override
+            public List<Boolean> setListData() {
+                return selections;
+            }
+
+            @Override
+            public OnSelectItemClickListener<Boolean> setOnItemClick() {
+                return new OnSelectItemClickListener<Boolean>() {
                     @Override
                     public void onItemClick(Boolean bean, int position) {
                         getViewModel().updateIsVerify(bean);
                     }
-                }
-        ) {
+                };
+            }
+
             @Override
             public String getItemLabel(Boolean item) {
                 if (item) {
@@ -246,14 +268,22 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
     private void showDialogSelectBatch() {
         List<BaseProductBatchInfo> batchInfos = getViewModel().loadBatchInfoListFromNet();
         SelectionDialog<BaseProductBatchInfo> dialog = new SelectionDialog<BaseProductBatchInfo>(
-                getContext(),
-                batchInfos,
-                new SelectionDialog.OnSelectItemClickListener<BaseProductBatchInfo>() {
+                getContext()) {
+            @Override
+            public List<BaseProductBatchInfo> setListData() {
+                return batchInfos;
+            }
+
+            @Override
+            public OnSelectItemClickListener<BaseProductBatchInfo> setOnItemClick() {
+                return new OnSelectItemClickListener<BaseProductBatchInfo>() {
                     @Override
                     public void onItemClick(BaseProductBatchInfo bean, int position) {
                         getViewModel().updateBatchInfo(bean);
                     }
-                }) {
+                };
+            }
+
             @Override
             public String getItemLabel(BaseProductBatchInfo item) {
                 return item.getBatchId();

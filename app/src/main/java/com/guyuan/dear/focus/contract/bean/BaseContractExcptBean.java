@@ -24,6 +24,7 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
      * 判定维度，如“国家政策终止”
      */
     private String judgement;
+    private String judgementKey;
 
     public BaseContractExcptBean() {
     }
@@ -33,6 +34,7 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
         exceptionTag = in.readString();
         cause = in.readString();
         judgement = in.readString();
+        judgementKey = in.readString();
     }
 
     public static final Creator<BaseContractExcptBean> CREATOR = new Creator<BaseContractExcptBean>() {
@@ -71,6 +73,14 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
         this.judgement = judgement;
     }
 
+    public String getJudgementKey() {
+        return judgementKey;
+    }
+
+    public void setJudgementKey(String judgementKey) {
+        this.judgementKey = judgementKey;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -82,5 +92,6 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
         dest.writeString(exceptionTag);
         dest.writeString(cause);
         dest.writeString(judgement);
+        dest.writeString(judgementKey);
     }
 }

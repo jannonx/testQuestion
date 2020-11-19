@@ -53,6 +53,7 @@ public class ConstantValue {
     public static final String KEY_SELECTED_STAFFS = "KEY_SELECTED_STAFFS";
     public static final String KEY_DATE_START = "KEY_DATE_START";
     public static final String KEY_DATE_TO = "KEY_DATE_TO";
+    public static final String KEY_APPLY_TYPE = "KEY_APPLY_TYPE";
 
     public static int isForground;   //app是否在前台
     public static boolean hasNewVersion = false;//是否有新版本
