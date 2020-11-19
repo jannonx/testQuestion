@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.projectsite.data;
+package com.guyuan.dear.focus.projectsite.bean;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,8 +9,7 @@ import java.util.List;
  * @since: 2020/11/19 11:01
  * @company: 固远（深圳）信息技术有限公司
  */
-@lombok.NoArgsConstructor
-@lombok.Data
+
 public class SiteExploreBean implements Serializable {
 
 

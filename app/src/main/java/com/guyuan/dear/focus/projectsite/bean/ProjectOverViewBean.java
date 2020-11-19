@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.projectsite.data;
+package com.guyuan.dear.focus.projectsite.bean;
 
 /**
  * @description:
@@ -6,8 +6,7 @@ package com.guyuan.dear.focus.projectsite.data;
  * @since: 2020/11/19 10:48
  * @company: 固远（深圳）信息技术有限公司
  */
-@lombok.NoArgsConstructor
-@lombok.Data
+
 public class ProjectOverViewBean {
 
     /**
