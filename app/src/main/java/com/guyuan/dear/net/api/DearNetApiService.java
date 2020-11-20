@@ -8,6 +8,7 @@ import com.guyuan.dear.net.reqBean.ContractApplyBody;
 import com.guyuan.dear.net.reqBean.SearchRqBody;
 import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
 import com.guyuan.dear.net.resultBeans.NetClientInfo;
+import com.guyuan.dear.net.resultBeans.NetContractDetailInfo;
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
 import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
@@ -99,5 +100,12 @@ public interface DearNetApiService extends BaseApiService {
      */
     @GET("base/tContractInfo/findContractStatusChangeInfo")
     Observable<ResultBean<NetContractStatusDetail>> getContractStatusDetail(@Query("examineId") int examineId);
+
+    /**
+     * 根据合同ID获取详细内容
+     * @return
+     */
+    @GET("base/tContractInfo/findById")
+    Observable<ResultBean<NetContractDetailInfo>> getContractDetailById(@Query("id") int contractId);
 
 }

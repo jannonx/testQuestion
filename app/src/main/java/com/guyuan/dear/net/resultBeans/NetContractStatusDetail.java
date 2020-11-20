@@ -320,7 +320,7 @@ public class NetContractStatusDetail {
         private String fileUrl;
         private String examinationTime;
         /**
-         * 0 重启 1 暂停
+         * 0 正常 1 暂停 2被激活
          */
         private int stopStatus;
         private List<TcontractPartsBean> tcontractParts;

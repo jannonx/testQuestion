@@ -16,7 +16,7 @@ import com.guyuan.dear.utils.ConstantValue;
  */
 public class ContractDetailActivity extends BaseToolbarActivity<ActivityContractDetailBinding, ContractDetailViewModel> {
 
-    public static void start(Context context, String title, String contractId) {
+    public static void start(Context context, String title, int contractId) {
         Intent starter = new Intent(context, ContractDetailActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE, title);
         starter.putExtra(ConstantValue.KEY_CONTRACT_ID, contractId);
@@ -34,7 +34,7 @@ public class ContractDetailActivity extends BaseToolbarActivity<ActivityContract
         String title = intent.getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
         ContractDetailFragment fragment = ContractDetailFragment.getInstance(
-                intent.getStringExtra(ConstantValue.KEY_CONTRACT_ID)
+                intent.getIntExtra(ConstantValue.KEY_CONTRACT_ID,0)
         );
         getSupportFragmentManager()
                 .beginTransaction()
