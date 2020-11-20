@@ -21,4 +21,29 @@ public class SearchRqBody extends BasePageReqBean {
     public void setFilters(Map<String, String> filters) {
         this.filters = filters;
     }
+
+    /**
+     * 合同变更申请查询类型：1.所有 2.用户自己申请的
+     */
+    private int findType;
+    /**
+     * 合同变更操作类型 1.暂停 2.重启
+     */
+    private int type;
+
+    public int getFindType() {
+        return findType;
+    }
+
+    public void setFindType(int findType) {
+        this.findType = findType;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 }

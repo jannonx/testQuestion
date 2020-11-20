@@ -24,7 +24,7 @@ public class ContractListViewModel extends BaseViewModel {
     private ContractListRepo repo = new ContractListRepo();
     private MutableLiveData<List<BaseContractBean>> contractList = new MutableLiveData<List<BaseContractBean>>(new ArrayList<>());
     private MutableLiveData<Boolean> isAllLoaded = new MutableLiveData<>(false);
-    private int pageIndex;
+    private int pageIndex=1;
     private static final int PAGE_SIZE = 50;
 
     public MutableLiveData<List<BaseContractBean>> getContractList() {
@@ -32,19 +32,6 @@ public class ContractListViewModel extends BaseViewModel {
     }
 
     public Disposable loadContractListFromNet(int contractType, long date) {
-        if(isAllLoaded.getValue()){
-            return new Disposable() {
-                @Override
-                public void dispose() {
-
-                }
-
-                @Override
-                public boolean isDisposed() {
-                    return false;
-                }
-            };
-        }
         return repo.loadContractListFromNet(contractType, date,
                 pageIndex++, PAGE_SIZE, getContractListCallback);
     }

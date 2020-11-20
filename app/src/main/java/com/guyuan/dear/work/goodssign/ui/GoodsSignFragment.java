@@ -23,7 +23,6 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 public class GoodsSignFragment extends BaseListSearchFragment<GoodsSignListBean.ContentBean, FragmentListSearchBinding, GoodsSignViewModel> {
 
     public static final String TAG = "GoodsSignFragment";
-    private String content = "";
 
     public static GoodsSignFragment newInstance() {
 
@@ -45,38 +44,20 @@ public class GoodsSignFragment extends BaseListSearchFragment<GoodsSignListBean.
                 GoodsSignDetailActivity.start(getContext(), contentBean.getSupplierName(), contentBean.getId());
             }
         });
-        viewModel.getGoodsSignList(ConstantValue.FIRST_PAGE, content);
+        viewModel.getGoodsSignList(ConstantValue.FIRST_PAGE, searchContent);
     }
 
     @Override
     protected void refresh() {
         currentPage = FIRST_PAGE;
-        viewModel.getGoodsSignList(currentPage, content);
+        viewModel.getGoodsSignList(currentPage, searchContent);
     }
 
     @Override
     protected void loadMore() {
-        viewModel.getGoodsSignList(++currentPage, content);
+        viewModel.getGoodsSignList(++currentPage, searchContent);
     }
 
-    @Override
-    protected void onSearch(String text) {
-        super.onSearch(text);
-        refresh();
-    }
-
-    @Override
-    protected void editTextChanged(String text) {
-        super.editTextChanged(text);
-        content = text;
-    }
-
-    @Override
-    protected void editEmptyChange() {
-        super.editEmptyChange();
-        content = "";
-        refresh();
-    }
 
     @Override
     protected boolean isPullEnable() {

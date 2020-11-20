@@ -15,6 +15,7 @@ public class Vote {
     public static final int VOTE_RESULT_REJECT = 0;
     public static final int VOTE_RESULT_DEFAULT=2;
     public static final int VOTE_RESULT_FORFEIT=3;
+    public static final int VOTE_RESULT_PENDING=4;
 
     public int getResult() {
         return result;

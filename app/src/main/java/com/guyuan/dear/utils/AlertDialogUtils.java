@@ -229,7 +229,15 @@ public class AlertDialogUtils {
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
-                listener.onSelected(picker.getYear() + "年" + (picker.getMonth() + 1) + "月");
+                int month = picker.getMonth() + 1;
+                String monthStr;
+                if (month < 10) {
+                    monthStr = "0" + month;
+                } else {
+                    monthStr = String.valueOf(month);
+                }
+
+                listener.onSelected(picker.getYear() + "-" + monthStr);
             }
         });
         hideDay(picker);

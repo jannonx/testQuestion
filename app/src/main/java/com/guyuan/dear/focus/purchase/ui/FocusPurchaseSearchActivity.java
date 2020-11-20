@@ -4,12 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+
+import androidx.lifecycle.Observer;
+
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithoutToolbarBinding;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
+import com.guyuan.dear.focus.purchase.data.bean.PurchaseListBean;
 import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
+
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -58,6 +63,17 @@ public class FocusPurchaseSearchActivity extends BaseToolbarActivity<ActivityWit
         }
 
         ActivityUtils.addFragmentToActivity(fragmentManager, listFragment, R.id.fragment_container, FocusPurchaseListFragment.TAG);
+
+        if (viewModel != null) {
+            viewModel.getPurchaseReturnOrReplaceListMLD().observe(this, new Observer<PurchaseListBean>() {
+                @Override
+                public void onChanged(PurchaseListBean purchaseListBean) {
+                    if (purchaseListBean.getContent() != null) {
+                        listFragment.setListData(purchaseListBean.getContent());
+                    }
+                }
+            });
+        }
     }
 
     @Override

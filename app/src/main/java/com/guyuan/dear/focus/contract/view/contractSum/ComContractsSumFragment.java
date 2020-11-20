@@ -2,11 +2,10 @@ package com.guyuan.dear.focus.contract.view.contractSum;
 
 import android.view.View;
 
-import androidx.databinding.library.baseAdapters.BR;
-
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
+import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
-import com.guyuan.dear.databinding.ComContractsBinding;
+import com.guyuan.dear.databinding.FragmentCompanyContractsSummaryBinding;
 import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 import com.guyuan.dear.focus.contract.view.contractList.ContractListActivity;
 import com.guyuan.dear.utils.AlertDialogUtils;
@@ -25,7 +24,7 @@ import io.reactivex.disposables.Disposable;
  * @since: 2020/9/29 15:49
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ComContractsSumFragment extends BaseMvvmFragment<ComContractsBinding, ComContractsSumViewModel> {
+public class ComContractsSumFragment extends BaseMvvmFragment<FragmentCompanyContractsSummaryBinding, ComContractsSumViewModel> {
 
     public static ComContractsSumFragment getInstance() {
         return new ComContractsSumFragment();
@@ -54,7 +53,7 @@ public class ComContractsSumFragment extends BaseMvvmFragment<ComContractsBindin
             @Override
             public void onClick(View v) {
                 long currentDate = System.currentTimeMillis();
-                long minDate = CalenderUtils.getInstance().getXMonthsAgoInYearMonthFormat(currentDate,60);
+                long minDate = CalenderUtils.getInstance().getXMonthsAgoInYearMonthFormat(currentDate, 60);
                 long maxDate = currentDate;
                 AlertDialogUtils.pickTime(
                         getParentFragmentManager(),
@@ -75,7 +74,7 @@ public class ComContractsSumFragment extends BaseMvvmFragment<ComContractsBindin
         viewModel.setOnClickShowPreAnnualDelivers(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"上年交付",
+                ContractListActivity.start(getActivity(), "上年交付",
                         BaseContractBean.CONTRACT_TYPE_PRE_ANNUAL_DELIVERS,
                         getViewModel().getSelectDate().getValue());
             }
@@ -84,7 +83,7 @@ public class ComContractsSumFragment extends BaseMvvmFragment<ComContractsBindin
         viewModel.setOnClickShowNewContracts(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"今年新签",
+                ContractListActivity.start(getActivity(), "今年新签",
                         BaseContractBean.CONTRACT_TYPE_NEW_CONTRACTS,
                         getViewModel().getSelectDate().getValue());
             }
@@ -92,7 +91,7 @@ public class ComContractsSumFragment extends BaseMvvmFragment<ComContractsBindin
         viewModel.setOnClickShowFinished(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"已经完成",
+                ContractListActivity.start(getActivity(), "已经完成",
                         BaseContractBean.CONTRACT_TYPE_FINISHED_CONTRACTS,
                         getViewModel().getSelectDate().getValue());
             }
@@ -100,7 +99,7 @@ public class ComContractsSumFragment extends BaseMvvmFragment<ComContractsBindin
         viewModel.setOnClickShowExecuting(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"正在执行",
+                ContractListActivity.start(getActivity(), "正在执行",
                         BaseContractBean.CONTRACT_TYPE_EXECUTING_CONTRACTS,
                         getViewModel().getSelectDate().getValue());
             }
@@ -109,7 +108,7 @@ public class ComContractsSumFragment extends BaseMvvmFragment<ComContractsBindin
         viewModel.setOnClickShowUnfinished(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"未完成",
+                ContractListActivity.start(getActivity(), "未完成",
                         BaseContractBean.CONTRACT_TYPE_UNFINISHED_CONTRACTS,
                         getViewModel().getSelectDate().getValue());
             }
@@ -118,7 +117,7 @@ public class ComContractsSumFragment extends BaseMvvmFragment<ComContractsBindin
         viewModel.setOnClickShowExceptions(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"执行异常",
+                ContractListActivity.start(getActivity(), "执行异常",
                         BaseContractBean.CONTRACT_TYPE_EXCEPTION_CONTRACTS,
                         getViewModel().getSelectDate().getValue());
             }

@@ -1,5 +1,7 @@
 package com.guyuan.dear.work.goodssign.adapter;
 
+import android.view.View;
+
 import com.guyuan.dear.BR;
 import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemWorkGoodsSignDetailBinding;
@@ -16,6 +18,8 @@ import java.util.List;
 
 public class GoodsSignDetailAdapter extends BaseDBRecycleAdapter<GoodsSignBean, ItemWorkGoodsSignDetailBinding> {
 
+    private GoodsDetailListener listener;
+
     public GoodsSignDetailAdapter(List<GoodsSignBean> listData, int layoutID) {
         super(listData, layoutID);
     }
@@ -23,5 +27,21 @@ public class GoodsSignDetailAdapter extends BaseDBRecycleAdapter<GoodsSignBean, 
     @Override
     protected void bindDataToView(Holder holder, GoodsSignBean item, int position) {
         holder.binding.setVariable(BR.goodsSignBean, item);
+        holder.binding.receiveTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.sign(item.getId());
+                }
+            }
+        });
+    }
+
+    public void setListener(GoodsDetailListener listener) {
+        this.listener = listener;
+    }
+
+    public interface GoodsDetailListener {
+        void sign(int id);
     }
 }

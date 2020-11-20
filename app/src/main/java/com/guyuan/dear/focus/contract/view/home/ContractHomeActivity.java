@@ -1,15 +1,14 @@
 package com.guyuan.dear.focus.contract.view.home;
 
-import androidx.fragment.app.Fragment;
-
 import android.content.Context;
 import android.content.Intent;
+
+import androidx.fragment.app.Fragment;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
-import com.guyuan.dear.focus.contract.view.contractExcptList.ExcptContractListFragment;
-import com.guyuan.dear.focus.contract.view.contractRestart.RestartContractListFragment;
+import com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment;
 import com.guyuan.dear.focus.contract.view.contractSum.ComContractsSumFragment;
 import com.guyuan.dear.utils.ConstantValue;
 
@@ -26,15 +25,15 @@ import java.util.List;
  */
 public class ContractHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, SalesHomeViewModel> {
 
-    public static void start(Context context,String title) {
+    public static void start(Context context, String title) {
         Intent starter = new Intent(context, ContractHomeActivity.class);
-        starter.putExtra(ConstantValue.KEY_TITLE,title);
+        starter.putExtra(ConstantValue.KEY_TITLE, title);
         context.startActivity(starter);
     }
 
     @Override
     protected List<String> getTitles() {
-        return new ArrayList<String>(){
+        return new ArrayList<String>() {
             {
                 add("合同概况");
                 add("合同异常");
@@ -45,11 +44,11 @@ public class ContractHomeActivity extends BaseTabActivity<ActivityBaseTabBinding
 
     @Override
     protected List<Fragment> getFragments() {
-        return new ArrayList<Fragment>(){
+        return new ArrayList<Fragment>() {
             {
                 add(ComContractsSumFragment.getInstance());
-                add(ExcptContractListFragment.getInstance());
-                add(RestartContractListFragment.getInstance());
+                add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_ON_PAUSE));
+                add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_RESTART));
             }
         };
     }

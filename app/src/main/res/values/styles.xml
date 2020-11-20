@@ -610,8 +610,8 @@
         <item name="android:background">@drawable/bg_not_pass</item>
     </style>
 
-    <!--用文字表示通过状态样式-->
-    <style name="TextPass" parent="Widget.AppCompat.TextView">
+    <!--绿色文本tag样式-->
+    <style name="TextTagGreen" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">#00B578</item>
         <item name="android:paddingStart">4dp</item>
@@ -621,8 +621,8 @@
         <item name="android:background">@drawable/bg_pass</item>
     </style>
 
-    <!--用文字表示评审状态样式-->
-    <style name="TextAssess" parent="Widget.AppCompat.TextView">
+    <!--蓝色文本tag样式-->
+    <style name="TextTagBlue" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">#1677FF</item>
         <item name="android:paddingStart">4dp</item>

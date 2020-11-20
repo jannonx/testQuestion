@@ -92,7 +92,7 @@ public class PurchaseListBean {
 
     public static class ContentBean {
         private int abnormalSum;         //退换货总数
-        private int abnormalType;        //异常类型：1.退货，2.换货，3.拖期
+        private int abnormalType;        //异常类型：1.退货，2.换货，3.待签收，4.已到货，5.拖期
         private String arriveTime;       //采购合同到货时间
         private String code;             //商品代号
         private String createName;       //操作人（采购合同创建人）
@@ -103,13 +103,58 @@ public class PurchaseListBean {
         private String name;             //商品名称
         private String suppName;         //供应商名称
         private int type;                //商品类型：1.原材料，2.配套设备
-        private String qualityResult;    //质检结果
+        private int qualityResult;       //质检结果：1.合格，2.不合格
+        private int status;              //即时状态：1.退货，2.换货，3.待签收，4.已到货，5.拖期
+        private String reason;           //退换货原因
+        private boolean immediately = false;     //自定义的字段：true表示查询的总的列表,false表示查询的异常列表
+        private int returnSum;           //退货数量
+        private int exchangeSum;         //换货数量
 
-        public String getQualityResult() {
+        public int getReturnSum() {
+            return returnSum;
+        }
+
+        public void setReturnSum(int returnSum) {
+            this.returnSum = returnSum;
+        }
+
+        public int getExchangeSum() {
+            return exchangeSum;
+        }
+
+        public void setExchangeSum(int exchangeSum) {
+            this.exchangeSum = exchangeSum;
+        }
+
+        public boolean isImmediately() {
+            return immediately;
+        }
+
+        public void setImmediately(boolean immediately) {
+            this.immediately = immediately;
+        }
+
+        public int getStatus() {
+            return status;
+        }
+
+        public void setStatus(int status) {
+            this.status = status;
+        }
+
+        public String getReason() {
+            return reason;
+        }
+
+        public void setReason(String reason) {
+            this.reason = reason;
+        }
+
+        public int getQualityResult() {
             return qualityResult;
         }
 
-        public void setQualityResult(String qualityResult) {
+        public void setQualityResult(int qualityResult) {
             this.qualityResult = qualityResult;
         }
 

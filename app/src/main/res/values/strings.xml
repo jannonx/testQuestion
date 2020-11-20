@@ -362,8 +362,11 @@
     <string name="focus_purchase_return">退货数量：%d</string>
     <string name="focus_purchase_replace">换货数量：%d</string>
     <string name="focus_purchase_result">质检结果：%s</string>
-    <string name="focus_purchase_reason">换货原因：%s</string>
+    <string name="focus_purchase_return_reason">退货原因：%s</string>
+    <string name="focus_purchase_replace_reason">换货原因：%s</string>
     <string name="focus_purchase_project_code">项目编号：%s</string>
+    <string name="focus_purchase_project_name">项目名称：%s</string>
+    <string name="focus_purchase_support_name">供应商名称：%s</string>
     <string name="focus_purchase_person">操作人：%s</string>
     <string name="focus_purchase_provide">供应商&#12288;&#12288;&#12288;&#12288;&#12288;<font color='#757575'>%s</font></string>
     <string name="focus_purchase_contract_code">合同编号&#12288;&#12288;&#12288;&#12288;<font color='#757575'>%s</font></string>
@@ -374,6 +377,7 @@
     <string name="focus_purchase_record_reason">换货原因：%s</string>
     <string name="focus_purchase_record_from">来自部门：%s</string>
     <string name="focus_purchase_seal_person">销售人员：%s</string>
+
 
     <!--我的工作-货物签收-->
     <string name="work_goods_sign_contract">合同编号：%s</string>

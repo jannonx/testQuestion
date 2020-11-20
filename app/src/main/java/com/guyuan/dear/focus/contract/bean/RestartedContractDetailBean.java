@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.contract.bean;
 
+import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
+
 import java.util.List;
 
 /**
@@ -16,6 +18,9 @@ public class RestartedContractDetailBean extends RestartedContractBean {
      */
     private String applier;
     private String judgement;
+
+    public RestartedContractDetailBean() {
+    }
 
     public String getDetailCause() {
         return detailCause;
