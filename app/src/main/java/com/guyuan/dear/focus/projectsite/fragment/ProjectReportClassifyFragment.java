@@ -23,6 +23,9 @@ import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
@@ -55,7 +58,7 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
         reportType = (ProjectReportType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
 
         ProjectReportAdapter checkGoodsAdapter = new ProjectReportAdapter(getContext(),
-                listData, R.layout.item_focus_project_site,reportType);
+                listData, R.layout.item_focus_project_site);
         adapter = new BaseRecyclerViewAdapter(checkGoodsAdapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
@@ -115,33 +118,49 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
         viewModel.getSiteExploreListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
             @Override
             public void onChanged(RefreshBean<SiteExploreBean> data) {
-                setListData(data.getContent());
+                dealDataByAddReportType(data.getContent());
             }
         });
         viewModel.getCheckSafeListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
             @Override
             public void onChanged(RefreshBean<SiteExploreBean> data) {
-                setListData(data.getContent());
+                dealDataByAddReportType(data.getContent());
             }
         });
         viewModel.getCheckGoodListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
             @Override
             public void onChanged(RefreshBean<SiteExploreBean> data) {
-                setListData(data.getContent());
+                dealDataByAddReportType(data.getContent());
             }
         });
         viewModel.getInstallDebugListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
             @Override
             public void onChanged(RefreshBean<SiteExploreBean> data) {
-                setListData(data.getContent());
+                dealDataByAddReportType(data.getContent());
             }
         });
         viewModel.getCustomerAcceptanceListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
             @Override
             public void onChanged(RefreshBean<SiteExploreBean> data) {
-                setListData(data.getContent());
+                dealDataByAddReportType(data.getContent());
             }
         });
+    }
+
+
+    /**
+     * 给每一条数据，添加报告类型
+     *
+     * @param dataList 数据
+     */
+    private void dealDataByAddReportType(List<SiteExploreBean> dataList) {
+        List<SiteExploreBean> tempList = new ArrayList<>();
+        for (SiteExploreBean bean : dataList) {
+            bean.setProjectReportType(reportType);
+            tempList.add(bean);
+        }
+
+        setListData(tempList);
     }
 
     /**
@@ -153,23 +172,23 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
         switch (reportType) {
             ///现场勘查报告
             case TYPE_SITE_EXPLORATION:
-                FocusSiteExplorationDetailActivity.start(getContext(), ProjectReportType.TYPE_SITE_EXPLORATION);
+                FocusSiteExplorationDetailActivity.start(getContext(), reportType);
                 break;
             ///货物清点报告
             case TYPE_CHECK_GOODS:
-                FocusCheckGoodsDetailActivity.start(getContext(), ProjectReportType.TYPE_CHECK_GOODS);
+                FocusCheckGoodsDetailActivity.start(getContext(), reportType);
                 break;
             ///安全排查报告
             case TYPE_CHECK_SAFE:
-                FocusCheckSafeDetailActivity.start(getContext(), ProjectReportType.TYPE_CHECK_SAFE);
+                FocusCheckSafeDetailActivity.start(getContext(), reportType);
                 break;
             ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:
-                FocusInstallationDebugAllActivity.start(getContext(), ProjectReportType.TYPE_INSTALLATION_DEBUG);
+                FocusInstallationDebugAllActivity.start(getContext(), reportType);
                 break;
             ///客户验收报告
             case TYPE_CUSTOMER_ACCEPTANCE:
-                FocusCustomerAcceptanceDetailActivity.start(getContext(), ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE);
+                FocusCustomerAcceptanceDetailActivity.start(getContext(), reportType);
                 break;
 
             default:

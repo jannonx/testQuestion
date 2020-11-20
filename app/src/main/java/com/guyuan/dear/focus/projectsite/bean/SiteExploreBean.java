@@ -102,6 +102,10 @@ public class SiteExploreBean implements Serializable {
      * 客户名称
      */
     private String customerName;
+    /**
+     * 项目名称
+     */
+    private String projectNumber;
 
     /**
      * 现场监工人员
@@ -137,6 +141,17 @@ public class SiteExploreBean implements Serializable {
         return CheckSafeSatisfyType.toType(satisfyFlag);
     }
 
+    public InstallDebugSatisfyType getInstallDebugSatisfyType() {
+        return InstallDebugSatisfyType.toType(status);
+    }
+
+    public CheckGoodsSatisfyType getCheckGoodsSatisfyType() {
+        return CheckGoodsSatisfyType.toType(this);
+    }
+
+    public CustomerAcceptanceSatisfyType getCustomerAcceptanceSatisfyType() {
+        return CustomerAcceptanceSatisfyType.toType(this);
+    }
 
     public void setSatisfyFlag(int satisfyFlag) {
         this.satisfyFlag = satisfyFlag;
@@ -146,15 +161,15 @@ public class SiteExploreBean implements Serializable {
         switch (getProjectReportType()) {
             case TYPE_SITE_EXPLORATION:
                 return getSiteProjectSatisfyType().isJudgingCondition();
-            case TYPE_CHECK_GOODS:
             case TYPE_CHECK_SAFE:
                 return getCheckSafeSatisfyType().isJudgingCondition();
-            case TYPE_CUSTOMER_ACCEPTANCE:
-                return false;
             case TYPE_INSTALLATION_DEBUG:
-                return false;
+                return getInstallDebugSatisfyType().isJudgingCondition();
+            case TYPE_CUSTOMER_ACCEPTANCE:
+                return getCustomerAcceptanceSatisfyType().isJudgingCondition();
+            case TYPE_CHECK_GOODS:
             default:
-                return false;
+                return true;
         }
     }
 
@@ -163,12 +178,14 @@ public class SiteExploreBean implements Serializable {
             case TYPE_SITE_EXPLORATION:
                 return getSiteProjectSatisfyType().getTextColor();
             case TYPE_CHECK_GOODS:
+                return getCheckGoodsSatisfyType().getTextColor();
             case TYPE_CHECK_SAFE:
                 return getCheckSafeSatisfyType().getTextColor();
-            case TYPE_CUSTOMER_ACCEPTANCE:
-                return R.color.color_green_00B578;
+
             case TYPE_INSTALLATION_DEBUG:
-                return R.color.color_orange_FF8F1F;
+                return getInstallDebugSatisfyType().getTextColor();
+            case TYPE_CUSTOMER_ACCEPTANCE:
+                return getCustomerAcceptanceSatisfyType().getTextColor();
             default:
                 return R.color.transparent;
         }
@@ -178,13 +195,14 @@ public class SiteExploreBean implements Serializable {
         switch (getProjectReportType()) {
             case TYPE_SITE_EXPLORATION:
                 return getSiteProjectSatisfyType().getTextBgColor();
-            case TYPE_CHECK_GOODS:
             case TYPE_CHECK_SAFE:
                 return getCheckSafeSatisfyType().getTextBgColor();
+            case TYPE_CHECK_GOODS:
+                return getCheckGoodsSatisfyType().getTextBgColor();
             case TYPE_CUSTOMER_ACCEPTANCE:
-                return R.drawable.bg_green_d4fff1_corner_2;
+                return getCustomerAcceptanceSatisfyType().getTextBgColor();
             case TYPE_INSTALLATION_DEBUG:
-                return R.drawable.bg_orange_ffefdf_corner_2;
+                return getInstallDebugSatisfyType().getTextBgColor();
             default:
                 return R.drawable.bg_blue_0aad33_corner_4;
         }
@@ -194,7 +212,14 @@ public class SiteExploreBean implements Serializable {
         switch (getProjectReportType()) {
             case TYPE_SITE_EXPLORATION:
                 return getSiteProjectSatisfyType().getDes();
-
+            case TYPE_CHECK_SAFE:
+                return getCheckSafeSatisfyType().getDes();
+            case TYPE_CHECK_GOODS:
+                return getCheckGoodsSatisfyType().getDes();
+            case TYPE_INSTALLATION_DEBUG:
+                return getInstallDebugSatisfyType().getDes();
+            case TYPE_CUSTOMER_ACCEPTANCE:
+                return getCustomerAcceptanceSatisfyType().getDes();
         }
 
         return "";
@@ -208,8 +233,11 @@ public class SiteExploreBean implements Serializable {
         this.auditFormType = auditFormType;
     }
 
+    //    public ProjectReportType getProjectReportType() {
+//        return ProjectReportType.toType(auditFormType);
+//    }
     public ProjectReportType getProjectReportType() {
-        return ProjectReportType.toType(auditFormType);
+        return projectReportType;
     }
 
 
@@ -239,6 +267,14 @@ public class SiteExploreBean implements Serializable {
 
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public String getProjectNumber() {
+        return projectNumber;
+    }
+
+    public void setProjectNumber(String projectNumber) {
+        this.projectNumber = projectNumber;
     }
 
     public String getProjectName() {
