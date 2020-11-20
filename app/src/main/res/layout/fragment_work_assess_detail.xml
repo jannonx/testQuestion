@@ -43,7 +43,7 @@
 
                 <TextView
                     android:id="@+id/assess_detail_status_tv"
-                    style="@style/TextAssess"
+                    style="@style/TextTagBlue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"

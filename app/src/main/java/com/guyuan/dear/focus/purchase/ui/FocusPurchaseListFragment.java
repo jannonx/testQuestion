@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.purchase.ui;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
@@ -9,10 +10,12 @@ import com.guyuan.dear.databinding.FragmentListSearchBinding;
 import com.guyuan.dear.focus.purchase.adapter.FocusPurchaseAdapter;
 import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
 import com.guyuan.dear.focus.purchase.data.bean.PurchaseListBean;
+import com.guyuan.dear.focus.purchase.ui.detail.FocusPurchaseDetailActivity;
 
 import java.util.List;
 
 import retrofit2.http.PUT;
+import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @author : 唐力
@@ -32,7 +35,6 @@ public class FocusPurchaseListFragment extends BaseListSearchFragment<PurchaseLi
     public static final String PRODUCT_TYPE = "productType";    //商品类型（1.原材料，2.配套设备）
 
     private int statusType;
-    private String name = "";
     private String mouthDate = "";
     private int returnType;
     private int productType;
@@ -63,13 +65,28 @@ public class FocusPurchaseListFragment extends BaseListSearchFragment<PurchaseLi
     protected void init() {
         if (getArguments() != null) {
             statusType = getArguments().getInt(STATUS_TYPE);
-            name = getArguments().getString(NAME);
+            searchContent = getArguments().getString(NAME);
             mouthDate = getArguments().getString(MOUTH_DATE);
             returnType = getArguments().getInt(RETURN_TYPE);
             productType = getArguments().getInt(PRODUCT_TYPE);
 
-            FocusPurchaseAdapter adapter = new FocusPurchaseAdapter(listData, R.layout.item_focus_purchase);
-            setDefaultAdapter(adapter);
+            FocusPurchaseAdapter purchaseAdapter = new FocusPurchaseAdapter(listData, R.layout.item_focus_purchase);
+            setDefaultAdapter(purchaseAdapter);
+            adapter.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int i) {
+                    if (listData.size() > 0) {
+                        PurchaseListBean.ContentBean content = listData.get(i);
+                        int status;
+                        if (content.isImmediately()) {//总的列表
+                            status = content.getStatus();
+                        } else {//异常列表
+                            status = content.getAbnormalType();
+                        }
+                        FocusPurchaseDetailActivity.start(getContext(), content.getName(), content.getId(), status);
+                    }
+                }
+            });
             getListData(currentPage);
         }
     }
@@ -87,12 +104,11 @@ public class FocusPurchaseListFragment extends BaseListSearchFragment<PurchaseLi
 
     private void getListData(int pageIndex) {
         if (TextUtils.isEmpty(mouthDate)) {//正常或异常列表
-            viewModel.getList(pageIndex, statusType, name);
+            viewModel.getList(pageIndex, statusType, searchContent);
         } else {//退换货列表
-            viewModel.getReturnOrReplaceList(pageIndex, returnType, productType, mouthDate, name);
+            viewModel.getReturnOrReplaceList(pageIndex, returnType, productType, mouthDate, searchContent);
         }
     }
-
 
     @Override
     protected boolean isPullEnable() {

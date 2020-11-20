@@ -22,7 +22,7 @@ import retrofit2.http.Query;
 public interface FocusPurchaseApiService extends BaseApiService {
     String PURCHASE_OVERVIEW = BASE + "purchasecontracitem/findOverview";
     String PURCHASE_LIST = BASE + "purchasecontracitem/findList";
-    String PURCHASE_DETAIL = BASE + "purchasecontracitem/findReturnDetails";
+    String PURCHASE_DETAIL = BASE + "purchasecontracitem/findRetuExchList";
     String PURCHASE_RETURN_OR_REPLACE_LIST = BASE + "purchasecontracitem/findReturnList";
     String MOUTH_DATE = "mouthDate";
     String NAME = "name";

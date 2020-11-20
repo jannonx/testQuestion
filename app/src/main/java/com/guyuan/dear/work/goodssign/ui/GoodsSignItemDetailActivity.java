@@ -43,7 +43,7 @@ public class GoodsSignItemDetailActivity extends BaseToolbarActivity<ActivityGoo
         binding.goodsDetailCommitTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.sign(id);
+                viewModel.signDetail(id);
             }
         });
 

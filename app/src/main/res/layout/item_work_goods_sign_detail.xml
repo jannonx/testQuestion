@@ -38,10 +38,11 @@
 
             <TextView
                 android:id="@+id/goods_status_tv"
+                style="@style/TextTagOrange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                app:focusPurchaseStatus="@{goodsSignBean.status}"
+                app:focusPurchaseStatusWithBackground="@{goodsSignBean.status}"
                 app:layout_constraintBottom_toBottomOf="@+id/goods_customer_name_tv"
                 app:layout_constraintStart_toEndOf="@+id/goods_customer_name_tv"
                 app:layout_constraintTop_toTopOf="@+id/goods_customer_name_tv"
@@ -65,11 +66,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
                 android:text="@{String.format(@string/piece_number,goodsSignBean.number)}"
+                app:drawableEndCompat="@mipmap/right_direction"
                 app:layout_constraintBottom_toBottomOf="@+id/goods_customer_name_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/goods_customer_name_tv"
-                tools:text="3 件"
-                app:drawableEndCompat="@mipmap/right_direction" />
+                tools:text="3 件" />
+
+            <TextView
+                android:id="@+id/receive_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/selector_blue_to_gray"
+                android:enabled="false"
+                android:paddingLeft="@dimen/dp_12"
+                android:paddingTop="4dp"
+                android:paddingRight="@dimen/dp_12"
+                android:paddingBottom="4dp"
+                android:textColor="@color/white"
+                app:goodsReceiveStatus="@{goodsSignBean.receiveStatus}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/goods_contract_number_tv"
+                tools:text="已收货" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

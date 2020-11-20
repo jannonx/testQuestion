@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.work.goodssign.data.GoodsSignViewModel;
 import com.guyuan.dear.work.goodssign.data.bean.GoodsSignBean;
 import com.guyuan.dear.work.goodssign.ui.GoodsSignItemDetailActivity;
 
@@ -26,14 +27,22 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 public class GoodsSignBindingAdapter {
 
-    @BindingAdapter("signGoods")
-    public static void setSignProductList(BaseRecyclerView rv, List<GoodsSignBean> goodsSignBeanList) {
-        GoodsSignDetailAdapter goodsSignAdapter = new GoodsSignDetailAdapter(goodsSignBeanList, R.layout.item_work_goods_sign_detail);
+    @BindingAdapter(value = {"listData", "viewModel", "contractID"})
+    public static void setListView(BaseRecyclerView rv, List<GoodsSignBean> listData, GoodsSignViewModel viewModel, int contractID) {
+        GoodsSignDetailAdapter goodsSignAdapter = new GoodsSignDetailAdapter(listData, R.layout.item_work_goods_sign_detail);
         BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter(goodsSignAdapter);
+
+        goodsSignAdapter.setListener(new GoodsSignDetailAdapter.GoodsDetailListener() {
+            @Override
+            public void sign(int id) {
+                viewModel.sign(id, contractID);
+            }
+        });
+
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-                GoodsSignBean bean = goodsSignBeanList.get(i);
+                GoodsSignBean bean = listData.get(i);
                 GoodsSignItemDetailActivity.start(rv.getContext(), bean.getName(), bean.getId());
             }
         });
@@ -52,4 +61,25 @@ public class GoodsSignBindingAdapter {
         }
     }
 
+    @BindingAdapter("goodsArriveStatus")
+    public static void setGoodsArriveStatus(TextView tv, int status) {
+        if (status == 1) {
+            tv.setText("待到货");
+            tv.setTextAppearance(tv.getContext(), R.style.TextTagBlue);
+        } else if (status == 2) {
+            tv.setText("全部到货");
+            tv.setTextAppearance(tv.getContext(), R.style.TextTagGreen);
+        }
+    }
+
+    @BindingAdapter("goodsReceiveStatus")
+    public static void setGoodsReceiveStatus(TextView tv, int status) {
+        if (status == 1) {
+            tv.setEnabled(true);
+            tv.setText("确认到货");
+        } else if (status == 2) {
+            tv.setEnabled(false);
+            tv.setText("已收货");
+        }
+    }
 }

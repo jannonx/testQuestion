@@ -14,6 +14,10 @@ import com.guyuan.dear.focus.purchase.ui.FocusPurchaseOverviewFragment;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
+import java.util.List;
+
+import io.reactivex.functions.Consumer;
+
 /**
  * @description:
  * @author: 唐力
@@ -27,7 +31,15 @@ public class FocusPurchaseViewModel extends BaseViewModel {
     private MutableLiveData<PurchaseListBean> purchaseExceptionListMLD = new MutableLiveData<>();
     private MutableLiveData<PurchaseDetailBean> purchaseDetailMLD = new MutableLiveData<>();
     private MutableLiveData<PurchaseListBean> purchaseReturnOrReplaceListMLD = new MutableLiveData<>();
+    private int status;  //详情接收的参数
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     @ViewModelInject
     public FocusPurchaseViewModel(FocusPurchaseRepository focusPurchaseRepository) {
@@ -61,16 +73,38 @@ public class FocusPurchaseViewModel extends BaseViewModel {
     }
 
     //获取正常或异常列表
-    public void getList(int pageIndex,int type, String name) {
+    public void getList(int pageIndex, int type, String name) {
         ListRequestBody requestBody = new ListRequestBody();
-        requestBody.setPageSize(pageIndex);
-        requestBody.setPageNum(ConstantValue.PAGE_SIZE);
+        requestBody.setPageSize(ConstantValue.PAGE_SIZE);
+        requestBody.setPageNum(pageIndex);
         ListRequestBody.FiltersBean filtersBean = new ListRequestBody.FiltersBean();
         filtersBean.setName(name);
+        filtersBean.setListType(type);
         requestBody.setFilters(filtersBean);
         RxJavaHelper.build(this,
                 apiService.getPurchaseList(CommonUtils.getCommonRequestBody(requestBody)))
-                .getHelper().flow(getType(type));
+                .success(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        PurchaseListBean listBean = (PurchaseListBean) o;
+                        List<PurchaseListBean.ContentBean> list = listBean.getContent();
+                        if (list != null && list.size() > 0) {
+                            for (PurchaseListBean.ContentBean bean : list) {
+                                switch (type) {
+                                    case FocusPurchaseOverviewFragment.TOTAL:
+                                        bean.setImmediately(true);
+                                        break;
+
+                                    case FocusPurchaseOverviewFragment.EXCEPTION:
+                                        bean.setImmediately(false);
+                                        break;
+                                }
+                            }
+                        }
+                        getType(type).postValue(listBean);
+                    }
+                })
+                .getHelper().flow();
     }
 
     public MutableLiveData<PurchaseListBean> getType(int type) {
@@ -96,10 +130,10 @@ public class FocusPurchaseViewModel extends BaseViewModel {
     }
 
     //获取退换货列表
-    public void getReturnOrReplaceList(int pageIndex,int returnType, int productType, String mouthDate, String name) {
+    public void getReturnOrReplaceList(int pageIndex, int returnType, int productType, String mouthDate, String name) {
         ListRequestBody requestBody = new ListRequestBody();
-        requestBody.setPageSize(pageIndex);
-        requestBody.setPageNum(ConstantValue.PAGE_SIZE);
+        requestBody.setPageSize(ConstantValue.PAGE_SIZE);
+        requestBody.setPageNum(pageIndex);
         ListRequestBody.FiltersBean filtersBean = new ListRequestBody.FiltersBean();
         filtersBean.setReturnType(returnType);
         filtersBean.setProductType(productType);

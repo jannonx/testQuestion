@@ -11,6 +11,7 @@ import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.ActivityGoodsSignDetailBinding;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.work.goodssign.adapter.GoodsSignDetailAdapter;
 import com.guyuan.dear.work.goodssign.data.GoodsSignViewModel;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -22,7 +23,10 @@ import dagger.hilt.android.AndroidEntryPoint;
  * @company : 固远（深圳）信息技术有限公司
  **/
 @AndroidEntryPoint
-public class GoodsSignDetailActivity extends BaseToolbarActivity<ActivityGoodsSignDetailBinding, GoodsSignViewModel> {
+public class GoodsSignDetailActivity extends BaseToolbarActivity<ActivityGoodsSignDetailBinding,
+        GoodsSignViewModel> implements GoodsSignDetailAdapter.GoodsDetailListener {
+
+    private int contractID;
 
     public static void start(Context context, String title, int id) {
         Intent starter = new Intent(context, GoodsSignDetailActivity.class);
@@ -35,14 +39,14 @@ public class GoodsSignDetailActivity extends BaseToolbarActivity<ActivityGoodsSi
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
-        int id = getIntent().getIntExtra(ConstantValue.KEY_ID, 0);
+        contractID = getIntent().getIntExtra(ConstantValue.KEY_ID, 0);
         setTitleCenter(title);
-        viewModel.getGoodsSignDetail(id);
+        viewModel.getGoodsSignDetail(contractID);
 
         binding.goodsAllCommitTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewModel.signAll(id);
+                viewModel.signAll(contractID);
             }
         });
     }
@@ -55,5 +59,12 @@ public class GoodsSignDetailActivity extends BaseToolbarActivity<ActivityGoodsSi
     @Override
     protected int getVariableId() {
         return BR.goodsSignViewModel;
+    }
+
+    @Override
+    public void sign(int id) {
+        if (viewModel != null) {
+            viewModel.sign(id, contractID);
+        }
     }
 }

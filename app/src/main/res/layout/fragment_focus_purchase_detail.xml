@@ -49,7 +49,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                app:focusPurchaseStatus="@{focusPurchaseVM.purchaseDetailMLD.status}"
                 app:layout_constraintBottom_toBottomOf="@+id/purchase_name_tv"
                 app:layout_constraintStart_toEndOf="@+id/purchase_name_tv"
                 app:layout_constraintTop_toTopOf="@+id/purchase_name_tv"
@@ -95,9 +94,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="@{String.format(@string/focus_purchase_replace,focusPurchaseVM.purchaseDetailMLD.exchangeSum)}"
+                app:focusPurchaseType="@{focusPurchaseVM.getStatus()}"
                 app:layout_constraintStart_toStartOf="@+id/purchase_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/purchase_spec_tv"
+                app:replaceNumber="@{focusPurchaseVM.purchaseDetailMLD.exchangeSum}"
+                app:returnNumber="@{focusPurchaseVM.purchaseDetailMLD.returnSum}"
                 tools:text="@string/focus_purchase_replace" />
 
             <TextView
@@ -106,6 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                app:focusPurchaseResult="@{focusPurchaseVM.purchaseDetailMLD.qualityResult}"
                 app:layout_constraintStart_toStartOf="@+id/purchase_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/purchase_number_tv"
                 tools:text="@string/focus_purchase_result" />
@@ -127,9 +129,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                app:focusPurchaseReason="@{focusPurchaseVM.purchaseDetailMLD.reason}"
+                app:focusPurchaseType="@{focusPurchaseVM.status}"
                 app:layout_constraintStart_toStartOf="@+id/purchase_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/view8"
-                tools:text="@string/focus_purchase_reason" />
+                tools:text="@string/focus_purchase_return_reason" />
 
             <View
                 android:id="@+id/view9"
@@ -148,10 +152,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="项目名称："
+                android:text="@{String.format(@string/focus_purchase_project_name,focusPurchaseVM.purchaseDetailMLD.projectName)}"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/purchase_name_tv"
-                app:layout_constraintTop_toBottomOf="@+id/view9" />
+                app:layout_constraintTop_toBottomOf="@+id/view9"
+                tools:text="@string/focus_purchase_project_name" />
 
             <TextView
                 android:id="@+id/purchase_project_code_tv"
@@ -159,10 +164,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                tools:text="@string/focus_purchase_project_code"
+                android:text="@{String.format(@string/focus_purchase_project_code,focusPurchaseVM.purchaseDetailMLD.projectCode)}"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/textView24"
-                app:layout_constraintTop_toBottomOf="@+id/textView24" />
+                app:layout_constraintTop_toBottomOf="@+id/textView24"
+                tools:text="@string/focus_purchase_project_code" />
 
             <TextView
                 android:id="@+id/purchase_person_tv"
@@ -170,10 +176,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                tools:text="@string/focus_purchase_person"
+                android:text="@{String.format(@string/focus_purchase_person,focusPurchaseVM.purchaseDetailMLD.createName)}"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/purchase_name_tv"
-                app:layout_constraintTop_toBottomOf="@+id/purchase_project_code_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/purchase_project_code_tv"
+                tools:text="@string/focus_purchase_person" />
 
             <TextView
                 android:id="@+id/purchase_time_tv"
@@ -181,6 +188,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
+                android:text="@{focusPurchaseVM.purchaseDetailMLD.createTime}"
                 android:textSize="@dimen/dp_14"
                 app:layout_constraintBottom_toBottomOf="@+id/purchase_person_tv"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -204,9 +212,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
-                tools:text="@string/focus_purchase_provide"
+                android:text="@{String.format(@string/focus_purchase_provide,focusPurchaseVM.purchaseDetailMLD.suppName)}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view10" />
+                app:layout_constraintTop_toBottomOf="@+id/view10"
+                tools:text="@string/focus_purchase_provide" />
 
             <View
                 android:id="@+id/view11"
@@ -225,9 +234,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                tools:text="@string/focus_purchase_contract_code"
+                android:text="@{String.format(@string/focus_purchase_contract_code,focusPurchaseVM.purchaseDetailMLD.contractCode)}"
                 app:layout_constraintStart_toStartOf="@+id/purchase_provide_tv"
-                app:layout_constraintTop_toBottomOf="@+id/view11" />
+                app:layout_constraintTop_toBottomOf="@+id/view11"
+                tools:text="@string/focus_purchase_contract_code" />
 
             <View
                 android:id="@+id/view12"
@@ -246,9 +256,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                tools:text="@string/focus_purchase_sign_time"
+                android:text="@{String.format(@string/focus_purchase_sign_time,focusPurchaseVM.purchaseDetailMLD.signTime)}"
                 app:layout_constraintStart_toStartOf="@+id/purchase_provide_tv"
-                app:layout_constraintTop_toBottomOf="@+id/view12" />
+                app:layout_constraintTop_toBottomOf="@+id/view12"
+                tools:text="@string/focus_purchase_sign_time" />
 
             <View
                 android:id="@+id/view13"
@@ -267,9 +278,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                tools:text="@string/focus_purchase_arrive_time"
+                android:text="@{String.format(@string/focus_purchase_arrive_time,focusPurchaseVM.purchaseDetailMLD.arriveTime)}"
                 app:layout_constraintStart_toStartOf="@+id/purchase_provide_tv"
-                app:layout_constraintTop_toBottomOf="@+id/view13" />
+                app:layout_constraintTop_toBottomOf="@+id/view13"
+                tools:text="@string/focus_purchase_arrive_time" />
 
             <View
                 android:id="@+id/view14"
@@ -288,9 +300,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                tools:text="@string/focus_purchase_person_in"
+                android:text="@{String.format(@string/focus_purchase_person_in,focusPurchaseVM.purchaseDetailMLD.followName)}"
                 app:layout_constraintStart_toStartOf="@+id/purchase_provide_tv"
-                app:layout_constraintTop_toBottomOf="@+id/view14" />
+                app:layout_constraintTop_toBottomOf="@+id/view14"
+                tools:text="@string/focus_purchase_person_in" />
 
             <View
                 android:id="@+id/view15"
@@ -309,9 +322,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                tools:text="@string/focus_purchase_sign_person"
+                android:text="@{String.format(@string/focus_purchase_sign_person,focusPurchaseVM.purchaseDetailMLD.signName)}"
                 app:layout_constraintStart_toStartOf="@+id/purchase_provide_tv"
-                app:layout_constraintTop_toBottomOf="@+id/view15" />
+                app:layout_constraintTop_toBottomOf="@+id/view15"
+                tools:text="@string/focus_purchase_sign_person" />
 
             <View
                 android:id="@+id/view16"
@@ -324,8 +338,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/purchase_sign_person_tv" />
 
             <tl.com.easy_recycleview_library.BaseRecyclerView
+                android:id="@+id/focus_purchase_detail_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:focusPurchaseDetailList="@{focusPurchaseVM.purchaseDetailMLD.recordsList}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view16" />

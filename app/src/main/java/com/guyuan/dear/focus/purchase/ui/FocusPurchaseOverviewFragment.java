@@ -66,7 +66,7 @@ public class FocusPurchaseOverviewFragment extends BaseDataBindingFragment<
 
     //设置时间
     private void setDate() {
-        currentDate = CalenderUtils.getInstance().toChineseYearMonth(System.currentTimeMillis());
+        currentDate = CalenderUtils.getInstance().toLongYearAndMonth(System.currentTimeMillis());
         binding.focusPurchaseDateTv.setText(currentDate);
         binding.focusPurchaseDateTv.setOnClickListener(this);
     }

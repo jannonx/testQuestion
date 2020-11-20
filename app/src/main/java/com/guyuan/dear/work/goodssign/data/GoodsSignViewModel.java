@@ -95,23 +95,38 @@ public class GoodsSignViewModel extends BaseViewModel {
                     public void accept(Object o) throws Exception {
                         int result = (int) o;
                         if (result == 0) {//成功关闭当前界面
-                            finish();
+                            getGoodsSignDetail(contractID);
                         }
                     }
                 })
                 .getHelper().flow();
     }
 
-    //签收
-    public void sign(int itemID) {
+    //详情页签收
+    public void signDetail(int itemID) {
         RxJavaHelper.build(this, apiService.sign(itemID))
                 .setPreTip("正在签收...")
                 .success(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
                         int result = (int) o;
-                        if (result == 0) {//成功关闭当前界面
-                            finish();
+                        if (result == 0) {//成功刷新界面
+                            getGoodsDetail(itemID);
+                        }
+                    }
+                })
+                .getHelper().flow();
+    }
+
+    public void sign(int itemID, int contractID) {
+        RxJavaHelper.build(this, apiService.sign(itemID))
+                .setPreTip("正在签收...")
+                .success(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        int result = (int) o;
+                        if (result == 0) {//成功刷新界面
+                            getGoodsSignDetail(contractID);
                         }
                     }
                 })

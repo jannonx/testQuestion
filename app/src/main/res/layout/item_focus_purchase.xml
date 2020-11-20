@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                app:focusPurchaseStatus="@{purchaseListContentBean.abnormalType}"
+                app:focusPurchaseStatusWithBackground="@{purchaseListContentBean.immediately?purchaseListContentBean.status:purchaseListContentBean.abnormalType}"
                 app:layout_constraintBottom_toBottomOf="@+id/purchase_item_name_tv"
                 app:layout_constraintStart_toEndOf="@+id/purchase_item_name_tv"
                 app:layout_constraintTop_toTopOf="@+id/purchase_item_name_tv"
@@ -98,20 +98,37 @@
                 android:layout_marginTop="8dp"
                 android:textColor="#1890FF"
                 android:textSize="@dimen/sp_12"
+                app:focusPurchaseType="@{purchaseListContentBean.immediately?purchaseListContentBean.status:purchaseListContentBean.abnormalType}"
                 app:layout_constraintStart_toStartOf="@+id/purchase_item_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/view17"
+                app:replaceNumber="@{purchaseListContentBean.exchangeSum}"
+                app:returnNumber="@{purchaseListContentBean.returnSum}"
                 tools:text="@string/focus_purchase_return" />
 
+            <!--            <TextView-->
+            <!--                android:id="@+id/purchase_item_result_tv"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="8dp"-->
+            <!--                android:textColor="#1890FF"-->
+            <!--                android:textSize="@dimen/sp_12"-->
+            <!--                app:focusPurchaseResult="@{purchaseListContentBean.qualityResult}"-->
+            <!--                app:layout_constraintStart_toStartOf="@+id/purchase_item_name_tv"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/purchase_item_number_tv"-->
+            <!--                tools:text="@string/focus_purchase_result" />-->
+
             <TextView
-                android:id="@+id/purchase_item_result_tv"
+                android:id="@+id/purchase_item_suppName_tv"
+                style="@style/TextSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text="@{String.format(@string/focus_purchase_support_name,purchaseListContentBean.suppName)}"
                 android:textColor="#1890FF"
                 android:textSize="@dimen/sp_12"
                 app:layout_constraintStart_toStartOf="@+id/purchase_item_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/purchase_item_number_tv"
-                tools:text="@string/focus_purchase_result" />
+                tools:text="@string/focus_purchase_support_name" />
 
             <View
                 android:id="@+id/view18"
@@ -119,7 +136,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/purchase_item_result_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/purchase_item_suppName_tv" />
 
             <TextView
                 android:id="@+id/purchase_item_person_tv"

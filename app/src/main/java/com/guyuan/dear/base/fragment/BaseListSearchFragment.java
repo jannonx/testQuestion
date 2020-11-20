@@ -34,7 +34,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
     protected TextView mTvSelectStartTime, mTvSelectEndTime;
     protected AppCompatCheckedTextView tvSearchBtn;
     protected AppCompatEditText etSearch;
-
+    protected String searchContent = "";
 
     @Override
     public int getLayoutID() {
@@ -78,6 +78,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
 
             @Override
             public void afterTextChanged(Editable editable) {
+                searchContent = editable.toString();
 //                ivClearBtn.setVisibility(TextUtils.isEmpty(editable.toString()) ? View.GONE : View.VISIBLE);
                 if (TextUtils.isEmpty(editable.toString())) {
                     editEmptyChange();
@@ -113,14 +114,14 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
      * @param text 搜索内容
      */
     protected void onSearch(String text) {
-
+        refresh();
     }
 
     /**
      * 清空editText,刷新列表
      */
     protected void editEmptyChange() {
-
+        refresh();
     }
 
     /**

@@ -55,6 +55,15 @@ public class ListRequestBody {
         private String mouthDate;
         private int returnType;
         private int productType;
+        private int listType;
+
+        public int getListType() {
+            return listType;
+        }
+
+        public void setListType(int listType) {
+            this.listType = listType;
+        }
 
         public int getId() {
             return id;

@@ -1,23 +1,16 @@
 package com.guyuan.dear.focus.assess.adapter;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
-import androidx.lifecycle.MutableLiveData;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
-import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.app.DearApplication;
-import com.guyuan.dear.customizeview.TabLayoutHelper;
-import com.guyuan.dear.focus.assess.data.bean.AssessDetailBean;
 import com.guyuan.dear.focus.assess.data.bean.AssessOverviewBean;
 import com.guyuan.dear.utils.Graph.GraphUtil;
 import com.guyuan.dear.utils.Graph.formatter.MonthXAxisValueFormatter;
@@ -48,22 +41,22 @@ public class AssessBindingAdapter {
     public static void setAssessStatus(TextView tv, int status) {
         switch (status) {
             case SAVED:
-                tv.setTextAppearance(R.style.TextAssess);
+                tv.setTextAppearance(R.style.TextTagBlue);
                 tv.setText("保存草稿");
                 break;
 
             case PREPARED:
-                tv.setTextAppearance(R.style.TextAssess);
+                tv.setTextAppearance(R.style.TextTagBlue);
                 tv.setText("待评审");
                 break;
 
             case ASSESSING:
-                tv.setTextAppearance(R.style.TextAssess);
+                tv.setTextAppearance(R.style.TextTagBlue);
                 tv.setText("评审中");
                 break;
 
             case PASSED:
-                tv.setTextAppearance(R.style.TextPass);
+                tv.setTextAppearance(R.style.TextTagGreen);
                 tv.setText("通过");
                 break;
 
