@@ -13,7 +13,7 @@ import com.guyuan.dear.databinding.FragmentFocusInstallationDebugDetailBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.fragment.FollowProducePlanFragment;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
+import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
@@ -46,7 +46,7 @@ public class FocusInstallationDebugDetailFragment extends BaseDataBindingFragmen
 
     private ProduceApplyDialog dialog;
 
-    public static FocusInstallationDebugDetailFragment newInstance(ProjectReportType data) {
+    public static FocusInstallationDebugDetailFragment newInstance(SiteExploreBean data) {
         Bundle bundle = new Bundle();
         FocusInstallationDebugDetailFragment fragment = new FocusInstallationDebugDetailFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);

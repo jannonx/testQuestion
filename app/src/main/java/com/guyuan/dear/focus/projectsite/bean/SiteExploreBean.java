@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.projectsite.bean;
 import com.guyuan.dear.R;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @description: 我的关注--现场勘查--数据载体
@@ -18,7 +19,7 @@ public class SiteExploreBean implements Serializable {
      */
     private long id;
     /**
-     * 主键ID
+     * 是否满足条件
      */
     private int satisfyFlag;
     /**
@@ -118,6 +119,26 @@ public class SiteExploreBean implements Serializable {
      * 合同编号
      */
     private String contractNum;
+
+    //==============详情
+
+    /**
+     * 附件
+     */
+    private String imgUrl;
+    /**
+     * 问题描述
+     */
+    private String auditItemExplain;
+
+    /**
+     * 内容描述集
+     */
+    private List<ProjectSiteStatusBean> answerVOList;
+    /**
+     * 回复意见集
+     */
+    private List<ProjectSiteOpinionBean> psAuditItemVOList;
 
 
     public long getId() {

@@ -65,7 +65,7 @@ public interface FocusProjectSiteApiService extends BaseApiService {
      * @return
      */
     @GET("base/auditProspect/queryDetailById")
-    Observable<ResultBean<ProjectSiteCommonDetailBean>> getSiteExploreDetailData(@Query("id") long id);
+    Observable<ResultBean<SiteExploreBean>> getSiteExploreDetailData(@Query("id") long id);
 
 
     /**

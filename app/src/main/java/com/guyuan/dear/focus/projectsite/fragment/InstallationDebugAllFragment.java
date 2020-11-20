@@ -9,9 +9,7 @@ import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusInstallationDebugAllBinding;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
-import com.guyuan.dear.focus.projectsite.activity.FocusInstallationDebugDetailActivity;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 
@@ -66,7 +64,7 @@ public class InstallationDebugAllFragment extends BaseDataBindingFragment<Fragme
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                FocusInstallationDebugDetailActivity.start(getContext(), ProjectReportType.TYPE_INSTALLATION_DEBUG);
+//                FocusInstallationDebugDetailActivity.start(getContext(), ProjectReportType.TYPE_INSTALLATION_DEBUG);
             }
         });
     }

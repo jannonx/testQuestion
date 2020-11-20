@@ -12,7 +12,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusCheckGoodBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
+import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
@@ -47,7 +47,7 @@ public class FocusCheckGoodsDetailFragment extends BaseDataBindingFragment<Fragm
     private ProduceApplyDialog dialog;
 
 
-    public static FocusCheckGoodsDetailFragment newInstance(ProjectReportType data) {
+    public static FocusCheckGoodsDetailFragment newInstance(SiteExploreBean data) {
         Bundle bundle = new Bundle();
         FocusCheckGoodsDetailFragment fragment = new FocusCheckGoodsDetailFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);

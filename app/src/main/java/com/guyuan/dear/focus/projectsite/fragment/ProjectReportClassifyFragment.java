@@ -68,7 +68,7 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                jumpToDetail(reportType);
+                jumpToDetail(listData.get(position));
             }
         });
 
@@ -166,29 +166,29 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
     /**
      * 跳转到不同的详情页面
      *
-     * @param reportType 报告类型
+     * @param exploreBean 报告类型
      */
-    private void jumpToDetail(ProjectReportType reportType) {
+    private void jumpToDetail(SiteExploreBean exploreBean) {
         switch (reportType) {
             ///现场勘查报告
             case TYPE_SITE_EXPLORATION:
-                FocusSiteExplorationDetailActivity.start(getContext(), reportType);
+                FocusSiteExplorationDetailActivity.start(getContext(), exploreBean);
                 break;
             ///货物清点报告
             case TYPE_CHECK_GOODS:
-                FocusCheckGoodsDetailActivity.start(getContext(), reportType);
+                FocusCheckGoodsDetailActivity.start(getContext(), exploreBean);
                 break;
             ///安全排查报告
             case TYPE_CHECK_SAFE:
-                FocusCheckSafeDetailActivity.start(getContext(), reportType);
+                FocusCheckSafeDetailActivity.start(getContext(), exploreBean);
                 break;
             ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:
-                FocusInstallationDebugAllActivity.start(getContext(), reportType);
+                FocusInstallationDebugAllActivity.start(getContext(), exploreBean);
                 break;
             ///客户验收报告
             case TYPE_CUSTOMER_ACCEPTANCE:
-                FocusCustomerAcceptanceDetailActivity.start(getContext(), reportType);
+                FocusCustomerAcceptanceDetailActivity.start(getContext(), exploreBean);
                 break;
 
             default:

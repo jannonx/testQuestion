@@ -40,7 +40,7 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
      * 现场勘察
      */
     private MutableLiveData<RefreshBean<SiteExploreBean>> siteExploreListEvent = new MutableLiveData<>();
-    private MutableLiveData<ProjectSiteCommonDetailBean> siteExploreDetailEvent = new MutableLiveData<>();
+    private MutableLiveData<SiteExploreBean> siteExploreDetailEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> commitSiteExploreInfoEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> postSiteExploreOpinionEvent = new MutableLiveData<>();
 
@@ -383,11 +383,11 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
         this.siteExploreListEvent = siteExploreListEvent;
     }
 
-    public MutableLiveData<ProjectSiteCommonDetailBean> getSiteExploreDetailEvent() {
+    public MutableLiveData<SiteExploreBean> getSiteExploreDetailEvent() {
         return siteExploreDetailEvent;
     }
 
-    public void setSiteExploreDetailEvent(MutableLiveData<ProjectSiteCommonDetailBean> siteExploreDetailEvent) {
+    public void setSiteExploreDetailEvent(MutableLiveData<SiteExploreBean> siteExploreDetailEvent) {
         this.siteExploreDetailEvent = siteExploreDetailEvent;
     }
 

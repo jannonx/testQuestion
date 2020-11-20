@@ -10,20 +10,62 @@ import java.util.List;
  */
 public class ProjectSiteCommonDetailBean {
 
-
-    private int auditFormType;
-    private String auditItemExplain;
-    private String cusName;
-    private String destination;
-    private String finishTime;
+    /**
+     * 评审主键ID
+     */
     private int id;
+    /**
+     * 类型
+     */
+    private int auditFormType;
+    /**
+     * 问题描述
+     */
+    private String auditItemExplain;
+    /**
+     * 客户名称
+     */
+    private String cusName;
+    /**
+     * 目的地
+     */
+    private String destination;
+    /**
+     * 完成时间
+     */
+    private String finishTime;
+
+    /**
+     * 附件
+     */
     private String imgUrl;
+    /**
+     * 执行人名称
+     */
     private String name;
+    /**
+     * 名称
+     */
     private String projectName;
+    /**
+     * 项目编号
+     */
     private String projectNum;
+    /**
+     * 是否满足条件
+     */
     private int satisfyFlag;
+    /**
+     * 状态
+     */
     private int status;
+    /**
+     * 内容描述集
+     */
     private List<ProjectSiteStatusBean> answerVOList;
+    /**
+     * 回复意见集
+     */
     private List<ProjectSiteOpinionBean> psAuditItemVOList;
 
     public int getAuditFormType() {
