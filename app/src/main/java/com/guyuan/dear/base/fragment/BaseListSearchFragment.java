@@ -4,36 +4,20 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatCheckedTextView;
 import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.ViewDataBinding;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
-import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.example.mvvmlibrary.util.LogUtils;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.ToastUtils;
-import com.jzxiang.pickerview.TimePickerDialog;
-import com.jzxiang.pickerview.data.Type;
-import com.jzxiang.pickerview.listener.OnDateSetListener;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import tl.com.easy_recycleview_library.BaseRecyclerView;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
-import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;
-import tl.com.easy_recycleview_library.interfaces.OnRefreshListener;
 
 /**
  * @description: 列表页面，带头部部件：搜索栏
@@ -96,13 +80,11 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
             public void afterTextChanged(Editable editable) {
 //                ivClearBtn.setVisibility(TextUtils.isEmpty(editable.toString()) ? View.GONE : View.VISIBLE);
                 if (TextUtils.isEmpty(editable.toString())) {
-                    etSearch.clearFocus();
                     editEmptyChange();
                     return;
                 }
 
                 LogUtils.showLog("editable=" + editable.toString());
-                editTextChanged(editable.toString());
                 tvSearchBtn.setClickable(!TextUtils.isEmpty(editable.toString()));
                 tvSearchBtn.setEnabled(!TextUtils.isEmpty(editable.toString()));
                 tvSearchBtn.setChecked(!TextUtils.isEmpty(editable.toString()));

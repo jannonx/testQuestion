@@ -4,42 +4,39 @@ package com.guyuan.dear.focus.projectsite.bean;
 import java.io.Serializable;
 
 /**
- * @description: 我的关注--工程现场--报告类型
+ * @description: 我的关注--工程现场--现场勘查
  * @author: 许建宁
  * @since: 2020/11/10 15:31
  * @company: 固远（深圳）信息技术有限公司
  */
-public enum ProjectReportType implements Serializable {
+public enum SiteExploreStatusType implements Serializable {
     /**
-     *  10:清点货物单;20:安全排查单;30:现场勘察单;40:安装调试;50:客户验收单
+     *  状态（10:待操作(待勘察等...)、20:执行中（勘查中...）、30:完成（勘查完成...）、40:其他）
      */
 
     /**
      * 货物清点报告
      */
-    TYPE_CHECK_GOODS(10, "货物清点报告"),
+    TYPE_EXPLORE_WAIT(10, "待勘察"),
     /**
      * 安全排查报告
      */
-    TYPE_CHECK_SAFE(20, "安全排查报告"),
+    TYPE_EXPLORE_ING(20, "勘查中"),
     /**
      * 现场勘查报告
      */
-    TYPE_SITE_EXPLORATION(30, "现场勘查报告"),
+    TYPE_EXPLORE_FINISH(30, "勘查完成"),
     /**
      * 安装调试报告
      */
-    TYPE_INSTALLATION_DEBUG(40, "安装调试报告"),
-    /**
-     * 客户验收报告
-     */
-    TYPE_CUSTOMER_ACCEPTANCE(50, "客户验收报告");
+    TYPE_UNKNOWN(40, "其他");
+
 
 
     private int code;
     private String des;
 
-    ProjectReportType(int code, String des) {
+    SiteExploreStatusType(int code, String des) {
         this.code = code;
         this.des = des;
     }
@@ -48,8 +45,8 @@ public enum ProjectReportType implements Serializable {
     /**
      * 根据枚举code获取实例，用于switch
      */
-    public static ProjectReportType toType(int index) {
-        for (ProjectReportType type : ProjectReportType.values()) {
+    public static SiteExploreStatusType toType(int index) {
+        for (SiteExploreStatusType type : SiteExploreStatusType.values()) {
             if (type.getCode() == index) {
                 return type;
             }
@@ -58,7 +55,7 @@ public enum ProjectReportType implements Serializable {
     }
 
     public static String toText(int type) {
-        return ProjectReportType.toType(type).getDes();
+        return SiteExploreStatusType.toType(type).getDes();
 
     }
 

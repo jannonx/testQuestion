@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.databinding.FragmentCheckSafeContentBinding;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
+import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 public class CheckSafeContentFragment extends BaseDataBindingFragment<FragmentCheckSafeContentBinding, FocusProjectSiteViewModel> {
 
     public static final String TAG = CheckSafeContentFragment.class.getSimpleName();
-    private List<SimpleTabBean> listData=new ArrayList<>();
+    private List<SiteExploreBean> listData=new ArrayList<>();
 
     public static CheckSafeContentFragment newInstance() {
         Bundle bundle = new Bundle();
@@ -50,7 +50,7 @@ public class CheckSafeContentFragment extends BaseDataBindingFragment<FragmentCh
             return;
         }
         for (int i = 0; i < 2; i++) {
-            SimpleTabBean simpleTabBean = new SimpleTabBean();
+            SiteExploreBean simpleTabBean = new SiteExploreBean();
             listData.add(simpleTabBean);
         }
         ProjectReportAdapter checkGoodsAdapter = new ProjectReportAdapter(getContext(),

@@ -36,6 +36,7 @@ public class FocusProduceAdapter extends BaseRecyclerAdapter<FocusProduceBean> {
         TextView tvStatus = holder.getView(R.id.tv_produce_status);
         TextView tvSubStatus = holder.getView(R.id.tv_sub_status);
         holder.setText(R.id.tv_produce_status, item.getStatusText());
+
         tvStatus.setBackgroundResource(item.getStatusTextBg());
         int color_blue_ff1b97fc = item.getStatusTextColor();
         tvStatus.setTextColor(context.getResources().getColor(color_blue_ff1b97fc));

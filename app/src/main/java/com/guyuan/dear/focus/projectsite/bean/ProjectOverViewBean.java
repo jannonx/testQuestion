@@ -10,56 +10,63 @@ package com.guyuan.dear.focus.projectsite.bean;
 public class ProjectOverViewBean {
 
     /**
-     * prospectNumber : 2
-     * goodsNumber : 1
-     * safetyNumber : 1
-     * installNumber : 0
-     * cusNumber : 0
+     * 现场勘查报告数
      */
+    private int prospectNumber;
+    /**
+     * 货物清点报告数
+     */
+    private int goodsNumber;
+    /**
+     * 安全报告数
+     */
+    private int safetyNumber;
+    /**
+     * 客户报告数
+     */
+    private int installNumber;
+    /**
+     * 客户报告数
+     */
+    private int cusNumber;
 
-    private Integer prospectNumber;
-    private Integer goodsNumber;
-    private Integer safetyNumber;
-    private Integer installNumber;
-    private Integer cusNumber;
-
-    public Integer getProspectNumber() {
-        return prospectNumber;
+    public String getProspectNumber() {
+        return String.valueOf(prospectNumber);
     }
 
-    public void setProspectNumber(Integer prospectNumber) {
+    public void setProspectNumber(int prospectNumber) {
         this.prospectNumber = prospectNumber;
     }
 
-    public Integer getGoodsNumber() {
-        return goodsNumber;
+    public String getGoodsNumber() {
+        return String.valueOf(goodsNumber);
     }
 
-    public void setGoodsNumber(Integer goodsNumber) {
+    public void setGoodsNumber(int goodsNumber) {
         this.goodsNumber = goodsNumber;
     }
 
-    public Integer getSafetyNumber() {
-        return safetyNumber;
+    public String getSafetyNumber() {
+        return String.valueOf(safetyNumber);
     }
 
-    public void setSafetyNumber(Integer safetyNumber) {
+    public void setSafetyNumber(int safetyNumber) {
         this.safetyNumber = safetyNumber;
     }
 
-    public Integer getInstallNumber() {
-        return installNumber;
+    public String getInstallNumber() {
+        return String.valueOf(installNumber);
     }
 
-    public void setInstallNumber(Integer installNumber) {
+    public void setInstallNumber(int installNumber) {
         this.installNumber = installNumber;
     }
 
-    public Integer getCusNumber() {
-        return cusNumber;
+    public String getCusNumber() {
+        return String.valueOf(cusNumber);
     }
 
-    public void setCusNumber(Integer cusNumber) {
+    public void setCusNumber(int cusNumber) {
         this.cusNumber = cusNumber;
     }
 }

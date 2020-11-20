@@ -3,11 +3,13 @@ package com.guyuan.dear.focus.projectsite.fragment;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.lifecycle.Observer;
+
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProjectSiteBinding;
-
 import com.guyuan.dear.focus.projectsite.activity.ProjectReportClassifyActivity;
+import com.guyuan.dear.focus.projectsite.bean.ProjectOverViewBean;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.LogUtils;
@@ -45,6 +47,29 @@ public class FocusProjectSiteFragment extends BaseDataBindingFragment<FragmentFo
         binding.clSafeCheck.setOnClickListener(this);
         binding.clInstallationDebug.setOnClickListener(this);
         binding.clCustomerAcceptance.setOnClickListener(this);
+
+        viewModel.getProjectSiteOverViewData();
+        viewModel.getProjectSiteOverViewEvent().observe(getActivity(), new Observer<ProjectOverViewBean>() {
+            @Override
+
+            public void onChanged(ProjectOverViewBean data) {
+                setData(data);
+            }
+        });
+    }
+
+
+    /**
+     * 设置数据
+     *
+     * @param data
+     */
+    private void setData(ProjectOverViewBean data) {
+        binding.tvSiteExploration.setText(data.getProspectNumber());
+        binding.tvSafeCheck.setText(data.getSafetyNumber());
+        binding.tvGoodsCheck.setText(data.getGoodsNumber());
+        binding.tvInstallationDebug.setText(data.getInstallNumber());
+        binding.tvCustomerAcceptance.setText(data.getProspectNumber());
     }
 
     @Override

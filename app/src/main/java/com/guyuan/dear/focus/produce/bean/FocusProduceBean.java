@@ -284,6 +284,9 @@ public class FocusProduceBean implements Serializable {
 //                return R.color.transparent;
 //        }
 //    }
+
+
+
     public int getStatusTextColor() {
         statusType = ProductStatusType.toType(status);
         switch (statusType) {

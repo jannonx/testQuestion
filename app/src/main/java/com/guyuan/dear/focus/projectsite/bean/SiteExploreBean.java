@@ -1,7 +1,8 @@
 package com.guyuan.dear.focus.projectsite.bean;
 
+import com.guyuan.dear.R;
+
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @description: 我的关注--现场勘查--数据载体
@@ -12,34 +13,110 @@ import java.util.List;
 
 public class SiteExploreBean implements Serializable {
 
+    /**
+     * 主键ID
+     */
+    private long id;
+    /**
+     * 主键ID
+     */
+    private int satisfyFlag;
+    /**
+     * 类型
+     */
+    private int auditFormType;
+    private ProjectReportType projectReportType;
+    /**
+     * 目的地
+     */
+    private String destination;
+    /**
+     * 现场勘查/安全排查:
+     * 状态（10:待操作(待勘察等...)、20:执行中（勘查中...）、30:完成（勘查完成...）、40:其他）
+     * -------------------
+     */
+    private Integer status;
+    /**
+     * 评审时间
+     */
+    private String createTime;
+    /**
+     * 项目名称
+     */
+    private String projectName;
+    /**
+     * 项目编号
+     */
+    private String projectNum;
+    /**
+     * 执行人名称
+     */
+    private String name;
+    /**
+     * 完成时间
+     */
+    private String finishTime;
+    /**
+     * 最新回复意见
+     */
+    private String idea;
+    //================清点货物
+    /**
+     * 收货地址
+     */
+    private String acceptAddress;
+    /**
+     * 清点人员名称
+     */
+    private String checkName;
+    /**
+     * 清点货物：
+     * 清点状态(10：待清点，20：清点中，30：完成清点)
+     * 客户验收：
+     * 验收状态，0:待验收，10合格，20不合格
+     */
+    private int checkStatus;
+    /**
+     * 是否异常，0正常，1异常
+     */
+    private int isException;
+    /**
+     * 清点时间
+     */
+    private String checkTime;
+    /**
+     * 最新回复意见
+     */
+    private String sendGoodsNumber;
+    /**
+     * 运输状态(10:运输中，20：已送达)
+     */
+    private int transportStatus;
+    //================安装调试
 
     /**
-     * id : 10
-     * auditFormType : 30
-     * destination : 香江金融中心
-     * status : 10
-     * createTime : 2020-11-13 08:23:54
-     * projectName :  中空分机
-     * projectNum : ACACA
-     * name : 谢俊杰
-     * finishTime : null
-     * idea : 正！
+     * 施工地址
      */
+    private String address;
+    /**
+     * 客户名称
+     */
+    private String customerName;
 
-    private long id;
-    private Integer auditFormType;
-    private String destination;
-    private Integer status;
-    private String createTime;
-    private String projectName;
-    private String projectNum;
-    private String name;
-    private Object finishTime;
-    private String idea;
+    /**
+     * 现场监工人员
+     */
+    private String personLiableName;
+
+    //================客户验收
+
+    /**
+     * 合同编号
+     */
+    private String contractNum;
 
 
     public long getId() {
-
         return id;
     }
 
@@ -47,12 +124,97 @@ public class SiteExploreBean implements Serializable {
         this.id = id;
     }
 
-    public Integer getAuditFormType() {
+
+    public int getSatisfyFlag() {
+        return satisfyFlag;
+    }
+
+    public SiteProjectSatisfyType getSiteProjectSatisfyType() {
+        return SiteProjectSatisfyType.toType(satisfyFlag);
+    }
+
+    public CheckSafeSatisfyType getCheckSafeSatisfyType() {
+        return CheckSafeSatisfyType.toType(satisfyFlag);
+    }
+
+
+    public void setSatisfyFlag(int satisfyFlag) {
+        this.satisfyFlag = satisfyFlag;
+    }
+
+    public boolean getStatusTextVisible() {
+        switch (getProjectReportType()) {
+            case TYPE_SITE_EXPLORATION:
+                return getSiteProjectSatisfyType().isJudgingCondition();
+            case TYPE_CHECK_GOODS:
+            case TYPE_CHECK_SAFE:
+                return getCheckSafeSatisfyType().isJudgingCondition();
+            case TYPE_CUSTOMER_ACCEPTANCE:
+                return false;
+            case TYPE_INSTALLATION_DEBUG:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    public int getStatusTextColor() {
+        switch (getProjectReportType()) {
+            case TYPE_SITE_EXPLORATION:
+                return getSiteProjectSatisfyType().getTextColor();
+            case TYPE_CHECK_GOODS:
+            case TYPE_CHECK_SAFE:
+                return getCheckSafeSatisfyType().getTextColor();
+            case TYPE_CUSTOMER_ACCEPTANCE:
+                return R.color.color_green_00B578;
+            case TYPE_INSTALLATION_DEBUG:
+                return R.color.color_orange_FF8F1F;
+            default:
+                return R.color.transparent;
+        }
+    }
+
+    public int getStatusTextBg() {
+        switch (getProjectReportType()) {
+            case TYPE_SITE_EXPLORATION:
+                return getSiteProjectSatisfyType().getTextBgColor();
+            case TYPE_CHECK_GOODS:
+            case TYPE_CHECK_SAFE:
+                return getCheckSafeSatisfyType().getTextBgColor();
+            case TYPE_CUSTOMER_ACCEPTANCE:
+                return R.drawable.bg_green_d4fff1_corner_2;
+            case TYPE_INSTALLATION_DEBUG:
+                return R.drawable.bg_orange_ffefdf_corner_2;
+            default:
+                return R.drawable.bg_blue_0aad33_corner_4;
+        }
+    }
+
+    public String getStatusText() {
+        switch (getProjectReportType()) {
+            case TYPE_SITE_EXPLORATION:
+                return getSiteProjectSatisfyType().getDes();
+
+        }
+
+        return "";
+    }
+
+    public int getAuditFormType() {
         return auditFormType;
     }
 
-    public void setAuditFormType(Integer auditFormType) {
+    public void setAuditFormType(int auditFormType) {
         this.auditFormType = auditFormType;
+    }
+
+    public ProjectReportType getProjectReportType() {
+        return ProjectReportType.toType(auditFormType);
+    }
+
+
+    public void setProjectReportType(ProjectReportType projectReportType) {
+        this.projectReportType = projectReportType;
     }
 
     public String getDestination() {
@@ -103,11 +265,11 @@ public class SiteExploreBean implements Serializable {
         this.name = name;
     }
 
-    public Object getFinishTime() {
+    public String getFinishTime() {
         return finishTime;
     }
 
-    public void setFinishTime(Object finishTime) {
+    public void setFinishTime(String finishTime) {
         this.finishTime = finishTime;
     }
 
@@ -117,5 +279,93 @@ public class SiteExploreBean implements Serializable {
 
     public void setIdea(String idea) {
         this.idea = idea;
+    }
+
+    public String getAcceptAddress() {
+        return acceptAddress;
+    }
+
+    public void setAcceptAddress(String acceptAddress) {
+        this.acceptAddress = acceptAddress;
+    }
+
+    public String getCheckName() {
+        return checkName;
+    }
+
+    public void setCheckName(String checkName) {
+        this.checkName = checkName;
+    }
+
+    public int getCheckStatus() {
+        return checkStatus;
+    }
+
+    public void setCheckStatus(int checkStatus) {
+        this.checkStatus = checkStatus;
+    }
+
+    public int getIsException() {
+        return isException;
+    }
+
+    public void setIsException(int isException) {
+        this.isException = isException;
+    }
+
+    public String getCheckTime() {
+        return checkTime;
+    }
+
+    public void setCheckTime(String checkTime) {
+        this.checkTime = checkTime;
+    }
+
+    public String getSendGoodsNumber() {
+        return sendGoodsNumber;
+    }
+
+    public void setSendGoodsNumber(String sendGoodsNumber) {
+        this.sendGoodsNumber = sendGoodsNumber;
+    }
+
+    public int getTransportStatus() {
+        return transportStatus;
+    }
+
+    public void setTransportStatus(int transportStatus) {
+        this.transportStatus = transportStatus;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getPersonLiableName() {
+        return personLiableName;
+    }
+
+    public void setPersonLiableName(String personLiableName) {
+        this.personLiableName = personLiableName;
+    }
+
+    public String getContractNum() {
+        return contractNum;
+    }
+
+    public void setContractNum(String contractNum) {
+        this.contractNum = contractNum;
     }
 }

@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.databinding.FragmentExploreContentBinding;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
+import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
 
     public static final String TAG = ExploreContentFragment.class.getSimpleName();
 
-    private List<SimpleTabBean> listData=new ArrayList<>();
+    private List<SiteExploreBean> listData=new ArrayList<>();
     public static ExploreContentFragment newInstance() {
         Bundle bundle = new Bundle();
         ExploreContentFragment fragment = new ExploreContentFragment();
@@ -50,7 +50,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
             return;
         }
         for (int i = 0; i < 2; i++) {
-            SimpleTabBean simpleTabBean = new SimpleTabBean();
+            SiteExploreBean simpleTabBean = new SiteExploreBean();
             listData.add(simpleTabBean);
         }
         ProjectReportAdapter checkGoodsAdapter = new ProjectReportAdapter(getContext(),

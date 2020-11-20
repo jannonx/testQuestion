@@ -4,17 +4,12 @@ import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.httplibrary.bean.RefreshBean;
-import com.example.httplibrary.bean.ResultBean;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
-import com.example.mvvmlibrary.data.SingleLiveEvent;
 import com.guyuan.dear.base.api.RxJavaHelper;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.bean.CommentsBean;
 
-import java.util.List;
-
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import okhttp3.RequestBody;
 
 /**
@@ -26,6 +21,13 @@ import okhttp3.RequestBody;
 public class FocusClientViewModel extends BaseViewModel {
 
     private FocusClientRepository repository;
+
+
+    @ViewModelInject
+    public FocusClientViewModel(FocusClientRepository focusClientRepository) {
+        this.repository = focusClientRepository;
+    }
+
     /**
      * 客户列表
      */
@@ -38,13 +40,6 @@ public class FocusClientViewModel extends BaseViewModel {
      * 基础信息
      */
     private MutableLiveData<RefreshBean<CommentsBean>> followListEvent = new MutableLiveData<>();
-
-
-    @ViewModelInject
-    public FocusClientViewModel(FocusClientRepository focusClientRepository) {
-        this.repository = focusClientRepository;
-    }
-
 
 
     public MutableLiveData<RefreshBean<ClientCompanyBean>> getClientListEvent() {

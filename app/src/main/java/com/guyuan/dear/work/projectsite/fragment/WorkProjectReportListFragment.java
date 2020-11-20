@@ -6,7 +6,6 @@ import android.view.View;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.projectsite.activity.FocusCheckGoodsDetailActivity;
@@ -16,6 +15,7 @@ import com.guyuan.dear.focus.projectsite.activity.FocusInstallationDebugAllActiv
 import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
+import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 
@@ -30,7 +30,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/11/18 10:27
  * @company: 固远（深圳）信息技术有限公司
  */
-public class WorkProjectReportListFragment extends BaseListSearchFragment<SimpleTabBean, FragmentListBinding, FocusProjectSiteViewModel> {
+public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteExploreBean, FragmentListBinding, FocusProjectSiteViewModel> {
 
     public static final String TAG = WorkProjectReportListFragment.class.getSimpleName();
 
@@ -48,7 +48,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<Simple
         etSearch.setHint("输入项目名称、编号、人员");
         ProjectReportType reportType = (ProjectReportType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
         for (int i = 0; i < 5; i++) {
-            SimpleTabBean simpleTabBean = new SimpleTabBean();
+            SiteExploreBean simpleTabBean = new SiteExploreBean();
             listData.add(simpleTabBean);
         }
 
