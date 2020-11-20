@@ -8,11 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
-import com.guyuan.dear.focus.projectsite.activity.FocusCheckGoodsDetailActivity;
-import com.guyuan.dear.focus.projectsite.activity.FocusCheckSafeDetailActivity;
-import com.guyuan.dear.focus.projectsite.activity.FocusCustomerAcceptanceDetailActivity;
-import com.guyuan.dear.focus.projectsite.activity.FocusInstallationDebugAllActivity;
-import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
@@ -77,23 +72,23 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
         switch (reportType) {
             ///现场勘查报告
             case TYPE_SITE_EXPLORATION:
-                FocusSiteExplorationDetailActivity.start(getContext(), ProjectReportType.TYPE_SITE_EXPLORATION);
+//                FocusSiteExplorationDetailActivity.start(getContext(), ProjectReportType.TYPE_SITE_EXPLORATION);
                 break;
             ///货物清点报告
             case TYPE_CHECK_GOODS:
-                FocusCheckGoodsDetailActivity.start(getContext(), ProjectReportType.TYPE_CHECK_GOODS);
+//                FocusCheckGoodsDetailActivity.start(getContext(), ProjectReportType.TYPE_CHECK_GOODS);
                 break;
             ///安全排查报告
             case TYPE_CHECK_SAFE:
-                FocusCheckSafeDetailActivity.start(getContext(), ProjectReportType.TYPE_CHECK_SAFE);
+//                FocusCheckSafeDetailActivity.start(getContext(), ProjectReportType.TYPE_CHECK_SAFE);
                 break;
             ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:
-                FocusInstallationDebugAllActivity.start(getContext(), ProjectReportType.TYPE_INSTALLATION_DEBUG);
+//                FocusInstallationDebugAllActivity.start(getContext(), ProjectReportType.TYPE_INSTALLATION_DEBUG);
                 break;
             ///客户验收报告
             case TYPE_CUSTOMER_ACCEPTANCE:
-                FocusCustomerAcceptanceDetailActivity.start(getContext(), ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE);
+//                FocusCustomerAcceptanceDetailActivity.start(getContext(), ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE);
                 break;
 
             default:

@@ -42,7 +42,7 @@ public class FocusProjectSiteRepository {
         return apiService.getSiteExploreList(body);
     }
 
-    Observable<ResultBean<ProjectSiteCommonDetailBean>> getSiteExploreDetailData(long id) {
+    Observable<ResultBean<SiteExploreBean>> getSiteExploreDetailData(long id) {
         return apiService.getSiteExploreDetailData(id);
     }
 

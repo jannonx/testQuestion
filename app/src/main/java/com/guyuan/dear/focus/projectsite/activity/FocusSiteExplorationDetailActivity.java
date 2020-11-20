@@ -8,7 +8,7 @@ import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.base.fragment.BaseFragment;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.guyuan.dear.R;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
+import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.focus.projectsite.fragment.FocusSiteExplorationDetailFragment;
 import com.guyuan.dear.utils.ActivityUtils;
@@ -26,7 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class FocusSiteExplorationDetailActivity extends BaseToolbarActivity<ActivityWithToolbarBinding, FocusProjectSiteViewModel> {
 
-    public static void start(Context context, ProjectReportType data) {
+    public static void start(Context context, SiteExploreBean data) {
         Intent intent = new Intent(context, FocusSiteExplorationDetailActivity.class);
         intent.putExtra(ConstantValue.KEY_CONTENT, data);
         context.startActivity(intent);
@@ -34,8 +34,8 @@ public class FocusSiteExplorationDetailActivity extends BaseToolbarActivity<Acti
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-        ProjectReportType bean = (ProjectReportType) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
-        binding.toolbarContainer.titleTv.setText(bean.getDes() + "详情");
+        SiteExploreBean bean = (SiteExploreBean) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
+        binding.toolbarContainer.titleTv.setText(bean.getProjectReportType().getDes() + "详情");
         BaseFragment mFragment = FocusSiteExplorationDetailFragment.newInstance(bean);
 
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,

@@ -65,7 +65,7 @@ public interface FocusProjectSiteApiService extends BaseApiService {
      * @return
      */
     @GET("base/auditProspect/queryDetailById")
-    Observable<ResultBean<ProjectSiteCommonDetailBean>> getSiteExploreDetailData(@Query("id") long id);
+    Observable<ResultBean<SiteExploreBean>> getSiteExploreDetailData(@Query("id") long id);
 
 
     /**
@@ -188,7 +188,7 @@ public interface FocusProjectSiteApiService extends BaseApiService {
      * @param body
      * @return
      */
-    @POST("base/install/appQueryList")
+    @POST("base/install/findPage")
     Observable<ResultBean<RefreshBean<SiteExploreBean>>> getInstallDebugList(@Body RequestBody body);
 
 
@@ -233,7 +233,7 @@ public interface FocusProjectSiteApiService extends BaseApiService {
      * @param body
      * @return
      */
-    @POST("base/auditCustomerAccept/appQueryList")
+    @POST("base/auditCustomerAccept/findPage")
     Observable<ResultBean<RefreshBean<SiteExploreBean>>> getCustomerAcceptanceList(@Body RequestBody body);
 
 

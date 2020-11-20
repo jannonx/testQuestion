@@ -5,14 +5,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailComplexBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
-import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
+import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
@@ -33,20 +33,18 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
     public static final String TAG = FocusSiteExplorationDetailFragment.class.getSimpleName();
 
-    private static final int REQUEST_SEND_SELECT_PERSON = 0x001;
-    private static final int REQUEST_COPY_SELECT_PERSON = 0x002;
     private ProjectSiteStatusFragment statusFragment;
     private ExploreContentFragment planFragment;
 
     private int startPosition = 0;//起始选中位置
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
-    private FocusProduceBean produceBean;
+    private SiteExploreBean detailProjectData;
     private boolean isFooterBtnShow, isProducePause, isProduceIng;
 
     private ProduceApplyDialog dialog;
 
-    public static FocusSiteExplorationDetailFragment newInstance(ProjectReportType data) {
+    public static FocusSiteExplorationDetailFragment newInstance(SiteExploreBean data) {
         Bundle bundle = new Bundle();
         FocusSiteExplorationDetailFragment fragment = new FocusSiteExplorationDetailFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
@@ -66,22 +64,48 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         if (arguments == null) {
             return;
         }
+        detailProjectData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         initViewPager();
         initData();
     }
+
 
     private void initData() {
         binding.tvActivateBtn.setOnClickListener(this);
         binding.tvPauseBtn.setOnClickListener(this);
         binding.tvCompleteBtn.setOnClickListener(this);
 
-
+        viewModel.getSiteExploreDetailData(detailProjectData.getId());
+        viewModel.getSiteExploreDetailEvent().observe(getActivity(), new Observer<SiteExploreBean>() {
+            @Override
+            public void onChanged(SiteExploreBean data) {
+                setProduceData(data);
+            }
+        });
     }
 
 
-    private void setProduceData(FocusProduceBean data) {
+    /**
+     * 设置数据
+     *
+     * @param data 详情数据
+     */
+    private void setProduceData(SiteExploreBean data) {
+        if (getActivity() == null) return;
+        data.setProjectReportType(detailProjectData.getProjectReportType());
+        detailProjectData = data;
 
 
+        binding.tvProjectName.setText(detailProjectData.getProjectName());
+        //状态属性设置
+//        binding.tvProject.setText(detailProjectData.getProjectName());
+//        holder.setText(R.id.tv_project_status, item.getStatusText());
+//        TextView tvStatus = holder.getView(R.id.tv_project_status);
+        //可见
+//        tvStatus.setVisibility(binding.tvProjectName.getStatusTextVisible() ? View.VISIBLE : View.GONE);
+//        tvStatus.setBackgroundResource(binding.tvProjectName.getStatusTextBg());
+//        int statusTextColor = binding.tvProjectName.getStatusTextColor();
+//        tvStatus.setTextColor(getActivity().getResources().getColor(statusTextColor, null));
 
     }
 

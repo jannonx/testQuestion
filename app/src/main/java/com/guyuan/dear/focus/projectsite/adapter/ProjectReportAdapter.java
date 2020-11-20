@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
 import java.util.List;
@@ -23,20 +22,16 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
  */
 public class ProjectReportAdapter extends BaseRecyclerAdapter<SiteExploreBean> {
 
-    private ProjectReportType reportType;
 
     public ProjectReportAdapter(Context context, @NonNull List<SiteExploreBean> listData, int layoutID) {
         super(context, listData, layoutID);
     }
 
-    public ProjectReportAdapter(Context context, @NonNull List<SiteExploreBean> listData, int layoutID, ProjectReportType type) {
-        super(context, listData, layoutID);
-        this.reportType = type;
-    }
 
     @Override
     protected void bindDataToView(BaseRecyclerViewHolder holder, SiteExploreBean item,
                                   int position) {
+
         //==================工程现场
         holder.setText(R.id.tv_project_name, item.getProjectName());
         holder.setText(R.id.tv_project_code, item.getProjectNum());
@@ -59,7 +54,7 @@ public class ProjectReportAdapter extends BaseRecyclerAdapter<SiteExploreBean> {
         holder.setText(R.id.tv_time, item.getCreateTime());
 
 
-        switch (reportType) {
+        switch (item.getProjectReportType()) {
             ///现场勘查报告
             case TYPE_SITE_EXPLORATION:
                 labelCheckPerson.setText("勘查人员：");
@@ -73,9 +68,23 @@ public class ProjectReportAdapter extends BaseRecyclerAdapter<SiteExploreBean> {
                 break;
             ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:
+                holder.setText(R.id.label_project_code, "合同编号：");
+                holder.setText(R.id.tv_project_code, item.getProjectNumber());
+                labelCheckPerson.setText("客户名称：");
+                holder.setText(R.id.tv_project_number, item.getCustomerName());
+                labelDestination.setText("现场监工：");
+                holder.setText(R.id.tv_operator, item.getPersonLiableName());
                 break;
             ///客户验收报告
             case TYPE_CUSTOMER_ACCEPTANCE:
+                holder.setText(R.id.label_project_code, "合同编号：");
+                holder.setText(R.id.tv_project_code, item.getProjectNumber());
+                holder.setText(R.id.tv_project_number, item.getProjectName());
+
+                holder.getView(R.id.ll_project_location).setVisibility(View.VISIBLE);
+                holder.setText(R.id.tv_project_location, item.getAddress());
+
+                holder.setText(R.id.tv_operator, item.getPersonLiableName());
                 break;
 
             default:

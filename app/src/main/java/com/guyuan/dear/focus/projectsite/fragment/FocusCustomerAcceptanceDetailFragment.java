@@ -12,7 +12,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusCustomerAcceptanceBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
+import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
@@ -46,7 +46,7 @@ public class FocusCustomerAcceptanceDetailFragment extends BaseDataBindingFragme
 
     private ProduceApplyDialog dialog;
 
-    public static FocusCustomerAcceptanceDetailFragment newInstance(ProjectReportType data) {
+    public static FocusCustomerAcceptanceDetailFragment newInstance(SiteExploreBean data) {
         Bundle bundle = new Bundle();
         FocusCustomerAcceptanceDetailFragment fragment = new FocusCustomerAcceptanceDetailFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);

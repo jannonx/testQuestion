@@ -77,7 +77,8 @@
             android:layout_marginTop="@dimen/dp_16"
             app:layout_constraintLeft_toLeftOf="@id/item_contract_excpt_comment_tv_date"
             app:layout_constraintTop_toBottomOf="@id/item_contract_excpt_comment_tv_date"
-            app:srcCompat="@drawable/ic_svg_staff_icon_default" />
+            app:srcCompat="@drawable/ic_svg_staff_icon_default"
+            app:setUserCircleNetImage="@{data.imgUrl}"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_contract_excpt_comment_tv_name"

@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.contract.bindingadpaters;
 
+import android.view.View;
+
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.BindingAdapter;
 
@@ -14,6 +16,12 @@ import com.guyuan.dear.utils.CalenderUtils;
 public class ContractDetailBindingAdapter {
     @BindingAdapter("setContractDate")
     public static void setContractDate(AppCompatTextView view,long date){
+        if(date<=0){
+            view.setVisibility(View.GONE);
+            return;
+        }else {
+            view.setVisibility(View.VISIBLE);
+        }
         view.setText(
                 CalenderUtils.getInstance().toYearMonthDayHourMinuteFormat(date)
         );

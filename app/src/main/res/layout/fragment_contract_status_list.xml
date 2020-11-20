@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="fragment_contract_except_list_vm"
-            type="com.guyuan.dear.focus.contract.view.contractExcptList.ContractExcptListViewModel" />
+            name="fragment_contract_status_list_vm"
+            type="com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -13,10 +13,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <include layout="@layout/layout_search_bar"/>
-        <androidx.recyclerview.widget.RecyclerView
+        <tl.com.easy_recycleview_library.BaseRecyclerView
+            android:id="@+id/fragment_contract_status_list_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:setExcptContractList="@{fragment_contract_except_list_vm.contractList}"
-            app:setOnItemClick="@{fragment_contract_except_list_vm.itemClickListener}"/>
+            android:layout_height="match_parent"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
