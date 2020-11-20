@@ -8,6 +8,8 @@ import com.guyuan.dear.net.reqBean.ContractApplyBody;
 import com.guyuan.dear.net.reqBean.SearchRqBody;
 import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
 import com.guyuan.dear.net.resultBeans.NetClientInfo;
+import com.guyuan.dear.net.resultBeans.NetContractInfo;
+import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
 import com.guyuan.dear.net.resultBeans.NetSearchContactInfo;
 import com.guyuan.dear.net.resultBeans.NetServerParam;
@@ -82,6 +84,20 @@ public interface DearNetApiService extends BaseApiService {
      * @return
      */
     @POST("base/tContractInfo/findContractSearch")
-    Observable<ResultBean<List<NetSearchContactInfo>>> getContractListByTypeAndDate(@Body SearchRqBody body);
+    Observable<ResultBean<BasePageResultBean<NetSearchContactInfo>>> getContractListByTypeAndDate(@Body SearchRqBody body);
+
+    /**
+     * 获取合同异常或合同重启清单
+     */
+    @POST("base/tContractInfo/findContractStatusPage")
+    Observable<ResultBean<BasePageResultBean<NetContractInfo>>> getContractApplyList(@Body SearchRqBody body);
+
+    /**
+     * 获取合同异常/重启详情
+     * @param examineId
+     * @return
+     */
+    @GET("base/tContractInfo/findContractStatusChangeInfo")
+    Observable<ResultBean<NetContractStatusDetail>> getContractStatusDetail(@Query("examineId") int examineId);
 
 }

@@ -3,6 +3,8 @@ package com.guyuan.dear.focus.contract.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.guyuan.dear.net.resultBeans.NetContractInfo;
+
 import kotlin.jvm.Transient;
 
 /**
@@ -25,8 +27,36 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
      */
     private String judgement;
     private String judgementKey;
+    /**
+     * 评审流程ID，获取合同详情时用
+     */
+    private int examineId;
 
     public BaseContractExcptBean() {
+    }
+
+    public BaseContractExcptBean(NetContractInfo info){
+        int state = info.getChangeType();
+        String tag = null;
+        switch (state){
+            case 10002:
+                tag="暂停";
+                break;
+            case 10003:
+                tag="激活";
+                break;
+            default:
+                break;
+        }
+        if(tag!=null){
+            setExceptionTag(tag);
+        }
+        setJudgement(info.getJudgeCondition());
+        setCause(info.getRemarks());
+        setExamineId(info.getExamineId());
+        setContractNum(info.getContractNum());
+        setBuyer(info.getCusName());
+
     }
 
     protected BaseContractExcptBean(Parcel in) {
@@ -35,6 +65,7 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
         cause = in.readString();
         judgement = in.readString();
         judgementKey = in.readString();
+        examineId = in.readInt();
     }
 
     public static final Creator<BaseContractExcptBean> CREATOR = new Creator<BaseContractExcptBean>() {
@@ -81,6 +112,14 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
         this.judgementKey = judgementKey;
     }
 
+    public int getExamineId() {
+        return examineId;
+    }
+
+    public void setExamineId(int examineId) {
+        this.examineId = examineId;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -93,5 +132,6 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
         dest.writeString(cause);
         dest.writeString(judgement);
         dest.writeString(judgementKey);
+        dest.writeInt(examineId);
     }
 }

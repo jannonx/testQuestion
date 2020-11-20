@@ -9,12 +9,17 @@ import com.example.httplibrary.bean.ResultBean;
 import com.example.httplibrary.rx.SchedulersCompat;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.contract.bean.BaseContractBean;
+import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 import com.guyuan.dear.focus.contract.bean.ComContractsBean;
+import com.guyuan.dear.focus.contract.bean.ContractApplyDetailBean;
+import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
 import com.guyuan.dear.net.api.DearNetApiService;
 import com.guyuan.dear.net.reqBean.ContractApplyBody;
 import com.guyuan.dear.net.reqBean.SearchRqBody;
 import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
 import com.guyuan.dear.net.resultBeans.NetClientInfo;
+import com.guyuan.dear.net.resultBeans.NetContractInfo;
+import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
 import com.guyuan.dear.net.resultBeans.NetSearchContactInfo;
 import com.guyuan.dear.net.resultBeans.NetServerParam;
@@ -25,7 +30,6 @@ import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
@@ -121,22 +125,24 @@ public class DearNetHelper {
 
     /**
      * 提交合同暂停/重启申请
-     * @param bean 提交内容
+     *
+     * @param bean     提交内容
      * @param callback
      * @return
      */
-    public Disposable submitContractApply(ContractApplyBean bean, NetCallback<Integer> callback){
+    public Disposable submitContractApply(ContractApplyBean bean, NetCallback<Integer> callback) {
         ContractApplyBody body = new ContractApplyBody(bean);
         Observable<ResultBean<Integer>> observable = netApiService.submitContractApply(body);
-        return getDisposalAsync(observable,callback,null);
+        return getDisposalAsync(observable, callback, null);
     }
 
     /**
      * 查询合同概况
+     *
      * @param date 截至日期
      * @return
      */
-    public Disposable getContractSumByDate(long date,NetCallback<ComContractsBean> callback){
+    public Disposable getContractSumByDate(long date, NetCallback<ComContractsBean> callback) {
         Observable<ResultBean<NetContractSumBean>> observable =
                 netApiService.getContractSumByDate(CalenderUtils.getInstance().toSmartFactoryDateStringFormat(date));
         Mapper<NetContractSumBean, ComContractsBean> mapper = new Mapper<NetContractSumBean, ComContractsBean>() {
@@ -153,29 +159,36 @@ public class DearNetHelper {
                 return bean;
             }
         };
-        return getDisposalAsync(observable,callback,mapper);
+        return getDisposalAsync(observable, callback, mapper);
     }
 
     /**
      * 根据类型和日期获取合同列表
-     * @param type
+     *
+     * @param type     {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_EXCEPTION_CONTRACTS}
+     *                 {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_EXECUTING_CONTRACTS}
+     *                 {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_FINISHED_CONTRACTS}
+     *                 {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_NEW_CONTRACTS}
+     *                 {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_PRE_ANNUAL_DELIVERS}
+     *                 {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_UNFINISHED_CONTRACTS}
      * @param date
      * @param callback
      * @return
      */
-    public Disposable getContractListByTypeAndDate(int type,long date,int pageIndex,int pageSize,NetCallback<List<BaseContractBean>> callback){
+    public Disposable getContractListByTypeAndDate(int type, long date, int pageIndex, int pageSize, NetCallback<List<BaseContractBean>> callback) {
         SearchRqBody body = new SearchRqBody();
-        HashMap<String,String> filters = new HashMap<>(3);
-        filters.put("name","");
-        filters.put("type",String.valueOf(type));
-        filters.put("time",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(date));
+        HashMap<String, String> filters = new HashMap<>(3);
+        filters.put("name", "");
+        filters.put("type", String.valueOf(type));
+        filters.put("time", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(date));
         body.setFilters(filters);
         body.setPageNum(pageIndex);
         body.setPageSize(pageSize);
-        Observable<ResultBean<List<NetSearchContactInfo>>> observable = netApiService.getContractListByTypeAndDate(body);
-        Mapper<List<NetSearchContactInfo>,List<BaseContractBean>> mapper = new Mapper<List<NetSearchContactInfo>, List<BaseContractBean>>() {
+        Observable<ResultBean<BasePageResultBean<NetSearchContactInfo>>> observable = netApiService.getContractListByTypeAndDate(body);
+        Mapper<BasePageResultBean<NetSearchContactInfo>, List<BaseContractBean>> mapper = new Mapper<BasePageResultBean<NetSearchContactInfo>, List<BaseContractBean>>() {
             @Override
-            public List<BaseContractBean> map(List<NetSearchContactInfo> src) {
+            public List<BaseContractBean> map(BasePageResultBean<NetSearchContactInfo> netResult) {
+                List<NetSearchContactInfo> src = netResult.getContent();
                 List<BaseContractBean> result = new ArrayList<>();
                 for (NetSearchContactInfo info : src) {
                     BaseContractBean bean = new BaseContractBean(info);
@@ -184,9 +197,106 @@ public class DearNetHelper {
                 return result;
             }
         };
-        return getDisposalAsync(observable,callback,mapper);
+        return getDisposalAsync(observable, callback, mapper);
 
     }
+
+    /**
+     * 获取所有合同异常列表
+     * @param pageIndex
+     * @param pageSize
+     * @param callback
+     * @return
+     */
+    public Disposable getPauseContractList(int pageIndex, int pageSize, NetCallback<List<BaseContractExcptBean>> callback) {
+        SearchRqBody body = new SearchRqBody();
+        body.setPageSize(pageSize);
+        body.setPageNum(pageIndex);
+        body.setFindType(1);
+        body.setType(1);
+        Observable<ResultBean<BasePageResultBean<NetContractInfo>>> observable = netApiService.getContractApplyList(body);
+        Mapper<BasePageResultBean<NetContractInfo>, List<BaseContractExcptBean>> mapper =
+                new Mapper<BasePageResultBean<NetContractInfo>, List<BaseContractExcptBean>>() {
+                    @Override
+                    public List<BaseContractExcptBean> map(BasePageResultBean<NetContractInfo> src) {
+                        List<BaseContractExcptBean> result = new ArrayList<>();
+                        List<NetContractInfo> content = src.getContent();
+                        for (NetContractInfo temp : content) {
+                            BaseContractExcptBean bean = new BaseContractExcptBean(temp);
+                            result.add(bean);
+                        }
+                        return result;
+                    }
+                };
+
+        return getDisposalAsync(observable,callback,mapper);
+    }
+
+    /**
+     * 获取所有合同重启列表
+     * @param pageIndex
+     * @param pageSize
+     * @param callback
+     * @return
+     */
+    public Disposable getRestartedContractList(int pageIndex, int pageSize, NetCallback<List<RestartedContractBean>> callback){
+        SearchRqBody body = new SearchRqBody();
+        body.setPageSize(pageSize);
+        body.setPageNum(pageIndex);
+        body.setFindType(1);
+        body.setType(2);
+        Observable<ResultBean<BasePageResultBean<NetContractInfo>>> observable = netApiService.getContractApplyList(body);
+        Mapper<BasePageResultBean<NetContractInfo>, List<RestartedContractBean>> mapper =
+                new Mapper<BasePageResultBean<NetContractInfo>, List<RestartedContractBean>>() {
+                    @Override
+                    public List<RestartedContractBean> map(BasePageResultBean<NetContractInfo> src) {
+                        List<RestartedContractBean> result = new ArrayList<>();
+                        List<NetContractInfo> content = src.getContent();
+                        for (NetContractInfo temp : content) {
+                            RestartedContractBean bean = new RestartedContractBean(temp);
+                            result.add(bean);
+                        }
+                        return result;
+                    }
+                };
+
+        return getDisposalAsync(observable,callback,mapper);
+    }
+
+
+    /**
+     * 获取合同暂停申请的详情
+     * @param examineId
+     * @param callback
+     * @return
+     */
+    public Disposable getContractApplyDetail(int examineId, NetCallback<ContractApplyDetailBean> callback){
+        Observable<ResultBean<NetContractStatusDetail>> observable = netApiService.getContractStatusDetail(examineId);
+        Mapper<NetContractStatusDetail, ContractApplyDetailBean> mapper = new Mapper<NetContractStatusDetail, ContractApplyDetailBean>() {
+            @Override
+            public ContractApplyDetailBean map(NetContractStatusDetail src) {
+                return new ContractApplyDetailBean(src);
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+    }
+
+//    /**
+//     * 获取合同重启申请的详情
+//     * @param examineId
+//     * @param callback
+//     * @return
+//     */
+//    public Disposable getRestartedContractDetail(int examineId, NetCallback<RestartedContractDetailBean> callback){
+//        Observable<ResultBean<NetContractStatusDetail>> observable = netApiService.getContractStatusDetail(examineId);
+//        Mapper<NetContractStatusDetail,RestartedContractDetailBean> mapper = new Mapper<NetContractStatusDetail, RestartedContractDetailBean>() {
+//            @Override
+//            public RestartedContractDetailBean map(NetContractStatusDetail src) {
+//                return null;
+//            }
+//        };
+//        return getDisposalAsync(observable,callback,mapper);
+//    }
 
 
     /*************************************底层方法分界线******************************************/

@@ -32,7 +32,6 @@ import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;
  **/
 public class ContractListFragment extends BaseMvvmFragment<FragmentContractListBinding, ContractListViewModel> {
 
-    private List<BaseContractBean> mList = new ArrayList<>();
     private BaseRecyclerViewAdapter mAdapterWrapper;
     private int contractType;
     private long date;
@@ -76,12 +75,10 @@ public class ContractListFragment extends BaseMvvmFragment<FragmentContractListB
         getViewModel().getContractList().observe(getViewLifecycleOwner(), new Observer<List<BaseContractBean>>() {
             @Override
             public void onChanged(List<BaseContractBean> baseContractBeans) {
-                mList.clear();
-                mList.addAll(baseContractBeans);
                 mAdapterWrapper.notifyDataSetChanged();
             }
         });
-        ContractListAdapter adapter = new ContractListAdapter(getContext(), mList);
+        ContractListAdapter adapter = new ContractListAdapter(getContext(), getViewModel().getContractList().getValue());
         BaseRecyclerView recyclerView = getViewDataBinding().fragmentContractListRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -93,13 +90,14 @@ public class ContractListFragment extends BaseMvvmFragment<FragmentContractListB
             @Override
             public void onLoadMore() {
                 getViewModel().loadContractListFromNet(contractType,date);
+                recyclerView.refreshComplete(0);
             }
         });
 
         mAdapterWrapper.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-                BaseContractBean bean = mList.get(i);
+                BaseContractBean bean = getViewModel().getContractList().getValue().get(i);
                 ContractDetailActivity.start(getActivity(), "合同详情", bean.getContractNum());
             }
         });
@@ -107,7 +105,7 @@ public class ContractListFragment extends BaseMvvmFragment<FragmentContractListB
         getViewModel().getIsAllLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                recyclerView.setLoadMoreEnabled(aBoolean);
+                recyclerView.setLoadMoreEnabled(!aBoolean);
             }
         });
         addDisposable(getViewModel().loadContractListFromNet(contractType,date));

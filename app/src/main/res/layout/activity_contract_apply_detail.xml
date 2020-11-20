@@ -10,12 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.guyuan.dear.focus.contract.view.contractExptDetail.ContractExcptDetailActivity">
+        tools:context="com.guyuan.dear.focus.contract.view.contractApplyDetail.ContractApplyDetailActivity">
 
         <include layout="@layout/toolbar" />
 
         <FrameLayout
-            android:id="@+id/activity_contract_excpt_detail_frame_layout"
+            android:id="@+id/activity_contract_apply_detail_frame_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </androidx.appcompat.widget.LinearLayoutCompat>
