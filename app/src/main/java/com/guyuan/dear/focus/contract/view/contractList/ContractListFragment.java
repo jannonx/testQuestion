@@ -35,10 +35,24 @@ public class ContractListFragment extends BaseMvvmFragment<FragmentContractListB
     private List<BaseContractBean> mList = new ArrayList<>();
     private BaseRecyclerViewAdapter mAdapterWrapper;
     private int contractType;
+    private long date;
 
-    public static ContractListFragment getInstance(int contractType) {
+    /**
+     *
+     * @param contractType 参考
+     * {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_EXCEPTION_CONTRACTS}
+     * {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_EXECUTING_CONTRACTS}
+     * {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_FINISHED_CONTRACTS}
+     * {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_NEW_CONTRACTS}
+     * {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_PRE_ANNUAL_DELIVERS}
+     * {@link com.guyuan.dear.focus.contract.bean.BaseContractBean#CONTRACT_TYPE_UNFINISHED_CONTRACTS}
+     * @param date 合同截至日期
+     * @return
+     */
+    public static ContractListFragment getInstance(int contractType,long date) {
         Bundle bundle = new Bundle();
         bundle.putInt(ConstantValue.KEY_CONTRACT_TYPE, contractType);
+        bundle.putLong(ConstantValue.KEY_DATE,date);
         ContractListFragment fragment = new ContractListFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -53,6 +67,7 @@ public class ContractListFragment extends BaseMvvmFragment<FragmentContractListB
     protected void initData() {
         Bundle bundle = getArguments();
         contractType = bundle.getInt(ConstantValue.KEY_CONTRACT_TYPE);
+        date = bundle.getLong(ConstantValue.KEY_DATE);
 
     }
 
@@ -77,13 +92,7 @@ public class ContractListFragment extends BaseMvvmFragment<FragmentContractListB
         recyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                recyclerView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        getViewModel().loadContractListFromNet(contractType);
-                        recyclerView.refreshComplete(5);
-                    }
-                },2000);
+                getViewModel().loadContractListFromNet(contractType,date);
             }
         });
 
@@ -91,12 +100,17 @@ public class ContractListFragment extends BaseMvvmFragment<FragmentContractListB
             @Override
             public void onItemClick(View view, int i) {
                 BaseContractBean bean = mList.get(i);
-                ContractDetailActivity.start(getActivity(), "合同详情", bean.getContractId());
+                ContractDetailActivity.start(getActivity(), "合同详情", bean.getContractNum());
             }
         });
-        getViewModel().loadContractListFromNet(contractType);
 
-
+        getViewModel().getIsAllLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                recyclerView.setLoadMoreEnabled(aBoolean);
+            }
+        });
+        addDisposable(getViewModel().loadContractListFromNet(contractType,date));
     }
 
     @Override

@@ -8,18 +8,24 @@ import com.example.httplibrary.bean.ErrorResultBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.example.httplibrary.rx.SchedulersCompat;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 import com.guyuan.dear.focus.contract.bean.ComContractsBean;
 import com.guyuan.dear.net.api.DearNetApiService;
 import com.guyuan.dear.net.reqBean.ContractApplyBody;
+import com.guyuan.dear.net.reqBean.SearchRqBody;
 import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
 import com.guyuan.dear.net.resultBeans.NetClientInfo;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
+import com.guyuan.dear.net.resultBeans.NetSearchContactInfo;
 import com.guyuan.dear.net.resultBeans.NetServerParam;
 import com.guyuan.dear.net.resultBeans.NetStaffBean;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
@@ -136,10 +142,50 @@ public class DearNetHelper {
         Mapper<NetContractSumBean, ComContractsBean> mapper = new Mapper<NetContractSumBean, ComContractsBean>() {
             @Override
             public ComContractsBean map(NetContractSumBean src) {
-                return null;
+                ComContractsBean bean = new ComContractsBean();
+                bean.setClientTotal(src.getCusNum());
+                bean.setContractsTotal(src.getContNum());
+                bean.setExceptionContracts(src.getExceptionCount());
+                bean.setExecutingContracts(src.getExecutingCount());
+                bean.setFinishedContracts(src.getCompleteNum());
+                bean.setNewContracts(src.getThisYearNum());
+                bean.setPreAnnualDelivers(src.getLastYearNum());
+                return bean;
             }
         };
         return getDisposalAsync(observable,callback,mapper);
+    }
+
+    /**
+     * 根据类型和日期获取合同列表
+     * @param type
+     * @param date
+     * @param callback
+     * @return
+     */
+    public Disposable getContractListByTypeAndDate(int type,long date,int pageIndex,int pageSize,NetCallback<List<BaseContractBean>> callback){
+        SearchRqBody body = new SearchRqBody();
+        HashMap<String,String> filters = new HashMap<>(3);
+        filters.put("name","");
+        filters.put("type",String.valueOf(type));
+        filters.put("time",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(date));
+        body.setFilters(filters);
+        body.setPageNum(pageIndex);
+        body.setPageSize(pageSize);
+        Observable<ResultBean<List<NetSearchContactInfo>>> observable = netApiService.getContractListByTypeAndDate(body);
+        Mapper<List<NetSearchContactInfo>,List<BaseContractBean>> mapper = new Mapper<List<NetSearchContactInfo>, List<BaseContractBean>>() {
+            @Override
+            public List<BaseContractBean> map(List<NetSearchContactInfo> src) {
+                List<BaseContractBean> result = new ArrayList<>();
+                for (NetSearchContactInfo info : src) {
+                    BaseContractBean bean = new BaseContractBean(info);
+                    result.add(bean);
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+
     }
 
 

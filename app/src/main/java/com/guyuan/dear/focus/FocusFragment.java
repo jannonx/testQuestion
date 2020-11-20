@@ -11,6 +11,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentFocusBinding;
+import com.guyuan.dear.focus.aftersale.ui.FocusAfterSaleActivity;
 import com.guyuan.dear.focus.assess.ui.FocusAssessActivity;
 import com.guyuan.dear.focus.client.activity.FocusClientActivity;
 import com.guyuan.dear.focus.device.ui.FocusDeviceActivity;
@@ -23,6 +24,7 @@ import com.guyuan.dear.focus.qc.views.home.QcHomeActivity;
 import com.guyuan.dear.focus.purchase.ui.FocusPurchaseActivity;
 import com.guyuan.dear.focus.security.ui.FocusSecurityActivity;
 import com.guyuan.dear.focus.stock.ui.FocusStockActivity;
+import com.guyuan.dear.focus.transport.ui.TransportActivity;
 import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
@@ -127,7 +129,7 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
                                 break;
 
                             case ConstantValue.FOCUS_TRANSPORT://运输
-
+                                TransportActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.FOCUS_PROJECT_SITE://工程现场
@@ -135,7 +137,7 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
                                 break;
 
                             case ConstantValue.FOCUS_AFTER_SERVICE://售后服务
-
+                                FocusAfterSaleActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.FOCUS_MORNING_MEETING://晨会
@@ -155,6 +157,7 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
                                 break;
                             case ConstantValue.FOCUS_CUSTOMER://客户
                                 FocusClientActivity.start(getContext(), title);
+
                             default:
                                 break;
                         }

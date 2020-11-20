@@ -32,7 +32,7 @@ public class ContractPrgHomeListAdapter extends BaseRecyclerAdapter<BaseContract
 
     @Override
     protected void bindDataToView(BaseRecyclerViewHolder holder, BaseContractBean item, int position) {
-        holder.setText(R.id.item_contract_prg_home_tv_contract_id,item.getContractId());
+        holder.setText(R.id.item_contract_prg_home_tv_contract_id,item.getContractNum());
         holder.setText(R.id.item_contract_prg_home_tv_buyer,item.getBuyer());
         holder.setText(R.id.item_contract_prg_home_tv_date,
                 CalenderUtils.getInstance().toYearMonthDayHourMinuteFormat(item.getDate()));

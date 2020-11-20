@@ -3,6 +3,10 @@ package com.guyuan.dear.focus.contract.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.guyuan.dear.net.resultBeans.NetSearchContactInfo;
+import com.guyuan.dear.utils.CalenderUtils;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import kotlin.jvm.Transient;
@@ -15,9 +19,14 @@ import kotlin.jvm.Transient;
  **/
 public class BaseContractBean implements Parcelable {
     /**
-     * 合同编号
+     * 合同编号，做展示时用
      */
-    private String contractId;
+    private String contractNum;
+    /**
+     * 合同ID,网络请求时用
+     */
+    private long contractId;
+
     /**
      * 销售人员
      */
@@ -45,15 +54,15 @@ public class BaseContractBean implements Parcelable {
     private List<String> tags;
 
     @Transient
-    public static final int CONTRACT_TYPE_PRE_ANNUAL_DELIVERS = 0;
+    public static final int CONTRACT_TYPE_PRE_ANNUAL_DELIVERS = 1;
     @Transient
-    public static final int CONTRACT_TYPE_NEW_CONTRACTS = 1;
+    public static final int CONTRACT_TYPE_NEW_CONTRACTS = 2;
     @Transient
-    public static final int CONTRACT_TYPE_FINISHED_CONTRACTS = 2;
+    public static final int CONTRACT_TYPE_FINISHED_CONTRACTS = 3;
     @Transient
-    public static final int CONTRACT_TYPE_EXECUTING_CONTRACTS = 3;
+    public static final int CONTRACT_TYPE_EXECUTING_CONTRACTS = 4;
     @Transient
-    public static final int CONTRACT_TYPE_UNFINISHED_CONTRACTS = 4;
+    public static final int CONTRACT_TYPE_UNFINISHED_CONTRACTS = 6;
     @Transient
     public static final int CONTRACT_TYPE_EXCEPTION_CONTRACTS = 5;
 
@@ -61,8 +70,31 @@ public class BaseContractBean implements Parcelable {
     public BaseContractBean() {
     }
 
+    public BaseContractBean(NetSearchContactInfo info) {
+        setContractNum(info.getContractNum());
+        setBuyer(info.getContractNum());
+        setProductName(info.getEquipmentName());
+        setProductModel(info.getEquipmentModel());
+        setSalesPerson(info.getSalesman());
+        setDate(CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(info.getSignTime()).getTime());
+        setTags(new ArrayList<String>());
+        int state = info.getState();
+        String tag = null;
+        if (state == 0) {
+            tag = "正常执行";
+        } else if (state == 1) {
+            tag = "异常执行";
+        } else if (state == 3) {
+            tag = "验收合格";
+        }
+        if (tag != null) {
+            getTags().add(tag);
+        }
+    }
+
     protected BaseContractBean(Parcel in) {
-        contractId = in.readString();
+        contractNum = in.readString();
+        contractId = in.readLong();
         salesPerson = in.readString();
         buyer = in.readString();
         buyerId = in.readInt();
@@ -84,12 +116,12 @@ public class BaseContractBean implements Parcelable {
         }
     };
 
-    public String getContractId() {
-        return contractId;
+    public String getContractNum() {
+        return contractNum;
     }
 
-    public void setContractId(String contractId) {
-        this.contractId = contractId;
+    public void setContractNum(String contractNum) {
+        this.contractNum = contractNum;
     }
 
     public String getSalesPerson() {
@@ -148,6 +180,14 @@ public class BaseContractBean implements Parcelable {
         this.buyerId = buyerId;
     }
 
+    public long getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(long contractId) {
+        this.contractId = contractId;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -155,7 +195,8 @@ public class BaseContractBean implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(contractId);
+        dest.writeString(contractNum);
+        dest.writeLong(contractId);
         dest.writeString(salesPerson);
         dest.writeString(buyer);
         dest.writeInt(buyerId);

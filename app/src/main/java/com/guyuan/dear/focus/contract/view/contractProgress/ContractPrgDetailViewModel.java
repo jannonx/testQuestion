@@ -36,7 +36,7 @@ public class ContractPrgDetailViewModel extends BaseViewModel {
         PrgDetailContractBean bean = new PrgDetailContractBean();
         bean.setBuyer("深圳固远智能机器人公司");
         bean.setDate(System.currentTimeMillis());
-        bean.setContractId(contractId);
+        bean.setContractNum(contractId);
         bean.setProductName("空气分离设备");
         bean.setSalesPerson("马冬梅");
         bean.setProductModel("DEAR-001");

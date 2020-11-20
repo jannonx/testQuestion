@@ -72,7 +72,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".work.qc.views.home.QcHomeActivity"></activity>
+        <activity android:name=".work.qc.views.home.QcHomeActivity" />
         <activity android:name=".focus.qc.views.materialQcDetail.MaterialQcReportDetailActivity" />
         <activity android:name=".focus.qc.views.productQcDetail.ProductQcReportDetailActivity" />
         <activity android:name=".focus.qc.views.qcReportList.QcSumListActivity" />
@@ -95,14 +95,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- #############掌上办公############# -->
-        <activity android:name=".focus.sales.view.zoomView.ZoomViewActivity" />
-        <activity android:name=".focus.sales.view.contractProgress.ContractPrgDetailActivity" />
-        <activity android:name=".focus.sales.view.contractList.ContractListActivity" />
-        <activity android:name=".focus.sales.view.contractDetail.ContractDetailActivity" />
-        <activity android:name=".focus.sales.view.home.SalesHomeActivity" />
         <activity android:name=".focus.hr.view.hrStaffAttendDetail.StaffAttendDetailActivity" />
         <activity android:name=".focus.hr.view.hrStatusGrp.HrStatusGroupActivity" />
-        <activity android:name=".focus.hr.view.home.HrHomeActivity" /> <!-- 今日头条屏幕适配 -->
+        <activity android:name=".focus.hr.view.home.HrHomeActivity" />
+        <!-- 今日头条屏幕适配 -->
         <meta-data
             android:name="design_width_in_dp"
             android:value="360" />
@@ -110,8 +106,16 @@
             android:name="design_height_in_dp"
             android:value="675" />
 
-        <activity android:name=".home.MainActivity" />
-        <activity android:name=".login.ui.LoginActivity" />
+        <activity
+            android:name=".home.MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".login.ui.LoginActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".approve.ApproveActivity"
             android:launchMode="singleTop"
@@ -450,6 +454,26 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".work.goodssign.ui.GoodsSignItemDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.aftersale.ui.detail.FocusAfterSaleDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.aftersale.ui.FocusAfterSaleActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.transport.ui.TransportActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.transport.ui.detail.TransportDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

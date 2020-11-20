@@ -71,7 +71,12 @@ public class ComContractSumBindingAdapter {
         dateSet.setValueFormatter(new IValueFormatter() {
             @Override
             public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
-                return String.format(Locale.CHINA,"%d",(int)entry.getY());
+                int y = (int) entry.getY();
+                if(y>0){
+                    return String.format(Locale.CHINA,"%d", y);
+                }else {
+                    return "";
+                }
             }
         });
         view.setExtraOffsets(10, 10, 10, 10);

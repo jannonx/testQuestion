@@ -29,7 +29,7 @@ public class ContractPrgHomeViewModel extends BaseViewModel {
         for (int i = 0; i < pageSize; i++) {
             BaseContractBean bean = new BaseContractBean();
             bean.setSalesPerson("何金水");
-            bean.setContractId("DEAR-2020/10/11-"+(i+1));
+            bean.setContractNum("DEAR-2020/10/11-"+(i+1));
             bean.setBuyer("深圳固远智能机器人有限公司");
             bean.setDate(System.currentTimeMillis());
             List<String> tags = new ArrayList<>();

@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.mvvmlibrary.data.SingleLiveEvent;
@@ -35,6 +37,10 @@ public class BaseViewModel extends ViewModel {
     private SingleLiveEvent<Void> finishEvent;  //关闭当前activity
     private SingleLiveEvent<Void> onBackPressedEvent; //点击返回键
     private SingleLiveEvent<Void> listComplete;   //列表获取数据结束
+    /**
+     * 是否显示loading by Leo
+     */
+    public MutableLiveData<Boolean> isShowLoading = new MutableLiveData<>(false);
 
     public SingleLiveEvent<String> getShowLoading() {
         showLoading = createLiveData(showLoading);
@@ -145,4 +151,5 @@ public class BaseViewModel extends ViewModel {
     public void onDestroy(){
 
     }
+
 }

@@ -84,7 +84,7 @@
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@{fragment_contract_excpt_detail_vm.detailBean.contractId,default=xxxx}"
+                                android:text="@{fragment_contract_excpt_detail_vm.detailBean.contractNum,default=xxxx}"
                                 android:textColor="#999999"
                                 android:textSize="@dimen/sp_14"
                                 app:layout_constraintLeft_toLeftOf="parent"

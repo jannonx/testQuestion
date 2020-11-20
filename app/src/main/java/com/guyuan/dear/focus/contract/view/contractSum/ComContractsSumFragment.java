@@ -15,6 +15,8 @@ import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
 
+import io.reactivex.disposables.Disposable;
+
 /**
  * 我的关注-销售首页-合同订单概况
  *
@@ -36,8 +38,8 @@ public class ComContractsSumFragment extends BaseMvvmFragment<ComContractsBindin
 
     @Override
     protected void initData() {
-        getViewModel().setSelectDate(System.currentTimeMillis());
-
+        Disposable disposable = getViewModel().updateSummary(System.currentTimeMillis());
+        addDisposable(disposable);
     }
 
     @Override
@@ -64,7 +66,7 @@ public class ComContractsSumFragment extends BaseMvvmFragment<ComContractsBindin
                         new OnDateSetListener() {
                             @Override
                             public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
-                                viewModel.setSelectDate(millseconds);
+                                viewModel.updateSummary(millseconds);
                             }
                         }
                 );
@@ -73,40 +75,52 @@ public class ComContractsSumFragment extends BaseMvvmFragment<ComContractsBindin
         viewModel.setOnClickShowPreAnnualDelivers(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"上年交付", BaseContractBean.CONTRACT_TYPE_PRE_ANNUAL_DELIVERS);
+                ContractListActivity.start(getActivity(),"上年交付",
+                        BaseContractBean.CONTRACT_TYPE_PRE_ANNUAL_DELIVERS,
+                        getViewModel().getSelectDate().getValue());
             }
         });
 
         viewModel.setOnClickShowNewContracts(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"今年新签", BaseContractBean.CONTRACT_TYPE_NEW_CONTRACTS);
+                ContractListActivity.start(getActivity(),"今年新签",
+                        BaseContractBean.CONTRACT_TYPE_NEW_CONTRACTS,
+                        getViewModel().getSelectDate().getValue());
             }
         });
         viewModel.setOnClickShowFinished(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"已经完成", BaseContractBean.CONTRACT_TYPE_FINISHED_CONTRACTS);
+                ContractListActivity.start(getActivity(),"已经完成",
+                        BaseContractBean.CONTRACT_TYPE_FINISHED_CONTRACTS,
+                        getViewModel().getSelectDate().getValue());
             }
         });
         viewModel.setOnClickShowExecuting(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"正在执行", BaseContractBean.CONTRACT_TYPE_EXECUTING_CONTRACTS);
+                ContractListActivity.start(getActivity(),"正在执行",
+                        BaseContractBean.CONTRACT_TYPE_EXECUTING_CONTRACTS,
+                        getViewModel().getSelectDate().getValue());
             }
         });
 
         viewModel.setOnClickShowUnfinished(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"未完成", BaseContractBean.CONTRACT_TYPE_UNFINISHED_CONTRACTS);
+                ContractListActivity.start(getActivity(),"未完成",
+                        BaseContractBean.CONTRACT_TYPE_UNFINISHED_CONTRACTS,
+                        getViewModel().getSelectDate().getValue());
             }
         });
 
         viewModel.setOnClickShowExceptions(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(),"执行异常", BaseContractBean.CONTRACT_TYPE_EXCEPTION_CONTRACTS);
+                ContractListActivity.start(getActivity(),"执行异常",
+                        BaseContractBean.CONTRACT_TYPE_EXCEPTION_CONTRACTS,
+                        getViewModel().getSelectDate().getValue());
             }
         });
 

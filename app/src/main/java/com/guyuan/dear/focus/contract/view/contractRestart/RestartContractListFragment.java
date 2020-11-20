@@ -41,7 +41,7 @@ public class RestartContractListFragment extends BaseMvvmFragment<FragmentRestar
         viewModel.setOnItemClickListener(new RestartedContractListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(RestartedContractBean item, int pos) {
-                RestartedContractDetailActivity.start(getContext(),"合同重启详情",item.getContractId());
+                RestartedContractDetailActivity.start(getContext(),"合同重启详情",item.getContractNum());
             }
         });
         viewModel.getRestartedContractListFromNet();

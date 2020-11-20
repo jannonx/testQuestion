@@ -2,12 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
 
         <variable
-            name="goodsSignListBean"
-            type="com.guyuan.dear.work.goodssign.data.bean.GoodsSignListBean.ContentBean" />
+            name="goodsSignBean"
+            type="com.guyuan.dear.work.goodssign.data.bean.GoodsSignBean" />
     </data>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
-                android:text="@{goodsSignListBean.supplierName}"
+                android:text="@{goodsSignBean.name}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="深圳固远" />
@@ -39,6 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
+                app:focusPurchaseStatus="@{goodsSignBean.status}"
                 app:layout_constraintBottom_toBottomOf="@+id/goods_customer_name_tv"
                 app:layout_constraintStart_toEndOf="@+id/goods_customer_name_tv"
                 app:layout_constraintTop_toTopOf="@+id/goods_customer_name_tv"
@@ -50,51 +53,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@{String.format(@string/work_goods_sign_contract,goodsSignListBean.code)}"
+                android:text="@{String.format(@string/focus_purchase_code,goodsSignBean.code)}"
                 app:layout_constraintStart_toStartOf="@+id/goods_customer_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/goods_customer_name_tv"
-                tools:text="@string/work_goods_sign_contract" />
+                tools:text="@string/focus_purchase_code" />
 
-            <View
-                android:id="@+id/view21"
-                style="@style/DivideLine"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/goods_contract_number_tv" />
-
-            <TextView
-                android:id="@+id/sign_follow_person_tv"
-                style="@style/TextSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@{String.format(@string/work_goods_sign_person,goodsSignListBean.followName)}"
-                app:layout_constraintStart_toStartOf="@+id/goods_customer_name_tv"
-                app:layout_constraintTop_toBottomOf="@+id/view21"
-                tools:text="@string/work_goods_sign_person" />
-
-            <TextView
-                android:id="@+id/sign_time_tv"
-                style="@style/TextSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:text="@{goodsSignListBean.signTime}"
-                app:layout_constraintBottom_toBottomOf="@+id/sign_follow_person_tv"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/sign_follow_person_tv"
-                tools:text="2020-11-23" />
 
             <TextView
                 android:id="@+id/sign_number_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
+                android:text="@{String.format(@string/piece_number,goodsSignBean.number)}"
                 app:layout_constraintBottom_toBottomOf="@+id/goods_customer_name_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/goods_customer_name_tv"
-                tools:text="3 件" />
+                tools:text="3 件"
+                app:drawableEndCompat="@mipmap/right_direction" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

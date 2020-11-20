@@ -12,7 +12,6 @@ import com.guyuan.dear.net.resultBeans.NetClientInfo;
 import com.guyuan.dear.net.resultBeans.NetServerParam;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
-import com.guyuan.dear.work.contractPause.beans.PauseContractBean;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 import java.util.ArrayList;
@@ -210,7 +209,7 @@ public class ContractApplyViewModel extends BaseViewModel {
     public ContractApplyBean genApplyBean() {
         ContractApplyBean bean = new ContractApplyBean();
         bean.setBuyerId(getClientId());
-        bean.setContractId(String.valueOf(contractId));
+        bean.setContractNum(String.valueOf(contractId));
         bean.setJudgementKey(judgeConditionKey);
         bean.setDetailReason(description.getValue());
         bean.setSendList(sendList.getValue());

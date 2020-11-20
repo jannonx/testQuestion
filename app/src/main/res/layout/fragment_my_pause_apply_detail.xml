@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/sp_14"
                     android:textColor="@color/color_grey_999999"
-                    android:text="@{fragment_my_pause_apply_detail_vm.applyBean.contractId}"/>
+                    android:text="@{fragment_my_pause_apply_detail_vm.applyBean.contractNum}"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"

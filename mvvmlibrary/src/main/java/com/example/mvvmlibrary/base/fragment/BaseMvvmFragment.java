@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
@@ -66,6 +67,18 @@ public abstract class BaseMvvmFragment<VDB extends ViewDataBinding, VM extends B
         initData();
         initViews();
         initListeners();
+        //根据数据源的改变，显示或者消除“装载中”的图标
+        getViewModel().isShowLoading.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+                    showLoading(getParentFragmentManager());
+                }else {
+                    hideLoading();
+                }
+            }
+        });
+
     }
 
     protected abstract void initData();

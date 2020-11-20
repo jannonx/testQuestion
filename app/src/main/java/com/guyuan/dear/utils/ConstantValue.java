@@ -54,6 +54,7 @@ public class ConstantValue {
     public static final String KEY_DATE_START = "KEY_DATE_START";
     public static final String KEY_DATE_TO = "KEY_DATE_TO";
     public static final String KEY_APPLY_TYPE = "KEY_APPLY_TYPE";
+    public static final String KEY_DATE = "KEY_DATE";
 
     public static int isForground;   //app是否在前台
     public static boolean hasNewVersion = false;//是否有新版本
@@ -86,6 +87,7 @@ public class ConstantValue {
     //首页入口权限字段
     public static final String FOCUS = "my_focus";
     public static final String WORK = "my_work";
+    public static final String OFFICE = "office";
     public static final String SMART_MANAGEMENT = "smart_management";
     public static final String MINE = "mine";
 
@@ -123,26 +125,19 @@ public class ConstantValue {
     public static final String CONTRACT_RESTART = "contract_restart";
     public static final String WORK_CONTRACT_ASSESS = "work_contract_assess";
     public static final String WORK_GOODS_SIGN = "work_goods_sign";
-    public static final String WORK_QC="work_qc";
+    public static final String WORK_QC = "work_qc";
 
+    //移动办公
+    public static final String OFFICE_HANDLE_ASSESS = "officeHandleAssess";//审批处理
+    public static final String OFFICE_WORK_REPORT = "officeWorkReport"; //工作报告
+    public static final String OFFICE_LEAVE = "officeLeave";//请假申请
+    public static final String OFFICE_SIGN = "officeSign"; //考勤打卡
+
+    //智慧管理
+    public static final String MANAGE_BENEFIT = "manage_benefit";//运营效益
 
     //摄像头界面
     public static final String SURVEILLANCE_ACTIVITY = "surveillanceActivity";
-
-
-    //移动办公
-    public static final String MOBILE_OFFICE_PENDING_FOR_MY_APPROVAL =
-            "MobileOfficePendingForMyApproval";//待我审批
-    public static final String MOBILEOFFICE_MEETING = "MobileOffice_Meeting";
-    public static final String MOBILEOFFICE_NOTICE = "MobileOffice_Notice";
-    public static final String MOBILEOFFICE_SIGNIN = "MobileOffice_SignIn";
-    public static final String MOBILEOFFICE_SIGNOUT = "MobileOffice_SignOut";
-    public static final String MOBILEOFFICE_UPLOAD = "MobileOffice_UpLoad";
-    public static final String MOBILE_OFFICE_MY_APPLY = "MobileOfficeMyApply";//我的申请
-    public static final String MOBILE_OFFICE_MY_APPROVAL_HISTORY = "MobileOfficeMyApprovalHistory";
-    public static final String MOBILE_OFFICE_APPROVALS_BROWSER = "MobileOfficeApprovalsBrowser";//我的审批
-    public static final String MOBILEOFFICE_REPORT = "MobileOffice_Report"; //工作报告
-    public static final String MobileOffice_Sign = "MobileOffice_Sign"; //签到打卡
 
     //审批
     public static final String MOBILE_OFFICE_APPROVE_APPLY_FOR_LEAVE =

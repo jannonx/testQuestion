@@ -89,7 +89,7 @@ public class ContractDetailFragment extends BaseMvvmFragment<FragmentContractDet
             @Override
             public void onClick(View v) {
                 ContractPrgDetailActivity.start(getActivity(),"合同订单进度详情",
-                        getViewModel().getContractBean().getValue().getContractId());
+                        getViewModel().getContractBean().getValue().getContractNum());
 
             }
         });

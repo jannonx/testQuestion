@@ -49,6 +49,11 @@ public abstract class BaseDataBindingActivity<V extends ViewDataBinding, VM exte
         } catch (Exception e) {
             showToastTip(e.getMessage());
         }
+
+        if (getVariableId() != 0) {
+            binding.setVariable(getVariableId(), viewModel);
+            binding.setLifecycleOwner(this);
+        }
     }
 
     protected void initLiveData() {
@@ -82,16 +87,28 @@ public abstract class BaseDataBindingActivity<V extends ViewDataBinding, VM exte
                     startActivity(clz, bundle);
                 }
             });
+
+            viewModel.getFinishEvent().observe(this, new Observer<Void>() {
+                @Override
+                public void onChanged(Void aVoid) {
+                    finish();
+                }
+            });
         }
     }
 
 
     protected abstract void initData(Bundle savedInstanceState);
 
+    protected int getVariableId() {
+        return 0;
+    }
+
+    ;
+
     public VM getViewModel() {
         return viewModel;
     }
-
 
 
     @Override

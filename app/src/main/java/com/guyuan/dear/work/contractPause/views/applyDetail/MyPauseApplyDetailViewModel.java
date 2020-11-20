@@ -6,7 +6,6 @@ import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.google.gson.Gson;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.MeetingComment;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.Vote;
-import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import com.guyuan.dear.work.contractPause.beans.MyPauseApplyBean;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogApproved;
@@ -14,7 +13,6 @@ import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogFir
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogProcessing;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogReject;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ApproveLogToBePrc;
-import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.ContractApplyDetailBean;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.GenericApproveLog;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.MyPauseApplyDetailBean;
 
@@ -42,7 +40,7 @@ public class MyPauseApplyDetailViewModel extends BaseViewModel {
         MyPauseApplyDetailBean detailBean = new MyPauseApplyDetailBean();
         detailBean.setBuyer(bean.getBuyer());
         detailBean.setJudgement(bean.getJudgement());
-        detailBean.setContractId(bean.getContractId());
+        detailBean.setContractNum(bean.getContractNum());
         detailBean.setDate(bean.getDate());
         detailBean.setExceptionTag(bean.getExceptionTag());
         detailBean.setState(bean.getState());

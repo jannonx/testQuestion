@@ -75,6 +75,11 @@ public class AnalyseFragment extends BaseListFragment<LoginBean.AppMenusBean.Chi
                         String url = childrenBean.getUrl();
                         String title = childrenBean.getTitle();
 
+                        switch (url) {
+                            case ConstantValue.MANAGE_BENEFIT://运营效益
+
+                                break;
+                        }
                     } else {
                         showToastTip(ConstantValue.NO_INTERNET);
                     }

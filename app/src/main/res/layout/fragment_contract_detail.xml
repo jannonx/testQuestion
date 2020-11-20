@@ -28,7 +28,7 @@
                     android:textColor="@color/black"
                     android:paddingLeft="@dimen/dp_10"
                     android:paddingTop="@dimen/dp_10"
-                    android:text="@{fragment_contract_detail_vm.contractBean.contractId}"/>
+                    android:text="@{fragment_contract_detail_vm.contractBean.contactNumber}"/>
             </TableRow>
             <TableRow>
                 <androidx.appcompat.widget.AppCompatTextView
