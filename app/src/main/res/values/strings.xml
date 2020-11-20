@@ -228,6 +228,10 @@
         <item>生产动态</item>
         <item>生产计划</item>
     </array>
+    <array name="focus_site_explore_tab">
+        <item>勘查记录</item>
+        <item>勘查内容</item>
+    </array>
     <array name="real_time_quality">
         <item>质量概况</item>
         <item>质量异常</item>
@@ -383,7 +387,7 @@
     <string name="work_goods_sign_material">材质：%s</string>
     <string name="work_goods_sign_remark">备注：%s</string>
     <string name="piece_number">%d&#12288;件</string>
-    
+
     <!--我的关注-售后-->
     <string name="focus_after_sale_project_name">项目名称：%s</string>
     <string name="focus_after_sale_customer_name">客户名称：%s</string>

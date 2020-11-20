@@ -69,7 +69,7 @@ public class FocusProjectSiteFragment extends BaseDataBindingFragment<FragmentFo
         binding.tvSafeCheck.setText(data.getSafetyNumber());
         binding.tvGoodsCheck.setText(data.getGoodsNumber());
         binding.tvInstallationDebug.setText(data.getInstallNumber());
-        binding.tvCustomerAcceptance.setText(data.getProspectNumber());
+        binding.tvCustomerAcceptance.setText(data.getCusNumber());
     }
 
     @Override

@@ -53,7 +53,7 @@ public enum CheckSafeSatisfyType implements Serializable {
                 return type;
             }
         }
-        return null;
+        return TYPE_UNKNOWN;
     }
 
     public static String toText(int type) {

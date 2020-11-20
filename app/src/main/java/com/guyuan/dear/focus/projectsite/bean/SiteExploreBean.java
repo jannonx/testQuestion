@@ -28,6 +28,10 @@ public class SiteExploreBean implements Serializable {
     private int auditFormType;
     private ProjectReportType projectReportType;
     /**
+     * 客户名称
+     */
+    private String cusName;
+    /**
      * 目的地
      */
     private String destination;
@@ -103,6 +107,7 @@ public class SiteExploreBean implements Serializable {
      * 客户名称
      */
     private String customerName;
+
     /**
      * 项目名称
      */
@@ -139,6 +144,15 @@ public class SiteExploreBean implements Serializable {
      * 回复意见集
      */
     private List<ProjectSiteOpinionBean> psAuditItemVOList;
+
+    /**
+     * 货物清单
+     */
+    private List<CheckGoodsBean> checkTransportProjectListVO;
+    /**
+     * 安装调试/客户验收
+     */
+    private List<InstallDebugBean> appInstallDebugItemVOList;
 
 
     public long getId() {
@@ -400,6 +414,63 @@ public class SiteExploreBean implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+
+    public String getCusName() {
+        return cusName;
+    }
+
+    public void setCusName(String cusName) {
+        this.cusName = cusName;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getAuditItemExplain() {
+        return auditItemExplain;
+    }
+
+    public void setAuditItemExplain(String auditItemExplain) {
+        this.auditItemExplain = auditItemExplain;
+    }
+
+    public List<ProjectSiteStatusBean> getAnswerVOList() {
+        return answerVOList;
+    }
+
+    public void setAnswerVOList(List<ProjectSiteStatusBean> answerVOList) {
+        this.answerVOList = answerVOList;
+    }
+
+    public List<ProjectSiteOpinionBean> getPsAuditItemVOList() {
+        return psAuditItemVOList;
+    }
+
+    public void setPsAuditItemVOList(List<ProjectSiteOpinionBean> psAuditItemVOList) {
+        this.psAuditItemVOList = psAuditItemVOList;
+    }
+
+    public List<CheckGoodsBean> getCheckTransportProjectListVO() {
+        return checkTransportProjectListVO;
+    }
+
+    public void setCheckTransportProjectListVO(List<CheckGoodsBean> checkTransportProjectListVO) {
+        this.checkTransportProjectListVO = checkTransportProjectListVO;
+    }
+
+    public List<InstallDebugBean> getAppInstallDebugItemVOList() {
+        return appInstallDebugItemVOList;
+    }
+
+    public void setAppInstallDebugItemVOList(List<InstallDebugBean> appInstallDebugItemVOList) {
+        this.appInstallDebugItemVOList = appInstallDebugItemVOList;
     }
 
     public String getCustomerName() {

@@ -36,7 +36,7 @@ public class FocusInstallationDebugAllActivity extends BaseToolbarActivity<Activ
     protected void initFragment(Bundle savedInstanceState) {
         SiteExploreBean bean = (SiteExploreBean) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
         binding.toolbarContainer.titleTv.setText(bean.getProjectReportType().getDes() + "详情");
-        BaseFragment mFragment = InstallationDebugAllFragment.newInstance();
+        BaseFragment mFragment = InstallationDebugAllFragment.newInstance(bean);
 
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
                 InstallationDebugAllFragment.TAG);

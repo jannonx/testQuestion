@@ -4,7 +4,6 @@ import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.focus.projectsite.bean.ProjectOverViewBean;
-import com.guyuan.dear.focus.projectsite.bean.ProjectSiteCommonDetailBean;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteStatusBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
@@ -109,7 +108,7 @@ public interface FocusProjectSiteApiService extends BaseApiService {
      * @return
      */
     @GET("base/auditSafety/queryDetailById")
-    Observable<ResultBean<ProjectSiteCommonDetailBean>> getCheckSafeDetailData(@Query("id") long id);
+    Observable<ResultBean<SiteExploreBean>> getCheckSafeDetailData(@Query("id") long id);
 
 
     /**
@@ -153,8 +152,8 @@ public interface FocusProjectSiteApiService extends BaseApiService {
      * @param id 查询id
      * @return
      */
-    @GET("base/auditGoods/queryDetailById")
-    Observable<ResultBean<ProjectSiteCommonDetailBean>> getCheckGoodDetailData(@Query("id") long id);
+    @GET("base/auditGoods/findByDetails")
+    Observable<ResultBean<SiteExploreBean>> getCheckGoodDetailData(@Query("id") long id);
 
 
     /**
@@ -193,13 +192,22 @@ public interface FocusProjectSiteApiService extends BaseApiService {
 
 
     /**
-     * 工程现场-安装调试单-app根据评审id查看详情
+     * 工程现场-安装调试单-app根据评审id查看详情(多个集合)
      *
      * @param id 查询id
      * @return
      */
-    @GET("base/install/queryDetailById")
-    Observable<ResultBean<ProjectSiteCommonDetailBean>> getInstallDebugDetailData(@Query("id") long id);
+    @GET("base/install/findByDetails")
+    Observable<ResultBean<SiteExploreBean>> getInstallDebugDetailData(@Query("id") long id);
+
+    /**
+     * 工程现场-安装调试单-app根据评审id查看详情(单个)
+     *
+     * @param id 查询id
+     * @return
+     */
+    @GET("base/install/findBySingleDetails")
+    Observable<ResultBean<SiteExploreBean>> getInstallDebugDetailDataBySingle(@Query("id") long id);
 
 
     /**
@@ -244,7 +252,7 @@ public interface FocusProjectSiteApiService extends BaseApiService {
      * @return
      */
     @GET("base/auditCustomerAccept/queryDetailById")
-    Observable<ResultBean<ProjectSiteCommonDetailBean>> getCustomerAcceptanceDetailData(@Query("id") long id);
+    Observable<ResultBean<SiteExploreBean>> getCustomerAcceptanceDetailData(@Query("id") long id);
 
 
     /**

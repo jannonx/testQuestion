@@ -22,6 +22,7 @@ import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
+import com.guyuan.dear.work.projectsite.activity.ResultReportDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +69,14 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                jumpToDetail(listData.get(position));
+                switch (reportType) {
+                    case TYPE_INSTALLATION_DEBUG:
+                        FocusInstallationDebugAllActivity.start(getContext(), listData.get(position));
+                        break;
+                    default:
+                        FocusSiteExplorationDetailActivity.start(getContext(), listData.get(position));
+                }
+
             }
         });
 
@@ -163,37 +171,6 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
         setListData(tempList);
     }
 
-    /**
-     * 跳转到不同的详情页面
-     *
-     * @param exploreBean 报告类型
-     */
-    private void jumpToDetail(SiteExploreBean exploreBean) {
-        switch (reportType) {
-            ///现场勘查报告
-            case TYPE_SITE_EXPLORATION:
-                FocusSiteExplorationDetailActivity.start(getContext(), exploreBean);
-                break;
-            ///货物清点报告
-            case TYPE_CHECK_GOODS:
-                FocusCheckGoodsDetailActivity.start(getContext(), exploreBean);
-                break;
-            ///安全排查报告
-            case TYPE_CHECK_SAFE:
-                FocusCheckSafeDetailActivity.start(getContext(), exploreBean);
-                break;
-            ///安装调试报告
-            case TYPE_INSTALLATION_DEBUG:
-                FocusInstallationDebugAllActivity.start(getContext(), exploreBean);
-                break;
-            ///客户验收报告
-            case TYPE_CUSTOMER_ACCEPTANCE:
-                FocusCustomerAcceptanceDetailActivity.start(getContext(), exploreBean);
-                break;
-
-            default:
-        }
-    }
 
     private RequestBody getListRequestBody(boolean isRefresh) {
         currentType = isRefresh ? REFRESH : LOAD_MORE;

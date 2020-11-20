@@ -81,7 +81,7 @@ public class FocusInstallationDebugDetailFragment extends BaseDataBindingFragmen
 
     private void initViewPager() {
         List<Fragment> tabFragmentList = new ArrayList<>();
-        statusFragment = ProjectSiteStatusFragment.newInstance();
+        statusFragment = ProjectSiteStatusFragment.newInstance(null);
         planFragment = FollowProducePlanFragment.newInstance();
 
         tabFragmentList.add(statusFragment);

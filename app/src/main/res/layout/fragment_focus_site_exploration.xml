@@ -86,7 +86,7 @@
                     app:layout_constraintTop_toTopOf="@+id/label_project_code" />
 
                 <TextView
-                    android:id="@+id/label_duty_unit"
+                    android:id="@+id/label_check_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_12"
@@ -97,15 +97,15 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_project_code" />
 
                 <TextView
-                    android:id="@+id/tv_duty_unit"
+                    android:id="@+id/tv_check_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="小刘"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_duty_unit"
-                    app:layout_constraintStart_toEndOf="@+id/label_duty_unit"
-                    app:layout_constraintTop_toTopOf="@+id/label_duty_unit" />
+                    app:layout_constraintBottom_toBottomOf="@+id/label_check_name"
+                    app:layout_constraintStart_toEndOf="@+id/label_check_name"
+                    app:layout_constraintTop_toTopOf="@+id/label_check_name" />
 
                 <View
                     android:id="@+id/v_line_1"
@@ -116,7 +116,7 @@
                     android:background="@color/color_grey_e5e5e5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tv_project_name"
-                    app:layout_constraintTop_toBottomOf="@+id/label_duty_unit"
+                    app:layout_constraintTop_toBottomOf="@+id/label_check_name"
 
                     />
 
@@ -146,7 +146,7 @@
 
 
                 <TextView
-                    android:id="@+id/label_time"
+                    android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_12"
@@ -162,7 +162,7 @@
                     android:layout_height="@dimen/dp_8"
                     android:layout_marginTop="@dimen/dp_12"
                     android:background="@color/color_grey_EDEDED"
-                    app:layout_constraintTop_toBottomOf="@+id/label_time" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_time" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.tabs.TabLayout
@@ -189,7 +189,7 @@
             android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/dp_20"
             android:text="激活申请"
-            tools:visibility="gone" />
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/ll_apply_panel"

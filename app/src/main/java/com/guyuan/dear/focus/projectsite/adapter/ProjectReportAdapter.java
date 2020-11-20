@@ -33,20 +33,22 @@ public class ProjectReportAdapter extends BaseRecyclerAdapter<SiteExploreBean> {
                                   int position) {
 
         //==================工程现场
-        holder.setText(R.id.tv_project_name, item.getProjectName());
-        holder.setText(R.id.tv_project_code, item.getProjectNum());
+        if (holder == null) return;
+
+        holder.setText(R.id.tv_engineering_name, item.getProjectName());
+        holder.setText(R.id.tv_engineering_code, item.getProjectNum());
         //状态属性设置
-        holder.setText(R.id.tv_project_status, item.getStatusText());
-        TextView tvStatus = holder.getView(R.id.tv_project_status);
+        holder.setText(R.id.tv_engineering_status, item.getStatusText());
+        TextView tvStatus = holder.getView(R.id.tv_engineering_status);
         //可见
         tvStatus.setVisibility(item.getStatusTextVisible() ? View.VISIBLE : View.GONE);
         tvStatus.setBackgroundResource(item.getStatusTextBg());
         int statusTextColor = item.getStatusTextColor();
         tvStatus.setTextColor(context.getResources().getColor(statusTextColor));
 
-        TextView labelCheckPerson = holder.getView(R.id.label_project_number);
+        TextView labelCheckPerson = holder.getView(R.id.label_engineering_number);
 
-        holder.setText(R.id.tv_project_number, item.getName());
+        holder.setText(R.id.tv_engineering_number, item.getName());
 
         TextView labelDestination = holder.getView(R.id.label_operator);
         labelDestination.setText("目的地：");
@@ -68,27 +70,30 @@ public class ProjectReportAdapter extends BaseRecyclerAdapter<SiteExploreBean> {
                 break;
             ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:
-                holder.setText(R.id.label_project_code, "合同编号：");
-                holder.setText(R.id.tv_project_code, item.getProjectNumber());
+                holder.setText(R.id.label_engineering_code, "合同编号：");
+                holder.setText(R.id.tv_engineering_code, item.getProjectNumber());
                 labelCheckPerson.setText("客户名称：");
-                holder.setText(R.id.tv_project_number, item.getCustomerName());
+                holder.setText(R.id.tv_engineering_number, item.getCustomerName());
                 labelDestination.setText("现场监工：");
                 holder.setText(R.id.tv_operator, item.getPersonLiableName());
                 break;
             ///客户验收报告
             case TYPE_CUSTOMER_ACCEPTANCE:
-                holder.setText(R.id.label_project_code, "合同编号：");
-                holder.setText(R.id.tv_project_code, item.getProjectNumber());
-                holder.setText(R.id.tv_project_number, item.getProjectName());
+                holder.setText(R.id.label_engineering_code, "合同编号：");
+                holder.setText(R.id.tv_engineering_code, item.getProjectNumber());
+                holder.setText(R.id.tv_engineering_number, item.getProjectName());
 
-                holder.getView(R.id.ll_project_location).setVisibility(View.VISIBLE);
-                holder.setText(R.id.tv_project_location, item.getAddress());
+                holder.getView(R.id.ll_engineering_location).setVisibility(View.VISIBLE);
+                holder.setText(R.id.tv_engineering_location, item.getAddress());
 
                 holder.setText(R.id.tv_operator, item.getPersonLiableName());
                 break;
 
             default:
         }
+
+
+
 
     }
 }

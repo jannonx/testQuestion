@@ -5,7 +5,6 @@ import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.focus.projectsite.api.FocusProjectSiteApiService;
 import com.guyuan.dear.focus.projectsite.bean.ProjectOverViewBean;
-import com.guyuan.dear.focus.projectsite.bean.ProjectSiteCommonDetailBean;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteStatusBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
@@ -61,7 +60,7 @@ public class FocusProjectSiteRepository {
         return apiService.getCheckSafeList(body);
     }
 
-    Observable<ResultBean<ProjectSiteCommonDetailBean>> getCheckSafeDetailData(long id) {
+    Observable<ResultBean<SiteExploreBean>> getCheckSafeDetailData(long id) {
         return apiService.getCheckSafeDetailData(id);
     }
 
@@ -80,7 +79,7 @@ public class FocusProjectSiteRepository {
         return apiService.getCheckGoodList(body);
     }
 
-    Observable<ResultBean<ProjectSiteCommonDetailBean>> getCheckGoodDetailData(long id) {
+    Observable<ResultBean<SiteExploreBean>> getCheckGoodDetailData(long id) {
         return apiService.getCheckGoodDetailData(id);
     }
 
@@ -99,8 +98,11 @@ public class FocusProjectSiteRepository {
         return apiService.getInstallDebugList(body);
     }
 
-    Observable<ResultBean<ProjectSiteCommonDetailBean>> getInstallDebugDetailData(long id) {
+    Observable<ResultBean<SiteExploreBean>> getInstallDebugDetailData(long id) {
         return apiService.getInstallDebugDetailData(id);
+
+    }    Observable<ResultBean<SiteExploreBean>> getInstallDebugDetailDataBySingle(long id) {
+        return apiService.getInstallDebugDetailDataBySingle(id);
     }
 
     Observable<ResultBean<Integer>> postInstallDebugInfo(RequestBody body) {
@@ -118,7 +120,7 @@ public class FocusProjectSiteRepository {
         return apiService.getCustomerAcceptanceList(body);
     }
 
-    Observable<ResultBean<ProjectSiteCommonDetailBean>> getCustomerAcceptanceDetailData(long id) {
+    Observable<ResultBean<SiteExploreBean>> getCustomerAcceptanceDetailData(long id) {
         return apiService.getCustomerAcceptanceDetailData(id);
     }
 

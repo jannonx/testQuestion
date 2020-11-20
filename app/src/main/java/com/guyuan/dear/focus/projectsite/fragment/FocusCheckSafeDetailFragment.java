@@ -88,7 +88,7 @@ public class FocusCheckSafeDetailFragment extends BaseDataBindingFragment<Fragme
 
     private void initViewPager() {
         List<Fragment> tabFragmentList = new ArrayList<>();
-        statusFragment = ProjectSiteStatusFragment.newInstance();
+        statusFragment = ProjectSiteStatusFragment.newInstance(null);
         planFragment = CheckSafeContentFragment.newInstance();
 
         tabFragmentList.add(statusFragment);

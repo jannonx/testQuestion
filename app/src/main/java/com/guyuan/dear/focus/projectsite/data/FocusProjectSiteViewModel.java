@@ -7,7 +7,6 @@ import com.example.httplibrary.bean.RefreshBean;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.api.RxJavaHelper;
 import com.guyuan.dear.focus.projectsite.bean.ProjectOverViewBean;
-import com.guyuan.dear.focus.projectsite.bean.ProjectSiteCommonDetailBean;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteStatusBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
@@ -49,7 +48,7 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
      * 安全排查
      */
     private MutableLiveData<RefreshBean<SiteExploreBean>> checkSafeListEvent = new MutableLiveData<>();
-    private MutableLiveData<ProjectSiteCommonDetailBean> checkSafeDetailEvent = new MutableLiveData<>();
+    private MutableLiveData<SiteExploreBean> checkSafeDetailEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> commitCheckSafeInfoEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> postCheckSafeOpinionEvent = new MutableLiveData<>();
 
@@ -58,7 +57,7 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
      * 安装调试
      */
     private MutableLiveData<RefreshBean<SiteExploreBean>> checkGoodListEvent = new MutableLiveData<>();
-    private MutableLiveData<ProjectSiteCommonDetailBean> checkGoodDetailEvent = new MutableLiveData<>();
+    private MutableLiveData<SiteExploreBean> checkGoodDetailEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> commitCheckGoodInfoEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> postCheckGoodOpinionEvent = new MutableLiveData<>();
 
@@ -66,7 +65,8 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
      * 现场勘察
      */
     private MutableLiveData<RefreshBean<SiteExploreBean>> installDebugListEvent = new MutableLiveData<>();
-    private MutableLiveData<ProjectSiteCommonDetailBean> installDebugDetailEvent = new MutableLiveData<>();
+    private MutableLiveData<SiteExploreBean> installDebugDetailEvent = new MutableLiveData<>();
+    private MutableLiveData<SiteExploreBean> installDebugDetailBySingleEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> commitInstallDebugInfoEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> postInstallDebugOpinionEvent = new MutableLiveData<>();
 
@@ -74,7 +74,7 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
      * 客户验收
      */
     private MutableLiveData<RefreshBean<SiteExploreBean>> customerAcceptanceListEvent = new MutableLiveData<>();
-    private MutableLiveData<ProjectSiteCommonDetailBean> customerAcceptanceDetailEvent = new MutableLiveData<>();
+    private MutableLiveData<SiteExploreBean> customerAcceptanceDetailEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> commitCustomerAcceptanceInfoEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> postCustomerAcceptanceOpinionEvent = new MutableLiveData<>();
 
@@ -92,9 +92,9 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
     /**
      * 工程现场-意见回复-异步查询意见回复集
      */
-    public void getProjectSiteStatusList(long id,int type) {
+    public void getProjectSiteStatusList(long id, int type) {
 
-        Disposable disposable = RxJavaHelper.build(this, repository.getProjectSiteStatusList(id,type))
+        Disposable disposable = RxJavaHelper.build(this, repository.getProjectSiteStatusList(id, type))
                 .getHelper().flow(projectSiteStatusEvent);
         addSubscription(disposable);
     }
@@ -269,12 +269,22 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
 
 
     /**
-     * 工程现场-安装调试单-app根据评审id查看详情
+     * 工程现场-安装调试单-app根据评审id查看详情(多个)
      */
     public void getInstallDebugDetailData(long id) {
 
         Disposable disposable = RxJavaHelper.build(this, repository.getInstallDebugDetailData(id))
                 .getHelper().flow(installDebugDetailEvent);
+        addSubscription(disposable);
+    }
+
+    /**
+     * 工程现场-安装调试单-app根据评审id查看详情(单个)
+     */
+    public void getInstallDebugDetailDataBySingle(long id) {
+
+        Disposable disposable = RxJavaHelper.build(this, repository.getInstallDebugDetailDataBySingle(id))
+                .getHelper().flow(installDebugDetailBySingleEvent);
         addSubscription(disposable);
     }
 
@@ -415,11 +425,11 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
         this.checkSafeListEvent = checkSafeListEvent;
     }
 
-    public MutableLiveData<ProjectSiteCommonDetailBean> getCheckSafeDetailEvent() {
+    public MutableLiveData<SiteExploreBean> getCheckSafeDetailEvent() {
         return checkSafeDetailEvent;
     }
 
-    public void setCheckSafeDetailEvent(MutableLiveData<ProjectSiteCommonDetailBean> checkSafeDetailEvent) {
+    public void setCheckSafeDetailEvent(MutableLiveData<SiteExploreBean> checkSafeDetailEvent) {
         this.checkSafeDetailEvent = checkSafeDetailEvent;
     }
 
@@ -447,11 +457,11 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
         this.checkGoodListEvent = checkGoodListEvent;
     }
 
-    public MutableLiveData<ProjectSiteCommonDetailBean> getCheckGoodDetailEvent() {
+    public MutableLiveData<SiteExploreBean> getCheckGoodDetailEvent() {
         return checkGoodDetailEvent;
     }
 
-    public void setCheckGoodDetailEvent(MutableLiveData<ProjectSiteCommonDetailBean> checkGoodDetailEvent) {
+    public void setCheckGoodDetailEvent(MutableLiveData<SiteExploreBean> checkGoodDetailEvent) {
         this.checkGoodDetailEvent = checkGoodDetailEvent;
     }
 
@@ -479,11 +489,11 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
         this.installDebugListEvent = installDebugListEvent;
     }
 
-    public MutableLiveData<ProjectSiteCommonDetailBean> getInstallDebugDetailEvent() {
+    public MutableLiveData<SiteExploreBean> getInstallDebugDetailEvent() {
         return installDebugDetailEvent;
     }
 
-    public void setInstallDebugDetailEvent(MutableLiveData<ProjectSiteCommonDetailBean> installDebugDetailEvent) {
+    public void setInstallDebugDetailEvent(MutableLiveData<SiteExploreBean> installDebugDetailEvent) {
         this.installDebugDetailEvent = installDebugDetailEvent;
     }
 
@@ -507,15 +517,23 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
         return customerAcceptanceListEvent;
     }
 
+    public MutableLiveData<SiteExploreBean> getInstallDebugDetailBySingleEvent() {
+        return installDebugDetailBySingleEvent;
+    }
+
+    public void setInstallDebugDetailBySingleEvent(MutableLiveData<SiteExploreBean> installDebugDetailBySingleEvent) {
+        this.installDebugDetailBySingleEvent = installDebugDetailBySingleEvent;
+    }
+
     public void setCustomerAcceptanceListEvent(MutableLiveData<RefreshBean<SiteExploreBean>> customerAcceptanceListEvent) {
         this.customerAcceptanceListEvent = customerAcceptanceListEvent;
     }
 
-    public MutableLiveData<ProjectSiteCommonDetailBean> getCustomerAcceptanceDetailEvent() {
+    public MutableLiveData<SiteExploreBean> getCustomerAcceptanceDetailEvent() {
         return customerAcceptanceDetailEvent;
     }
 
-    public void setCustomerAcceptanceDetailEvent(MutableLiveData<ProjectSiteCommonDetailBean> customerAcceptanceDetailEvent) {
+    public void setCustomerAcceptanceDetailEvent(MutableLiveData<SiteExploreBean> customerAcceptanceDetailEvent) {
         this.customerAcceptanceDetailEvent = customerAcceptanceDetailEvent;
     }
 

@@ -26,7 +26,7 @@
 
 
         <TextView
-            android:id="@+id/tv_produce_status"
+            android:id="@+id/tv_project_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_12"
@@ -78,39 +78,39 @@
             app:layout_constraintTop_toTopOf="@+id/label_project_code" />
 
         <TextView
-            android:id="@+id/label_duty_unit"
+            android:id="@+id/label_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_12"
-            android:text="勘查人员："
+            android:text="现场监工："
             android:textColor="@color/color_grey_999999"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="@+id/tv_project_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_project_code" />
 
         <TextView
-            android:id="@+id/tv_duty_unit"
+            android:id="@+id/tv_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="小刘"
             android:textColor="@color/color_grey_999999"
             android:textSize="@dimen/sp_14"
-            app:layout_constraintBottom_toBottomOf="@+id/label_duty_unit"
-            app:layout_constraintStart_toEndOf="@+id/label_duty_unit"
-            app:layout_constraintTop_toTopOf="@+id/label_duty_unit" />
+            app:layout_constraintBottom_toBottomOf="@+id/label_person"
+            app:layout_constraintStart_toEndOf="@+id/label_person"
+            app:layout_constraintTop_toTopOf="@+id/label_person" />
 
 
         <TextView
-            android:id="@+id/label_time"
+            android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/dp_12"
             android:text="2020-08-17 15:00"
             android:textColor="@color/color_grey_999999"
             android:textSize="@dimen/sp_14"
-            app:layout_constraintBottom_toBottomOf="@+id/label_duty_unit"
+            app:layout_constraintBottom_toBottomOf="@+id/label_person"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/label_duty_unit" />
+            app:layout_constraintTop_toTopOf="@+id/label_person" />
 
         <View
             android:id="@+id/v_line_1"
@@ -121,7 +121,7 @@
             android:background="@color/color_grey_e5e5e5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_project_name"
-            app:layout_constraintTop_toBottomOf="@+id/label_duty_unit"
+            app:layout_constraintTop_toBottomOf="@+id/label_person"
 
             />
 

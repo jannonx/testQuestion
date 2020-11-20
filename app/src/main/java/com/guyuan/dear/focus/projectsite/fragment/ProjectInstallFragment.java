@@ -37,17 +37,17 @@ public class ProjectInstallFragment extends BaseListFragment<SimpleTabBean, Frag
     @Override
     protected void initView() {
         Bundle arguments = getArguments();
-        for (int i = 0; i < 5; i++) {
-            SimpleTabBean simpleTabBean = new SimpleTabBean();
-            listData.add(simpleTabBean);
-        }
-
-        ProjectInstallAdapter listAdapter = new ProjectInstallAdapter(getContext(), listData,
-                R.layout.item_install_project);
-
-        adapter = new BaseRecyclerViewAdapter(listAdapter);
-        recycleView.setAdapter(adapter);
-        recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+//        for (int i = 0; i < 5; i++) {
+//            SimpleTabBean simpleTabBean = new SimpleTabBean();
+//            listData.add(simpleTabBean);
+//        }
+//
+//        ProjectInstallAdapter listAdapter = new ProjectInstallAdapter(getContext(), listData,
+//                R.layout.item_install_project);
+//
+//        adapter = new BaseRecyclerViewAdapter(listAdapter);
+//        recycleView.setAdapter(adapter);
+//        recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
 
     }
 
