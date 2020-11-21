@@ -260,6 +260,24 @@ public class SiteExploreBean implements Serializable {
         return "";
     }
 
+
+    public int getProjectReportTabArray() {
+        switch (getProjectReportType()) {
+            case TYPE_SITE_EXPLORATION:
+                return R.array.focus_site_explore;
+            case TYPE_CHECK_SAFE:
+                return R.array.focus_check_safe;
+            case TYPE_INSTALLATION_DEBUG:
+                return R.array.focus_install_debug;
+            case TYPE_CUSTOMER_ACCEPTANCE:
+                return R.array.focus_customer_acceptance;
+            case TYPE_CHECK_GOODS:
+                return R.array.focus_check_good;
+            default:
+                return 0;
+        }
+    }
+
     public int getAuditFormType() {
         return auditFormType;
     }

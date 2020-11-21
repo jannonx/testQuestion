@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="activity_restarted_contract_detail_vm"
-            type="com.guyuan.dear.focus.contract.view.contractRestartDetail.RestartedContractDetailViewModel" />
+
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

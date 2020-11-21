@@ -40,7 +40,6 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
     private SiteExploreBean detailProjectData;
-    private boolean isFooterBtnShow, isProducePause, isProduceIng;
 
     private ProduceApplyDialog dialog;
 
@@ -248,7 +247,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         tabFragmentList.add(statusFragment);
         tabFragmentList.add(planFragment);
 
-        titleList = getResources().getStringArray(R.array.focus_produce_tab);
+        titleList = getResources().getStringArray(detailProjectData.getProjectReportTabArray());
         TabAdapter tabAdapter = new
                 TabAdapter(getChildFragmentManager(), Arrays.asList(titleList), tabFragmentList, getContext(),
                 getCustomViewId());

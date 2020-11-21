@@ -224,13 +224,29 @@
         <item>跟进动态</item>
         <item>基础信息</item>
     </array>
+    <array name="focus_site_explore">
+        <item>勘察记录</item>
+        <item>勘察内容</item>
+    </array>
+    <array name="focus_check_safe">
+        <item>排查记录</item>
+        <item>排查内容</item>
+    </array>
+    <array name="focus_check_good">
+        <item>清点记录</item>
+        <item>清点内容</item>
+    </array>
+    <array name="focus_install_debug">
+        <item>施工动态</item>
+        <item>施工视频</item>
+    </array>
+    <array name="focus_customer_acceptance">
+        <item>验收记录</item>
+        <item>安装项目</item>
+    </array>
     <array name="focus_produce_tab">
         <item>生产动态</item>
         <item>生产计划</item>
-    </array>
-    <array name="focus_site_explore_tab">
-        <item>勘查记录</item>
-        <item>勘查内容</item>
     </array>
     <array name="real_time_quality">
         <item>质量概况</item>

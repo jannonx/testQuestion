@@ -251,7 +251,7 @@ public interface FocusProjectSiteApiService extends BaseApiService {
      * @param id 查询id
      * @return
      */
-    @GET("base/auditCustomerAccept/queryDetailById")
+    @GET("base/auditCustomerAccept/findByCheckDetails")
     Observable<ResultBean<SiteExploreBean>> getCustomerAcceptanceDetailData(@Query("id") long id);
 
 
