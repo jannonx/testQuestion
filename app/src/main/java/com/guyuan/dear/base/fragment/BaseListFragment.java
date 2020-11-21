@@ -16,6 +16,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.focus.assess.adapter.AssessListAdapter;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -147,6 +148,7 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
                     adapter.refreshData();
                     recycleView.refreshComplete(PAGE_SIZE);
                 }
+                LogUtils.showLog("REFRESH....dataList="+dataList.size());
                 break;
 
             case LOAD_MORE:
@@ -155,6 +157,7 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
                     adapter.refreshData();
                     recycleView.refreshComplete(PAGE_SIZE);
                 }
+                LogUtils.showLog("LOAD_MORE.....dataList="+dataList.size());
                 break;
             default:
         }

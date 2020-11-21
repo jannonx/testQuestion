@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
+import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
+import com.guyuan.dear.focus.projectsite.fragment.ProjectReportClassifyFragment;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 import com.guyuan.dear.work.projectsite.fragment.CheckGoodsFragment;
 import com.guyuan.dear.work.projectsite.fragment.CheckSafetyFragment;
@@ -66,11 +68,11 @@ public class WorkProjectSiteActivity extends BaseTabActivity<ActivityBaseTabBind
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_focus_produce_overview_selector);
-        tabDrawableList.add(R.drawable.tab_focus_produce_exception_selector);
-        tabDrawableList.add(R.drawable.tab_focus_produce_detail_selector);
-        tabDrawableList.add(R.drawable.tab_focus_produce_detail_selector);
-        tabDrawableList.add(R.drawable.tab_focus_produce_detail_selector);
+        tabDrawableList.add(R.drawable.tab_work_site_explore_selector);
+        tabDrawableList.add(R.drawable.tab_work_check_goods_selector);
+        tabDrawableList.add(R.drawable.tab_work_check_safe_selector);
+        tabDrawableList.add(R.drawable.tab_work_install_debug_selector);
+        tabDrawableList.add(R.drawable.tab_work_customer_acceptance_selector);
         return tabDrawableList;
     }
 

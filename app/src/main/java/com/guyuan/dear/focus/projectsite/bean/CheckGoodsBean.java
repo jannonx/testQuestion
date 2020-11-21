@@ -22,7 +22,7 @@ public class CheckGoodsBean implements Serializable {
     /**
      * 产品代号
      */
-    private int projectCode;
+    private String projectCode;
     /**
      * 规格型号
      */
@@ -72,11 +72,11 @@ public class CheckGoodsBean implements Serializable {
         this.projectName = projectName;
     }
 
-    public int getProjectCode() {
+    public String getProjectCode() {
         return projectCode;
     }
 
-    public void setProjectCode(int projectCode) {
+    public void setProjectCode(String projectCode) {
         this.projectCode = projectCode;
     }
 
@@ -120,8 +120,8 @@ public class CheckGoodsBean implements Serializable {
         this.unit = unit;
     }
 
-    public int getAmount() {
-        return amount;
+    public String getAmount() {
+        return String.valueOf(amount);
     }
 
     public void setAmount(int amount) {

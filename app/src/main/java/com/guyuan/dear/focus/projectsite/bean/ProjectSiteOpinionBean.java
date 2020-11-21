@@ -26,6 +26,8 @@ public class ProjectSiteOpinionBean implements Serializable {
      * 单个事项评审结果(0:未评审；1:通过；2:不通过),如果纯展示事项明细，就可忽略次字段。
      */
     private String singleItemResult;
+
+    private SingleItemResultType resultType;
     /**
      * 评审点
      */
@@ -61,6 +63,10 @@ public class ProjectSiteOpinionBean implements Serializable {
 
     public void setSingleItemResult(String singleItemResult) {
         this.singleItemResult = singleItemResult;
+    }
+
+    public SingleItemResultType getResultType() {
+        return SingleItemResultType.toType(Integer.parseInt(singleItemResult));
     }
 
     public int getSort() {

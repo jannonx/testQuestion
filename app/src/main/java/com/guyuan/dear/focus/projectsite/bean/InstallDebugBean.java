@@ -1,6 +1,8 @@
 package com.guyuan.dear.focus.projectsite.bean;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.utils.LogUtils;
+import com.sun.jna.platform.win32.WinNT;
 
 import java.io.Serializable;
 
@@ -66,6 +68,7 @@ public class InstallDebugBean implements Serializable {
     private int status;
 
     public InstallDebugSatisfyType getInstallDebugSatisfyType() {
+        LogUtils.showLog("status="+status);
         return InstallDebugSatisfyType.toType(status);
     }
 
