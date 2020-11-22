@@ -71,8 +71,7 @@ public class WorkProjectReportListFragment  extends BaseListSearchFragment<SiteE
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-               jumpByReportType(listData.get(position));
-
+                jumpByReportType(listData.get(position));
             }
         });
 

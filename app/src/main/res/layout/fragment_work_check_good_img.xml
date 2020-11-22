@@ -14,7 +14,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="@dimen/dp_16"
-                android:paddingBottom="@dimen/dp_75"
+
                 app:layout_scrollFlags="scroll|enterAlways">
 
 
@@ -166,7 +166,8 @@
                     android:id="@+id/cl_goods_list"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view_2"
-                    android:layout_height="wrap_content">
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="0dp">
                     <TextView
                         android:id="@+id/label_goods_list"
                         android:layout_width="wrap_content"
@@ -196,13 +197,14 @@
                     <tl.com.easy_recycleview_library.BaseRecyclerView
                         android:id="@+id/base_recycleView"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         android:layout_marginTop="@dimen/dp_12"
                         android:background="@color/bg_window"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_total_goods"
                         tools:background="@color/color_green_D4FFF1"
-                        tools:layout_height="@dimen/dp_150" />
+                   />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

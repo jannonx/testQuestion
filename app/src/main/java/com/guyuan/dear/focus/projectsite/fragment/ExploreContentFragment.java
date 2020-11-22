@@ -17,6 +17,7 @@ import com.guyuan.dear.focus.projectsite.adapter.ProjectInstallAdapter;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
+import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
@@ -24,6 +25,7 @@ import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
+import com.guyuan.dear.work.projectsite.adapter.CheckGoodsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,8 +137,8 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
                 break;
             ///货物清点报告
             case TYPE_CHECK_GOODS:
-                GoodsListAdapter checkGoodsAdapter = new GoodsListAdapter(getContext(),
-                        checkGoodsContentList, R.layout.item_goods_list);
+                CheckGoodsAdapter checkGoodsAdapter = new CheckGoodsAdapter(getContext(),
+                        checkGoodsContentList, R.layout.item_goods_list, ProjectModuleType.TYPE_FOCUS);
                 adapter = new BaseRecyclerViewAdapter(checkGoodsAdapter);
                 break;
 

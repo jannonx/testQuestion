@@ -16,6 +16,7 @@ import com.guyuan.dear.databinding.FragmentWorkCheckGoodImgBinding;
 import com.guyuan.dear.focus.projectsite.adapter.CheckContentAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
+import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
@@ -69,11 +70,18 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
 
         binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         CheckGoodsAdapter checkContentAdapter = new CheckGoodsAdapter(getContext(),
-                listData, R.layout.item_goods_list);
+                listData, R.layout.item_goods_list, ProjectModuleType.TYPE_WORK);
         adapter = new BaseRecyclerViewAdapter(checkContentAdapter);
         binding.baseRecycleView.setAdapter(adapter);
         binding.baseRecycleView.setPullRefreshEnabled(false);
         binding.baseRecycleView.setLoadMoreEnabled(false);
+
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                ProjectCheckConfirmDialog.show(getActivity(),listData.get(position),null);
+            }
+        });
 
         viewModel.getCheckGoodDetailData(detailData.getId());
 
@@ -86,6 +94,7 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
     }
 
     private void setDetailData(SiteExploreBean detailProjectData) {
+        detailProjectData.setProjectReportType(detailData.getProjectReportType());
 
         binding.tvProjectName.setText(detailProjectData.getSendGoodsNumber());
         binding.labelProjectCode.setText("项目名称：");
@@ -107,7 +116,9 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
         binding.tvTime.setText(detailProjectData.getCreateTime());
         binding.tvCompanyLocation.setText(detailProjectData.getDestination());
 
-        listData.addAll(detailProjectData.getCheckTransportProjectListVO());
+        List<CheckGoodsBean> checkGoodsListData = detailProjectData.getCheckTransportProjectListVO();
+        binding.tvTotalGoods.setText("共计货物："+(checkGoodsListData!=null?checkGoodsListData.size():0)+"件");
+        listData.addAll(checkGoodsListData);
         adapter.refreshData();
     }
 
