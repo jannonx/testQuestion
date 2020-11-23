@@ -260,7 +260,7 @@ public interface WorkProjectSiteApiService extends BaseApiService {
      * @param body
      * @return
      */
-    @POST("base/auditCustomerAccept/commit")
+    @POST("base/auditCustomerAccept/commitCheck")
     Observable<ResultBean<Integer>> postCustomerAcceptanceInfo(@Body RequestBody body);
 
 

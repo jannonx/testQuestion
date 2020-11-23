@@ -101,9 +101,15 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
      * @param detailProjectData
      */
     public void setCheckContentData(SiteExploreBean detailProjectData) {
+        ProjectReportType projectReportType = detailProjectData.getProjectReportType();
+        binding.llcContent.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG==projectReportType?View.GONE:View.VISIBLE);
+        binding.videoPanel.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG==projectReportType?View.VISIBLE:View.GONE);
         LogUtils.showLog("工程现场" + (detailProjectData.getPsAuditItemVOList() != null ? "" + detailProjectData.getPsAuditItemVOList().size() : "空"));
         LogUtils.showLog("购物清单" + (detailProjectData.getCheckTransportProjectListVO() != null ? "" + detailProjectData.getCheckTransportProjectListVO().size() : "空"));
         LogUtils.showLog("安装调试" + (detailProjectData.getAppInstallDebugItemVOList() != null ? "" + detailProjectData.getAppInstallDebugItemVOList().size() : "空"));
+        siteExploreContentList.clear();
+        checkGoodsContentList.clear();
+        installDebugContentList.clear();
         if (detailProjectData.getPsAuditItemVOList() != null) {
             siteExploreContentList.addAll(detailProjectData.getPsAuditItemVOList());
         }
@@ -115,6 +121,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
         }
         adapter.refreshData();
 
+        imageDataList.clear();
         for (int i = 0; i < 5; i++) {
             String imageUrl = "http://pic-bucket.ws.126.net/photo/0001/2020-11-09/FR0M2RL000AN0001NOS.jpg";
             imageDataList.add(imageUrl);

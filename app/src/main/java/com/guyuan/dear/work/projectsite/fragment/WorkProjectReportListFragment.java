@@ -23,9 +23,15 @@ import com.guyuan.dear.focus.projectsite.fragment.ProjectReportClassifyFragment;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkCheckGoodsActivity;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugActivity;
+import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +66,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
     @Override
     protected void init() {
         etSearch.setHint("输入项目名称、编号、人员");
+        EventBus.getDefault().register(this);
         reportType = (ProjectReportType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
         LogUtils.showLog("siteExploreBean=" + reportType.getDes());
         ProjectReportAdapter checkGoodsAdapter = new ProjectReportAdapter(getContext(),
@@ -112,6 +119,8 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
                 break;
             ///客户验收报告
             case TYPE_CUSTOMER_ACCEPTANCE:
+                siteExploreBean.setModuleType(ProjectModuleType.TYPE_WORK);
+                FocusSiteExplorationDetailActivity.start(getContext(), siteExploreBean);
                 break;
 
             default:
@@ -222,6 +231,11 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
                 "charset=utf-8"), str);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onRefreshMessage(EventInstallDebugRefresh event) {
+        getDataListByClassify(true);
+    }
+
     @Override
     protected void refresh() {
         getDataListByClassify(true);
@@ -246,5 +260,11 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
     @Override
     protected int getVariableId() {
         return 0;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        EventBus.getDefault().unregister(this);
     }
 }

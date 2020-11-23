@@ -21,10 +21,12 @@ import com.guyuan.dear.databinding.DialogWorkProjectCheckBinding;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
+import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
+import com.guyuan.dear.work.projectsite.bean.PostCustomerAcceptanceInfo;
 import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
 
 import androidx.annotation.NonNull;
@@ -66,7 +68,7 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
         this(activity, 0, activity);
         this.clickListener = clickListener;
         this.siteExploreBean = siteExploreBean;
-        if (siteExploreBean.getCheckTransportProjectListVO()!=null){
+        if (siteExploreBean.getCheckTransportProjectListVO() != null) {
             for (CheckGoodsBean checkGoodsBean : siteExploreBean.getCheckTransportProjectListVO()) {
                 LogUtils.showLog("checkGoodsBean=" + checkGoodsBean.getIsException());
             }
@@ -127,6 +129,9 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
                 }
             }
         });
+
+        viewBinding.clStatus.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG == siteExploreBean.getProjectReportType() ||
+                ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == siteExploreBean.getProjectReportType() ? View.GONE : View.VISIBLE);
     }
 
     /**
@@ -181,12 +186,30 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
                 break;
             ///客户验收报告
             case TYPE_CUSTOMER_ACCEPTANCE:
+                commitCustomerAcceptanceInfo();
                 break;
 
             default:
         }
 
 
+    }
+
+    private void commitCustomerAcceptanceInfo() {
+        PostCustomerAcceptanceInfo body = new PostCustomerAcceptanceInfo();
+        if (TextUtils.isEmpty(viewBinding.etSearch.getText().toString())) {
+            ToastUtils.showLong(getContext(), "请填内容");
+            return;
+        }
+        body.setId(siteExploreBean.getId());
+        body.setCheckRemark(viewBinding.etSearch.getText().toString());
+        List<String> imageArr = new ArrayList<>();
+        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
+        body.setCheckUrl(imageArr);
+        if (clickListener != null) {
+            clickListener.onCommitCustomerAcceptanceInfo(body);
+            dismiss();
+        }
     }
 
     private void commitInstallDebugInfo() {
@@ -284,7 +307,10 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
 
     public interface OnDialogClickListener {
         void onCommitCheckGoodsInfo(PostCheckInfo data);
+
         void onCommitInstallationDebugInfo(PostInstallationDebugInfo data);
+
+        void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data);
 
     }
 

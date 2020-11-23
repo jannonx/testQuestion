@@ -67,7 +67,7 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
     private MutableLiveData<RefreshBean<SiteExploreBean>> installDebugListEvent = new MutableLiveData<>();
     private MutableLiveData<SiteExploreBean> installDebugDetailEvent = new MutableLiveData<>();
     private MutableLiveData<SiteExploreBean> installDebugDetailBySingleEvent = new MutableLiveData<>();
-    private MutableLiveData<Integer> commitInstallDebugInfoEvent = new MutableLiveData<>();
+    private MutableLiveData<Integer> postInstallDebugInfoEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> postInstallDebugOpinionEvent = new MutableLiveData<>();
 
     /**
@@ -295,7 +295,7 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
     public void postInstallDebugInfo(RequestBody body) {
 
         Disposable disposable = RxJavaHelper.build(this, repository.postInstallDebugInfo(body))
-                .getHelper().flow(commitInstallDebugInfoEvent);
+                .getHelper().flow(postInstallDebugInfoEvent);
         addSubscription(disposable);
     }
 
@@ -497,12 +497,12 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
         this.installDebugDetailEvent = installDebugDetailEvent;
     }
 
-    public MutableLiveData<Integer> getCommitInstallDebugInfoEvent() {
-        return commitInstallDebugInfoEvent;
+    public MutableLiveData<Integer> getPostInstallDebugInfoEvent() {
+        return postInstallDebugInfoEvent;
     }
 
-    public void setCommitInstallDebugInfoEvent(MutableLiveData<Integer> commitInstallDebugInfoEvent) {
-        this.commitInstallDebugInfoEvent = commitInstallDebugInfoEvent;
+    public void setPostInstallDebugInfoEvent(MutableLiveData<Integer> postInstallDebugInfoEvent) {
+        this.postInstallDebugInfoEvent = postInstallDebugInfoEvent;
     }
 
     public MutableLiveData<Integer> getPostInstallDebugOpinionEvent() {
