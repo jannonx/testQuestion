@@ -98,7 +98,7 @@ public class ContractListFragment extends BaseMvvmFragment<FragmentContractListB
             @Override
             public void onItemClick(View view, int i) {
                 BaseContractBean bean = getViewModel().getContractList().getValue().get(i);
-                ContractDetailActivity.start(getActivity(), "合同详情", bean.getContractNum());
+                ContractDetailActivity.start(getActivity(), "合同详情", (int) bean.getContractId());
             }
         });
 

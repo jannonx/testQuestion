@@ -3,6 +3,8 @@ package com.guyuan.dear.focus.contract.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.guyuan.dear.net.resultBeans.NetContractDetailInfo;
+
 /**
  * @author: 廖华凯
  * @description: 关键零部件，首次使用在销售-合同概况-销售产品信息上
@@ -18,10 +20,12 @@ public class ProductComponent implements Parcelable {
      * 型号
      */
     private String modelName;
+
     /**
-     * 部件图纸
+     * 规格
      */
-    private String bluePrintId;
+    private String spec;
+
     /**
      * 部件数量
      */
@@ -31,13 +35,18 @@ public class ProductComponent implements Parcelable {
      */
     private String unit;
 
-    public ProductComponent() {
+    public ProductComponent(NetContractDetailInfo.TcontractPartsBean part) {
+        setComponentName(part.getName());
+        setModelName(part.getModel());
+        setSpec(part.getSpecifications());
+        setCount(part.getNum());
+        setUnit(part.getCompany());
     }
 
     protected ProductComponent(Parcel in) {
         componentName = in.readString();
         modelName = in.readString();
-        bluePrintId = in.readString();
+        spec = in.readString();
         count = in.readInt();
         unit = in.readString();
     }
@@ -70,13 +79,6 @@ public class ProductComponent implements Parcelable {
         this.modelName = modelName;
     }
 
-    public String getBluePrintId() {
-        return bluePrintId;
-    }
-
-    public void setBluePrintId(String bluePrintId) {
-        this.bluePrintId = bluePrintId;
-    }
 
     public int getCount() {
         return count;
@@ -99,23 +101,22 @@ public class ProductComponent implements Parcelable {
         return 0;
     }
 
+    public String getSpec() {
+        return spec;
+    }
+
+    public void setSpec(String spec) {
+        this.spec = spec;
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(componentName);
         dest.writeString(modelName);
-        dest.writeString(bluePrintId);
+        dest.writeString(spec);
         dest.writeInt(count);
         dest.writeString(unit);
     }
 
-    @Override
-    public String toString() {
-        return "ProductComponent{" +
-                "componentName='" + componentName + '\'' +
-                ", modelName='" + modelName + '\'' +
-                ", bluePrintId='" + bluePrintId + '\'' +
-                ", count=" + count +
-                ", unit='" + unit + '\'' +
-                '}';
-    }
+
 }

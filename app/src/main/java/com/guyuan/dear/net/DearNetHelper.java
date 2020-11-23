@@ -12,12 +12,14 @@ import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 import com.guyuan.dear.focus.contract.bean.ComContractsBean;
 import com.guyuan.dear.focus.contract.bean.ContractApplyDetailBean;
+import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
 import com.guyuan.dear.net.api.DearNetApiService;
 import com.guyuan.dear.net.reqBean.ContractApplyBody;
 import com.guyuan.dear.net.reqBean.SearchRqBody;
 import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
 import com.guyuan.dear.net.resultBeans.NetClientInfo;
+import com.guyuan.dear.net.resultBeans.NetContractDetailInfo;
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
 import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
@@ -203,6 +205,7 @@ public class DearNetHelper {
 
     /**
      * 获取所有合同异常列表
+     *
      * @param pageIndex
      * @param pageSize
      * @param callback
@@ -229,17 +232,18 @@ public class DearNetHelper {
                     }
                 };
 
-        return getDisposalAsync(observable,callback,mapper);
+        return getDisposalAsync(observable, callback, mapper);
     }
 
     /**
      * 获取所有合同重启列表
+     *
      * @param pageIndex
      * @param pageSize
      * @param callback
      * @return
      */
-    public Disposable getRestartedContractList(int pageIndex, int pageSize, NetCallback<List<RestartedContractBean>> callback){
+    public Disposable getRestartedContractList(int pageIndex, int pageSize, NetCallback<List<RestartedContractBean>> callback) {
         SearchRqBody body = new SearchRqBody();
         body.setPageSize(pageSize);
         body.setPageNum(pageIndex);
@@ -260,17 +264,18 @@ public class DearNetHelper {
                     }
                 };
 
-        return getDisposalAsync(observable,callback,mapper);
+        return getDisposalAsync(observable, callback, mapper);
     }
 
 
     /**
      * 获取合同暂停申请的详情
+     *
      * @param examineId
      * @param callback
      * @return
      */
-    public Disposable getContractApplyDetail(int examineId, NetCallback<ContractApplyDetailBean> callback){
+    public Disposable getContractApplyDetail(int examineId, NetCallback<ContractApplyDetailBean> callback) {
         Observable<ResultBean<NetContractStatusDetail>> observable = netApiService.getContractStatusDetail(examineId);
         Mapper<NetContractStatusDetail, ContractApplyDetailBean> mapper = new Mapper<NetContractStatusDetail, ContractApplyDetailBean>() {
             @Override
@@ -278,25 +283,27 @@ public class DearNetHelper {
                 return new ContractApplyDetailBean(src);
             }
         };
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
+    /**
+     * 根据合同编号获取合同详细信息
+     *
+     * @param contractId
+     * @return
+     */
+    public Disposable getContractDetail(int contractId, NetCallback<DetailContractBean> callback) {
+        Observable<ResultBean<NetContractDetailInfo>> observable = netApiService.getContractDetailById(contractId);
+        Mapper<NetContractDetailInfo,DetailContractBean> mapper = new Mapper<NetContractDetailInfo, DetailContractBean>() {
+            @Override
+            public DetailContractBean map(NetContractDetailInfo src) {
+                return new DetailContractBean(src);
+            }
+        };
         return getDisposalAsync(observable,callback,mapper);
     }
 
-//    /**
-//     * 获取合同重启申请的详情
-//     * @param examineId
-//     * @param callback
-//     * @return
-//     */
-//    public Disposable getRestartedContractDetail(int examineId, NetCallback<RestartedContractDetailBean> callback){
-//        Observable<ResultBean<NetContractStatusDetail>> observable = netApiService.getContractStatusDetail(examineId);
-//        Mapper<NetContractStatusDetail,RestartedContractDetailBean> mapper = new Mapper<NetContractStatusDetail, RestartedContractDetailBean>() {
-//            @Override
-//            public RestartedContractDetailBean map(NetContractStatusDetail src) {
-//                return null;
-//            }
-//        };
-//        return getDisposalAsync(observable,callback,mapper);
-//    }
+
 
 
     /*************************************底层方法分界线******************************************/

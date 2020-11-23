@@ -8,13 +8,14 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/dp_10">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/dp_12"
-            android:paddingTop="@dimen/dp_12"
             android:text="合同编号："
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -24,10 +25,22 @@
             android:id="@+id/item_contract_list_tv_contact_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/dp_12"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:text="xxx"/>
+
+<!--        <androidx.appcompat.widget.AppCompatTextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="@dimen/dp_12"-->
+<!--            android:paddingLeft="@dimen/dp_4"-->
+<!--            android:paddingRight="@dimen/dp_4"-->
+<!--            android:paddingTop="@dimen/dp_2"-->
+<!--            android:paddingBottom="@dimen/dp_2"-->
+<!--            android:textSize="@dimen/sp_12"-->
+<!--            android:textStyle="bold"-->
+<!--            android:text="验收合格"/>-->
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat

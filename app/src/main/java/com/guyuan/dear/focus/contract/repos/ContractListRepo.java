@@ -15,8 +15,7 @@ import io.reactivex.disposables.Disposable;
  **/
 public class ContractListRepo {
 
-    public Disposable loadContractListFromNet(int contractType, long date,
-                                              int pageIndex, int pageSize,
+    public Disposable loadContractListFromNet(int contractType, long date, int pageIndex, int pageSize,
                                               DearNetHelper.NetCallback<List<BaseContractBean>> callback) {
 
         return DearNetHelper.getInstance().getContractListByTypeAndDate(

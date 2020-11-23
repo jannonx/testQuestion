@@ -1,5 +1,12 @@
 package com.guyuan.dear.focus.contract.bean;
 
+import android.text.TextUtils;
+
+import com.guyuan.dear.net.resultBeans.NetContractDetailInfo;
+import com.guyuan.dear.utils.CalenderUtils;
+import com.guyuan.dear.utils.LogUtils;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,6 +45,38 @@ public class DetailContractBean extends BaseContractBean {
      */
     private long buyerFirstCreateDate;
 
+    public DetailContractBean() {
+    }
+
+    public DetailContractBean(NetContractDetailInfo src) {
+        setContractNum(src.getContractNum());
+        setBuyer(src.getCusName());
+        String signTime = src.getSignTime();
+        if(!TextUtils.isEmpty(signTime)){
+            try {
+                setDate(CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(signTime).getTime());
+            }catch (Exception e){
+                LogUtils.showLog(e.getMessage());
+            }
+        }
+        setReceivePerson(src.getConsignee());
+        setContactNumber(src.getContactInfo());
+        setSalesPerson(src.getSalesman());
+        setProductName(src.getEquipmentName());
+        setProductModel(src.getEquipmentModel());
+        setBuyerAddress(src.getDeliveryAddress());
+//        try {
+//            setBuyerFirstCreateDate(CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(src.getCreateTime()).getTime());
+//        }catch (Exception e){
+//            LogUtils.showLog(e.getMessage());
+//        }
+        productComponents = new ArrayList<>();
+        List<NetContractDetailInfo.TcontractPartsBean> parts = src.getTcontractParts();
+        for (NetContractDetailInfo.TcontractPartsBean part : parts) {
+            ProductComponent component = new ProductComponent(part);
+            productComponents.add(component);
+        }
+    }
 
 
     public List<ProductComponent> getProductComponents() {

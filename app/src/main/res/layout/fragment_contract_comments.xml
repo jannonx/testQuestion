@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <tl.com.easy_recycleview_library.BaseRecyclerView
-        android:id="@+id/fragment_contract_comments_recycler_view"
+    <data>
+        <variable
+            name="fragment_contract_comments_vm"
+            type="com.guyuan.dear.focus.contract.view.contractDetail.ContractCommentsViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <tl.com.easy_recycleview_library.BaseRecyclerView
+            android:id="@+id/fragment_contract_comments_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:setContractExcptDetailCommentList="@{fragment_contract_comments_vm.logs}"
+            app:setContractExcptDetailCreateDate="@{fragment_contract_comments_vm.contractDate}"
+            app:setContractExcptDetailApplier="@{fragment_contract_comments_vm.applier}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
