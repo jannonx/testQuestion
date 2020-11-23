@@ -6,19 +6,19 @@ import com.guyuan.dear.R;
 import java.io.Serializable;
 
 /**
- * @description: 我的关注--工程现场--安全排查--条件状态
+ * @description: 我的关注--工程现场--验收状态
  * @author: 许建宁
  * @since: 2020/11/10 15:31
  * @company: 固远（深圳）信息技术有限公司
  */
-public enum CheckGoodsSatisfyType implements Serializable {
+public enum CheckStatusType implements Serializable {
     /**
      *  是否满足条件、是否安全(1:是，2:否)
      */
     /**
      * 运输中
      */
-    TYPE_GOODS_TRANSPORTING(0, "运输中", R.color.color_blue_1677ff,
+    TYPE_CHECK_OK(0, "运输中", R.color.color_blue_1677ff,
             R.drawable.bg_blue_e7f1ff_corner_2),
     /**
      * 已到达,待清点
@@ -47,7 +47,7 @@ public enum CheckGoodsSatisfyType implements Serializable {
     private int textColor;
     private int textBgColor;
 
-    CheckGoodsSatisfyType(int code, String des, int textColor, int textBgColor) {
+    CheckStatusType(int code, String des, int textColor, int textBgColor) {
         this.code = code;
         this.des = des;
         this.textColor = textColor;
@@ -57,8 +57,8 @@ public enum CheckGoodsSatisfyType implements Serializable {
     /**
      * 根据枚举code获取实例，用于switch
      */
-    public static CheckGoodsSatisfyType toType(int index) {
-        for (CheckGoodsSatisfyType type : CheckGoodsSatisfyType.values()) {
+    public static CheckStatusType toType(int index) {
+        for (CheckStatusType type : CheckStatusType.values()) {
             if (type.getCode() == index) {
                 return type;
             }
@@ -66,25 +66,8 @@ public enum CheckGoodsSatisfyType implements Serializable {
         return null;
     }
 
-    public static CheckGoodsSatisfyType toType(SiteExploreBean bean) {
-        if (bean == null) return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_UNKNOWN;
-        //运输状态
-        if (bean.getTransportStatus() == 10) {
-            return CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING;
-        } else if (bean.getTransportStatus() == 20) {
-            //完成检测，检测结果
-            if (bean.getCheckStatus() == 30) {
-                if (bean.getIsException() == 0) {
-                    return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_OK;
-                } else if (bean.getIsException() == 1) {
-                    return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_EXCEPTION;
-                }
-            } else {
-                //运输到达，检测状态
-                return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING;
-            }
-        }
-        return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_UNKNOWN;
+    public static CheckStatusType toType(SiteExploreBean bean) {
+       return null;
     }
 
     /**
@@ -97,7 +80,7 @@ public enum CheckGoodsSatisfyType implements Serializable {
     }
 
     public static String toText(int type) {
-        return CheckGoodsSatisfyType.toType(type).getDes();
+        return CheckStatusType.toType(type).getDes();
 
     }
 

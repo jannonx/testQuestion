@@ -98,6 +98,10 @@ public class SiteExploreBean implements Serializable {
      * 运输状态(10:运输中，20：已送达)
      */
     private int transportStatus;
+    /**
+     * 清点备注
+     */
+    private String checkRemark;
     //================安装调试
 
     /**
@@ -113,6 +117,16 @@ public class SiteExploreBean implements Serializable {
      * 项目名称
      */
     private String projectNumber;
+
+    /**
+     * 计划施工调试截止时间
+     */
+    private String debugEndTime;
+    /**
+     * 计划施工调试开始时间
+     */
+    private String debugStartTime;
+
 
     /**
      * 现场监工人员
@@ -149,12 +163,28 @@ public class SiteExploreBean implements Serializable {
     /**
      * 货物清单
      */
-    private List<CheckGoodsBean> checkTransportProjectListVO;
+    private List<CheckGoodsBean> appCheckTransportProjectListVOList;
     /**
      * 安装调试/客户验收
      */
     private List<InstallDebugBean> appInstallDebugItemVOList;
 
+
+    public String getDebugEndTime() {
+        return debugEndTime;
+    }
+
+    public void setDebugEndTime(String debugEndTime) {
+        this.debugEndTime = debugEndTime;
+    }
+
+    public String getDebugStartTime() {
+        return debugStartTime;
+    }
+
+    public void setDebugStartTime(String debugStartTime) {
+        this.debugStartTime = debugStartTime;
+    }
 
     public long getId() {
         return id;
@@ -164,6 +194,13 @@ public class SiteExploreBean implements Serializable {
         this.id = id;
     }
 
+    public String getCheckRemark() {
+        return checkRemark;
+    }
+
+    public void setCheckRemark(String checkRemark) {
+        this.checkRemark = checkRemark;
+    }
 
     public int getSatisfyFlag() {
         return satisfyFlag;
@@ -478,11 +515,11 @@ public class SiteExploreBean implements Serializable {
     }
 
     public List<CheckGoodsBean> getCheckTransportProjectListVO() {
-        return checkTransportProjectListVO;
+        return appCheckTransportProjectListVOList;
     }
 
     public void setCheckTransportProjectListVO(List<CheckGoodsBean> checkTransportProjectListVO) {
-        this.checkTransportProjectListVO = checkTransportProjectListVO;
+        this.appCheckTransportProjectListVOList = checkTransportProjectListVO;
     }
 
     public List<InstallDebugBean> getAppInstallDebugItemVOList() {

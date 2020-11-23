@@ -41,9 +41,12 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @company: 固远（深圳）信息技术有限公司
  */
 public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExploreContentBinding, FocusProjectSiteViewModel> {
-
+    /**
+     * 清点是否异常，0正常，1异常
+     */
+    private static final int CHECK_RIGHT = 0;
+    private static final int CHECK_WRONG = 1;
     public static final String TAG = ExploreContentFragment.class.getSimpleName();
-
 
     private BaseRecyclerViewAdapter adapter;
     private BaseRecyclerViewAdapter imageAdapter;
@@ -117,6 +120,12 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
             imageDataList.add(imageUrl);
         }
 //        imageAdapter.refreshData();
+
+        //清点货物 #2FC25B  #F04864 红色
+        binding.tvRemark.setText(detailProjectData.getCheckRemark());
+        binding.tvStatus.setTextColor(getActivity().getResources().getColor(
+                detailProjectData.getIsException() == CHECK_RIGHT ? R.color.color_green_2fc25b : R.color.color_red_F04864));
+        binding.tvStatus.setText("货物状态：" + (detailProjectData.getIsException() == CHECK_RIGHT ? "正常" : "异常"));
     }
 
 

@@ -21,7 +21,7 @@ public class PostCheckInfo implements Serializable {
      */
 
     private String checkRemark;
-    private int id;
+    private long id;
     private int isException;
     private int sign;
     private List<CheckDetailParamsListBean> checkDetailParamsList;
@@ -35,11 +35,11 @@ public class PostCheckInfo implements Serializable {
         this.checkRemark = checkRemark;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -81,14 +81,14 @@ public class PostCheckInfo implements Serializable {
          * status : 0
          */
 
-        private int id;
+        private long id;
         private int status;
 
-        public int getId() {
+        public long getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(long id) {
             this.id = id;
         }
 

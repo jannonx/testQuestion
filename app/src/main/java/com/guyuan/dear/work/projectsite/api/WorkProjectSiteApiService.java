@@ -151,7 +151,7 @@ public interface WorkProjectSiteApiService extends BaseApiService {
      * @param id 查询id
      * @return
      */
-    @GET("base/auditGoods/findByDetails")
+    @GET("base/auditGoods/queryDetailById")
     Observable<ResultBean<SiteExploreBean>> getCheckGoodDetailData(@Query("id") long id);
 
 
@@ -161,7 +161,7 @@ public interface WorkProjectSiteApiService extends BaseApiService {
      * @param body
      * @return
      */
-    @POST("base/auditGoods/commit")
+    @POST("base/auditGoods/commitCheck")
     Observable<ResultBean<Integer>> postCheckGoodInfo(@Body RequestBody body);
 
 
@@ -215,7 +215,7 @@ public interface WorkProjectSiteApiService extends BaseApiService {
      * @param body
      * @return
      */
-    @POST("base/install/commit")
+    @POST("base/install/commitMyWork")
     Observable<ResultBean<Integer>> postInstallDebugInfo(@Body RequestBody body);
 
 

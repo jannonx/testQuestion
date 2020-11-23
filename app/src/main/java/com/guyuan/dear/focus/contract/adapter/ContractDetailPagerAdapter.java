@@ -7,8 +7,8 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.guyuan.dear.focus.contract.bean.DetailContractBean;
-import com.guyuan.dear.focus.contract.view.contractDetail.ContractBaseInfoFragment;
 import com.guyuan.dear.focus.contract.view.contractDetail.ContractCommentsFragment;
+import com.guyuan.dear.focus.contract.view.contractDetail.ProductBaseInfoFragment;
 import com.guyuan.dear.focus.contract.view.contractDetail.SalesDeliveryFragment;
 
 /**
@@ -19,15 +19,13 @@ import com.guyuan.dear.focus.contract.view.contractDetail.SalesDeliveryFragment;
  **/
 public class ContractDetailPagerAdapter extends FragmentStateAdapter {
 
-    private String[] mTitles = new String[]{"销售产品", "收货信息", "跟进动态记录"};
-    private ContractBaseInfoFragment baseInfoFragment;
+    private String[] mTitles = new String[]{"跟进动态", "销售产品", "收货信息"};
+    private ProductBaseInfoFragment baseInfoFragment;
     private SalesDeliveryFragment salesDeliveryFragment;
     private ContractCommentsFragment commentsFragment;
-    private long mBuyerFirstCreateDate;
 
-    public ContractDetailPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle,long buyerFirstCreteDate) {
+    public ContractDetailPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
         super(fragmentManager, lifecycle);
-        mBuyerFirstCreateDate = buyerFirstCreteDate;
     }
 
     @NonNull
@@ -36,22 +34,24 @@ public class ContractDetailPagerAdapter extends FragmentStateAdapter {
         Fragment result = null;
         switch (position) {
             case 0:
-                if (baseInfoFragment == null) {
-                    baseInfoFragment = ContractBaseInfoFragment.getInstance();
+                if (commentsFragment == null) {
+                    commentsFragment = ContractCommentsFragment.getInstance();
                 }
-                result = baseInfoFragment;
+                result = commentsFragment;
+
                 break;
             case 1:
+                if (baseInfoFragment == null) {
+                    baseInfoFragment = ProductBaseInfoFragment.getInstance();
+                }
+                result = baseInfoFragment;
+
+                break;
+            case 2:
                 if (salesDeliveryFragment == null) {
                     salesDeliveryFragment = SalesDeliveryFragment.getInstance();
                 }
                 result = salesDeliveryFragment;
-                break;
-            case 2:
-                if(commentsFragment==null){
-                    commentsFragment = ContractCommentsFragment.getInstance(mBuyerFirstCreateDate);
-                }
-                result = commentsFragment;
                 break;
             default:
                 break;
@@ -68,16 +68,16 @@ public class ContractDetailPagerAdapter extends FragmentStateAdapter {
         return mTitles[pos];
     }
 
-    public void update(DetailContractBean bean) {
-        if (baseInfoFragment != null) {
-            baseInfoFragment.updateViewByData(bean);
-        }
-        if (salesDeliveryFragment != null) {
-            salesDeliveryFragment.updateViewByData(bean);
-        }
-        if(commentsFragment!=null){
-            commentsFragment.updateViewByDate(bean);
-        }
-
-    }
+//    public void update(DetailContractBean bean) {
+////        if (baseInfoFragment != null) {
+////            baseInfoFragment.updateViewByData(bean);
+////        }
+////        if (salesDeliveryFragment != null) {
+////            salesDeliveryFragment.updateViewByData(bean);
+////        }
+//        if (commentsFragment != null) {
+////            commentsFragment.updateViewByDate(bean);
+//        }
+//
+//    }
 }

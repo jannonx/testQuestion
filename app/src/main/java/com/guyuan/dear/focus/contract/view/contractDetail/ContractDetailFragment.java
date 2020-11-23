@@ -26,12 +26,12 @@ import com.guyuan.dear.utils.ConstantValue;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class ContractDetailFragment extends BaseMvvmFragment<FragmentContractDetailBinding, ContractDetailViewModel> {
-    private String mContractId;
+    private int mContractId;
 
-    public static ContractDetailFragment getInstance(String contractId) {
+    public static ContractDetailFragment getInstance(int contractId) {
         ContractDetailFragment fragment = new ContractDetailFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(ConstantValue.KEY_CONTRACT_ID, contractId);
+        bundle.putInt(ConstantValue.KEY_CONTRACT_ID, contractId);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -45,40 +45,36 @@ public class ContractDetailFragment extends BaseMvvmFragment<FragmentContractDet
     @Override
     protected void initData() {
         Bundle bundle = getArguments();
-        mContractId = bundle.getString(ConstantValue.KEY_CONTRACT_ID);
-
-
+        mContractId = bundle.getInt(ConstantValue.KEY_CONTRACT_ID);
     }
 
     @Override
     protected void initViews() {
         ViewPager2 viewPager = getViewDataBinding().fragmentContractDetailViewPager;
         TabLayout tabLayout = getViewDataBinding().fragmentContractDetailTabLayout;
-        tabLayout.setTabTextColors(Color.BLACK,Color.BLUE);
-        ContractDetailPagerAdapter adapter = new ContractDetailPagerAdapter(
-                getParentFragmentManager(), getLifecycle(), System.currentTimeMillis()
-        );
+        tabLayout.setTabTextColors(Color.parseColor("#333333"), Color.parseColor("#1677FF"));
+        ContractDetailPagerAdapter adapter = new ContractDetailPagerAdapter(getParentFragmentManager(), getLifecycle());
         viewPager.setOffscreenPageLimit(3);
         viewPager.setAdapter(adapter);
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#1677FF"));
+        tabLayout.setTabIndicatorFullWidth(false);
 
-        TabLayoutMediator mediator = new TabLayoutMediator(
-                tabLayout, viewPager, true, new TabLayoutMediator.TabConfigurationStrategy() {
-            @Override
-            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                tab.setText(adapter.getTitle(position));
-            }
-        }
+        TabLayoutMediator mediator = new TabLayoutMediator(tabLayout, viewPager, true,
+                new TabLayoutMediator.TabConfigurationStrategy() {
+                    @Override
+                    public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                        tab.setText(adapter.getTitle(position));
+                    }
+                }
         );
         mediator.attach();
-        getViewModel().getContractBean().observe(
-                getViewLifecycleOwner(),
-                new Observer<DetailContractBean>() {
-                    @Override
-                    public void onChanged(DetailContractBean bean) {
-                        adapter.update(bean);
-                    }
-                });
-        getViewModel().loadContractDetail();
+//        getViewModel().getContractBean().observe(getViewLifecycleOwner(), new Observer<DetailContractBean>() {
+//            @Override
+//            public void onChanged(DetailContractBean bean) {
+//                adapter.update(bean);
+//            }
+//        });
+        getViewModel().loadContractDetail(mContractId);
 
 
     }
@@ -88,9 +84,7 @@ public class ContractDetailFragment extends BaseMvvmFragment<FragmentContractDet
         getViewModel().setOnClickCheckProgress(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractPrgDetailActivity.start(getActivity(),"合同订单进度详情",
-                        getViewModel().getContractBean().getValue().getContractNum());
-
+                ContractPrgDetailActivity.start(getActivity(), "销售合同详情", getViewModel().getContractBean().getValue().getContractNum());
             }
         });
 

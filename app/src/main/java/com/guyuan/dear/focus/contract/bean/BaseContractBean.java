@@ -73,6 +73,7 @@ public class BaseContractBean implements Parcelable {
     public BaseContractBean(NetSearchContactInfo info) {
         setContractNum(info.getContractNum());
         setBuyer(info.getCusName());
+        setContractId(info.getId());
         setProductName(info.getEquipmentName());
         setProductModel(info.getEquipmentModel());
         setSalesPerson(info.getSalesman());

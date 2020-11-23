@@ -22,11 +22,12 @@ public class ContractApplyDetailBean extends BaseContractExcptBean {
      */
     private String applier;
     /**
-     * 0 重启 1 暂停
+     * 0 正常 1 暂停 2被激活
      */
     private int applyType;
     public static final int APPLY_TYPE_PAUSE = 1;
-    public static final int APPLY_TYPE_RESTART = 0;
+    public static final int APPLY_TYPE_RESTART = 2;
+    public static final int APPLY_TYPE_NORMAL=0;
 
 
     public ContractApplyDetailBean(NetContractStatusDetail src) {

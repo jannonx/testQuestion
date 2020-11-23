@@ -200,9 +200,9 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvCheckName.setText(detailProjectData.getProjectNumber());
 
 
-        binding.tvCompanyName.setText(detailProjectData.getCusName());
-        binding.tvTime.setText(detailProjectData.getCreateTime());
-        binding.tvCompanyLocation.setText(detailProjectData.getDestination());
+        binding.tvCompanyName.setText(detailProjectData.getCustomerName());
+        binding.tvTime.setText(detailProjectData.getCheckTime());
+        binding.tvCompanyLocation.setText(detailProjectData.getAcceptAddress());
     }
     /**
      * 现场勘查报告

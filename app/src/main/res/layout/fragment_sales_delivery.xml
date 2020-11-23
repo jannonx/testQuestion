@@ -1,102 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="fragment_sales_delivery_vm"
+            type="com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailViewModel" />
+    </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical">
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="收货单位"
-            android:padding="@dimen/dp_10"/>
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fragment_sales_delivery_tv_buyer"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="收货单位"
+                android:textSize="@dimen/sp_14"
+                android:padding="@dimen/dp_12"
+                android:textColor="@color/color_black_333333"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_grey_757575"
+                android:textSize="@dimen/sp_14"
+                android:layout_marginLeft="@dimen/dp_48"
+                android:text="@{fragment_sales_delivery_vm.contractBean.buyer}"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/color_grey_e5e5e5" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp_19"
-            android:padding="@dimen/dp_10"/>
+            android:gravity="center_vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="交货地址"
+                android:textSize="@dimen/sp_14"
+                android:padding="@dimen/dp_12"
+                android:textColor="@color/color_black_333333"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_grey_757575"
+                android:textSize="@dimen/sp_14"
+                android:layout_marginLeft="@dimen/dp_48"
+                android:text="@{fragment_sales_delivery_vm.contractBean.buyerAddress}"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/color_grey_e5e5e5" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="收货人员"
+                android:textSize="@dimen/sp_14"
+                android:padding="@dimen/dp_12"
+                android:textColor="@color/color_black_333333"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_grey_757575"
+                android:textSize="@dimen/sp_14"
+                android:layout_marginLeft="@dimen/dp_48"
+                android:text="@{fragment_sales_delivery_vm.contractBean.receivePerson}"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/color_grey_e5e5e5" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="联系方式"
+                android:textSize="@dimen/sp_14"
+                android:padding="@dimen/dp_12"
+                android:textColor="@color/color_black_333333"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_grey_757575"
+                android:textSize="@dimen/sp_14"
+                android:layout_marginLeft="@dimen/dp_48"
+                android:text="@{fragment_sales_delivery_vm.contractBean.contactNumber}"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/color_grey_e5e5e5"/>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="收货地址"
-            android:padding="@dimen/dp_10"/>
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fragment_sales_delivery_tv_buyer_address"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp_19"
-            android:padding="@dimen/dp_10"/>
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/color_grey_e5e5e5"/>
-
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="收  货  人"
-            android:padding="@dimen/dp_10"/>
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fragment_sales_delivery_tv_receiver_person"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp_19"
-            android:padding="@dimen/dp_10"/>
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1"
-        android:background="@color/color_grey_e5e5e5"/>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="联系方式"
-            android:padding="@dimen/dp_10"/>
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fragment_sales_delivery_tv_contact_number"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp_19"
-            android:padding="@dimen/dp_10"/>
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/bg_window"
     android:orientation="vertical"
     tools:background="@color/white">
 
@@ -145,5 +144,11 @@
 
             />
     </RelativeLayout>
+
+    <View
+        android:id="@+id/view_bottom"
+        android:layout_width="wrap_content"
+        android:background="@color/transparent"
+        android:layout_height="@dimen/dp_75"/>
 
 </LinearLayout>
