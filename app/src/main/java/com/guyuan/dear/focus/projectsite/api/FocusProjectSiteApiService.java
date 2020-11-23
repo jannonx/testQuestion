@@ -152,7 +152,7 @@ public interface FocusProjectSiteApiService extends BaseApiService {
      * @param id 查询id
      * @return
      */
-    @GET("base/auditGoods/findByDetails")
+    @GET("base/auditGoods/queryDetailById")
     Observable<ResultBean<SiteExploreBean>> getCheckGoodDetailData(@Query("id") long id);
 
 

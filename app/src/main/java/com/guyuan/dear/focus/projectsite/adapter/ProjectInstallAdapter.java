@@ -1,13 +1,15 @@
 package com.guyuan.dear.focus.projectsite.adapter;
 
 import android.content.Context;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
-
+import com.guyuan.dear.R;
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
@@ -26,8 +28,17 @@ public class ProjectInstallAdapter extends BaseRecyclerAdapter<InstallDebugBean>
     @Override
     protected void bindDataToView(BaseRecyclerViewHolder holder, InstallDebugBean item,
                                   int position) {
-//        holder.setText(R.id.tv_produce_type_name, item.getProductName());
-
+        holder.setText(R.id.tv_project_name, item.getProjectName());
+        holder.setText(R.id.tv_check_person, item.getPersonLiableName());
+        holder.setText(R.id.tv_time, item.getDebugStartTime());
+        //状态属性设置
+        holder.setText(R.id.tv_project_status, item.getStatusText());
+        TextView tvStatus = holder.getView(R.id.tv_project_status);
+        //可见
+        tvStatus.setVisibility(item.getStatusTextVisible() ? View.VISIBLE : View.GONE);
+        tvStatus.setBackgroundResource(item.getStatusTextBg());
+        int statusTextColor = item.getStatusTextColor();
+        tvStatus.setTextColor(context.getResources().getColor(statusTextColor));
 
     }
 }

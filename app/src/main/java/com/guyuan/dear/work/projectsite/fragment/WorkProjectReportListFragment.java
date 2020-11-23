@@ -13,6 +13,7 @@ import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.projectsite.activity.FocusInstallationDebugAllActivity;
 import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
+import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ListProjectRequestBody;
 import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
@@ -23,6 +24,7 @@ import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkCheckGoodsActivity;
+import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugActivity;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 
 import java.util.ArrayList;
@@ -40,7 +42,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/11/18 10:27
  * @company: 固远（深圳）信息技术有限公司
  */
-public class WorkProjectReportListFragment  extends BaseListSearchFragment<SiteExploreBean, FragmentListBinding, WorkProjectSiteViewModel> {
+public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteExploreBean, FragmentListBinding, WorkProjectSiteViewModel> {
 
     public static final String TAG = ProjectReportClassifyFragment.class.getSimpleName();
     private ProjectReportType reportType;
@@ -59,7 +61,7 @@ public class WorkProjectReportListFragment  extends BaseListSearchFragment<SiteE
     protected void init() {
         etSearch.setHint("输入项目名称、编号、人员");
         reportType = (ProjectReportType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
-
+        LogUtils.showLog("siteExploreBean=" + reportType.getDes());
         ProjectReportAdapter checkGoodsAdapter = new ProjectReportAdapter(getContext(),
                 listData, R.layout.item_focus_project_site);
         adapter = new BaseRecyclerViewAdapter(checkGoodsAdapter);
@@ -71,7 +73,10 @@ public class WorkProjectReportListFragment  extends BaseListSearchFragment<SiteE
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                jumpByReportType(listData.get(position));
+                SiteExploreBean bean = listData.get(position);
+                bean.setProjectReportType(reportType);
+                LogUtils.showLog("siteExploreBean=" + bean.getProjectReportType().getDes());
+                jumpByReportType(bean);
             }
         });
 
@@ -87,13 +92,21 @@ public class WorkProjectReportListFragment  extends BaseListSearchFragment<SiteE
                 break;
             ///货物清点报告
             case TYPE_CHECK_GOODS:
-                WorkCheckGoodsActivity.start(getContext(),siteExploreBean);
+                LogUtils.showLog("siteExploreBean=" + siteExploreBean.getProjectReportType().getDes());
+                //运输中,待清点
+                if (siteExploreBean.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
+                        || siteExploreBean.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING) {
+                    WorkCheckGoodsActivity.start(getContext(), siteExploreBean);
+                } else {
+                    FocusSiteExplorationDetailActivity.start(getContext(), siteExploreBean);
+                }
                 break;
             ///安全排查报告
             case TYPE_CHECK_SAFE:
                 break;
             ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:
+                WorkInstallDebugActivity.start(getContext(), siteExploreBean);
                 break;
             ///客户验收报告
             case TYPE_CUSTOMER_ACCEPTANCE:
@@ -182,10 +195,11 @@ public class WorkProjectReportListFragment  extends BaseListSearchFragment<SiteE
     private void dealDataByAddReportType(List<SiteExploreBean> dataList) {
         List<SiteExploreBean> tempList = new ArrayList<>();
         for (SiteExploreBean bean : dataList) {
+            LogUtils.showLog("siteExploreBean=" + reportType.getDes());
             bean.setProjectReportType(reportType);
             tempList.add(bean);
         }
-        LogUtils.showLog("dataList="+dataList.size());
+        LogUtils.showLog("dataList=" + dataList.size());
         setListData(tempList);
     }
 

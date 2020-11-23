@@ -238,7 +238,7 @@ public class WorkProjectSiteViewModel extends BaseViewModel {
     public void postCheckGoodInfo(RequestBody body) {
 
         Disposable disposable = RxJavaHelper.build(this, repository.postCheckGoodInfo(body))
-                .getHelper().flow(postCheckGoodOpinionEvent);
+                .getHelper().flow(commitCheckGoodInfoEvent);
         addSubscription(disposable);
     }
 

@@ -17,6 +17,7 @@ import com.guyuan.dear.work.projectsite.fragment.CheckSafetyFragment;
 import com.guyuan.dear.work.projectsite.fragment.CustomerAcceptanceFragment;
 import com.guyuan.dear.work.projectsite.fragment.SiteExplorationFragment;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.work.projectsite.fragment.WorkCheckGoodsListFragment;
 import com.guyuan.dear.work.projectsite.fragment.WorkProjectReportListFragment;
 
 import java.util.ArrayList;

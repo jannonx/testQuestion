@@ -1,5 +1,6 @@
 package com.guyuan.dear.work.projectsite.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
@@ -11,32 +12,26 @@ import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RadioGroup;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.guyuan.dear.R;
-import com.guyuan.dear.customizeview.itemDecorator.AddCopyListItemDecorator;
-import com.guyuan.dear.customizeview.itemDecorator.AddSendListItemDecorator;
-import com.guyuan.dear.databinding.DialogWorkProduceBinding;
 import com.guyuan.dear.databinding.DialogWorkProjectCheckBinding;
-import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
-import com.guyuan.dear.focus.produce.bean.OperateProduceType;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
+import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
+import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
-import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
-import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
-import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
+import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @description:
@@ -46,10 +41,18 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
  */
 public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View.OnClickListener {
 
+    // 到货或清点操作,1：到货操作标识，2：清点操作标识
+    private static final int TYPE_GOOD_ARRIVE = 1;
+    private static final int TYPE_GOOD_CHECK = 2;
+    // 是否异常，0正常，1异常
+    private static final int TYPE_CHECK_OK = 0;
+    private static final int TYPE_CHECK_EXCEPTION = 1;
+
     private Activity activity;
     private OnDialogClickListener clickListener;
     private DialogWorkProjectCheckBinding viewBinding;
-    private CheckGoodsBean checkGoodsBean;
+    private SiteExploreBean siteExploreBean;
+    private int isCheckOK = 0;
 
 
     public ProjectCheckConfirmDialog(@NonNull Context context, @StyleRes int theme, Activity activity) {
@@ -57,15 +60,18 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
         this.activity = activity;
     }
 
-    public ProjectCheckConfirmDialog(Activity activity, CheckGoodsBean checkGoodsBean, OnDialogClickListener clickListener) {
+    public ProjectCheckConfirmDialog(Activity activity, SiteExploreBean siteExploreBean, OnDialogClickListener clickListener) {
         this(activity, 0, activity);
         this.clickListener = clickListener;
-        this.checkGoodsBean = checkGoodsBean;
+        this.siteExploreBean = siteExploreBean;
+        for (CheckGoodsBean checkGoodsBean : siteExploreBean.getCheckTransportProjectListVO()) {
+            LogUtils.showLog("checkGoodsBean=" + checkGoodsBean.getIsException());
+        }
     }
 
 
-    public static void show(Activity activity, CheckGoodsBean checkGoodsBean, OnDialogClickListener clickListener) {
-        ProjectCheckConfirmDialog customerDialog = new ProjectCheckConfirmDialog(activity, checkGoodsBean, clickListener);
+    public static void show(Activity activity, SiteExploreBean siteExploreBean, OnDialogClickListener clickListener) {
+        ProjectCheckConfirmDialog customerDialog = new ProjectCheckConfirmDialog(activity, siteExploreBean, clickListener);
         customerDialog.show();
     }
 
@@ -90,18 +96,49 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
 
     private void initView() {
         //设置不可点击状态
-        viewBinding.tvOk.setClickable(false);
-        viewBinding.tvOk.setEnabled(false);
+//        viewBinding.tvOk.setClickable(false);
+//        viewBinding.tvOk.setEnabled(false);
         viewBinding.tvOk.setOnClickListener(this);
         viewBinding.tvCancel.setOnClickListener(this);
+        switchRadioButton(viewBinding.rbRight, true);
+        switchRadioButton(viewBinding.rbWrong, false);
+        //默认正常
+        viewBinding.rgCheck.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkId) {
+                switch (checkId) {
+                    case R.id.rb_right:
+                        isCheckOK = TYPE_CHECK_OK;
+                        switchRadioButton(viewBinding.rbRight, true);
+                        switchRadioButton(viewBinding.rbWrong, false);
+                        break;
+                    case R.id.rb_wrong:
+                        isCheckOK = TYPE_CHECK_EXCEPTION;
+                        switchRadioButton(viewBinding.rbRight, false);
+                        switchRadioButton(viewBinding.rbWrong, true);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+    }
 
+    /**
+     * 切换radioButton状态
+     *
+     * @param button    组件
+     * @param isChecked 选中
+     */
+    private void switchRadioButton(AppCompatRadioButton button, boolean isChecked) {
         //定义底部标签图片大小和位置
-        Drawable drawable = getContext().getResources().getDrawable(R.drawable.bg_work_project_rb_selector);
+        @SuppressLint("UseCompatLoadingForDrawables")
+        Drawable drawable = getContext().getResources().getDrawable(isChecked ?
+                R.drawable.bg_work_project_rb_selector : R.drawable.bg_work_project_rb_unselector);
         //当这个图片被绘制时，给他绑定一个矩形 ltrb规定这个矩形
         drawable.setBounds(0, 0, 50, 50);
         //设置图片在文字的哪个方向
-        viewBinding.rbRight.setCompoundDrawables(drawable, null, null, null);
-        viewBinding.rbWrong.setCompoundDrawables(drawable, null, null, null);
+        button.setCompoundDrawables(drawable, null, null, null);
     }
 
 
@@ -128,13 +165,28 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
             return;
         }
 
+
+        body.setId(siteExploreBean.getId());
+        body.setIsException(isCheckOK);
+        body.setSign(siteExploreBean.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
+                ? TYPE_GOOD_ARRIVE : TYPE_GOOD_CHECK);
+        body.setCheckRemark(viewBinding.etSearch.getText().toString());
+        List<PostCheckInfo.CheckDetailParamsListBean> goodList = new ArrayList<>();
+        for (CheckGoodsBean checkGoodsBean : siteExploreBean.getCheckTransportProjectListVO()) {
+            LogUtils.showLog("checkGoodsBean=" + checkGoodsBean.getIsException());
+            PostCheckInfo.CheckDetailParamsListBean bean = new PostCheckInfo.CheckDetailParamsListBean();
+            bean.setId(checkGoodsBean.getId());
+            bean.setStatus(checkGoodsBean.getIsException());
+            goodList.add(bean);
+        }
+        body.setCheckDetailParamsList(goodList);
+
         if (clickListener != null) {
             clickListener.onCommitInfo(body);
             dismiss();
         }
 
     }
-
 
 
     private void initListener() {
@@ -156,8 +208,8 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
 
             @Override
             public void afterTextChanged(Editable editable) {
-                viewBinding.tvOk.setClickable(!TextUtils.isEmpty(editable.toString()));
-                viewBinding.tvOk.setEnabled(!TextUtils.isEmpty(editable.toString()));
+//                viewBinding.tvOk.setClickable(!TextUtils.isEmpty(editable.toString()));
+//                viewBinding.tvOk.setEnabled(!TextUtils.isEmpty(editable.toString()));
                 //已输入字数
                 int enteredWords = wordLimitNum - editable.length();
                 //TextView显示剩余字数
