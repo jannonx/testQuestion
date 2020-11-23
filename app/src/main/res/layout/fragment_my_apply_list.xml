@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="fragment_my_pause_apply_list_vm"
-            type="com.guyuan.dear.work.contractPause.views.myAppliedList.MyPauseApplyListViewModel" />
+            name="fragment_my_apply_list_vm"
+            type="com.guyuan.dear.work.contractPause.views.myAppliedList.MyApplyListViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -14,10 +14,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <tl.com.easy_recycleview_library.BaseRecyclerView
+            android:id="@+id/fragment_my_apply_list_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:setMyPauseApplyListData="@{fragment_my_pause_apply_list_vm.applyList}"
-            app:setMyPauseApplyListItemClickListener="@{fragment_my_pause_apply_list_vm.onClickListItem}"/>
+            android:layout_height="match_parent"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

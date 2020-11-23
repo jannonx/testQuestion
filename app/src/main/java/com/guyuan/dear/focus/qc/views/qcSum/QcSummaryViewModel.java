@@ -5,8 +5,13 @@ import android.view.View;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
+import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.qc.beans.QcSummaryBean;
 import com.guyuan.dear.focus.qc.repo.QcSummaryRepo;
+import com.guyuan.dear.net.DearNetHelper;
+import com.guyuan.dear.utils.ToastUtils;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * @author: 廖华凯
@@ -43,8 +48,6 @@ public class QcSummaryViewModel extends BaseViewModel {
      * 数据源实现类
      */
     private QcSummaryRepo repo = new QcSummaryRepo();
-
-
 
 
     public MutableLiveData<View.OnClickListener> getOnClickSetTimePeriod() {
@@ -93,12 +96,32 @@ public class QcSummaryViewModel extends BaseViewModel {
 
     /**
      * 根据起始时间和终止时间获取最新的QC概况
+     *
      * @param from 起始时间
-     * @param to 终止时间
+     * @param to   终止时间
      */
-    public void updateQcSummaryByTimePeriod(long from, long to){
-        QcSummaryBean bean = repo.getQcSummaryByDate(from, to);
-        qcSummaryBean.postValue(bean);
+    public Disposable updateQcSummaryByTimePeriod(long from, long to) {
+        return repo.getQcSummaryByDate(from, to, new DearNetHelper.NetCallback<QcSummaryBean>() {
+            @Override
+            public void onStart(Disposable disposable) {
+                isShowLoading.postValue(true);
+
+            }
+
+            @Override
+            public void onGetResult(QcSummaryBean result) {
+                isShowLoading.postValue(false);
+                result.setStartPeriod(from);
+                result.setEndPeriod(to);
+                qcSummaryBean.postValue(result);
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                isShowLoading.postValue(false);
+                ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
+            }
+        });
     }
 
 

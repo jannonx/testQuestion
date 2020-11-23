@@ -14,7 +14,7 @@ import java.util.List;
  * @since: 2020/10/28 10:47
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ContractApplyDetailBean extends BaseContractExcptBean {
+public class DetailContractApplyBean extends BaseContractExcptBean {
     private String detailCause;
     private List<ContractApproveLog> comments;
     /**
@@ -30,7 +30,7 @@ public class ContractApplyDetailBean extends BaseContractExcptBean {
     public static final int APPLY_TYPE_NORMAL=0;
 
 
-    public ContractApplyDetailBean(NetContractStatusDetail src) {
+    public DetailContractApplyBean(NetContractStatusDetail src) {
         NetContractStatusDetail.TcontractInfoBean contract = src.getTcontractInfo();
         NetContractStatusDetail.TexamineVoBean flow = src.getTexamineVo();
         if (contract != null) {

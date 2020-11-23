@@ -23,7 +23,7 @@ import java.util.Locale;
  * @since: 2020/10/30 15:20
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class PauseContractBindingAdapter {
+public class ContractApplyBindingAdapter {
     @BindingAdapter("setPauseContractSendList")
     public static void setPauseContractSendList(RecyclerView view, List<StaffBean> staffs) {
         if (staffs == null) {

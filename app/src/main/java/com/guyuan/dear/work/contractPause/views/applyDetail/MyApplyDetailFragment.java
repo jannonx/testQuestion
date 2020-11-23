@@ -6,10 +6,8 @@ import android.view.View;
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
-import com.guyuan.dear.databinding.FragmentMyPauseApplyDetailBinding;
+import com.guyuan.dear.databinding.FragmentMyApplyDetailBinding;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
-import com.guyuan.dear.work.contractPause.beans.MyPauseApplyBean;
 
 /**
  * @author: 廖华凯
@@ -17,28 +15,28 @@ import com.guyuan.dear.work.contractPause.beans.MyPauseApplyBean;
  * @since: 2020/11/2 15:17
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class MyPauseApplyDetailFragment extends BaseMvvmFragment<FragmentMyPauseApplyDetailBinding,MyPauseApplyDetailViewModel> {
+public class MyApplyDetailFragment extends BaseMvvmFragment<FragmentMyApplyDetailBinding, MyApplyDetailViewModel> {
 
-    private MyPauseApplyBean bean;
+    private int examineId;
 
-    public static MyPauseApplyDetailFragment getInstance(MyPauseApplyBean bean){
+    public static MyApplyDetailFragment getInstance(int examineId) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable(ConstantValue.KEY_MY_PAUSE_APPLY_BEAN,bean);
-        MyPauseApplyDetailFragment fragment = new MyPauseApplyDetailFragment();
+        bundle.putInt(ConstantValue.KEY_EXAMINE_ID, examineId);
+        MyApplyDetailFragment fragment = new MyApplyDetailFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
     protected int getViewModelBrId() {
-        return BR.fragment_my_pause_apply_detail_vm;
+        return BR.fragment_my_apply_detail_vm;
     }
 
     @Override
     protected void initData() {
         Bundle bundle = getArguments();
-        bean = bundle.getParcelable(ConstantValue.KEY_MY_PAUSE_APPLY_BEAN);
-        getViewModel().loadApplyDetailDataFromNet(bean);
+        examineId = bundle.getInt(ConstantValue.KEY_EXAMINE_ID);
+        addDisposable(getViewModel().getMyApplyDetailFromNet(examineId));
         getViewDataBinding().fragmentMyPauseApplyDetailNestedScrollerView.fullScroll(View.FOCUS_UP);
 
     }
@@ -55,6 +53,6 @@ public class MyPauseApplyDetailFragment extends BaseMvvmFragment<FragmentMyPause
 
     @Override
     protected int getLayoutID() {
-        return R.layout.fragment_my_pause_apply_detail;
+        return R.layout.fragment_my_apply_detail;
     }
 }

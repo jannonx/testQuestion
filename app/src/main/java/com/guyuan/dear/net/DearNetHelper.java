@@ -11,9 +11,11 @@ import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 import com.guyuan.dear.focus.contract.bean.ComContractsBean;
-import com.guyuan.dear.focus.contract.bean.ContractApplyDetailBean;
+import com.guyuan.dear.focus.contract.bean.ContractComment;
+import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
+import com.guyuan.dear.focus.qc.beans.QcSummaryBean;
 import com.guyuan.dear.net.api.DearNetApiService;
 import com.guyuan.dear.net.reqBean.ContractApplyBody;
 import com.guyuan.dear.net.reqBean.SearchRqBody;
@@ -23,15 +25,20 @@ import com.guyuan.dear.net.resultBeans.NetContractDetailInfo;
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
 import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
+import com.guyuan.dear.net.resultBeans.NetQcSummaryBean;
 import com.guyuan.dear.net.resultBeans.NetSearchContactInfo;
 import com.guyuan.dear.net.resultBeans.NetServerParam;
 import com.guyuan.dear.net.resultBeans.NetStaffBean;
+import com.guyuan.dear.net.resultBeans.NetVerifyFlowBean;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
+import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
+import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.MyApplyDetailBean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
@@ -275,12 +282,12 @@ public class DearNetHelper {
      * @param callback
      * @return
      */
-    public Disposable getContractApplyDetail(int examineId, NetCallback<ContractApplyDetailBean> callback) {
+    public Disposable getContractApplyDetail(int examineId, NetCallback<DetailContractApplyBean> callback) {
         Observable<ResultBean<NetContractStatusDetail>> observable = netApiService.getContractStatusDetail(examineId);
-        Mapper<NetContractStatusDetail, ContractApplyDetailBean> mapper = new Mapper<NetContractStatusDetail, ContractApplyDetailBean>() {
+        Mapper<NetContractStatusDetail, DetailContractApplyBean> mapper = new Mapper<NetContractStatusDetail, DetailContractApplyBean>() {
             @Override
-            public ContractApplyDetailBean map(NetContractStatusDetail src) {
-                return new ContractApplyDetailBean(src);
+            public DetailContractApplyBean map(NetContractStatusDetail src) {
+                return new DetailContractApplyBean(src);
             }
         };
         return getDisposalAsync(observable, callback, mapper);
@@ -302,6 +309,125 @@ public class DearNetHelper {
         };
         return getDisposalAsync(observable,callback,mapper);
     }
+
+    /**
+     * 根据合同id查询跟进
+     * @param contractId
+     * @param callback
+     * @return
+     */
+    public Disposable getVerifyFlowByContractId(int contractId, NetCallback<List<ContractComment>> callback){
+        SearchRqBody body = new SearchRqBody();
+        body.setPageNum(0);
+        body.setPageSize(-1);
+        Map<String,String> filters = new HashMap<>();
+        filters.put("id",String.valueOf(contractId));
+        body.setFilters(filters);
+        Observable<ResultBean<BasePageResultBean<NetVerifyFlowBean>>> observable = netApiService.getVerifyFlowById(body);
+        Mapper<BasePageResultBean<NetVerifyFlowBean>,List<ContractComment>> mapper = new Mapper<BasePageResultBean<NetVerifyFlowBean>, List<ContractComment>>() {
+            @Override
+            public List<ContractComment> map(BasePageResultBean<NetVerifyFlowBean> src) {
+                List<NetVerifyFlowBean> content = src.getContent();
+                List<ContractComment> result = new ArrayList<>();
+                for (NetVerifyFlowBean bean : content) {
+                    ContractComment comment = new ContractComment(bean);
+                    result.add(comment);
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+
+    }
+
+    /**
+     * 获取用户申请的合同暂停列表
+     * @param pageIndex
+     * @param pageSize
+     * @param callback
+     * @return
+     */
+    public Disposable getMyPauseApplyList(int pageIndex,int pageSize,NetCallback<List<MyApplyBean>> callback){
+        return getMyApplyList(pageIndex,pageSize,1,callback);
+    }
+
+
+    /**
+     * 获取用户申请的合同重启列表
+     * @param pageIndex
+     * @param pageSize
+     * @param callback
+     * @return
+     */
+    public Disposable getMyRestartApplyList(int pageIndex,int pageSize,NetCallback<List<MyApplyBean>> callback){
+        return getMyApplyList(pageIndex,pageSize,2,callback);
+    }
+
+    private Disposable getMyApplyList(int pageIndex,int pageSize,int type,NetCallback<List<MyApplyBean>> callback){
+        SearchRqBody body = new SearchRqBody();
+        body.setPageNum(pageIndex);
+        body.setPageSize(pageSize);
+        body.setFindType(2);
+        body.setType(type);
+        Observable<ResultBean<BasePageResultBean<NetContractInfo>>> observable = netApiService.getContractApplyList(body);
+        Mapper<BasePageResultBean<NetContractInfo>,List<MyApplyBean>> mapper = new Mapper<BasePageResultBean<NetContractInfo>, List<MyApplyBean>>() {
+            @Override
+            public List<MyApplyBean> map(BasePageResultBean<NetContractInfo> src) {
+                List<MyApplyBean> result = new ArrayList<>();
+                List<NetContractInfo> content = src.getContent();
+                if(content!=null&&!content.isEmpty()){
+                    for (NetContractInfo info : content) {
+                        MyApplyBean apply = new MyApplyBean(info);
+                        result.add(apply);
+                    }
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+    }
+
+    /**
+     * 获取我的合同重启/暂停申请详情信息
+     * @param examineId
+     * @param callback
+     * @return
+     */
+    public Disposable getMyApplyDetailFromNet(int examineId, NetCallback<MyApplyDetailBean> callback){
+        Observable<ResultBean<NetContractStatusDetail>> observable = netApiService.getContractStatusDetail(examineId);
+        Mapper<NetContractStatusDetail,MyApplyDetailBean> mapper = new Mapper<NetContractStatusDetail, MyApplyDetailBean>() {
+            @Override
+            public MyApplyDetailBean map(NetContractStatusDetail src) {
+                MyApplyDetailBean bean = new MyApplyDetailBean(src);
+                return bean;
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+    }
+
+
+    /**
+     * 获取合同概况
+     * @param dateFrom
+     * @param dateTo
+     * @param callback
+     * @return
+     */
+    public Disposable getQcSummary(long dateFrom, long dateTo, NetCallback<QcSummaryBean> callback){
+        String startTime = CalenderUtils.getInstance().toSmartFactoryDateStringFormat(dateFrom);
+        String endTime = CalenderUtils.getInstance().toSmartFactoryDateStringFormat(dateTo);
+        Observable<ResultBean<NetQcSummaryBean>> observable = netApiService.getQcSummary(startTime,endTime);
+        Mapper<NetQcSummaryBean,QcSummaryBean> mapper = new Mapper<NetQcSummaryBean, QcSummaryBean>() {
+            @Override
+            public QcSummaryBean map(NetQcSummaryBean src) {
+                QcSummaryBean result = new QcSummaryBean(src);
+                return result;
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+
+    }
+
 
 
 

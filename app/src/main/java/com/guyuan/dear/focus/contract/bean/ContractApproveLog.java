@@ -54,6 +54,14 @@ public class ContractApproveLog extends Vote {
 
     }
 
+    public ContractApproveLog(ContractComment comment) {
+        setName(comment.getCommenter());
+        setImgUrl(comment.getImgUrl());
+        setComment(comment.getContent());
+        setDate(comment.getDate());
+        setDept(comment.getCommenterDept());
+    }
+
     public String getDept() {
         return dept;
     }
