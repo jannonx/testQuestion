@@ -54,13 +54,22 @@ public class NetContractStatusDetail {
         private int id;
         private int arType;
         private int businessId;
+        /**
+         * 状态 0.审批中 1.已同意 2.已拒绝
+         */
         private int status;
         private int createBy;
         private String createName;
         private String createDept;
         private String createTime;
         private String imgUrl;
+        /**
+         * 详细原因
+         */
         private String remark;
+        /**
+         * 判定维度
+         */
         private String remark1;
         private String remark2;
         private List<TexamineFlowsBean> texamineFlows;

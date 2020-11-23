@@ -24,7 +24,6 @@ public class NetContractInfo extends NetBaseContractInfo {
      * totalAmount : 0
      */
 
-
     private String cusName;
     /**
      * 变更状态申请发起人
@@ -55,6 +54,16 @@ public class NetContractInfo extends NetBaseContractInfo {
      * 状态标签 10002：表示暂停 10003：表示激活
      */
     private int changeType;
+
+    private String signTime;
+
+    public String getSignTime() {
+        return signTime;
+    }
+
+    public void setSignTime(String signTime) {
+        this.signTime = signTime;
+    }
 
     public int getChangeType() {
         return changeType;

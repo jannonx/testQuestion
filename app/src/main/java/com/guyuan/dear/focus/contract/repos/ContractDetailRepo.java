@@ -1,7 +1,10 @@
 package com.guyuan.dear.focus.contract.repos;
 
+import com.guyuan.dear.focus.contract.bean.ContractComment;
 import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.net.DearNetHelper;
+
+import java.util.List;
 
 import io.reactivex.disposables.Disposable;
 
@@ -15,6 +18,10 @@ public class ContractDetailRepo {
 
     public Disposable loadContractDetailById(int contractId, DearNetHelper.NetCallback<DetailContractBean> callback){
         return DearNetHelper.getInstance().getContractDetail(contractId,callback);
+    }
+
+    public Disposable getVerifyFlowByContractId(int contractId, DearNetHelper.NetCallback<List<ContractComment>> callback){
+        return DearNetHelper.getInstance().getVerifyFlowByContractId(contractId,callback);
     }
 
 }

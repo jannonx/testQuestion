@@ -44,6 +44,7 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
      */
     public static final int STATUS_TYPE_RESTART = 2;
 
+
     /**
      * @param statusType {@link ContractStatusListFragment#STATUS_TYPE_ON_PAUSE} {@link ContractStatusListFragment#STATUS_TYPE_RESTART}
      * @return

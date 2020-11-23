@@ -3,55 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
-            name="fragment_my_pause_apply_detail_vm"
-            type="com.guyuan.dear.work.contractPause.views.applyDetail.MyPauseApplyDetailViewModel" />
+            name="fragment_my_apply_detail_vm"
+            type="com.guyuan.dear.work.contractPause.views.applyDetail.MyApplyDetailViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/fragment_my_pause_apply_detail_nested_scroller_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:scrollbars="none"
+        android:background="@color/white">
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_12"
-                android:layout_marginRight="@dimen/dp_12"
                 android:layout_marginTop="@dimen/dp_16"
+                android:layout_marginRight="@dimen/dp_12"
                 android:layout_marginBottom="@dimen/dp_12"
                 android:gravity="center_vertical">
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp_14"
+                    android:text="@{fragment_my_apply_detail_vm.applyBean.buyer}"
                     android:textColor="@color/color_black_333333"
-                    android:textStyle="bold"
-                    android:text="@{fragment_my_pause_apply_detail_vm.applyBean.buyer}"/>
+                    android:textSize="@dimen/sp_14"
+                    android:textStyle="bold" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_12"
+                    android:paddingLeft="@dimen/dp_4"
+                    android:paddingTop="@dimen/dp_2"
+                    android:paddingRight="@dimen/dp_4"
+                    android:paddingBottom="@dimen/dp_2"
                     android:textSize="@dimen/sp_12"
                     android:textStyle="bold"
-                    android:paddingLeft="@dimen/dp_4"
-                    android:paddingRight="@dimen/dp_4"
-                    android:paddingTop="@dimen/dp_2"
-                    android:paddingBottom="@dimen/dp_2"
-                    app:setMyPauseApplyListTagTextProperty="@{fragment_my_pause_apply_detail_vm.applyBean.state}"/>
+                    app:setMyApplyListTagTextProperty="@{fragment_my_apply_detail_vm.applyBean.state}" />
             </androidx.appcompat.widget.LinearLayoutCompat>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_0p5"
-                android:background="@color/color_grey_e5e5e5"
                 android:layout_marginLeft="@dimen/dp_12"
-                android:layout_marginRight="@dimen/dp_12"/>
+                android:layout_marginRight="@dimen/dp_12"
+                android:background="@color/color_grey_e5e5e5" />
+
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,75 +67,88 @@
                 android:layout_marginTop="@dimen/dp_12"
                 android:layout_marginRight="@dimen/dp_12"
                 android:gravity="center_vertical">
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp_14"
+                    android:text="合同编号："
                     android:textColor="@color/color_grey_999999"
-                    android:text="合同编号："/>
+                    android:textSize="@dimen/sp_14" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp_14"
+                    android:text="@{fragment_my_apply_detail_vm.applyBean.contractNum}"
                     android:textColor="@color/color_grey_999999"
-                    android:text="@{fragment_my_pause_apply_detail_vm.applyBean.contractNum}"/>
+                    android:textSize="@dimen/sp_14" />
             </androidx.appcompat.widget.LinearLayoutCompat>
+
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_12"
                 android:layout_marginLeft="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_12"
                 android:layout_marginRight="@dimen/dp_12"
                 android:layout_marginBottom="@dimen/dp_12">
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp_14"
+                    android:text="判定维度："
                     android:textColor="@color/color_grey_999999"
-                    android:text="判定维度："/>
+                    android:textSize="@dimen/sp_14" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp_14"
-                    android:text="@{fragment_my_pause_apply_detail_vm.applyBean.judgement}"
-                    android:textColor="@color/color_grey_999999"/>
+                    android:text="@{fragment_my_apply_detail_vm.applyBean.judgement}"
+                    android:textColor="@color/color_grey_999999"
+                    android:textSize="@dimen/sp_14" />
             </androidx.appcompat.widget.LinearLayoutCompat>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="@color/color_grey_e5e5e5"/>
+                android:background="@color/color_grey_e5e5e5" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/color_black_333333"
+                android:padding="@dimen/dp_12"
                 android:text="详细原因"
-                android:padding="@dimen/dp_12"/>
+                android:textColor="@color/color_black_333333"
+                android:textStyle="bold" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/dp_12"
                 android:paddingRight="@dimen/dp_12"
                 android:paddingBottom="@dimen/dp_12"
+                android:text="@{fragment_my_apply_detail_vm.applyBean.detailCause}"
                 android:textColor="@color/color_grey_999999"
-                android:textSize="@dimen/sp_14"
-                android:text="@{fragment_my_pause_apply_detail_vm.applyBean.detailCause}"/>
+                android:textSize="@dimen/sp_14" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="@color/color_grey_e5e5e5"/>
+                android:background="@color/color_grey_e5e5e5" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/color_black_333333"
+                android:padding="@dimen/dp_12"
                 android:text="审批动态"
-                android:padding="@dimen/dp_12"/>
+                android:textColor="@color/color_black_333333"
+                android:textStyle="bold" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="@dimen/dp_12"
-                app:setMyPauseApplyLogs="@{fragment_my_pause_apply_detail_vm.applyBean.logs}"/>
+                app:setContractExcptDetailApplier="@{fragment_my_apply_detail_vm.applyBean.applier}"
+                app:setContractExcptDetailCommentList="@{fragment_my_apply_detail_vm.applyBean.logs}"
+                app:setContractExcptDetailCreateDate="@{fragment_my_apply_detail_vm.applyBean.date}" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
 

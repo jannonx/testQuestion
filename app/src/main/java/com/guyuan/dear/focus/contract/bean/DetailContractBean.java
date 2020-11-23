@@ -49,6 +49,7 @@ public class DetailContractBean extends BaseContractBean {
     }
 
     public DetailContractBean(NetContractDetailInfo src) {
+        setContractId(src.getId());
         setContractNum(src.getContractNum());
         setBuyer(src.getCusName());
         String signTime = src.getSignTime();
@@ -65,11 +66,6 @@ public class DetailContractBean extends BaseContractBean {
         setProductName(src.getEquipmentName());
         setProductModel(src.getEquipmentModel());
         setBuyerAddress(src.getDeliveryAddress());
-//        try {
-//            setBuyerFirstCreateDate(CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(src.getCreateTime()).getTime());
-//        }catch (Exception e){
-//            LogUtils.showLog(e.getMessage());
-//        }
         productComponents = new ArrayList<>();
         List<NetContractDetailInfo.TcontractPartsBean> parts = src.getTcontractParts();
         for (NetContractDetailInfo.TcontractPartsBean part : parts) {

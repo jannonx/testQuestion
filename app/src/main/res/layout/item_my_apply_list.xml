@@ -5,7 +5,7 @@
     <data>
         <variable
             name="data"
-            type="com.guyuan.dear.work.contractPause.beans.MyPauseApplyBean" />
+            type="com.guyuan.dear.work.contractPause.beans.MyApplyBean" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -28,7 +28,7 @@
                 android:textColor="@color/color_black_333333" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                app:setMyPauseApplyListTagTextProperty="@{data.state}"
+                app:setMyApplyListTagTextProperty="@{data.state}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"

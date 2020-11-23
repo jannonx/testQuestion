@@ -12,6 +12,7 @@ import com.guyuan.dear.net.resultBeans.NetContractDetailInfo;
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
 import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
+import com.guyuan.dear.net.resultBeans.NetVerifyFlowBean;
 import com.guyuan.dear.net.resultBeans.NetSearchContactInfo;
 import com.guyuan.dear.net.resultBeans.NetServerParam;
 import com.guyuan.dear.net.resultBeans.NetStaffBean;
@@ -107,5 +108,14 @@ public interface DearNetApiService extends BaseApiService {
      */
     @GET("base/tContractInfo/findById")
     Observable<ResultBean<NetContractDetailInfo>> getContractDetailById(@Query("id") int contractId);
+
+    /**
+     * 根据合同id查询跟进
+     * @param body
+     * @return
+     */
+    @POST("base/tContractInfo/findFollowById")
+    Observable<ResultBean<BasePageResultBean<NetVerifyFlowBean>>> getVerifyFlowById(@Body SearchRqBody body);
+
 
 }

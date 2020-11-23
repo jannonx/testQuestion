@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.app.DearApplication;
-import com.guyuan.dear.focus.contract.bean.ContractApplyDetailBean;
+import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
 import com.guyuan.dear.net.DearNetHelper;
 import com.guyuan.dear.utils.ToastUtils;
 
@@ -17,9 +17,9 @@ import io.reactivex.disposables.Disposable;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class ContractApplyDetailViewModel extends BaseViewModel {
-    private MutableLiveData<ContractApplyDetailBean> detailBean = new MutableLiveData<>();
+    private MutableLiveData<DetailContractApplyBean> detailBean = new MutableLiveData<>();
 
-    public MutableLiveData<ContractApplyDetailBean> getDetailBean() {
+    public MutableLiveData<DetailContractApplyBean> getDetailBean() {
         return detailBean;
     }
 
@@ -55,7 +55,7 @@ public class ContractApplyDetailViewModel extends BaseViewModel {
                 getDetailCallback);
     }
 
-    private DearNetHelper.NetCallback<ContractApplyDetailBean> getDetailCallback = new DearNetHelper.NetCallback<ContractApplyDetailBean>() {
+    private DearNetHelper.NetCallback<DetailContractApplyBean> getDetailCallback = new DearNetHelper.NetCallback<DetailContractApplyBean>() {
         @Override
         public void onStart(Disposable disposable) {
             isShowLoading.postValue(true);
@@ -63,7 +63,7 @@ public class ContractApplyDetailViewModel extends BaseViewModel {
         }
 
         @Override
-        public void onGetResult(ContractApplyDetailBean result) {
+        public void onGetResult(DetailContractApplyBean result) {
             isShowLoading.postValue(false);
             detailBean.postValue(result);
         }

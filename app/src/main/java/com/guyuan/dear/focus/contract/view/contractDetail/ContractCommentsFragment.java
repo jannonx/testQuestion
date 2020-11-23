@@ -1,30 +1,18 @@
 package com.guyuan.dear.focus.contract.view.contractDetail;
 
-import android.os.Bundle;
-
-import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mvvmlibrary.base.fragment.BaseFragment;
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.databinding.FragmentContractCommentsBinding;
-import com.guyuan.dear.focus.contract.adapter.CommentListAdapter;
-import com.guyuan.dear.focus.contract.bean.DetailContractBean;
+import com.guyuan.dear.focus.contract.bean.ContractApproveLog;
 import com.guyuan.dear.focus.contract.bean.ContractComment;
-import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
-import tl.com.easy_recycleview_library.BaseRecyclerView;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
-import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;
 
 /**
  * @author: 廖华凯
@@ -32,9 +20,9 @@ import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;
  * @since: 2020/10/10 15:23
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ContractCommentsFragment extends BaseMvvmFragment<FragmentContractCommentsBinding,ContractCommentsViewModel> {
+public class ContractCommentsFragment extends BaseMvvmFragment<FragmentContractCommentsBinding, ContractCommentsViewModel> {
 
-    public static ContractCommentsFragment getInstance(){
+    public static ContractCommentsFragment getInstance() {
         return new ContractCommentsFragment();
     }
 
@@ -45,11 +33,16 @@ public class ContractCommentsFragment extends BaseMvvmFragment<FragmentContractC
 
     @Override
     protected void initData() {
-        ViewModelProvider.AndroidViewModelFactory factory = ViewModelProvider.AndroidViewModelFactory.getInstance(DearApplication.getInstance());
-        ContractDetailViewModel viewModel = factory.create(ContractDetailViewModel.class);
-        //todo
-
-
+        ContractDetailViewModel viewModel = new ViewModelProvider(getActivity()).get(ContractDetailViewModel.class);
+        viewModel.getContractBean().observe(getViewLifecycleOwner(), new Observer<DetailContractBean>() {
+            @Override
+            public void onChanged(DetailContractBean detailContractBean) {
+                getViewModel().applier.postValue(detailContractBean.getSalesPerson());
+                getViewModel().contractDate.postValue(detailContractBean.getDate());
+                List<ContractComment> commentList = detailContractBean.getCommentList();
+                getViewModel().comments.postValue(commentList);
+            }
+        });
     }
 
     @Override

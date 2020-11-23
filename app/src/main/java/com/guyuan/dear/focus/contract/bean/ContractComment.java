@@ -2,7 +2,14 @@ package com.guyuan.dear.focus.contract.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
+import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
+import com.guyuan.dear.net.resultBeans.NetVerifyFlowBean;
+import com.guyuan.dear.utils.CalenderUtils;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,6 +48,47 @@ public class ContractComment implements Parcelable {
     public ContractComment() {
     }
 
+    public ContractComment(NetVerifyFlowBean src){
+        setCommenter(src.getCreateName());
+        setImgUrl(src.getImgUrl());
+        String createTime = src.getCreateTime();
+        if(!TextUtils.isEmpty(createTime)){
+            try {
+                Date date = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(createTime);
+                setDate(date.getTime());
+            }catch (Exception e){
+                setDate(0);
+            }
+        }
+        setContent(src.getContent());
+        setCommenterDept(src.getDeptName());
+        subComments = new ArrayList<>();
+        List<NetVerifyFlowBean.BusinessDetailsBean> list = src.getBusinessDetails();
+        if(list!=null&&!list.isEmpty()){
+            for (NetVerifyFlowBean.BusinessDetailsBean bean : list) {
+                ContractComment sub = new ContractComment(bean);
+                subComments.add(sub);
+            }
+        }
+    }
+
+    public ContractComment(NetVerifyFlowBean.BusinessDetailsBean src) {
+        setCommenter(src.getCreateName());
+        setImgUrl(src.getImgUrl());
+        setContent(src.getContent());
+        setCommenterDept(src.getDeptName());
+        String createTime = src.getCreateTime();
+        if(!TextUtils.isEmpty(createTime)){
+            try {
+                Date date = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(createTime);
+                setDate(date.getTime());
+            }catch (Exception e){
+                setDate(0);
+            }
+        }
+
+    }
+
     protected ContractComment(Parcel in) {
         commenter = in.readString();
         imgUrl = in.readString();
@@ -61,6 +109,7 @@ public class ContractComment implements Parcelable {
             return new ContractComment[size];
         }
     };
+
 
     @Override
     public int describeContents() {

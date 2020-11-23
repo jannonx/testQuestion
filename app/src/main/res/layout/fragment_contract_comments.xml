@@ -13,12 +13,11 @@
         android:layout_height="match_parent">
 
         <tl.com.easy_recycleview_library.BaseRecyclerView
+            android:layout_marginTop="@dimen/dp_12"
             android:id="@+id/fragment_contract_comments_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:setContractExcptDetailCommentList="@{fragment_contract_comments_vm.logs}"
-            app:setContractExcptDetailCreateDate="@{fragment_contract_comments_vm.contractDate}"
-            app:setContractExcptDetailApplier="@{fragment_contract_comments_vm.applier}"/>
+            app:setContractComments="@{fragment_contract_comments_vm.comments}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

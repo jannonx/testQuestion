@@ -2,7 +2,7 @@ package com.guyuan.dear.focus.contract.adapter;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
-import com.guyuan.dear.databinding.ItemSubContractCommentBinding;
+import com.guyuan.dear.databinding.ItemContractCommentBinding;
 import com.guyuan.dear.focus.contract.bean.ContractComment;
 
 import java.util.List;
@@ -10,17 +10,17 @@ import java.util.List;
 /**
  * @author: 廖华凯
  * @description:
- * @since: 2020/10/10 17:32
+ * @since: 2020/10/10 15:56
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class SubCommentListAdapter extends BaseDBRecycleAdapter<ContractComment, ItemSubContractCommentBinding> {
-
-    public SubCommentListAdapter(List<ContractComment> listData) {
-        super(listData, R.layout.item_sub_contract_comment);
+public class ContractCommentListAdapter extends BaseDBRecycleAdapter<ContractComment, ItemContractCommentBinding> {
+    public ContractCommentListAdapter(List<ContractComment> listData) {
+        super(listData, R.layout.item_contract_comment);
     }
 
     @Override
     protected void bindDataToView(Holder holder, ContractComment item, int position) {
         holder.binding.setData(item);
     }
+
 }
