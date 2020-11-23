@@ -79,7 +79,7 @@
         <activity android:name=".focus.qc.views.home.QcHomeActivity" />
         <activity android:name=".focus.hr.view.pickStaffs.PickStaffsActivity" />
         <activity android:name=".work.contractRestart.view.home.ContractRestartHomeActivity" />
-        <activity android:name=".work.contractPause.views.applyDetail.MyPauseApplyDetailActivity" />
+        <activity android:name=".work.contractPause.views.applyDetail.MyApplyDetailActivity" />
         <activity android:name=".work.contractPause.views.home.ContractPauseHomeActivity" />
         <activity android:name=".focus.contract.view.contractRestartDetail.RestartedContractDetailActivity" />
         <activity android:name=".focus.contract.view.contractApplyDetail.ContractApplyDetailActivity" />

@@ -216,7 +216,7 @@ public interface FocusProjectSiteApiService extends BaseApiService {
      * @param body
      * @return
      */
-    @POST("base/install/commit")
+    @POST("base/install/commitMyWork")
     Observable<ResultBean<Integer>> postInstallDebugInfo(@Body RequestBody body);
 
 
@@ -261,7 +261,7 @@ public interface FocusProjectSiteApiService extends BaseApiService {
      * @param body
      * @return
      */
-    @POST("base/auditCustomerAccept/commit")
+    @POST("base/auditCustomerAccept/commitCheck")
     Observable<ResultBean<Integer>> postCustomerAcceptanceInfo(@Body RequestBody body);
 
 

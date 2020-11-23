@@ -76,7 +76,9 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
                         WorkInstallDebugActivity.start(getContext(), listData.get(position));
                         break;
                     default:
-                        FocusSiteExplorationDetailActivity.start(getContext(), listData.get(position));
+                        SiteExploreBean siteExploreBean = listData.get(position);
+                        siteExploreBean.setModuleType(ProjectModuleType.TYPE_FOCUS);
+                        FocusSiteExplorationDetailActivity.start(getContext(),siteExploreBean );
                 }
 
             }

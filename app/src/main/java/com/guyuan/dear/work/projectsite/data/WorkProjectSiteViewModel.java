@@ -58,7 +58,7 @@ public class WorkProjectSiteViewModel extends BaseViewModel {
 
 
     /**
-     * 安装调试
+     * 获取清单
      */
     private MutableLiveData<RefreshBean<SiteExploreBean>> checkGoodListEvent = new MutableLiveData<>();
     private MutableLiveData<SiteExploreBean> checkGoodDetailEvent = new MutableLiveData<>();
@@ -66,7 +66,7 @@ public class WorkProjectSiteViewModel extends BaseViewModel {
     private MutableLiveData<Integer> postCheckGoodOpinionEvent = new MutableLiveData<>();
 
     /**
-     * 现场勘察
+     * 安装调试
      */
     private MutableLiveData<RefreshBean<SiteExploreBean>> installDebugListEvent = new MutableLiveData<>();
     private MutableLiveData<SiteExploreBean> installDebugDetailEvent = new MutableLiveData<>();

@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.qc.beans;
 
+import com.guyuan.dear.net.resultBeans.NetQcSummaryBean;
+
 /**
  * @author: 廖华凯
  * @description:
@@ -11,6 +13,18 @@ public class QcSummaryBean {
     private long endPeriod;
     private ProductQcSumBean productSum;
     private MaterialQcSumBean materialSum;
+
+    public QcSummaryBean(NetQcSummaryBean src) {
+        NetQcSummaryBean.EquipmentDataBean equipmentData = src.getEquipmentData();
+        if(equipmentData!=null){
+            productSum = new ProductQcSumBean(equipmentData);
+        }
+        NetQcSummaryBean.MaterialsDataBean materialsData = src.getMaterialsData();
+        if(materialsData!=null){
+            materialSum = new MaterialQcSumBean(materialsData);
+        }
+
+    }
 
     public long getStartPeriod() {
         return startPeriod;

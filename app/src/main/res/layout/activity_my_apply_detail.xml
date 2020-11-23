@@ -6,14 +6,14 @@
     <data>
         <variable
             name="activity_my_pause_apply_detail_vm"
-            type="com.guyuan.dear.work.contractPause.views.applyDetail.MyPauseApplyDetailViewModel" />
+            type="com.guyuan.dear.work.contractPause.views.applyDetail.MyApplyDetailViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.guyuan.dear.work.contractPause.views.applyDetail.MyPauseApplyDetailActivity">
+        tools:context="com.guyuan.dear.work.contractPause.views.applyDetail.MyApplyDetailActivity">
 
         <include layout="@layout/toolbar"/>
         <FrameLayout

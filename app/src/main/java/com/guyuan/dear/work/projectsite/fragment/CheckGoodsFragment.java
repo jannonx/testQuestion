@@ -26,6 +26,7 @@ import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.adapter.CheckGoodsAdapter;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
+import com.guyuan.dear.work.projectsite.bean.PostCustomerAcceptanceInfo;
 import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 
@@ -130,6 +131,11 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
 
             @Override
             public void onCommitInstallationDebugInfo(PostInstallationDebugInfo data) {
+
+            }
+
+            @Override
+            public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data){
 
             }
 

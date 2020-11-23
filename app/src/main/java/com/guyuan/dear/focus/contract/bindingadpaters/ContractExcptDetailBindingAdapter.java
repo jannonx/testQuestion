@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.contract.adapter.ContractCommentAdapter;
-import com.guyuan.dear.focus.contract.bean.ContractApplyDetailBean;
+import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
 import com.guyuan.dear.focus.contract.bean.ContractApproveLog;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.Vote;
 
@@ -23,12 +23,10 @@ import java.util.List;
  **/
 public class ContractExcptDetailBindingAdapter {
     @BindingAdapter(value = {"setContractExcptDetailCommentList","setContractExcptDetailCreateDate","setContractExcptDetailApplier"},requireAll = true)
-    public static void setContractExcptDetailCommentList(
-            RecyclerView view, List<ContractApproveLog> list, long contractDate, String applier){
+    public static void setContractExcptDetailCommentList(RecyclerView view, List<ContractApproveLog> list, long contractDate, String applier){
         if(list==null){
             return;
         }
-
         LinearLayoutManager manager = new LinearLayoutManager(view.getContext(),RecyclerView.VERTICAL,false);
         view.setLayoutManager(manager);
         Collections.reverse(list);
@@ -66,9 +64,9 @@ public class ContractExcptDetailBindingAdapter {
 
     @BindingAdapter("showContractApplyDetailTypeMark")
     public static void showContractApplyDetailTypeMark(AppCompatImageView view,int type){
-        if(type == ContractApplyDetailBean.APPLY_TYPE_PAUSE){
+        if(type == DetailContractApplyBean.APPLY_TYPE_PAUSE){
             view.setImageResource(R.mipmap.ic_webp_contract_exception_pause);
-        }else if(type == ContractApplyDetailBean.APPLY_TYPE_RESTART){
+        }else if(type == DetailContractApplyBean.APPLY_TYPE_RESTART){
             view.setImageResource(R.mipmap.webp_restarted_contract_state_activated);
         }
     }

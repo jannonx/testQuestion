@@ -39,7 +39,6 @@ public class NetContractDetailInfo extends NetContractInfo {
     private int stopStatus;
     private String contactInfo;
     private String createTime;
-    private String signTime;
     private String salesman;
     private String fileUrl;
     private List<TcontractPartsBean> tcontractParts;
@@ -108,13 +107,6 @@ public class NetContractDetailInfo extends NetContractInfo {
         this.createTime = createTime;
     }
 
-    public String getSignTime() {
-        return signTime;
-    }
-
-    public void setSignTime(String signTime) {
-        this.signTime = signTime;
-    }
 
     public String getSalesman() {
         return salesman;

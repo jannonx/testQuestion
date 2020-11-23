@@ -12,15 +12,18 @@ import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusSiteExplorationBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
+import com.guyuan.dear.focus.projectsite.bean.CustomerAcceptanceSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
+import com.guyuan.dear.work.projectsite.bean.PostCustomerAcceptanceInfo;
 import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
 import com.guyuan.dear.work.projectsite.fragment.ProjectCheckConfirmDialog;
 
@@ -79,45 +82,14 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
         binding.tvPauseBtn.setOnClickListener(this);
         binding.tvCompleteBtn.setOnClickListener(this);
+        LogUtils.showLog("TYPE_WORK="+detailProjectData.getModuleType().getDes());
         binding.llApplyPanel.setVisibility(ProjectModuleType.TYPE_WORK == detailProjectData.getModuleType() ? View.VISIBLE : View.GONE);
         initViewPager();
         getDataListByClassify();
+        getDataFromNet();
     }
 
-
-    /**
-     * 根据报告类型请求数据
-     */
-    private void getDataListByClassify() {
-        switch (detailProjectData.getProjectReportType()) {
-            ///现场勘查报告
-            case TYPE_SITE_EXPLORATION:
-                viewModel.getSiteExploreDetailData(detailProjectData.getId());
-                break;
-            ///货物清点报告
-            case TYPE_CHECK_GOODS:
-                viewModel.getCheckGoodDetailData(detailProjectData.getId());
-                break;
-            ///安全排查报告
-            case TYPE_CHECK_SAFE:
-                viewModel.getCheckSafeDetailData(detailProjectData.getId());
-                break;
-            ///安装调试报告
-            case TYPE_INSTALLATION_DEBUG:
-                String leftText = detailProjectData.getInstallDebugSatisfyType() == InstallDebugSatisfyType.TYPE_INSTALL_PAUSE ?
-                        "继续" : "暂停";
-                binding.tvPauseBtn.setText(leftText);
-                binding.tvCompleteBtn.setText("完工");
-                viewModel.getInstallDebugDetailData(detailProjectData.getId());
-                break;
-            ///客户验收报告
-            case TYPE_CUSTOMER_ACCEPTANCE:
-                viewModel.getCustomerAcceptanceDetailData(detailProjectData.getId());
-                break;
-
-            default:
-        }
-
+    private void getDataFromNet() {
         viewModel.getSiteExploreDetailEvent().observe(getActivity(), new Observer<SiteExploreBean>() {
             @Override
             public void onChanged(SiteExploreBean data) {
@@ -136,7 +108,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 setProduceData(data);
             }
         });
-        viewModel.getInstallDebugDetailEvent().observe(getActivity(), new Observer<SiteExploreBean>() {
+        viewModel.getInstallDebugDetailBySingleEvent().observe(getActivity(), new Observer<SiteExploreBean>() {
             @Override
             public void onChanged(SiteExploreBean data) {
                 setProduceData(data);
@@ -150,12 +122,58 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         });
 
         //提交--安装调试
-        viewModel.getCommitInstallDebugInfoEvent().observe(getActivity(), new Observer<Integer>() {
+        viewModel.getPostInstallDebugInfoEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer data) {
+                LogUtils.showLog("onCommitInstallationDebugInfo...onChanged");
                 getDataListByClassify();
+                EventBus.getDefault().post(new EventInstallDebugRefresh());
             }
         });
+        //提交--安装调试
+        viewModel.getCommitCustomerAcceptanceInfoEvent().observe(getActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer data) {
+                LogUtils.showLog("getCommitCustomerAcceptanceInfoEvent...onChanged");
+                getDataListByClassify();
+                EventBus.getDefault().post(new EventInstallDebugRefresh());
+            }
+        });
+    }
+
+
+    /**
+     * 根据报告类型请求数据
+     */
+    private void getDataListByClassify() {
+        LogUtils.showLog("onCommitInstallationDebugInfo...getDataListByClassify");
+        switch (detailProjectData.getProjectReportType()) {
+            ///现场勘查报告
+            case TYPE_SITE_EXPLORATION:
+                viewModel.getSiteExploreDetailData(detailProjectData.getId());
+                break;
+            ///货物清点报告
+            case TYPE_CHECK_GOODS:
+                viewModel.getCheckGoodDetailData(detailProjectData.getId());
+                break;
+            ///安全排查报告
+            case TYPE_CHECK_SAFE:
+                viewModel.getCheckSafeDetailData(detailProjectData.getId());
+                break;
+            ///安装调试报告
+            case TYPE_INSTALLATION_DEBUG:
+
+                viewModel.getInstallDebugDetailDataBySingle(detailProjectData.getId());
+                break;
+            ///客户验收报告
+            case TYPE_CUSTOMER_ACCEPTANCE:
+                viewModel.getCustomerAcceptanceDetailData(detailProjectData.getId());
+                break;
+
+            default:
+        }
+
+
     }
 
     /**
@@ -165,8 +183,9 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      */
     private void setProduceData(SiteExploreBean data) {
         if (getActivity() == null) return;
-
+        LogUtils.showLog("onCommitInstallationDebugInfo...setProduceData");
         data.setProjectReportType(detailProjectData.getProjectReportType());
+        data.setModuleType(detailProjectData.getModuleType());
         detailProjectData = data;
         //设置审核数据
         planFragment.setCheckContentData(detailProjectData);
@@ -263,7 +282,24 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      * @param detailProjectData 数据
      */
     private void setInstallationDebugData(SiteExploreBean detailProjectData) {
+        LogUtils.showLog("onCommitInstallationDebugInfo...setInstallationDebugData");
+        binding.tvProjectName.setText(detailProjectData.getProjectName());
 
+        binding.labelProjectCode.setText("施工：");
+        binding.tvProjectCode.setText(detailProjectData.getCustomerName());
+        binding.labelCheckName.setText("负责人：");
+        binding.tvCheckName.setText(detailProjectData.getPersonLiableName());
+
+        binding.clCustomerPanel.setVisibility(View.GONE);
+        binding.tvInstallTime.setVisibility(View.VISIBLE);
+        binding.tvInstallTime.setText(detailProjectData.getDebugStartTime());
+
+        String leftText = detailProjectData.getInstallDebugSatisfyType() == InstallDebugSatisfyType.TYPE_INSTALL_PAUSE ?
+                "继续" : "暂停";
+        binding.tvPauseBtn.setText(leftText);
+        binding.tvCompleteBtn.setText("完工");
+        binding.llApplyPanel.setVisibility(InstallDebugSatisfyType.TYPE_INSTALL_COMPLETE == detailProjectData.getInstallDebugSatisfyType() ?
+                View.GONE : View.VISIBLE);
     }
 
     /**
@@ -273,7 +309,27 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      */
     private void setCustomerAcceptanceData(SiteExploreBean detailProjectData) {
 
+        binding.tvProjectName.setText(detailProjectData.getCustomerName());
 
+        binding.labelProjectCode.setText("合同编号：");
+        binding.tvProjectCode.setText(detailProjectData.getContractNum());
+        binding.labelCheckName.setText("项目名称：");
+        binding.tvCheckName.setText(detailProjectData.getProjectName());
+
+        binding.rlAddress.setVisibility(View.VISIBLE);
+        binding.tvAddress.setText(detailProjectData.getAddress());
+
+        binding.tvCompanyName.setText("现场监工：" + detailProjectData.getPersonLiableName());
+        binding.tvTime.setText(detailProjectData.getCreateTime());
+        binding.tvCompanyLocation.setVisibility(View.GONE);
+
+        binding.tvPauseBtn.setText("验收不合格");
+        binding.tvCompleteBtn.setText("验收合格");
+        LogUtils.showLog("TYPE_WORK="+detailProjectData.getModuleType().getDes());
+        binding.llApplyPanel.setVisibility(ProjectModuleType.TYPE_FOCUS == detailProjectData.getModuleType() ? View.GONE :
+                CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_OK == detailProjectData.getCustomerAcceptanceSatisfyType()
+                        || CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_EXCEPTION == detailProjectData.getCustomerAcceptanceSatisfyType() ?
+                        View.GONE : View.VISIBLE);
     }
 
 
@@ -284,9 +340,42 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 clickLeftBtn();
                 break;
             case R.id.tv_complete_btn:
-
+                clickRightBtn();
                 break;
         }
+    }
+
+    private void clickRightBtn() {
+        ProjectCheckConfirmDialog.show(getActivity(), detailProjectData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
+
+            @Override
+            public void onCommitCheckGoodsInfo(PostCheckInfo data) {
+
+            }
+
+            @Override
+            public void onCommitInstallationDebugInfo(PostInstallationDebugInfo data) {
+                LogUtils.showLog("onCommitInstallationDebugInfo");
+                //安装调试
+                data.setStatus(InstallDebugSatisfyType.TYPE_INSTALL_COMPLETE.getCode());
+                String str = GsonUtil.objectToString(data);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), str);
+
+                viewModel.postInstallDebugInfo(requestBody);
+            }
+
+            @Override
+            public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data) {
+                //验收状态，0:待验收，10合格，20不合格
+                data.setCheckStatus(10);
+                String str = GsonUtil.objectToString(data);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), str);
+
+                viewModel.postCustomerAcceptanceInfo(requestBody);
+            }
+        });
     }
 
     private void clickLeftBtn() {
@@ -299,6 +388,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
             @Override
             public void onCommitInstallationDebugInfo(PostInstallationDebugInfo data) {
+                LogUtils.showLog("onCommitInstallationDebugInfo");
                 //安装调试
                 int codeStatus = binding.tvPauseBtn.getText().toString().equals("暂停") ?
                         InstallDebugSatisfyType.TYPE_INSTALL_PAUSE.getCode() : InstallDebugSatisfyType.TYPE_INSTALL_ING.getCode();
@@ -308,6 +398,17 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                         "charset=utf-8"), str);
 
                 viewModel.postInstallDebugInfo(requestBody);
+            }
+
+            @Override
+            public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data) {
+                //验收状态，0:待验收，10合格，20不合格
+                data.setCheckStatus(20);
+                String str = GsonUtil.objectToString(data);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), str);
+
+                viewModel.postCustomerAcceptanceInfo(requestBody);
             }
         });
 

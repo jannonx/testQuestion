@@ -65,54 +65,63 @@
                 android:textSize="@dimen/sp_17" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_goods_exception"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_status"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_12"
-            android:layout_marginTop="@dimen/dp_12p5"
-            android:text="货物状态"
-            android:textColor="@color/color_black_333333"
-            android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll_et_content" />
+            app:layout_constraintTop_toBottomOf="@+id/ll_et_content">
 
-        <RadioGroup
-            android:id="@+id/rg_check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dp_12"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_goods_exception"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_goods_exception">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rb_right"
+            <TextView
+                android:id="@+id/tv_goods_exception"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp_44"
-                android:background="@null"
-                android:button="@null"
-                android:checked="true"
-                android:drawableStart="@drawable/bg_work_project_rb_unselector"
-                android:drawablePadding="@dimen/dp_8"
-                android:text="正常"
+                android:layout_marginStart="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_12p5"
+                android:text="货物状态"
                 android:textColor="@color/color_black_333333"
-                android:textSize="@dimen/sp_14" />
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rb_wrong"
+            <RadioGroup
+                android:id="@+id/rg_check"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:button="@null"
-                android:drawablePadding="@dimen/dp_8"
-                android:drawableStart="@drawable/bg_work_project_rb_unselector"
-                android:text="异常"
-                android:textColor="@color/color_black_333333"
-                android:textSize="@dimen/sp_14" />
-        </RadioGroup>
+                android:layout_marginEnd="@dimen/dp_12"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_goods_exception"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_goods_exception">
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rb_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_44"
+                    android:background="@null"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableStart="@drawable/bg_work_project_rb_unselector"
+                    android:drawablePadding="@dimen/dp_8"
+                    android:text="正常"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_14" />
+
+                <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rb_wrong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:button="@null"
+                    android:drawableStart="@drawable/bg_work_project_rb_unselector"
+                    android:drawablePadding="@dimen/dp_8"
+                    android:text="异常"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_14" />
+            </RadioGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_pick_tip"
@@ -125,7 +134,7 @@
             android:orientation="vertical"
             android:padding="@dimen/dp_12"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_goods_exception">
+            app:layout_constraintTop_toBottomOf="@+id/cl_status">
 
             <TextView
                 android:id="@+id/label_document"

@@ -37,7 +37,7 @@ public class QcSummaryFragment extends BaseMvvmFragment<FragmentQcSummaryBinding
     protected void initData() {
         dateTo = System.currentTimeMillis();
         dateFrom = CalenderUtils.getInstance().getXMonthsAgoInYearMonthFormat(dateTo, 3);
-        getViewModel().updateQcSummaryByTimePeriod(dateFrom, dateTo);
+        addDisposable(getViewModel().updateQcSummaryByTimePeriod(dateFrom, dateTo));
 
     }
 
