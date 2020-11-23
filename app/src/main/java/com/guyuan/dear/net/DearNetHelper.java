@@ -15,6 +15,7 @@ import com.guyuan.dear.focus.contract.bean.ContractComment;
 import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
+import com.guyuan.dear.focus.qc.beans.QcSummaryBean;
 import com.guyuan.dear.net.api.DearNetApiService;
 import com.guyuan.dear.net.reqBean.ContractApplyBody;
 import com.guyuan.dear.net.reqBean.SearchRqBody;
@@ -24,6 +25,7 @@ import com.guyuan.dear.net.resultBeans.NetContractDetailInfo;
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
 import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
+import com.guyuan.dear.net.resultBeans.NetQcSummaryBean;
 import com.guyuan.dear.net.resultBeans.NetSearchContactInfo;
 import com.guyuan.dear.net.resultBeans.NetServerParam;
 import com.guyuan.dear.net.resultBeans.NetStaffBean;
@@ -401,6 +403,29 @@ public class DearNetHelper {
             }
         };
         return getDisposalAsync(observable,callback,mapper);
+    }
+
+
+    /**
+     * 获取合同概况
+     * @param dateFrom
+     * @param dateTo
+     * @param callback
+     * @return
+     */
+    public Disposable getQcSummary(long dateFrom, long dateTo, NetCallback<QcSummaryBean> callback){
+        String startTime = CalenderUtils.getInstance().toSmartFactoryDateStringFormat(dateFrom);
+        String endTime = CalenderUtils.getInstance().toSmartFactoryDateStringFormat(dateTo);
+        Observable<ResultBean<NetQcSummaryBean>> observable = netApiService.getQcSummary(startTime,endTime);
+        Mapper<NetQcSummaryBean,QcSummaryBean> mapper = new Mapper<NetQcSummaryBean, QcSummaryBean>() {
+            @Override
+            public QcSummaryBean map(NetQcSummaryBean src) {
+                QcSummaryBean result = new QcSummaryBean(src);
+                return result;
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+
     }
 
 

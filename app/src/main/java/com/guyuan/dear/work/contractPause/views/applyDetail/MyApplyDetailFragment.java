@@ -36,7 +36,7 @@ public class MyApplyDetailFragment extends BaseMvvmFragment<FragmentMyApplyDetai
     protected void initData() {
         Bundle bundle = getArguments();
         examineId = bundle.getInt(ConstantValue.KEY_EXAMINE_ID);
-        getViewModel().getMyApplyDetailFromNet(examineId);
+        addDisposable(getViewModel().getMyApplyDetailFromNet(examineId));
         getViewDataBinding().fragmentMyPauseApplyDetailNestedScrollerView.fullScroll(View.FOCUS_UP);
 
     }

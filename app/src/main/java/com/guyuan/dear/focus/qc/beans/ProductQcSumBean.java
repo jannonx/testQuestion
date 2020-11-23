@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.qc.beans;
 
+import com.guyuan.dear.net.resultBeans.NetQcSummaryBean;
+
 /**
  * @author: 廖华凯
  * @description: 表示一段时间的成品质量概况
@@ -12,6 +14,15 @@ public class ProductQcSumBean {
     private int sampleSize;
     private int passNum;
     private int rejectNum;
+
+    public ProductQcSumBean() {
+    }
+
+    public ProductQcSumBean(NetQcSummaryBean.EquipmentDataBean src) {
+        this.sampleSize=src.getTotalNum();
+        this.passNum=src.getQualifiedNum();
+        this.rejectNum=src.getUnqualifiedNum();
+    }
 
     public int getSampleSize() {
         return sampleSize;

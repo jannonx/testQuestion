@@ -12,6 +12,7 @@ import com.guyuan.dear.net.resultBeans.NetContractDetailInfo;
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
 import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
+import com.guyuan.dear.net.resultBeans.NetQcSummaryBean;
 import com.guyuan.dear.net.resultBeans.NetVerifyFlowBean;
 import com.guyuan.dear.net.resultBeans.NetSearchContactInfo;
 import com.guyuan.dear.net.resultBeans.NetServerParam;
@@ -116,6 +117,18 @@ public interface DearNetApiService extends BaseApiService {
      */
     @POST("base/tContractInfo/findFollowById")
     Observable<ResultBean<BasePageResultBean<NetVerifyFlowBean>>> getVerifyFlowById(@Body SearchRqBody body);
+
+    /**
+     * 获取质量概况列表
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    @GET("base/qualitycodedetails/findOverview")
+    Observable<ResultBean<NetQcSummaryBean>> getQcSummary(@Query("startTime") String startTime,@Query("endTime") String endTime);
+
+
+
 
 
 }
