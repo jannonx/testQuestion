@@ -93,41 +93,32 @@ public class GoodsSignViewModel extends BaseViewModel {
                 .success(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        int result = (int) o;
-                        if (result == 0) {//成功关闭当前界面
-                            getGoodsSignDetail(contractID);
-                        }
+                        getGoodsSignDetail(contractID);
                     }
                 })
                 .getHelper().flow();
     }
 
     //详情页签收
-    public void signDetail(int itemID) {
-        RxJavaHelper.build(this, apiService.sign(itemID))
+    public void signDetail(int itemID, int receiveNum) {
+        RxJavaHelper.build(this, apiService.sign(itemID, receiveNum))
                 .setPreTip("正在签收...")
                 .success(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        int result = (int) o;
-                        if (result == 0) {//成功刷新界面
-                            getGoodsDetail(itemID);
-                        }
+                        getGoodsDetail(itemID);
                     }
                 })
                 .getHelper().flow();
     }
 
-    public void sign(int itemID, int contractID) {
-        RxJavaHelper.build(this, apiService.sign(itemID))
+    public void sign(int itemID, int receiveNum, int contractID) {
+        RxJavaHelper.build(this, apiService.sign(itemID, receiveNum))
                 .setPreTip("正在签收...")
                 .success(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        int result = (int) o;
-                        if (result == 0) {//成功刷新界面
-                            getGoodsSignDetail(contractID);
-                        }
+                        getGoodsSignDetail(contractID);
                     }
                 })
                 .getHelper().flow();

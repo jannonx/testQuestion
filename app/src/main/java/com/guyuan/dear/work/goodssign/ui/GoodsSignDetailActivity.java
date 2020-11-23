@@ -62,9 +62,9 @@ public class GoodsSignDetailActivity extends BaseToolbarActivity<ActivityGoodsSi
     }
 
     @Override
-    public void sign(int id) {
+    public void sign(int id, int receiveNum) {
         if (viewModel != null) {
-            viewModel.sign(id, contractID);
+            viewModel.sign(id, receiveNum, contractID);
         }
     }
 }

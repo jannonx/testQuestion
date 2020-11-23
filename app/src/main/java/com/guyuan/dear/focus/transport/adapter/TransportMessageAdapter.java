@@ -1,8 +1,7 @@
 package com.guyuan.dear.focus.transport.adapter;
 
 import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
-import com.guyuan.dear.databinding.ItemTransportMessageBinding;
-
+import com.guyuan.dear.databinding.ItemAddSendListBindingImpl;
 import java.util.List;
 
 /**
@@ -12,7 +11,7 @@ import java.util.List;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class TransportMessageAdapter extends BaseDBRecycleAdapter<Object, ItemTransportMessageBinding> {
+public class TransportMessageAdapter extends BaseDBRecycleAdapter<Object, ItemAddSendListBindingImpl> {
     public TransportMessageAdapter(List<Object> listData, int layoutID) {
         super(listData, layoutID);
     }

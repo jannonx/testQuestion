@@ -1,6 +1,7 @@
 package com.guyuan.dear.base.fragment;
 
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,6 +39,7 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
     protected View empty_view;
     protected ImageView no_data_iv;
     protected TextView tv_empty;
+    protected FrameLayout list_container;
     protected MaterialButton tv_refresh;
     private int emptyImgID = R.mipmap.ic_no_data;
     private String emptyTip = ConstantValue.TIP_NO_DATA;
@@ -64,6 +66,7 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
 
     @Override
     protected void initialization() {
+        list_container = rootView.findViewById(R.id.list_container);
         recycleView = rootView.findViewById(R.id.base_recycleView);
         empty_view = rootView.findViewById(R.id.empty_view);
         no_data_iv = rootView.findViewById(R.id.no_data_iv);
@@ -148,7 +151,7 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
                     adapter.refreshData();
                     recycleView.refreshComplete(PAGE_SIZE);
                 }
-                LogUtils.showLog("REFRESH....dataList="+dataList.size());
+                LogUtils.showLog("REFRESH....dataList=" + dataList.size());
                 break;
 
             case LOAD_MORE:
@@ -157,7 +160,7 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
                     adapter.refreshData();
                     recycleView.refreshComplete(PAGE_SIZE);
                 }
-                LogUtils.showLog("LOAD_MORE.....dataList="+dataList.size());
+                LogUtils.showLog("LOAD_MORE.....dataList=" + dataList.size());
                 break;
             default:
         }

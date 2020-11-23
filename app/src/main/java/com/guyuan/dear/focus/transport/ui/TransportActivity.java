@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.transport.data.TransportViewModel;
+import com.guyuan.dear.focus.transport.data.bean.TransportListBean;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class TransportActivity extends BaseTabActivity<ActivityBaseTabBinding, TransportViewModel> {
 
-    private TransportFragment totalFragment;
+    private TransportFragment followFragment;
     private TransportFragment arrivedFragment;
 
     public static void start(Context context, String title) {
@@ -44,9 +46,9 @@ public class TransportActivity extends BaseTabActivity<ActivityBaseTabBinding, T
     @Override
     protected List<Fragment> getFragments() {
         List<Fragment> fragmentList = new ArrayList<>();
-        totalFragment = TransportFragment.newInstance(TransportFragment.TOTAL, 1, "");
-        arrivedFragment = TransportFragment.newInstance(TransportFragment.ARRIVED, 1, "");
-        fragmentList.add(totalFragment);
+        followFragment = TransportFragment.newInstance(TransportFragment.FOLLOW, "");
+        arrivedFragment = TransportFragment.newInstance(TransportFragment.ARRIVED, "");
+        fragmentList.add(followFragment);
         fragmentList.add(arrivedFragment);
         return fragmentList;
     }
@@ -55,7 +57,26 @@ public class TransportActivity extends BaseTabActivity<ActivityBaseTabBinding, T
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+        setObserver();
     }
+
+
+    private void setObserver() {
+        viewModel.getTransportFollowListMLD().observe(this, new Observer<TransportListBean>() {
+            @Override
+            public void onChanged(TransportListBean transportListBean) {
+                followFragment.setListData(transportListBean.getContent());
+            }
+        });
+
+        viewModel.getTransportArrivedListMLD().observe(this, new Observer<TransportListBean>() {
+            @Override
+            public void onChanged(TransportListBean transportListBean) {
+                arrivedFragment.setListData(transportListBean.getContent());
+            }
+        });
+    }
+
 
     @Override
     protected List<Integer> setTabIconList() {

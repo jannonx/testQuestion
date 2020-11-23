@@ -1,10 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <data>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="transportDetailBean"
+            type="com.guyuan.dear.focus.transport.data.bean.TransportDetailBean.TransportDetailVOListBean" />
+    </data>
+
+    <androidx.cardview.widget.CardView style="@style/CardViewCommon">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_12">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/inventory_name_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{transportDetailBean.projectName}"
+                    tools:text="深圳固远" />
+
+                <TextView
+                    android:id="@+id/inventory_number_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(transportDetailBean.amount)+transportDetailBean.unit}"
+                    tools:text="dfsdf123123123" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12">
+
+                <TextView
+                    android:id="@+id/inventory_code_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{String.format(@string/focus_transport_code,transportDetailBean.projectCode)}"
+                    android:textColor="#757575"
+                    tools:text="@string/focus_transport_code" />
+
+                <TextView
+                    android:id="@+id/inventory_spec_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.format(@string/focus_transport_spec,transportDetailBean.model)}"
+                    android:textColor="#757575"
+                    tools:text="@string/focus_transport_spec" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/inventory_remark_tv"
+                style="@style/TextNormal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:text="@{String.format(@string/focus_transport_remark,transportDetailBean.remark)}"
+                android:textColor="#757575"
+                tools:text="@string/focus_transport_remark" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 </layout>

@@ -416,4 +416,14 @@
     <string name="focus_after_sale_question_type">问题类型：%s</string>
     <string name="focus_after_sale_idea">处理意见：%s</string>
     <string name="focus_after_sale_description_">描述：%s</string>
+
+    <!--我的关注-运输-->
+    <string name="focus_transport_car_number">车牌号：%s</string>
+    <string name="focus_transport_phone_number">手机号：%s</string>
+    <string name="focus_transport_goods_number">货物数量：%d</string>
+    <string name="focus_transport_code">代号：%s</string>
+    <string name="focus_transport_spec">规格：%s</string>
+    <string name="focus_transport_remark">备注：%s</string>
+    <string name="focus_transport_contract_name">联系人：%s</string>
+
 </resources>

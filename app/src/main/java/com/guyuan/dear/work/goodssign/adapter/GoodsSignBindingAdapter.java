@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.focus.aftersale.ui.FocusAfterSaleActivity;
 import com.guyuan.dear.work.goodssign.data.GoodsSignViewModel;
 import com.guyuan.dear.work.goodssign.data.bean.GoodsSignBean;
 import com.guyuan.dear.work.goodssign.ui.GoodsSignItemDetailActivity;
+import com.sun.jna.platform.win32.WinDef;
 
 import java.util.List;
 
@@ -34,8 +36,8 @@ public class GoodsSignBindingAdapter {
 
         goodsSignAdapter.setListener(new GoodsSignDetailAdapter.GoodsDetailListener() {
             @Override
-            public void sign(int id) {
-                viewModel.sign(id, contractID);
+            public void sign(int id, int receiveNum) {
+                viewModel.sign(id, receiveNum, contractID);
             }
         });
 
@@ -81,5 +83,28 @@ public class GoodsSignBindingAdapter {
             tv.setEnabled(false);
             tv.setText("已收货");
         }
+    }
+
+    @BindingAdapter(value = {"equipmentList", "materialList"})
+    public static void setAllSignVisibility(TextView tv, List<GoodsSignBean> equipmentList,
+                                            List<GoodsSignBean> materialList) {
+        if (equipmentList != null && equipmentList.size() > 0) {
+            for (GoodsSignBean equipBean : equipmentList) {
+                if (equipBean.getReceiveStatus() == 1) {
+                    tv.setVisibility(View.VISIBLE);
+                    return;
+                }
+            }
+        }
+
+        if (materialList != null && materialList.size() > 0) {
+            for (GoodsSignBean materialBean : materialList) {
+                if (materialBean.getReceiveStatus() == 1) {
+                    tv.setVisibility(View.VISIBLE);
+                    return;
+                }
+            }
+        }
+
     }
 }

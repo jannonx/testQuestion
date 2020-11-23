@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <data>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <import type="com.guyuan.dear.utils.GlideUtils" />
+
+        <variable
+            name="imgUrl"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:id="@+id/transport_document_iv"
+            android:layout_width="@dimen/dp_72"
+            android:layout_height="@dimen/dp_72"
+            android:scaleType="centerCrop"
+            app:imgType="@{GlideUtils.NORMAL}"
+            app:imgUrl="@{imgUrl}"
+            tools:src="@mipmap/ic_launcher" />
+
+    </LinearLayout>
 </layout>

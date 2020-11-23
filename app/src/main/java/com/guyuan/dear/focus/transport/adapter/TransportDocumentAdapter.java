@@ -1,5 +1,6 @@
 package com.guyuan.dear.focus.transport.adapter;
 
+import com.guyuan.dear.BR;
 import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemTransportDocumentsBinding;
 
@@ -12,13 +13,13 @@ import java.util.List;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class TransportDocumentAdapter extends BaseDBRecycleAdapter<Object, ItemTransportDocumentsBinding> {
-    public TransportDocumentAdapter(List<Object> listData, int layoutID) {
+public class TransportDocumentAdapter extends BaseDBRecycleAdapter<String, ItemTransportDocumentsBinding> {
+    public TransportDocumentAdapter(List<String> listData, int layoutID) {
         super(listData, layoutID);
     }
 
     @Override
-    protected void bindDataToView(Holder holder, Object item, int position) {
-
+    protected void bindDataToView(Holder holder, String item, int position) {
+        holder.binding.setVariable(BR.imgUrl, item);
     }
 }
