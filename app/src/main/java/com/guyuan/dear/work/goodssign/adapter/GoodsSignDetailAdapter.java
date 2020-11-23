@@ -31,7 +31,7 @@ public class GoodsSignDetailAdapter extends BaseDBRecycleAdapter<GoodsSignBean, 
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.sign(item.getId());
+                    listener.sign(item.getId(), item.getNumber());
                 }
             }
         });
@@ -42,6 +42,6 @@ public class GoodsSignDetailAdapter extends BaseDBRecycleAdapter<GoodsSignBean, 
     }
 
     public interface GoodsDetailListener {
-        void sign(int id);
+        void sign(int id, int receiveNum);
     }
 }

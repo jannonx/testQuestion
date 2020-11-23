@@ -25,11 +25,12 @@ public interface GoodsSignApiService extends BaseApiService {
     String GOODS_SIGN_DETAIL = BASE + "purchaseContract/findById";
     String GOODS_SIGN_ITEM_DETAIL = BASE + "purchasecontracitem/findById";
     String GOODS_SIGN_ALL_SIGN = BASE + "purchasecontracitem/oneClickConfirmation";
-    String GOODS_SIGN = BASE + "purchasecontracitem/confirmById";
+    String GOODS_SIGN = BASE + "purchasecontracitem/excuteById";
 
     final String CONTRACT_ID = "contractId";
     final String PRODUCT_ID = "productId";
     final String ITEM_ID = "itemId";
+    final String RECEIVE_NUM="receiveNum";
 
     //获取货物签收列表
     @POST(GOODS_SIGN_LIST)
@@ -49,5 +50,5 @@ public interface GoodsSignApiService extends BaseApiService {
 
     //签收
     @GET(GOODS_SIGN)
-    Observable<ResultBean<Integer>> sign(@Query(ITEM_ID) int itemID);
+    Observable<ResultBean<Integer>> sign(@Query(PRODUCT_ID) int itemID,@Query(RECEIVE_NUM) int receiveNum);
 }

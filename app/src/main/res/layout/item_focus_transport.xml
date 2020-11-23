@@ -1,11 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="transportItemContent"
+            type="com.guyuan.dear.focus.transport.data.bean.TransportListBean.ContentBean" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.cardview.widget.CardView style="@style/CardViewCommon">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_12">
+
+                    <TextView
+                        android:id="@+id/transport_item_name_tv"
+                        style="@style/TextBigBold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@{transportItemContent.projectName}"
+                        tools:text="深圳固远" />
+
+                    <TextView
+                        android:id="@+id/transport_item_code_tv"
+                        style="@style/TextNormal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableRight="@mipmap/right_direction"
+                        android:text="@{transportItemContent.projectNumber}"
+                        tools:text="sdsdasdas" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/transport_item_car_number_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_12"
+                    android:text="@{String.format(@string/focus_transport_car_number,transportItemContent.carNumber)}"
+                    tools:text="@string/focus_transport_car_number" />
+
+                <TextView
+                    android:id="@+id/transport_item_phone_number_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_12"
+                    android:paddingTop="@dimen/dp_12"
+                    android:text="@{String.format(@string/focus_transport_phone_number,transportItemContent.motormanPhone)}"
+                    tools:text="@string/focus_transport_phone_number" />
+
+                <TextView
+                    android:id="@+id/transport_item_goods_number_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp_12"
+                    android:paddingTop="@dimen/dp_12"
+                    android:paddingBottom="@dimen/dp_12"
+                    android:text="@{String.format(@string/focus_transport_goods_number,transportItemContent.sumAmount)}"
+                    tools:text="@string/focus_transport_goods_number" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 </layout>
 

@@ -121,7 +121,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="12dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                app:contractID="@{goodsSignViewModel.goodsSignDetailMLD.id}"
+                app:listData="@{goodsSignViewModel.goodsSignDetailMLD.equipmentList}"
+                app:viewModel="@{goodsSignViewModel}" />
 
             <TextView
                 android:id="@+id/textView26"
@@ -138,10 +141,12 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="12dp"
                 android:layout_weight="1"
+                app:contractID="@{goodsSignViewModel.goodsSignDetailMLD.id}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView26"
-                />
+                app:listData="@{goodsSignViewModel.goodsSignDetailMLD.materialList}"
+                app:viewModel="@{goodsSignViewModel}" />
         </LinearLayout>
 
 
@@ -150,8 +155,12 @@
             style="@style/commit_btn"
             android:layout_marginBottom="24dp"
             android:text="全部到货"
+            android:visibility="gone"
+            app:equipmentList="@{goodsSignViewModel.goodsSignDetailMLD.equipmentList}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:materialList="@{goodsSignViewModel.goodsSignDetailMLD.materialList}"
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

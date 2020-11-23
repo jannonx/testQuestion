@@ -36,4 +36,8 @@ public class TabAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return fragmentList.size();
     }
+
+    public List<Fragment> getFragmentList() {
+        return fragmentList;
+    }
 }

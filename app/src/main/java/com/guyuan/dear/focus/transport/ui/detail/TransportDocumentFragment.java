@@ -2,11 +2,16 @@ package com.guyuan.dear.focus.transport.ui.detail;
 
 import android.os.Bundle;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.ItemTransportDocumentsBinding;
 import com.guyuan.dear.focus.transport.adapter.TransportDocumentAdapter;
 import com.guyuan.dear.focus.transport.data.TransportViewModel;
+
+import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
 /**
  * @author : 唐力
@@ -15,7 +20,7 @@ import com.guyuan.dear.focus.transport.data.TransportViewModel;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class TransportDocumentFragment extends BaseListFragment<Object,
+public class TransportDocumentFragment extends BaseListFragment<String,
         ItemTransportDocumentsBinding, TransportViewModel> {
 
     public static final String TAG = "TransportDocumentFragment";
@@ -31,9 +36,12 @@ public class TransportDocumentFragment extends BaseListFragment<Object,
 
     @Override
     protected void initView() {
+        list_container.setBackgroundColor(getResources().getColor(R.color.bg_window));
         TransportDocumentAdapter documentAdapter = new TransportDocumentAdapter(listData,
                 R.layout.item_transport_documents);
-        setDefaultAdapter(documentAdapter);
+        adapter = new BaseRecyclerViewAdapter(documentAdapter);
+        recycleView.setLayoutManager(new GridLayoutManager(getContext(), 4));
+        recycleView.setAdapter(adapter);
     }
 
     @Override

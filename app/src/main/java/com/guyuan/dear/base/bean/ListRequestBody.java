@@ -56,6 +56,15 @@ public class ListRequestBody {
         private int returnType;
         private int productType;
         private int listType;
+        private int transportStatus;  //10:运输中，20：已送达
+
+        public int getTransportStatus() {
+            return transportStatus;
+        }
+
+        public void setTransportStatus(int transportStatus) {
+            this.transportStatus = transportStatus;
+        }
 
         public int getListType() {
             return listType;

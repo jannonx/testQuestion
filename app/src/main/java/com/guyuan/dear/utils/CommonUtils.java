@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,11 +15,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
 import com.example.mvvmlibrary.util.LogUtils;
 import com.google.gson.Gson;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.dialog.TipDialogFragment;
 import com.guyuan.dear.focus.device.data.beans.FactoryBean;
 import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.login.ui.LoginActivity;
@@ -55,9 +59,8 @@ public class CommonUtils {
     public static RequestBody getCommonRequestBody(Object object) {
         String str = GsonUtil.objectToString(object);
         return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
-            "charset=utf-8"), str);
+                "charset=utf-8"), str);
     }
-
 
 
     public static void showLocalPic(@NonNull Context context, @NonNull String path,
@@ -72,7 +75,7 @@ public class CommonUtils {
     //获取本地缓存登录信息
     public static LoginBean getLoginInfo() {
         String loginStr =
-            (String) DearApplication.getInstance().getCacheData(ConstantValue.USER_JSON_STRING, "");
+                (String) DearApplication.getInstance().getCacheData(ConstantValue.USER_JSON_STRING, "");
         return new Gson().fromJson(loginStr, LoginBean.class);
     }
 
@@ -127,13 +130,13 @@ public class CommonUtils {
     public static void logout(Context context) {
         LoginBean loginInfo = CommonUtils.getLoginInfo();
         if (loginInfo != null) {
-        //    UmengUtils.unregisterAlias(loginInfo.getUserId());
+            //    UmengUtils.unregisterAlias(loginInfo.getUserId());
         }
         SharedPreferencesUtils.removeData(context, ConstantValue.KEY_USER_PW);
         SharedPreferencesUtils.removeData(context, ConstantValue.USER_JSON_STRING);
         ActivityUtils.removeAllActivity();
         String loginStr =
-            (String) DearApplication.getInstance().getCacheData(ConstantValue.USER_JSON_STRING, "");
+                (String) DearApplication.getInstance().getCacheData(ConstantValue.USER_JSON_STRING, "");
         LogUtils.showLog(loginStr);
         LoginActivity.start(context);
     }
@@ -175,4 +178,23 @@ public class CommonUtils {
         return Arrays.asList(ConstantValue.FOCUS_ACTIONS).contains(action);
     }
 
+    //跳转打电话界面
+    public static void makePhoneCall(FragmentActivity activity, String phoneNumber) {
+        TipDialogFragment tipDialogFragment = TipDialogFragment.newInstance("确定要拨打电话吗?", "");
+        tipDialogFragment.setOnCancelListener(new TipDialogFragment.OnCancel() {
+            @Override
+            public void cancel() {
+                tipDialogFragment.dismiss();
+            }
+        }).setOnSureListener(new TipDialogFragment.OnSure() {
+            @Override
+            public void sure() {
+                tipDialogFragment.dismiss();
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                Uri data = Uri.parse("tel:" + phoneNumber);
+                intent.setData(data);
+                activity.startActivity(intent);
+            }
+        }).show(activity.getSupportFragmentManager(),TipDialogFragment.TAG);
+    }
 }

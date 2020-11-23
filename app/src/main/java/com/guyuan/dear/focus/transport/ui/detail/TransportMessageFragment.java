@@ -1,12 +1,17 @@
 package com.guyuan.dear.focus.transport.ui.detail;
 
 import android.os.Bundle;
+import android.view.View;
 
+import androidx.databinding.library.baseAdapters.BR;
+
+import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.fragment.BaseListFragment;
-import com.guyuan.dear.databinding.ItemTransportMessageBinding;
+import com.guyuan.dear.databinding.FragmentTransportMessageBinding;
+import com.guyuan.dear.dialog.TipDialogFragment;
 import com.guyuan.dear.focus.transport.adapter.TransportMessageAdapter;
 import com.guyuan.dear.focus.transport.data.TransportViewModel;
+import com.guyuan.dear.utils.CommonUtils;
 
 /**
  * @author : 唐力
@@ -15,7 +20,7 @@ import com.guyuan.dear.focus.transport.data.TransportViewModel;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class TransportMessageFragment extends BaseListFragment<Object, ItemTransportMessageBinding, TransportViewModel> {
+public class TransportMessageFragment extends BaseDataBindingFragment<FragmentTransportMessageBinding, TransportViewModel> {
 
     public static final String TAG = "TransportMessageFragment";
 
@@ -28,35 +33,35 @@ public class TransportMessageFragment extends BaseListFragment<Object, ItemTrans
         return fragment;
     }
 
-    @Override
-    protected void initView() {
-        TransportMessageAdapter messageAdapter = new TransportMessageAdapter(listData,
-                R.layout.item_transport_message);
-        setDefaultAdapter(messageAdapter);
-    }
-
-    @Override
-    protected void refresh() {
-
-    }
-
-    @Override
-    protected void loadMore() {
-
-    }
-
-    @Override
-    protected boolean isPullEnable() {
-        return false;
-    }
-
-    @Override
-    protected boolean isLoadMoreEnable() {
-        return false;
-    }
 
     @Override
     protected int getVariableId() {
-        return 0;
+        return BR.transportViewModel;
     }
+
+    @Override
+    protected int getLayoutID() {
+        return R.layout.fragment_transport_message;
+    }
+
+    @Override
+    protected void initialization() {
+        binding.transportReceivePhoneTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phone = binding.transportReceivePhoneTv.getText().toString();
+                CommonUtils.makePhoneCall(getActivity(), phone);
+            }
+        });
+
+        binding.transportSendPhoneTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phone = binding.transportSendPhoneTv.getText().toString();
+                CommonUtils.makePhoneCall(getActivity(), phone);
+            }
+        });
+    }
+
+
 }
