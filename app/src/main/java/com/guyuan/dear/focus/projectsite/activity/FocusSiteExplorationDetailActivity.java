@@ -36,11 +36,7 @@ public class FocusSiteExplorationDetailActivity extends BaseToolbarActivity<Acti
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         SiteExploreBean bean = (SiteExploreBean) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
-        if (bean.getProjectReportType()==null){
-            ToastUtils.showLong(FocusSiteExplorationDetailActivity.this,"null");
-        }else{
-            binding.toolbarContainer.titleTv.setText(bean.getProjectReportType().getDes() + "详情");
-        }
+        binding.toolbarContainer.titleTv.setText(bean.getProjectReportType().getDes() + "详情");
 
         BaseFragment mFragment = FocusSiteExplorationDetailFragment.newInstance(bean);
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,

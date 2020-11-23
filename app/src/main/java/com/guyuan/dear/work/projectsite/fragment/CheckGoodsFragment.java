@@ -26,6 +26,7 @@ import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.adapter.CheckGoodsAdapter;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
+import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 
 import java.util.ArrayList;
@@ -119,13 +120,19 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
     private void confirmCheckGoods() {
         ProjectCheckConfirmDialog.show(getActivity(), detailData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
             @Override
-            public void onCommitInfo(PostCheckInfo data) {
+            public void onCommitCheckGoodsInfo(PostCheckInfo data) {
                 String str = GsonUtil.objectToString(data);
                 RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
                         "charset=utf-8"), str);
 
                 viewModel.postCheckGoodInfo(requestBody);
             }
+
+            @Override
+            public void onCommitInstallationDebugInfo(PostInstallationDebugInfo data) {
+
+            }
+
         });
     }
 

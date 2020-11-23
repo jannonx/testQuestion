@@ -89,6 +89,7 @@ public class InstallDebugFragment extends BaseDataBindingFragment<FragmentWorkIn
                     SiteExploreBean siteExploreBean = new SiteExploreBean();
                     siteExploreBean.setId(installDebugBean.getId());
                     siteExploreBean.setStatus(installDebugBean.getStatus());
+                    siteExploreBean.setModuleType(ProjectModuleType.TYPE_WORK);
                     siteExploreBean.setProjectReportType(ProjectReportType.TYPE_INSTALLATION_DEBUG);
                     FocusSiteExplorationDetailActivity.start(getContext(), siteExploreBean);
                 }

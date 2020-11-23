@@ -98,6 +98,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
                         || siteExploreBean.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING) {
                     WorkCheckGoodsActivity.start(getContext(), siteExploreBean);
                 } else {
+                    siteExploreBean.setModuleType(ProjectModuleType.TYPE_WORK);
                     FocusSiteExplorationDetailActivity.start(getContext(), siteExploreBean);
                 }
                 break;
@@ -106,6 +107,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
                 break;
             ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:
+                siteExploreBean.setModuleType(ProjectModuleType.TYPE_WORK);
                 WorkInstallDebugActivity.start(getContext(), siteExploreBean);
                 break;
             ///客户验收报告

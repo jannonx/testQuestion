@@ -24,6 +24,7 @@ import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.work.projectsite.activity.ResultReportDetailActivity;
+import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +73,7 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
             public void onItemClick(View view, int position) {
                 switch (reportType) {
                     case TYPE_INSTALLATION_DEBUG:
-                        FocusInstallationDebugAllActivity.start(getContext(), listData.get(position));
+                        WorkInstallDebugActivity.start(getContext(), listData.get(position));
                         break;
                     default:
                         FocusSiteExplorationDetailActivity.start(getContext(), listData.get(position));

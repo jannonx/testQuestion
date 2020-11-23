@@ -23,6 +23,8 @@ public class SiteExploreBean implements Serializable {
      * 是否满足条件
      */
     private int satisfyFlag;
+
+    private ProjectModuleType moduleType;
     /**
      * 类型
      */
@@ -206,6 +208,14 @@ public class SiteExploreBean implements Serializable {
         return satisfyFlag;
     }
 
+    public ProjectModuleType getModuleType() {
+        return moduleType;
+    }
+
+    public void setModuleType(ProjectModuleType moduleType) {
+        this.moduleType = moduleType;
+    }
+
     public SiteProjectSatisfyType getSiteProjectSatisfyType() {
         return SiteProjectSatisfyType.toType(satisfyFlag);
     }
@@ -215,7 +225,7 @@ public class SiteExploreBean implements Serializable {
     }
 
     public InstallDebugSatisfyType getInstallDebugSatisfyType() {
-        LogUtils.showLog("status="+status);
+        LogUtils.showLog("status=" + status);
         return InstallDebugSatisfyType.toType(status);
     }
 

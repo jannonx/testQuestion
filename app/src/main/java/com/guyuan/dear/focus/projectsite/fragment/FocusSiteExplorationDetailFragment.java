@@ -12,14 +12,26 @@ import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusSiteExplorationBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
+import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
+import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
+import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
+import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
+import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
+import com.guyuan.dear.work.projectsite.fragment.ProjectCheckConfirmDialog;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 
 /**
@@ -64,6 +76,10 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
             return;
         }
         detailProjectData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+
+        binding.tvPauseBtn.setOnClickListener(this);
+        binding.tvCompleteBtn.setOnClickListener(this);
+        binding.llApplyPanel.setVisibility(ProjectModuleType.TYPE_WORK == detailProjectData.getModuleType() ? View.VISIBLE : View.GONE);
         initViewPager();
         getDataListByClassify();
     }
@@ -88,6 +104,10 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 break;
             ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:
+                String leftText = detailProjectData.getInstallDebugSatisfyType() == InstallDebugSatisfyType.TYPE_INSTALL_PAUSE ?
+                        "继续" : "暂停";
+                binding.tvPauseBtn.setText(leftText);
+                binding.tvCompleteBtn.setText("完工");
                 viewModel.getInstallDebugDetailData(detailProjectData.getId());
                 break;
             ///客户验收报告
@@ -126,6 +146,14 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
             @Override
             public void onChanged(SiteExploreBean data) {
                 setProduceData(data);
+            }
+        });
+
+        //提交--安装调试
+        viewModel.getCommitInstallDebugInfoEvent().observe(getActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer data) {
+                getDataListByClassify();
             }
         });
     }
@@ -176,6 +204,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
     /**
      * 现场勘查报告
+     *
      * @param detailProjectData 数据
      */
     private void setSiteExplorationData(SiteExploreBean detailProjectData) {
@@ -188,8 +217,10 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvTime.setText(detailProjectData.getCreateTime());
         binding.tvCompanyLocation.setText(detailProjectData.getDestination());
     }
+
     /**
      * 现场勘查报告
+     *
      * @param detailProjectData 数据
      */
     private void setCheckGoodsData(SiteExploreBean detailProjectData) {
@@ -204,8 +235,10 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvTime.setText(detailProjectData.getCheckTime());
         binding.tvCompanyLocation.setText(detailProjectData.getAcceptAddress());
     }
+
     /**
      * 现场勘查报告
+     *
      * @param detailProjectData 数据
      */
     private void setCheckSafeData(SiteExploreBean detailProjectData) {
@@ -223,8 +256,10 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
 
     }
+
     /**
      * 现场勘查报告
+     *
      * @param detailProjectData 数据
      */
     private void setInstallationDebugData(SiteExploreBean detailProjectData) {
@@ -233,6 +268,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
     /**
      * 现场勘查报告
+     *
      * @param detailProjectData 数据
      */
     private void setCustomerAcceptanceData(SiteExploreBean detailProjectData) {
@@ -243,6 +279,37 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_pause_btn:
+                clickLeftBtn();
+                break;
+            case R.id.tv_complete_btn:
+
+                break;
+        }
+    }
+
+    private void clickLeftBtn() {
+        ProjectCheckConfirmDialog.show(getActivity(), detailProjectData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
+
+            @Override
+            public void onCommitCheckGoodsInfo(PostCheckInfo data) {
+
+            }
+
+            @Override
+            public void onCommitInstallationDebugInfo(PostInstallationDebugInfo data) {
+                //安装调试
+                int codeStatus = binding.tvPauseBtn.getText().toString().equals("暂停") ?
+                        InstallDebugSatisfyType.TYPE_INSTALL_PAUSE.getCode() : InstallDebugSatisfyType.TYPE_INSTALL_ING.getCode();
+                data.setStatus(codeStatus);
+                String str = GsonUtil.objectToString(data);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), str);
+
+                viewModel.postInstallDebugInfo(requestBody);
+            }
+        });
 
     }
 
