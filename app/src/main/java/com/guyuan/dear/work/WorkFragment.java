@@ -20,6 +20,7 @@ import com.guyuan.dear.work.client.activity.WorkClientActivity;
 import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeActivity;
 import com.guyuan.dear.work.contractRestart.view.home.ContractRestartHomeActivity;
 import com.guyuan.dear.work.goodssign.ui.GoodsSignActivity;
+import com.guyuan.dear.work.matterapply.ui.MatterApplyActivity;
 import com.guyuan.dear.work.produce.activity.WorkProduceActivity;
 import com.guyuan.dear.work.projectsite.activity.WorkProjectSiteActivity;
 import com.guyuan.dear.work.qc.views.home.QcHomeActivity;
@@ -149,6 +150,9 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
                                 GoodsSignActivity.start(getContext(), title);
                                 break;
 
+                            case ConstantValue.WORK_MATTER_APPLY://物料申请
+                                MatterApplyActivity.start(getContext(), title);
+                                break;
                             default:
 
                                 break;

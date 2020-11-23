@@ -1,5 +1,7 @@
 package com.guyuan.dear.base.bean;
 
+import com.sun.jna.platform.win32.Winspool;
+
 /**
  * @description: 列表请求配置参数
  * @author: tl
@@ -57,6 +59,24 @@ public class ListRequestBody {
         private int productType;
         private int listType;
         private int transportStatus;  //10:运输中，20：已送达
+        private String projectName;  //
+        private String productName;
+
+        public String getProjectName() {
+            return projectName;
+        }
+
+        public void setProjectName(String projectName) {
+            this.projectName = projectName;
+        }
+
+        public String getProductName() {
+            return productName;
+        }
+
+        public void setProductName(String productName) {
+            this.productName = productName;
+        }
 
         public int getTransportStatus() {
             return transportStatus;

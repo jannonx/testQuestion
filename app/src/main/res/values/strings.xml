@@ -300,6 +300,11 @@
         <item>库存详情</item>
     </array>
 
+    <array name="work_matter_apply_title">
+        <item>领料申请</item>
+        <item>我的申请</item>
+    </array>
+
     <array name="smart_manage_analyse">
         <item>合同流程</item>
     </array>

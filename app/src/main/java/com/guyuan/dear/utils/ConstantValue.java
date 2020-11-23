@@ -127,6 +127,8 @@ public class ConstantValue {
     public static final String WORK_CONTRACT_ASSESS = "work_contract_assess";
     public static final String WORK_GOODS_SIGN = "work_goods_sign";
     public static final String WORK_QC = "work_qc";
+    public static final String WORK_MATTER_APPLY="work_matter_apply";
+
 
     //移动办公
     public static final String OFFICE_HANDLE_ASSESS = "officeHandleAssess";//审批处理
