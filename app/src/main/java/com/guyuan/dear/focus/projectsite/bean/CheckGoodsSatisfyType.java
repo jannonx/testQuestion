@@ -23,22 +23,27 @@ public enum CheckGoodsSatisfyType implements Serializable {
     /**
      * 已到达,待清点
      */
-    TYPE_GOODS_CHECK_WAIT(1, "已到达,待清点", R.color.color_blue_1677ff,
+    TYPE_GOODS_TRANSPORT_ARRIVE(1, "已到达", R.color.color_green_00B578,
+            R.drawable.bg_green_d4fff1_corner_2),
+    /**
+     * 运输中
+     */
+    TYPE_GOODS_CHECK_ING(2, "清点中", R.color.color_blue_1677ff,
             R.drawable.bg_blue_e7f1ff_corner_2),
     /**
      * 清点正常
      */
-    TYPE_GOODS_CHECK_OK(2, "清点正常", R.color.color_green_00B578,
+    TYPE_GOODS_CHECK_OK(3, "清点正常", R.color.color_green_00B578,
             R.drawable.bg_green_d4fff1_corner_2),
     /**
      * 清点异常
      */
-    TYPE_GOODS_CHECK_EXCEPTION(3, "清点异常", R.color.color_orange_FF6010,
+    TYPE_GOODS_CHECK_EXCEPTION(4, "清点异常", R.color.color_orange_FF6010,
             R.drawable.bg_orange_ffece3_corner_2),
     /**
      * 未知状态
      */
-    TYPE_GOODS_CHECK_UNKNOWN(4, "未知状态", R.color.color_orange_FF6010,
+    TYPE_GOODS_CHECK_UNKNOWN(5, "未知状态", R.color.color_orange_FF6010,
             R.drawable.bg_orange_ffece3_corner_2);
 
 
@@ -73,10 +78,12 @@ public enum CheckGoodsSatisfyType implements Serializable {
             return CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING;
         } else if (bean.getTransportStatus() == 20) {
             //运输到达，检测状态
-            if (bean.getCheckStatus() == 10) {
-                return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_WAIT;
+            if (bean.getCheckStatus() == 0) {
+                return CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORT_ARRIVE;
+            }else if (bean.getCheckStatus() == 10) {
+                return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING;
                 //完成检测，检测结果
-            } else if (bean.getCheckStatus() == 30) {
+            }else if (bean.getCheckStatus() == 20) {
                 if (bean.getIsException() == 0) {
                     return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_OK;
                 } else if (bean.getIsException() == 1) {

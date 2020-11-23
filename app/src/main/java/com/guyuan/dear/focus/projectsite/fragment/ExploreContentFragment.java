@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.projectsite.fragment;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
@@ -10,11 +11,13 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentExploreContentBinding;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.projectsite.adapter.CheckContentAdapter;
+import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.focus.projectsite.adapter.GoodsListAdapter;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectInstallAdapter;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
+import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
@@ -22,6 +25,7 @@ import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
+import com.guyuan.dear.work.projectsite.adapter.CheckGoodsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,9 +46,11 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
 
 
     private BaseRecyclerViewAdapter adapter;
+    private BaseRecyclerViewAdapter imageAdapter;
     private List<ProjectSiteOpinionBean> siteExploreContentList = new ArrayList<>();
     private List<CheckGoodsBean> checkGoodsContentList = new ArrayList<>();
     private List<InstallDebugBean> installDebugContentList = new ArrayList<>();
+    List<String> imageDataList = new ArrayList<>();
 
     public static ExploreContentFragment newInstance(SiteExploreBean detailProjectData) {
         Bundle bundle = new Bundle();
@@ -72,6 +78,18 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
         binding.baseRecycleView.setPullRefreshEnabled(false);
         binding.baseRecycleView.setLoadMoreEnabled(false);
 
+
+//        ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
+//                imageDataList, R.layout.item_explorate_image);
+//        imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
+//        binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+//        setReportAdapterByType(simpleData.getProjectReportType());
+//        binding.imageRecycleView.setAdapter(imageAdapter);
+//        binding.imageRecycleView.setPullRefreshEnabled(false);
+//        binding.imageRecycleView.setLoadMoreEnabled(false);
+
+        //http://pic-bucket.ws.126.net/photo/0001/2020-11-09/FR0M2RL000AN0001NOS.jpg
+        // FullScreenShowActivity.start(mContext, StringUtils.splicePhotoUrl(getTagDataList()),position);
     }
 
     /**
@@ -93,6 +111,12 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
             installDebugContentList.addAll(detailProjectData.getAppInstallDebugItemVOList());
         }
         adapter.refreshData();
+
+        for (int i = 0; i < 5; i++) {
+            String imageUrl = "http://pic-bucket.ws.126.net/photo/0001/2020-11-09/FR0M2RL000AN0001NOS.jpg";
+            imageDataList.add(imageUrl);
+        }
+//        imageAdapter.refreshData();
     }
 
 
@@ -108,13 +132,13 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
             case TYPE_SITE_EXPLORATION:
             case TYPE_CHECK_SAFE:
                 CheckContentAdapter checkContentAdapter = new CheckContentAdapter(getContext(),
-                        siteExploreContentList, R.layout.item_explorate_content);
+                        siteExploreContentList, R.layout.item_explorate_content, projectReportType);
                 adapter = new BaseRecyclerViewAdapter(checkContentAdapter);
                 break;
             ///货物清点报告
             case TYPE_CHECK_GOODS:
-                GoodsListAdapter checkGoodsAdapter = new GoodsListAdapter(getContext(),
-                        checkGoodsContentList, R.layout.item_goods_list);
+                CheckGoodsAdapter checkGoodsAdapter = new CheckGoodsAdapter(getContext(),
+                        checkGoodsContentList, R.layout.item_goods_list, ProjectModuleType.TYPE_FOCUS);
                 adapter = new BaseRecyclerViewAdapter(checkGoodsAdapter);
                 break;
 

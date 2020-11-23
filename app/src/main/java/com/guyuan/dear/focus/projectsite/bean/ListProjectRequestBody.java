@@ -49,6 +49,10 @@ public class ListProjectRequestBody {
          * 标识id
          */
         private long id;
+         /**
+         * 来自模块类型
+         */
+        private int myWork;
 
         private String name;
         /**
@@ -62,6 +66,14 @@ public class ListProjectRequestBody {
 
         public void setId(long id) {
             this.id = id;
+        }
+
+        public int getMyWork() {
+            return myWork;
+        }
+
+        public void setMyWork(int myWork) {
+            this.myWork = myWork;
         }
 
         public String getName() {

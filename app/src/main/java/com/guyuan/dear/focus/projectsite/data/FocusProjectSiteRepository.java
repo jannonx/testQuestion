@@ -101,7 +101,8 @@ public class FocusProjectSiteRepository {
     Observable<ResultBean<SiteExploreBean>> getInstallDebugDetailData(long id) {
         return apiService.getInstallDebugDetailData(id);
 
-    }    Observable<ResultBean<SiteExploreBean>> getInstallDebugDetailDataBySingle(long id) {
+    }
+    Observable<ResultBean<SiteExploreBean>> getInstallDebugDetailDataBySingle(long id) {
         return apiService.getInstallDebugDetailDataBySingle(id);
     }
 

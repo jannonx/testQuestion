@@ -17,6 +17,7 @@ import com.guyuan.dear.focus.projectsite.activity.FocusInstallationDebugAllActiv
 import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
 import com.guyuan.dear.focus.projectsite.bean.ListProjectRequestBody;
+import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
@@ -177,7 +178,7 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListProjectRequestBody body = new ListProjectRequestBody();
         ListProjectRequestBody.FiltersBean filtersBean = new ListProjectRequestBody.FiltersBean();
-        filtersBean.setQueryParams(etSearch.getText().toString());
+        filtersBean.setQueryParams(searchContent);
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);
@@ -195,16 +196,6 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
     @Override
     protected void loadMore() {
         getDataListByClassify(false);
-    }
-
-    @Override
-    protected void editEmptyChange() {
-        getDataListByClassify(true);
-    }
-
-    @Override
-    protected void onSearch(String text) {
-        getDataListByClassify(true);
     }
 
     @Override

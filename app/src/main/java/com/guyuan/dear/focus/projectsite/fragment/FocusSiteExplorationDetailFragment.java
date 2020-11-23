@@ -40,7 +40,6 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
     private SiteExploreBean detailProjectData;
-    private boolean isFooterBtnShow, isProducePause, isProduceIng;
 
     private ProduceApplyDialog dialog;
 
@@ -144,23 +143,18 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         //设置审核数据
         planFragment.setCheckContentData(detailProjectData);
         switch (detailProjectData.getProjectReportType()) {
-            ///现场勘查报告
             case TYPE_SITE_EXPLORATION:
                 setSiteExplorationData(detailProjectData);
                 break;
-            ///货物清点报告
             case TYPE_CHECK_GOODS:
                 setCheckGoodsData(detailProjectData);
                 break;
-            ///安全排查报告
             case TYPE_CHECK_SAFE:
                 setCheckSafeData(detailProjectData);
                 break;
-            ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:
                 setInstallationDebugData(detailProjectData);
                 break;
-            ///客户验收报告
             case TYPE_CUSTOMER_ACCEPTANCE:
                 setCustomerAcceptanceData(detailProjectData);
                 break;
@@ -181,7 +175,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     }
 
     /**
-     * @param detailProjectData
+     * 现场勘查报告
+     * @param detailProjectData 数据
      */
     private void setSiteExplorationData(SiteExploreBean detailProjectData) {
         binding.tvProjectName.setText(detailProjectData.getProjectName());
@@ -193,7 +188,10 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvTime.setText(detailProjectData.getCreateTime());
         binding.tvCompanyLocation.setText(detailProjectData.getDestination());
     }
-
+    /**
+     * 现场勘查报告
+     * @param detailProjectData 数据
+     */
     private void setCheckGoodsData(SiteExploreBean detailProjectData) {
         binding.tvProjectName.setText(detailProjectData.getSendGoodsNumber());
         binding.labelProjectCode.setText("项目名称：");
@@ -206,7 +204,10 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvTime.setText(detailProjectData.getCreateTime());
         binding.tvCompanyLocation.setText(detailProjectData.getDestination());
     }
-
+    /**
+     * 现场勘查报告
+     * @param detailProjectData 数据
+     */
     private void setCheckSafeData(SiteExploreBean detailProjectData) {
 
         binding.tvProjectName.setText(detailProjectData.getProjectName());
@@ -222,12 +223,18 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
 
     }
-
+    /**
+     * 现场勘查报告
+     * @param detailProjectData 数据
+     */
     private void setInstallationDebugData(SiteExploreBean detailProjectData) {
 
     }
 
-
+    /**
+     * 现场勘查报告
+     * @param detailProjectData 数据
+     */
     private void setCustomerAcceptanceData(SiteExploreBean detailProjectData) {
 
 
@@ -248,7 +255,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         tabFragmentList.add(statusFragment);
         tabFragmentList.add(planFragment);
 
-        titleList = getResources().getStringArray(R.array.focus_produce_tab);
+        titleList = getResources().getStringArray(detailProjectData.getProjectReportTabArray());
         TabAdapter tabAdapter = new
                 TabAdapter(getChildFragmentManager(), Arrays.asList(titleList), tabFragmentList, getContext(),
                 getCustomViewId());

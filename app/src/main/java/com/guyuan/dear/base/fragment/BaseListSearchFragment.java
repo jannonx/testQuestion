@@ -81,7 +81,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
                 searchContent = editable.toString();
 //                ivClearBtn.setVisibility(TextUtils.isEmpty(editable.toString()) ? View.GONE : View.VISIBLE);
                 if (TextUtils.isEmpty(editable.toString())) {
-                    editEmptyChange();
+                    refresh();
                     return;
                 }
 
@@ -98,7 +98,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
                 if (TextUtils.isEmpty(key)) {
                     ToastUtils.showShort(getContext(), ConstantValue.TIP_SEARCH);
                 } else {
-                    onSearch(key);
+                    refresh();
                 }
 
             }

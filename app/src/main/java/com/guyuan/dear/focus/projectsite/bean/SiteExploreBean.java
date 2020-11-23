@@ -1,6 +1,7 @@
 package com.guyuan.dear.focus.projectsite.bean;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -40,7 +41,7 @@ public class SiteExploreBean implements Serializable {
      * 状态（10:待操作(待勘察等...)、20:执行中（勘查中...）、30:完成（勘查完成...）、40:其他）
      * -------------------
      */
-    private Integer status;
+    private int status;
     /**
      * 评审时间
      */
@@ -177,6 +178,7 @@ public class SiteExploreBean implements Serializable {
     }
 
     public InstallDebugSatisfyType getInstallDebugSatisfyType() {
+        LogUtils.showLog("status="+status);
         return InstallDebugSatisfyType.toType(status);
     }
 
@@ -260,6 +262,24 @@ public class SiteExploreBean implements Serializable {
         return "";
     }
 
+
+    public int getProjectReportTabArray() {
+        switch (getProjectReportType()) {
+            case TYPE_SITE_EXPLORATION:
+                return R.array.focus_site_explore;
+            case TYPE_CHECK_SAFE:
+                return R.array.focus_check_safe;
+            case TYPE_INSTALLATION_DEBUG:
+                return R.array.focus_install_debug;
+            case TYPE_CUSTOMER_ACCEPTANCE:
+                return R.array.focus_customer_acceptance;
+            case TYPE_CHECK_GOODS:
+                return R.array.focus_check_good;
+            default:
+                return 0;
+        }
+    }
+
     public int getAuditFormType() {
         return auditFormType;
     }
@@ -288,11 +308,11 @@ public class SiteExploreBean implements Serializable {
         this.destination = destination;
     }
 
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

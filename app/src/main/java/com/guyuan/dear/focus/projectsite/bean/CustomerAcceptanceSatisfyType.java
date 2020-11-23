@@ -71,7 +71,7 @@ public enum CustomerAcceptanceSatisfyType implements Serializable {
                 return type;
             }
         }
-        return null;
+        return TYPE_UNKNOWN;
     }
 
     public static CustomerAcceptanceSatisfyType toType(SiteExploreBean bean) {
