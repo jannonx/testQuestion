@@ -54,6 +54,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
     private List<CheckGoodsBean> checkGoodsContentList = new ArrayList<>();
     private List<InstallDebugBean> installDebugContentList = new ArrayList<>();
     List<String> imageDataList = new ArrayList<>();
+    private SiteExploreBean simpleData;
 
     public static ExploreContentFragment newInstance(SiteExploreBean detailProjectData) {
         Bundle bundle = new Bundle();
@@ -74,7 +75,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
         if (arguments == null) {
             return;
         }
-        SiteExploreBean simpleData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        simpleData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         setReportAdapterByType(simpleData.getProjectReportType());
         binding.baseRecycleView.setAdapter(adapter);
@@ -82,14 +83,14 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
         binding.baseRecycleView.setLoadMoreEnabled(false);
 
 
-//        ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-//                imageDataList, R.layout.item_explorate_image);
-//        imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
-//        binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-//        setReportAdapterByType(simpleData.getProjectReportType());
-//        binding.imageRecycleView.setAdapter(imageAdapter);
-//        binding.imageRecycleView.setPullRefreshEnabled(false);
-//        binding.imageRecycleView.setLoadMoreEnabled(false);
+        ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
+                imageDataList, R.layout.item_explorate_image);
+        imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
+        binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        setReportAdapterByType(simpleData.getProjectReportType());
+        binding.imageRecycleView.setAdapter(imageAdapter);
+        binding.imageRecycleView.setPullRefreshEnabled(false);
+        binding.imageRecycleView.setLoadMoreEnabled(false);
 
         //http://pic-bucket.ws.126.net/photo/0001/2020-11-09/FR0M2RL000AN0001NOS.jpg
         // FullScreenShowActivity.start(mContext, StringUtils.splicePhotoUrl(getTagDataList()),position);
@@ -102,11 +103,11 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
      */
     public void setCheckContentData(SiteExploreBean detailProjectData) {
         ProjectReportType projectReportType = detailProjectData.getProjectReportType();
-        binding.llcContent.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG==projectReportType?View.GONE:View.VISIBLE);
-        binding.videoPanel.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG==projectReportType?View.VISIBLE:View.GONE);
-        LogUtils.showLog("工程现场" + (detailProjectData.getPsAuditItemVOList() != null ? "" + detailProjectData.getPsAuditItemVOList().size() : "空"));
-        LogUtils.showLog("购物清单" + (detailProjectData.getCheckTransportProjectListVO() != null ? "" + detailProjectData.getCheckTransportProjectListVO().size() : "空"));
-        LogUtils.showLog("安装调试" + (detailProjectData.getAppInstallDebugItemVOList() != null ? "" + detailProjectData.getAppInstallDebugItemVOList().size() : "空"));
+        binding.llcContent.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG == projectReportType ? View.GONE : View.VISIBLE);
+        binding.videoPanel.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG == projectReportType ? View.VISIBLE : View.GONE);
+        LogUtils.showLog("工程现场=" + (detailProjectData.getPsAuditItemVOList() != null ? "" + detailProjectData.getPsAuditItemVOList().size() : "空"));
+        LogUtils.showLog("购物清单=" + (detailProjectData.getCheckTransportProjectListVO() != null ? "" + detailProjectData.getCheckTransportProjectListVO().size() : "空"));
+        LogUtils.showLog("安装调试=" + (detailProjectData.getAppInstallDebugItemVOList() != null ? "" + detailProjectData.getAppInstallDebugItemVOList().size() : "空"));
         siteExploreContentList.clear();
         checkGoodsContentList.clear();
         installDebugContentList.clear();
@@ -122,17 +123,64 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
         adapter.refreshData();
 
         imageDataList.clear();
-        for (int i = 0; i < 5; i++) {
-            String imageUrl = "http://pic-bucket.ws.126.net/photo/0001/2020-11-09/FR0M2RL000AN0001NOS.jpg";
-            imageDataList.add(imageUrl);
-        }
+        LogUtils.showLog("图片="+detailProjectData.getImgUrlList());
+//        imageDataList.addAll(detailProjectData.getImgUrlList());
 //        imageAdapter.refreshData();
 
+        switch (detailProjectData.getProjectReportType()) {
+            case TYPE_SITE_EXPLORATION:
+                setSiteExplorationData(detailProjectData);
+                break;
+            case TYPE_CHECK_GOODS:
+                setCheckGoodsData(detailProjectData);
+                break;
+            case TYPE_CHECK_SAFE:
+                setCheckSafeData(detailProjectData);
+                break;
+            case TYPE_INSTALLATION_DEBUG:
+                setInstallationDebugData(detailProjectData);
+                break;
+            case TYPE_CUSTOMER_ACCEPTANCE:
+                setCustomerAcceptanceData(detailProjectData);
+                break;
+
+            default:
+        }
+
+    }
+
+    private void setCustomerAcceptanceData(SiteExploreBean detailProjectData) {
+
+    }
+
+    private void setInstallationDebugData(SiteExploreBean detailProjectData) {
+
+    }
+
+    private void setCheckSafeData(SiteExploreBean detailProjectData) {
+        //清点货物 #2FC25B  #F04864 红色
+        binding.tvRemark.setText(detailProjectData.getAuditItemExplain());
+        //是否满足条件、是否安全(1:是，2:否)
+        binding.tvStatus.setTextColor(getActivity().getResources().getColor(
+                detailProjectData.getSatisfyFlag() == 1 ? R.color.color_green_2fc25b : R.color.color_red_F04864));
+        binding.tvStatus.setText("存在安全隐患：" + (detailProjectData.getSatisfyFlag() == 1 ? "否" : "是"));
+    }
+
+    private void setCheckGoodsData(SiteExploreBean detailProjectData) {
         //清点货物 #2FC25B  #F04864 红色
         binding.tvRemark.setText(detailProjectData.getCheckRemark());
         binding.tvStatus.setTextColor(getActivity().getResources().getColor(
                 detailProjectData.getIsException() == CHECK_RIGHT ? R.color.color_green_2fc25b : R.color.color_red_F04864));
-        binding.tvStatus.setText("货物状态：" + (detailProjectData.getIsException() == CHECK_RIGHT ? "正常" : "异常"));
+        binding.tvStatus.setText("货物异常：" + (detailProjectData.getIsException() == CHECK_RIGHT ? "否" : "是"));
+    }
+
+    private void setSiteExplorationData(SiteExploreBean detailProjectData) {
+        //清点货物 #2FC25B  #F04864 红色
+        binding.tvRemark.setText(detailProjectData.getAuditItemExplain());
+        //是否满足条件、是否安全(1:是，2:否)
+        binding.tvStatus.setTextColor(getActivity().getResources().getColor(
+                detailProjectData.getSatisfyFlag() == 1 ? R.color.color_green_2fc25b : R.color.color_red_F04864));
+        binding.tvStatus.setText("满足条件：" + (detailProjectData.getSatisfyFlag() == 1 ? "是" : "否"));
     }
 
 
@@ -147,8 +195,9 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
             ///现场勘查报告 - 安全排查报告
             case TYPE_SITE_EXPLORATION:
             case TYPE_CHECK_SAFE:
+                simpleData.setModuleType(ProjectModuleType.TYPE_FOCUS);
                 CheckContentAdapter checkContentAdapter = new CheckContentAdapter(getContext(),
-                        siteExploreContentList, R.layout.item_explorate_content, projectReportType);
+                        siteExploreContentList, R.layout.item_explorate_content, simpleData);
                 adapter = new BaseRecyclerViewAdapter(checkContentAdapter);
                 break;
             ///货物清点报告

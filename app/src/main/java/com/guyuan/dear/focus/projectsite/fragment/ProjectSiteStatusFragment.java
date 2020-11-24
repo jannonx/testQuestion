@@ -16,6 +16,12 @@ import com.guyuan.dear.focus.projectsite.bean.ProjectSiteStatusBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
+import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -30,7 +36,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 public class ProjectSiteStatusFragment extends BaseListFragment<ProjectSiteStatusBean, FragmentListBinding, FocusProjectSiteViewModel> {
 
     public static final String TAG = ProjectSiteStatusFragment.class.getSimpleName();
-    private FocusProduceBean produceBean;
+    private SiteExploreBean detailProjectData;
     private View footerView;
 
     public static ProjectSiteStatusFragment newInstance(SiteExploreBean data) {
@@ -47,7 +53,8 @@ public class ProjectSiteStatusFragment extends BaseListFragment<ProjectSiteStatu
         if (arguments == null) {
             return;
         }
-        SiteExploreBean detailProjectData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        EventBus.getDefault().register(this);
+        detailProjectData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         if (detailProjectData == null) {
             return;
         }
@@ -68,6 +75,10 @@ public class ProjectSiteStatusFragment extends BaseListFragment<ProjectSiteStatu
         });
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onRefreshMessage(EventAnswerListRefresh event) {
+        viewModel.getProjectSiteStatusList(detailProjectData.getId(), detailProjectData.getProjectReportType().getCode());
+    }
 
     @Override
     protected void refresh() {
@@ -92,5 +103,11 @@ public class ProjectSiteStatusFragment extends BaseListFragment<ProjectSiteStatu
     @Override
     protected int getVariableId() {
         return 0;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        EventBus.getDefault().unregister(this);
     }
 }

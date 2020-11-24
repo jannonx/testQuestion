@@ -14,11 +14,11 @@ public enum ProjectModuleType implements Serializable {
     /**
      * 货物清点报告
      */
-    TYPE_FOCUS(0, "我的关注"),
+    TYPE_FOCUS(10, "我的关注"),
     /**
      * 客户验收报告
      */
-    TYPE_WORK(1, "我的工作");
+    TYPE_WORK(20, "我的工作");
 
 
     private int code;

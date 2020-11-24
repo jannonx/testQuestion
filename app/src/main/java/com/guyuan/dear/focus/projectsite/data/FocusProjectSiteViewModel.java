@@ -34,6 +34,7 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
      */
     private MutableLiveData<ProjectOverViewBean> projectSiteOverViewEvent = new MutableLiveData<>();
     private MutableLiveData<List<ProjectSiteStatusBean>> projectSiteStatusEvent = new MutableLiveData<>();
+    private MutableLiveData<Integer> postAnswerInfoEvent = new MutableLiveData<>();
 
     /**
      * 现场勘察
@@ -96,6 +97,19 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
 
         Disposable disposable = RxJavaHelper.build(this, repository.getProjectSiteStatusList(id, type))
                 .getHelper().flow(projectSiteStatusEvent);
+        addSubscription(disposable);
+    }
+
+    /**
+     * 意见回复-回复操作
+     *
+     * @param body
+     * @return
+     */
+    public void postAnswerInfo(RequestBody body) {
+
+        Disposable disposable = RxJavaHelper.build(this, repository.postAnswerInfo(body))
+                .getHelper().flow(postAnswerInfoEvent);
         addSubscription(disposable);
     }
 
@@ -383,6 +397,15 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
 
     public void setProjectSiteStatusEvent(MutableLiveData<List<ProjectSiteStatusBean>> projectSiteStatusEvent) {
         this.projectSiteStatusEvent = projectSiteStatusEvent;
+    }
+
+
+    public MutableLiveData<Integer> getPostAnswerInfoEvent() {
+        return postAnswerInfoEvent;
+    }
+
+    public void setPostAnswerInfoEvent(MutableLiveData<Integer> postAnswerInfoEvent) {
+        this.postAnswerInfoEvent = postAnswerInfoEvent;
     }
 
     public MutableLiveData<RefreshBean<SiteExploreBean>> getSiteExploreListEvent() {

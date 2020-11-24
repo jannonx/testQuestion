@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.projectsite.bean;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.utils.StringUtils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -217,11 +218,11 @@ public class SiteExploreBean implements Serializable {
     }
 
     public SiteProjectSatisfyType getSiteProjectSatisfyType() {
-        return SiteProjectSatisfyType.toType(satisfyFlag);
+        return SiteProjectSatisfyType.toType(this);
     }
 
     public CheckSafeSatisfyType getCheckSafeSatisfyType() {
-        return CheckSafeSatisfyType.toType(satisfyFlag);
+        return CheckSafeSatisfyType.toType(this);
     }
 
     public InstallDebugSatisfyType getInstallDebugSatisfyType() {
@@ -495,6 +496,11 @@ public class SiteExploreBean implements Serializable {
     public String getImgUrl() {
         return imgUrl;
     }
+
+    public List<String> getImgUrlList() {
+        return StringUtils.splitPhotoUrl(imgUrl);
+    }
+
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
