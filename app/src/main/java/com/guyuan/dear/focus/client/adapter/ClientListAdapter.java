@@ -39,7 +39,7 @@ public class ClientListAdapter extends BaseRecyclerAdapter<ClientCompanyBean> {
         holder.getView(R.id.iv_phone).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + item.getContactName()));
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + item.getContactPhone()));
                 context.startActivity(dialIntent);
 
             }
