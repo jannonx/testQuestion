@@ -6,7 +6,9 @@ import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentAcceptanceRecordBinding;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
+import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
+import com.guyuan.dear.utils.ConstantValue;
 
 
 /**
@@ -20,9 +22,10 @@ public class AcceptanceRecordFragment extends BaseDataBindingFragment<FragmentAc
     public static final String TAG = AcceptanceRecordFragment.class.getSimpleName();
 
 
-    public static AcceptanceRecordFragment newInstance() {
+    public static AcceptanceRecordFragment newInstance(SiteExploreBean data) {
         Bundle bundle = new Bundle();
         AcceptanceRecordFragment fragment = new AcceptanceRecordFragment();
+        bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
         fragment.setArguments(bundle);
         return fragment;
     }
