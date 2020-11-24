@@ -413,6 +413,22 @@
     <string name="work_goods_sign_remark">备注：%s</string>
     <string name="piece_number">%d&#12288;件</string>
 
+    <!--通用字符-->
+    <string name="project_name">项目名称：%s</string>
+    <string name="project_code">项目编号：%s</string>
+    <string name="customer_name">客户名称：%s</string>
+    <string name="car_number">车牌号：%s</string>
+    <string name="description">描述：%s</string>
+    <string name="goods_number">货物数量：%d</string>
+    <string name="phone_number">手机号：%s</string>
+    <string name="code">代号：%s</string>
+    <string name="spec">规格：%s</string>
+    <string name="quality">材质：%s</string>
+    <string name="remark">备注：%s</string>
+    <string name="contract_person">联系人：%s</string>
+    <string name="product_name">产品名称：%s</string>
+    <string name="number">数量：%d</string>
+
     <!--我的关注-售后-->
     <string name="focus_after_sale_project_name">项目名称：%s</string>
     <string name="focus_after_sale_customer_name">客户名称：%s</string>
@@ -430,5 +446,12 @@
     <string name="focus_transport_spec">规格：%s</string>
     <string name="focus_transport_remark">备注：%s</string>
     <string name="focus_transport_contract_name">联系人：%s</string>
+
+    <!--我的工作-物料申请-->
+    <string name="work_matter_apply_spec">材料规格：%s</string>
+    <string name="work_matter_apply_project_name">项目名称：%s</string>
+    <string name="work_matter_apply_person_name">审核人员：%s</string>
+    <string name="work_matter_apply_time">审核时间：%s</string>
+    <string name="work_matter_apply_number">领用数量：%d</string>
 
 </resources>

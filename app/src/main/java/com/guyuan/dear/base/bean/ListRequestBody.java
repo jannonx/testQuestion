@@ -61,6 +61,15 @@ public class ListRequestBody {
         private int transportStatus;  //10:运输中，20：已送达
         private String projectName;  //
         private String productName;
+        private String createBy;
+
+        public String getCreateBy() {
+            return createBy;
+        }
+
+        public void setCreateBy(String createBy) {
+            this.createBy = createBy;
+        }
 
         public String getProjectName() {
             return projectName;
