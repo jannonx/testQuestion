@@ -166,6 +166,14 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
         }
     }
 
+    protected void setContainerBackground(int color) {
+        if (color <= 0) {
+            list_container.setBackgroundColor(getResources().getColor(R.color.bg_window));
+        } else {
+            list_container.setBackgroundColor(getResources().getColor(color));
+        }
+    }
+
     protected void setEmptyView() {
         no_data_iv.setImageResource(emptyImgID);
         tv_empty.setText(emptyTip);

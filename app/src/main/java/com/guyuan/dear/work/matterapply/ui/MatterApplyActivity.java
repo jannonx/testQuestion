@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
@@ -11,6 +12,7 @@ import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.device.data.beans.FactoryRealTimeBean;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.matterapply.data.MatterApplyViewModel;
+import com.guyuan.dear.work.matterapply.data.bean.MatterApplyListBean;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +27,8 @@ import dagger.hilt.android.AndroidEntryPoint;
  * @company : 固远（深圳）信息技术有限公司
  **/
 @AndroidEntryPoint
-public class MatterApplyActivity extends BaseTabActivity<ActivityBaseTabBinding, MatterApplyViewModel> {
+public class MatterApplyActivity extends BaseTabActivity<ActivityBaseTabBinding,
+        MatterApplyViewModel> implements MatterApplyViewModel.MatterApplyViewModelListener {
 
     private MatterApplyFragment applyFragment;
     private MatterAppliedFragment appliedFragment;
@@ -56,6 +59,20 @@ public class MatterApplyActivity extends BaseTabActivity<ActivityBaseTabBinding,
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+        if (viewModel != null) {
+            setObserver();
+        }
+    }
+
+
+    private void setObserver() {
+        viewModel.setListener(this);
+        viewModel.getMatterApplyListMLD().observe(this, new Observer<MatterApplyListBean>() {
+            @Override
+            public void onChanged(MatterApplyListBean matterApplyListBean) {
+                appliedFragment.setListData(matterApplyListBean.getContent());
+            }
+        });
     }
 
     @Override
@@ -64,5 +81,11 @@ public class MatterApplyActivity extends BaseTabActivity<ActivityBaseTabBinding,
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
         return tabDrawableList;
+    }
+
+    @Override
+    public void applySuccess() {
+        applyFragment.clearData(MatterApplyFragment.CLEAR_ALL);
+        binding.baseVp.setCurrentItem(1);
     }
 }
