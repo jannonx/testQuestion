@@ -8,10 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioGroup;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import com.example.mvvmlibrary.base.activity.BaseNoToolbarActivity;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.R;
@@ -22,6 +18,8 @@ import com.guyuan.dear.busbean.TokenBusBean;
 import com.guyuan.dear.databinding.ActivityMainBinding;
 import com.guyuan.dear.db.DearDbManager;
 import com.guyuan.dear.focus.FocusFragment;
+import com.guyuan.dear.login.data.AppMenusBean;
+import com.guyuan.dear.login.data.ChildrenBean;
 import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.mine.MineFragment;
 import com.guyuan.dear.office.OfficeFragment;
@@ -38,7 +36,16 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+/**
+ * @description: APP主页面
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
+ * @company: 固远（深圳）信息技术有限公司
+ */
 public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, BaseViewModel> implements RadioGroup.OnCheckedChangeListener {
 
     private Fragment currentFragment;
@@ -80,10 +87,10 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Bas
         //根据菜单加载对应的fragment
         LoginBean loginBean = CommonUtils.getLoginInfo();
         if (loginBean != null && loginBean.getAppMenus() != null) {
-            for (LoginBean.AppMenusBean menusBean : loginBean.getAppMenus()) {
+            for (AppMenusBean menusBean : loginBean.getAppMenus()) {
                 String url = menusBean.getUrl();
                 String title = menusBean.getTitle();
-                ArrayList<LoginBean.AppMenusBean.ChildrenBean> menuList = new ArrayList<>();
+                ArrayList<ChildrenBean> menuList = new ArrayList<>();
                 if (menusBean.getChildren() != null) {
                     menuList.addAll(menusBean.getChildren());
                 }

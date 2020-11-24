@@ -3,15 +3,13 @@ package com.guyuan.dear.work;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.customizeview.MessageBar;
 import com.guyuan.dear.databinding.FragmentWorkBinding;
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.ChildrenBean;
 import com.guyuan.dear.scan.ScanActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
@@ -27,6 +25,7 @@ import com.guyuan.dear.work.qc.views.home.QcHomeActivity;
 
 import java.util.ArrayList;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
@@ -36,12 +35,12 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/8 14:24
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.ChildrenBean, FragmentWorkBinding, BaseViewModel> {
+public class WorkFragment extends BaseListFragment<ChildrenBean, FragmentWorkBinding, BaseViewModel> {
 
     public static final String TAG = "WorkFragment";
 
     public static WorkFragment newInstance(String title,
-                                           ArrayList<LoginBean.AppMenusBean.ChildrenBean> menuList) {
+                                           ArrayList<ChildrenBean> menuList) {
 
         Bundle args = new Bundle();
         args.putString(ConstantValue.KEY_TITLE, title);
@@ -64,11 +63,11 @@ public class WorkFragment extends BaseListFragment<LoginBean.AppMenusBean.Childr
                     getContext().getString(R.string.default_title_process_control));
             binding.homeWorkTitleTv.setText(title);
             binding.workMessageBar.setLabel(MessageBar.WORK);
-            ArrayList<LoginBean.AppMenusBean.ChildrenBean> menuList =
+            ArrayList<ChildrenBean> menuList =
                     arguments.getParcelableArrayList(ConstantValue.KEY_MENU);
             //hidden过滤，不显示
-            ArrayList<LoginBean.AppMenusBean.ChildrenBean> temMenuList = new ArrayList<>();
-            for (LoginBean.AppMenusBean.ChildrenBean childrenBean : menuList) {
+            ArrayList<ChildrenBean> temMenuList = new ArrayList<>();
+            for (ChildrenBean childrenBean : menuList) {
                 if (childrenBean.getHidden() == 1) temMenuList.add(childrenBean);
             }
             menuList.clear();

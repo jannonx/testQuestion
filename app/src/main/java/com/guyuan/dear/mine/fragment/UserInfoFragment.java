@@ -1,14 +1,8 @@
 package com.guyuan.dear.mine.fragment;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
@@ -29,6 +23,8 @@ import com.guyuan.dear.utils.ToastUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
@@ -122,7 +118,7 @@ public class UserInfoFragment extends BaseDataBindingFragment<FragmentUserInfoBi
             //选择头像
             case R.id.rl_avatar:
 //                workReportCommitActivity.openAlbum(BaseTabActivity.FIRST);
-                activity.openAlbum(BaseTabActivity.FIRST);
+                activity.pickSinglePhoto(BaseTabActivity.FIRST);
                 break;
             //退出账号
             case R.id.tv_logout:

@@ -11,12 +11,12 @@ import com.guyuan.dear.mine.activity.AboutUsActivity;
 import com.guyuan.dear.mine.activity.FeedBackActivity;
 import com.guyuan.dear.mine.activity.PrivacyPolicyActivity;
 import com.guyuan.dear.mine.activity.SafetyCenterActivity;
-import com.guyuan.dear.mine.activity.SystemSettingActivity;
 import com.guyuan.dear.mine.activity.UserInfoActivity;
 import com.guyuan.dear.mine.data.MineViewModel;
 import com.guyuan.dear.scan.ScanActivity;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.GlideUtils;
+import com.guyuan.dear.utils.LogUtils;
 
 /**
  * @description: 我的
@@ -45,9 +45,10 @@ public class MineFragment extends BaseDataBindingFragment<FragmentMineBinding, M
     @Override
     protected void initialization() {
         user = CommonUtils.getLoginInfo();
+        LogUtils.showLog("name="+user.getUserInfo().getName());
         if (user != null && user.getUserInfo() != null) {
             binding.tvName.setText(user.getUserInfo().getName());
-            binding.tvPhone.setText(user.getUserInfo().getMobile());
+            binding.tvPhone.setText(user.getUserInfo().getUserPhone());
             String imgUrl = user.getUserInfo().getImgUrl();
             GlideUtils.getInstance().loadUserCircleImageFromGuYuanServer(binding.ivAvatar, imgUrl);
         } else {
@@ -59,11 +60,11 @@ public class MineFragment extends BaseDataBindingFragment<FragmentMineBinding, M
 //        } else {
 //            binding.tvNewVersion.setVisibility(View.GONE);
 //        }
-        setLister();
+        initListener();
     }
 
 
-    private void setLister() {
+    private void initListener() {
         binding.rlUserInfo.setOnClickListener(this);
         binding.llSystemSetting.setOnClickListener(this);
         binding.llSafetyCenter.setOnClickListener(this);

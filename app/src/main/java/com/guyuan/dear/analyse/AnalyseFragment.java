@@ -3,20 +3,19 @@ package com.guyuan.dear.analyse;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentAnalyseBinding;
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.ChildrenBean;
 import com.guyuan.dear.scan.ScanActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
 
 import java.util.ArrayList;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
@@ -26,11 +25,10 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/8 10:55
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class AnalyseFragment extends BaseListFragment<LoginBean.AppMenusBean.ChildrenBean, FragmentAnalyseBinding, BaseViewModel> {
+public class AnalyseFragment extends BaseListFragment<ChildrenBean, FragmentAnalyseBinding, BaseViewModel> {
     public static final String TAG = "AnalyseFragment";
 
-    public static AnalyseFragment newInstance(String title,
-                                              ArrayList<LoginBean.AppMenusBean.ChildrenBean> menuList) {
+    public static AnalyseFragment newInstance(String title, ArrayList<ChildrenBean> menuList) {
 
         Bundle args = new Bundle();
         args.putString(ConstantValue.KEY_TITLE, title);
@@ -52,12 +50,12 @@ public class AnalyseFragment extends BaseListFragment<LoginBean.AppMenusBean.Chi
             String title = arguments.getString(ConstantValue.KEY_TITLE,
                     getContext().getString(R.string.default_title_smart_analysis));
             binding.analyseTitleTv.setText(title);
-            ArrayList<LoginBean.AppMenusBean.ChildrenBean> menuList =
+            ArrayList<ChildrenBean> menuList =
                     arguments.getParcelableArrayList(ConstantValue.KEY_MENU);
 
             //hidden过滤，不显示
-            ArrayList<LoginBean.AppMenusBean.ChildrenBean> temMenuList = new ArrayList<>();
-            for (LoginBean.AppMenusBean.ChildrenBean childrenBean : menuList) {
+            ArrayList<ChildrenBean> temMenuList = new ArrayList<>();
+            for (ChildrenBean childrenBean : menuList) {
                 if (childrenBean.getHidden() == 1) temMenuList.add(childrenBean);
             }
             menuList.clear();
@@ -71,7 +69,7 @@ public class AnalyseFragment extends BaseListFragment<LoginBean.AppMenusBean.Chi
                 @Override
                 public void onItemClick(View view, int position) {
                     if (NetworkUtils.isNetworkAvailable(getContext())) {
-                        LoginBean.AppMenusBean.ChildrenBean childrenBean = menuList.get(position);
+                        ChildrenBean childrenBean = menuList.get(position);
                         String url = childrenBean.getUrl();
                         String title = childrenBean.getTitle();
 

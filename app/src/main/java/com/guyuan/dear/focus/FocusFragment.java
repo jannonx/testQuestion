@@ -3,8 +3,6 @@ package com.guyuan.dear.focus;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.util.LogUtils;
 import com.guyuan.dear.R;
@@ -14,23 +12,23 @@ import com.guyuan.dear.databinding.FragmentFocusBinding;
 import com.guyuan.dear.focus.aftersale.ui.FocusAfterSaleActivity;
 import com.guyuan.dear.focus.assess.ui.FocusAssessActivity;
 import com.guyuan.dear.focus.client.activity.FocusClientActivity;
+import com.guyuan.dear.focus.contract.view.home.ContractHomeActivity;
 import com.guyuan.dear.focus.device.ui.FocusDeviceActivity;
 import com.guyuan.dear.focus.hr.view.home.HrHomeActivity;
-import com.guyuan.dear.focus.contract.view.home.ContractHomeActivity;
 import com.guyuan.dear.focus.produce.ui.FocusProduceActivity;
 import com.guyuan.dear.focus.projectsite.activity.FocusProjectSiteActivity;
-import com.guyuan.dear.focus.projectsite.activity.ResultReportDetailActivity;
-import com.guyuan.dear.focus.qc.views.home.QcHomeActivity;
 import com.guyuan.dear.focus.purchase.ui.FocusPurchaseActivity;
+import com.guyuan.dear.focus.qc.views.home.QcHomeActivity;
 import com.guyuan.dear.focus.security.ui.FocusSecurityActivity;
 import com.guyuan.dear.focus.stock.ui.FocusStockActivity;
 import com.guyuan.dear.focus.transport.ui.TransportActivity;
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.ChildrenBean;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
 
 import java.util.ArrayList;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
@@ -40,12 +38,11 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/8 11:41
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.ChildrenBean, FragmentFocusBinding, BaseViewModel> {
+public class FocusFragment extends BaseListFragment<ChildrenBean, FragmentFocusBinding, BaseViewModel> {
 
     public static final String TAG = "FocusFragment";
 
-    public static FocusFragment newInstance(String title,
-                                            ArrayList<LoginBean.AppMenusBean.ChildrenBean> menuList) {
+    public static FocusFragment newInstance(String title, ArrayList<ChildrenBean> menuList) {
 
         Bundle args = new Bundle();
         args.putString(ConstantValue.KEY_TITLE, title);
@@ -67,11 +64,11 @@ public class FocusFragment extends BaseListFragment<LoginBean.AppMenusBean.Child
             String title = arguments.getString(ConstantValue.KEY_TITLE,
                     getContext().getString(R.string.default_title_realtime_progress));
             binding.homeFocusTitleTv.setText(title);
-            ArrayList<LoginBean.AppMenusBean.ChildrenBean> menuList =
+            ArrayList<ChildrenBean> menuList =
                     arguments.getParcelableArrayList(ConstantValue.KEY_MENU);
             //hidden过滤，不显示
-            ArrayList<LoginBean.AppMenusBean.ChildrenBean> temMenuList = new ArrayList<>();
-            for (LoginBean.AppMenusBean.ChildrenBean childrenBean : menuList) {
+            ArrayList<ChildrenBean> temMenuList = new ArrayList<>();
+            for (ChildrenBean childrenBean : menuList) {
                 LogUtils.showLog("menu=" + childrenBean.getName());
                 if (childrenBean.getHidden() == 1) temMenuList.add(childrenBean);
             }
