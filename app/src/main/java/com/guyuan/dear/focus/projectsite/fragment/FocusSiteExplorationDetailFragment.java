@@ -15,6 +15,7 @@ import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CustomerAcceptanceSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
+import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
@@ -53,6 +54,10 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     public static final String TAG = FocusSiteExplorationDetailFragment.class.getSimpleName();
 
     private ProjectSiteStatusFragment statusFragment;
+    //安装调试--安装动态
+    private InstallDebugStatusFragment installDebugStatusFragment;
+    //客户验收--验收记录
+    private AcceptanceRecordFragment recordFragment;
     private ExploreContentFragment planFragment;
 
     private int startPosition = 0;//起始选中位置
@@ -66,7 +71,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         Bundle bundle = new Bundle();
         FocusSiteExplorationDetailFragment fragment = new FocusSiteExplorationDetailFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
-        LogUtils.showLog("newInstance="+data.getModuleType().getDes());
+        LogUtils.showLog("newInstance=" + data.getModuleType().getDes());
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -83,7 +88,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
             return;
         }
         detailProjectData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
-        LogUtils.showLog("initialization="+detailProjectData.getModuleType().getDes());
+        LogUtils.showLog("initialization=" + detailProjectData.getModuleType().getDes());
         binding.tvPauseBtn.setOnClickListener(this);
         binding.tvCompleteBtn.setOnClickListener(this);
         binding.tvActivateBtn.setOnClickListener(this);
@@ -95,11 +100,14 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     }
 
     private void getDataFromNet() {
+        LogUtils.showLog("getDataFromNet=" + detailProjectData.getModuleType().getDes());
+
+        //评论
         viewModel.getPostAnswerInfoEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer dataRefreshBean) {
                 ToastUtils.showShort(getContext(), "评论成功!");
-                getDetailDataByClassify();
+//                getDetailDataByClassify();
                 EventBus.getDefault().post(new EventAnswerListRefresh());
             }
         });
@@ -108,9 +116,9 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         viewModel.getSiteExploreDetailEvent().observe(getActivity(), new Observer<SiteExploreBean>() {
             @Override
             public void onChanged(SiteExploreBean data) {
-                LogUtils.showLog("getDataFromNet000="+detailProjectData.getModuleType().getDes());
+                LogUtils.showLog("getDataFromNet000=" + detailProjectData.getModuleType().getDes());
                 setProduceData(data);
-                LogUtils.showLog("getDataFromNet="+detailProjectData.getModuleType().getDes());
+                LogUtils.showLog("getDataFromNet111=" + detailProjectData.getModuleType().getDes());
             }
         });
         viewModel.getCheckGoodDetailEvent().observe(getActivity(), new Observer<SiteExploreBean>() {
@@ -145,6 +153,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 LogUtils.showLog("onCommitInstallationDebugInfo...onChanged");
                 getDetailDataByClassify();
                 EventBus.getDefault().post(new EventInstallDebugRefresh());
+                EventBus.getDefault().post(new EventAnswerListRefresh());
             }
         });
         //提交--安装调试
@@ -154,6 +163,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 LogUtils.showLog("getCommitCustomerAcceptanceInfoEvent...onChanged");
                 getDetailDataByClassify();
                 EventBus.getDefault().post(new EventInstallDebugRefresh());
+                EventBus.getDefault().post(new EventAnswerListRefresh());
             }
         });
     }
@@ -163,12 +173,12 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      * 根据报告类型请求数据
      */
     private void getDetailDataByClassify() {
-        LogUtils.showLog("getDetailDataByClassify="+detailProjectData.getModuleType().getDes());
+        LogUtils.showLog("getDetailDataByClassify=" + detailProjectData.getModuleType().getDes());
         switch (detailProjectData.getProjectReportType()) {
             ///现场勘查报告
             case TYPE_SITE_EXPLORATION:
                 viewModel.getSiteExploreDetailData(detailProjectData.getId());
-                LogUtils.showLog("getDetailDataByClassify000="+detailProjectData.getModuleType().getDes());
+                LogUtils.showLog("getDetailDataByClassify000=" + detailProjectData.getModuleType().getDes());
                 break;
             ///货物清点报告
             case TYPE_CHECK_GOODS:
@@ -200,13 +210,13 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      */
     private void setProduceData(SiteExploreBean data) {
         if (getActivity() == null) return;
-        LogUtils.showLog("setProduceData111="+detailProjectData.getModuleType().getDes());
+        LogUtils.showLog("setProduceData111=" + detailProjectData.getModuleType().getDes());
         LogUtils.showLog("setProduceData...setProduceData");
         data.setProjectReportType(detailProjectData.getProjectReportType());
         data.setModuleType(detailProjectData.getModuleType());
-        LogUtils.showLog("setProduceData222="+detailProjectData.getModuleType().getDes());
+        LogUtils.showLog("setProduceData222=" + detailProjectData.getModuleType().getDes());
         detailProjectData = data;
-        LogUtils.showLog("setProduceData333="+detailProjectData.getModuleType().getDes());
+        LogUtils.showLog("setProduceData333=" + detailProjectData.getModuleType().getDes());
         //设置审核数据
         planFragment.setCheckContentData(detailProjectData);
         switch (detailProjectData.getProjectReportType()) {
@@ -241,6 +251,108 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
     }
 
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_pause_btn:
+                clickLeftBtn();
+                break;
+            case R.id.tv_complete_btn:
+                clickRightBtn();
+                break;
+            case R.id.tv_activate_btn:
+                postStatusInfo();
+                break;
+        }
+    }
+
+    private void postStatusInfo() {
+        FollowCommentDialog.show(getActivity(), new FollowCommentDialog.OnFollowClickListener() {
+            @Override
+            public void onClick(String content) {
+                PostAnswerInfo answerInfo = new PostAnswerInfo();
+                answerInfo.setIdea(content);
+                answerInfo.setPsAuditId(detailProjectData.getId());
+                answerInfo.setType(detailProjectData.getProjectReportType().getCode());
+                String str = GsonUtil.objectToString(answerInfo);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), str);
+                viewModel.postAnswerInfo(requestBody);
+            }
+        });
+
+    }
+
+    private void clickRightBtn() {
+        ProjectCheckConfirmDialog.show(getActivity(), detailProjectData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
+
+            @Override
+            public void onCommitCheckGoodsInfo(PostCheckInfo data) {
+
+            }
+
+            @Override
+            public void onCommitInstallationDebugInfo(PostInstallationDebugInfo data) {
+                LogUtils.showLog("onCommitInstallationDebugInfo");
+                //安装调试
+                data.setStatus(InstallDebugSatisfyType.TYPE_INSTALL_COMPLETE.getCode());
+                String str = GsonUtil.objectToString(data);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), str);
+
+                viewModel.postInstallDebugInfo(requestBody);
+            }
+
+            @Override
+            public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data) {
+                //验收状态，0:待验收，10合格，20不合格
+                data.setCheckStatus(10);
+                String str = GsonUtil.objectToString(data);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), str);
+
+                viewModel.postCustomerAcceptanceInfo(requestBody);
+            }
+        });
+    }
+
+    private void clickLeftBtn() {
+        ProjectCheckConfirmDialog.show(getActivity(), detailProjectData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
+
+            @Override
+            public void onCommitCheckGoodsInfo(PostCheckInfo data) {
+
+            }
+
+            @Override
+            public void onCommitInstallationDebugInfo(PostInstallationDebugInfo data) {
+                LogUtils.showLog("onCommitInstallationDebugInfo");
+                //安装调试
+                int codeStatus = binding.tvPauseBtn.getText().toString().equals("暂停") ?
+                        InstallDebugSatisfyType.TYPE_INSTALL_PAUSE.getCode() : InstallDebugSatisfyType.TYPE_INSTALL_ING.getCode();
+                data.setStatus(codeStatus);
+                String str = GsonUtil.objectToString(data);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), str);
+
+                viewModel.postInstallDebugInfo(requestBody);
+            }
+
+            @Override
+            public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data) {
+                //验收状态，0:待验收，10合格，20不合格
+                data.setCheckStatus(20);
+                String str = GsonUtil.objectToString(data);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), str);
+
+                viewModel.postCustomerAcceptanceInfo(requestBody);
+            }
+        });
+
+    }
+
     /**
      * 现场勘查报告
      *
@@ -257,7 +369,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvCompanyLocation.setText(detailProjectData.getDestination());
 
         //我的关注不显示
-        LogUtils.showLog("ProjectModuleType="+detailProjectData.getModuleType().getDes());
+        LogUtils.showLog("ProjectModuleType=" + detailProjectData.getModuleType().getDes());
+        binding.tvActivateBtn.setText("反馈问题");
         binding.tvActivateBtn.setVisibility(ProjectModuleType.TYPE_FOCUS == detailProjectData.getModuleType() ? View.GONE : View.VISIBLE);
     }
 
@@ -358,114 +471,17 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                         View.GONE : View.VISIBLE);
     }
 
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tv_pause_btn:
-                clickLeftBtn();
-                break;
-            case R.id.tv_complete_btn:
-                clickRightBtn();
-                break;
-            case R.id.tv_activate_btn:
-                postStatusInfo();
-                break;
-        }
-    }
-
-    private void postStatusInfo() {
-        FollowCommentDialog.show(getActivity(), new FollowCommentDialog.OnFollowClickListener() {
-            @Override
-            public void onClick(String content) {
-                PostAnswerInfo answerInfo = new PostAnswerInfo();
-                answerInfo.setIdea(content);
-                answerInfo.setPsAuditId(detailProjectData.getId());
-                String str = GsonUtil.objectToString(answerInfo);
-                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
-                        "charset=utf-8"), str);
-                viewModel.postAnswerInfo(requestBody);
-            }
-        });
-
-    }
-
-    private void clickRightBtn() {
-        ProjectCheckConfirmDialog.show(getActivity(), detailProjectData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
-
-            @Override
-            public void onCommitCheckGoodsInfo(PostCheckInfo data) {
-
-            }
-
-            @Override
-            public void onCommitInstallationDebugInfo(PostInstallationDebugInfo data) {
-                LogUtils.showLog("onCommitInstallationDebugInfo");
-                //安装调试
-                data.setStatus(InstallDebugSatisfyType.TYPE_INSTALL_COMPLETE.getCode());
-                String str = GsonUtil.objectToString(data);
-                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
-                        "charset=utf-8"), str);
-
-                viewModel.postInstallDebugInfo(requestBody);
-            }
-
-            @Override
-            public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data) {
-                //验收状态，0:待验收，10合格，20不合格
-                data.setCheckStatus(10);
-                String str = GsonUtil.objectToString(data);
-                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
-                        "charset=utf-8"), str);
-
-                viewModel.postCustomerAcceptanceInfo(requestBody);
-            }
-        });
-    }
-
-    private void clickLeftBtn() {
-        ProjectCheckConfirmDialog.show(getActivity(), detailProjectData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
-
-            @Override
-            public void onCommitCheckGoodsInfo(PostCheckInfo data) {
-
-            }
-
-            @Override
-            public void onCommitInstallationDebugInfo(PostInstallationDebugInfo data) {
-                LogUtils.showLog("onCommitInstallationDebugInfo");
-                //安装调试
-                int codeStatus = binding.tvPauseBtn.getText().toString().equals("暂停") ?
-                        InstallDebugSatisfyType.TYPE_INSTALL_PAUSE.getCode() : InstallDebugSatisfyType.TYPE_INSTALL_ING.getCode();
-                data.setStatus(codeStatus);
-                String str = GsonUtil.objectToString(data);
-                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
-                        "charset=utf-8"), str);
-
-                viewModel.postInstallDebugInfo(requestBody);
-            }
-
-            @Override
-            public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data) {
-                //验收状态，0:待验收，10合格，20不合格
-                data.setCheckStatus(20);
-                String str = GsonUtil.objectToString(data);
-                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
-                        "charset=utf-8"), str);
-
-                viewModel.postCustomerAcceptanceInfo(requestBody);
-            }
-        });
-
-    }
-
-
     private void initViewPager() {
         List<Fragment> tabFragmentList = new ArrayList<>();
-        statusFragment = ProjectSiteStatusFragment.newInstance(detailProjectData);
-        planFragment = ExploreContentFragment.newInstance(detailProjectData);
 
-        tabFragmentList.add(statusFragment);
+        statusFragment = ProjectSiteStatusFragment.newInstance(detailProjectData);
+        installDebugStatusFragment = InstallDebugStatusFragment.newInstance(detailProjectData);
+        recordFragment = AcceptanceRecordFragment.newInstance(detailProjectData);
+
+        tabFragmentList.add(ProjectReportType.TYPE_INSTALLATION_DEBUG == detailProjectData.getProjectReportType()
+                ? installDebugStatusFragment : ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == detailProjectData.getProjectReportType() ?
+                recordFragment : statusFragment);
+        planFragment = ExploreContentFragment.newInstance(detailProjectData);
         tabFragmentList.add(planFragment);
 
         titleList = getResources().getStringArray(detailProjectData.getProjectReportTabArray());

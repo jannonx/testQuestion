@@ -17,6 +17,10 @@ public class PostAnswerInfo implements Serializable {
      * 指导意见
      */
     private String idea;
+    /**
+     * 当前业务类型,参数说明,10:清点货物单;20:安全排查单;30:现场勘察单;40:安装调试;50:客户验收单
+     */
+    private int type;
 
     public long getPsAuditId() {
         return psAuditId;
@@ -32,5 +36,13 @@ public class PostAnswerInfo implements Serializable {
 
     public void setIdea(String idea) {
         this.idea = idea;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

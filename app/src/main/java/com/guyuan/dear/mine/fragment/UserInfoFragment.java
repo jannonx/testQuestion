@@ -1,6 +1,9 @@
 package com.guyuan.dear.mine.fragment;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -37,6 +40,7 @@ import okhttp3.RequestBody;
  */
 public class UserInfoFragment extends BaseDataBindingFragment<FragmentUserInfoBinding, MineViewModel>
         implements View.OnClickListener, BaseFileUploadActivity.PhotoSelectListener {
+    // BaseTabActivity.PhotoSelectListener
     protected ArrayList<String> photoList = new ArrayList<>();
     public static final String TAG = "UserInfoFragment";
     private UserInfoActivity activity;
@@ -123,6 +127,8 @@ public class UserInfoFragment extends BaseDataBindingFragment<FragmentUserInfoBi
             //退出账号
             case R.id.tv_logout:
                 CommonUtils.logout(getContext());
+
+
                 break;
         }
     }

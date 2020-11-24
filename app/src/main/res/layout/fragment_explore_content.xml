@@ -30,19 +30,20 @@
                     android:background="@color/white" />
             </FrameLayout>
 
-            <View
-                android:id="@+id/view_3"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_8"
-                android:background="@color/color_grey_EDEDED"
-                app:layout_constraintTop_toBottomOf="@+id/base_recycleView" />
+
 
             <LinearLayout
+                android:id="@+id/ll_remark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="vertical">
-
+                <View
+                    android:id="@+id/view_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_8"
+                    android:background="@color/color_grey_EDEDED"
+                    app:layout_constraintTop_toBottomOf="@+id/base_recycleView" />
                 <TextView
                     android:id="@+id/label_issue_record"
                     android:layout_width="wrap_content"
@@ -79,6 +80,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_document"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_16"
@@ -113,21 +115,21 @@
                 <!--                android:layout_height="wrap_content"-->
                 <!--                android:layout_marginStart="12dp"-->
                 <!--                android:layout_marginTop="12dp" />-->
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:background="@color/color_green_D4FFF1"
-                    tools:layout_height="@dimen/dp_150">
+<!--                <FrameLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    tools:background="@color/color_green_D4FFF1"-->
+<!--                    tools:layout_height="@dimen/dp_150">-->
 
-                    <tl.com.easy_recycleview_library.BaseRecyclerView
-                        android:id="@+id/image_recycleView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:layout_marginTop="12dp" />
+<!--                    <tl.com.easy_recycleview_library.BaseRecyclerView-->
+<!--                        android:id="@+id/image_recycleView"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        tools:layout_marginTop="12dp" />-->
 
-                </FrameLayout>
+<!--                </FrameLayout>-->
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>

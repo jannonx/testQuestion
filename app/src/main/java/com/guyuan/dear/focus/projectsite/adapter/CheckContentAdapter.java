@@ -10,13 +10,17 @@ import androidx.appcompat.widget.AppCompatImageView;
 
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.base.bean.SimpleTabBean;
+import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
+import com.guyuan.dear.focus.projectsite.bean.CheckSafeSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
 import com.guyuan.dear.focus.projectsite.bean.SingleItemResultType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.R;
+import com.guyuan.dear.focus.projectsite.bean.SiteProjectSatisfyType;
 import com.guyuan.dear.utils.GlideUtils;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.List;
 
@@ -49,18 +53,37 @@ public class CheckContentAdapter extends BaseRecyclerAdapter<ProjectSiteOpinionB
 
         ImageView imageView = holder.getView(R.id.image_view);
         GlideUtils.getInstance().loadLocalImage(imageView, item.getResultType().getImageView());
-
+        LogUtils.showLog("getResultType=" + item.getResultType().getDes());
         View lineBottom = holder.getView(R.id.line_bottom);
         lineBottom.setVisibility(listData.size() - 1 == position ? View.GONE : View.VISIBLE);
 
         ProjectModuleType moduleType = siteExploreBean.getModuleType();
-        //我的关注
-        imageView.setVisibility(moduleType == ProjectModuleType.TYPE_FOCUS ? View.VISIBLE : View.GONE);
+
+        //勘查中，排查中
+        SiteProjectSatisfyType siteProjectSatisfyType = siteExploreBean.getSiteProjectSatisfyType();
+        CheckSafeSatisfyType checkSafeSatisfyType = siteExploreBean.getCheckSafeSatisfyType();
+        boolean isSiteExplore = (SiteProjectSatisfyType.TYPE_EXPLORE_WAIT == siteProjectSatisfyType
+                || SiteProjectSatisfyType.TYPE_EXPLORE_ING == siteProjectSatisfyType);
+        boolean isCheckSafe = checkSafeSatisfyType == CheckSafeSatisfyType.TYPE_CHECK_WAIT
+                || checkSafeSatisfyType == CheckSafeSatisfyType.TYPE_CHECK_ING;
         LinearLayout clConfirm = holder.getView(R.id.rl_confirm);
-        clConfirm.setVisibility(moduleType == ProjectModuleType.TYPE_FOCUS ? View.GONE : View.VISIBLE);
+        //我的关注
+        if (moduleType == ProjectModuleType.TYPE_FOCUS) {
+            LogUtils.showLog("11111");
+            imageView.setVisibility(View.VISIBLE);
+            clConfirm.setVisibility(View.GONE);
+            //我的工作--勘查中/排查中
+        } else if (isSiteExplore || isCheckSafe) {
+            LogUtils.showLog("22222");
+            clConfirm.setVisibility(View.VISIBLE);
+            imageView.setVisibility(View.GONE);
+        } else {
+            LogUtils.showLog("33333");
+            imageView.setVisibility(View.VISIBLE);
+            clConfirm.setVisibility(View.GONE);
+        }
 
-        if (moduleType == ProjectModuleType.TYPE_FOCUS) return;
-
+        if (clConfirm.getVisibility() == View.GONE) return;
         //我的工作
         AppCompatImageView ivRightBtn = holder.getView(R.id.iv_right_btn);
         AppCompatImageView ivWrongBtn = holder.getView(R.id.iv_wrong_btn);

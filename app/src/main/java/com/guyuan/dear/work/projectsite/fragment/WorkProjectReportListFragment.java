@@ -102,7 +102,6 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
      */
     private void jumpByReportType(SiteExploreBean siteExploreBean) {
         siteExploreBean.setModuleType(ProjectModuleType.TYPE_WORK);
-
         switch (reportType) {
             ///现场勘查报告
             case TYPE_SITE_EXPLORATION:
@@ -230,11 +229,9 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
     private void dealDataByAddReportType(List<SiteExploreBean> dataList) {
         List<SiteExploreBean> tempList = new ArrayList<>();
         for (SiteExploreBean bean : dataList) {
-            LogUtils.showLog("siteExploreBean=" + reportType.getDes());
             bean.setProjectReportType(reportType);
             tempList.add(bean);
         }
-        LogUtils.showLog("dataList=" + dataList.size());
         setListData(tempList);
     }
 

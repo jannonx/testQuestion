@@ -83,14 +83,14 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
         binding.baseRecycleView.setLoadMoreEnabled(false);
 
 
-        ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-                imageDataList, R.layout.item_explorate_image);
-        imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
-        binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        setReportAdapterByType(simpleData.getProjectReportType());
-        binding.imageRecycleView.setAdapter(imageAdapter);
-        binding.imageRecycleView.setPullRefreshEnabled(false);
-        binding.imageRecycleView.setLoadMoreEnabled(false);
+//        ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
+//                imageDataList, R.layout.item_explorate_image);
+//        imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
+//        binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+//        setReportAdapterByType(simpleData.getProjectReportType());
+//        binding.imageRecycleView.setAdapter(imageAdapter);
+//        binding.imageRecycleView.setPullRefreshEnabled(false);
+//        binding.imageRecycleView.setLoadMoreEnabled(false);
 
         //http://pic-bucket.ws.126.net/photo/0001/2020-11-09/FR0M2RL000AN0001NOS.jpg
         // FullScreenShowActivity.start(mContext, StringUtils.splicePhotoUrl(getTagDataList()),position);
@@ -103,11 +103,15 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
      */
     public void setCheckContentData(SiteExploreBean detailProjectData) {
         ProjectReportType projectReportType = detailProjectData.getProjectReportType();
+        //客户验收隐藏
+        binding.llDocument.setVisibility(ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == projectReportType ? View.GONE : View.VISIBLE);
+        binding.llRemark.setVisibility(ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == projectReportType ? View.GONE : View.VISIBLE);
+        //安装调试
         binding.llcContent.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG == projectReportType ? View.GONE : View.VISIBLE);
         binding.videoPanel.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG == projectReportType ? View.VISIBLE : View.GONE);
-        LogUtils.showLog("工程现场=" + (detailProjectData.getPsAuditItemVOList() != null ? "" + detailProjectData.getPsAuditItemVOList().size() : "空"));
-        LogUtils.showLog("购物清单=" + (detailProjectData.getCheckTransportProjectListVO() != null ? "" + detailProjectData.getCheckTransportProjectListVO().size() : "空"));
-        LogUtils.showLog("安装调试=" + (detailProjectData.getAppInstallDebugItemVOList() != null ? "" + detailProjectData.getAppInstallDebugItemVOList().size() : "空"));
+//        LogUtils.showLog("工程现场=" + (detailProjectData.getPsAuditItemVOList() != null ? "" + detailProjectData.getPsAuditItemVOList().size() : "空"));
+//        LogUtils.showLog("购物清单=" + (detailProjectData.getCheckTransportProjectListVO() != null ? "" + detailProjectData.getCheckTransportProjectListVO().size() : "空"));
+//        LogUtils.showLog("安装调试=" + (detailProjectData.getAppInstallDebugItemVOList() != null ? "" + detailProjectData.getAppInstallDebugItemVOList().size() : "空"));
         siteExploreContentList.clear();
         checkGoodsContentList.clear();
         installDebugContentList.clear();
@@ -123,7 +127,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
         adapter.refreshData();
 
         imageDataList.clear();
-        LogUtils.showLog("图片="+detailProjectData.getImgUrlList());
+        LogUtils.showLog("图片=" + detailProjectData.getImgUrlList());
 //        imageDataList.addAll(detailProjectData.getImgUrlList());
 //        imageAdapter.refreshData();
 
@@ -195,7 +199,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
             ///现场勘查报告 - 安全排查报告
             case TYPE_SITE_EXPLORATION:
             case TYPE_CHECK_SAFE:
-                simpleData.setModuleType(ProjectModuleType.TYPE_FOCUS);
+//                simpleData.setModuleType(ProjectModuleType.TYPE_FOCUS);
                 CheckContentAdapter checkContentAdapter = new CheckContentAdapter(getContext(),
                         siteExploreContentList, R.layout.item_explorate_content, simpleData);
                 adapter = new BaseRecyclerViewAdapter(checkContentAdapter);

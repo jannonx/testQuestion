@@ -86,7 +86,7 @@ public class FocusCustomerAcceptanceDetailFragment extends BaseDataBindingFragme
 
     private void initViewPager() {
         List<Fragment> tabFragmentList = new ArrayList<>();
-        statusFragment = AcceptanceRecordFragment.newInstance();
+        statusFragment = AcceptanceRecordFragment.newInstance(null);
         planFragment = ProjectInstallFragment.newInstance();
 
         tabFragmentList.add(statusFragment);
