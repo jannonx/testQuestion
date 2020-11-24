@@ -34,7 +34,7 @@
 
 
                 <TextView
-                    android:id="@+id/tv_produce_status"
+                    android:id="@+id/tv_project_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_12"
@@ -86,7 +86,7 @@
                     app:layout_constraintTop_toTopOf="@+id/label_project_code" />
 
                 <TextView
-                    android:id="@+id/label_duty_unit"
+                    android:id="@+id/label_check_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_12"
@@ -97,15 +97,15 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_project_code" />
 
                 <TextView
-                    android:id="@+id/tv_duty_unit"
+                    android:id="@+id/tv_check_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="小刘"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_duty_unit"
-                    app:layout_constraintStart_toEndOf="@+id/label_duty_unit"
-                    app:layout_constraintTop_toTopOf="@+id/label_duty_unit" />
+                    app:layout_constraintBottom_toBottomOf="@+id/label_check_name"
+                    app:layout_constraintStart_toEndOf="@+id/label_check_name"
+                    app:layout_constraintTop_toTopOf="@+id/label_check_name" />
 
                 <View
                     android:id="@+id/v_line_1"
@@ -116,7 +116,7 @@
                     android:background="@color/color_grey_e5e5e5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tv_project_name"
-                    app:layout_constraintTop_toBottomOf="@+id/label_duty_unit"
+                    app:layout_constraintTop_toBottomOf="@+id/label_check_name"
 
                     />
 
@@ -146,7 +146,7 @@
 
 
                 <TextView
-                    android:id="@+id/label_time"
+                    android:id="@+id/tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_12"
@@ -162,7 +162,7 @@
                     android:layout_height="@dimen/dp_8"
                     android:layout_marginTop="@dimen/dp_12"
                     android:background="@color/color_grey_EDEDED"
-                    app:layout_constraintTop_toBottomOf="@+id/label_time" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_time" />
 
 
                 <TextView
@@ -194,64 +194,110 @@
                     android:layout_height="@dimen/dp_8"
                     android:background="@color/color_grey_EDEDED"
                     app:layout_constraintTop_toBottomOf="@+id/base_recycleView" />
-
-                <TextView
-                    android:id="@+id/tv_issue_record"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_12"
-                    android:layout_marginTop="@dimen/dp_12"
-                    android:text="记录问题"
-                    android:textColor="@color/color_black_333333"
-                    android:textSize="@dimen/sp_14"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view_3" />
-
-                <LinearLayout
-                    android:id="@+id/ll_et_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp_12"
-                    android:background="@drawable/bg_stroke_gray_eeeeee_rectangle"
-                    android:orientation="vertical"
-                    android:padding="@dimen/dp_12"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_issue_record">
+                    android:background="@color/white"
+                    app:layout_constraintTop_toBottomOf="@+id/view_3"
+                    >
+                    <TextView
+                        android:id="@+id/tv_issue_record"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_12"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:text="记录问题"
+                        android:textColor="@color/color_black_333333"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/et_search"
+                    <LinearLayout
+                        android:id="@+id/ll_et_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:hint="请输入。最长长度最长长度最长长度最长长度"
-                        android:minHeight="@dimen/dp_64"
-                        android:textColor="@color/color_black_333333"
-                        android:textSize="@dimen/sp_17" />
+                        android:layout_margin="@dimen/dp_12"
+                        android:background="@drawable/bg_stroke_gray_eeeeee_rectangle"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dp_12"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_issue_record">
 
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/et_search"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:hint="请输入。最长长度最长长度最长长度最长长度"
+                            android:minHeight="@dimen/dp_64"
+                            android:textColor="@color/color_black_333333"
+                            android:textSize="@dimen/sp_17" />
+
+
+                        <TextView
+                            android:id="@+id/tv_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_8"
+                            android:gravity="end"
+                            android:text="0/240"
+                            android:textColor="@color/color_grey_999999"
+                            android:textSize="@dimen/sp_17" />
+                    </LinearLayout>
 
                     <TextView
-                        android:id="@+id/tv_number"
-                        android:layout_width="match_parent"
+                        android:id="@+id/tv_condition"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_8"
-                        android:gravity="end"
-                        android:text="0/240"
-                        android:textColor="@color/color_grey_999999"
-                        android:textSize="@dimen/sp_17" />
-                </LinearLayout>
+                        android:layout_marginStart="@dimen/dp_12"
+                        android:layout_marginTop="@dimen/dp_12p5"
+                        android:text="满足条件"
+                        android:textColor="@color/color_black_333333"
+                        android:textSize="@dimen/sp_14"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ll_et_content" />
+                    <RadioGroup
+                        android:id="@+id/rg_check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp_12"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_condition"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_condition">
 
-                <TextView
-                    android:id="@+id/tv_condition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_12"
-                    android:layout_marginTop="@dimen/dp_12p5"
-                    android:text="满足条件"
-                    android:textColor="@color/color_black_333333"
-                    android:textSize="@dimen/sp_14"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ll_et_content" />
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/rb_right"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/dp_44"
+                            android:background="@null"
+                            android:button="@null"
+                            android:checked="true"
+                            android:drawableStart="@drawable/bg_work_project_rb_unselector"
+                            android:drawablePadding="@dimen/dp_8"
+                            android:text="正常"
+                            android:textColor="@color/color_black_333333"
+                            android:textSize="@dimen/sp_14" />
+
+                        <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/rb_wrong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:button="@null"
+                            android:drawableStart="@drawable/bg_work_project_rb_unselector"
+                            android:drawablePadding="@dimen/dp_8"
+                            android:text="异常"
+                            android:textColor="@color/color_black_333333"
+                            android:textSize="@dimen/sp_14" />
+                    </RadioGroup>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -263,13 +309,13 @@
                     android:orientation="vertical"
                     android:padding="@dimen/dp_12"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_condition">
+                    app:layout_constraintTop_toBottomOf="@+id/cl_input">
 
                     <TextView
                         android:id="@+id/label_document"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="电子档文件"
+                        android:text="拍照电子档"
                         android:textColor="@color/color_black_333333"
                         android:textSize="@dimen/sp_16"
                         android:textStyle="bold"
@@ -282,8 +328,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_8"
                         android:layout_marginEnd="@dimen/dp_12"
-                        android:text="点击图片，放大查看"
-                        android:textColor="@color/color_grey_999999"
+                        android:text="点击此框上传资料拍照照片"
+                        android:textColor="@color/color_black_333333"
                         android:textSize="@dimen/sp_14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/label_document" />
@@ -297,17 +343,15 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
-                    android:id="@+id/tfl_picture"
+                <tl.com.easy_recycleview_library.BaseRecyclerView
+                    android:id="@+id/image_recycleView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="12dp"
+                    android:background="@color/bg_window"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cl_pick_tip"
                     tools:background="@color/color_green_D4FFF1"
-                    tools:layout_height="@dimen/dp_50" />
+                    tools:layout_height="@dimen/dp_150" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
@@ -317,9 +361,7 @@
             style="@style/commit_btn"
             android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/dp_20"
-            android:text="激活申请"
-            android:visibility="gone"
-            tools:visibility="visible" />
+            android:text="完成勘查" />
 
         <LinearLayout
             android:id="@+id/ll_apply_panel"

@@ -1,7 +1,9 @@
 package com.guyuan.dear.work.matterapply.adapter;
 
+import com.guyuan.dear.BR;
 import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemWorkMatterApplyBinding;
+import com.guyuan.dear.work.matterapply.data.bean.MatterApplyBean;
 
 import java.util.List;
 
@@ -12,13 +14,13 @@ import java.util.List;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class MatterApplyAdapter extends BaseDBRecycleAdapter<Object, ItemWorkMatterApplyBinding> {
-    public MatterApplyAdapter(List<Object> listData, int layoutID) {
+public class MatterApplyAdapter extends BaseDBRecycleAdapter<MatterApplyBean, ItemWorkMatterApplyBinding> {
+    public MatterApplyAdapter(List<MatterApplyBean> listData, int layoutID) {
         super(listData, layoutID);
     }
 
     @Override
-    protected void bindDataToView(Holder holder, Object item, int position) {
-
+    protected void bindDataToView(Holder holder, MatterApplyBean item, int position) {
+        holder.binding.setVariable(BR.matterApplyBean, item);
     }
 }

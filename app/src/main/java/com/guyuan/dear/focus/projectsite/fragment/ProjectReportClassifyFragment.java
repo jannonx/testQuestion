@@ -16,6 +16,7 @@ import com.guyuan.dear.focus.projectsite.activity.FocusCustomerAcceptanceDetailA
 import com.guyuan.dear.focus.projectsite.activity.FocusInstallationDebugAllActivity;
 import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
+import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ListProjectRequestBody;
 import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
@@ -24,6 +25,7 @@ import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.work.projectsite.activity.ResultReportDetailActivity;
+import com.guyuan.dear.work.projectsite.activity.WorkCheckGoodsActivity;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugActivity;
 
 import java.util.ArrayList;
@@ -71,13 +73,21 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                SiteExploreBean siteExploreBean = listData.get(position);
+                siteExploreBean.setModuleType(ProjectModuleType.TYPE_FOCUS);
                 switch (reportType) {
+                    case TYPE_SITE_EXPLORATION:
+                        if (siteExploreBean.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
+                                || siteExploreBean.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING) {
+                            WorkCheckGoodsActivity.start(getContext(), siteExploreBean);
+                        } else {
+                            FocusSiteExplorationDetailActivity.start(getContext(), siteExploreBean);
+                        }
+                        break;
                     case TYPE_INSTALLATION_DEBUG:
-                        WorkInstallDebugActivity.start(getContext(), listData.get(position));
+                        WorkInstallDebugActivity.start(getContext(),siteExploreBean );
                         break;
                     default:
-                        SiteExploreBean siteExploreBean = listData.get(position);
-                        siteExploreBean.setModuleType(ProjectModuleType.TYPE_FOCUS);
                         FocusSiteExplorationDetailActivity.start(getContext(),siteExploreBean );
                 }
 

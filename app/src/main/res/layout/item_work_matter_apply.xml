@@ -1,10 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <data>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="matterApplyBean"
+            type="com.guyuan.dear.work.matterapply.data.bean.MatterApplyBean" />
+    </data>
+
+    <androidx.cardview.widget.CardView style="@style/CardViewCommon">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginRight="@dimen/dp_12">
+
+                <TextView
+                    android:id="@+id/matter_item_name_tv"
+                    style="@style/TextBigBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{matterApplyBean.productName}"
+                    tools:text="深圳固远" />
+
+                <TextView
+                    android:id="@+id/matter_item_status_tv"
+                    style="@style/TextTagBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_12"
+                    app:matterStatus="@{matterApplyBean.approvalStatus}"
+                    tools:text="待审核" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/matter_spec_tv"
+                style="@style/TextNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginRight="@dimen/dp_12"
+                android:text="@{String.format(@string/work_matter_apply_spec,matterApplyBean.modelCode)}"
+                android:textColor="#999999"
+                tools:text="@string/work_matter_apply_spec" />
+
+            <TextView
+                android:id="@+id/matter_project_name_tv"
+                style="@style/TextNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginRight="@dimen/dp_12"
+                android:text="@{String.format(@string/work_matter_apply_project_name,matterApplyBean.projectName)}"
+                android:textColor="#999999"
+                tools:text="@string/work_matter_apply_project_name" />
+
+            <View
+                style="@style/DivideLine"
+                android:layout_marginTop="@dimen/dp_8" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_8"
+                android:layout_marginRight="@dimen/dp_12"
+                android:layout_marginBottom="@dimen/dp_12">
+
+                <TextView
+                    android:id="@+id/matter_item_person_tv"
+                    style="@style/TextSmall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{String.format(@string/work_matter_apply_person_name,matterApplyBean.approveName)}"
+                    android:textColor="#1890FF"
+                    tools:text="@string/work_matter_apply_person_name" />
+
+                <TextView
+                    android:id="@+id/matter_item_time_tv"
+                    style="@style/TextSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{matterApplyBean.createTime}"
+                    android:textColor="#1890FF"
+                    tools:text="2020-11-21 16:22" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
 </layout>

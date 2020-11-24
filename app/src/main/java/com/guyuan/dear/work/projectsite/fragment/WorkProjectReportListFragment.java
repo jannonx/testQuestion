@@ -14,10 +14,12 @@ import com.guyuan.dear.focus.projectsite.activity.FocusInstallationDebugAllActiv
 import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
+import com.guyuan.dear.focus.projectsite.bean.CheckSafeSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ListProjectRequestBody;
 import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
+import com.guyuan.dear.focus.projectsite.bean.SiteProjectSatisfyType;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.focus.projectsite.fragment.ProjectReportClassifyFragment;
 import com.guyuan.dear.utils.ConstantValue;
@@ -26,6 +28,7 @@ import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkCheckGoodsActivity;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugActivity;
+import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 
@@ -82,7 +85,6 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
             public void onItemClick(View view, int position) {
                 SiteExploreBean bean = listData.get(position);
                 bean.setProjectReportType(reportType);
-                LogUtils.showLog("siteExploreBean=" + bean.getProjectReportType().getDes());
                 jumpByReportType(bean);
             }
         });
@@ -92,10 +94,26 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
         receiveDataLisByClassify();
     }
 
+
+    /**
+     * 根据数据类型以及状态跳转到具体页面
+     *
+     * @param siteExploreBean 数据
+     */
     private void jumpByReportType(SiteExploreBean siteExploreBean) {
+        siteExploreBean.setModuleType(ProjectModuleType.TYPE_WORK);
         switch (reportType) {
             ///现场勘查报告
             case TYPE_SITE_EXPLORATION:
+                LogUtils.showLog("jumpByReportType=" + siteExploreBean.getModuleType().getDes());
+                SiteProjectSatisfyType siteProjectSatisfyType = siteExploreBean.getSiteProjectSatisfyType();
+                if (SiteProjectSatisfyType.TYPE_EXPLORE_WAIT == siteProjectSatisfyType
+                        || SiteProjectSatisfyType.TYPE_EXPLORE_ING == siteProjectSatisfyType) {
+                    WorkSiteExploresActivity.start(getContext(), siteExploreBean);
+                } else {
+                    FocusSiteExplorationDetailActivity.start(getContext(), siteExploreBean);
+                }
+
                 break;
             ///货物清点报告
             case TYPE_CHECK_GOODS:
@@ -105,21 +123,26 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
                         || siteExploreBean.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING) {
                     WorkCheckGoodsActivity.start(getContext(), siteExploreBean);
                 } else {
-                    siteExploreBean.setModuleType(ProjectModuleType.TYPE_WORK);
                     FocusSiteExplorationDetailActivity.start(getContext(), siteExploreBean);
                 }
                 break;
             ///安全排查报告
             case TYPE_CHECK_SAFE:
+                CheckSafeSatisfyType checkSafeSatisfyType = siteExploreBean.getCheckSafeSatisfyType();
+                if (CheckSafeSatisfyType.TYPE_CHECK_WAIT == checkSafeSatisfyType
+                        || CheckSafeSatisfyType.TYPE_CHECK_ING == checkSafeSatisfyType) {
+                    WorkSiteExploresActivity.start(getContext(), siteExploreBean);
+                } else {
+                    FocusSiteExplorationDetailActivity.start(getContext(), siteExploreBean);
+                }
+
                 break;
             ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:
-                siteExploreBean.setModuleType(ProjectModuleType.TYPE_WORK);
                 WorkInstallDebugActivity.start(getContext(), siteExploreBean);
                 break;
             ///客户验收报告
             case TYPE_CUSTOMER_ACCEPTANCE:
-                siteExploreBean.setModuleType(ProjectModuleType.TYPE_WORK);
                 FocusSiteExplorationDetailActivity.start(getContext(), siteExploreBean);
                 break;
 
@@ -206,11 +229,9 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
     private void dealDataByAddReportType(List<SiteExploreBean> dataList) {
         List<SiteExploreBean> tempList = new ArrayList<>();
         for (SiteExploreBean bean : dataList) {
-            LogUtils.showLog("siteExploreBean=" + reportType.getDes());
             bean.setProjectReportType(reportType);
             tempList.add(bean);
         }
-        LogUtils.showLog("dataList=" + dataList.size());
         setListData(tempList);
     }
 

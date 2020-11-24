@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.projectsite.bean;
 
+import com.guyuan.dear.R;
+
 import java.io.Serializable;
 
 /**
@@ -68,7 +70,26 @@ public class ProjectSiteStatusBean implements Serializable {
     }
 
     public String getTitle() {
-        return title;
+        if ("安装中".endsWith(title)) {
+            return "继续安装";
+        } else if ("暂停".endsWith(title)) {
+            return "暂停安装";
+        } else {
+            return "完工";
+        }
+    }
+
+    /**
+     * 圆点的背景
+     */
+    public int getBallBg() {
+        if ("安装中".endsWith(title)) {
+            return R.drawable.bg_blue_1890ff_round;
+        } else if ("暂停".endsWith(title)) {
+            return R.drawable.bg_red_f04864_round;
+        } else {
+            return R.drawable.bg_green_2fc25b_round;
+        }
     }
 
     public void setTitle(String title) {

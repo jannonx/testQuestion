@@ -34,6 +34,10 @@ public class FocusProjectSiteRepository {
         return apiService.getProjectSiteStatusList(id, type);
     }
 
+    Observable<ResultBean<Integer>> postAnswerInfo(RequestBody body) {
+        return apiService.postAnswerInfo(body);
+    }
+
 //=====================================================================//
     //===============================现场勘察===============================//
 

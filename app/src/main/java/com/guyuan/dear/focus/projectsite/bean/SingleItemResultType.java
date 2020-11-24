@@ -18,15 +18,15 @@ public enum SingleItemResultType implements Serializable {
     /**
      * 未评审
      */
-    TYPE_GOODS_TRANSPORTING(0, "未评审", R.mipmap.ic_empty_round),
+    TYPE_UNKNOWN(0, "未评审", R.mipmap.ic_empty_round),
     /**
      * 通过
      */
-    TYPE_GOODS_CHECK_WAIT(1, "通过", R.mipmap.ic_empty_round),
+    TYPE_PASS(1, "通过", R.mipmap.right),
     /**
      * 不通过
      */
-    TYPE_GOODS_CHECK_OK(2, "不通过", R.mipmap.ic_empty_round);
+    TYPE_REJECT(2, "不通过", R.mipmap.wrong);
 
 
     private int code;

@@ -141,7 +141,9 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
 
     //打开相册
     public void openAlbum(int type) {
-        checkPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA);
+        checkPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA);
         currentPhotoType = type;
     }
 
