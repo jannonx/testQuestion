@@ -13,6 +13,7 @@ import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.focus.projectsite.fragment.FocusSiteExplorationDetailFragment;
 import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -37,7 +38,7 @@ public class FocusSiteExplorationDetailActivity extends BaseToolbarActivity<Acti
     protected void initFragment(Bundle savedInstanceState) {
         SiteExploreBean bean = (SiteExploreBean) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
         binding.toolbarContainer.titleTv.setText(bean.getProjectReportType().getDes() + "详情");
-
+        LogUtils.showLog("initFragment="+bean.getModuleType().getDes());
         BaseFragment mFragment = FocusSiteExplorationDetailFragment.newInstance(bean);
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
                 FocusSiteExplorationDetailFragment.TAG);

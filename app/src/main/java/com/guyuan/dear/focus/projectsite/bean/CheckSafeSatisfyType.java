@@ -13,12 +13,28 @@ import java.io.Serializable;
  */
 public enum CheckSafeSatisfyType implements Serializable {
     /**
+     * 状态（10:待操作(待勘察等...)、20:执行中（勘查中...）、30:完成（勘查完成...）、40:其他）
      *  是否满足条件、是否安全(1:是，2:否)
      */
     /**
-     * 满足条件
+     * 未知条件
      */
-    TYPE_UNKNOWN(0, "未知", R.color.color_green_00B578,
+    TYPE_UNKNOWN(40, "未知条件", R.color.color_blue_1677ff,
+            R.drawable.bg_blue_e7f1ff_corner_2),
+    /**
+     * 待排查
+     */
+    TYPE_CHECK_WAIT(10, "待排查", R.color.color_blue_1677ff,
+            R.drawable.bg_blue_e7f1ff_corner_2),
+    /**
+     * 排查中
+     */
+    TYPE_CHECK_ING(20, "排查中", R.color.color_blue_1677ff,
+            R.drawable.bg_blue_e7f1ff_corner_2),
+    /**
+     * 排查完成
+     */
+    TYPE_CHECK_COMPLETE(30, "排查完成", R.color.color_green_00B578,
             R.drawable.bg_green_d4fff1_corner_2),
     /**
      * 满足条件
@@ -28,7 +44,7 @@ public enum CheckSafeSatisfyType implements Serializable {
     /**
      * 满足条件
      */
-    TYPE_CONDITION_EXCEPTION(2, "异常", R.color.color_orange_FF6010,
+    TYPE_CONDITION_EXCEPTION(2, "不安全", R.color.color_orange_FF6010,
             R.drawable.bg_orange_ffece3_corner_2);
 
 
@@ -54,6 +70,31 @@ public enum CheckSafeSatisfyType implements Serializable {
             }
         }
         return TYPE_UNKNOWN;
+    }
+
+    /**
+     * 状态（10:待操作(待勘察等...)、20:执行中（勘查中...）、30:完成（勘查完成...）、40:其他）
+     * 是否满足条件、是否安全(1:是，2:否)
+     */
+    public static CheckSafeSatisfyType toType(SiteExploreBean bean) {
+
+        if (bean == null) return CheckSafeSatisfyType.TYPE_UNKNOWN;
+        //勘查状态
+        if (bean.getSatisfyFlag() == 0) {
+            if (bean.getStatus() == 10) {
+                return CheckSafeSatisfyType.TYPE_CHECK_WAIT;
+            } else if (bean.getStatus() == 20) {
+                return CheckSafeSatisfyType.TYPE_CHECK_ING;
+            }
+        } else if (bean.getStatus() == 30) {
+            //勘查完成，条件状态
+            if (bean.getSatisfyFlag() == 1) {
+                return CheckSafeSatisfyType.TYPE_CONDITION_OK;
+            } else if (bean.getSatisfyFlag() == 2) {
+                return CheckSafeSatisfyType.TYPE_CONDITION_EXCEPTION;
+            }
+        }
+        return CheckSafeSatisfyType.TYPE_UNKNOWN;
     }
 
     public static String toText(int type) {

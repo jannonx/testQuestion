@@ -41,6 +41,15 @@ public interface FocusProjectSiteApiService extends BaseApiService {
     Observable<ResultBean<List<ProjectSiteStatusBean>>> getProjectSiteStatusList(@Query("id") long id,
                                                                                  @Query("type") int type);
 
+    /**
+     * 意见回复-回复操作
+     *
+     * @param body
+     * @return
+     */
+    @POST("base/replyIdea/reply")
+    Observable<ResultBean<Integer>> postAnswerInfo(@Body RequestBody body);
+
 
     //=====================================================================//
     //===============================现场勘察===============================//
