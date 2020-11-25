@@ -36,4 +36,12 @@ public class GenericQcReport {
     public void setJson(String json) {
         this.json = json;
     }
+
+    @Override
+    public String toString() {
+        return "GenericQcReport{" +
+                "type=" + type +
+                ", json='" + json + '\'' +
+                '}';
+    }
 }

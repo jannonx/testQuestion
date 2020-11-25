@@ -6,17 +6,27 @@ import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.net.reqBean.ContractApplyBody;
 import com.guyuan.dear.net.reqBean.SearchRqBody;
+import com.guyuan.dear.net.reqBean.SubmitQcReportBody;
 import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
+import com.guyuan.dear.net.resultBeans.NetBaseProjectBean;
+import com.guyuan.dear.net.resultBeans.NetBaseQcBean;
 import com.guyuan.dear.net.resultBeans.NetClientInfo;
 import com.guyuan.dear.net.resultBeans.NetContractDetailInfo;
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
 import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
+import com.guyuan.dear.net.resultBeans.NetContractStatusFlow;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
+import com.guyuan.dear.net.resultBeans.NetMaterialBean;
+import com.guyuan.dear.net.resultBeans.NetProductInfo;
+import com.guyuan.dear.net.resultBeans.NetQcApproach;
+import com.guyuan.dear.net.resultBeans.NetQcReportApproveFlow;
+import com.guyuan.dear.net.resultBeans.NetQcReportDetailBean;
 import com.guyuan.dear.net.resultBeans.NetQcSummaryBean;
 import com.guyuan.dear.net.resultBeans.NetVerifyFlowBean;
 import com.guyuan.dear.net.resultBeans.NetSearchContactInfo;
 import com.guyuan.dear.net.resultBeans.NetServerParam;
 import com.guyuan.dear.net.resultBeans.NetStaffBean;
+import com.guyuan.dear.work.qc.beans.BaseProjectBean;
 
 import java.util.List;
 
@@ -111,12 +121,22 @@ public interface DearNetApiService extends BaseApiService {
     Observable<ResultBean<NetContractDetailInfo>> getContractDetailById(@Query("id") int contractId);
 
     /**
+     * 根据合同id获取合同状态流程图
+     * @param contractId
+     * @return
+     */
+    @GET("base/tContractInfo/findContractExecutionStatus")
+    Observable<ResultBean<NetContractStatusFlow>> getContractStatusFlowById(@Query("id") int contractId);
+
+    /**
      * 根据合同id查询跟进
      * @param body
      * @return
      */
     @POST("base/tContractInfo/findFollowById")
     Observable<ResultBean<BasePageResultBean<NetVerifyFlowBean>>> getVerifyFlowById(@Body SearchRqBody body);
+
+
 
     /**
      * 获取质量概况列表
@@ -126,6 +146,72 @@ public interface DearNetApiService extends BaseApiService {
      */
     @GET("base/qualitycodedetails/findOverview")
     Observable<ResultBean<NetQcSummaryBean>> getQcSummary(@Query("startTime") String startTime,@Query("endTime") String endTime);
+
+
+    /**
+     * 根据类型获取QC列表
+     * @param body listType（必填）：1.详情列表，2.不合格列表，3.合格列表，4.我的工作列表；name（选填）：产品名称、代号、出厂编号
+     * @return
+     */
+    @POST("base/qualitycodedetails/findAllPage")
+    Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> getBaseQcListByType(@Body SearchRqBody body);
+
+    /**
+     * 根据ID获取QC报告详情
+     * @return
+     */
+    @GET("base/qualitycodedetails/findInfoById")
+    Observable<ResultBean<NetQcReportDetailBean>> getQcReportDetailById(@Query("recordId") int qcReportId);
+
+    /**
+     * 根据ID获取QC报告详情下面的审批历史
+     * @return
+     */
+    @GET("base/qualitycodedetails/findApprByIdAPP")
+    Observable<ResultBean<List<NetQcReportApproveFlow>>> getQcReportApproveFlow(@Query("recordId") int qcReportId);
+
+    /**
+     * 获取所有项目列表
+     * @return
+     */
+    @GET("base/qualitycodedetails/findAllProject")
+    Observable<ResultBean<List<NetBaseProjectBean>>> getBaseProjectList();
+
+    /**
+     * 根据项目id获取原材料清单
+     * @param projectId
+     * @return
+     */
+    @GET("base/qualitycodedetails/findAllMaterials")
+    Observable<ResultBean<List<NetMaterialBean>>> getMaterialListByProjectId(@Query("projectId") int projectId);
+
+
+    /**
+     * 根据项目Id获取产品列表
+     * @param projectId
+     * @return
+     */
+    @GET("base/qualitycodedetails/findAllCode")
+    Observable<ResultBean<List<NetProductInfo>>> getProductListByProjectId(@Query("projectId") int projectId);
+
+
+    /**
+     * 获取质检抽查方式
+     * @return
+     */
+    @GET("base/qualitycodedetails/findAllType")
+    Observable<ResultBean<List<NetQcApproach>>> getQcApproaches();
+
+    /**
+     * 提交质检报告
+     * @param body
+     * @return
+     */
+    @POST("base/qualitycodedetails/addRecord")
+    Observable<ResultBean<Integer>> submitQcReport(@Body SubmitQcReportBody body);
+
+
+
 
 
 

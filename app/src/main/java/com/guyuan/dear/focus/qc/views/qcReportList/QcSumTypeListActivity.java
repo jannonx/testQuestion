@@ -16,7 +16,7 @@ import com.guyuan.dear.utils.ConstantValue;
  *
  * @author 廖华凯
  */
-public class QcSumListActivity extends BaseToolbarActivity<ActivityQcReportListBinding, QcReportListViewModel> {
+public class QcSumTypeListActivity extends BaseToolbarActivity<ActivityQcReportListBinding, QcReportListViewModel> {
 
     /**
      * 成品通过的QC列表
@@ -44,14 +44,14 @@ public class QcSumListActivity extends BaseToolbarActivity<ActivityQcReportListB
      *
      * @param context
      * @param title    标题
-     * @param type     参考 {@link QcSumListActivity#REPORT_TYPE_PRODUCT_PASS_REPORT}，{@link QcSumListActivity#REPORT_TYPE_PRODUCT_REJECT_REPORT},
-     *                 {@link QcSumListActivity#REPORT_TYPE_MATERIAL_PASS_REPORT},{@link QcSumListActivity#REPORT_TYPE_MATERIAL_REJECT_REPORT},
-     *                 {@link QcSumListActivity#REPORT_TYPE_ALL}
+     * @param type     参考 {@link QcSumTypeListActivity#REPORT_TYPE_PRODUCT_PASS_REPORT}，{@link QcSumTypeListActivity#REPORT_TYPE_PRODUCT_REJECT_REPORT},
+     *                 {@link QcSumTypeListActivity#REPORT_TYPE_MATERIAL_PASS_REPORT},{@link QcSumTypeListActivity#REPORT_TYPE_MATERIAL_REJECT_REPORT},
+     *                 {@link QcSumTypeListActivity#REPORT_TYPE_ALL}
      * @param dateFrom 起始日期
      * @param dateTo   结束日期
      */
     public static void start(Context context, String title, int type, long dateFrom, long dateTo) {
-        Intent starter = new Intent(context, QcSumListActivity.class);
+        Intent starter = new Intent(context, QcSumTypeListActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE, title);
         starter.putExtra(ConstantValue.KEY_REPORT_TYPE, type);
         starter.putExtra(ConstantValue.KEY_DATE_START, dateFrom);
@@ -75,19 +75,17 @@ public class QcSumListActivity extends BaseToolbarActivity<ActivityQcReportListB
         long dateTo = intent.getLongExtra(ConstantValue.KEY_DATE_TO, Long.MAX_VALUE);
         Fragment fragment = null;
         switch (type) {
-            case REPORT_TYPE_ALL:
-                break;
             case REPORT_TYPE_MATERIAL_PASS_REPORT:
-                fragment = MaterialQcPassListFragment.getInstance(dateFrom,dateTo);
+                fragment = QcSumTypeListFragment.getInstance(dateFrom,dateTo, QcSumTypeListFragment.TYPE_MATERIAL_PASS);
                 break;
             case REPORT_TYPE_MATERIAL_REJECT_REPORT:
-                fragment = MaterialQcRejectListFragment.getInstance(dateFrom,dateTo);
+                fragment = QcSumTypeListFragment.getInstance(dateFrom,dateTo, QcSumTypeListFragment.TYPE_MATERIAL_REJECT);
                 break;
             case REPORT_TYPE_PRODUCT_PASS_REPORT:
-                fragment = ProductQcPassListFragment.getInstance(dateFrom,dateTo);
+                fragment = QcSumTypeListFragment.getInstance(dateFrom,dateTo, QcSumTypeListFragment.TYPE_PRODUCT_PASS);
                 break;
             case REPORT_TYPE_PRODUCT_REJECT_REPORT:
-                fragment = ProductQcRejectListFragment.getInstance(dateFrom,dateTo);
+                fragment = QcSumTypeListFragment.getInstance(dateFrom,dateTo, QcSumTypeListFragment.TYPE_PRODUCT_REJECT);
                 break;
             default:
                 break;

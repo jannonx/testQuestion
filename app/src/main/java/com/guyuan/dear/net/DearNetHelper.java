@@ -12,19 +12,35 @@ import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 import com.guyuan.dear.focus.contract.bean.ComContractsBean;
 import com.guyuan.dear.focus.contract.bean.ContractComment;
+import com.guyuan.dear.focus.contract.bean.ContractStatusFlowBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
+import com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport;
+import com.guyuan.dear.focus.qc.beans.BaseProductQcReport;
+import com.guyuan.dear.focus.qc.beans.GenericQcReport;
+import com.guyuan.dear.focus.qc.beans.MaterialQcReportDetail;
+import com.guyuan.dear.focus.qc.beans.ProductQcReportDetail;
 import com.guyuan.dear.focus.qc.beans.QcSummaryBean;
+import com.guyuan.dear.focus.qc.beans.verfifyLog.GenericQcLogBean;
 import com.guyuan.dear.net.api.DearNetApiService;
 import com.guyuan.dear.net.reqBean.ContractApplyBody;
 import com.guyuan.dear.net.reqBean.SearchRqBody;
+import com.guyuan.dear.net.reqBean.SubmitQcReportBody;
 import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
+import com.guyuan.dear.net.resultBeans.NetBaseProjectBean;
+import com.guyuan.dear.net.resultBeans.NetBaseQcBean;
 import com.guyuan.dear.net.resultBeans.NetClientInfo;
 import com.guyuan.dear.net.resultBeans.NetContractDetailInfo;
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
 import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
+import com.guyuan.dear.net.resultBeans.NetContractStatusFlow;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
+import com.guyuan.dear.net.resultBeans.NetMaterialBean;
+import com.guyuan.dear.net.resultBeans.NetProductInfo;
+import com.guyuan.dear.net.resultBeans.NetQcApproach;
+import com.guyuan.dear.net.resultBeans.NetQcReportApproveFlow;
+import com.guyuan.dear.net.resultBeans.NetQcReportDetailBean;
 import com.guyuan.dear.net.resultBeans.NetQcSummaryBean;
 import com.guyuan.dear.net.resultBeans.NetSearchContactInfo;
 import com.guyuan.dear.net.resultBeans.NetServerParam;
@@ -34,6 +50,10 @@ import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
 import com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail.MyApplyDetailBean;
+import com.guyuan.dear.work.qc.beans.BaseProductBatchInfo;
+import com.guyuan.dear.work.qc.beans.BaseProjectBean;
+import com.guyuan.dear.work.qc.beans.BaseQcApproachBean;
+import com.guyuan.dear.work.qc.beans.MaterialInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -301,30 +321,31 @@ public class DearNetHelper {
      */
     public Disposable getContractDetail(int contractId, NetCallback<DetailContractBean> callback) {
         Observable<ResultBean<NetContractDetailInfo>> observable = netApiService.getContractDetailById(contractId);
-        Mapper<NetContractDetailInfo,DetailContractBean> mapper = new Mapper<NetContractDetailInfo, DetailContractBean>() {
+        Mapper<NetContractDetailInfo, DetailContractBean> mapper = new Mapper<NetContractDetailInfo, DetailContractBean>() {
             @Override
             public DetailContractBean map(NetContractDetailInfo src) {
                 return new DetailContractBean(src);
             }
         };
-        return getDisposalAsync(observable,callback,mapper);
+        return getDisposalAsync(observable, callback, mapper);
     }
 
     /**
      * 根据合同id查询跟进
+     *
      * @param contractId
      * @param callback
      * @return
      */
-    public Disposable getVerifyFlowByContractId(int contractId, NetCallback<List<ContractComment>> callback){
+    public Disposable getVerifyFlowByContractId(int contractId, NetCallback<List<ContractComment>> callback) {
         SearchRqBody body = new SearchRqBody();
         body.setPageNum(0);
         body.setPageSize(-1);
-        Map<String,String> filters = new HashMap<>();
-        filters.put("id",String.valueOf(contractId));
+        Map<String, String> filters = new HashMap<>();
+        filters.put("id", String.valueOf(contractId));
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetVerifyFlowBean>>> observable = netApiService.getVerifyFlowById(body);
-        Mapper<BasePageResultBean<NetVerifyFlowBean>,List<ContractComment>> mapper = new Mapper<BasePageResultBean<NetVerifyFlowBean>, List<ContractComment>>() {
+        Mapper<BasePageResultBean<NetVerifyFlowBean>, List<ContractComment>> mapper = new Mapper<BasePageResultBean<NetVerifyFlowBean>, List<ContractComment>>() {
             @Override
             public List<ContractComment> map(BasePageResultBean<NetVerifyFlowBean> src) {
                 List<NetVerifyFlowBean> content = src.getContent();
@@ -336,46 +357,48 @@ public class DearNetHelper {
                 return result;
             }
         };
-        return getDisposalAsync(observable,callback,mapper);
+        return getDisposalAsync(observable, callback, mapper);
 
     }
 
     /**
      * 获取用户申请的合同暂停列表
+     *
      * @param pageIndex
      * @param pageSize
      * @param callback
      * @return
      */
-    public Disposable getMyPauseApplyList(int pageIndex,int pageSize,NetCallback<List<MyApplyBean>> callback){
-        return getMyApplyList(pageIndex,pageSize,1,callback);
+    public Disposable getMyPauseApplyList(int pageIndex, int pageSize, NetCallback<List<MyApplyBean>> callback) {
+        return getMyApplyList(pageIndex, pageSize, 1, callback);
     }
 
 
     /**
      * 获取用户申请的合同重启列表
+     *
      * @param pageIndex
      * @param pageSize
      * @param callback
      * @return
      */
-    public Disposable getMyRestartApplyList(int pageIndex,int pageSize,NetCallback<List<MyApplyBean>> callback){
-        return getMyApplyList(pageIndex,pageSize,2,callback);
+    public Disposable getMyRestartApplyList(int pageIndex, int pageSize, NetCallback<List<MyApplyBean>> callback) {
+        return getMyApplyList(pageIndex, pageSize, 2, callback);
     }
 
-    private Disposable getMyApplyList(int pageIndex,int pageSize,int type,NetCallback<List<MyApplyBean>> callback){
+    private Disposable getMyApplyList(int pageIndex, int pageSize, int type, NetCallback<List<MyApplyBean>> callback) {
         SearchRqBody body = new SearchRqBody();
         body.setPageNum(pageIndex);
         body.setPageSize(pageSize);
         body.setFindType(2);
         body.setType(type);
         Observable<ResultBean<BasePageResultBean<NetContractInfo>>> observable = netApiService.getContractApplyList(body);
-        Mapper<BasePageResultBean<NetContractInfo>,List<MyApplyBean>> mapper = new Mapper<BasePageResultBean<NetContractInfo>, List<MyApplyBean>>() {
+        Mapper<BasePageResultBean<NetContractInfo>, List<MyApplyBean>> mapper = new Mapper<BasePageResultBean<NetContractInfo>, List<MyApplyBean>>() {
             @Override
             public List<MyApplyBean> map(BasePageResultBean<NetContractInfo> src) {
                 List<MyApplyBean> result = new ArrayList<>();
                 List<NetContractInfo> content = src.getContent();
-                if(content!=null&&!content.isEmpty()){
+                if (content != null && !content.isEmpty()) {
                     for (NetContractInfo info : content) {
                         MyApplyBean apply = new MyApplyBean(info);
                         result.add(apply);
@@ -384,51 +407,498 @@ public class DearNetHelper {
                 return result;
             }
         };
-        return getDisposalAsync(observable,callback,mapper);
+        return getDisposalAsync(observable, callback, mapper);
     }
 
     /**
      * 获取我的合同重启/暂停申请详情信息
+     *
      * @param examineId
      * @param callback
      * @return
      */
-    public Disposable getMyApplyDetailFromNet(int examineId, NetCallback<MyApplyDetailBean> callback){
+    public Disposable getMyApplyDetailFromNet(int examineId, NetCallback<MyApplyDetailBean> callback) {
         Observable<ResultBean<NetContractStatusDetail>> observable = netApiService.getContractStatusDetail(examineId);
-        Mapper<NetContractStatusDetail,MyApplyDetailBean> mapper = new Mapper<NetContractStatusDetail, MyApplyDetailBean>() {
+        Mapper<NetContractStatusDetail, MyApplyDetailBean> mapper = new Mapper<NetContractStatusDetail, MyApplyDetailBean>() {
             @Override
             public MyApplyDetailBean map(NetContractStatusDetail src) {
                 MyApplyDetailBean bean = new MyApplyDetailBean(src);
                 return bean;
             }
         };
-        return getDisposalAsync(observable,callback,mapper);
+        return getDisposalAsync(observable, callback, mapper);
     }
 
 
     /**
      * 获取合同概况
+     *
      * @param dateFrom
      * @param dateTo
      * @param callback
      * @return
      */
-    public Disposable getQcSummary(long dateFrom, long dateTo, NetCallback<QcSummaryBean> callback){
+    public Disposable getQcSummary(long dateFrom, long dateTo, NetCallback<QcSummaryBean> callback) {
         String startTime = CalenderUtils.getInstance().toSmartFactoryDateStringFormat(dateFrom);
         String endTime = CalenderUtils.getInstance().toSmartFactoryDateStringFormat(dateTo);
-        Observable<ResultBean<NetQcSummaryBean>> observable = netApiService.getQcSummary(startTime,endTime);
-        Mapper<NetQcSummaryBean,QcSummaryBean> mapper = new Mapper<NetQcSummaryBean, QcSummaryBean>() {
+        Observable<ResultBean<NetQcSummaryBean>> observable = netApiService.getQcSummary(startTime, endTime);
+        Mapper<NetQcSummaryBean, QcSummaryBean> mapper = new Mapper<NetQcSummaryBean, QcSummaryBean>() {
             @Override
             public QcSummaryBean map(NetQcSummaryBean src) {
                 QcSummaryBean result = new QcSummaryBean(src);
                 return result;
             }
         };
-        return getDisposalAsync(observable,callback,mapper);
-
+        return getDisposalAsync(observable, callback, mapper);
     }
 
 
+    /**
+     * @param pageIndex
+     * @param pageSize
+     * @param callback
+     * @return
+     */
+    public Disposable getMaterialQcPassList(int pageIndex, int pageSize,long startTime,long endTime, NetCallback<List<GenericQcReport>> callback) {
+        SearchRqBody body = new SearchRqBody();
+        body.setPageNum(pageIndex);
+        body.setPageSize(pageSize);
+        Map<String, String> filters = new HashMap<>();
+        //listType（必填）：1.详情列表，2.不合格列表，3.合格列表，4.我的工作列表
+        filters.put("listType", "3");
+        filters.put("startTime",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
+        filters.put("endTime",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        body.setFilters(filters);
+        Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
+        Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
+                = new Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>>() {
+            @Override
+            public List<GenericQcReport> map(BasePageResultBean<NetBaseQcBean> src) {
+                List<GenericQcReport> result = new ArrayList<>();
+                List<NetBaseQcBean> content = src.getContent();
+                if (content != null && !content.isEmpty()) {
+                    for (NetBaseQcBean bean : content) {
+                        int productType = bean.getProductType();
+                        int qualityResult = bean.getQualityResult();
+                        if (productType == 1 && qualityResult == 1) {
+                            BaseMaterialQcReport report = new BaseMaterialQcReport(bean);
+                            result.add(report.toGenericQcReport());
+                        }
+                    }
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
+    /**
+     * @param pageIndex
+     * @param pageSize
+     * @param callback
+     * @return
+     */
+    public Disposable getMaterialQcRejectList(int pageIndex, int pageSize,long startTime,long endTime, NetCallback<List<GenericQcReport>> callback) {
+        SearchRqBody body = new SearchRqBody();
+        body.setPageNum(pageIndex);
+        body.setPageSize(pageSize);
+        Map<String, String> filters = new HashMap<>();
+        //listType（必填）：1.详情列表，2.不合格列表，3.合格列表，4.我的工作列表
+        filters.put("listType", "2");
+        filters.put("startTime",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
+        filters.put("endTime",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        body.setFilters(filters);
+        Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
+        Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
+                = new Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>>() {
+            @Override
+            public List<GenericQcReport> map(BasePageResultBean<NetBaseQcBean> src) {
+                List<GenericQcReport> result = new ArrayList<>();
+                List<NetBaseQcBean> content = src.getContent();
+                if (content != null && !content.isEmpty()) {
+                    for (NetBaseQcBean bean : content) {
+                        int productType = bean.getProductType();
+                        int qualityResult = bean.getQualityResult();
+                        if (productType == 1 && qualityResult == 2) {
+                            BaseMaterialQcReport report = new BaseMaterialQcReport(bean);
+                            result.add(report.toGenericQcReport());
+                        }
+                    }
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
+    /**
+     * @param pageIndex
+     * @param pageSize
+     * @param callback
+     * @return
+     */
+    public Disposable getProductQcRejectList(int pageIndex, int pageSize,long startTime,long endTime, NetCallback<List<GenericQcReport>> callback) {
+        SearchRqBody body = new SearchRqBody();
+        body.setPageNum(pageIndex);
+        body.setPageSize(pageSize);
+        Map<String, String> filters = new HashMap<>();
+        //listType（必填）：1.详情列表，2.不合格列表，3.合格列表，4.我的工作列表
+        filters.put("listType", "2");
+        filters.put("startTime",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
+        filters.put("endTime",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        body.setFilters(filters);
+        Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
+        Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
+                = new Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>>() {
+            @Override
+            public List<GenericQcReport> map(BasePageResultBean<NetBaseQcBean> src) {
+                List<GenericQcReport> result = new ArrayList<>();
+                List<NetBaseQcBean> content = src.getContent();
+                if (content != null && !content.isEmpty()) {
+                    for (NetBaseQcBean bean : content) {
+                        int productType = bean.getProductType();
+                        int qualityResult = bean.getQualityResult();
+                        if (productType == 2 && qualityResult == 2) {
+                            BaseProductQcReport report = new BaseProductQcReport(bean);
+                            result.add(report.toGenericQcReport());
+                        }
+                    }
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
+    /**
+     * @param pageIndex
+     * @param pageSize
+     * @param callback
+     * @return
+     */
+    public Disposable getAllRejectedQcList(int pageIndex, int pageSize, long startTime, long endTime, NetCallback<List<GenericQcReport>> callback) {
+        SearchRqBody body = new SearchRqBody();
+        body.setPageNum(pageIndex);
+        body.setPageSize(pageSize);
+        Map<String, String> filters = new HashMap<>();
+        //listType（必填）：1.详情列表，2.不合格列表，3.合格列表，4.我的工作列表
+        filters.put("listType", "2");
+        filters.put("startTime",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
+        filters.put("endTime",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        body.setFilters(filters);
+        Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
+        Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
+                = new Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>>() {
+            @Override
+            public List<GenericQcReport> map(BasePageResultBean<NetBaseQcBean> src) {
+                List<GenericQcReport> result = new ArrayList<>();
+                List<NetBaseQcBean> content = src.getContent();
+                if (content != null && !content.isEmpty()) {
+                    for (NetBaseQcBean bean : content) {
+                        int productType = bean.getProductType();
+                        if (productType == 2) {
+                            BaseProductQcReport report = new BaseProductQcReport(bean);
+                            result.add(report.toGenericQcReport());
+                        }else if(productType ==1){
+                            BaseMaterialQcReport report = new BaseMaterialQcReport(bean);
+                            result.add(report.toGenericQcReport());
+                        }
+                    }
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
+    /**
+     * @param pageIndex
+     * @param pageSize
+     * @param callback
+     * @return
+     */
+    public Disposable getAllTypesOfQcList(int pageIndex, int pageSize, long startTime,long endTime, NetCallback<List<GenericQcReport>> callback) {
+        SearchRqBody body = new SearchRqBody();
+        body.setPageNum(pageIndex);
+        body.setPageSize(pageSize);
+        Map<String, String> filters = new HashMap<>();
+        //listType（必填）：1.详情列表，2.不合格列表，3.合格列表，4.我的工作列表
+        filters.put("listType", "1");
+        filters.put("startTime",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
+        filters.put("endTime",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        body.setFilters(filters);
+        Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
+        Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
+                = new Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>>() {
+            @Override
+            public List<GenericQcReport> map(BasePageResultBean<NetBaseQcBean> src) {
+                List<GenericQcReport> result = new ArrayList<>();
+                List<NetBaseQcBean> content = src.getContent();
+                if (content != null && !content.isEmpty()) {
+                    for (NetBaseQcBean bean : content) {
+                        int productType = bean.getProductType();
+                        if (productType == 2) {
+                            BaseProductQcReport report = new BaseProductQcReport(bean);
+                            result.add(report.toGenericQcReport());
+                        }else if(productType ==1){
+                            BaseMaterialQcReport report = new BaseMaterialQcReport(bean);
+                            result.add(report.toGenericQcReport());
+                        }
+                    }
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
+    /**
+     * @param pageIndex
+     * @param pageSize
+     * @param callback
+     * @return
+     */
+    public Disposable getProductQcPassList(int pageIndex, int pageSize, long startTime,long endTime,NetCallback<List<GenericQcReport>> callback) {
+        SearchRqBody body = new SearchRqBody();
+        body.setPageNum(pageIndex);
+        body.setPageSize(pageSize);
+        Map<String, String> filters = new HashMap<>();
+        //listType（必填）：1.详情列表，2.不合格列表，3.合格列表，4.我的工作列表
+        filters.put("listType", "3");
+        filters.put("startTime",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
+        filters.put("endTime",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        body.setFilters(filters);
+        Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
+        Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
+                = new Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>>() {
+            @Override
+            public List<GenericQcReport> map(BasePageResultBean<NetBaseQcBean> src) {
+                List<GenericQcReport> result = new ArrayList<>();
+                List<NetBaseQcBean> content = src.getContent();
+                if (content != null && !content.isEmpty()) {
+                    for (NetBaseQcBean bean : content) {
+                        int productType = bean.getProductType();
+                        int qualityResult = bean.getQualityResult();
+                        if (productType == 2 && qualityResult == 1) {
+                            BaseProductQcReport report = new BaseProductQcReport(bean);
+                            result.add(report.toGenericQcReport());
+                        }
+                    }
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
+    /**
+     * @param pageIndex
+     * @param pageSize
+     * @param callback
+     * @return
+     */
+    public Disposable getMyQcReportList(int pageIndex, int pageSize, long startTime,long endTime,NetCallback<List<GenericQcReport>> callback) {
+        SearchRqBody body = new SearchRqBody();
+        body.setPageNum(pageIndex);
+        body.setPageSize(pageSize);
+        Map<String, String> filters = new HashMap<>();
+        //listType（必填）：1.详情列表，2.不合格列表，3.合格列表，4.我的工作列表
+        filters.put("listType", "4");
+        filters.put("startTime",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
+        filters.put("endTime",CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        body.setFilters(filters);
+        Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
+        Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
+                = new Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>>() {
+            @Override
+            public List<GenericQcReport> map(BasePageResultBean<NetBaseQcBean> src) {
+                List<GenericQcReport> result = new ArrayList<>();
+                List<NetBaseQcBean> content = src.getContent();
+                if (content != null && !content.isEmpty()) {
+                    for (NetBaseQcBean bean : content) {
+                        int productType = bean.getProductType();
+                        if (productType == 2) {
+                            BaseProductQcReport report = new BaseProductQcReport(bean);
+                            result.add(report.toGenericQcReport());
+                        }else if(productType ==1){
+                            BaseMaterialQcReport report = new BaseMaterialQcReport(bean);
+                            result.add(report.toGenericQcReport());
+                        }
+                    }
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
+
+    /**
+     * 获取成品qc报告详情
+     * @param id 报告id
+     * @param callback
+     * @return
+     */
+    public Disposable getProductQcReportDetailById(int id,NetCallback<ProductQcReportDetail> callback){
+        Observable<ResultBean<NetQcReportDetailBean>> observable = netApiService.getQcReportDetailById(id);
+        Mapper<NetQcReportDetailBean,ProductQcReportDetail> mapper = new Mapper<NetQcReportDetailBean, ProductQcReportDetail>() {
+            @Override
+            public ProductQcReportDetail map(NetQcReportDetailBean src) {
+                return new ProductQcReportDetail(src);
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+    }
+
+    /**
+     * 获取原材料qc报告详情
+     * @param id
+     * @param callback
+     * @return
+     */
+    public Disposable getMaterialQcReportDetailById(int id, NetCallback<MaterialQcReportDetail> callback){
+        Observable<ResultBean<NetQcReportDetailBean>> observable = netApiService.getQcReportDetailById(id);
+        Mapper<NetQcReportDetailBean,MaterialQcReportDetail> mapper = new Mapper<NetQcReportDetailBean, MaterialQcReportDetail>() {
+            @Override
+            public MaterialQcReportDetail map(NetQcReportDetailBean src) {
+                return new MaterialQcReportDetail(src);
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+    }
+
+    /**
+     * 根据ID获取QC报告详情下面的审批历史
+     * @param id
+     * @param callback
+     * @return
+     */
+    public Disposable getQcApproveFlowById(int id, NetCallback<List<GenericQcLogBean>> callback){
+        Observable<ResultBean<List<NetQcReportApproveFlow>>> observable = netApiService.getQcReportApproveFlow(id);
+        Mapper<List<NetQcReportApproveFlow>,List<GenericQcLogBean>> mapper = new Mapper<List<NetQcReportApproveFlow>, List<GenericQcLogBean>>() {
+            @Override
+            public List<GenericQcLogBean> map(List<NetQcReportApproveFlow> src) {
+                List<GenericQcLogBean> result = new ArrayList<>();
+                for (NetQcReportApproveFlow flow : src) {
+                    GenericQcLogBean bean = new GenericQcLogBean(flow);
+                    result.add(bean);
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+    }
+
+    /**
+     * 根据合同id获取合同状态流程图
+     * @param contractId
+     * @param callback
+     * @return
+     */
+    public Disposable getContractStatusFlow(int contractId, NetCallback<ContractStatusFlowBean> callback){
+        Observable<ResultBean<NetContractStatusFlow>> observable = netApiService.getContractStatusFlowById(contractId);
+        Mapper<NetContractStatusFlow,ContractStatusFlowBean> mapper = new Mapper<NetContractStatusFlow, ContractStatusFlowBean>() {
+            @Override
+            public ContractStatusFlowBean map(NetContractStatusFlow src) {
+                return new ContractStatusFlowBean(src);
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+    }
+
+    /**
+     * 获取所有项目的清单
+     * @param callback
+     * @return
+     */
+    public Disposable getBaseProjectList(NetCallback<List<BaseProjectBean>> callback){
+        Observable<ResultBean<List<NetBaseProjectBean>>> observable = netApiService.getBaseProjectList();
+        Mapper<List<NetBaseProjectBean>,List<BaseProjectBean>> mapper= new Mapper<List<NetBaseProjectBean>, List<BaseProjectBean>>() {
+            @Override
+            public List<BaseProjectBean> map(List<NetBaseProjectBean> src) {
+                List<BaseProjectBean> result = new ArrayList<>();
+                for (NetBaseProjectBean bean : src) {
+                    result.add(new BaseProjectBean(bean));
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+    }
+
+    /**
+     * 根据项目ID获取材料清单
+     * @param projectId
+     * @param callback
+     * @return
+     */
+    public Disposable getMaterialListByProject(int projectId, NetCallback<List<MaterialInfo>> callback){
+        Observable<ResultBean<List<NetMaterialBean>>> observable = netApiService.getMaterialListByProjectId(projectId);
+        Mapper<List<NetMaterialBean>,List<MaterialInfo>> mapper = new Mapper<List<NetMaterialBean>, List<MaterialInfo>>() {
+            @Override
+            public List<MaterialInfo> map(List<NetMaterialBean> src) {
+                List<MaterialInfo> infos = new ArrayList<>();
+                for (NetMaterialBean bean : src) {
+                    infos.add(new MaterialInfo(bean));
+                }
+                return infos;
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+    }
+
+    /**
+     * 获取质检抽查方式
+     * @param callback
+     * @return
+     */
+    public Disposable getQcApproaches(NetCallback<List<BaseQcApproachBean>> callback){
+        Observable<ResultBean<List<NetQcApproach>>> observable = netApiService.getQcApproaches();
+        Mapper<List<NetQcApproach>,List<BaseQcApproachBean>> mapper = new Mapper<List<NetQcApproach>, List<BaseQcApproachBean>>() {
+            @Override
+            public List<BaseQcApproachBean> map(List<NetQcApproach> src) {
+                List<BaseQcApproachBean> result = new ArrayList<>();
+                for (NetQcApproach approach : src) {
+                    BaseQcApproachBean bean =new BaseQcApproachBean(approach);
+                    result.add(bean);
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+    }
+
+    /**
+     * 提交原材料/成品的质检报告
+     * @param body
+     * @param callback
+     * @return
+     */
+    public Disposable submitQcReport(SubmitQcReportBody body, NetCallback<Integer>callback ){
+        Observable<ResultBean<Integer>> observable = netApiService.submitQcReport(body);
+        return getDisposalAsync(observable,callback,null);
+    }
+
+    /**
+     * 根据项目id获取产品列表
+     * @param projectId
+     * @param callback
+     * @return
+     */
+    public Disposable getProductListByProjectId(int projectId, NetCallback<List<BaseProductBatchInfo>> callback){
+        Observable<ResultBean<List<NetProductInfo>>> observable = netApiService.getProductListByProjectId(projectId);
+        Mapper<List<NetProductInfo>,List<BaseProductBatchInfo>> mapper = new Mapper<List<NetProductInfo>, List<BaseProductBatchInfo>>() {
+            @Override
+            public List<BaseProductBatchInfo> map(List<NetProductInfo> src) {
+                List<BaseProductBatchInfo> result = new ArrayList<>();
+                for (NetProductInfo info : src) {
+                    result.add(new BaseProductBatchInfo(info));
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+    }
 
 
 

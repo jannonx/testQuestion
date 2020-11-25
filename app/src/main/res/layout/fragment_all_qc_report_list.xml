@@ -15,6 +15,7 @@
 
         <include layout="@layout/layout_search_bar"/>
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/fragment_all_qc_report_list_date_selector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -46,7 +47,7 @@
                     android:textSize="@dimen/sp_12"
                     android:textColor="@color/color_black_333333"
                     android:text="2010-1"
-                    app:showYearMonthByDate="@{fragment_all_qc_report_list_vm.dateFrom}"/>
+                    app:showYearMonthDayByDate="@{fragment_all_qc_report_list_vm.dateFrom}"/>
                 <View
                     android:layout_width="@dimen/dp_12"
                     android:layout_height="0.5dp"
@@ -60,7 +61,7 @@
                     android:textSize="@dimen/sp_12"
                     android:textColor="@color/color_black_333333"
                     android:text="2020-2"
-                    app:showYearMonthByDate="@{fragment_all_qc_report_list_vm.dateTo}"/>
+                    app:showYearMonthDayByDate="@{fragment_all_qc_report_list_vm.dateTo}"/>
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="@dimen/dp_16"
                     android:layout_height="@dimen/dp_16"

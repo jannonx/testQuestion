@@ -309,6 +309,12 @@
         <item>合同流程</item>
     </array>
 
+    <!--掌上办公-审批处理-->
+    <array name="office_approval_title">
+        <item>待审批</item>
+        <item>我已审批</item>
+    </array>
+
     <string name="app_name">Dear</string>
 
     <string name="return_previous">返回</string>
@@ -426,7 +432,9 @@
     <string name="quality">材质：%s</string>
     <string name="remark">备注：%s</string>
     <string name="contract_person">联系人：%s</string>
+    <string name="commit_person">提交人：%s</string>
     <string name="product_name">产品名称：%s</string>
+    <string name="product_code">产品代号：%s</string>
     <string name="number">数量：%d</string>
 
     <!--我的关注-售后-->
@@ -454,4 +462,7 @@
     <string name="work_matter_apply_time">审核时间：%s</string>
     <string name="work_matter_apply_number">领用数量：%d</string>
 
+    <!--掌上办公-审批-->
+    <string name="office_approval_duty_unit">责任单位：%s</string>
+    <string name="office_approval_pause_reason">暂停原因：%s</string>
 </resources>

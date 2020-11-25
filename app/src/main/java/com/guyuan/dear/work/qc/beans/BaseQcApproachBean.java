@@ -1,5 +1,7 @@
 package com.guyuan.dear.work.qc.beans;
 
+import com.guyuan.dear.net.resultBeans.NetQcApproach;
+
 /**
  * @author: 廖华凯
  * @description:
@@ -9,6 +11,14 @@ package com.guyuan.dear.work.qc.beans;
 public class BaseQcApproachBean {
     private String approachId;
     private String approachName;
+
+    public BaseQcApproachBean() {
+    }
+
+    public BaseQcApproachBean(NetQcApproach src) {
+        this.approachId = src.getKey();
+        this.approachName = src.getValue();
+    }
 
     public String getApproachId() {
         return approachId;

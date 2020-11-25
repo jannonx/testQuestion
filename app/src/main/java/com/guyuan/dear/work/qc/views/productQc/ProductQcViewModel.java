@@ -1,18 +1,23 @@
 package com.guyuan.dear.work.qc.views.productQc;
 
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.mvvmlibrary.base.data.BaseViewModel;
+import com.guyuan.dear.base.fragment.DearBaseViewModel;
+import com.guyuan.dear.net.reqBean.SubmitQcReportBody;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.qc.beans.BaseProductBatchInfo;
 import com.guyuan.dear.work.qc.beans.BaseProjectBean;
 import com.guyuan.dear.work.qc.beans.BaseQcApproachBean;
+import com.guyuan.dear.work.qc.beans.MaterialInfo;
 import com.guyuan.dear.work.qc.repo.ProductQcRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * @author: 廖华凯
@@ -20,22 +25,24 @@ import java.util.List;
  * @since: 2020/11/16 10:47
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ProductQcViewModel extends BaseViewModel {
+public class ProductQcViewModel extends DearBaseViewModel {
     /**
      * 数据源
      */
     public MutableLiveData<ArrayList<StaffBean>> qcCheckers = new MutableLiveData<>(new ArrayList<>());
-    public MutableLiveData<ArrayList<StaffBean>> verifiers =new MutableLiveData<>(new ArrayList<>());
-    public MutableLiveData<BaseProductBatchInfo> batchInfo = new MutableLiveData<>();
-    public MutableLiveData<BaseProjectBean> projectInfo = new MutableLiveData<>();
-    public MutableLiveData<BaseQcApproachBean> qcApproach = new MutableLiveData<>();
+    public MutableLiveData<ArrayList<StaffBean>> verifiers = new MutableLiveData<>(new ArrayList<>());
+    public MutableLiveData<List<BaseProjectBean>> projectList = new MutableLiveData<>(new ArrayList<>());
+    public MutableLiveData<List<BaseQcApproachBean>> qcApproachList = new MutableLiveData<>(new ArrayList<>());
+    public MutableLiveData<List<BaseProductBatchInfo>> productBatchList = new MutableLiveData<>(new ArrayList<>());
+
+    public MutableLiveData<BaseProductBatchInfo> selectedProductBatch = new MutableLiveData<>();
+    public MutableLiveData<BaseProjectBean> selectedProject = new MutableLiveData<>();
+    public MutableLiveData<BaseQcApproachBean> selectedQcApproach = new MutableLiveData<>();
     public MutableLiveData<Integer> sampleSize = new MutableLiveData<>();
     public MutableLiveData<Integer> reportResult = new MutableLiveData<>();
     public MutableLiveData<String> comments = new MutableLiveData<>();
     public MutableLiveData<Boolean> isNeedVerify = new MutableLiveData<>();
     public MutableLiveData<Integer> judgeCondition = new MutableLiveData<>();
-
-
 
 
     /**
@@ -74,29 +81,41 @@ public class ProductQcViewModel extends BaseViewModel {
     private ProductQcRepo repo = new ProductQcRepo();
 
 
-    public List<BaseProductBatchInfo> loadBatchInfoListFromNet() {
-        return repo.loadBatchInfoListFromNet();
+
+
+    public Disposable getProjectListFromNet() {
+        return repo.getProjectListFromNet(new BaseNetCallback<List<BaseProjectBean>>() {
+            @Override
+            protected void handleResult(List<BaseProjectBean> result) {
+                projectList.getValue().clear();
+                projectList.getValue().addAll(result);
+                projectList.postValue(projectList.getValue());
+            }
+        });
     }
 
-    public List<BaseProjectBean> getProjectListFromNet() {
-        return repo.getProjectListFromNet();
+    public Disposable getQcApproachesFromNet(){
+        return repo.getQcApproaches(new BaseNetCallback<List<BaseQcApproachBean>>() {
+            @Override
+            protected void handleResult(List<BaseQcApproachBean> result) {
+                qcApproachList.getValue().clear();
+                qcApproachList.getValue().addAll(result);
+                qcApproachList.postValue(qcApproachList.getValue());
+            }
+        });
     }
 
 
-    public List<BaseQcApproachBean> getQcApproaches() {
-        return repo.getQcApproaches();
+    public void updateSelectedProject(BaseProjectBean projectBean) {
+        selectedProject.postValue(projectBean);
     }
 
-    public void updateProjectInfo(BaseProjectBean projectBean) {
-        projectInfo.postValue(projectBean);
+    public void updateSelectedBatchInfo(BaseProductBatchInfo info) {
+        selectedProductBatch.postValue(info);
     }
 
-    public void updateBatchInfo(BaseProductBatchInfo info) {
-        batchInfo.postValue(info);
-    }
-
-    public void updateQcApproach(BaseQcApproachBean approachBean) {
-        qcApproach.postValue(approachBean);
+    public void updateSelectedQcApproach(BaseQcApproachBean approachBean) {
+        selectedQcApproach.postValue(approachBean);
     }
 
     public void updateJudgeCondition(int selection) {
@@ -108,7 +127,7 @@ public class ProductQcViewModel extends BaseViewModel {
     }
 
     public void updateQcResult(int result) {
-       reportResult.postValue(result);
+        reportResult.postValue(result);
     }
 
     public void updateIsVerify(boolean verify) {
@@ -116,8 +135,124 @@ public class ProductQcViewModel extends BaseViewModel {
     }
 
     public void updateVerifiers(ArrayList<StaffBean> staffs) {
-       verifiers.postValue(staffs);
+        verifiers.postValue(staffs);
     }
 
 
+    public Disposable getProductListByProjectId() {
+        int id = selectedProject.getValue().getId();
+        return repo.getProductBatchListByProjectId(id, new BaseNetCallback<List<BaseProductBatchInfo>>() {
+            @Override
+            protected void handleResult(List<BaseProductBatchInfo> result) {
+                productBatchList.postValue(result);
+            }
+        });
+    }
+
+    public void submitReport() {
+        SubmitQcReportBody body = new SubmitQcReportBody();
+        BaseProjectBean projectBean = selectedProject.getValue();
+        if(projectBean==null){
+            showToast("项目不能为空.");
+            return;
+        }else {
+            body.setProjectId(projectBean.getId());
+        }
+        BaseProductBatchInfo batchInfo = selectedProductBatch.getValue();
+        if(batchInfo==null){
+            showToast("请选择产品");
+            return;
+        }else {
+            body.setSubCodeId(batchInfo.getSubmitId());
+        }
+        if(isNeedVerify.getValue()){
+            body.setApproveFlag(1);
+        }else {
+            body.setApproveFlag(2);
+        }
+        if(isNeedVerify.getValue()){
+            ArrayList<StaffBean> approvers = verifiers.getValue();
+            List<Integer> list = new ArrayList<>();
+            if(approvers.isEmpty()){
+                showToast("审批人不能为空。");
+                return;
+            }
+            for (StaffBean bean : approvers) {
+                list.add(bean.getId().intValue());
+            }
+            body.setApprovers(list);
+        }
+
+        ArrayList<StaffBean> qcCheckers = this.qcCheckers.getValue();
+        if(qcCheckers.isEmpty()){
+            showToast("质检人员不能为空。");
+            return;
+        }else {
+            List<Integer> list = new ArrayList<>();
+            for (StaffBean checker : qcCheckers) {
+                list.add(checker.getId().intValue());
+            }
+            body.setQualityBy(list.get(0));
+        }
+
+        body.setProductType(2);
+
+        if(judgeCondition.getValue()==null){
+            showToast("请选择判定条件。");
+            return;
+        }else {
+            List<Integer> list = new ArrayList<>();
+            list.add(judgeCondition.getValue());
+            body.setQualityCondition(list);
+        }
+
+        Integer sampleSize = this.sampleSize.getValue();
+        if(sampleSize==null){
+            showToast("请输入抽检数");
+            return;
+        }else {
+            body.setQualityNum(sampleSize);
+        }
+
+        String comment = comments.getValue();
+        if(TextUtils.isEmpty(comment)){
+            showToast("请输入原因描述");
+            return;
+        }else {
+            body.setQualityRemark(comment);
+        }
+
+        Integer reportResultValue = reportResult.getValue();
+        if(reportResultValue==null){
+            showToast("请选择报告结果");
+            return;
+        }else {
+            body.setQualityResult(reportResultValue);
+        }
+
+        BaseQcApproachBean approachBean = selectedQcApproach.getValue();
+        if(approachBean==null){
+            showToast("请选择质检方式");
+            return;
+        }else {
+            String approachId = approachBean.getApproachId();
+            try {
+                int type = Integer.valueOf(approachId);
+                body.setQualityType(type);
+            }catch (NumberFormatException e){
+                showToast("服务器返回的质检方式的参数中的key不是一个数字，请联系开发人员。");
+                return;
+            }
+        }
+        repo.submitQcReport(body, new BaseNetCallback<Integer>() {
+            @Override
+            protected void handleResult(Integer result) {
+                if(result>0){
+                    showToast("提交成功。");
+                }else {
+                    showToast("提交失败。");
+                }
+            }
+        });
+    }
 }

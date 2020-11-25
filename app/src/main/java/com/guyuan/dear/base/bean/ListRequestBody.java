@@ -62,6 +62,15 @@ public class ListRequestBody {
         private String projectName;  //
         private String productName;
         private String createBy;
+        private int msgType;
+
+        public int getMsgType() {
+            return msgType;
+        }
+
+        public void setMsgType(int msgType) {
+            this.msgType = msgType;
+        }
 
         public String getCreateBy() {
             return createBy;

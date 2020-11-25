@@ -18,16 +18,16 @@ public class MessageInfosBean {
      * lastUpdateTime : null
      */
 
-    private int id;
-    private int messageId;
-    private int sendUser;
-    private int createBy;
-    private String sendTime;
-    private Object getTime;
+    private int id;               //编号
+    private int messageId;        //消息id
+    private int sendUser;         //接收用户
+    private int createBy;         //接收用户
+    private String sendTime;      //发送时间
+    private Object getTime;       //接收时间
     private int msgStatus;        //1:已读 其他：未读
-    private Object createTime;
-    private Object lastUpdateBy;
-    private Object lastUpdateTime;
+    private Object createTime;    //创建时间
+    private Object lastUpdateBy;  //更新人
+    private Object lastUpdateTime;//更新时间
 
     public int getId() {
         return id;

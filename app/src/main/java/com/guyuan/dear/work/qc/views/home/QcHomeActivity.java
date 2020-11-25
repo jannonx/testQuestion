@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
-import com.guyuan.dear.focus.qc.views.qcReportList.QcReportListFragment;
+import com.guyuan.dear.focus.qc.views.qcReportList.ReportListFragment;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.qc.views.materialQc.MaterialQcFragment;
 import com.guyuan.dear.work.qc.views.productQc.ProductQcFragment;
@@ -45,7 +45,7 @@ public class QcHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, QcHo
             {
                 add(ProductQcFragment.getInstance());
                 add(MaterialQcFragment.getInstance());
-                add(QcReportListFragment.getInstance(QcReportListFragment.REPORT_TYPE_ONLY_MY_REPORTS));
+                add(ReportListFragment.getInstance(ReportListFragment.REPORT_TYPE_ONLY_MY_REPORTS));
             }
         };
     }

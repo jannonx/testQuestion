@@ -10,12 +10,14 @@ import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.customizeview.MessageBar;
 import com.guyuan.dear.databinding.FragmentOfficeBinding;
 import com.guyuan.dear.login.data.ChildrenBean;
+import com.guyuan.dear.office.approval.ui.ApprovalActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
 
 import java.util.ArrayList;
 
 import androidx.recyclerview.widget.GridLayoutManager;
+
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
@@ -76,7 +78,7 @@ public class OfficeFragment extends BaseListFragment<ChildrenBean, FragmentOffic
                         String title = menuList.get(position).getTitle();
                         switch (url) {
                             case ConstantValue.OFFICE_HANDLE_ASSESS://审批处理
-
+                                ApprovalActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.OFFICE_WORK_REPORT://工作报告

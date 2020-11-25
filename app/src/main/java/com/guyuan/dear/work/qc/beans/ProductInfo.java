@@ -1,5 +1,7 @@
 package com.guyuan.dear.work.qc.beans;
 
+import com.guyuan.dear.net.resultBeans.NetProductInfo;
+
 /**
  * @author: 廖华凯
  * @description:
@@ -11,6 +13,13 @@ public class ProductInfo {
     private String productName;
     private int quantity;
     private String unit;
+
+    public ProductInfo(NetProductInfo src) {
+        setProductId(src.getProductCode());
+        setProductName(src.getProductName());
+        setQuantity(src.getProductNum());
+        setUnit(src.getProductUnit());
+    }
 
     public String getProductId() {
         return productId;

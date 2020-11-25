@@ -48,7 +48,7 @@
                     android:textSize="@dimen/sp_12"
                     android:textColor="@color/color_black_333333"
                     android:text="2010-1"
-                    app:showYearMonthByDate="@{fragment_qc_summary_vm.qcSummaryBean.startPeriod}"/>
+                    app:showYearMonthDayByDate="@{fragment_qc_summary_vm.qcSummaryBean.startPeriod}"/>
                 <View
                     android:layout_width="@dimen/dp_12"
                     android:layout_height="0.5dp"
@@ -62,7 +62,7 @@
                     android:textSize="@dimen/sp_12"
                     android:textColor="@color/color_black_333333"
                     android:text="2020-2"
-                    app:showYearMonthByDate="@{fragment_qc_summary_vm.qcSummaryBean.endPeriod}"/>
+                    app:showYearMonthDayByDate="@{fragment_qc_summary_vm.qcSummaryBean.endPeriod}"/>
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="@dimen/dp_16"
                     android:layout_height="@dimen/dp_16"

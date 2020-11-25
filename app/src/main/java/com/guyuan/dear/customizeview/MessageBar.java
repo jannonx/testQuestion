@@ -53,13 +53,6 @@ public class MessageBar extends LinearLayout {
         toolbar_message_title_tv = findViewById(R.id.toolbar_message_title_tv);
         toolbar_message_content_tv = findViewById(R.id.toolbar_message_content_tv);
         unread_dot = findViewById(R.id.unread_dot);
-
-        toolbar_message_ll.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            //    MessageActivity.start(getContext(), label);
-            }
-        });
     }
 
     public void setLabel(int label) {

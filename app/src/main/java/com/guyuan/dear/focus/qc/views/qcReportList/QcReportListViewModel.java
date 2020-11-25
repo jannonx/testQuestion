@@ -5,13 +5,16 @@ import android.view.View;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
-import com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport;
-import com.guyuan.dear.focus.qc.beans.BaseProductQcReport;
+import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.qc.beans.GenericQcReport;
 import com.guyuan.dear.focus.qc.repo.QcListRepo;
+import com.guyuan.dear.net.DearNetHelper;
+import com.guyuan.dear.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * @author: 廖华凯
@@ -23,23 +26,33 @@ public class QcReportListViewModel extends BaseViewModel {
     /**
      * 成品QC报告
      */
-    private MutableLiveData<List<BaseProductQcReport>> productReports = new MutableLiveData<>(new ArrayList<>());
+    private MutableLiveData<List<GenericQcReport>> productReports = new MutableLiveData<>(new ArrayList<>());
+    private MutableLiveData<Boolean> isAllProductReportLoaded = new MutableLiveData<>(false);
+    private int productReportPageIndex = 1;
     /**
      * 原材料QC报告
      */
-    private MutableLiveData<List<BaseMaterialQcReport>> materialReports = new MutableLiveData<>(new ArrayList<>());
+    private MutableLiveData<List<GenericQcReport>> materialReports = new MutableLiveData<>(new ArrayList<>());
+    private MutableLiveData<Boolean> isAllMaterialReportLoaded = new MutableLiveData<>(false);
+    private int materialReportPageIndex = 1;
     /**
      * 异常QC报告
      */
     private MutableLiveData<List<GenericQcReport>> rejectedReportList = new MutableLiveData<>(new ArrayList<>());
+    private MutableLiveData<Boolean> isAllRejectedReportLoaded = new MutableLiveData<>(false);
+    private int rejectedReportPageIndex = 1;
     /**
      * 当前用户提交的报告
      */
     private MutableLiveData<List<GenericQcReport>> myQcReports = new MutableLiveData<>(new ArrayList<>());
+    private MutableLiveData<Boolean> isAllMyQcReportLoaded = new MutableLiveData<>(false);
+    private int myQcReportPageIndex = 1;
     /**
      * 所有QC报告
      */
     private MutableLiveData<List<GenericQcReport>> allReportList = new MutableLiveData<>(new ArrayList<>());
+    private MutableLiveData<Boolean> isAllQcReportLoaded = new MutableLiveData<>(false);
+    private int allQcReportPageIndex = 1;
 
     /**
      * 点击事件：设置时间段
@@ -53,7 +66,28 @@ public class QcReportListViewModel extends BaseViewModel {
      * 截至时间
      */
     private MutableLiveData<Long> dateTo = new MutableLiveData<>(0L);
-    private QcListRepo qcListRepo = new QcListRepo();
+    private QcListRepo repo = new QcListRepo();
+    private static final int PAGE_SIZE = 50;
+
+    public MutableLiveData<Boolean> getIsAllProductReportLoaded() {
+        return isAllProductReportLoaded;
+    }
+
+    public MutableLiveData<Boolean> getIsAllMaterialReportLoaded() {
+        return isAllMaterialReportLoaded;
+    }
+
+    public MutableLiveData<Boolean> getIsAllRejectedReportLoaded() {
+        return isAllRejectedReportLoaded;
+    }
+
+    public MutableLiveData<Boolean> getIsAllMyQcReportLoaded() {
+        return isAllMyQcReportLoaded;
+    }
+
+    public MutableLiveData<Boolean> getIsAllQcReportLoaded() {
+        return isAllQcReportLoaded;
+    }
 
     public MutableLiveData<View.OnClickListener> getOnClickSelectTimePeriod() {
         return onClickSelectTimePeriod;
@@ -91,60 +125,245 @@ public class QcReportListViewModel extends BaseViewModel {
         this.dateTo.postValue(dateTo);
     }
 
-    public MutableLiveData<List<BaseProductQcReport>> getProductReports() {
+    public MutableLiveData<List<GenericQcReport>> getProductReports() {
         return productReports;
     }
 
-    public MutableLiveData<List<BaseMaterialQcReport>> getMaterialReports() {
+    public MutableLiveData<List<GenericQcReport>> getMaterialReports() {
         return materialReports;
     }
 
+    public void reset(){
+        materialReports.postValue(new ArrayList<>());
+        isAllMaterialReportLoaded.postValue(false);
+        materialReportPageIndex=1;
+
+        myQcReports.postValue(new ArrayList<>());
+        isAllMyQcReportLoaded.postValue(false);
+        myQcReportPageIndex=1;
+
+        productReports.postValue(new ArrayList<>());
+        isAllProductReportLoaded.postValue(false);
+        productReportPageIndex=1;
+
+        allReportList.postValue(new ArrayList<>());
+        isAllQcReportLoaded.postValue(false);
+        allQcReportPageIndex=1;
+
+        rejectedReportList.postValue(new ArrayList<>());
+        isAllRejectedReportLoaded.postValue(false);
+        rejectedReportPageIndex=1;
+    }
+
+
     /**
      * 获取规定时间段的产品的正常报告清单
+     *
      * @param dateFrom 开始日期
-     * @param dateTo 结束日期
-     * @param pageIndex 页码，从1开始
-     * @param pageSize 每页的容量
+     * @param dateTo   结束日期
      */
-    public void upDateProductPassList(long dateFrom, long dateTo, int pageIndex, int pageSize){
-        this.productReports.getValue().addAll(qcListRepo.getProductPassList(dateFrom,dateTo,pageIndex,pageSize));
-        this.productReports.postValue(this.productReports.getValue());
+    public Disposable upDateProductPassList(long dateFrom, long dateTo) {
+        return repo.getProductPassList(dateFrom, dateTo, productReportPageIndex++, PAGE_SIZE, new DearNetHelper.NetCallback<List<GenericQcReport>>() {
+            @Override
+            public void onStart(Disposable disposable) {
+                isShowLoading.postValue(true);
+            }
+
+            @Override
+            public void onGetResult(List<GenericQcReport> result) {
+                isShowLoading.postValue(false);
+                if (result.isEmpty()) {
+                    isAllProductReportLoaded.postValue(true);
+                    showToast("已经全部加载完毕。");
+                } else {
+                    productReports.getValue().addAll(result);
+                    productReports.postValue(productReports.getValue());
+                }
+
+
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                isShowLoading.postValue(false);
+                ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
+            }
+        });
     }
 
     /**
      * 获取规定时间段的产品的异常报告清单
+     *
      * @param dateFrom 开始日期
-     * @param dateTo 结束日期
-     * @param pageIndex 页码，从1开始
-     * @param pageSize 每页的容量
+     * @param dateTo   结束日期
      */
-    public void upDateProductRejectList(long dateFrom, long dateTo, int pageIndex, int pageSize){
-        this.productReports.getValue().addAll(qcListRepo.getProductRejectList(dateFrom,dateTo,pageIndex,pageSize));
-        this.productReports.postValue(this.productReports.getValue());
+    public Disposable upDateProductRejectList(long dateFrom, long dateTo) {
+        return repo.getProductRejectList(dateFrom, dateTo, productReportPageIndex++, PAGE_SIZE, new DearNetHelper.NetCallback<List<GenericQcReport>>() {
+            @Override
+            public void onStart(Disposable disposable) {
+                isShowLoading.postValue(true);
+
+            }
+
+            @Override
+            public void onGetResult(List<GenericQcReport> result) {
+                isShowLoading.postValue(false);
+                if (result.isEmpty()) {
+                    isAllProductReportLoaded.postValue(true);
+                    showToast("已经全部加载完毕。");
+                } else {
+                    productReports.getValue().addAll(result);
+                    productReports.postValue(productReports.getValue());
+                }
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                isShowLoading.postValue(false);
+                ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
+
+            }
+        });
     }
 
-    public void upDateMaterialPassList(long dateFrom, long dateTo, int pageIndex, int pageSize){
-        this.materialReports.getValue().addAll(qcListRepo.getMaterialPassList(dateFrom,dateTo,pageIndex,pageSize));
-        this.materialReports.postValue(this.materialReports.getValue());
+    public Disposable upDateMaterialPassList(long dateFrom, long dateTo) {
+        return repo.getMaterialPassList(dateFrom, dateTo, materialReportPageIndex++, PAGE_SIZE, new DearNetHelper.NetCallback<List<GenericQcReport>>() {
+            @Override
+            public void onStart(Disposable disposable) {
+                isShowLoading.postValue(true);
+            }
+
+            @Override
+            public void onGetResult(List<GenericQcReport> result) {
+                isShowLoading.postValue(false);
+                if (result.isEmpty()) {
+                    isAllMaterialReportLoaded.postValue(true);
+                    showToast("已经全部加载完毕。");
+                } else {
+                    materialReports.getValue().addAll(result);
+                    materialReports.postValue(materialReports.getValue());
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                isShowLoading.postValue(false);
+                ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
+            }
+        });
     }
 
-    public void upDateMaterialRejectList(long dateFrom, long dateTo, int pageIndex, int pageSize){
-        this.materialReports.getValue().addAll(qcListRepo.getMaterialRejectList(dateFrom,dateTo,pageIndex,pageSize));
-        this.materialReports.postValue(this.materialReports.getValue());
+    public Disposable upDateMaterialRejectList(long dateFrom, long dateTo) {
+        return repo.getMaterialRejectList(dateFrom, dateTo, materialReportPageIndex++, PAGE_SIZE, new DearNetHelper.NetCallback<List<GenericQcReport>>() {
+            @Override
+            public void onStart(Disposable disposable) {
+                isShowLoading.postValue(true);
+            }
+
+            @Override
+            public void onGetResult(List<GenericQcReport> result) {
+                isShowLoading.postValue(false);
+                if (result.isEmpty()) {
+                    isAllMaterialReportLoaded.postValue(true);
+                    showToast("已经全部加载完毕。");
+                } else {
+                    materialReports.getValue().addAll(result);
+                    materialReports.postValue(materialReports.getValue());
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                isShowLoading.postValue(false);
+                ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
+            }
+        });
     }
 
-    public void updateAllRejectedReports(long dateFrom, long dateTo, int pageIndex, int pageSize){
-        this.rejectedReportList.getValue().addAll(qcListRepo.getAllRejectedQcList(dateFrom,dateTo,pageIndex,pageSize));
-        this.rejectedReportList.postValue(this.rejectedReportList.getValue());
+    public Disposable updateAllRejectedReports(long dateFrom, long dateTo) {
+        return repo.getAllRejectedQcList(dateFrom, dateTo, rejectedReportPageIndex++, PAGE_SIZE, new DearNetHelper.NetCallback<List<GenericQcReport>>() {
+            @Override
+            public void onStart(Disposable disposable) {
+                isShowLoading.postValue(true);
+            }
+
+            @Override
+            public void onGetResult(List<GenericQcReport> result) {
+                if (result.isEmpty()) {
+                    isAllRejectedReportLoaded.postValue(true);
+                    showToast("已经全部加载完毕。");
+                } else {
+                    rejectedReportList.getValue().addAll(result);
+                    rejectedReportList.postValue(rejectedReportList.getValue());
+                }
+                isShowLoading.postValue(false);
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                isShowLoading.postValue(false);
+                ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
+            }
+        });
     }
 
-    public void updateAllReports(long dateFrom, long dateTo, int pageIndex, int pageSize){
-        this.allReportList.getValue().addAll(qcListRepo.getAllQcList(dateFrom,dateTo,pageIndex,pageSize));
-        this.allReportList.postValue(this.allReportList.getValue());
+    public Disposable updateAllReports(long dateFrom, long dateTo) {
+        return repo.getAllQcList(dateFrom, dateTo, allQcReportPageIndex++, PAGE_SIZE, new DearNetHelper.NetCallback<List<GenericQcReport>>() {
+            @Override
+            public void onStart(Disposable disposable) {
+                isShowLoading.postValue(true);
+            }
+
+            @Override
+            public void onGetResult(List<GenericQcReport> result) {
+                isShowLoading.postValue(false);
+                if (result.isEmpty()) {
+                    isAllQcReportLoaded.postValue(true);
+                    showToast("已经全部加载完毕。");
+                } else {
+                    allReportList.getValue().addAll(result);
+                    allReportList.postValue(allReportList.getValue());
+                }
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                isShowLoading.postValue(false);
+                ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
+            }
+        });
     }
 
-    public void updateMyQcReports(long dateFrom, long dateTo, int pageIndex, int pageSize){
-        this.myQcReports.getValue().addAll(qcListRepo.getMyQcReports(dateFrom,dateTo,pageIndex,pageSize));
-        this.myQcReports.postValue(this.myQcReports.getValue());
+    public Disposable updateMyQcReports(long dateFrom, long dateTo) {
+        return repo.getMyQcReports(dateFrom, dateTo, myQcReportPageIndex++, PAGE_SIZE, new DearNetHelper.NetCallback<List<GenericQcReport>>() {
+            @Override
+            public void onStart(Disposable disposable) {
+                isShowLoading.postValue(true);
+            }
+
+            @Override
+            public void onGetResult(List<GenericQcReport> result) {
+                isShowLoading.postValue(false);
+                if (result.isEmpty()) {
+                    isAllMyQcReportLoaded.postValue(true);
+                    showToast("已经全部加载完毕。");
+                } else {
+                    myQcReports.getValue().addAll(result);
+                    myQcReports.postValue(myQcReports.getValue());
+                }
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                isShowLoading.postValue(false);
+                ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
+            }
+        });
+    }
+
+    private void showToast(String msg) {
+        ToastUtils.showShort(DearApplication.getInstance(), msg);
     }
 }

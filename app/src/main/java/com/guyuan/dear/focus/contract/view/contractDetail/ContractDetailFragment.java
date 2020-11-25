@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
@@ -15,7 +14,6 @@ import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentContractDetailBinding;
 import com.guyuan.dear.focus.contract.adapter.ContractDetailPagerAdapter;
-import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.view.contractProgress.ContractPrgDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 
@@ -84,7 +82,7 @@ public class ContractDetailFragment extends BaseMvvmFragment<FragmentContractDet
         getViewModel().setOnClickCheckProgress(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractPrgDetailActivity.start(getActivity(), "销售合同详情", getViewModel().getContractBean().getValue().getContractNum());
+                ContractPrgDetailActivity.start(getActivity(), "销售合同详情", (int) getViewModel().getContractBean().getValue().getContractId());
             }
         });
 
