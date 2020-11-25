@@ -1,16 +1,9 @@
 package com.guyuan.dear.login.data;
 
-import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.hilt.lifecycle.ViewModelInject;
-
-import com.bumptech.glide.Glide;
 import com.example.httplibrary.bean.ErrorResultBean;
-import com.example.httplibrary.rx.SchedulersCompat;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.google.gson.Gson;
 import com.guyuan.dear.base.api.RxJavaHelper;
@@ -21,9 +14,8 @@ import com.guyuan.dear.utils.SharedPreferencesUtils;
 
 import java.util.List;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import androidx.hilt.lifecycle.ViewModelInject;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import okhttp3.RequestBody;
 
@@ -90,7 +82,7 @@ public class LoginViewModel extends BaseViewModel {
 
     private void saveLoginData(LoginBean newUser) {
         Context context = DearApplication.getInstance();
-        List<LoginBean.AppMenusBean> menus = newUser.getAppMenus();
+        List<AppMenusBean> menus = newUser.getAppMenus();
         if (menus != null && menus.size() > 0) {
             DearApplication.getInstance().saveCacheData(ConstantValue.KEY_USER_NAME, name);
             DearApplication.getInstance().saveCacheData(ConstantValue.KEY_USER_PW, pwd);

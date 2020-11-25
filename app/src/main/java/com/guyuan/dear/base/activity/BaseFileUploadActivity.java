@@ -38,6 +38,7 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
     public static final int THIRD = 0x0003;
     public static final int FOURTH = 0x0004;
     public static final int FIFTH = 0x0005;
+    private int maxSelectImageNumber = 5;
     public static final int TYPE_UP_LOAD_IMAGE = 0x100;//上传类型：图片
     public static final int TYPE_UP_LOAD_IMAGE_VIDEO = 101;//上传类型:图片和视频
 
@@ -131,7 +132,7 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
         super.onAllPermissionsGranted();
         ArrayList<String> currentPhotoList = getCurrentPhotoList(currentPhotoType);
         if (currentPhotoList != null) {
-            FilePickerBuilder.getInstance().setMaxCount(5)
+            FilePickerBuilder.getInstance().setMaxCount(maxSelectImageNumber)
                     .setSelectedFiles(currentPhotoList)
                     .enableVideoPicker(true)
                     .setActivityTheme(R.style.LibAppTheme)
@@ -166,16 +167,11 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
      * @param type
      */
     public void pickSinglePhoto(int type) {
-        checkPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA);
+        maxSelectImageNumber = 1;
+        checkPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA);
         currentFileType = type;
-        ArrayList<String> currentFileList = getCurrentFileList(currentFileType);
-        if (currentFileList != null) {
-            FilePickerBuilder.getInstance().setMaxCount(1)
-                    .setSelectedFiles(currentFileList)
-                    .enableVideoPicker(false)
-                    .setActivityTheme(R.style.LibAppTheme)
-                    .pickPhoto(this);
-        }
     }
 
     private ArrayList<String> getCurrentPhotoList(int photoType) {

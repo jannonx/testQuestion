@@ -11,12 +11,17 @@ import com.guyuan.dear.mine.activity.AboutUsActivity;
 import com.guyuan.dear.mine.activity.FeedBackActivity;
 import com.guyuan.dear.mine.activity.PrivacyPolicyActivity;
 import com.guyuan.dear.mine.activity.SafetyCenterActivity;
-import com.guyuan.dear.mine.activity.SystemSettingActivity;
 import com.guyuan.dear.mine.activity.UserInfoActivity;
+import com.guyuan.dear.mine.data.EventRefreshUserData;
 import com.guyuan.dear.mine.data.MineViewModel;
 import com.guyuan.dear.scan.ScanActivity;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.GlideUtils;
+import com.guyuan.dear.utils.LogUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * @description: 我的
@@ -45,9 +50,11 @@ public class MineFragment extends BaseDataBindingFragment<FragmentMineBinding, M
     @Override
     protected void initialization() {
         user = CommonUtils.getLoginInfo();
+        EventBus.getDefault().register(this);
+        LogUtils.showLog("name="+user.getUserInfo().getName());
         if (user != null && user.getUserInfo() != null) {
             binding.tvName.setText(user.getUserInfo().getName());
-            binding.tvPhone.setText(user.getUserInfo().getMobile());
+            binding.tvPhone.setText(user.getUserInfo().getUserPhone());
             String imgUrl = user.getUserInfo().getImgUrl();
             GlideUtils.getInstance().loadUserCircleImageFromGuYuanServer(binding.ivAvatar, imgUrl);
         } else {
@@ -59,11 +66,11 @@ public class MineFragment extends BaseDataBindingFragment<FragmentMineBinding, M
 //        } else {
 //            binding.tvNewVersion.setVisibility(View.GONE);
 //        }
-        setLister();
+        initListener();
     }
 
 
-    private void setLister() {
+    private void initListener() {
         binding.rlUserInfo.setOnClickListener(this);
         binding.llSystemSetting.setOnClickListener(this);
         binding.llSafetyCenter.setOnClickListener(this);
@@ -111,5 +118,17 @@ public class MineFragment extends BaseDataBindingFragment<FragmentMineBinding, M
     @Override
     protected int getVariableId() {
         return 0;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onRefreshMessage(EventRefreshUserData event) {
+        user = CommonUtils.getLoginInfo();
+        GlideUtils.getInstance().loadUserCircleImageFromGuYuanServer(binding.ivAvatar, user.getUserInfo().getImgUrl());
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        EventBus.getDefault().unregister(this);
     }
 }

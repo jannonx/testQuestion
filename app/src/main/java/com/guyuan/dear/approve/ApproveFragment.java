@@ -4,8 +4,6 @@ package com.guyuan.dear.approve;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.activity.ApplyForLeaveActivity;
@@ -25,11 +23,12 @@ import com.guyuan.dear.approve.activity.MineApplyListActivity;
 import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.databinding.FragmentApproveBinding;
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.ChildrenBean;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
 
+import androidx.recyclerview.widget.GridLayoutManager;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
@@ -45,7 +44,7 @@ public class ApproveFragment extends BaseDataBindingFragment<FragmentApproveBind
     public static final String TAG = ApproveFragment.class.getSimpleName();
 
 
-    public static ApproveFragment newInstance(ArrayList<LoginBean.AppMenusBean.ChildrenBean> data) {
+    public static ApproveFragment newInstance(ArrayList<ChildrenBean> data) {
         ApproveFragment fragment = new ApproveFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList(ConstantValue.KEY_APPROVE_MENU, data);
@@ -62,7 +61,7 @@ public class ApproveFragment extends BaseDataBindingFragment<FragmentApproveBind
     @Override
     public void initialization() {
         Bundle arguments = getArguments();
-        ArrayList<LoginBean.AppMenusBean.ChildrenBean> menuList = arguments.getParcelableArrayList(ConstantValue.KEY_APPROVE_MENU);
+        ArrayList<ChildrenBean> menuList = arguments.getParcelableArrayList(ConstantValue.KEY_APPROVE_MENU);
         BaseMenuAdapter baseMenuAdapter = new BaseMenuAdapter(getActivity(), menuList,
                 R.layout.item_fragment_menu);
         BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter(baseMenuAdapter);

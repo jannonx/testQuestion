@@ -14,19 +14,12 @@ import com.guyuan.dear.login.api.LoginApiService;
 import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.login.data.LoginBody;
 import com.guyuan.dear.utils.ConstantValue;
-
+import com.guyuan.dear.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 /**
@@ -73,6 +66,7 @@ public class BackService extends IntentService {
                                 @Override
                                 public void accept(Object o) throws Exception {
                                     LoginBean loginBean = (LoginBean) o;
+                                    LogUtils.showLog("loginBean="+loginBean.getUserInfo().getName());
                                     mApplication.saveCacheData(ConstantValue.USER_JSON_STRING,
                                             new Gson().toJson(loginBean));
                                     LoginBusBean busBean = new LoginBusBean();
