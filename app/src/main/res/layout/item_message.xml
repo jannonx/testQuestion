@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -29,6 +30,7 @@
                     android:layout_weight="1"
                     android:text="@{messageBean.msgTitle}"
                     android:textColor="#1890FF"
+                    app:readStatusTitle="@{messageBean.messageInfos.get(0).msgStatus}"
                     tools:text="深圳固远" />
 
                 <TextView
@@ -45,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_12"
                 android:text="@{messageBean.msgContent}"
+                app:readStatusContent="@{messageBean.messageInfos.get(0).msgStatus}"
                 tools:text="dfjkwofjwiojwiojwritjwitjh334234234234234efsdfsdfsdfsdfsfddsfwuir" />
 
         </LinearLayout>

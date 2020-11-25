@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
 
 import java.util.List;
 
@@ -59,37 +60,37 @@ public class MessageBar extends LinearLayout {
         this.label = label;
     }
 
-//    public void setMessageBar(int unReadNumber, List<MessageBean> messageBeanList) {
-//        if (unReadNumber > 0 && messageBeanList != null && messageBeanList.size() > 0) {
-//            MessageBean messageBean = messageBeanList.get(0);
-//            toolbar_message_title_tv.setText(messageBean.getMsgTitle());
-//            toolbar_message_content_tv.setText(messageBean.getMsgContent());
-//            unread_dot.setVisibility(VISIBLE);
-//            unread_dot.setText(unReadNumber + "");
-//        } else {
-//            clearMessage();
-//        }
-//
-//    }
+    public void setMessageBar(int unReadNumber, List<MessageBean> messageBeanList) {
+        if (unReadNumber > 0 && messageBeanList != null && messageBeanList.size() > 0) {
+            MessageBean messageBean = messageBeanList.get(0);
+            toolbar_message_title_tv.setText(messageBean.getMsgTitle());
+            toolbar_message_content_tv.setText(messageBean.getMsgContent());
+            unread_dot.setVisibility(VISIBLE);
+            unread_dot.setText(unReadNumber + "");
+        } else {
+            clearMessage();
+        }
+
+    }
 
     //处理推送消息
-//    public void handlePush(MessageBean messageBean) {
-//        toolbar_message_title_tv.setText(messageBean.getMsgTitle());
-//        toolbar_message_content_tv.setText(messageBean.getMsgContent());
-//        unread_dot.setVisibility(VISIBLE);
-//        int number = 0;
-//        try {
-//            number = Integer.parseInt(unread_dot.getText().toString());
-//        } catch (Exception e) {
-//            number = 0;
-//        }
-//
-//        unread_dot.setText(++number + "");
-//    }
+    public void handlePush(MessageBean messageBean) {
+        toolbar_message_title_tv.setText(messageBean.getMsgTitle());
+        toolbar_message_content_tv.setText(messageBean.getMsgContent());
+        unread_dot.setVisibility(VISIBLE);
+        int number = 0;
+        try {
+            number = Integer.parseInt(unread_dot.getText().toString());
+        } catch (Exception e) {
+            number = 0;
+        }
+
+        unread_dot.setText(++number + "");
+    }
 
     private void clearMessage() {
         toolbar_message_title_tv.setText("");
-        toolbar_message_content_tv.setText("");
+        toolbar_message_content_tv.setText("暂无消息");
         unread_dot.setVisibility(View.GONE);
     }
 

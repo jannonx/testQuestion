@@ -18,9 +18,12 @@ import com.guyuan.dear.busbean.TokenBusBean;
 import com.guyuan.dear.databinding.ActivityMainBinding;
 import com.guyuan.dear.db.DearDbManager;
 import com.guyuan.dear.focus.FocusFragment;
+import com.guyuan.dear.home.data.MainViewModel;
 import com.guyuan.dear.login.data.AppMenusBean;
 import com.guyuan.dear.login.data.ChildrenBean;
 import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.message.data.bean.MessageUnreadBean;
+import com.guyuan.dear.message.ui.MessageFragment;
 import com.guyuan.dear.mine.MineFragment;
 import com.guyuan.dear.office.OfficeFragment;
 import com.guyuan.dear.service.BackService;
@@ -39,6 +42,9 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+
+import dagger.hilt.android.AndroidEntryPoint;
 
 /**
  * @description: APP主页面
@@ -46,7 +52,8 @@ import androidx.fragment.app.FragmentTransaction;
  * @since: 2020/11/24 23:56
  * @company: 固远（深圳）信息技术有限公司
  */
-public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, BaseViewModel> implements RadioGroup.OnCheckedChangeListener {
+@AndroidEntryPoint
+public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, MainViewModel> implements RadioGroup.OnCheckedChangeListener {
 
     private Fragment currentFragment;
     private FocusFragment focusFragment;
@@ -144,6 +151,7 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Bas
             ActivityUtils.addFragmentToActivity(fragmentManager, fragmentList.get(0), R.id.container,
                     FocusFragment.TAG);
 
+
             if (currentFragment instanceof FocusFragment) {
                 binding.homeFocusRb.setChecked(true);
             } else if (currentFragment instanceof WorkFragment) {
@@ -158,6 +166,7 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Bas
         }
 
     }
+
 
     //设置监听
     private void setListeners() {
@@ -183,11 +192,6 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Bas
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         //super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public BaseViewModel getViewModel() {
-        return viewModel;
     }
 
 

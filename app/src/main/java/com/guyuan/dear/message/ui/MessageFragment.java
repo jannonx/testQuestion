@@ -18,13 +18,18 @@ import com.guyuan.dear.utils.ConstantValue;
  **/
 
 public class MessageFragment extends BaseListSearchFragment<MessageBean, ActivityBaseTabBinding, MessageViewModel> {
-
+    //显示消息种类,1:显示警告消息、预警消息；2：正常消息、办公消息
     public static final String TAG = "MessageFragment";
+    public static final int MESSAGE_WARN = 1;        //警告消息
+    public static final int MESSAGE_PRE_WARN = 1;    //预警消息
+    public static final int MESSAGE_COMMON = 2;      //普通消息
+    public static final int MESSAGE_OFFICE = 2;      //办公消息
+    private int msgType;
 
-    public static MessageFragment newInstance() {
+    public static MessageFragment newInstance(int msgType) {
 
         Bundle args = new Bundle();
-
+        args.getInt(ConstantValue.KEY_TYPE, msgType);
         MessageFragment fragment = new MessageFragment();
         fragment.setArguments(args);
         return fragment;
@@ -32,22 +37,23 @@ public class MessageFragment extends BaseListSearchFragment<MessageBean, Activit
 
     @Override
     protected void init() {
+        msgType = getArguments().getInt(ConstantValue.KEY_TYPE);
         MessageAdapter messageAdapter = new MessageAdapter(listData, R.layout.item_message);
         setDefaultAdapter(messageAdapter);
         if (viewModel != null) {
-            viewModel.getMessageList(currentPage, searchContent);
+            viewModel.getMessageList(currentPage,msgType, searchContent);
         }
     }
 
     @Override
     protected void refresh() {
         currentPage = ConstantValue.FIRST_PAGE;
-        viewModel.getMessageList(currentPage, searchContent);
+        viewModel.getMessageList(currentPage, msgType,searchContent);
     }
 
     @Override
     protected void loadMore() {
-        viewModel.getMessageList(++currentPage, searchContent);
+        viewModel.getMessageList(++currentPage, msgType,searchContent);
     }
 
     @Override

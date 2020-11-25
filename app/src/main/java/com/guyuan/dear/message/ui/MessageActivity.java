@@ -31,17 +31,19 @@ public class MessageActivity extends BaseToolbarActivity<ActivityWithToolbarBind
 
     private MessageFragment messageFragment;
 
-    public static void start(Context context, String title) {
+    public static void start(Context context, String title, int msgType) {
         Intent starter = new Intent(context, MessageActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE, title);
+        starter.putExtra(ConstantValue.KEY_TYPE, msgType);
         context.startActivity(starter);
     }
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
+        int msgType = getIntent().getIntExtra(ConstantValue.KEY_TYPE, 0);
         setTitleCenter(title);
-        messageFragment = MessageFragment.newInstance();
+        messageFragment = MessageFragment.newInstance(msgType);
         ActivityUtils.addFragmentToActivity(fragmentManager, messageFragment, R.id.fragment_container, MessageFragment.TAG);
         setObserver();
     }
