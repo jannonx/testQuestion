@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.guyuan.dear.utils.DimensionUtils;
-
 /**
  * @author: 廖华凯
  * @description:
@@ -52,14 +50,13 @@ public class ContractPrgKnotItemDecorator extends RecyclerView.ItemDecoration {
                 ViewGroup startChild = (ViewGroup) parent.getChildAt(i);
                 ViewGroup endChild = (ViewGroup) parent.getChildAt(i + 1);
                 View sphereStart = startChild.getChildAt(0);
-                int index = parent.getChildAdapterPosition(startChild);
-                int rowIndex = index / spanCount;
-                if (index % spanCount != (spanCount - 1)) {
-                    int left = startChild.getLeft() + startChild.getWidth() / 2;
-                    int top = rowIndex * startChild.getHeight() + (int) (sphereStart.getTop() + sphereStart.getHeight() / 2 - DimensionUtils.dp2px(DIVIDER_HEIGHT_IN_DP) / 2);
-                    int right = endChild.getLeft() + endChild.getWidth() / 2;
-                    int bottom = (int) (top + DimensionUtils.dp2px(DIVIDER_HEIGHT_IN_DP));
-                    c.drawRect(left, top, right, bottom, mPaint);
+                int horizontalPos = parent.getChildAdapterPosition(startChild) / spanCount;
+                if (horizontalPos != spanCount - 1) {
+                    float startX = startChild.getLeft() + startChild.getWidth() * 1.0f / 2;
+                    float startY = startChild.getTop() + sphereStart.getTop() + sphereStart.getHeight() * 1.0f / 2;
+                    float endX = endChild.getLeft() + endChild.getWidth() * 1.0f / 2;
+                    float endY = startY;
+                    c.drawLine(startX, startY, endX, endY, mPaint);
                 }
             }
         }
