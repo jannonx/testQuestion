@@ -217,17 +217,15 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
-                android:id="@+id/tfl_picture"
+            <tl.com.easy_recycleview_library.BaseRecyclerView
+                android:id="@+id/image_recycleView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="12dp"
+                android:background="@color/bg_window"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_pick_tip"
                 tools:background="@color/color_green_D4FFF1"
-                tools:layout_height="@dimen/dp_100" />
+                tools:layout_height="@dimen/dp_150" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

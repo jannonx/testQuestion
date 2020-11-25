@@ -3,15 +3,18 @@ package com.guyuan.dear.focus.projectsite.data;
 
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
+import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.focus.projectsite.api.FocusProjectSiteApiService;
 import com.guyuan.dear.focus.projectsite.bean.ProjectOverViewBean;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteStatusBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
+import retrofit2.http.PartMap;
 
 /**
  * @description:
@@ -37,7 +40,9 @@ public class FocusProjectSiteRepository {
     Observable<ResultBean<Integer>> postAnswerInfo(RequestBody body) {
         return apiService.postAnswerInfo(body);
     }
-
+    Observable<ResultBean<List<UploadBean>>> uploadPic(@PartMap Map<String, RequestBody> map) {
+        return apiService.uploadPic(map);
+    }
 //=====================================================================//
     //===============================现场勘察===============================//
 

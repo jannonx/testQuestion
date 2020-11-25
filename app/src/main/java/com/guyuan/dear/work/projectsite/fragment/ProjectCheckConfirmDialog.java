@@ -18,6 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.DialogWorkProjectCheckBinding;
+import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
@@ -33,9 +34,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
 /**
  * @description:
@@ -57,7 +61,8 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
     private DialogWorkProjectCheckBinding viewBinding;
     private SiteExploreBean siteExploreBean;
     private int isCheckOK = 0;
-
+    protected ArrayList<String> imageDataList = new ArrayList<>();
+    private BaseRecyclerViewAdapter imageAdapter;
 
     public ProjectCheckConfirmDialog(@NonNull Context context, @StyleRes int theme, Activity activity) {
         super(context, R.style.BottomSheetDialog);
@@ -105,6 +110,14 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
         //设置不可点击状态
 //        viewBinding.tvOk.setClickable(false);
 //        viewBinding.tvOk.setEnabled(false);
+        ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
+                imageDataList, R.layout.item_explorate_image);
+        imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
+
+        viewBinding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        viewBinding.imageRecycleView.setAdapter(imageAdapter);
+        viewBinding.imageRecycleView.setPullRefreshEnabled(false);
+        viewBinding.imageRecycleView.setLoadMoreEnabled(false);
         viewBinding.tvOk.setOnClickListener(this);
         viewBinding.tvCancel.setOnClickListener(this);
         switchRadioButton(viewBinding.rbRight, true);
@@ -169,6 +182,13 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
     }
 
     private void commitApplyInfo() {
+        if (TextUtils.isEmpty(viewBinding.etSearch.getText().toString())) {
+            ToastUtils.showLong(getContext(), "请填内容");
+            return;
+        }
+        if (imageDataList.isEmpty()) {
+            ToastUtils.showLong(getContext(), "请选择图片");
+        }
         switch (siteExploreBean.getProjectReportType()) {
             ///现场勘查报告
             case TYPE_SITE_EXPLORATION:
@@ -195,17 +215,18 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
 
     }
 
+    public void setPhotoList(ArrayList<String> photoList) {
+        imageDataList.clear();
+        imageDataList.addAll(photoList);
+        imageAdapter.refreshData();
+    }
+
     private void commitCustomerAcceptanceInfo() {
         PostCustomerAcceptanceInfo body = new PostCustomerAcceptanceInfo();
-        if (TextUtils.isEmpty(viewBinding.etSearch.getText().toString())) {
-            ToastUtils.showLong(getContext(), "请填内容");
-            return;
-        }
+
         body.setId(siteExploreBean.getId());
         body.setCheckRemark(viewBinding.etSearch.getText().toString());
-        List<String> imageArr = new ArrayList<>();
-        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
-        body.setCheckUrl(imageArr);
+        body.setCheckUrl(imageDataList);
         if (clickListener != null) {
             clickListener.onCommitCustomerAcceptanceInfo(body);
             dismiss();
@@ -214,15 +235,9 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
 
     private void commitInstallDebugInfo() {
         PostInstallationDebugInfo body = new PostInstallationDebugInfo();
-        if (TextUtils.isEmpty(viewBinding.etSearch.getText().toString())) {
-            ToastUtils.showLong(getContext(), "请填内容");
-            return;
-        }
         body.setId(siteExploreBean.getId());
         body.setRemark(viewBinding.etSearch.getText().toString());
-        List<String> imageArr = new ArrayList<>();
-        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
-        body.setImgUrl(imageArr);
+        body.setImgUrl(imageDataList);
         if (clickListener != null) {
             clickListener.onCommitInstallationDebugInfo(body);
             dismiss();
@@ -296,6 +311,15 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
                 }
             }
         });
+
+        viewBinding.ivPickImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (clickListener != null) {
+                    clickListener.onPickImageClick();
+                }
+            }
+        });
     }
 
     //就是返回页面高度
@@ -306,6 +330,9 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
     }
 
     public interface OnDialogClickListener {
+
+        void onPickImageClick();
+
         void onCommitCheckGoodsInfo(PostCheckInfo data);
 
         void onCommitInstallationDebugInfo(PostInstallationDebugInfo data);

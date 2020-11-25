@@ -2,6 +2,7 @@ package com.guyuan.dear.work.projectsite.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,13 +11,18 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.RadioGroup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.activity.BaseFileUploadActivity;
+import com.guyuan.dear.base.activity.BaseTabActivity;
+import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.DialogWorkProjectCheckBinding;
@@ -24,6 +30,7 @@ import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.databinding.FragmentWorkCheckGoodImgBinding;
 import com.guyuan.dear.databinding.FragmentWorkSiteExplorationIngBinding;
 import com.guyuan.dear.focus.projectsite.adapter.CheckContentAdapter;
+import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
@@ -32,10 +39,12 @@ import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
+import com.guyuan.dear.mine.activity.UserInfoActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
+import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.adapter.SiteExplorationAdapter;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
@@ -58,9 +67,12 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWorkSiteExplorationIngBinding, WorkProjectSiteViewModel> {
+public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWorkSiteExplorationIngBinding, WorkProjectSiteViewModel>
+        implements BaseFileUploadActivity.PhotoSelectListener {
 
     public static final String TAG = SiteExplorationFragment.class.getSimpleName();
+    protected ArrayList<String> photoList = new ArrayList<>();
+    protected ArrayList<String> imageDataList = new ArrayList<>();
     private SiteExploreBean detailProjectData;
     // 是否满足条件、是否安全(1:是，2:否)
     private static final int TYPE_CONDITION_OK = 1;
@@ -68,6 +80,8 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
     private List<ProjectSiteOpinionBean> listData = new ArrayList<>();
     private int isConditionOK = 1;
     public BaseRecyclerViewAdapter adapter;
+    public BaseRecyclerViewAdapter imageAdapter;
+    private WorkSiteExploresActivity activity;
 
     public static SiteExplorationFragment newInstance(SiteExploreBean siteExploreBean) {
         Bundle args = new Bundle();
@@ -94,6 +108,16 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
         binding.baseRecycleView.setAdapter(adapter);
         binding.baseRecycleView.setPullRefreshEnabled(false);
         binding.baseRecycleView.setLoadMoreEnabled(false);
+
+
+        ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
+                imageDataList, R.layout.item_explorate_image);
+        imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
+
+        binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        binding.imageRecycleView.setAdapter(imageAdapter);
+        binding.imageRecycleView.setPullRefreshEnabled(false);
+        binding.imageRecycleView.setLoadMoreEnabled(false);
 
         binding.tvActivateBtn.setText(detailProjectData.getProjectReportType() == ProjectReportType.TYPE_SITE_EXPLORATION
                 ? "完成勘查" : "完成排查");
@@ -180,7 +204,19 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
         binding.tvActivateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postSiteExploreInfo();
+                if (imageDataList.isEmpty()) {
+                    postSiteExploreInfo(new ArrayList<String>());
+                } else {
+                    activity.checkPhotoAndFileUpLoad(imageDataList);
+                }
+
+            }
+        });
+
+        binding.ivPickImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.openAlbum(BaseTabActivity.FIRST);
             }
         });
 
@@ -212,6 +248,19 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
                 setDetailDataByType(data);
             }
         });
+
+        viewModel.getUploadImageEvent().observe(this, new Observer<List<UploadBean>>() {
+            @Override
+            public void onChanged(List<UploadBean> dataList) {
+                if (dataList.isEmpty()) return;
+                List<String> imageUrlList = new ArrayList<>();
+                for (UploadBean bean : dataList) {
+                    LogUtils.showLog("upLoadPicAndVideo=" + bean.getUrl());
+                    imageUrlList.add(bean.getUrl());
+                }
+                postSiteExploreInfo(imageUrlList);
+            }
+        });
     }
 
     private void setDetailDataByType(SiteExploreBean data) {
@@ -228,7 +277,7 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
         }
     }
 
-    private void postSiteExploreInfo() {
+    private void postSiteExploreInfo(List<String> imageList) {
         PostSiteExploreInfo body = new PostSiteExploreInfo();
         if (TextUtils.isEmpty(binding.etSearch.getText().toString())) {
             ToastUtils.showLong(getContext(), "请填内容");
@@ -237,23 +286,26 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
 
         body.setId(detailProjectData.getId());
         body.setSatisfyFlag(isConditionOK);
-        List<String> imageArr = new ArrayList<>();
-        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
-        body.setImgUrl(imageArr);
+//        List<String> imageArr = new ArrayList<>();
+//        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
+        //图片
+        body.setImgUrl(imageList);
 
         body.setAuditExplain(binding.etSearch.getText().toString());
-        List<ProjectSiteOpinionBean> opinionList = new ArrayList<>();
-        for (ProjectSiteOpinionBean opinionBean : listData) {
-            opinionList.add(opinionBean);
-        }
-        body.setPsAuditItemDetailParamsList(opinionList);
+//        List<ProjectSiteOpinionBean> opinionList = new ArrayList<>();
+//        for (ProjectSiteOpinionBean opinionBean : listData) {
+//            opinionList.add(opinionBean);
+//        }
+        body.setPsAuditItemDetailParamsList(listData);
 
         String str = GsonUtil.objectToString(body);
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
                 "charset=utf-8"), str);
-        if (ProjectReportType.TYPE_SITE_EXPLORATION==detailProjectData.getProjectReportType()){
+
+        //先压缩图片
+        if (ProjectReportType.TYPE_SITE_EXPLORATION == detailProjectData.getProjectReportType()) {
             viewModel.commitSiteExploreInfo(requestBody);
-        }else{
+        } else {
             viewModel.postCheckSafeInfo(requestBody);
         }
     }
@@ -332,5 +384,26 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
     @Override
     protected int getVariableId() {
         return 0;
+    }
+
+    @Override
+    public ArrayList<String> getSelectedMediaList() {
+        return photoList;
+    }
+
+    @Override
+    public void onPhotoSelected(ArrayList<String> photoList) {
+        imageDataList.clear();
+        imageDataList.addAll(photoList);
+        imageAdapter.refreshData();
+
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (getActivity() != null) {
+            activity = (WorkSiteExploresActivity) getActivity();
+        }
     }
 }

@@ -1,13 +1,18 @@
 package com.guyuan.dear.work.projectsite.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.activity.BaseFileUploadActivity;
+import com.guyuan.dear.base.activity.BaseTabActivity;
+import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentFocusProjectSiteBinding;
@@ -23,7 +28,10 @@ import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
+import com.guyuan.dear.work.projectsite.activity.WorkCheckGoodsActivity;
+import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.adapter.CheckGoodsAdapter;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostCustomerAcceptanceInfo;
@@ -44,12 +52,18 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkCheckGoodImgBinding, WorkProjectSiteViewModel> {
+public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkCheckGoodImgBinding, WorkProjectSiteViewModel>
+        implements BaseFileUploadActivity.PhotoSelectListener {
 
     public static final String TAG = CheckGoodsFragment.class.getSimpleName();
     private SiteExploreBean detailData;
+    protected ArrayList<String> photoList = new ArrayList<>();
     private List<CheckGoodsBean> listData = new ArrayList<>();
     private BaseRecyclerViewAdapter adapter;
+    private WorkCheckGoodsActivity activity;
+
+    private ProjectCheckConfirmDialog customerDialog;
+    private PostCheckInfo postData;
 
     public static CheckGoodsFragment newInstance(SiteExploreBean data) {
         Bundle bundle = new Bundle();
@@ -113,20 +127,47 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
                 confirmCheckGoods();
             }
         });
+
+        viewModel.getUploadImageEvent().observe(this, new Observer<List<UploadBean>>() {
+            @Override
+            public void onChanged(List<UploadBean> dataList) {
+                if (dataList.isEmpty()) return;
+                List<String> imageUrlList = new ArrayList<>();
+                for (UploadBean bean : dataList) {
+                    LogUtils.showLog("upLoadPicAndVideo=" + bean.getUrl());
+                    imageUrlList.add(bean.getUrl());
+                }
+                String str = GsonUtil.objectToString(postData);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), str);
+                viewModel.postCheckGoodInfo(requestBody);
+            }
+        });
     }
 
     /**
      * 确认到货及完成清点
      */
     private void confirmCheckGoods() {
-        ProjectCheckConfirmDialog.show(getActivity(), detailData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
+
+        customerDialog = new ProjectCheckConfirmDialog(getActivity(), detailData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
+            @Override
+            public void onPickImageClick() {
+                activity.openAlbum(BaseTabActivity.FIRST);
+            }
+
             @Override
             public void onCommitCheckGoodsInfo(PostCheckInfo data) {
-                String str = GsonUtil.objectToString(data);
-                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
-                        "charset=utf-8"), str);
+                postData = data;
+                if (data.getCheckUrl().isEmpty()) {
+                    String str = GsonUtil.objectToString(data);
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                            "charset=utf-8"), str);
+                    viewModel.postCheckGoodInfo(requestBody);
+                } else {
+                    activity.checkPhotoAndFileUpLoad(data.getCheckUrl());
+                }
 
-                viewModel.postCheckGoodInfo(requestBody);
             }
 
             @Override
@@ -135,11 +176,13 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
             }
 
             @Override
-            public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data){
+            public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data) {
 
             }
 
         });
+        customerDialog.show();
+
     }
 
     private void setDetailData(SiteExploreBean data) {
@@ -182,4 +225,22 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
         return 0;
     }
 
+    @Override
+    public ArrayList<String> getSelectedMediaList() {
+        return photoList;
+    }
+
+    @Override
+    public void onPhotoSelected(ArrayList<String> photoList) {
+        photoList.addAll(photoList);
+        customerDialog.setPhotoList(photoList);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (getActivity() != null) {
+            activity = (WorkCheckGoodsActivity) getActivity();
+        }
+    }
 }

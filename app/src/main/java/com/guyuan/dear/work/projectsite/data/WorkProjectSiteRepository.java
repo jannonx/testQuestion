@@ -3,15 +3,18 @@ package com.guyuan.dear.work.projectsite.data;
 
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
+import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.focus.projectsite.bean.ProjectOverViewBean;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteStatusBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.work.projectsite.api.WorkProjectSiteApiService;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
+import retrofit2.http.PartMap;
 
 /**
  * @description:
@@ -32,6 +35,12 @@ public class WorkProjectSiteRepository {
 
     Observable<ResultBean<List<ProjectSiteStatusBean>>> getProjectSiteStatusList(long id, int type) {
         return apiService.getProjectSiteStatusList(id, type);
+    }
+
+
+
+    Observable<ResultBean<List<UploadBean>>> uploadPic(@PartMap Map<String, RequestBody> map) {
+        return apiService.uploadPic(map);
     }
 
 //=====================================================================//

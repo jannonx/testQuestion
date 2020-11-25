@@ -160,6 +160,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/label_document" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_pick_image"
                 android:layout_width="@dimen/dp_32"
                 android:layout_height="@dimen/dp_32"
                 android:src="@mipmap/camera_open"
@@ -168,17 +169,26 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
-            android:id="@+id/tfl_picture"
+        <tl.com.easy_recycleview_library.BaseRecyclerView
+            android:id="@+id/image_recycleView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
+            android:background="@color/bg_window"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cl_pick_tip"
             tools:background="@color/color_green_D4FFF1"
-            tools:layout_height="@dimen/dp_100" />
+            tools:layout_height="@dimen/dp_150" />
+        <!--        <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout-->
+        <!--            android:id="@+id/tfl_picture"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="12dp"-->
+        <!--            android:layout_marginTop="12dp"-->
+        <!--            android:layout_marginEnd="12dp"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/cl_pick_tip"-->
+        <!--            tools:background="@color/color_green_D4FFF1"-->
+        <!--            tools:layout_height="@dimen/dp_100" />-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -188,7 +198,7 @@
             android:layout_marginEnd="@dimen/dp_12"
 
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/tfl_picture">
+            app:layout_constraintTop_toBottomOf="@+id/image_recycleView">
 
             <TextView
                 android:id="@+id/tv_cancel"

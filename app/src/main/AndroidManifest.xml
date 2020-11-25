@@ -264,6 +264,11 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
+            android:name=".focus.projectsite.activity.DemoDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name=".focus.projectsite.activity.FocusSiteExplorationDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"

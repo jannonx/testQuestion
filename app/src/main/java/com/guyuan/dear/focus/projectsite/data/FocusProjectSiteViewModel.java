@@ -6,14 +6,17 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.api.RxJavaHelper;
+import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.focus.projectsite.bean.ProjectOverViewBean;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteStatusBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.disposables.Disposable;
 import okhttp3.RequestBody;
+import retrofit2.http.PartMap;
 
 /**
  * @description:
@@ -35,7 +38,7 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
     private MutableLiveData<ProjectOverViewBean> projectSiteOverViewEvent = new MutableLiveData<>();
     private MutableLiveData<List<ProjectSiteStatusBean>> projectSiteStatusEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> postAnswerInfoEvent = new MutableLiveData<>();
-
+    private MutableLiveData<List<UploadBean>> uploadImageEvent = new MutableLiveData<>();//上传图片
     /**
      * 现场勘察
      */
@@ -110,6 +113,18 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
 
         Disposable disposable = RxJavaHelper.build(this, repository.postAnswerInfo(body))
                 .getHelper().flow(postAnswerInfoEvent);
+        addSubscription(disposable);
+    }
+
+    /**
+     * 上传图片
+     *
+     * @param map 图片信息
+     */
+    public void uploadPic(@PartMap Map<String, RequestBody> map) {
+
+        Disposable disposable = RxJavaHelper.build(this, repository.uploadPic(map))
+                .getHelper().flow(uploadImageEvent);
         addSubscription(disposable);
     }
 
@@ -574,5 +589,13 @@ public class FocusProjectSiteViewModel extends BaseViewModel {
 
     public void setPostCustomerAcceptanceOpinionEvent(MutableLiveData<Integer> postCustomerAcceptanceOpinionEvent) {
         this.postCustomerAcceptanceOpinionEvent = postCustomerAcceptanceOpinionEvent;
+    }
+
+    public MutableLiveData<List<UploadBean>> getUploadImageEvent() {
+        return uploadImageEvent;
+    }
+
+    public void setUploadImageEvent(MutableLiveData<List<UploadBean>> uploadImageEvent) {
+        this.uploadImageEvent = uploadImageEvent;
     }
 }
