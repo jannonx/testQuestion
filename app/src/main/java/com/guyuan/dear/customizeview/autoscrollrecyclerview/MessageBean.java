@@ -23,24 +23,24 @@ public class MessageBean {
      * messageInfos : null
      */
 
-    private int id;
-    private int msgType;
-    private int sendType;
-    private int businessId;
-    private String msgTitle;
-    private String msgContent;
-    private int createBy;
-    private String sendTime;
-    private String createTime;
-    private Object lastUpdateBy;
-    private String lastUpdateTime;
-    private Object myMsgStatus;
-    private int label; //0:绿色 1:黄色  2:红色
-    private int isClose;   //是否已处理该条智能管控消息 1:已处理
-    private int isCloseAll;//是否已处理该类型所有异常消息 1:已处理
-    private String url;
-    private String urlWarnContent;
-    private String urlName;
+    private int id;                                    //编号
+    private int msgType;                               //消息类型
+    private int sendType;                              //推送类型
+    private int businessId;                            //业务id
+    private String msgTitle;                           //消息标题
+    private String msgContent;                         //消息内容
+    private int createBy;                              //创建人
+    private String sendTime;                           //发送时间
+    private String createTime;                         //创建时间
+    private Object lastUpdateBy;                       //更新人
+    private String lastUpdateTime;                     //更新时间
+    private Object myMsgStatus;                        //自己的消息状态
+    private int label;                                 //0:绿色 1:黄色  2:红色
+    private int isClose;                               //是否已处理该条智能管控消息 1:已处理
+    private int isCloseAll;                            //是否已处理该类型所有异常消息 1:已处理
+    private String url;                                //消息跳转的地址
+    private String urlWarnContent;                     //出现预警警告，智能管控模块菜单提示语
+    private String urlName;                            //页面标题
 
     private List<MessageInfosBean> messageInfos;
 
@@ -205,26 +205,25 @@ public class MessageBean {
     }
 
 
-
     @Override
     public String toString() {
         return "MessageBean{" +
-            "id=" + id +
-            ", msgType=" + msgType +
-            ", sendType=" + sendType +
-            ", businessId=" + businessId +
-            ", msgTitle='" + msgTitle + '\'' +
-            ", msgContent='" + msgContent + '\'' +
-            ", createBy=" + createBy +
-            ", sendTime='" + sendTime + '\'' +
-            ", createTime='" + createTime + '\'' +
-            ", lastUpdateBy=" + lastUpdateBy +
-            ", lastUpdateTime='" + lastUpdateTime + '\'' +
-            ", myMsgStatus=" + myMsgStatus +
-            ", messageInfos=" + messageInfos +
-            ", label=" + label +
-            ", url='" + url + '\'' +
-            ", urlName='" + urlName + '\'' +
-            '}';
+                "id=" + id +
+                ", msgType=" + msgType +
+                ", sendType=" + sendType +
+                ", businessId=" + businessId +
+                ", msgTitle='" + msgTitle + '\'' +
+                ", msgContent='" + msgContent + '\'' +
+                ", createBy=" + createBy +
+                ", sendTime='" + sendTime + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", lastUpdateBy=" + lastUpdateBy +
+                ", lastUpdateTime='" + lastUpdateTime + '\'' +
+                ", myMsgStatus=" + myMsgStatus +
+                ", messageInfos=" + messageInfos +
+                ", label=" + label +
+                ", url='" + url + '\'' +
+                ", urlName='" + urlName + '\'' +
+                '}';
     }
 }

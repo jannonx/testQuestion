@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
         <com.guyuan.dear.customizeview.SmartControlView
-            android:id="@+id/work_message_bar"
+            android:id="@+id/smart_control_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

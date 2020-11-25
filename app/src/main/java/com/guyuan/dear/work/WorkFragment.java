@@ -10,6 +10,7 @@ import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.customizeview.MessageBar;
 import com.guyuan.dear.databinding.FragmentWorkBinding;
 import com.guyuan.dear.login.data.ChildrenBean;
+import com.guyuan.dear.message.ui.MessageActivity;
 import com.guyuan.dear.scan.ScanActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
@@ -26,6 +27,7 @@ import com.guyuan.dear.work.qc.views.home.QcHomeActivity;
 import java.util.ArrayList;
 
 import androidx.recyclerview.widget.GridLayoutManager;
+
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
@@ -173,6 +175,16 @@ public class WorkFragment extends BaseListFragment<ChildrenBean, FragmentWorkBin
             @Override
             public void onClick(View v) {
                 ScanActivity.starter(getContext(), "");
+            }
+        });
+        MessageBar messageBar=getActivity().findViewById(R.id.work_message_bar);
+
+
+
+        binding.workMessageBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MessageActivity.start(getContext(), "消息");
             }
         });
     }
