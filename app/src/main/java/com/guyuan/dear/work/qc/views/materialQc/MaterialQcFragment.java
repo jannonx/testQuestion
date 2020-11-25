@@ -1,9 +1,14 @@
 package com.guyuan.dear.work.qc.views.materialQc;
 
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.RadioGroup;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
@@ -59,8 +64,8 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
         viewModel.onClickAddQcCheckers.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<StaffBean> checkers = getViewModel().qcCheckers.getValue();
-                ArrayList<StaffBean> verifiers = getViewModel().verifiers.getValue();
+                ArrayList<StaffBean> checkers = getViewModel().getQcCheckers().getValue();
+                ArrayList<StaffBean> verifiers = getViewModel().getVerifiers().getValue();
                 PickStaffsActivity.startForResult(
                         MaterialQcFragment.this,
                         REQUEST_CODE_PICK_QC_CHECKERS,
@@ -78,8 +83,8 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
         viewModel.onClickAddVerifiers.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<StaffBean> checkers = getViewModel().qcCheckers.getValue();
-                ArrayList<StaffBean> verifiers = getViewModel().verifiers.getValue();
+                ArrayList<StaffBean> checkers = getViewModel().getQcCheckers().getValue();
+                ArrayList<StaffBean> verifiers = getViewModel().getVerifiers().getValue();
                 PickStaffsActivity.startForResult(
                         MaterialQcFragment.this,
                         REQUEST_CODE_PICK_VERIFIERS,
@@ -96,38 +101,62 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
         viewModel.onClickSelectMaterial.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialogSelectMaterial();
+                BaseProjectBean projectBean = getViewModel().getSelectedProject().getValue();
+                if(projectBean ==null){
+                    showToastTip("请先选择项目。");
+                    return;
+                }
+                addDisposable(getViewModel().loadMaterialListFromNet(projectBean.getId()));
             }
         });
 
-        viewModel.onClickSelectSpec.postValue(new View.OnClickListener() {
+        viewModel.getMaterialList().observe(getViewLifecycleOwner(), new Observer<List<MaterialInfo>>() {
             @Override
-            public void onClick(View v) {
-                showDialogSelectSpec();
+            public void onChanged(List<MaterialInfo> materialInfos) {
+                if(!materialInfos.isEmpty()){
+                    showDialogSelectMaterial();
+                }
             }
         });
+
 
         viewModel.onClickSelectIfNeedVerify.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDialogToggleNeedVerify();
-
             }
         });
 
         viewModel.onClickSelectProject.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialogSelectProjects();
+//                showDialogSelectProjects();
+                addDisposable(getViewModel().getProjectListFromNet());
 
+            }
+        });
+        getViewModel().getProjectList().observe(getViewLifecycleOwner(), new Observer<List<BaseProjectBean>>() {
+            @Override
+            public void onChanged(List<BaseProjectBean> baseProjectBeans) {
+                if(!baseProjectBeans.isEmpty()){
+                    showDialogSelectProjects();
+                }
             }
         });
 
         viewModel.onClickSelectQcApproach.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialogSelectQcApproach();
+                addDisposable(getViewModel().getQcApproachesFromNet());
 
+            }
+        });
+        viewModel.getQcApproachList().observe(getViewLifecycleOwner(), new Observer<List<BaseQcApproachBean>>() {
+            @Override
+            public void onChanged(List<BaseQcApproachBean> baseQcApproachBeans) {
+                if(!baseQcApproachBeans.isEmpty()){
+                    showDialogSelectQcApproach();
+                }
             }
         });
 
@@ -142,46 +171,57 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
         viewModel.onClickSubmit.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //todo
-                showToastTip("提交成功。");
+                getViewModel().submitApply();
+            }
+        });
 
+        getViewDataBinding().fragmentProductQcRadioGrpJudgeConditions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.fragment_product_qc_radio_btn_judge_conditions_by_scheme:
+                        getViewModel().updateJudgeCondition(1);
+                        break;
+                    case R.id.fragment_product_qc_radio_btn_judge_conditions_by_nation_standard:
+                        getViewModel().updateJudgeCondition(2);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        getViewDataBinding().fragmentProductQcEdtSampleSize.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String string = s.toString();
+                if(TextUtils.isEmpty(string)){
+                    getViewModel().getSampleSize().postValue(0);
+                }else {
+                    getViewModel().getSampleSize().postValue(Integer.valueOf(string));
+                }
             }
         });
 
     }
 
-    private void showDialogSelectSpec() {
-        List<MaterialSpec> list = getViewModel().loadMaterialSpecsFromNet();
-        SelectionDialog<MaterialSpec> dialog = new SelectionDialog<MaterialSpec>(getContext()) {
-            @Override
-            public List<MaterialSpec> setListData() {
-                return list;
-            }
-
-            @Override
-            public OnSelectItemClickListener<MaterialSpec> setOnItemClick() {
-                return new OnSelectItemClickListener<MaterialSpec>() {
-                    @Override
-                    public void onItemClick(MaterialSpec bean, int position) {
-                        getViewModel().updateMaterialSpec(bean);
-                    }
-                };
-            }
-
-            @Override
-            public String getItemLabel(MaterialSpec item) {
-                return item.getMaterialSpecName();
-            }
-        };
-        dialog.show();
-    }
 
     private void showDialogSelectMaterial() {
-        List<MaterialInfo> materialInfos = getViewModel().loadMaterialInfosFromNet();
+        List<MaterialInfo> list = getViewModel().getMaterialList().getValue();
         SelectionDialog<MaterialInfo> dialog = new SelectionDialog<MaterialInfo>(getContext()) {
             @Override
             public List<MaterialInfo> setListData() {
-                return materialInfos;
+                return list;
             }
 
             @Override
@@ -189,7 +229,7 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
                 return new OnSelectItemClickListener<MaterialInfo>() {
                     @Override
                     public void onItemClick(MaterialInfo bean, int position) {
-                        getViewModel().updateMaterialInfo(bean);
+                        getViewModel().updateSelectedMaterial(bean);
                     }
                 };
             }
@@ -206,7 +246,7 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
         List<Integer> list = new ArrayList<Integer>() {
             {
                 add(1);
-                add(0);
+                add(2);
             }
         };
         SelectionDialog<Integer> dialog = new SelectionDialog<Integer>(getContext()) {
@@ -227,7 +267,7 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
 
             @Override
             public String getItemLabel(Integer item) {
-                if (item > 0) {
+                if (item == 1) {
                     return "合格";
                 }
                 return "异常";
@@ -237,7 +277,7 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
     }
 
     private void showDialogSelectQcApproach() {
-        List<BaseQcApproachBean> approaches = getViewModel().getQcApproaches();
+        List<BaseQcApproachBean> approaches = getViewModel().getQcApproachList().getValue();
         SelectionDialog<BaseQcApproachBean> dialog = new SelectionDialog<BaseQcApproachBean>(getContext()) {
             @Override
             public List<BaseQcApproachBean> setListData() {
@@ -263,7 +303,7 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
     }
 
     private void showDialogSelectProjects() {
-        List<BaseProjectBean> list = getViewModel().getProjectListFromNet();
+        List<BaseProjectBean> list = getViewModel().getProjectList().getValue();
         SelectionDialog<BaseProjectBean> dialog = new SelectionDialog<BaseProjectBean>(getContext()) {
             @Override
             public List<BaseProjectBean> setListData() {

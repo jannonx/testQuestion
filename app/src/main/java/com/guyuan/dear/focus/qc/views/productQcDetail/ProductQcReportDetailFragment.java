@@ -36,7 +36,7 @@ public class ProductQcReportDetailFragment extends BaseMvvmFragment<FragmentProd
     protected void initData() {
         Bundle bundle = getArguments();
         report = bundle.getParcelable(ConstantValue.KEY_QC_REPORT);
-        getViewModel().getReportDetail(report);
+        addDisposable(getViewModel().getReportDetail(report));
     }
 
     @Override

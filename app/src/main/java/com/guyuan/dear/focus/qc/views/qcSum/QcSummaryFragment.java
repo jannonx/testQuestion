@@ -6,7 +6,7 @@ import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentQcSummaryBinding;
-import com.guyuan.dear.focus.qc.views.qcReportList.QcSumListActivity;
+import com.guyuan.dear.focus.qc.views.qcReportList.QcSumTypeListActivity;
 import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.jzxiang.pickerview.TimePickerDialog;
@@ -57,9 +57,9 @@ public class QcSummaryFragment extends BaseMvvmFragment<FragmentQcSummaryBinding
         getViewModel().setOnClickShowProductPassReport(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                QcSumListActivity.start(getActivity(),
+                QcSumTypeListActivity.start(getActivity(),
                         "产品合格列表",
-                        QcSumListActivity.REPORT_TYPE_PRODUCT_PASS_REPORT,
+                        QcSumTypeListActivity.REPORT_TYPE_PRODUCT_PASS_REPORT,
                         getViewModel().getQcSummaryBean().getValue().getStartPeriod(),
                         getViewModel().getQcSummaryBean().getValue().getEndPeriod());
 
@@ -68,9 +68,9 @@ public class QcSummaryFragment extends BaseMvvmFragment<FragmentQcSummaryBinding
         getViewModel().setOnClickShowProductRejectReport(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                QcSumListActivity.start(getActivity(),
+                QcSumTypeListActivity.start(getActivity(),
                         "产品异常列表",
-                        QcSumListActivity.REPORT_TYPE_PRODUCT_REJECT_REPORT,
+                        QcSumTypeListActivity.REPORT_TYPE_PRODUCT_REJECT_REPORT,
                         getViewModel().getQcSummaryBean().getValue().getStartPeriod(),
                         getViewModel().getQcSummaryBean().getValue().getEndPeriod());
 
@@ -79,9 +79,9 @@ public class QcSummaryFragment extends BaseMvvmFragment<FragmentQcSummaryBinding
         getViewModel().setOnClickShowMaterialPassReport(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                QcSumListActivity.start(getActivity(),
+                QcSumTypeListActivity.start(getActivity(),
                         "原材料合格列表",
-                        QcSumListActivity.REPORT_TYPE_MATERIAL_PASS_REPORT,
+                        QcSumTypeListActivity.REPORT_TYPE_MATERIAL_PASS_REPORT,
                         getViewModel().getQcSummaryBean().getValue().getStartPeriod(),
                         getViewModel().getQcSummaryBean().getValue().getEndPeriod());
 
@@ -90,9 +90,9 @@ public class QcSummaryFragment extends BaseMvvmFragment<FragmentQcSummaryBinding
         getViewModel().setOnClickShowMaterialRejectReport(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                QcSumListActivity.start(getActivity(),
+                QcSumTypeListActivity.start(getActivity(),
                         "原材料异常列表",
-                        QcSumListActivity.REPORT_TYPE_MATERIAL_REJECT_REPORT,
+                        QcSumTypeListActivity.REPORT_TYPE_MATERIAL_REJECT_REPORT,
                         getViewModel().getQcSummaryBean().getValue().getStartPeriod(),
                         getViewModel().getQcSummaryBean().getValue().getEndPeriod());
 
@@ -107,7 +107,7 @@ public class QcSummaryFragment extends BaseMvvmFragment<FragmentQcSummaryBinding
 
     private void selectStartTime() {
         AlertDialogUtils.pickTime(getParentFragmentManager(), "请选择起始时间", 0,
-                System.currentTimeMillis(), dateFrom, Type.YEAR_MONTH, new OnDateSetListener() {
+                System.currentTimeMillis(), dateFrom, Type.YEAR_MONTH_DAY, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
                         dateFrom = millseconds;
@@ -119,7 +119,7 @@ public class QcSummaryFragment extends BaseMvvmFragment<FragmentQcSummaryBinding
 
     private void selectEndTime() {
         AlertDialogUtils.pickTime(getParentFragmentManager(), "请选择结束时间", dateFrom,
-                System.currentTimeMillis(), dateTo, Type.YEAR_MONTH, new OnDateSetListener() {
+                System.currentTimeMillis(), dateTo, Type.YEAR_MONTH_DAY, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
                         if (dateFrom > dateTo) {

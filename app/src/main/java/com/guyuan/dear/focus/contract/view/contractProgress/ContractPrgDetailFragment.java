@@ -22,11 +22,11 @@ import com.guyuan.dear.utils.ConstantValue;
  **/
 public class ContractPrgDetailFragment extends BaseMvvmFragment<FragmentContractPrgDetailBinding, ContractPrgDetailViewModel> {
 
-    private String mContractId;
+    private int mContractId;
 
-    public static ContractPrgDetailFragment getInstance(String contractId) {
+    public static ContractPrgDetailFragment getInstance(int contractId) {
         Bundle arg = new Bundle();
-        arg.putString(ConstantValue.KEY_CONTRACT_ID, contractId);
+        arg.putInt(ConstantValue.KEY_CONTRACT_ID, contractId);
         ContractPrgDetailFragment fragment = new ContractPrgDetailFragment();
         fragment.setArguments(arg);
         return fragment;
@@ -40,8 +40,8 @@ public class ContractPrgDetailFragment extends BaseMvvmFragment<FragmentContract
     @Override
     protected void initData() {
         Bundle bundle = getArguments();
-        mContractId = bundle.getString(ConstantValue.KEY_CONTRACT_ID);
-        getViewModel().loadDateFromNet(mContractId);
+        mContractId = bundle.getInt(ConstantValue.KEY_CONTRACT_ID);
+        addDisposable(getViewModel().loadDataFromNet(mContractId));
     }
 
     @Override
@@ -50,18 +50,7 @@ public class ContractPrgDetailFragment extends BaseMvvmFragment<FragmentContract
     }
 
     private void initLogList() {
-        TabLayout tabLayout = getViewDataBinding().fragmentContractPrgDetailTabLayoutContractLogs;
-        ViewPager2 vp = getViewDataBinding().fragmentContractPrgDetailVpContractLogs;
-        ContractLogsPagerAdapter adapter = new ContractLogsPagerAdapter(getParentFragmentManager(),getLifecycle());
-        vp.setOffscreenPageLimit(2);
-        vp.setAdapter(adapter);
-        TabLayoutMediator mediator = new TabLayoutMediator(tabLayout, vp, new TabLayoutMediator.TabConfigurationStrategy() {
-            @Override
-            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                tab.setText(adapter.getTitles()[position]);
-            }
-        });
-        mediator.attach();
+
     }
 
 

@@ -21,6 +21,12 @@ public class QcSummaryBindingAdapter {
         view.setText(yearAndMonth);
     }
 
+    @BindingAdapter("showYearMonthDayByDate")
+    public static void showYearMonthDayByDate(AppCompatTextView view, long date) {
+        String yearAndMonth = CalenderUtils.getInstance().toSmartFactoryDateFormatByDay(date);
+        view.setText(yearAndMonth);
+    }
+
     @BindingAdapter(value = {"setQcPassCount","setQcSampleSize"},requireAll = true)
     public static void calculateQcSummaryPassRate(AppCompatTextView view,int passCount,int sampleSize){
         float rate = passCount*1.f/sampleSize;

@@ -1,5 +1,7 @@
 package com.guyuan.dear.work.qc.beans;
 
+import com.guyuan.dear.net.resultBeans.NetMaterialBean;
+
 /**
  * @author: 廖华凯
  * @description:
@@ -13,6 +15,23 @@ public class MaterialInfo {
     private String comment;
     private int quantity;
     private String unit;
+    private int id;
+    private String spec;
+
+    public MaterialInfo() {
+    }
+
+    public MaterialInfo(NetMaterialBean bean) {
+        setMaterialName(bean.getProductName());
+        setMaterialType(bean.getMaterial());
+        setMaterialId(bean.getProductCode());
+        setId(bean.getId());
+        setComment(bean.getRemarks());
+        setQuantity(bean.getProductNum());
+        setUnit(bean.getProductUnit());
+        setSpec(bean.getModel());
+    }
+
 
     public String getMaterialName() {
         return materialName;
@@ -60,5 +79,21 @@ public class MaterialInfo {
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getSpec() {
+        return spec;
+    }
+
+    public void setSpec(String spec) {
+        this.spec = spec;
     }
 }

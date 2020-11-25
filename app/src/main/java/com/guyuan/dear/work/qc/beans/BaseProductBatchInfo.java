@@ -1,5 +1,8 @@
 package com.guyuan.dear.work.qc.beans;
 
+import com.guyuan.dear.net.resultBeans.NetProductInfo;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +14,18 @@ import java.util.List;
 public class BaseProductBatchInfo {
     private String batchId;
     private List<ProductInfo> products;
+    /**
+     * 提交qc报告时用
+     */
+    private int submitId;
+
+    public BaseProductBatchInfo(NetProductInfo src) {
+        setBatchId(src.getSerialNumber());
+        products = new ArrayList<>();
+        ProductInfo info = new ProductInfo(src);
+        products.add(info);
+        setSubmitId(src.getId());
+    }
 
     public String getBatchId() {
         return batchId;
@@ -26,5 +41,13 @@ public class BaseProductBatchInfo {
 
     public void setProducts(List<ProductInfo> products) {
         this.products = products;
+    }
+
+    public int getSubmitId() {
+        return submitId;
+    }
+
+    public void setSubmitId(int submitId) {
+        this.submitId = submitId;
     }
 }

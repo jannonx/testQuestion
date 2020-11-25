@@ -1,9 +1,14 @@
 package com.guyuan.dear.work.qc.views.productQc;
 
 import android.content.Intent;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.RadioGroup;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
@@ -19,6 +24,8 @@ import com.guyuan.dear.work.qc.beans.BaseQcApproachBean;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.disposables.Disposable;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -57,6 +64,85 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
     @Override
     protected void initListeners() {
         ProductQcViewModel viewModel = getViewModel();
+        //网络获取项目列表
+        viewModel.onClickSelectProject.postValue(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Disposable disposable = getViewModel().getProjectListFromNet();
+                addDisposable(disposable);
+
+            }
+        });
+        //获取成功后弹出窗口
+        viewModel.projectList.observe(getViewLifecycleOwner(), new Observer<List<BaseProjectBean>>() {
+            @Override
+            public void onChanged(List<BaseProjectBean> baseProjectBeans) {
+                if (!baseProjectBeans.isEmpty()) {
+                    showDialogSelectProjects();
+                }
+            }
+        });
+
+        //网络获取产品列表
+        viewModel.onClickSelectBatch.postValue(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BaseProjectBean value = getViewModel().selectedProject.getValue();
+                if (value == null) {
+                    showToastTip("请先选择项目");
+                    return;
+                }
+                addDisposable(getViewModel().getProductListByProjectId());
+            }
+        });
+
+        //获取后弹出窗口
+        viewModel.productBatchList.observe(getViewLifecycleOwner(), new Observer<List<BaseProductBatchInfo>>() {
+            @Override
+            public void onChanged(List<BaseProductBatchInfo> baseProductBatchInfos) {
+                if (!baseProductBatchInfos.isEmpty()) {
+                    showDialogSelectBatch();
+                }
+            }
+        });
+
+        //网络获取质检方式
+        viewModel.onClickSelectQcApproach.postValue(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addDisposable(getViewModel().getQcApproachesFromNet());
+            }
+        });
+        //获取后弹出窗口
+        viewModel.qcApproachList.observe(getViewLifecycleOwner(), new Observer<List<BaseQcApproachBean>>() {
+            @Override
+            public void onChanged(List<BaseQcApproachBean> baseQcApproachBeans) {
+                if (!baseQcApproachBeans.isEmpty()) {
+                    showDialogSelectQcApproach();
+                }
+            }
+        });
+
+        //选择判定条件
+        getViewDataBinding().fragmentProductQcRadioGrpJudgeConditions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    //设计图样
+                    case R.id.fragment_product_qc_radio_btn_judge_conditions_by_scheme:
+                        getViewModel().updateJudgeCondition(1);
+                        break;
+                    //国家标准
+                    case R.id.fragment_product_qc_radio_btn_judge_conditions_by_nation_standard:
+                        getViewModel().updateJudgeCondition(2);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
+        //选择qc人员
         viewModel.onClickAddQcCheckers.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,11 +157,26 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
                         verifiers,
                         10
                 );
-
-
             }
         });
 
+        //选择报告结果：通过/不通过
+        viewModel.onClickSelectResult.postValue(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogSelectResult();
+            }
+        });
+
+        //选择是否需要审批
+        viewModel.onClickSelectIfNeedVerify.postValue(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogToggleNeedVerify();
+            }
+        });
+
+        //选择审批人员
         viewModel.onClickAddVerifiers.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,51 +195,36 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
             }
         });
 
-        viewModel.onClickSelectBatch.postValue(new View.OnClickListener() {
+        //动态更新抽检数量
+        getViewDataBinding().fragmentProductQcEdtSampleSize.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                showDialogSelectBatch();
-            }
-        });
-
-        viewModel.onClickSelectIfNeedVerify.postValue(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialogToggleNeedVerify();
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
-        });
 
-        viewModel.onClickSelectProject.postValue(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                showDialogSelectProjects();
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
             }
-        });
 
-        viewModel.onClickSelectQcApproach.postValue(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                showDialogSelectQcApproach();
+            public void afterTextChanged(Editable s) {
+                String string = s.toString();
+                if(TextUtils.isEmpty(string)){
+                    viewModel.sampleSize.postValue(0);
+                }else {
+                    viewModel.sampleSize.postValue(Integer.valueOf(string));
+                }
 
             }
         });
 
-        viewModel.onClickSelectResult.postValue(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialogSelectResult();
 
-            }
-        });
-
+        //点击提交报告
         viewModel.onClickSubmit.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //todo
-                showToastTip("提交成功。");
-
+                getViewModel().submitReport();
             }
         });
 
@@ -148,7 +234,7 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
         List<Integer> list = new ArrayList<Integer>() {
             {
                 add(1);
-                add(0);
+                add(2);
             }
         };
         SelectionDialog<Integer> dialog = new SelectionDialog<Integer>(getContext()) {
@@ -169,7 +255,7 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
 
             @Override
             public String getItemLabel(Integer item) {
-                if (item > 0) {
+                if (item == 1) {
                     return "合格";
                 }
                 return "异常";
@@ -179,7 +265,7 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
     }
 
     private void showDialogSelectQcApproach() {
-        List<BaseQcApproachBean> approaches = getViewModel().getQcApproaches();
+        List<BaseQcApproachBean> approaches = getViewModel().qcApproachList.getValue();
         SelectionDialog<BaseQcApproachBean> dialog = new SelectionDialog<BaseQcApproachBean>(getContext()) {
             @Override
             public List<BaseQcApproachBean> setListData() {
@@ -191,7 +277,7 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
                 return new OnSelectItemClickListener<BaseQcApproachBean>() {
                     @Override
                     public void onItemClick(BaseQcApproachBean bean, int position) {
-                        getViewModel().updateQcApproach(bean);
+                        getViewModel().updateSelectedQcApproach(bean);
                     }
                 };
             }
@@ -205,7 +291,7 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
     }
 
     private void showDialogSelectProjects() {
-        List<BaseProjectBean> list = getViewModel().getProjectListFromNet();
+        List<BaseProjectBean> list = getViewModel().projectList.getValue();
         SelectionDialog<BaseProjectBean> dialog = new SelectionDialog<BaseProjectBean>(getContext()) {
             @Override
             public List<BaseProjectBean> setListData() {
@@ -217,7 +303,7 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
                 return new OnSelectItemClickListener<BaseProjectBean>() {
                     @Override
                     public void onItemClick(BaseProjectBean bean, int position) {
-                        getViewModel().updateProjectInfo(bean);
+                        getViewModel().updateSelectedProject(bean);
                     }
                 };
             }
@@ -266,7 +352,7 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
     }
 
     private void showDialogSelectBatch() {
-        List<BaseProductBatchInfo> batchInfos = getViewModel().loadBatchInfoListFromNet();
+        List<BaseProductBatchInfo> batchInfos = getViewModel().productBatchList.getValue();
         SelectionDialog<BaseProductBatchInfo> dialog = new SelectionDialog<BaseProductBatchInfo>(
                 getContext()) {
             @Override
@@ -279,7 +365,7 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
                 return new OnSelectItemClickListener<BaseProductBatchInfo>() {
                     @Override
                     public void onItemClick(BaseProductBatchInfo bean, int position) {
-                        getViewModel().updateBatchInfo(bean);
+                        getViewModel().updateSelectedBatchInfo(bean);
                     }
                 };
             }

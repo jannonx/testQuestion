@@ -3,9 +3,14 @@ package com.guyuan.dear.focus.qc.views.productQcDetail;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
+import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.qc.beans.BaseProductQcReport;
 import com.guyuan.dear.focus.qc.beans.ProductQcReportDetail;
 import com.guyuan.dear.focus.qc.repo.ProductQcDetailRepo;
+import com.guyuan.dear.net.DearNetHelper;
+import com.guyuan.dear.utils.ToastUtils;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * @author: 廖华凯
@@ -21,8 +26,27 @@ public class ProductQcReportDetailViewModel extends BaseViewModel {
         return report;
     }
 
-    public void getReportDetail(BaseProductQcReport report){
-        ProductQcReportDetail detail = repo.getReportDetail(report);
-        this.report.postValue(detail);
+    public Disposable getReportDetail(BaseProductQcReport report) {
+        return repo.getReportDetail(report.getReportId(), getDetailCallback);
     }
+
+    private DearNetHelper.NetCallback<ProductQcReportDetail> getDetailCallback = new DearNetHelper.NetCallback<ProductQcReportDetail>() {
+        @Override
+        public void onStart(Disposable disposable) {
+            isShowLoading.postValue(true);
+        }
+
+        @Override
+        public void onGetResult(ProductQcReportDetail result) {
+            isShowLoading.postValue(false);
+            report.postValue(result);
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            isShowLoading.postValue(false);
+            ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
+
+        }
+    };
 }
