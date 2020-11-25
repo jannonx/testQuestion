@@ -1,17 +1,24 @@
 package com.guyuan.dear.focus.projectsite.fragment;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.activity.BaseFileUploadActivity;
+import com.guyuan.dear.base.activity.BaseTabActivity;
+import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.databinding.FragmentFocusSiteExplorationBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
+import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
 import com.guyuan.dear.focus.projectsite.bean.CustomerAcceptanceSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
@@ -24,6 +31,7 @@ import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.client.fragment.FollowCommentDialog;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
+import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.bean.PostAnswerInfo;
@@ -49,7 +57,7 @@ import okhttp3.RequestBody;
  * @company: 固远（深圳）信息技术有限公司
  */
 public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<FragmentFocusSiteExplorationBinding, FocusProjectSiteViewModel>
-        implements View.OnClickListener {
+        implements BaseFileUploadActivity.PhotoSelectListener, View.OnClickListener {
 
     public static final String TAG = FocusSiteExplorationDetailFragment.class.getSimpleName();
 
@@ -60,12 +68,17 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     private AcceptanceRecordFragment recordFragment;
     private ExploreContentFragment planFragment;
 
+    private ProjectCheckConfirmDialog leftDialog;
+    private ProjectCheckConfirmDialog rightDialog;
+
     private int startPosition = 0;//起始选中位置
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
     private SiteExploreBean detailProjectData;
-
+    protected ArrayList<String> photoList = new ArrayList<>();
     private ProduceApplyDialog dialog;
+
+    private FocusSiteExplorationDetailActivity activity;
 
     public static FocusSiteExplorationDetailFragment newInstance(SiteExploreBean data) {
         Bundle bundle = new Bundle();
@@ -164,6 +177,19 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 getDetailDataByClassify();
                 EventBus.getDefault().post(new EventInstallDebugRefresh());
                 EventBus.getDefault().post(new EventAnswerListRefresh());
+            }
+        });
+
+        viewModel.getUploadImageEvent().observe(this, new Observer<List<UploadBean>>() {
+            @Override
+            public void onChanged(List<UploadBean> dataList) {
+                if (dataList.isEmpty()) return;
+                List<String> imageUrlList = new ArrayList<>();
+                for (UploadBean bean : dataList) {
+                    LogUtils.showLog("upLoadPicAndVideo=" + bean.getUrl());
+                    imageUrlList.add(bean.getUrl());
+                }
+                postInfo(imageUrlList);
             }
         });
     }
@@ -285,7 +311,11 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     }
 
     private void clickRightBtn() {
-        ProjectCheckConfirmDialog.show(getActivity(), detailProjectData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
+        rightDialog = new ProjectCheckConfirmDialog(getActivity(), detailProjectData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
+            @Override
+            public void onPickImageClick() {
+                activity.openAlbum(BaseTabActivity.FIRST);
+            }
 
             @Override
             public void onCommitCheckGoodsInfo(PostCheckInfo data) {
@@ -297,28 +327,34 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 LogUtils.showLog("onCommitInstallationDebugInfo");
                 //安装调试
                 data.setStatus(InstallDebugSatisfyType.TYPE_INSTALL_COMPLETE.getCode());
-                String str = GsonUtil.objectToString(data);
-                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
-                        "charset=utf-8"), str);
-
-                viewModel.postInstallDebugInfo(requestBody);
+                postInstallationDebugInfo = data;
+                activity.checkPhotoAndFileUpLoad(data.getImgUrl());
             }
 
             @Override
             public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data) {
                 //验收状态，0:待验收，10合格，20不合格
                 data.setCheckStatus(10);
-                String str = GsonUtil.objectToString(data);
-                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
-                        "charset=utf-8"), str);
-
-                viewModel.postCustomerAcceptanceInfo(requestBody);
+                postCustomerAcceptanceInfo = data;
+                activity.checkPhotoAndFileUpLoad(data.getCheckUrl());
+            }
+        });
+        rightDialog.show();
+        rightDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                LogUtils.showLog("rightDialog....dismiss");
+                rightDialog = null;
             }
         });
     }
 
     private void clickLeftBtn() {
-        ProjectCheckConfirmDialog.show(getActivity(), detailProjectData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
+        leftDialog = new ProjectCheckConfirmDialog(getActivity(), detailProjectData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
+            @Override
+            public void onPickImageClick() {
+                activity.openAlbum(BaseTabActivity.FIRST);
+            }
 
             @Override
             public void onCommitCheckGoodsInfo(PostCheckInfo data) {
@@ -332,25 +368,52 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 int codeStatus = binding.tvPauseBtn.getText().toString().equals("暂停") ?
                         InstallDebugSatisfyType.TYPE_INSTALL_PAUSE.getCode() : InstallDebugSatisfyType.TYPE_INSTALL_ING.getCode();
                 data.setStatus(codeStatus);
-                String str = GsonUtil.objectToString(data);
-                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
-                        "charset=utf-8"), str);
-
-                viewModel.postInstallDebugInfo(requestBody);
+                postInstallationDebugInfo = data;
+                activity.checkPhotoAndFileUpLoad(data.getImgUrl());
             }
 
             @Override
             public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data) {
                 //验收状态，0:待验收，10合格，20不合格
                 data.setCheckStatus(20);
-                String str = GsonUtil.objectToString(data);
-                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
-                        "charset=utf-8"), str);
-
-                viewModel.postCustomerAcceptanceInfo(requestBody);
+                postCustomerAcceptanceInfo = data;
+                activity.checkPhotoAndFileUpLoad(data.getCheckUrl());
             }
         });
+        leftDialog.show();
 
+        leftDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                LogUtils.showLog("leftDialog....dismiss");
+                leftDialog = null;
+            }
+        });
+    }
+
+    PostInstallationDebugInfo postInstallationDebugInfo;
+    PostCustomerAcceptanceInfo postCustomerAcceptanceInfo;
+
+
+    private void postInfo(List<String> imageUrlList) {
+        switch (detailProjectData.getProjectReportType()) {
+            case TYPE_INSTALLATION_DEBUG:
+                postInstallationDebugInfo.setImgUrl(imageUrlList);
+                String installStr = GsonUtil.objectToString(postInstallationDebugInfo);
+                RequestBody installRequestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), installStr);
+                viewModel.postInstallDebugInfo(installRequestBody);
+                break;
+            case TYPE_CUSTOMER_ACCEPTANCE:
+                postCustomerAcceptanceInfo.setCheckUrl(imageUrlList);
+                String customerStr = GsonUtil.objectToString(postCustomerAcceptanceInfo);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), customerStr);
+                viewModel.postCustomerAcceptanceInfo(requestBody);
+                break;
+
+            default:
+        }
     }
 
     /**
@@ -565,4 +628,28 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     }
 
 
+    @Override
+    public ArrayList<String> getSelectedMediaList() {
+        return photoList;
+    }
+
+    @Override
+    public void onPhotoSelected(ArrayList<String> photoList) {
+        photoList.addAll(photoList);
+        if (leftDialog != null) {
+            leftDialog.setPhotoList(photoList);
+        }
+
+        if (rightDialog != null) {
+            rightDialog.setPhotoList(photoList);
+        }
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (getActivity() != null) {
+            activity = (FocusSiteExplorationDetailActivity) getActivity();
+        }
+    }
 }

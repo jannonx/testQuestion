@@ -16,6 +16,7 @@ import com.guyuan.dear.focus.contract.view.home.ContractHomeActivity;
 import com.guyuan.dear.focus.device.ui.FocusDeviceActivity;
 import com.guyuan.dear.focus.hr.view.home.HrHomeActivity;
 import com.guyuan.dear.focus.produce.ui.FocusProduceActivity;
+import com.guyuan.dear.focus.projectsite.activity.DemoDetailActivity;
 import com.guyuan.dear.focus.projectsite.activity.FocusProjectSiteActivity;
 import com.guyuan.dear.focus.purchase.ui.FocusPurchaseActivity;
 import com.guyuan.dear.focus.qc.views.home.QcHomeActivity;
@@ -130,6 +131,7 @@ public class FocusFragment extends BaseListFragment<ChildrenBean, FragmentFocusB
                                 break;
 
                             case ConstantValue.FOCUS_PROJECT_SITE://工程现场
+//                                DemoDetailActivity.start(getContext());
                                 FocusProjectSiteActivity.start(getContext(), title);
                                 break;
 

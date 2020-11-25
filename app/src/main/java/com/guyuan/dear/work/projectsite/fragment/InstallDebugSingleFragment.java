@@ -1,6 +1,7 @@
 package com.guyuan.dear.work.projectsite.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -9,14 +10,19 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.RadioGroup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.activity.BaseFileUploadActivity;
+import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.databinding.FragmentWorkInstallationDebugIngBinding;
 import com.guyuan.dear.databinding.FragmentWrokInstallationDebugDetailSingleBinding;
+import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectInstallAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
@@ -28,6 +34,8 @@ import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
+import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugSingleActivity;
+import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
@@ -49,13 +57,17 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class InstallDebugSingleFragment extends BaseDataBindingFragment<FragmentWrokInstallationDebugDetailSingleBinding, WorkProjectSiteViewModel> {
+public class InstallDebugSingleFragment extends BaseDataBindingFragment<FragmentWrokInstallationDebugDetailSingleBinding, WorkProjectSiteViewModel>
+        implements BaseFileUploadActivity.PhotoSelectListener {
 
     public static final String TAG = InstallDebugSingleFragment.class.getSimpleName();
+    protected ArrayList<String> photoList = new ArrayList<>();
+    protected ArrayList<String> imageDataList = new ArrayList<>();
     private InstallDebugBean debugBean;
     private List<InstallDebugBean> listData = new ArrayList<>();
-    private BaseRecyclerViewAdapter adapter;
+    private BaseRecyclerViewAdapter imageAdapter;
     private SiteExploreBean singleDetailData;
+    private WorkInstallDebugSingleActivity activity;
 
     public static InstallDebugSingleFragment newInstance(InstallDebugBean data) {
         Bundle bundle = new Bundle();
@@ -75,7 +87,16 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
     protected void initialization() {
         debugBean = (InstallDebugBean) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
 
+        ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
+                imageDataList, R.layout.item_explorate_image);
+        imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
+
+        binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        binding.imageRecycleView.setAdapter(imageAdapter);
+        binding.imageRecycleView.setPullRefreshEnabled(false);
+        binding.imageRecycleView.setLoadMoreEnabled(false);
         viewModel.getInstallDebugDetailDataBySingle(debugBean.getId());
+
 
         viewModel.getInstallDebugDetailBySingleEvent().observe(getActivity(), new Observer<SiteExploreBean>() {
             @Override
@@ -83,6 +104,20 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
                 setDetailData(data);
             }
         });
+
+        viewModel.getUploadImageEvent().observe(this, new Observer<List<UploadBean>>() {
+            @Override
+            public void onChanged(List<UploadBean> dataList) {
+                if (dataList.isEmpty()) return;
+                List<String> imageUrlList = new ArrayList<>();
+                for (UploadBean bean : dataList) {
+                    LogUtils.showLog("upLoadPicAndVideo=" + bean.getUrl());
+                    imageUrlList.add(bean.getUrl());
+                }
+                postInstallDebugInfo(imageUrlList);
+            }
+        });
+
 
         initListener();
     }
@@ -146,14 +181,16 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
         binding.tvActivateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postInstallDebugInfo();
+                if (photoList.isEmpty()) {
+                    ToastUtils.showLong(getContext(), "请选择图片");
+                }
+                activity.checkPhotoAndFileUpLoad(imageDataList);
             }
         });
 
         viewModel.getCommitInstallDebugInfoEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer data) {
-
                 getActivity().finish();
                 EventBus.getDefault().post(new EventInstallDebugRefresh());
             }
@@ -163,7 +200,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
     /**
      * 提交安装调试信息
      */
-    private void postInstallDebugInfo() {
+    private void postInstallDebugInfo(List<String> imageArr) {
         PostInstallationDebugInfo body = new PostInstallationDebugInfo();
         if (TextUtils.isEmpty(binding.etSearch.getText().toString())) {
             ToastUtils.showLong(getContext(), "请填内容");
@@ -172,8 +209,6 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
         body.setId(singleDetailData.getId());
         body.setRemark(binding.etSearch.getText().toString());
         body.setStatus(InstallDebugSatisfyType.TYPE_INSTALL_ING.getCode());
-        List<String> imageArr = new ArrayList<>();
-        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
         body.setImgUrl(imageArr);
         String str = GsonUtil.objectToString(body);
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
@@ -188,4 +223,24 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
         return 0;
     }
 
+    @Override
+    public ArrayList<String> getSelectedMediaList() {
+        return photoList;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (getActivity() != null) {
+            activity = (WorkInstallDebugSingleActivity) getActivity();
+        }
+    }
+
+    @Override
+    public void onPhotoSelected(ArrayList<String> photoList) {
+        photoList.addAll(photoList);
+        imageDataList.clear();
+        imageDataList.addAll(photoList);
+        imageAdapter.refreshData();
+    }
 }

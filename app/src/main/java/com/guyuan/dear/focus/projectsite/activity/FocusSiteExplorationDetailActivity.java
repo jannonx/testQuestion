@@ -8,6 +8,7 @@ import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.base.fragment.BaseFragment;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.activity.BaseFileUploadActivity;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.focus.projectsite.fragment.FocusSiteExplorationDetailFragment;
@@ -16,7 +17,10 @@ import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 
+import java.util.Map;
+
 import dagger.hilt.android.AndroidEntryPoint;
+import okhttp3.RequestBody;
 
 
 /**
@@ -26,7 +30,7 @@ import dagger.hilt.android.AndroidEntryPoint;
  * @company: 固远（深圳）信息技术有限公司
  */
 @AndroidEntryPoint
-public class FocusSiteExplorationDetailActivity extends BaseToolbarActivity<ActivityWithToolbarBinding, FocusProjectSiteViewModel> {
+public class FocusSiteExplorationDetailActivity extends BaseFileUploadActivity<ActivityWithToolbarBinding, FocusProjectSiteViewModel> {
 
     public static void start(Context context, SiteExploreBean data) {
         Intent intent = new Intent(context, FocusSiteExplorationDetailActivity.class);
@@ -38,8 +42,9 @@ public class FocusSiteExplorationDetailActivity extends BaseToolbarActivity<Acti
     protected void initFragment(Bundle savedInstanceState) {
         SiteExploreBean bean = (SiteExploreBean) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
         binding.toolbarContainer.titleTv.setText(bean.getProjectReportType().getDes() + "详情");
-        LogUtils.showLog("initFragment="+bean.getModuleType().getDes());
-        BaseFragment mFragment = FocusSiteExplorationDetailFragment.newInstance(bean);
+//        LogUtils.showLog("initFragment="+bean.getModuleType().getDes());
+        FocusSiteExplorationDetailFragment mFragment = FocusSiteExplorationDetailFragment.newInstance(bean);
+        setFirstPhotoListener(mFragment);
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
                 FocusSiteExplorationDetailFragment.TAG);
     }
@@ -49,6 +54,12 @@ public class FocusSiteExplorationDetailActivity extends BaseToolbarActivity<Acti
         return viewModel;
     }
 
+    @Override
+    protected void upLoadPicAndVideo(int currentType, Map<String, RequestBody> fileMap) {
+        super.upLoadPicAndVideo(currentType, fileMap);
+        viewModel.uploadPic(fileMap);
+
+    }
 
     @Override
     protected int getLayoutID() {

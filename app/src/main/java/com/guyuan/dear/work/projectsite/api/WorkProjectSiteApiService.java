@@ -3,17 +3,21 @@ package com.guyuan.dear.work.projectsite.api;
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.BaseApiService;
+import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.focus.projectsite.bean.ProjectOverViewBean;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteStatusBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
 /**
@@ -39,6 +43,16 @@ public interface WorkProjectSiteApiService extends BaseApiService {
     @GET("base/replyIdea/queryAnswer")
     Observable<ResultBean<List<ProjectSiteStatusBean>>> getProjectSiteStatusList(@Query("id") long id,
                                                                                  @Query("type") int type);
+
+    /**
+     * 上传图片
+     *
+     * @param map 图片信息
+     * @return
+     */
+    @Multipart
+    @POST("file/file/uploadApp")
+    Observable<ResultBean<List<UploadBean>>> uploadPic(@PartMap Map<String, RequestBody> map);
 
 
     //=====================================================================//
