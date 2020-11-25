@@ -34,7 +34,7 @@ public class MaterialQcReportDetailFragment extends BaseMvvmFragment<FragmentMat
     protected void initData() {
         Bundle bundle = getArguments();
         BaseMaterialQcReport report = bundle.getParcelable(ConstantValue.KEY_QC_REPORT);
-        getViewModel().getReportDetail(report);
+        addDisposable(getViewModel().getReportDetail(report));
     }
 
     @Override

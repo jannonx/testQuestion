@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:gravity="center">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/item_contract_prg_detail_round_knot_iv_sphere"
-        android:layout_width="@dimen/dp_50"
-        android:layout_height="@dimen/dp_50"
-        app:srcCompat="@drawable/ic_svg_round_filled_blue_1890ff_24dp"/>
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_contract_prg_detail_round_knot_tv_tag"
-        android:layout_width="wrap_content"
+    <data>
+        <variable
+            name="data"
+            type="com.guyuan.dear.focus.contract.bean.ContractPrgKnot" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="xxx"/>
+        android:orientation="vertical"
+        android:gravity="center">
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_marginTop="@dimen/dp_12"
+            android:id="@+id/item_contract_prg_detail_round_knot_iv_sphere"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
+            app:srcCompat="@drawable/ic_svg_round_filled_blue_1890ff_24dp"
+            app:updateBgByKnotStatus="@{data.status}"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="@dimen/dp_4"
+            android:id="@+id/item_contract_prg_detail_round_knot_tv_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/color_black_333333"
+            android:text="@{data.tag,default=xxx}" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

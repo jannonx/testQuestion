@@ -3,9 +3,14 @@ package com.guyuan.dear.focus.qc.views.materialQcDetail;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
+import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport;
 import com.guyuan.dear.focus.qc.beans.MaterialQcReportDetail;
 import com.guyuan.dear.focus.qc.repo.MaterialQcDetailRepo;
+import com.guyuan.dear.net.DearNetHelper;
+import com.guyuan.dear.utils.ToastUtils;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * @author: 廖华凯
@@ -21,8 +26,25 @@ public class MaterialQcReportDetailViewModel extends BaseViewModel {
         return report;
     }
 
-    public void getReportDetail(BaseMaterialQcReport report) {
-        MaterialQcReportDetail detail = repo.getReportDetail(report);
-        this.report.postValue(detail);
+    public Disposable getReportDetail(BaseMaterialQcReport report) {
+        return repo.getReportDetail(report.getReportId(), new DearNetHelper.NetCallback<MaterialQcReportDetail>() {
+            @Override
+            public void onStart(Disposable disposable) {
+                isShowLoading.postValue(true);
+            }
+
+            @Override
+            public void onGetResult(MaterialQcReportDetail result) {
+                isShowLoading.postValue(false);
+                MaterialQcReportDetailViewModel.this.report.postValue(result);
+            }
+
+            @Override
+            public void onError(Throwable error) {
+                isShowLoading.postValue(false);
+                ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
+
+            }
+        });
     }
 }

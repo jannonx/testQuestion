@@ -3,6 +3,9 @@ package com.guyuan.dear.focus.qc.beans.verfifyLog;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.Gson;
+import com.guyuan.dear.net.resultBeans.NetQcReportApproveFlow;
+
 /**
  * @author: 廖华凯
  * @description:
@@ -17,6 +20,19 @@ public class GenericQcLogBean implements Parcelable {
     public static final int LOG_TYPE_VERIFY_RESULT=2;
 
     public GenericQcLogBean() {
+    }
+
+    public GenericQcLogBean(NetQcReportApproveFlow src){
+        int status = src.getStatus();
+        if(status==0){
+            LogTypeSubmitDetail submitDetail = new LogTypeSubmitDetail(src);
+            setLogType(LOG_TYPE_SUBMIT_DETAIL);
+            setJsonString(new Gson().toJson(submitDetail));
+        }else {
+            LogTypeVerifyResult verifyResult = new LogTypeVerifyResult(src);
+            setLogType(LOG_TYPE_VERIFY_RESULT);
+            setJsonString(new Gson().toJson(verifyResult));
+        }
     }
 
     protected GenericQcLogBean(Parcel in) {

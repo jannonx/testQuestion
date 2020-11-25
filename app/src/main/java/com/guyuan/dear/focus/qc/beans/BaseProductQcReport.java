@@ -4,6 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.Gson;
+import com.guyuan.dear.net.resultBeans.NetBaseQcBean;
+import com.guyuan.dear.utils.CalenderUtils;
+
+import static com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport.REPORT_STATE_NO_NEED_TO_APPROVE;
+import static com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport.REPORT_STATE_PASS;
+import static com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport.REPORT_STATE_PENDING_FOR_APPROVAL;
+import static com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport.REPORT_STATE_REJECT;
 
 /**
  * @author: 廖华凯
@@ -38,6 +45,7 @@ public class BaseProductQcReport implements Parcelable {
     private int tag;
     public static final int TAG_TYPE_PASS = 0;
     public static final int TAG_TYPE_REJECT=1;
+    public static final int TAG_TYPE_CHECKING=2;
     /**
      * 表示审批状态，如：待审批，审批中，同意，拒绝等。
      * {@link BaseMaterialQcReport#REPORT_STATE_PASS},{@link BaseMaterialQcReport#REPORT_STATE_PENDING_FOR_APPROVAL},
@@ -48,8 +56,55 @@ public class BaseProductQcReport implements Parcelable {
      * 是否需要审批
      */
     private boolean isNeedVerify;
+    private int reportId;
 
     public BaseProductQcReport() {
+    }
+
+    public BaseProductQcReport(NetBaseQcBean src){
+        setBatchId(src.getSerialNumber());
+        setProductName(src.getProductName());
+        setProductId(src.getProductCode());
+        setReportId(src.getId());
+        int status = src.getApprovalStatus();
+        //审批状态：1.无需审批，2.待审批，3.审批通过，4.审批被驳回
+        setNeedVerify(true);
+        switch (status) {
+            case 2:
+                setState(REPORT_STATE_PENDING_FOR_APPROVAL);
+                break;
+            case 3:
+                setState(REPORT_STATE_PASS);
+                break;
+            case 4:
+                setState(REPORT_STATE_REJECT);
+                break;
+            case 1:
+            default:
+                setState(REPORT_STATE_NO_NEED_TO_APPROVE);
+                setNeedVerify(false);
+                break;
+        }
+        try {
+            setDate(CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(src.getCreateTime()).getTime());
+        } catch (Exception e) {
+            setDate(0L);
+        }
+        setQualityChecker(src.getQualityName());
+        //质检判断结果：0.未质检，1.合格，2.不合格
+        int result = src.getQualityResult();
+        switch (result){
+            case 1:
+                setTag(TAG_TYPE_PASS);
+                break;
+            case 2:
+                setTag(TAG_TYPE_REJECT);
+                break;
+            case 0:
+            default:
+                setTag(TAG_TYPE_CHECKING);
+                break;
+        }
     }
 
     protected BaseProductQcReport(Parcel in) {
@@ -61,6 +116,7 @@ public class BaseProductQcReport implements Parcelable {
         tag = in.readInt();
         state = in.readInt();
         isNeedVerify = in.readByte()>0;
+        reportId = in.readInt();
     }
 
     public static final Creator<BaseProductQcReport> CREATOR = new Creator<BaseProductQcReport>() {
@@ -139,6 +195,14 @@ public class BaseProductQcReport implements Parcelable {
         this.state = state;
     }
 
+    public int getReportId() {
+        return reportId;
+    }
+
+    public void setReportId(int reportId) {
+        this.reportId = reportId;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -154,6 +218,7 @@ public class BaseProductQcReport implements Parcelable {
         dest.writeInt(tag);
         dest.writeInt(state);
         dest.writeByte((byte) (isNeedVerify?1:0));
+        dest.writeInt(reportId);
     }
 
     @Override

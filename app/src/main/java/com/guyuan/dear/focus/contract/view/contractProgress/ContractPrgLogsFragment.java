@@ -13,7 +13,7 @@ import com.guyuan.dear.databinding.FragmentContractPrgDetailLogsBinding;
 import com.guyuan.dear.focus.contract.adapter.contractPrgLog.LogTailAdapter;
 import com.guyuan.dear.focus.contract.adapter.contractPrgLog.SalesReviewAdapter;
 import com.guyuan.dear.focus.contract.bean.ContractLogBean;
-import com.guyuan.dear.focus.contract.bean.PrgDetailContractBean;
+import com.guyuan.dear.focus.contract.bean.ContractStatusFlowBean;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.FirstCreateDate;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.SalesReviewMeeting;
 
@@ -66,7 +66,7 @@ public class ContractPrgLogsFragment extends BaseMvvmFragment<FragmentContractPr
         recyclerView.setAdapter(concatAdapter);
 
 
-        PrgDetailContractBean detailBean = getViewModel().getDetailBean().getValue();
+        ContractStatusFlowBean detailBean = getViewModel().getDetailBean().getValue();
         if (detailBean != null) {
             upDateViewByDate(detailBean);
         }
@@ -74,37 +74,37 @@ public class ContractPrgLogsFragment extends BaseMvvmFragment<FragmentContractPr
 
     @Override
     protected void initListeners() {
-        getViewModel().getDetailBean().observe(getViewLifecycleOwner(), new Observer<PrgDetailContractBean>() {
+        getViewModel().getDetailBean().observe(getViewLifecycleOwner(), new Observer<ContractStatusFlowBean>() {
             @Override
-            public void onChanged(PrgDetailContractBean contractPrgDetailBean) {
+            public void onChanged(ContractStatusFlowBean contractStatusFlowBean) {
                 mFirstCreateDate.clear();
                 mSalesReviews.clear();
-                upDateViewByDate(contractPrgDetailBean);
+                upDateViewByDate(contractStatusFlowBean);
             }
         });
     }
 
-    private void upDateViewByDate(PrgDetailContractBean contractPrgDetailBean) {
-        List<ContractLogBean> logs = contractPrgDetailBean.getLogs();
-        for (ContractLogBean log : logs) {
-            int logType = log.getLogType();
-            String jsonString = log.getJsonString();
-            switch (logType) {
-                case ContractLogBean.LOG_TYPE_FIRST_CREATE_DATE:
-                    FirstCreateDate date = new Gson().fromJson(jsonString, FirstCreateDate.class);
-                    mFirstCreateDate.add(date);
-                    break;
-                case ContractLogBean.LOG_TYPE_SALES_REVIEW_MEETING:
-                    SalesReviewMeeting meeting = new Gson().fromJson(jsonString, SalesReviewMeeting.class);
-                    mSalesReviews.add(meeting);
-                    break;
-                default:
-                    break;
-            }
-        }
-//        concatAdapter.notifyDataSetChanged();
-        salesReviewAdapter.notifyDataSetChanged();
-        tailAdapter.notifyDataSetChanged();
+    private void upDateViewByDate(ContractStatusFlowBean contractStatusFlowBean) {
+//        List<ContractLogBean> logs = contractStatusFlowBean.getLogs();
+//        for (ContractLogBean log : logs) {
+//            int logType = log.getLogType();
+//            String jsonString = log.getJsonString();
+//            switch (logType) {
+//                case ContractLogBean.LOG_TYPE_FIRST_CREATE_DATE:
+//                    FirstCreateDate date = new Gson().fromJson(jsonString, FirstCreateDate.class);
+//                    mFirstCreateDate.add(date);
+//                    break;
+//                case ContractLogBean.LOG_TYPE_SALES_REVIEW_MEETING:
+//                    SalesReviewMeeting meeting = new Gson().fromJson(jsonString, SalesReviewMeeting.class);
+//                    mSalesReviews.add(meeting);
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
+////        concatAdapter.notifyDataSetChanged();
+//        salesReviewAdapter.notifyDataSetChanged();
+//        tailAdapter.notifyDataSetChanged();
     }
 
     @Override

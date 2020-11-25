@@ -5,9 +5,11 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport;
 import com.guyuan.dear.work.qc.adapers.ProductionInfoAdapter;
 import com.guyuan.dear.work.qc.beans.BaseQcApproachBean;
 import com.guyuan.dear.work.qc.beans.BaseQcSubmitBean;
+import com.guyuan.dear.work.qc.beans.MaterialInfo;
 import com.guyuan.dear.work.qc.beans.ProductInfo;
 
 import java.util.List;
@@ -40,9 +42,20 @@ public class ProductQcBingingAdapter {
         }
     }
 
+    @BindingAdapter("showMaterialNameAndSpec")
+    public static void showMaterialNameAndSpec(AppCompatTextView view, MaterialInfo bean){
+        if(bean==null){
+            view.setText("");
+            return;
+        }
+        String text = bean.getMaterialName()+" "+bean.getSpec();
+        view.setText(text);
+    }
+
     @BindingAdapter("showQcApproachName")
     public static void showQcApproachName(AppCompatTextView view, BaseQcApproachBean bean){
         if(bean==null){
+            view.setText("");
             return;
         }
         view.setText(bean.getApproachName());

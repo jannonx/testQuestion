@@ -39,14 +39,18 @@ public class ContractPrgDetailBindingAdapter {
 
 
     @BindingAdapter("setContractPrgKnots")
-    public static void setContractPrgKnots(RecyclerView view, List<ContractPrgKnot> data){
+    public static void setContractPrgKnots(BaseRecyclerView view, List<ContractPrgKnot> data){
         if(data==null){
             return;
         }
         view.addItemDecoration(new ContractPrgKnotItemDecorator());
         GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(),5,RecyclerView.VERTICAL,false);
-        ContractPrgDetailKnotAdapter adapter = new ContractPrgDetailKnotAdapter(data,view.getContext());
+        ContractPrgDetailKnotAdapter adapter = new ContractPrgDetailKnotAdapter(data);
+        BaseRecyclerViewAdapter wrapper =new BaseRecyclerViewAdapter(adapter);
         view.setLayoutManager(layoutManager);
-        view.setAdapter(adapter);
+        view.setAdapter(wrapper);
+        view.setLoadMoreEnabled(false);
+        view.setPullRefreshEnabled(false);
+
     }
 }

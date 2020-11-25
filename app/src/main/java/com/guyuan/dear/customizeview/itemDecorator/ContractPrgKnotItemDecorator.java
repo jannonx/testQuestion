@@ -34,23 +34,6 @@ public class ContractPrgKnotItemDecorator extends RecyclerView.ItemDecoration {
     @Override
     public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
-//        int index = parent.getChildAdapterPosition(view);
-//        RecyclerView.LayoutManager manager = parent.getLayoutManager();
-//        if (manager instanceof GridLayoutManager) {
-//            int spanCount = ((GridLayoutManager) manager).getSpanCount();
-//            if(index % spanCount == 0){
-//                //最左边的item
-//                //右边留空间画横线
-//                outRect.set(0,0, (int) DimensionUtils.dp2px(DIVIDER_WIDTH_IN_DP),0);
-//            }else if(index % spanCount == (spanCount-1)) {
-//                //最右边的item
-//                //啥也不用干
-//            }else {
-//                //中间的item
-//                //右边留空间画横线
-//                outRect.set(0,0, (int) DimensionUtils.dp2px(DIVIDER_WIDTH_IN_DP),0);
-//            }
-//        }
     }
 
 

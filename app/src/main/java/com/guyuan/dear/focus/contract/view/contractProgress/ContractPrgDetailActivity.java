@@ -16,9 +16,9 @@ import com.guyuan.dear.utils.ConstantValue;
 public class ContractPrgDetailActivity extends BaseToolbarActivity<ActivityContractPrgDetailBinding,ContractPrgDetailViewModel> {
 
     private String mTitle;
-    private String mContractId;
+    private int mContractId;
 
-    public static void start(Context context,String title,String contractId) {
+    public static void start(Context context,String title,int contractId) {
         Intent starter = new Intent(context, ContractPrgDetailActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE,title);
         starter.putExtra(ConstantValue.KEY_CONTRACT_ID,contractId);
@@ -35,7 +35,7 @@ public class ContractPrgDetailActivity extends BaseToolbarActivity<ActivityContr
         Intent intent = getIntent();
         mTitle = intent.getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(mTitle);
-        mContractId = intent.getStringExtra(ConstantValue.KEY_CONTRACT_ID);
+        mContractId = intent.getIntExtra(ConstantValue.KEY_CONTRACT_ID,0);
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.activity_contract_prg_detail_frame_layout,ContractPrgDetailFragment.getInstance(mContractId))
                 .commit();

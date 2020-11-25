@@ -76,7 +76,7 @@
         <activity android:name=".work.qc.views.home.QcHomeActivity" />
         <activity android:name=".focus.qc.views.materialQcDetail.MaterialQcReportDetailActivity" />
         <activity android:name=".focus.qc.views.productQcDetail.ProductQcReportDetailActivity" />
-        <activity android:name=".focus.qc.views.qcReportList.QcSumListActivity" />
+        <activity android:name=".focus.qc.views.qcReportList.QcSumTypeListActivity" />
         <activity android:name=".focus.qc.views.home.QcHomeActivity" />
         <activity android:name=".focus.hr.view.pickStaffs.PickStaffsActivity" />
         <activity android:name=".work.contractRestart.view.home.ContractRestartHomeActivity" />
