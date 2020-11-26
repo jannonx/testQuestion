@@ -26,6 +26,7 @@ public class RxJavaHelper<T, VM extends BaseViewModel> {
     private VM viewModel;
     private Observable<ResultBean<T>> observable;
     private String preTip;
+    private boolean loading = true;
     private Consumer<Object> successConsumer;
     private ErrorResultBean failConsumer;
 
@@ -67,6 +68,11 @@ public class RxJavaHelper<T, VM extends BaseViewModel> {
             return this;
         }
 
+        //设置是否显示加载界面
+        public Builder<T, VM> showLoading(boolean loading) {
+            helper.loading = loading;
+            return this;
+        }
     }
 
 
@@ -76,10 +82,12 @@ public class RxJavaHelper<T, VM extends BaseViewModel> {
                 .doOnSubscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        if (TextUtils.isEmpty(preTip)) {
-                            viewModel.getShowLoading().postValue("数据加载中...");
-                        } else {
-                            viewModel.getShowLoading().postValue(preTip);
+                        if (loading) {
+                            if (TextUtils.isEmpty(preTip)) {
+                                viewModel.getShowLoading().postValue("数据加载中...");
+                            } else {
+                                viewModel.getShowLoading().postValue(preTip);
+                            }
                         }
                     }
                 })
@@ -87,8 +95,10 @@ public class RxJavaHelper<T, VM extends BaseViewModel> {
                 .doOnTerminate(new Action() {
                     @Override
                     public void run() throws Exception {
-                        viewModel.getHideLoading().call();
-                        viewModel.getListComplete().call();
+                        if (loading) {
+                            viewModel.getHideLoading().call();
+                            viewModel.getListComplete().call();
+                        }
                     }
                 })
                 .subscribe(getSuccessConsumer(data), getFailConsumer());
@@ -100,19 +110,24 @@ public class RxJavaHelper<T, VM extends BaseViewModel> {
                 .doOnSubscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
-                        if (TextUtils.isEmpty(preTip)) {
-                            viewModel.getShowLoading().postValue("数据加载中...");
-                        } else {
-                            viewModel.getShowLoading().postValue(preTip);
+                        if (loading) {
+                            if (TextUtils.isEmpty(preTip)) {
+                                viewModel.getShowLoading().postValue("数据加载中...");
+                            } else {
+                                viewModel.getShowLoading().postValue(preTip);
+                            }
                         }
+
                     }
                 })
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .doOnTerminate(new Action() {
                     @Override
                     public void run() throws Exception {
-                        viewModel.getHideLoading().call();
-                        viewModel.getListComplete().call();
+                        if (loading) {
+                            viewModel.getHideLoading().call();
+                            viewModel.getListComplete().call();
+                        }
                     }
                 })
                 .subscribe(getSuccessConsumer(), getFailConsumer());
@@ -151,7 +166,9 @@ public class RxJavaHelper<T, VM extends BaseViewModel> {
             return new ErrorResultBean() {
                 @Override
                 protected void onError(ErrorResultBean.ErrorBean errorBean) {
-                    viewModel.getTip().postValue(errorBean.getErrorResult());
+                    if (loading) {
+                        viewModel.getTip().postValue(errorBean.getErrorResult());
+                    }
                 }
             };
         } else {

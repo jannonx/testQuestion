@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon_app"
         android:label="@string/test_name"
-        tools:replace="android:label,android:icon">
+        android:roundIcon="@mipmap/icon_app"
+        tools:replace="android:label,android:icon,android:roundIcon">
     </application>
 
 </manifest>
