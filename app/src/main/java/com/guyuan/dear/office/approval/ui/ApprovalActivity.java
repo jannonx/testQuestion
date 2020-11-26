@@ -8,10 +8,18 @@ import androidx.lifecycle.Observer;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
+import com.guyuan.dear.busbean.ApprovalBusBean;
+import com.guyuan.dear.busbean.LoginBusBean;
+import com.guyuan.dear.busbean.TokenBusBean;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.office.approval.data.ApprovalViewModel;
 import com.guyuan.dear.office.approval.data.bean.ApprovalListBean;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +38,7 @@ import retrofit2.http.PUT;
 public class ApprovalActivity extends BaseTabActivity<ActivityBaseTabBinding, ApprovalViewModel> {
 
     public static final String APPROVAL_TYPE = "approvalType";
+    public static final String IS_APPROVED = "isApproved";
     public static final int ACCEPT = 1;//通过
     public static final int REJECT = 2;//驳回
 
@@ -60,6 +69,7 @@ public class ApprovalActivity extends BaseTabActivity<ActivityBaseTabBinding, Ap
 
     @Override
     protected void init() {
+        EventBus.getDefault().register(this);
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
         setObserver();
@@ -82,11 +92,23 @@ public class ApprovalActivity extends BaseTabActivity<ActivityBaseTabBinding, Ap
     }
 
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(ApprovalBusBean o) {
+        approvalFragment.refresh();
+        approvedFragment.refresh();
+    }
+
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
         return tabDrawableList;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }
