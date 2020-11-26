@@ -11,6 +11,7 @@ import com.guyuan.dear.customizeview.MessageBar;
 import com.guyuan.dear.databinding.FragmentOfficeBinding;
 import com.guyuan.dear.login.data.ChildrenBean;
 import com.guyuan.dear.office.approval.ui.ApprovalActivity;
+import com.guyuan.dear.office.clockIn.view.ClockInActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
 
@@ -90,7 +91,9 @@ public class OfficeFragment extends BaseListFragment<ChildrenBean, FragmentOffic
                                 break;
 
                             case ConstantValue.OFFICE_SIGN://考勤打卡
-
+                                ClockInActivity.start(getContext(),title);
+                                break;
+                            default:
                                 break;
                         }
                     } else {

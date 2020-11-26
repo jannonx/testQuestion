@@ -16,6 +16,7 @@ import com.guyuan.dear.focus.contract.bean.ContractStatusFlowBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
+import com.guyuan.dear.focus.hr.bean.HrSummaryBean;
 import com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport;
 import com.guyuan.dear.focus.qc.beans.BaseProductQcReport;
 import com.guyuan.dear.focus.qc.beans.GenericQcReport;
@@ -31,11 +32,13 @@ import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
 import com.guyuan.dear.net.resultBeans.NetBaseProjectBean;
 import com.guyuan.dear.net.resultBeans.NetBaseQcBean;
 import com.guyuan.dear.net.resultBeans.NetClientInfo;
+import com.guyuan.dear.net.resultBeans.NetClockInConfig;
 import com.guyuan.dear.net.resultBeans.NetContractDetailInfo;
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
 import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.net.resultBeans.NetContractStatusFlow;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
+import com.guyuan.dear.net.resultBeans.NetHrSummary;
 import com.guyuan.dear.net.resultBeans.NetMaterialBean;
 import com.guyuan.dear.net.resultBeans.NetProductInfo;
 import com.guyuan.dear.net.resultBeans.NetQcApproach;
@@ -898,6 +901,33 @@ public class DearNetHelper {
             }
         };
         return getDisposalAsync(observable,callback,mapper);
+    }
+
+    /**
+     * 获取今日人员出勤概况
+     * @param callback
+     * @return
+     */
+    public Disposable getHrSummary(NetCallback<HrSummaryBean> callback){
+        Observable<ResultBean<NetHrSummary>> observable = netApiService.getHrSummary();
+        Mapper<NetHrSummary,HrSummaryBean> mapper = new Mapper<NetHrSummary, HrSummaryBean>() {
+            @Override
+            public HrSummaryBean map(NetHrSummary src) {
+                return new HrSummaryBean(src);
+            }
+        };
+        return getDisposalAsync(observable,callback,mapper);
+    }
+
+
+    /**
+     * 获取我的打卡状态和上下班时间，地点等配置
+     * @param callback
+     * @return
+     */
+    public Disposable getClockInConfig(NetCallback<NetClockInConfig> callback){
+        Observable<ResultBean<NetClockInConfig>> observable = netApiService.getClockInConfig();
+        return getDisposalAsync(observable,callback,null);
     }
 
 

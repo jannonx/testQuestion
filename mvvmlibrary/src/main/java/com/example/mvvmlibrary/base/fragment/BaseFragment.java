@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.PermissionChecker;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.security.Permission;
 
 /**
  * created by tl
@@ -96,4 +98,5 @@ public abstract class BaseFragment extends Fragment {
             loadingDialog = null;
         }
     }
+
 }

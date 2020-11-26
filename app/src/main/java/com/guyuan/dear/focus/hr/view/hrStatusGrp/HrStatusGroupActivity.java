@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.ActivityHrGroupContentBinding;
+import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
 import com.guyuan.dear.utils.ConstantValue;
 
 /**
@@ -16,10 +17,14 @@ import com.guyuan.dear.utils.ConstantValue;
  */
 public class HrStatusGroupActivity extends BaseToolbarActivity<ActivityHrGroupContentBinding, HrStatusGrpViewModel> {
 
-    public static void start(Context context, String title,int grpType) {
+    /**
+     * @param grpType {@link HrStatusGroup#GRP_TYPE_NORMAL},{@link HrStatusGroup#GRP_TYPE_LATE},{@link HrStatusGroup#GRP_TYPE_LEAVE_EARLY},
+     *                {@link HrStatusGroup#GRP_TYPE_ABSENT},{@link HrStatusGroup#GRP_TYPE_ON_LEAVE}
+     */
+    public static void start(Context context, String title, int grpType) {
         Intent starter = new Intent(context, HrStatusGroupActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE, title);
-        starter.putExtra(ConstantValue.KEY_GRP_TYPE,grpType);
+        starter.putExtra(ConstantValue.KEY_GRP_TYPE, grpType);
         context.startActivity(starter);
     }
 
