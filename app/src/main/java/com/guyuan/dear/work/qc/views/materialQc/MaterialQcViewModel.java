@@ -5,9 +5,8 @@ import android.view.View;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.guyuan.dear.base.fragment.DearBaseViewModel;
+import com.guyuan.dear.base.fragment.BaseDearViewModel;
 import com.guyuan.dear.net.reqBean.SubmitQcReportBody;
-import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.qc.beans.BaseProjectBean;
 import com.guyuan.dear.work.qc.beans.BaseQcApproachBean;
@@ -25,7 +24,7 @@ import io.reactivex.disposables.Disposable;
  * @since: 2020/11/17 11:58
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class MaterialQcViewModel extends DearBaseViewModel {
+public class MaterialQcViewModel extends BaseDearViewModel {
     /**
      * 数据源
      */

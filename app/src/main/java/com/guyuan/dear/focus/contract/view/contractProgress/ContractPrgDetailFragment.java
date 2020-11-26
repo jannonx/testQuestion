@@ -2,16 +2,10 @@ package com.guyuan.dear.focus.contract.view.contractProgress;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.viewpager2.widget.ViewPager2;
-
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentContractPrgDetailBinding;
-import com.guyuan.dear.focus.contract.adapter.ContractLogsPagerAdapter;
 import com.guyuan.dear.utils.ConstantValue;
 
 /**

@@ -13,7 +13,7 @@ import com.guyuan.dear.utils.ConstantValue;
  * 我的关注-销售-合同进度列表-合同进度详情
  * @author leoliao
  */
-public class ContractPrgDetailActivity extends BaseToolbarActivity<ActivityContractPrgDetailBinding,ContractPrgDetailViewModel> {
+public class ContractPrgDetailActivity extends BaseToolbarActivity<ActivityContractPrgDetailBinding, ContractPrgDetailViewModel> {
 
     private String mTitle;
     private int mContractId;

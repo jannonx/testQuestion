@@ -13,7 +13,7 @@ import io.reactivex.disposables.Disposable;
  * @since: 2020/11/24 18:59
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class DearBaseViewModel extends BaseViewModel {
+public class BaseDearViewModel extends BaseViewModel {
     protected abstract class BaseNetCallback<T> implements DearNetHelper.NetCallback<T> {
         @Override
         public void onStart(Disposable disposable) {

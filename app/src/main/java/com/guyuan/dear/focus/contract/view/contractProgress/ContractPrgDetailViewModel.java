@@ -2,7 +2,7 @@ package com.guyuan.dear.focus.contract.view.contractProgress;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.guyuan.dear.base.fragment.DearBaseViewModel;
+import com.guyuan.dear.base.fragment.BaseDearViewModel;
 import com.guyuan.dear.focus.contract.bean.ContractStatusFlowBean;
 import com.guyuan.dear.focus.contract.repos.ContractPrgDetailRepo;
 
@@ -14,7 +14,7 @@ import io.reactivex.disposables.Disposable;
  * @since: 2020/10/12 18:37
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ContractPrgDetailViewModel extends DearBaseViewModel {
+public class ContractPrgDetailViewModel extends BaseDearViewModel {
     private ContractPrgDetailRepo repo = new ContractPrgDetailRepo();
     private MutableLiveData<ContractStatusFlowBean> detailBean = new MutableLiveData<>();
 

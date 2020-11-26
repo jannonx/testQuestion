@@ -1,20 +1,14 @@
 package com.guyuan.dear.focus.hr.view.hrSummary;
 
-import android.os.Bundle;
 import android.view.View;
 
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
-import com.guyuan.dear.customizeview.title_tab_strip.TabContent;
-import com.guyuan.dear.customizeview.title_tab_strip.TitleTabStripView;
 import com.guyuan.dear.databinding.FragmentHrSummaryBinding;
-import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
+import com.guyuan.dear.focus.hr.view.hrStatusGrp.HrStatusGroupActivity;
 
-import java.util.ArrayList;
-
-import static com.guyuan.dear.focus.hr.view.hrSummary.HrSummaryViewModel.TAB_ID_ALL_STAFF;
-import static com.guyuan.dear.focus.hr.view.hrSummary.HrSummaryViewModel.TAB_ID_CONSTRUCTION_SITE_STAFF;
 
 /**
  * @author: 廖华凯
@@ -46,54 +40,53 @@ public class HrSummaryFragment extends BaseMvvmFragment<FragmentHrSummaryBinding
 
     @Override
     protected void initViews() {
-        initHrTypeIndicator();
-    }
-
-    /**
-     * 初始化切换“全部人员”和“施工人员”的下滑键
-     */
-    public void initHrTypeIndicator() {
-        TitleTabStripView tabView = getViewDataBinding().fragmentHrSummaryTabViewToggleHrType;
-        tabView.setTabContents(new ArrayList<TabContent>() {
-            {
-                add(new TabContent() {
-                    @Override
-                    public String getTabTitle() {
-                        return "全部人员";
-                    }
-
-                    @Override
-                    public int getTabId() {
-                        return TAB_ID_ALL_STAFF;
-                    }
-                });
-                add(new TabContent() {
-                    @Override
-                    public String getTabTitle() {
-                        return "施工现场人员";
-                    }
-
-                    @Override
-                    public int getTabId() {
-                        return TAB_ID_CONSTRUCTION_SITE_STAFF;
-                    }
-                });
-            }
-        });
-        tabView.setTabListener(new TitleTabStripView.TabListener() {
-            @Override
-            public void onTabChange(View view, TabContent tabContent) {
-                int tabId = tabContent.getTabId();
-                getViewModel().setMode(tabId);
-
-            }
-        });
-        tabView.setCurrentSelected(0);
+        getViewModel().updateStaffSum();
     }
 
 
     @Override
     protected void initListeners() {
+        HrSummaryViewModel viewModel = getViewModel();
+        //显示正常出勤人员列表
+        viewModel.setOnClickShowNormalStaffs(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HrStatusGroupActivity.start(getActivity(),"正常出勤", HrStatusGroup.GRP_TYPE_NORMAL);
+
+            }
+        });
+
+        //显示缺勤人员列表
+        viewModel.setOnClickShowAbsentStaffs(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HrStatusGroupActivity.start(getActivity(),"本日缺勤", HrStatusGroup.GRP_TYPE_ABSENT);
+            }
+        });
+
+        //显示迟到人员列表
+        viewModel.setOnClickShowLateStaffs(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HrStatusGroupActivity.start(getActivity(),"本日迟到", HrStatusGroup.GRP_TYPE_LATE);
+            }
+        });
+
+        //显示早退人员列表
+        viewModel.setOnClickShowEarlyLeaveStaffs(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HrStatusGroupActivity.start(getActivity(),"本日早退", HrStatusGroup.GRP_TYPE_LEAVE_EARLY);
+            }
+        });
+
+        //显示请假人员列表
+        viewModel.setOnClickShowOnLeaveStaffs(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HrStatusGroupActivity.start(getActivity(),"本日请假", HrStatusGroup.GRP_TYPE_ON_LEAVE);
+            }
+        });
 
 
     }

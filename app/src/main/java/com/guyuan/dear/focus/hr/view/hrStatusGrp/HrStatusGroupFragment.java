@@ -8,6 +8,7 @@ import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentHrGroupBinding;
 import com.guyuan.dear.focus.hr.adapter.StaffsDeptGrpExpListAdapter;
+import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
 import com.guyuan.dear.focus.hr.bean.StaffBasicInfo;
 import com.guyuan.dear.focus.hr.view.hrStaffAttendDetail.StaffAttendDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
@@ -22,6 +23,10 @@ public class HrStatusGroupFragment extends BaseMvvmFragment<FragmentHrGroupBindi
 
     private int grpType;
 
+    /**
+     * @param grpType {@link HrStatusGroup#GRP_TYPE_NORMAL},{@link HrStatusGroup#GRP_TYPE_LATE},{@link HrStatusGroup#GRP_TYPE_LEAVE_EARLY},
+     * {@link HrStatusGroup#GRP_TYPE_ABSENT},{@link HrStatusGroup#GRP_TYPE_ON_LEAVE}
+     */
     public static HrStatusGroupFragment getInstance(int grpType) {
         Bundle bundle = new Bundle();
         bundle.putInt(ConstantValue.KEY_GRP_TYPE, grpType);
