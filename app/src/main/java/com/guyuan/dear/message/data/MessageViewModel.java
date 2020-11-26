@@ -8,11 +8,14 @@ import com.guyuan.dear.base.api.RxJavaHelper;
 import com.guyuan.dear.base.bean.ListRequestBody;
 import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
 import com.guyuan.dear.message.api.MessageApiService;
+import com.guyuan.dear.message.data.bean.MessageDetailBean;
 import com.guyuan.dear.message.data.bean.MessageListBean;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.List;
+
+import retrofit2.http.PUT;
 
 /**
  * @author : 唐力
@@ -24,7 +27,7 @@ import java.util.List;
 public class MessageViewModel extends BaseViewModel {
     private MessageApiService apiService;
     private MutableLiveData<MessageListBean> messageListMLD = new MutableLiveData<>();
-
+    private MutableLiveData<MessageDetailBean> messageDetailMLD = new MutableLiveData<>();
 
     @ViewModelInject
     public MessageViewModel(MessageApiService apiService) {
@@ -36,7 +39,11 @@ public class MessageViewModel extends BaseViewModel {
         return messageListMLD;
     }
 
-    public void getMessageList(int pageIndex, int msgType,String content) {
+    public MutableLiveData<MessageDetailBean> getMessageDetailMLD() {
+        return messageDetailMLD;
+    }
+
+    public void getMessageList(int pageIndex, int msgType, String content) {
         ListRequestBody requestBody = new ListRequestBody();
         requestBody.setPageNum(pageIndex);
         requestBody.setPageSize(ConstantValue.PAGE_SIZE);
@@ -46,5 +53,10 @@ public class MessageViewModel extends BaseViewModel {
         requestBody.setFilters(filtersBean);
         RxJavaHelper.build(this, apiService.getMessageList(
                 CommonUtils.getCommonRequestBody(requestBody))).getHelper().flow(messageListMLD);
+    }
+
+    public void getMessageDetail(int id) {
+        RxJavaHelper.build(this, apiService.getMessageDetail(id))
+                .getHelper().flow(messageDetailMLD);
     }
 }

@@ -13,6 +13,7 @@ import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailComplexBinding;
+import com.guyuan.dear.dialog.RemarkDialog;
 import com.guyuan.dear.dialog.SimpleConfirmViewDialog;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
@@ -21,6 +22,7 @@ import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.OperateProduceType;
 import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
+import com.guyuan.dear.office.approval.ui.ApprovalActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
@@ -36,6 +38,11 @@ import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
+
+import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.BUSINESS_ID;
+import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.BUSINESS_TYPE;
+import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.STATUS;
+import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.TYPE;
 
 /**
  * @description: 我的关注--客户详情(CoordinatorLayout)
@@ -58,8 +65,12 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
     private int selectedTextColor, unSelectedTextColor;
     private FocusProduceBean produceBean;
     private boolean isFooterBtnShow, isProducePause, isProduceIng;
-
     private ProduceApplyDialog dialog;
+    private int businessId = -1;
+    private int businessType;
+    private int status = -1;//1.同意；2.拒绝
+    private int type;
+    private RemarkDialog.OnDialogClickListener remarkListener;
 
     public static FocusProduceDetailComplexFragment newInstance(FocusProduceBean data, boolean isFooterBtnShow) {
         Bundle bundle = new Bundle();
@@ -69,6 +80,22 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
         fragment.setArguments(bundle);
         return fragment;
     }
+
+
+    //审批入口
+    public static FocusProduceDetailSimpleFragment newInstance(FocusProduceBean data, int businessId,
+                                                               int businessType, int type) {
+        Bundle bundle = new Bundle();
+        FocusProduceDetailSimpleFragment fragment = new FocusProduceDetailSimpleFragment();
+        bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
+        bundle.putSerializable(ConstantValue.KEY_BOOLEAN, false);
+        bundle.putInt(BUSINESS_ID, businessId);
+        bundle.putInt(BUSINESS_TYPE, businessType);
+        bundle.putInt(TYPE, type);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
 
     @Override
     protected int getLayoutID() {
@@ -109,6 +136,47 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
             }
         });
 
+        setApproval();
+    }
+
+
+    //设置审批
+    private void setApproval() {
+        businessId = getArguments().getInt(BUSINESS_ID);
+        businessType = getArguments().getInt(BUSINESS_TYPE);
+        status = getArguments().getInt(STATUS);
+        type = getArguments().getInt(TYPE);
+        if (businessId != -1) {
+            setRemarkDialogListener();
+            binding.produceApprovalLl.setVisibility(View.VISIBLE);
+
+
+            binding.produceRejectTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    status = ApprovalActivity.REJECT;
+                    RemarkDialog.show(getActivity(), "请输入驳回备注", remarkListener);
+                }
+            });
+
+            binding.produceAcceptTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    status = ApprovalActivity.ACCEPT;
+                    RemarkDialog.show(getActivity(), "请输入通过备注", remarkListener);
+                }
+            });
+        }
+    }
+
+    private void setRemarkDialogListener() {
+        remarkListener = new RemarkDialog.OnDialogClickListener() {
+            @Override
+            public void onCommitInfo(ExecuteRequestBody data) {
+                String remark = data.getReason();
+                viewModel.approval(businessId, businessType, remark, status, type);
+            }
+        };
     }
 
 

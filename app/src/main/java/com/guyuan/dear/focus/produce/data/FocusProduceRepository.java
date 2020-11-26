@@ -12,6 +12,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
+import retrofit2.http.Query;
 
 /**
  * @description:
@@ -57,5 +58,10 @@ public class FocusProduceRepository {
 
     Observable<ResultBean<Integer>> postExecuteProduceInfo(RequestBody body) {
         return apiService.postExecuteProduceInfo(body);
+    }
+
+    Observable<ResultBean<Integer>> approval(int businessId, int businessType,
+                                             String remarks, int status, int type) {
+        return apiService.approval(businessId, businessType, remarks, status, type);
     }
 }

@@ -20,8 +20,8 @@ import com.guyuan.dear.utils.GlideUtils;
 public class CommonBindingAdapter {
 
     //glide设置图片
-    @BindingAdapter(value={"imgUrl", "imgType","imgRadius"}, requireAll=false)
-    public static void setPic(ImageView imageView, String url, int type,int radius) {
+    @BindingAdapter(value = {"imgUrl", "imgType", "imgRadius"}, requireAll = false)
+    public static void setPic(ImageView imageView, String url, int type, int radius) {
         switch (type) {
             case GlideUtils.NORMAL:
                 GlideUtils.getInstance().loadUrlImage(imageView, url);
@@ -41,7 +41,9 @@ public class CommonBindingAdapter {
     //text设置字符串有数据显示，无数据隐藏
     @BindingAdapter("visibilityByContent")
     public static void setVisibilityByContent(TextView tv, String content) {
-        if (TextUtils.isEmpty(content)) {
+        if (TextUtils.isEmpty(content) ||
+                content.endsWith("：null") || content.endsWith("：") || content.endsWith(":null")
+                || content.endsWith(":")) {
             tv.setVisibility(View.GONE);
         } else {
             tv.setVisibility(View.VISIBLE);

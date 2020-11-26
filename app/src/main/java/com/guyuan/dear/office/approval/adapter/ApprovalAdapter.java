@@ -4,9 +4,11 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.guyuan.dear.BR;
 import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.databinding.ItemApprovalBinding;
+import com.guyuan.dear.office.approval.data.bean.ApprovalListBean;
 
 import java.util.List;
 
@@ -19,14 +21,14 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class ApprovalAdapter extends BaseDBRecycleAdapter<Object, ItemApprovalBinding> {
+public class ApprovalAdapter extends BaseDBRecycleAdapter<ApprovalListBean.ContentBean, ItemApprovalBinding> {
 
-    public ApprovalAdapter(List<Object> listData, int layoutID) {
+    public ApprovalAdapter(List<ApprovalListBean.ContentBean> listData, int layoutID) {
         super(listData, layoutID);
     }
 
     @Override
-    protected void bindDataToView(Holder holder, Object item, int position) {
-
+    protected void bindDataToView(Holder holder, ApprovalListBean.ContentBean item, int position) {
+        holder.binding.setVariable(BR.approvalContentBean, item);
     }
 }
