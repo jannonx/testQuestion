@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.aftersale.api;
+package com.guyuan.dear.analyse.operate.api;
 
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
@@ -25,7 +25,7 @@ import retrofit2.http.Query;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public interface FocusAfterSaleApiService extends BaseApiService {
+public interface OperateApiService extends BaseApiService {
     /**
      * 上传图片
      *

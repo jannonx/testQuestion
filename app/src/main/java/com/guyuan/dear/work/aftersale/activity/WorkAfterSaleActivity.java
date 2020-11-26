@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.aftersale.ui;
+package com.guyuan.dear.work.aftersale.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
-import com.guyuan.dear.focus.aftersale.bean.SaleQualifiedType;
+import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
-import com.guyuan.dear.focus.aftersale.fragemnt.FocusAfterSaleFragment;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.work.aftersale.fragment.WorkAfterSaleFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,14 +26,14 @@ import dagger.hilt.android.AndroidEntryPoint;
  * @company: 固远（深圳）信息技术有限公司
  */
 @AndroidEntryPoint
-public class FocusAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBinding, FocusAfterSaleViewModel> {
+public class WorkAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBinding, FocusAfterSaleViewModel> {
 
-    private FocusAfterSaleFragment qualifiedFragment;
-    private FocusAfterSaleFragment unqualifiedFragment;
+    private WorkAfterSaleFragment checkFragment;
+    private WorkAfterSaleFragment acceptFragment;
 
 
     public static void start(Context context, String title) {
-        Intent starter = new Intent(context, FocusAfterSaleActivity.class);
+        Intent starter = new Intent(context, WorkAfterSaleActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE, title);
         context.startActivity(starter);
     }
@@ -47,10 +47,10 @@ public class FocusAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBindi
     @Override
     protected List<Fragment> getFragments() {
         List<Fragment> fragmentList = new ArrayList<>();
-        qualifiedFragment = FocusAfterSaleFragment.newInstance(SaleQualifiedType.TYPE_QUALIFIED);
-        unqualifiedFragment = FocusAfterSaleFragment.newInstance(SaleQualifiedType.TYPE_QUALIFIED);
-        fragmentList.add(qualifiedFragment);
-        fragmentList.add(unqualifiedFragment);
+        checkFragment = WorkAfterSaleFragment.newInstance(SaleSectionType.TYPE_SECTION_CHECK);
+        acceptFragment = WorkAfterSaleFragment.newInstance(SaleSectionType.TYPE_SECTION_ACCEPT);
+        fragmentList.add(checkFragment);
+        fragmentList.add(acceptFragment);
         return fragmentList;
     }
 

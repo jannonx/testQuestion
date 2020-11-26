@@ -7,12 +7,9 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.app.DearApplication;
-import com.guyuan.dear.focus.aftersale.ui.FocusAfterSaleActivity;
-import com.guyuan.dear.work.goodssign.data.GoodsSignViewModel;
+import com.guyuan.dear.base.app.DearApplication;import com.guyuan.dear.work.goodssign.data.GoodsSignViewModel;
 import com.guyuan.dear.work.goodssign.data.bean.GoodsSignBean;
 import com.guyuan.dear.work.goodssign.ui.GoodsSignItemDetailActivity;
-import com.sun.jna.platform.win32.WinDef;
 
 import java.util.List;
 

@@ -10,13 +10,11 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.aftersale.adapter.AfterSaleStatusAdapter;
+import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleStatusBean;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
-import com.guyuan.dear.focus.projectsite.adapter.ProjectSiteStatusAdapter;
-import com.guyuan.dear.focus.projectsite.bean.ProjectSiteStatusBean;
-import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
-import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
 
 import org.greenrobot.eventbus.EventBus;
@@ -36,10 +34,10 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 public class AfterSaleStatusFragment extends BaseListFragment<AfterSaleStatusBean, FragmentListBinding, FocusAfterSaleViewModel> {
 
     public static final String TAG = AfterSaleStatusFragment.class.getSimpleName();
-    private SiteExploreBean detailProjectData;
+    private AfterSaleBean afterSaleBean;
     private View footerView;
 
-    public static AfterSaleStatusFragment newInstance(SiteExploreBean data) {
+    public static AfterSaleStatusFragment newInstance(AfterSaleBean data) {
         Bundle bundle = new Bundle();
         AfterSaleStatusFragment fragment = new AfterSaleStatusFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
@@ -54,26 +52,27 @@ public class AfterSaleStatusFragment extends BaseListFragment<AfterSaleStatusBea
             return;
         }
         EventBus.getDefault().register(this);
-        detailProjectData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
-        if (detailProjectData == null) {
+        afterSaleBean = (AfterSaleBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        LogUtils.showLog("getContext="+(getContext()==null));
+        if (afterSaleBean == null||getContext()==null) {
             return;
         }
 
         AfterSaleStatusAdapter listAdapter = new AfterSaleStatusAdapter(getContext(), listData,
-                R.layout.item_focus_after_sale);
+                R.layout.item_focus_after_sale_status);
 
         adapter = new BaseRecyclerViewAdapter(listAdapter);
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-//        viewModel.getProjectSiteStatusList(detailProjectData.getId(), detailProjectData.getProjectReportType().getCode());
-//        viewModel.getProjectSiteStatusEvent().observe(getActivity(), new Observer<List<ProjectSiteStatusBean>>() {
-//            @Override
-//            public void onChanged(List<ProjectSiteStatusBean> data) {
-//                setListData(data);
-//            }
-//        });
+//        viewModel.getAfterSaleStatusList(afterSaleBean.getId(), afterSaleBean.getSectionType().getCode());
+        viewModel.getAfterSaleStatusEvent().observe(getActivity(), new Observer<List<AfterSaleStatusBean>>() {
+            @Override
+            public void onChanged(List<AfterSaleStatusBean> data) {
+                setListData(data);
+            }
+        });
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

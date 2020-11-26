@@ -3,7 +3,9 @@ package com.guyuan.dear.work;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.mvvmlibrary.base.data.BaseViewModel;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.GridLayoutManager;
+
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
@@ -11,13 +13,13 @@ import com.guyuan.dear.customizeview.MessageBar;
 import com.guyuan.dear.databinding.FragmentWorkBinding;
 import com.guyuan.dear.home.data.MainViewModel;
 import com.guyuan.dear.login.data.ChildrenBean;
-import com.guyuan.dear.message.data.bean.MessageListBean;
 import com.guyuan.dear.message.data.bean.MessageUnreadBean;
 import com.guyuan.dear.message.ui.MessageActivity;
 import com.guyuan.dear.message.ui.MessageFragment;
 import com.guyuan.dear.scan.ScanActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
+import com.guyuan.dear.work.aftersale.activity.WorkAfterSaleActivity;
 import com.guyuan.dear.work.assess.ui.WorkAssessActivity;
 import com.guyuan.dear.work.client.activity.WorkClientActivity;
 import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeActivity;
@@ -29,9 +31,6 @@ import com.guyuan.dear.work.projectsite.activity.WorkProjectSiteActivity;
 import com.guyuan.dear.work.qc.views.home.QcHomeActivity;
 
 import java.util.ArrayList;
-
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
@@ -124,7 +123,7 @@ public class WorkFragment extends BaseListFragment<ChildrenBean, FragmentWorkBin
 
 
                             case ConstantValue.WORK_AFTER_SERVICE://售后服务
-
+                                WorkAfterSaleActivity.start(getContext(), title);
                                 break;
 
 

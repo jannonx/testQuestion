@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--        <androidx.appcompat.widget.LinearLayoutCompat-->
+        <!--            android:id="@+id/llc_content"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:orientation="vertical">-->
+
+        <!--            <FrameLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent"-->
+        <!--                tools:background="@color/color_green_D4FFF1"-->
+        <!--                tools:layout_height="@dimen/dp_150">-->
+
+        <tl.com.easy_recycleview_library.BaseRecyclerView
+            android:id="@+id/base_recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout_height="@dimen/dp_150"
+            android:background="@color/white"
+            tools:background="@color/color_green_D4FFF1" />
+        <!--            </FrameLayout>-->
+
+
+        <!--            <LinearLayout-->
+        <!--                android:id="@+id/ll_remark"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:background="@color/white"-->
+        <!--                android:orientation="vertical">-->
+        <!--                <View-->
+        <!--                    android:id="@+id/view_3"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="@dimen/dp_8"-->
+        <!--                    android:background="@color/color_grey_EDEDED"-->
+        <!--                    app:layout_constraintTop_toBottomOf="@+id/base_recycleView" />-->
+        <!--                <TextView-->
+        <!--                    android:id="@+id/label_issue_record"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginStart="@dimen/dp_12"-->
+        <!--                    android:layout_marginTop="@dimen/dp_14"-->
+        <!--                    android:text="记录问题"-->
+        <!--                    android:textColor="@color/color_black_333333"-->
+        <!--                    android:textSize="@dimen/sp_16"-->
+        <!--                    android:textStyle="bold" />-->
+
+        <!--                <TextView-->
+        <!--                    android:id="@+id/tv_remark"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginStart="@dimen/dp_12"-->
+        <!--                    android:layout_marginTop="@dimen/dp_8"-->
+        <!--                    android:layout_marginEnd="@dimen/dp_12"-->
+        <!--                    android:text="问题内容问题内容问题内容问题内容问题内容问题内容问题内容问题内容"-->
+        <!--                    android:textColor="@color/color_grey_999999"-->
+        <!--                    android:textSize="@dimen/sp_14" />-->
+
+        <!--                <TextView-->
+        <!--                    android:id="@+id/tv_status"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginStart="@dimen/dp_12"-->
+        <!--                    android:layout_marginTop="@dimen/dp_8"-->
+        <!--                    android:layout_marginEnd="@dimen/dp_12"-->
+        <!--                    android:layout_marginBottom="@dimen/dp_16"-->
+        <!--                    android:text="货物状态：正常"-->
+        <!--                    android:textColor="@color/color_red_F04864"-->
+        <!--                    android:textSize="@dimen/sp_14" />-->
+        <!--            </LinearLayout>-->
+
+        <!--            <androidx.appcompat.widget.LinearLayoutCompat-->
+        <!--                android:id="@+id/ll_document"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginTop="@dimen/dp_16"-->
+        <!--                android:background="@color/color_white_f5f7fa"-->
+        <!--                android:orientation="vertical">-->
+
+        <!--                <TextView-->
+        <!--                    android:id="@+id/label_document"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginStart="@dimen/dp_12"-->
+        <!--                    android:text="电子档文件"-->
+        <!--                    android:textColor="@color/color_black_333333"-->
+        <!--                    android:textSize="@dimen/sp_16"-->
+        <!--                    android:textStyle="bold" />-->
+
+        <!--                <TextView-->
+        <!--                    android:id="@+id/tv_tip"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_marginStart="@dimen/dp_12"-->
+        <!--                    android:layout_marginTop="@dimen/dp_4"-->
+        <!--                    android:layout_marginEnd="@dimen/dp_12"-->
+        <!--                    android:text="点击图片，放大查看"-->
+        <!--                    android:textColor="@color/color_grey_999999"-->
+        <!--                    android:textSize="@dimen/sp_14" />-->
+
+
+        <!--            <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout-->
+        <!--                android:id="@+id/tfl_picture"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="12dp"-->
+        <!--                android:layout_marginTop="12dp" />-->
+        <!--                <FrameLayout-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    tools:background="@color/color_green_D4FFF1"-->
+        <!--                    tools:layout_height="@dimen/dp_150">-->
+
+        <!--                    <tl.com.easy_recycleview_library.BaseRecyclerView-->
+        <!--                        android:id="@+id/image_recycleView"-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        app:layout_constraintStart_toStartOf="parent"-->
+        <!--                        app:layout_constraintTop_toTopOf="parent"-->
+        <!--                        tools:layout_marginTop="12dp" />-->
+
+        <!--                </FrameLayout>-->
+
+        <!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
+        <!--        </androidx.appcompat.widget.LinearLayoutCompat>-->
+
+        <!--        <RelativeLayout-->
+        <!--            android:id="@+id/video_panel"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:visibility="gone">-->
+
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_centerHorizontal="true"-->
+        <!--                android:layout_marginTop="@dimen/dp_50"-->
+        <!--                android:text="视频面板，未开发" />-->
+        <!--        </RelativeLayout>-->
+    </FrameLayout>
+
+</layout>

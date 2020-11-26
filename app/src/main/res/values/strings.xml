@@ -254,7 +254,10 @@
         <item>质量详情</item>
     </array>
 
-
+    <array name="focus_after_sale">
+        <item>排查记录</item>
+        <item>问题描述</item>
+    </array>
     <!--过程控制-->
 
     <!--实时进展-->

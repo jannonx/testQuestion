@@ -3,8 +3,11 @@ package com.guyuan.dear.analyse;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.R;
+import com.guyuan.dear.analyse.operate.activity.OperateActivity;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentAnalyseBinding;
@@ -15,7 +18,6 @@ import com.guyuan.dear.utils.NetworkUtils;
 
 import java.util.ArrayList;
 
-import androidx.recyclerview.widget.GridLayoutManager;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
@@ -75,7 +77,7 @@ public class AnalyseFragment extends BaseListFragment<ChildrenBean, FragmentAnal
 
                         switch (url) {
                             case ConstantValue.MANAGE_BENEFIT://运营效益
-
+                                OperateActivity.start(getContext(),title);
                                 break;
                         }
                     } else {

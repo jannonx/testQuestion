@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatTextView;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
@@ -14,7 +13,6 @@ import com.guyuan.dear.customizeview.flowlayout.FlowLayout;
 import com.guyuan.dear.customizeview.flowlayout.TagAdapter;
 import com.guyuan.dear.customizeview.flowlayout.TagFlowLayout;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleStatusBean;
-import com.guyuan.dear.focus.projectsite.bean.ProjectSiteStatusBean;
 import com.guyuan.dear.utils.GlideUtils;
 
 import java.util.List;
