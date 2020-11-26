@@ -25,10 +25,10 @@
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
+            android:text="@string/message_no_data_tip"
             android:textColor="#454545"
             android:textSize="14sp"
-            android:textStyle="bold"
-            tools:text="2321312312312" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/toolbar_message_content_tv"
@@ -41,7 +41,9 @@
             android:singleLine="true"
             android:textColor="#454545"
             android:textSize="12sp"
-            tools:text="2321312312312" />
+            android:visibility="gone"
+            tools:text="2321312312312"
+            tools:visibility="visible" />
 
     </LinearLayout>
 
@@ -55,8 +57,8 @@
             android:id="@+id/toolbar_message_iv"
             android:layout_width="24dp"
             android:layout_height="28dp"
-            android:layout_marginRight="30dp"
             android:layout_marginTop="3dp"
+            android:layout_marginRight="30dp"
             app:srcCompat="@mipmap/ic_message_notice" />
 
         <TextView

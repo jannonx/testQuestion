@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="approvalContentBean"
+            type="com.guyuan.dear.office.approval.data.bean.ApprovalListBean.ContentBean" />
     </data>
 
     <androidx.cardview.widget.CardView style="@style/CardViewCommon">
@@ -23,6 +27,7 @@
                 android:layout_marginLeft="@dimen/dp_12"
                 android:layout_marginRight="@dimen/dp_12"
                 android:textColor="#1890FF"
+                app:approvalType="@{approvalContentBean.apprType}"
                 tools:text="dsuahdsaidhsuh" />
 
             <TextView
@@ -32,6 +37,7 @@
                 android:layout_marginLeft="@dimen/dp_12"
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_marginRight="@dimen/dp_12"
+                app:visibilityByContent="@{String.format(@string/project_name,approvalContentBean.projectName)}"
                 tools:text="@string/project_name" />
 
             <TextView
@@ -41,6 +47,7 @@
                 android:layout_marginLeft="@dimen/dp_12"
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_marginRight="@dimen/dp_12"
+                app:visibilityByContent="@{String.format(@string/project_code,approvalContentBean.projectCode)}"
                 android:textColor="#999999"
                 tools:text="@string/project_code" />
 
@@ -51,6 +58,7 @@
                 android:layout_marginLeft="@dimen/dp_12"
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_marginRight="@dimen/dp_12"
+                app:visibilityByContent="@{String.format(@string/product_code,approvalContentBean.code)}"
                 tools:text="@string/product_code" />
 
             <TextView
@@ -60,6 +68,7 @@
                 android:layout_marginLeft="@dimen/dp_12"
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_marginRight="@dimen/dp_12"
+                app:visibilityByContent="@{String.format(@string/office_approval_duty_unit,approvalContentBean.principalDept)}"
                 android:textColor="#999999"
                 tools:text="@string/office_approval_duty_unit" />
 
@@ -70,6 +79,7 @@
                 android:layout_marginLeft="@dimen/dp_12"
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_marginRight="@dimen/dp_12"
+                app:visibilityByContent="@{String.format(@string/office_approval_pause_reason,approvalContentBean.reason)}"
                 android:textColor="#999999"
                 tools:text="@string/office_approval_pause_reason" />
 
@@ -90,6 +100,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:text="@{String.format(@string/commit_person,approvalContentBean.createName)}"
                     android:textColor="#1890FF"
                     tools:text="@string/commit_person" />
 
@@ -97,6 +108,7 @@
                     style="@style/TextSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@{approvalContentBean.createTime}"
                     android:textColor="#1890FF"
                     tools:text="2020-11-23" />
             </LinearLayout>

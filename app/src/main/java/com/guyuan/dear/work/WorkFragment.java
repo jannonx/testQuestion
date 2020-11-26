@@ -190,7 +190,7 @@ public class WorkFragment extends BaseListFragment<ChildrenBean, FragmentWorkBin
             }
         });
 
-        setMessage();
+       setMessage();
     }
 
 

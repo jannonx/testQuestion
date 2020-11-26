@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.office.approval.data.ApprovalViewModel;
+import com.guyuan.dear.office.approval.data.bean.ApprovalListBean;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import retrofit2.http.PUT;
 
 /**
  * @author : 唐力
@@ -25,6 +28,10 @@ import dagger.hilt.android.AndroidEntryPoint;
  **/
 @AndroidEntryPoint
 public class ApprovalActivity extends BaseTabActivity<ActivityBaseTabBinding, ApprovalViewModel> {
+
+    public static final String APPROVAL_TYPE = "approvalType";
+    public static final int ACCEPT = 1;//通过
+    public static final int REJECT = 2;//驳回
 
     private ApprovalFragment approvalFragment;
     private ApprovalFragment approvedFragment;
@@ -55,7 +62,25 @@ public class ApprovalActivity extends BaseTabActivity<ActivityBaseTabBinding, Ap
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+        setObserver();
     }
+
+    private void setObserver() {
+        viewModel.getApprovalListMLD().observe(this, new Observer<ApprovalListBean>() {
+            @Override
+            public void onChanged(ApprovalListBean approvalListBean) {
+                approvalFragment.setListData(approvalListBean.getContent());
+            }
+        });
+
+        viewModel.getApprovedListMLD().observe(this, new Observer<ApprovalListBean>() {
+            @Override
+            public void onChanged(ApprovalListBean approvalListBean) {
+                approvedFragment.setListData(approvalListBean.getContent());
+            }
+        });
+    }
+
 
     @Override
     protected List<Integer> setTabIconList() {

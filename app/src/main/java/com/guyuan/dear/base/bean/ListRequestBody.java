@@ -57,7 +57,7 @@ public class ListRequestBody {
         private String mouthDate;
         private int returnType;
         private int productType;
-        private int listType;
+        private int listType;         //列表类型（1.待审批，2.已审批）
         private int transportStatus;  //10:运输中，20：已送达
         private String projectName;  //
         private String productName;

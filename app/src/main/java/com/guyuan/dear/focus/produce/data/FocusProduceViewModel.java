@@ -16,6 +16,7 @@ import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
 import java.util.List;
 
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import okhttp3.RequestBody;
 
 /**
@@ -145,5 +146,27 @@ public class FocusProduceViewModel extends BaseViewModel {
         Disposable disposable = RxJavaHelper.build(this, repository.postExecuteProduceInfo(body))
                 .getHelper().flow(executeEvent);
         addSubscription(disposable);
+    }
+
+    /**
+     * 生产计划审批
+     *
+     * @param businessId
+     * @param businessType
+     * @param remarks
+     * @param status
+     * @param type
+     */
+    public void approval(int businessId, int businessType,
+                         String remarks, int status, int type) {
+        Disposable disposable = RxJavaHelper.build(this, repository.approval(businessId,
+                businessType, remarks, status, type))
+                .success(new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        finish();
+                    }
+                })
+                .getHelper().flow();
     }
 }

@@ -1,6 +1,7 @@
 package com.guyuan.dear.message.ui;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
@@ -8,7 +9,10 @@ import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.message.adapter.MessageAdapter;
 import com.guyuan.dear.message.data.MessageViewModel;
+import com.guyuan.dear.message.ui.detail.MessageDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
+
+import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @author : 唐力
@@ -40,20 +44,32 @@ public class MessageFragment extends BaseListSearchFragment<MessageBean, Activit
         msgType = getArguments().getInt(ConstantValue.KEY_TYPE);
         MessageAdapter messageAdapter = new MessageAdapter(listData, R.layout.item_message);
         setDefaultAdapter(messageAdapter);
-        if (viewModel != null) {
-            viewModel.getMessageList(currentPage,msgType, searchContent);
-        }
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                if (listData.size() > 0) {
+                    MessageBean bean = listData.get(i);
+                    MessageDetailActivity.start(getContext(), bean.getMsgTitle(), bean.getId());
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refresh();
     }
 
     @Override
     protected void refresh() {
         currentPage = ConstantValue.FIRST_PAGE;
-        viewModel.getMessageList(currentPage, msgType,searchContent);
+        viewModel.getMessageList(currentPage, msgType, searchContent);
     }
 
     @Override
     protected void loadMore() {
-        viewModel.getMessageList(++currentPage, msgType,searchContent);
+        viewModel.getMessageList(++currentPage, msgType, searchContent);
     }
 
     @Override

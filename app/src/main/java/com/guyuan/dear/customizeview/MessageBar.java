@@ -64,6 +64,7 @@ public class MessageBar extends LinearLayout {
         if (unReadNumber > 0 && messageBeanList != null && messageBeanList.size() > 0) {
             MessageBean messageBean = messageBeanList.get(0);
             toolbar_message_title_tv.setText(messageBean.getMsgTitle());
+            toolbar_message_content_tv.setVisibility(VISIBLE);
             toolbar_message_content_tv.setText(messageBean.getMsgContent());
             unread_dot.setVisibility(VISIBLE);
             unread_dot.setText(unReadNumber + "");
@@ -89,8 +90,8 @@ public class MessageBar extends LinearLayout {
     }
 
     private void clearMessage() {
-        toolbar_message_title_tv.setText("");
-        toolbar_message_content_tv.setText("暂无消息");
+        toolbar_message_title_tv.setText(getResources().getString(R.string.message_no_data_tip));
+        toolbar_message_content_tv.setVisibility(GONE);
         unread_dot.setVisibility(View.GONE);
     }
 

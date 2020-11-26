@@ -24,6 +24,16 @@ import retrofit2.http.Query;
  * @company: 固远（深圳）信息技术有限公司
  */
 public interface FocusProduceApiService extends BaseApiService {
+
+    String APPROVAL_COMMIT = BASE + "projectplan/ratifySubPlan";
+
+    String BUSINESS_ID = "businessId";             //主、子生产计划id
+    String BUSINESS_TYPE = "businessType";         //业务类型：1.主生产计划；2.子生产计划
+    String REMARKS = "remarks";                    //审批备注
+    String STATUS = "status";                      //审批操作类型：1.同意；2.拒绝
+    String TYPE = "type";                          //审批类型：1.新建；2.暂停；3.激活
+
+
     /**
      * 查询生产报告概况
      *
@@ -89,4 +99,11 @@ public interface FocusProduceApiService extends BaseApiService {
     @POST("base/projectplan/executeByType")
     Observable<ResultBean<Integer>> postExecuteProduceInfo(@Body RequestBody body);
 
+
+    //生产计划审批
+    @GET(APPROVAL_COMMIT)
+    Observable<ResultBean<Integer>> approval(@Query(BUSINESS_ID) int businessId,
+                                             @Query(BUSINESS_TYPE) int businessType,
+                                             @Query(REMARKS) String remarks, @Query(STATUS) int status,
+                                             @Query(TYPE) int type);
 }
