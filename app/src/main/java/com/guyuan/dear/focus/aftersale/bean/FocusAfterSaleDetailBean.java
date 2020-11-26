@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.aftersale.data.bean;
+package com.guyuan.dear.focus.aftersale.bean;
 
 /**
  * @author : 唐力

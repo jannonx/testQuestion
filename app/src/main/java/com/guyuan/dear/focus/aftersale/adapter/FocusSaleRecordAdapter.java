@@ -6,7 +6,7 @@ import com.guyuan.dear.databinding.ItemFocusSaleRecordBinding;
 import java.util.List;
 
 /**
- * @author : 唐力
+ * @author : 许建宁
  * @description :
  * @since: 2020/11/19 15:54
  * @company : 固远（深圳）信息技术有限公司

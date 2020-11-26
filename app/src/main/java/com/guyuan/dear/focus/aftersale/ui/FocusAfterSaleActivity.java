@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
+import com.guyuan.dear.focus.aftersale.bean.SaleQualifiedType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
+import com.guyuan.dear.focus.aftersale.fragemnt.FocusAfterSaleFragment;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 /**
  * @description: 我的关注--售后
- * @author: 唐力
+ * @author: 许建宁
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
@@ -45,8 +47,8 @@ public class FocusAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBindi
     @Override
     protected List<Fragment> getFragments() {
         List<Fragment> fragmentList = new ArrayList<>();
-        qualifiedFragment = FocusAfterSaleFragment.newInstance(FocusAfterSaleFragment.QUALIFIED, "");
-        unqualifiedFragment = FocusAfterSaleFragment.newInstance(FocusAfterSaleFragment.UNQUALIFIED, "");
+        qualifiedFragment = FocusAfterSaleFragment.newInstance(SaleQualifiedType.TYPE_QUALIFIED);
+        unqualifiedFragment = FocusAfterSaleFragment.newInstance(SaleQualifiedType.TYPE_QUALIFIED);
         fragmentList.add(qualifiedFragment);
         fragmentList.add(unqualifiedFragment);
         return fragmentList;
@@ -62,8 +64,8 @@ public class FocusAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBindi
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.tab_focus_after_sale_right_selector);
+        tabDrawableList.add(R.drawable.tab_focus_after_sale_wrong_selector);
         return tabDrawableList;
     }
 }

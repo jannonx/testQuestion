@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.aftersale.ui.detail;
+package com.guyuan.dear.focus.aftersale.fragemnt;
 
 import android.os.Bundle;
 

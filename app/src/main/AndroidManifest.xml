@@ -484,7 +484,7 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".focus.aftersale.ui.detail.FocusAfterSaleDetailActivity"
+            android:name=".focus.aftersale.ui.FocusAfterSaleDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

@@ -96,7 +96,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_department" />
 
-
         <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
             android:id="@+id/tfl_picture"
             android:layout_width="0dp"
