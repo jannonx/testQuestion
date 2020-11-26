@@ -51,6 +51,11 @@ public class ListSaleRequestBody implements Serializable {
          * 审核状态
          */
         private int status;
+        /**
+         * 用户Id
+         */
+        private long userId;
+
 
         public int getStatus() {
             return status;
@@ -58,6 +63,14 @@ public class ListSaleRequestBody implements Serializable {
 
         public void setStatus(int status) {
             this.status = status;
+        }
+
+        public long getUserId() {
+            return userId;
+        }
+
+        public void setUserId(long userId) {
+            this.userId = userId;
         }
     }
 }

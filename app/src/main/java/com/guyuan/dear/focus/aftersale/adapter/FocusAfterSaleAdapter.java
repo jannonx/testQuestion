@@ -1,18 +1,13 @@
 package com.guyuan.dear.focus.aftersale.adapter;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
-import com.guyuan.dear.databinding.ItemFoucsAfterSaleBinding;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
-import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
-import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
 import java.util.List;
 
@@ -46,7 +41,7 @@ public class FocusAfterSaleAdapter extends BaseRecyclerAdapter<AfterSaleBean> {
         holder.setText(R.id.tv_engineering_name, item.getProjectName());
         holder.setText(R.id.tv_customer_name, item.getConsumerName());
         holder.setText(R.id.tv_engineering_location, item.getConstructionLocaltion());
-//        holder.setText(R.id.tv_operator, item.getCheckMan());
+        holder.setText(R.id.tv_operator, item.getExamineManName());
         holder.setText(R.id.tv_time, item.getUpdateTime());
 
 

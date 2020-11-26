@@ -1,10 +1,10 @@
-package com.guyuan.dear.focus.aftersale.data;
+package com.guyuan.dear.analyse.operate.data;
 
 
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
+import com.guyuan.dear.analyse.operate.api.OperateApiService;
 import com.guyuan.dear.base.api.UploadBean;
-import com.guyuan.dear.focus.aftersale.api.FocusAfterSaleApiService;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleStatusBean;
 
@@ -21,10 +21,10 @@ import retrofit2.http.PartMap;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusAfterSaleRepository {
-    private FocusAfterSaleApiService apiService;
+public class OperateRepository {
+    private OperateApiService apiService;
 
-    public FocusAfterSaleRepository(FocusAfterSaleApiService focusAfterSaleApiService) {
+    public OperateRepository(OperateApiService focusAfterSaleApiService) {
         this.apiService = focusAfterSaleApiService;
     }
 

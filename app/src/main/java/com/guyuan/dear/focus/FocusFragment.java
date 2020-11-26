@@ -3,20 +3,21 @@ package com.guyuan.dear.focus;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.util.LogUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentFocusBinding;
-import com.guyuan.dear.focus.aftersale.ui.FocusAfterSaleActivity;
+import com.guyuan.dear.focus.aftersale.activity.FocusAfterSaleActivity;
 import com.guyuan.dear.focus.assess.ui.FocusAssessActivity;
 import com.guyuan.dear.focus.client.activity.FocusClientActivity;
 import com.guyuan.dear.focus.contract.view.home.ContractHomeActivity;
 import com.guyuan.dear.focus.device.ui.FocusDeviceActivity;
 import com.guyuan.dear.focus.hr.view.home.HrHomeActivity;
 import com.guyuan.dear.focus.produce.ui.FocusProduceActivity;
-import com.guyuan.dear.focus.projectsite.activity.DemoDetailActivity;
 import com.guyuan.dear.focus.projectsite.activity.FocusProjectSiteActivity;
 import com.guyuan.dear.focus.purchase.ui.FocusPurchaseActivity;
 import com.guyuan.dear.focus.qc.views.home.QcHomeActivity;
@@ -29,7 +30,6 @@ import com.guyuan.dear.utils.NetworkUtils;
 
 import java.util.ArrayList;
 
-import androidx.recyclerview.widget.GridLayoutManager;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 

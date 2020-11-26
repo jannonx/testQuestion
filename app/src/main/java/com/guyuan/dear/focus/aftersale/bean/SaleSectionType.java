@@ -13,12 +13,12 @@ public enum SaleSectionType implements Serializable {
     /**
      * 故障排查
      */
-    TYPE_SECTION_CHECK(10, "故障排查"),
+    TYPE_SECTION_CHECK(51, "故障排查"),
 
     /**
      * 客户验收
      */
-    TYPE_SECTION_ACCEPT(20, "客户验收");
+    TYPE_SECTION_ACCEPT(52, "客户验收");
 
 
     private int code;

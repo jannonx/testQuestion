@@ -103,6 +103,7 @@
     <dimen name="dp_58">58dp</dimen>
     <dimen name="dp_32">32dp</dimen>
     <dimen name="sp_26">26sp</dimen>
+    <dimen name="sp_32">32sp</dimen>
     <dimen name="sp_40">40sp</dimen>
     <dimen name="sp_22">22sp</dimen>
     <dimen name="dp_22">22dp</dimen>

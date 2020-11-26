@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.aftersale.data;
+package com.guyuan.dear.analyse.operate.data;
 
 import androidx.hilt.lifecycle.ViewModelInject;
 import androidx.lifecycle.MutableLiveData;
@@ -23,11 +23,11 @@ import retrofit2.http.PartMap;
  * @since: 2020/9/17 11:42
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusAfterSaleViewModel extends BaseViewModel {
-    private FocusAfterSaleRepository repository;
+public class OperateViewModel extends BaseViewModel {
+    private OperateRepository repository;
 
     @ViewModelInject
-    public FocusAfterSaleViewModel(FocusAfterSaleRepository focusClientRepository) {
+    public OperateViewModel(OperateRepository focusClientRepository) {
         this.repository = focusClientRepository;
     }
 

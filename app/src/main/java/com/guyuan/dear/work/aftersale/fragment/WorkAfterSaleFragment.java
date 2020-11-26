@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.aftersale.fragemnt;
+package com.guyuan.dear.work.aftersale.fragment;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +10,15 @@ import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListSearchBinding;
+import com.guyuan.dear.focus.aftersale.activity.CustomerAcceptanceDetailActivity;
+import com.guyuan.dear.focus.aftersale.activity.FocusAfterSaleDetailActivity;
 import com.guyuan.dear.focus.aftersale.adapter.FocusAfterSaleAdapter;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
 import com.guyuan.dear.focus.aftersale.bean.ListSaleRequestBody;
-import com.guyuan.dear.focus.aftersale.bean.SaleQualifiedType;
 import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
-import com.guyuan.dear.focus.aftersale.activity.FocusAfterSaleDetailActivity;
+import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 
@@ -34,16 +36,16 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean, FragmentListSearchBinding, FocusAfterSaleViewModel> {
+public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean, FragmentListSearchBinding, FocusAfterSaleViewModel> {
 
-    public static final String TAG = FocusAfterSaleFragment.class.getSimpleName();
+    public static final String TAG = WorkAfterSaleFragment.class.getSimpleName();
     //合格状态
-    private SaleQualifiedType qualifiedType;
+    private SaleSectionType saleSectionType;
 
-    public static FocusAfterSaleFragment newInstance(SaleQualifiedType saleQualifiedType) {
+    public static WorkAfterSaleFragment newInstance(SaleSectionType saleSectionType) {
         Bundle args = new Bundle();
-        args.putSerializable(ConstantValue.KEY_CONTENT, saleQualifiedType);
-        FocusAfterSaleFragment fragment = new FocusAfterSaleFragment();
+        args.putSerializable(ConstantValue.KEY_CONTENT, saleSectionType);
+        WorkAfterSaleFragment fragment = new WorkAfterSaleFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,7 +57,7 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
             return;
         }
         etSearch.setHint("输入项目名称、编号、人员");
-        qualifiedType = (SaleQualifiedType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
+        saleSectionType = (SaleSectionType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
 
         FocusAfterSaleAdapter saleAdapter = new FocusAfterSaleAdapter(getContext(), listData, R.layout.item_focus_after_sale);
         adapter = new BaseRecyclerViewAdapter(saleAdapter);
@@ -77,7 +79,12 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                FocusAfterSaleDetailActivity.start(getContext(), listData.get(position));
+                if (SaleSectionType.TYPE_SECTION_CHECK == saleSectionType) {
+                    FocusAfterSaleDetailActivity.start(getContext(), listData.get(position));
+                } else {
+                    CustomerAcceptanceDetailActivity.start(getContext(), listData.get(position));
+                }
+
             }
         });
     }
@@ -90,7 +97,7 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
     private void dealDataByAddType(List<AfterSaleBean> content) {
         List<AfterSaleBean> tempList = new ArrayList<>();
         for (AfterSaleBean bean : content) {
-            bean.setSectionType(SaleSectionType.TYPE_SECTION_ACCEPT);
+            bean.setSectionType(saleSectionType);
             tempList.add(bean);
         }
         setListData(tempList);
@@ -104,11 +111,12 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
      * @return
      */
     private RequestBody getListRequestBody(boolean isRefresh) {
+        LoginBean loginInfo = CommonUtils.getLoginInfo();
         currentType = isRefresh ? REFRESH : LOAD_MORE;
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListSaleRequestBody body = new ListSaleRequestBody();
         ListSaleRequestBody.FiltersBean filtersBean = new ListSaleRequestBody.FiltersBean();
-        filtersBean.setStatus(0);
+//        filtersBean.setUserId(loginInfo.getUserInfo().getId());
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);
