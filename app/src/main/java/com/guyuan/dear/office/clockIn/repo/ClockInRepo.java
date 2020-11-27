@@ -73,12 +73,14 @@ public class ClockInRepo {
      * 关闭高德地图位置更新
      */
     public void stopPositioning() {
-        locationClient.stopLocation();
-        locationClient.onDestroy();
-        locationClient = null;
+        if(locationClient!=null){
+            locationClient.stopLocation();
+            locationClient.onDestroy();
+            locationClient = null;
+        }
     }
 
-    public Disposable showCurrentTime(TimerInterface callback) {
+    public Disposable startTimer(TimerInterface callback) {
         return Observable.interval(1000, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

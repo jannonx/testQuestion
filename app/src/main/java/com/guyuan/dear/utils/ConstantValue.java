@@ -270,6 +270,4 @@ public class ConstantValue {
     public static final String TIP_SEARCH = "请填写搜索内容";
     public static final String TIP_NO_DATA = "暂无数据";
 
-    //高德地图app key
-    public static final String GAO_DE_MAP_APP_KEY = "eb5662817d45853a138edc6f8356dc3c";
 }

@@ -68,7 +68,7 @@ public class ClockInViewModel extends BaseDearViewModel {
 
     public void initViews() {
 
-        LogUtils.showLog(sHA1(DearApplication.getInstance()));
+//        LogUtils.showLog(sHA1(DearApplication.getInstance()));
 
         //显示用户基础信息
         LoginBean me = repo.getMyInfo();
@@ -173,7 +173,7 @@ public class ClockInViewModel extends BaseDearViewModel {
         myLoc.setLatitude(loc.getLatitude());
         myLoc.setLongitude(loc.getLongitude());
         float distance = CoordinateConverter.calculateLineDistance(comLoc, myLoc);
-        if(distance<comGpsConfig.getDistance()){
+        if(distance<=comGpsConfig.getDistance()){
             isInClockInArea.postValue(true);
         }else {
             isInClockInArea.postValue(false);
@@ -189,11 +189,14 @@ public class ClockInViewModel extends BaseDearViewModel {
         if(isInClockInArea.getValue()){
 
             if(isPunchOffWork.getValue()){
+                //已经签退，且在打卡范围
                 currentAttendanceState.postValue(ATTENDANCE_STATE_OFF_WORK_IN_WORK_AREA);
             }else {
                 if(isPunchStartWork.getValue()){
+                    //已经签到，且在打卡范围
                     currentAttendanceState.postValue(ATTENDANCE_STATE_CLOCKED_IN_IN_WORK_AREA);
                 }else {
+                    //还没签到，但在打卡范围
                     currentAttendanceState.postValue(ATTENDANCE_STATE_NOT_PUNCHED_IN_WORK_AREA);
                 }
             }
@@ -201,11 +204,14 @@ public class ClockInViewModel extends BaseDearViewModel {
         }else {
 
             if(isPunchOffWork.getValue()){
+                //已经签退，且不在打卡范围
                 currentAttendanceState.postValue(ATTENDANCE_STATE_OFF_WORK_OUT_SIDE_WORK_AREA);
             }else {
                 if(isPunchStartWork.getValue()){
+                    //已经签到，但不在打卡范围
                     currentAttendanceState.postValue(ATTENDANCE_STATE_CLOCKED_IN_OUT_SIDE_WORK_AREA);
                 }else {
+                    //还没签到，且不在打卡范围
                     currentAttendanceState.postValue(ATTENDANCE_STATE_NOT_PUNCHED_OUT_SIDE_WORK_AREA);
                 }
             }
@@ -217,7 +223,7 @@ public class ClockInViewModel extends BaseDearViewModel {
      * 显示当前时间
      */
     private void startTimer() {
-        Disposable disposable = repo.showCurrentTime(new ClockInRepo.TimerInterface() {
+        Disposable disposable = repo.startTimer(new ClockInRepo.TimerInterface() {
             @Override
             public void onTimeUpdate(long currentMills) {
                 ClockInViewModel.this.currentTime.postValue(currentMills);
