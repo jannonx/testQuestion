@@ -31,10 +31,6 @@ public class StaffMonthlyDetailViewModel extends BaseDearViewModel {
     public MutableLiveData<String> dept = new MutableLiveData<>();
     public MutableLiveData<String> post = new MutableLiveData<>();
     public MutableLiveData<String> enrollment = new MutableLiveData<>();
-    public MutableLiveData<Integer> amStatus = new MutableLiveData<>();
-    public MutableLiveData<Integer> pmStatus = new MutableLiveData<>();
-    public MutableLiveData<Long> attendStartTime = new MutableLiveData<>();
-    public MutableLiveData<Long> attendStopTime = new MutableLiveData<>();
     public MutableLiveData<Long> currentSelectDate = new MutableLiveData<>(System.currentTimeMillis());
     public MutableLiveData<Long> calendarDisplayDate = new MutableLiveData<>(System.currentTimeMillis());
     public MutableLiveData<List<NetStaffAttendRecord>> attendRecords = new MutableLiveData<>();

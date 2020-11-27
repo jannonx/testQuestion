@@ -549,8 +549,6 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".focus.device.ui.detail.FocusDeviceDetailActivity"
-        <activity
-            android:name=".message.ui.detail.MessageDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
