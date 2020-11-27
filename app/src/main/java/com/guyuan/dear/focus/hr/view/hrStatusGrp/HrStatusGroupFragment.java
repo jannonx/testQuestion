@@ -1,17 +1,17 @@
 package com.guyuan.dear.focus.hr.view.hrStatusGrp;
 
 import android.os.Bundle;
-import android.os.Handler;
 
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentHrGroupBinding;
-import com.guyuan.dear.focus.hr.adapter.StaffsDeptGrpExpListAdapter;
+import com.guyuan.dear.focus.hr.adapter.HrStaffAdapter;
 import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
-import com.guyuan.dear.focus.hr.bean.StaffBasicInfo;
 import com.guyuan.dear.focus.hr.view.hrStaffAttendDetail.StaffAttendDetailActivity;
+import com.guyuan.dear.focus.hr.view.hrStaffMonthlyDetail.StaffMonthlyDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 /**
  * @author: 廖华凯
@@ -49,32 +49,21 @@ public class HrStatusGroupFragment extends BaseMvvmFragment<FragmentHrGroupBindi
 
     @Override
     protected void initViews() {
-        getViewModel().setGrpType(grpType);
-        getViewModel().loadDataFromNet();
+        getViewModel().loadStaffListByType(grpType);
+        getViewModel().onItemClickListener.postValue(new HrStaffAdapter.HrStaffAdapterItemClickListener() {
+            @Override
+            public void onItemClick(StaffBean staffBean, int pos) {
+//                StaffAttendDetailActivity.start(getActivity(),staffBean.getId());
+                StaffMonthlyDetailActivity.start(getContext(),"",staffBean.getId().intValue());
+            }
+        });
+
 
     }
 
     @Override
     protected void initListeners() {
-        getViewModel().setCallback(new StaffsDeptGrpExpListAdapter.DeptGrpExpAdapterCallback() {
-            @Override
-            public void onClickLoadMore(int grpType, long deptId, int pageStartIndex, int pageSize, int position) {
-                showLoading(getParentFragmentManager());
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        getViewModel().loadMoreStaffs(grpType, deptId, pageStartIndex, pageSize);
-                        hideLoading();
-                    }
-                },4000);
 
-            }
-
-            @Override
-            public void onClickStaff(StaffBasicInfo item) {
-                StaffAttendDetailActivity.start(getActivity(),item.getId());
-            }
-        });
 
     }
 

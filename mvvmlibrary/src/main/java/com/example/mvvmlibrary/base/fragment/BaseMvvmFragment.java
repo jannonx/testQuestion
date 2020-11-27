@@ -28,7 +28,7 @@ import io.reactivex.disposables.Disposable;
  **/
 public abstract class BaseMvvmFragment<VDB extends ViewDataBinding, VM extends BaseViewModel> extends BaseViewModelFragment<VDB> {
     private VM viewModel;
-    private List<Disposable> disposableList= new ArrayList<>();
+    private List<Disposable> disposableList = new ArrayList<>();
 
 
     @Override
@@ -71,9 +71,9 @@ public abstract class BaseMvvmFragment<VDB extends ViewDataBinding, VM extends B
         getViewModel().isShowLoading.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if(aBoolean){
+                if (aBoolean) {
                     showLoading(getParentFragmentManager());
-                }else {
+                } else {
                     hideLoading();
                 }
             }
@@ -87,15 +87,17 @@ public abstract class BaseMvvmFragment<VDB extends ViewDataBinding, VM extends B
 
     protected abstract void initListeners();
 
-    public void addDisposable(Disposable disposable){
-        disposableList.add(disposable);
+    public void addDisposable(@Nullable Disposable disposable) {
+        if (disposable != null) {
+            disposableList.add(disposable);
+        }
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         for (Disposable disposable : disposableList) {
-            if(disposable.isDisposed()){
+            if (disposable.isDisposed()) {
                 continue;
             }
             disposable.dispose();

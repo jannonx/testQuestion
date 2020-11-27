@@ -29,8 +29,6 @@ public interface StaffSelectHistoryDao {
     @Delete
     int delete(StaffSelectHistoryEntity... entities);
 
-    @Query("SELECT * FROM StaffSelectHistoryEntity ORDER BY selectDate ASC LIMIT :count")
-    List<StaffSelectHistoryEntity> loadEarliestByDate(int count);
 
     @Query("SELECT * FROM StaffSelectHistoryEntity ORDER BY selectDate ASC")
     List<StaffSelectHistoryEntity> loadAllAscByDate();

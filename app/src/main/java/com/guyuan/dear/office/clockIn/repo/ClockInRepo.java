@@ -1,5 +1,8 @@
 package com.guyuan.dear.office.clockIn.repo;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.text.TextUtils;
 
 import com.amap.api.location.AMapLocationClient;
@@ -12,6 +15,9 @@ import com.guyuan.dear.net.DearNetHelper;
 import com.guyuan.dear.net.resultBeans.NetClockInConfig;
 import com.guyuan.dear.utils.ConstantValue;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -160,5 +166,41 @@ public class ClockInRepo {
 
     public interface TimerInterface {
         void onTimeUpdate(long currentMills);
+    }
+
+    /**
+     * 显示当前APP的SHA1码，检验定位SDK时用
+     * @param context
+     * @return
+     */
+    public  String showAppSHA1(Context context){
+        try {
+            PackageInfo info = context.getPackageManager().getPackageInfo(
+                    context.getPackageName(), PackageManager.GET_SIGNATURES);
+            byte[] cert = info.signatures[0].toByteArray();
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            byte[] publicKey = md.digest(cert);
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < publicKey.length; i++) {
+                String appendString = Integer.toHexString(0xFF & publicKey[i])
+                        .toUpperCase(Locale.US);
+                if (appendString.length() == 1)
+                    hexString.append("0");
+                hexString.append(appendString);
+                hexString.append(":");
+            }
+            String result = hexString.toString();
+            return result.substring(0, result.length()-1);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public Disposable clockIn(int type, double lat,double lng,DearNetHelper.NetCallback<Boolean> callback){
+        return DearNetHelper.getInstance().clockIn(type,lat,lng,callback);
     }
 }

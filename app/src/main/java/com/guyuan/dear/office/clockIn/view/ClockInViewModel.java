@@ -1,8 +1,5 @@
 package com.guyuan.dear.office.clockIn.view;
 
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -12,18 +9,14 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.CoordinateConverter;
 import com.amap.api.location.DPoint;
-import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.base.fragment.BaseDearViewModel;
 import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.net.reqBean.ClockInRqBody;
 import com.guyuan.dear.net.resultBeans.NetClockInConfig;
 import com.guyuan.dear.office.clockIn.repo.ClockInRepo;
 import com.guyuan.dear.utils.CalenderUtils;
-import com.guyuan.dear.utils.LogUtils;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
-import java.util.Locale;
 
 import io.reactivex.disposables.Disposable;
 
@@ -57,13 +50,19 @@ public class ClockInViewModel extends BaseDearViewModel {
     public static final int ATTENDANCE_STATE_OFF_WORK_IN_WORK_AREA = 5;
     private NetClockInConfig.TclockGpsConfigBean comGpsConfig;
 
-    public MutableLiveData<View.OnClickListener> onClickPunch = new MutableLiveData<>();
+    public MutableLiveData<View.OnClickListener> onClickPunch = new MutableLiveData<View.OnClickListener>(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            addSubscription(clockIn());
+        }
+    });
     public MutableLiveData<View.OnClickListener> onClickRetryGetLocation = new MutableLiveData<>(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             startPositioning();
         }
     });
+    private DPoint myLoc;
 
 
     public void initViews() {
@@ -94,6 +93,7 @@ public class ClockInViewModel extends BaseDearViewModel {
 
     /**
      * 更新打卡状态UI
+     *
      * @param config
      */
     private void updateUiByConfig(NetClockInConfig config) {
@@ -162,6 +162,7 @@ public class ClockInViewModel extends BaseDearViewModel {
 
     /**
      * 根据当前位置判定打卡界面的打卡类型
+     *
      * @param loc
      */
     private void updateUiByCurrentLoc(AMapLocation loc) {
@@ -169,54 +170,52 @@ public class ClockInViewModel extends BaseDearViewModel {
         DPoint comLoc = new DPoint();
         comLoc.setLatitude(comGpsConfig.getGpsLatitude());
         comLoc.setLongitude(comGpsConfig.getGpsLongitude());
-        DPoint myLoc = new DPoint();
+        myLoc = new DPoint();
         myLoc.setLatitude(loc.getLatitude());
         myLoc.setLongitude(loc.getLongitude());
         float distance = CoordinateConverter.calculateLineDistance(comLoc, myLoc);
-        if(distance<=comGpsConfig.getDistance()){
+        if (distance <= comGpsConfig.getDistance()) {
             isInClockInArea.postValue(true);
-        }else {
+        } else {
             isInClockInArea.postValue(false);
         }
 
-//        public static final int ATTENDANCE_STATE_NOT_PUNCHED_IN_WORK_AREA = 0;
-//        public static final int ATTENDANCE_STATE_NOT_PUNCHED_OUT_SIDE_WORK_AREA = 1;
-//        public static final int ATTENDANCE_STATE_CLOCKED_IN_IN_WORK_AREA = 2;
-//        public static final int ATTENDANCE_STATE_CLOCKED_IN_NOT_IN_WORK_AREA = 3;
-//        public static final int ATTENDANCE_STATE_OFF_WORK_NOT_IN_WORK_AREA = 4;
-//        public static final int ATTENDANCE_STATE_OFF_WORK_IN_WORK_AREA = 5;
+        updateCurrentState();
 
-        if(isInClockInArea.getValue()){
+    }
 
-            if(isPunchOffWork.getValue()){
+    private void updateCurrentState() {
+
+        if (isInClockInArea.getValue()) {
+
+            if (isPunchOffWork.getValue()) {
                 //已经签退，且在打卡范围
                 currentAttendanceState.postValue(ATTENDANCE_STATE_OFF_WORK_IN_WORK_AREA);
-            }else {
-                if(isPunchStartWork.getValue()){
+            } else {
+                if (isPunchStartWork.getValue()) {
                     //已经签到，且在打卡范围
                     currentAttendanceState.postValue(ATTENDANCE_STATE_CLOCKED_IN_IN_WORK_AREA);
-                }else {
+                } else {
                     //还没签到，但在打卡范围
                     currentAttendanceState.postValue(ATTENDANCE_STATE_NOT_PUNCHED_IN_WORK_AREA);
                 }
             }
 
-        }else {
+        } else {
 
-            if(isPunchOffWork.getValue()){
+            if (isPunchOffWork.getValue()) {
                 //已经签退，且不在打卡范围
                 currentAttendanceState.postValue(ATTENDANCE_STATE_OFF_WORK_OUT_SIDE_WORK_AREA);
-            }else {
-                if(isPunchStartWork.getValue()){
+            } else {
+                if (isPunchStartWork.getValue()) {
                     //已经签到，但不在打卡范围
                     currentAttendanceState.postValue(ATTENDANCE_STATE_CLOCKED_IN_OUT_SIDE_WORK_AREA);
-                }else {
+                } else {
                     //还没签到，且不在打卡范围
                     currentAttendanceState.postValue(ATTENDANCE_STATE_NOT_PUNCHED_OUT_SIDE_WORK_AREA);
                 }
             }
         }
-
     }
 
     /**
@@ -232,8 +231,75 @@ public class ClockInViewModel extends BaseDearViewModel {
         addSubscription(disposable);
     }
 
-    public void submit() {
+    public Disposable clockIn() {
+        if (myLoc == null) {
+            showToast("定位未成功，还不能打卡。");
+            return null;
+        }
+        Integer value = currentAttendanceState.getValue();
+        switch (value) {
+            case ATTENDANCE_STATE_NOT_PUNCHED_IN_WORK_AREA:
+                return repo.clockIn(ClockInRqBody.CLOCK_IN_TYPE_CLOCK_IN_INSIDE_COMPANY_AREA,
+                        myLoc.getLatitude(),
+                        myLoc.getLongitude(),
+                        new BaseNetCallback<Boolean>() {
+                            @Override
+                            protected void handleResult(Boolean result) {
+                                showToast("签到成功");
+                                updateUiAfterClockIn();
 
+                            }
+                        });
+            case ATTENDANCE_STATE_NOT_PUNCHED_OUT_SIDE_WORK_AREA:
+                return repo.clockIn(ClockInRqBody.CLOCK_IN_TYPE_CLOCK_IN_OUTSIDE_COMPANY_AREA,
+                        myLoc.getLatitude(),
+                        myLoc.getLongitude(),
+                        new BaseNetCallback<Boolean>() {
+                            @Override
+                            protected void handleResult(Boolean result) {
+                                showToast("户外签到成功");
+                                updateUiAfterClockIn();
+                            }
+                        });
+            case ATTENDANCE_STATE_CLOCKED_IN_IN_WORK_AREA:
+            case ATTENDANCE_STATE_OFF_WORK_IN_WORK_AREA:
+                return repo.clockIn(ClockInRqBody.CLOCK_IN_TYPE_CHECK_OUT_INSIDE_COMPANY_AREA,
+                        myLoc.getLatitude(),
+                        myLoc.getLongitude(),
+                        new BaseNetCallback<Boolean>() {
+                            @Override
+                            protected void handleResult(Boolean result) {
+                                showToast("签退成功");
+                                updateUiAfterClockIn();
+                            }
+                        });
+            case ATTENDANCE_STATE_CLOCKED_IN_OUT_SIDE_WORK_AREA:
+            case ATTENDANCE_STATE_OFF_WORK_OUT_SIDE_WORK_AREA:
+                return repo.clockIn(ClockInRqBody.CLOCK_IN_TYPE_CHECK_OUT_OUTSIDE_COMPANY_AREA,
+                        myLoc.getLatitude(),
+                        myLoc.getLongitude(),
+                        new BaseNetCallback<Boolean>() {
+                            @Override
+                            protected void handleResult(Boolean result) {
+                                showToast("户外签退成功");
+                                updateUiAfterClockIn();
+                            }
+                        });
+            default:
+                break;
+        }
+        return null;
+    }
+
+    private void updateUiAfterClockIn() {
+        repo.getClockInConfig(new BaseNetCallback<NetClockInConfig>() {
+            @Override
+            protected void handleResult(NetClockInConfig result) {
+                comGpsConfig = result.getTclockGpsConfig();
+                updateUiByConfig(result);
+                updateCurrentState();
+            }
+        });
     }
 
     @Override
@@ -243,29 +309,5 @@ public class ClockInViewModel extends BaseDearViewModel {
         repo.stopPositioning();
     }
 
-    public static String sHA1(Context context){
-        try {
-            PackageInfo info = context.getPackageManager().getPackageInfo(
-                    context.getPackageName(), PackageManager.GET_SIGNATURES);
-            byte[] cert = info.signatures[0].toByteArray();
-            MessageDigest md = MessageDigest.getInstance("SHA1");
-            byte[] publicKey = md.digest(cert);
-            StringBuffer hexString = new StringBuffer();
-            for (int i = 0; i < publicKey.length; i++) {
-                String appendString = Integer.toHexString(0xFF & publicKey[i])
-                        .toUpperCase(Locale.US);
-                if (appendString.length() == 1)
-                    hexString.append("0");
-                hexString.append(appendString);
-                hexString.append(":");
-            }
-            String result = hexString.toString();
-            return result.substring(0, result.length()-1);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 }

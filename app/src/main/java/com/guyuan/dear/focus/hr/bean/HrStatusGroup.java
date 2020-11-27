@@ -14,11 +14,12 @@ public class HrStatusGroup {
      * {@link HrStatusGroup#GRP_TYPE_ABSENT},{@link HrStatusGroup#GRP_TYPE_ON_LEAVE}
      */
     private int grpType;
-    public static final int GRP_TYPE_NORMAL=0;
-    public static final int GRP_TYPE_LATE=1;
-    public static final int GRP_TYPE_LEAVE_EARLY=2;
-    public static final int GRP_TYPE_ABSENT=3;
-    public static final int GRP_TYPE_ON_LEAVE=4;
+    //1.正常 2.未到岗 3.迟到 4.早退 5.请假
+    public static final int GRP_TYPE_NORMAL=1;
+    public static final int GRP_TYPE_LATE=3;
+    public static final int GRP_TYPE_LEAVE_EARLY=4;
+    public static final int GRP_TYPE_ABSENT=2;
+    public static final int GRP_TYPE_ON_LEAVE=5;
 
 
     public String getName() {

@@ -278,4 +278,7 @@ dependencies {
     implementation 'com.amap.api:location:3.7.0'
     implementation 'com.amap.api:search:5.0.0'
 
+    //三方日历控件
+    implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
+
 }

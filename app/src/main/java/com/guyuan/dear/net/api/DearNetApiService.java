@@ -4,6 +4,7 @@ import com.example.httplibrary.bean.BasePageReqBean;
 import com.example.httplibrary.bean.BasePageResultBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.BaseApiService;
+import com.guyuan.dear.net.reqBean.ClockInRqBody;
 import com.guyuan.dear.net.reqBean.ContractApplyBody;
 import com.guyuan.dear.net.reqBean.SearchRqBody;
 import com.guyuan.dear.net.reqBean.SubmitQcReportBody;
@@ -24,6 +25,8 @@ import com.guyuan.dear.net.resultBeans.NetQcApproach;
 import com.guyuan.dear.net.resultBeans.NetQcReportApproveFlow;
 import com.guyuan.dear.net.resultBeans.NetQcReportDetailBean;
 import com.guyuan.dear.net.resultBeans.NetQcSummaryBean;
+import com.guyuan.dear.net.resultBeans.NetStaffAttendRecord;
+import com.guyuan.dear.net.resultBeans.NetStaffAttendStatus;
 import com.guyuan.dear.net.resultBeans.NetVerifyFlowBean;
 import com.guyuan.dear.net.resultBeans.NetSearchContactInfo;
 import com.guyuan.dear.net.resultBeans.NetServerParam;
@@ -225,6 +228,35 @@ public interface DearNetApiService extends BaseApiService {
     @GET("base/tCompanyWorkTime/findNowWorkTimeConfig")
     Observable<ResultBean<NetClockInConfig>> getClockInConfig();
 
+    /**
+     * 上下班打卡
+     */
+    @POST("base/tStaffRecordDay/appClock")
+    Observable<ResultBean<Integer>> clockIn(@Body ClockInRqBody body);
+
+    /**
+     * 根据当天出勤状况获取人员id列表
+     * @return
+     */
+    @GET("base/staffSummary/staffAttendIdByType")
+    Observable<ResultBean<List<Integer>>> getStaffIdsByAttendantType(@Query("type") int type);
+
+    /**
+     * 获取员工当月出勤概况（上半部）
+     * @param userId
+     * @return
+     */
+    @GET("base/staffSummary/getUserDetail")
+    Observable<ResultBean<NetStaffAttendStatus>> getStaffAttendStatus(@Query("userId") int userId);
+
+    /**
+     * 获取员工当月出勤概况（下半部）
+     * @param yearMonth
+     * @param userId
+     * @return
+     */
+    @GET("base/staffSummary/getStaffInfoAchineve")
+    Observable<ResultBean<List<NetStaffAttendRecord>>> getStaffAttendRecord(@Query("month") String yearMonth,@Query("userId") int userId);
 
 
 

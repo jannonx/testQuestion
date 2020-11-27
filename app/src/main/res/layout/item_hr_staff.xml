@@ -1,21 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:gravity="center">
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/item_hr_staff_iv_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_svg_staff_icon_default"/>
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_hr_staff_tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/color_black"
-        android:text="xxx"/>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+    <data>
+
+        <variable
+            name="data"
+            type="com.guyuan.dear.work.contractPause.beans.StaffBean" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_7">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_hr_staff_iv_icon"
+            android:layout_width="@dimen/dp_36"
+            android:layout_height="@dimen/dp_36"
+            app:srcCompat="@drawable/ic_svg_staff_icon_default" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_hr_staff_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            android:text="@{data.name}"
+            android:textColor="@color/color_black_333333"
+            android:textSize="@dimen/sp_14" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.workId}"
+            android:textColor="@color/color_grey_999999"
+            android:textSize="@dimen/sp_14" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

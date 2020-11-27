@@ -1,7 +1,6 @@
 package com.guyuan.dear.db.dao;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -10,8 +9,8 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
-import com.guyuan.dear.db.entities.StaffAndDepts;
 import com.guyuan.dear.db.entities.StaffEntity;
+import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 import java.util.List;
 
@@ -32,9 +31,12 @@ public interface StaffDao {
     @Delete
     public int deleteStaffs(StaffEntity... staffs);
 
-    @Query("SELECT * FROM StaffEntity")
+    @Query("SELECT * FROM StaffEntity WHERE deleteFlag=1")
     @Transaction
     public List<StaffEntity> loadAll();
+
+    @Query("SELECT * FROM StaffEntity WHERE userId IN (:ids) AND deleteFlag=1")
+    public List<StaffEntity> getStaffsById(List<Integer> ids);
 
 
 }

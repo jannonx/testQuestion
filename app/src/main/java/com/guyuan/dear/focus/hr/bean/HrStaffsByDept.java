@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.hr.bean;
 
+import com.guyuan.dear.work.contractPause.beans.StaffBean;
+
 import java.util.List;
 
 /**
@@ -11,7 +13,8 @@ import java.util.List;
 public class HrStaffsByDept {
     private String grpLabel;
     private int grpType;
-    private List<StaffBasicInfo> staffs;
+    private List<StaffBean> staffs;
+    private String dept;
     private long deptId;
 
     public long getDeptId() {
@@ -38,11 +41,26 @@ public class HrStaffsByDept {
         this.grpType = grpType;
     }
 
-    public List<StaffBasicInfo> getStaffs() {
+    public List<StaffBean> getStaffs() {
         return staffs;
     }
 
-    public void setStaffs(List<StaffBasicInfo> staffs) {
+    public void setStaffs(List<StaffBean> staffs) {
         this.staffs = staffs;
+    }
+
+    public String getDept() {
+        return dept;
+    }
+
+    public void setDept(String dept) {
+        this.dept = dept;
+    }
+
+    public int getStaffTotal() {
+        if (staffs == null) {
+            return 0;
+        }
+        return staffs.size();
     }
 }
