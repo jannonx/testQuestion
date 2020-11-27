@@ -546,7 +546,7 @@
         <!--配置高德地图app key-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="eb5662817d45853a138edc6f8356dc3c" />
+            android:value="41d535841fa89a7081869807905be90a" />
         <!--配置高德地图定位服务-->
         <service android:name="com.amap.api.location.APSService" />
     </application>
