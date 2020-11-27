@@ -38,6 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{messageBean.createTime}"
+                    app:readStatusContent="@{messageBean.messageInfos.get(0).msgStatus}"
                     tools:text="2020-11-21" />
             </LinearLayout>
 

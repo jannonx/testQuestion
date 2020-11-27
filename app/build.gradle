@@ -174,7 +174,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':mvvmlibrary')
     implementation project(path: ':httplibrary')
-    implementation fileTree(dir: 'libs', include: ['LibEasyRecyclerView.aar'])
+    implementation project(path: ':easy_recyclerview_library')
+    //implementation fileTree(dir: 'libs', include: ['LibEasyRecyclerView.aar'])
     implementation AndroidX.appcompat
     implementation AndroidX.constraintlayout
     implementation Android.meteria

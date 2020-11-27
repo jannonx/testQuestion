@@ -34,11 +34,10 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
  * @since: 2020/9/21 18:19
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTimeBean.WorkshopsBean, FragmentFocusDeviceProfileBinding,FocusDeviceViewModel> implements TabLayoutHelper.TabLayoutListener {
+public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTimeBean.WorkshopsBean, FragmentFocusDeviceProfileBinding, FocusDeviceViewModel> implements TabLayoutHelper.TabLayoutListener {
 
     public static final String TAG = "FocusDeviceProfileFragment";
     private long currentFactoryID;
-    private FocusDeviceViewModel viewModel;
     private FactoryBean factoryBean;
 
     public static FocusDeviceProfileFragment newInstance() {
@@ -51,35 +50,12 @@ public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTime
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        FocusDeviceActivity activity = (FocusDeviceActivity) context;
-        viewModel = activity.getViewModel();
-    }
-
-
-    @Override
     public int getLayoutID() {
         return R.layout.fragment_focus_device_profile;
     }
 
     @Override
     protected void initView() {
-        factoryBean = new FactoryBean();
-        List<FactoryBean.ContentBean> dataList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            FactoryBean.ContentBean contentBean = new FactoryBean.ContentBean();
-            contentBean.setName("factory" + i);
-            contentBean.setCode("312312");
-            contentBean.setId(213L);
-            dataList.add(contentBean);
-        }
-        factoryBean.setContent(dataList);
-
-        //    FactoryBean factoryBean = CommonUtils.getFactoryListFromCache();
-        if (factoryBean != null) {
-            setTab(factoryBean);
-        }
         DeviceProfileAdapter farmNewContentAdapter =
                 new DeviceProfileAdapter(getContext(), listData, R.layout.item_line);
 
@@ -97,10 +73,11 @@ public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTime
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
 
-        viewModel.getFactoryList(ConstantValue.FIRST_PAGE);
+        viewModel.getFactoryList();
     }
 
-    private void setTab(FactoryBean factoryBean) {
+    public void setTab(FactoryBean factoryBean) {
+        this.factoryBean = factoryBean;
         List<FactoryBean.ContentBean> dataList = factoryBean.getContent();
         if (dataList != null && dataList.size() > 0) {
             viewModel.getFactoryDevice(dataList.get(0).getId());
@@ -157,7 +134,12 @@ public class FocusDeviceProfileFragment extends BaseListFragment<FactoryRealTime
     @Override
     public void setCustomContent(View customView, int currentPosition) {
         AppCompatTextView factoryTV = customView.findViewById(R.id.item_tab_white_to_blue_round_corner_tv_name);
-        factoryTV.setText(factoryBean.getContent().get(currentPosition).getName());
+        if (factoryBean != null) {
+            List<FactoryBean.ContentBean> factoryList = factoryBean.getContent();
+            if (factoryList != null && factoryList.size() > 0) {
+                factoryTV.setText(factoryList.get(currentPosition).getName());
+            }
+        }
     }
 
     @Override

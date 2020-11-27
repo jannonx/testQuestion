@@ -3,9 +3,13 @@ package com.guyuan.dear.focus.assess.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.databinding.library.baseAdapters.BR;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -78,6 +82,13 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
                             contentBean.getId(), contentBean.getContractNumber());
                 }
             });
+
+            //todo
+            ViewDataBinding footerViewBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.footer_after_sale_question_describe,
+                    null, false);
+            TextView tv = footerViewBinding.getRoot().findViewById(R.id.tv_recorder);
+            tv.setText("erweoriwoerwerjewioherwhe");
+            adapter.addFooterView(footerViewBinding.getRoot());
         }
 
     }

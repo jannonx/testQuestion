@@ -25,7 +25,7 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/base_tl"
-            style="@style/tab_layout"
+            style="@style/tab_top_layout"
             app:tabMaxWidth="200dp"
             app:tabMinWidth="20dp"
             app:tabPaddingEnd="10dp"

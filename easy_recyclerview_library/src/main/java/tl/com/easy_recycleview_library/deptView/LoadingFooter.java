@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import tl.com.easy_recycleview_library.R;
+import tl.com.easy_recycleview_library.deptView.SimpleViewSwitcher;
 import tl.com.easy_recycleview_library.interfaces.ILoadMoreFooter;
 import tl.com.easy_recycleview_library.progressindicator.AVLoadingIndicatorView;
 import tl.com.easy_recycleview_library.util.ProgressStyle;

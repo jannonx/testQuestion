@@ -51,8 +51,7 @@ public interface FocusDeviceApiService extends BaseApiService {
 
     //设备异常列表
     @POST(EQUIPMENT_EXCEPTION)
-    @FormUrlEncoded
-    Observable<ResultBean<DeviceExceptionBean>> getExceptionList(@Field(PAGE_INDEX) int pageIndex);
+    Observable<ResultBean<DeviceExceptionBean>> getExceptionList(@Body RequestBody body);
 
     //获取厂区车间或流水线(1:车间 2:流水线)的设备
     @GET(GET_FACTORY_KIDS)

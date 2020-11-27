@@ -1,4 +1,4 @@
-package tl.com.easy_recycleview_library.view;
+package tl.com.easy_recycleview_library.deptView;
 
 import android.content.Context;
 import android.util.AttributeSet;

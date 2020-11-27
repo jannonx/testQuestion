@@ -31,7 +31,8 @@ public class TabLayoutHelper {
     private int startPosition;
     private TabLayoutListener listener;
 
-    public static final int UNDERLINE = 10;
+    public static final int UNDERLINE = 10;  //下划线样式
+    public static final int COMMON = 20;     //顶部tab样式
 
     public TabLayoutHelper(FragmentActivity fa, TabLayout tabLayout, ViewPager2 viewPager2,
                            List<Fragment> fragmentList, int layoutID) {
@@ -42,26 +43,11 @@ public class TabLayoutHelper {
         this.fragmentList = fragmentList;
     }
 
-    public TabLayoutHelper(FragmentActivity fa, TabLayout tabLayout, ViewPager2 viewPager2,
-                           List<Fragment> fragmentList) {
-        this.fa = fa;
-        this.tabLayout = tabLayout;
-        this.viewPager2 = viewPager2;
-        this.fragmentList = fragmentList;
-    }
-
     public TabLayoutHelper(FragmentActivity fa, TabLayout tabLayout, int tabSize, int layoutID) {
         this.fa = fa;
         this.tabLayout = tabLayout;
         this.tabSize = tabSize;
         this.layoutID = layoutID;
-    }
-
-
-    public TabLayoutHelper(FragmentActivity fa, TabLayout tabLayout, int tabSize) {
-        this.fa = fa;
-        this.tabLayout = tabLayout;
-        this.tabSize = tabSize;
     }
 
     public TabLayoutHelper setTab() {
@@ -101,10 +87,16 @@ public class TabLayoutHelper {
     }
 
     public void setCustomView() {
-        if (layoutID == UNDERLINE) {
-            layoutID = R.layout.tab_blue_under_line;
-        } else {
-            layoutID = R.layout.tab_common;//默认tab布局
+
+        //预设样式
+        switch (layoutID) {
+            case UNDERLINE:
+                layoutID = R.layout.tab_blue_under_line;
+                break;
+
+            case COMMON:
+                layoutID = R.layout.tab_common;//默认tab布局
+                break;
         }
 
         //设置自定义布局

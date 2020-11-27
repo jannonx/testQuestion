@@ -37,8 +37,6 @@ public class FocusDeviceTypeFragment extends BaseListFragment<List<EquipmentBean
     public static final int MAINTAIN = 0x003;
     public static final int REPAIR = 0x004;
     public static final int EXCEPTION = 0x005;
-
-    private FocusDeviceViewModel viewModel;
     private int type;
 
     public static FocusDeviceTypeFragment newInstance(String title, long id, int type) {
@@ -55,13 +53,6 @@ public class FocusDeviceTypeFragment extends BaseListFragment<List<EquipmentBean
     @Override
     public int getLayoutID() {
         return R.layout.fragment_device_type;
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        FocusDeviceTypeActivity activity = (FocusDeviceTypeActivity) context;
-        viewModel = activity.getViewModel();
     }
 
     @Override

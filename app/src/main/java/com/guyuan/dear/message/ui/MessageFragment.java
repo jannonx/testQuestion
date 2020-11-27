@@ -6,12 +6,15 @@ import android.view.View;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
+import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageInfosBean;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.databinding.FragmentListSearchBinding;
 import com.guyuan.dear.message.adapter.MessageAdapter;
 import com.guyuan.dear.message.data.MessageViewModel;
 import com.guyuan.dear.message.ui.detail.MessageDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
+
+import java.util.List;
 
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
@@ -50,7 +53,11 @@ public class MessageFragment extends BaseListSearchFragment<MessageBean, Fragmen
             public void onItemClick(View view, int i) {
                 if (listData.size() > 0) {
                     MessageBean bean = listData.get(i);
-                    MessageDetailActivity.start(getContext(), bean.getMsgTitle(), bean.getId());
+                    List<MessageInfosBean> infosBeans = bean.getMessageInfos();
+                    if (infosBeans != null && infosBeans.size() > 0) {
+                        MessageDetailActivity.start(getContext(), bean.getMsgTitle(),
+                                infosBeans.get(0).getId());
+                    }
                 }
             }
         });

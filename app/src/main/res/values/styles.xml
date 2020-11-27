@@ -158,7 +158,7 @@
     </style>
 
     <!--顶部导航栏容器统一基本样式-->
-    <style name="tab_layout" parent="Widget.Design.TabLayout">
+    <style name="tab_top_layout" parent="Widget.Design.TabLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">60dp</item>
         <item name="tabMaxWidth">0dp</item>
@@ -171,8 +171,8 @@
         <item name="android:background">@color/color_white_ffffff</item>
     </style>
 
-    <!--蓝色选中线导航栏容器统一基本样式-->
-    <style name="tab_blue_layout" parent="Widget.Design.TabLayout">
+    <!--其他导航栏容器统一基本样式-->
+    <style name="tab_layout" parent="Widget.Design.TabLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">42dp</item>
         <item name="tabMaxWidth">200dp</item>

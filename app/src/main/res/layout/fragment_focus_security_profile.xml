@@ -42,7 +42,7 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/security_profile_tl"
-                style="@style/tab_layout" />
+                style="@style/tab_top_layout" />
 
         </LinearLayout>
 

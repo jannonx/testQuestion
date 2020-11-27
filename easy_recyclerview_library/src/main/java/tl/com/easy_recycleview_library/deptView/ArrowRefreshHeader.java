@@ -3,7 +3,9 @@ package tl.com.easy_recycleview_library.view;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Color;
+
 import androidx.core.content.ContextCompat;
+
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,9 +17,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import java.util.Date;
 
 import tl.com.easy_recycleview_library.R;
+import tl.com.easy_recycleview_library.deptView.SimpleViewSwitcher;
 import tl.com.easy_recycleview_library.interfaces.IRefreshHeader;
 import tl.com.easy_recycleview_library.progressindicator.AVLoadingIndicatorView;
 import tl.com.easy_recycleview_library.util.ProgressStyle;
@@ -68,11 +72,11 @@ public class ArrowRefreshHeader extends LinearLayout implements IRefreshHeader {
         addView(mContainer, new LayoutParams(LayoutParams.MATCH_PARENT, 0));
         setGravity(Gravity.BOTTOM);
 
-        mArrowImageView = (ImageView)findViewById(R.id.listview_header_arrow);
-        mStatusTextView = (TextView)findViewById(R.id.refresh_status_textview);
+        mArrowImageView = (ImageView) findViewById(R.id.listview_header_arrow);
+        mStatusTextView = (TextView) findViewById(R.id.refresh_status_textview);
 
         //init the progress view
-        mProgressBar = (SimpleViewSwitcher)findViewById(R.id.listview_header_progressbar);
+        mProgressBar = (SimpleViewSwitcher) findViewById(R.id.listview_header_progressbar);
         mProgressBar.setView(initIndicatorView(ProgressStyle.SysProgress));
 
         mRotateUpAnim = new RotateAnimation(0.0f, -180.0f,
@@ -84,8 +88,8 @@ public class ArrowRefreshHeader extends LinearLayout implements IRefreshHeader {
         mRotateDownAnim.setDuration(ROTATE_ANIM_DURATION);
         mRotateDownAnim.setFillAfter(true);
 
-        mHeaderTimeView = (TextView)findViewById(R.id.last_refresh_time);
-        measure(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        mHeaderTimeView = (TextView) findViewById(R.id.last_refresh_time);
+        measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mMeasuredHeight = getMeasuredHeight();
         hintColor = android.R.color.darker_gray;
     }
@@ -107,7 +111,7 @@ public class ArrowRefreshHeader extends LinearLayout implements IRefreshHeader {
     }
 
     public void setIndicatorColor(int color) {
-        if(mProgressBar.getChildAt(0) instanceof AVLoadingIndicatorView){
+        if (mProgressBar.getChildAt(0) instanceof AVLoadingIndicatorView) {
             AVLoadingIndicatorView progressView = (AVLoadingIndicatorView) mProgressBar.getChildAt(0);
             progressView.setIndicatorColor(color);
         }
@@ -121,29 +125,29 @@ public class ArrowRefreshHeader extends LinearLayout implements IRefreshHeader {
         this.setBackgroundColor(ContextCompat.getColor(getContext(), color));
     }
 
-    public void setArrowImageView(int resid){
+    public void setArrowImageView(int resid) {
         mArrowImageView.setImageResource(resid);
     }
 
     public void setState(int state) {
-        if (state == mState) return ;
+        if (state == mState) return;
 
-        if (state == STATE_REFRESHING) {	// 显示进度
+        if (state == STATE_REFRESHING) {    // 显示进度
             mArrowImageView.clearAnimation();
             mArrowImageView.setVisibility(View.INVISIBLE);
             mProgressBar.setVisibility(View.VISIBLE);
             smoothScrollTo(mMeasuredHeight);
-        } else if(state == STATE_DONE) {
+        } else if (state == STATE_DONE) {
             mArrowImageView.setVisibility(View.INVISIBLE);
             mProgressBar.setVisibility(View.INVISIBLE);
-        } else {	// 显示箭头图片
+        } else {    // 显示箭头图片
             mArrowImageView.setVisibility(View.VISIBLE);
             mProgressBar.setVisibility(View.INVISIBLE);
         }
 
         mStatusTextView.setTextColor(ContextCompat.getColor(getContext(), hintColor));
 
-        switch(state){
+        switch (state) {
             case STATE_NORMAL:
                 if (mState == STATE_RELEASE_TO_REFRESH) {
                     mArrowImageView.startAnimation(mRotateDownAnim);
@@ -177,10 +181,10 @@ public class ArrowRefreshHeader extends LinearLayout implements IRefreshHeader {
     }
 
     @Override
-    public void refreshComplete(){
+    public void refreshComplete() {
         mHeaderTimeView.setText(friendlyTime(new Date()));
         setState(STATE_DONE);
-        mHandler.postDelayed(new Runnable(){
+        mHandler.postDelayed(new Runnable() {
             public void run() {
                 reset();
             }
@@ -194,7 +198,7 @@ public class ArrowRefreshHeader extends LinearLayout implements IRefreshHeader {
 
     public void setVisibleHeight(int height) {
         if (height < 0) height = 0;
-        LayoutParams lp = (LayoutParams) mContainer .getLayoutParams();
+        LayoutParams lp = (LayoutParams) mContainer.getLayoutParams();
         lp.height = height;
         mContainer.setLayoutParams(lp);
     }
@@ -210,7 +214,8 @@ public class ArrowRefreshHeader extends LinearLayout implements IRefreshHeader {
         return 0;
     }
 
-    @Override public int getType() {
+    @Override
+    public int getType() {
         return TYPE_HEADER_NORMAL;
     }
 
@@ -232,9 +237,9 @@ public class ArrowRefreshHeader extends LinearLayout implements IRefreshHeader {
     @Override
     public void onMove(float offSet, float sumOffSet) {
         int top = getTop();
-        if (offSet > 0 && top == 0 ){
+        if (offSet > 0 && top == 0) {
             setVisibleHeight((int) offSet + getVisibleHeight());
-        }else if (offSet < 0 && getVisibleHeight() > 0){
+        } else if (offSet < 0 && getVisibleHeight() > 0) {
             layout(getLeft(), 0, getRight(), getHeight()); //重新布局让header显示在顶端
             setVisibleHeight((int) offSet + getVisibleHeight());
         }
@@ -255,7 +260,7 @@ public class ArrowRefreshHeader extends LinearLayout implements IRefreshHeader {
             isOnRefresh = false;
         }
 
-        if(getVisibleHeight() > mMeasuredHeight &&  mState < STATE_REFRESHING){
+        if (getVisibleHeight() > mMeasuredHeight && mState < STATE_REFRESHING) {
             setState(STATE_REFRESHING);
             isOnRefresh = true;
         }
@@ -289,8 +294,7 @@ public class ArrowRefreshHeader extends LinearLayout implements IRefreshHeader {
         animator.setDuration(300).start();
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public void onAnimationUpdate(ValueAnimator animation)
-            {
+            public void onAnimationUpdate(ValueAnimator animation) {
                 setVisibleHeight((int) animation.getAnimatedValue());
             }
         });

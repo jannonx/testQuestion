@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.lifecycle.Observer;
+
 import com.example.mvvmlibrary.R;
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
@@ -43,10 +45,21 @@ public class FocusDeviceTypeActivity extends BaseToolbarActivity<ActivityWithToo
         int type = getIntent().getIntExtra(FocusDeviceTypeFragment.TYPE, FocusDeviceTypeFragment.TOTAL);
         setTitleCenter("设备状态");
         overviewTypeListFragment = FocusDeviceTypeFragment.newInstance(title, id, type);
-        ActivityUtils.addFragmentToActivity(fragmentManager, overviewTypeListFragment, R.id.container,
+        ActivityUtils.addFragmentToActivity(fragmentManager, overviewTypeListFragment, R.id.fragment_container,
                 FocusDeviceTypeFragment.TAG);
+        setObserver();
     }
 
+    private void setObserver() {
+        if (viewModel != null) {
+            viewModel.getEquipmentListMLD().observe(this, new Observer<List<EquipmentBean>>() {
+                @Override
+                public void onChanged(List<EquipmentBean> equipmentBeans) {
+                    overviewTypeListFragment.getTypeDeviceSuccess(equipmentBeans);
+                }
+            });
+        }
+    }
 
 
     @Override
