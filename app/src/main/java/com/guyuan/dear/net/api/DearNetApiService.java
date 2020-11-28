@@ -259,6 +259,25 @@ public interface DearNetApiService extends BaseApiService {
     Observable<ResultBean<List<NetStaffAttendRecord>>> getStaffAttendRecord(@Query("month") String yearMonth,@Query("userId") int userId);
 
 
+    /**
+     * 根据月份查询异常的人数
+     * @param month yyyy-mm
+     * @return
+     */
+    @GET("base/staffSummary/getStaffAbnormalAchineve")
+    Observable<ResultBean<NetHrSummary>> getHrAbnormalSumByDate(@Query("month") String month);
+
+    /**
+     * 根据月份和异常类型查询出人员id
+     * @param yearMonth
+     * @param type 异常类型 2.未到岗 3.迟到 4.早退 5.请假
+     * @return
+     */
+    @GET("base/staffSummary/getUserIdAbnormalAchineve")
+    Observable<ResultBean<List<Integer>>> getHrAbnormalListByTypeAndDate(@Query("month") String yearMonth,@Query("type") int type );
+
+
+
 
 
 

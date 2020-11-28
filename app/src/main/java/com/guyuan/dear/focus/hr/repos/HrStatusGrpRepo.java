@@ -23,6 +23,10 @@ public class HrStatusGrpRepo {
         return DearNetHelper.getInstance().getStaffByAttendanceType(type, callback);
     }
 
+    public Disposable getStaffListByDateAndAttendType(long date,int type, DearNetHelper.NetCallback<List<StaffBean>> callback){
+        return DearNetHelper.getInstance().getStaffsByDateAndAttendanceType(date, type, callback);
+    }
+
     /**
      * 把人员按部门分类
      * @param staffBeans

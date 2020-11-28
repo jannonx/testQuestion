@@ -1,8 +1,5 @@
 package com.guyuan.dear.net;
 
-import androidx.annotation.Nullable;
-import androidx.lifecycle.LiveData;
-
 import com.example.httplibrary.bean.BasePageReqBean;
 import com.example.httplibrary.bean.BasePageResultBean;
 import com.example.httplibrary.bean.ErrorResultBean;
@@ -19,6 +16,7 @@ import com.guyuan.dear.focus.contract.bean.ContractStatusFlowBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
+import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
 import com.guyuan.dear.focus.hr.bean.HrSummaryBean;
 import com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport;
 import com.guyuan.dear.focus.qc.beans.BaseProductQcReport;
@@ -70,6 +68,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.Nullable;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -997,29 +996,74 @@ public class DearNetHelper {
         return getDisposalAsync(observable, callback, mapper);
     }
 
+    /**
+     * 根据指定日期和出勤状况类型获取人员id列表
+     *
+     * @param type {@link HrStatusGroup#GRP_TYPE_LATE},{@link HrStatusGroup#GRP_TYPE_LEAVE_EARLY},
+     *             {@link HrStatusGroup#GRP_TYPE_ABSENT},{@link HrStatusGroup#GRP_TYPE_ON_LEAVE}
+     * @return
+     */
+    public Disposable getStaffsByDateAndAttendanceType(long date, int type, NetCallback<List<StaffBean>> callback) {
+        String yearAndMonth = CalenderUtils.getInstance().toLongYearAndMonth(date);
+        Observable<ResultBean<List<Integer>>> observable = netApiService.getHrAbnormalListByTypeAndDate(yearAndMonth, type);
+        Mapper<List<Integer>, List<StaffBean>> mapper = new Mapper<List<Integer>, List<StaffBean>>() {
+            @Override
+            public List<StaffBean> map(List<Integer> src) {
+                List<StaffEntity> staffEntities = DearDbManager.getInstance().getDataBase().getStaffDao().getStaffsById(src);
+                List<StaffBean> result = new ArrayList<>();
+                for (StaffEntity entity : staffEntities) {
+                    result.add(new StaffBean(entity));
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
 
     /**
      * 获取员工当月出勤概况（上半部情况）
+     *
      * @param staffId
      * @param callback
      * @return
      */
-    public Disposable getStaffAttendStatus(int staffId, NetCallback<NetStaffAttendStatus> callback){
+    public Disposable getStaffAttendStatus(int staffId, NetCallback<NetStaffAttendStatus> callback) {
         Observable<ResultBean<NetStaffAttendStatus>> observable = netApiService.getStaffAttendStatus(staffId);
-        return getDisposalAsync(observable,callback,null);
+        return getDisposalAsync(observable, callback, null);
     }
 
 
     /**
      * 获取员工当月出勤概况（下半部情况）
-     * @param yearMonth
+     *
+     * @param yearMonth yyyy-MM
      * @param staffId
      * @param callback
      * @return
      */
-    public Disposable getStaffAttendRecord(String yearMonth, int staffId, NetCallback<List<NetStaffAttendRecord>> callback){
+    public Disposable getStaffAttendRecord(String yearMonth, int staffId, NetCallback<List<NetStaffAttendRecord>> callback) {
         Observable<ResultBean<List<NetStaffAttendRecord>>> observable = netApiService.getStaffAttendRecord(yearMonth, staffId);
-        return getDisposalAsync(observable,callback,null);
+        return getDisposalAsync(observable, callback, null);
+    }
+
+
+    /**
+     * 根据月份查询异常的人数
+     *
+     * @param yearMonth
+     * @param callback
+     * @return
+     */
+    public Disposable getHrAbnormalListByDate(String yearMonth, NetCallback<HrSummaryBean> callback) {
+        Observable<ResultBean<NetHrSummary>> observable = netApiService.getHrAbnormalSumByDate(yearMonth);
+        Mapper<NetHrSummary, HrSummaryBean> mapper = new Mapper<NetHrSummary, HrSummaryBean>() {
+            @Override
+            public HrSummaryBean map(NetHrSummary src) {
+                return new HrSummaryBean(src);
+            }
+        };
+        return getDisposalAsync(observable, callback, mapper);
     }
 
 

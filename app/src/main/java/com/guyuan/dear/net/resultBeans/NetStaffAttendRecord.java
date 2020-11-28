@@ -20,13 +20,13 @@ public class NetStaffAttendRecord {
 
     private String amStartTime;
     /**
-     * 上午打卡状态：上午打卡状态：1.正常 2.迟到
+     * 上午打卡状态：1.正常 2.迟到
      */
     private int amStatus;
     private int id;
     private String pmEndTime;
     /**
-     * 下午打卡状态：上午打卡状态：1.正常 2.早退
+     * 下午打卡状态：1.正常 2.早退
      */
     private int pmStatus;
     private String todayDate;
