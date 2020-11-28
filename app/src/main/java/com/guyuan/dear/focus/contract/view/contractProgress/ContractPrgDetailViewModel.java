@@ -1,5 +1,6 @@
 package com.guyuan.dear.focus.contract.view.contractProgress;
 
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.guyuan.dear.base.fragment.BaseDearViewModel;
@@ -17,7 +18,8 @@ import io.reactivex.disposables.Disposable;
 public class ContractPrgDetailViewModel extends BaseDearViewModel {
     private ContractPrgDetailRepo repo = new ContractPrgDetailRepo();
     private MutableLiveData<ContractStatusFlowBean> detailBean = new MutableLiveData<>();
-
+    public MutableLiveData<Boolean> isShowSuspendIssue=new MutableLiveData<>(false);
+    public MutableLiveData<Boolean> isShowDepositIssue=new MutableLiveData<>(false);
 
     public MutableLiveData<ContractStatusFlowBean> getDetailBean() {
         return detailBean;
@@ -27,6 +29,8 @@ public class ContractPrgDetailViewModel extends BaseDearViewModel {
         return repo.getContractStatusFlowById(contractId, new BaseNetCallback<ContractStatusFlowBean>() {
             @Override
             protected void handleResult(ContractStatusFlowBean result) {
+                isShowSuspendIssue.postValue(result.getSuspendPrgLog()!=null);
+                isShowDepositIssue.postValue(result.getNoDepositPrgLog()!=null);
                 detailBean.postValue(result);
             }
         });

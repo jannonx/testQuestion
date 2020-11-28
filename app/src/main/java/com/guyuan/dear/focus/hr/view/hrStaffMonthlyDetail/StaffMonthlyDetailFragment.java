@@ -153,7 +153,6 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<FragmentStaffMo
         if (color == -1) {
             return null;
         }
-        //到了这里，只会返回异常
         return new Event(color, timeMillis, record);
     }
 

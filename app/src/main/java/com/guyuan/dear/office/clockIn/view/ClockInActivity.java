@@ -80,20 +80,19 @@ public class ClockInActivity extends BaseActionBarActivity {
     private void setupMyAttendSumTab(TabLayout.Tab tab) {
         View view = LayoutInflater.from(this).inflate(R.layout.item_clock_in_tab, null);
         AppCompatImageView icon = view.findViewById(R.id.item_clock_in_tab_iv_icon);
-        icon.setImageResource(R.drawable.selector_clock_in_tab_left);
+        icon.setImageResource(R.drawable.selector_clock_in_tab_right);
         AppCompatTextView label = view.findViewById(R.id.item_clock_in_tab_tv_label);
-        label.setText("打卡");
+        label.setText("统计");
         tab.setCustomView(view);
     }
 
     private void setupClockInTab(TabLayout.Tab tab) {
         View view = LayoutInflater.from(this).inflate(R.layout.item_clock_in_tab, null);
         AppCompatImageView icon = view.findViewById(R.id.item_clock_in_tab_iv_icon);
-        icon.setImageResource(R.drawable.selector_clock_in_tab_right);
+        icon.setImageResource(R.drawable.selector_clock_in_tab_left);
         AppCompatTextView label = view.findViewById(R.id.item_clock_in_tab_tv_label);
-        label.setText("统计");
+        label.setText("打卡");
         tab.setCustomView(view);
-
     }
 
     @Override

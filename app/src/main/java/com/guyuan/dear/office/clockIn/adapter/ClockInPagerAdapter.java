@@ -7,6 +7,10 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.focus.hr.view.hrStaffMonthlyDetail.StaffMonthlyDetailFragment;
+import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.office.clockIn.repo.ClockInRepo;
 import com.guyuan.dear.office.clockIn.view.ClockInFragment;
 
 import java.util.ArrayList;
@@ -29,13 +33,16 @@ public class ClockInPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         if(position==0){
             return ClockInFragment.getInstance();
+        }else if(position==1){
+            LoginBean myInfo = new ClockInRepo().getMyInfo();
+            return StaffMonthlyDetailFragment.getInstance((int) myInfo.getUserInfo().getId());
         }
         return null;
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return 2;
     }
 
 }
