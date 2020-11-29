@@ -3,18 +3,18 @@ package com.guyuan.dear.focus.hr.view.home;
 import android.content.Context;
 import android.content.Intent;
 
-import androidx.fragment.app.Fragment;
-
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.hr.view.hrAbnormalSum.HrAbnormalSumFragment;
-import com.guyuan.dear.focus.hr.view.hrStruct.HrStructFragment;
 import com.guyuan.dear.focus.hr.view.hrSummary.HrSummaryFragment;
+import com.guyuan.dear.focus.hr.view.hrTree.HrTreeFragment;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * @author : 廖华凯
@@ -43,14 +43,13 @@ public class HrHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, HrHo
     }
 
 
-
     @Override
     protected List<Fragment> getFragments() {
-        List<Fragment> fragments = new ArrayList<Fragment>(){
+        List<Fragment> fragments = new ArrayList<Fragment>() {
             {
                 add(HrSummaryFragment.getInstance());
                 add(HrAbnormalSumFragment.getInstance());
-                add(HrStructFragment.getInstance());
+                add(HrTreeFragment.getInstance());
             }
         };
         return fragments;
