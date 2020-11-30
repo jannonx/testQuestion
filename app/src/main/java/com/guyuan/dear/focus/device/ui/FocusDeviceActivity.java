@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
@@ -64,8 +65,38 @@ public class FocusDeviceActivity extends BaseTabActivity<ActivityBaseTabBinding,
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+        setObserver();
     }
 
+
+    private void setObserver() {
+        if (viewModel != null) {
+            viewModel.getDeviceNumberMLD().observe(this, new Observer<DeviceNumberBean>() {
+                @Override
+                public void onChanged(DeviceNumberBean deviceNumberBean) {
+                    overviewFragment.setUI(deviceNumberBean);
+                }
+            });
+
+
+            viewModel.getDeviceExceptionMLD().observe(this, new Observer<DeviceExceptionBean>() {
+                @Override
+                public void onChanged(DeviceExceptionBean deviceExceptionBean) {
+                    if (deviceExceptionBean.getContent() != null) {
+                        exceptionFragment.setListData(deviceExceptionBean.getContent());
+                    }
+                }
+            });
+
+
+            viewModel.getFactoryMLD().observe(this, new Observer<FactoryBean>() {
+                @Override
+                public void onChanged(FactoryBean factoryBean) {
+                    profileFragment.setTab(factoryBean);
+                }
+            });
+        }
+    }
 
     @Override
     protected List<Integer> setTabIconList() {
@@ -75,8 +106,5 @@ public class FocusDeviceActivity extends BaseTabActivity<ActivityBaseTabBinding,
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
         return tabDrawableList;
     }
-
-
-
 
 }

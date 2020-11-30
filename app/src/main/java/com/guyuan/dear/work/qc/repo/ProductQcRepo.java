@@ -1,15 +1,9 @@
 package com.guyuan.dear.work.qc.repo;
 
-import com.guyuan.dear.base.fragment.DearBaseViewModel;
 import com.guyuan.dear.net.DearNetHelper;
-import com.guyuan.dear.net.reqBean.SubmitQcReportBody;
 import com.guyuan.dear.work.qc.beans.BaseProductBatchInfo;
-import com.guyuan.dear.work.qc.beans.BaseProjectBean;
-import com.guyuan.dear.work.qc.beans.ProductInfo;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import io.reactivex.disposables.Disposable;
 

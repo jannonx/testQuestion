@@ -34,6 +34,7 @@ public class CalenderUtils {
     private String[] chineseMonths =
             new String[]{"一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月",};
     private String[] chineseWeekDays = new String[]{"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
+    private final SimpleDateFormat stdHourMinSecFormat;
 
     //2019-11-28 08:56:36
     private CalenderUtils() {
@@ -50,6 +51,30 @@ public class CalenderUtils {
         simpleDateFormatByYearMonth = new SimpleDateFormat("yy-MM", Locale.CHINA);
         mSimpleDateFormatByYearMonthDayHourMin = new SimpleDateFormat("yyyy年MM月dd日HH时mm分", Locale.CHINA);
         mSimpleDateFormatByLongYearAndMonth = new SimpleDateFormat("yyyy-MM", Locale.CHINA);
+        stdHourMinSecFormat = new SimpleDateFormat("HH:mm:ss",Locale.CHINA);
+    }
+
+    /**
+     * 时：分：秒 如 “12:30:45”
+     * @param timeMills
+     * @return
+     */
+    public String toStandardHourMinSecFormat(long timeMills){
+        return stdHourMinSecFormat.format(new Date(timeMills));
+    }
+
+    /**
+     * 时：分：秒 如 “12:30:45” 转成日期
+     * @param format
+     * @return
+     */
+    public Date parseStandardHourMinSecFormat(String format){
+        try {
+            return stdHourMinSecFormat.parse(format);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**

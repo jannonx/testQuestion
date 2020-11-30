@@ -3,6 +3,8 @@ package com.guyuan.dear.work.contractPause.beans;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.guyuan.dear.db.entities.DeptEntity;
+
 /**
  * @author: 廖华凯
  * @description:
@@ -21,6 +23,12 @@ public class DeptBean implements Parcelable {
         deptName = in.readString();
         id = in.readLong();
         level = (short) in.readInt();
+    }
+
+    public DeptBean(DeptEntity deptEntity) {
+        setDeptName(deptEntity.deptName);
+        setId(deptEntity.deptId);
+        setLevel((short) deptEntity.level);
     }
 
     public String getDeptName() {

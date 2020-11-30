@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
-import com.guyuan.dear.focus.hr.view.hrAbnormal.HrAbnormalityFragment;
+import com.guyuan.dear.focus.hr.view.hrAbnormalSum.HrAbnormalSumFragment;
 import com.guyuan.dear.focus.hr.view.hrStruct.HrStructFragment;
 import com.guyuan.dear.focus.hr.view.hrSummary.HrSummaryFragment;
 import com.guyuan.dear.utils.ConstantValue;
@@ -49,7 +49,7 @@ public class HrHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, HrHo
         List<Fragment> fragments = new ArrayList<Fragment>(){
             {
                 add(HrSummaryFragment.getInstance());
-                add(HrAbnormalityFragment.getInstance());
+                add(HrAbnormalSumFragment.getInstance());
                 add(HrStructFragment.getInstance());
             }
         };

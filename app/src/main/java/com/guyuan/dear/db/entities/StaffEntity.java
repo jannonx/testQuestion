@@ -31,6 +31,9 @@ public class StaffEntity {
     @PrimaryKey
     public long userId;
     public String imgUrl;
+    /**
+     * 1表示正常，0表示已经删除
+     */
     public short deleteFlag;
     /**
      * 工牌ID，用来展示，一般不用

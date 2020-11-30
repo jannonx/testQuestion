@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -54,6 +55,7 @@ public class BaseRecyclerView extends RecyclerView {
     private BaseRecyclerViewAdapter mWrapAdapter;
     private boolean isNoMore = false;
     private boolean mIsVpDragger;
+    private boolean mIsRvDragger;
     private int mTouchSlop;         //滑动识别有效距离
     private float startY;
     private float startX;
@@ -207,19 +209,19 @@ public class BaseRecyclerView extends RecyclerView {
         @Override
         public void onItemRangeChanged(int positionStart, int itemCount) {
             mWrapAdapter.notifyItemRangeChanged(positionStart + mWrapAdapter.getHeaderViewsCount() + 1,
-                itemCount);
+                    itemCount);
         }
 
         @Override
         public void onItemRangeInserted(int positionStart, int itemCount) {
             mWrapAdapter.notifyItemRangeInserted(positionStart + mWrapAdapter.getHeaderViewsCount() +
-                1, itemCount);
+                    1, itemCount);
         }
 
         @Override
         public void onItemRangeRemoved(int positionStart, int itemCount) {
             mWrapAdapter.notifyItemRangeRemoved(positionStart + mWrapAdapter.getHeaderViewsCount() + 1,
-                itemCount);
+                    itemCount);
             if (mWrapAdapter.getInnerAdapter().getItemCount() < mPageSize) {
                 mFootView.setVisibility(GONE);
             }
@@ -230,7 +232,7 @@ public class BaseRecyclerView extends RecyclerView {
         public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
             int headerViewsCountCount = mWrapAdapter.getHeaderViewsCount();
             mWrapAdapter.notifyItemRangeChanged(fromPosition + headerViewsCountCount + 1, toPosition +
-                headerViewsCountCount + 1 + itemCount);
+                    headerViewsCountCount + 1 + itemCount);
         }
 
     }
@@ -250,7 +252,8 @@ public class BaseRecyclerView extends RecyclerView {
                 startY = ev.getY();
                 startX = ev.getX();
                 // 初始化标记
-                mIsVpDragger = false;
+                mIsVpDragger = false;  //父容器执行手势
+                mIsRvDragger = false;  //自身执行手势
                 break;
             case MotionEvent.ACTION_MOVE:
                 // 如果viewpager正在拖拽中，那么不拦截它的事件，直接return false；
@@ -258,21 +261,38 @@ public class BaseRecyclerView extends RecyclerView {
                     return false;
                 }
 
+                //如果自身处于手势状态则自己处理
+                if (mIsRvDragger) {
+                    return super.onInterceptTouchEvent(ev);
+                }
+
                 // 获取当前手指位置
                 float endY = ev.getY();
                 float endX = ev.getX();
                 float distanceX = Math.abs(endX - startX);
                 float distanceY = Math.abs(endY - startY);
-                // 如果X轴位移大于Y轴位移，那么将事件交给viewPager处理。
+
+                // 水平滑动交给父容器处理
                 if (distanceX > mTouchSlop && distanceX > distanceY) {
                     mIsVpDragger = true;
+                    mIsRvDragger = false;
+                    Log.i("gesture", "父容器处理");
                     return false;
                 }
+
+                //垂直滑动自己处理
+                if (distanceY > mTouchSlop && distanceY > distanceX) {
+                    mIsVpDragger = false;
+                    mIsRvDragger = true;
+                    Log.i("gesture", "自身处理");
+                    return super.onInterceptTouchEvent(ev);
+                }
+
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                // 初始化标记
-                mIsVpDragger = false;
+                mIsVpDragger = false;  //父容器执行手势
+                mIsRvDragger = false;  //自身执行手势
                 break;
         }
         // 如果是Y轴位移大于X轴，事件交给swipeRefreshLayout处理。
@@ -308,7 +328,7 @@ public class BaseRecyclerView extends RecyclerView {
                 mLastY = moveY;
                 sumOffSet += deltaY;
                 if (isOnTop() && mPullRefreshEnabled && !mRefreshing && (appbarState ==
-                    AppBarStateChangeListener.State.EXPANDED)) {
+                        AppBarStateChangeListener.State.EXPANDED)) {
                     if (mRefreshHeader.getType() == IRefreshHeader.TYPE_HEADER_NORMAL) {
                         mRefreshHeader.onMove(deltaY, sumOffSet);
                     } else if (mRefreshHeader.getType() == IRefreshHeader.TYPE_HEADER_MATERIAL) {
@@ -338,13 +358,13 @@ public class BaseRecyclerView extends RecyclerView {
 
     @Override
     protected boolean overScrollBy(int deltaX, int deltaY, int scrollX, int scrollY, int
-        scrollRangeX, int scrollRangeY, int maxOverScrollX,
+            scrollRangeX, int scrollRangeY, int maxOverScrollX,
                                    int maxOverScrollY, boolean isTouchEvent) {
         if (deltaY != 0 && isTouchEvent) {
             mRefreshHeader.onMove(deltaY, sumOffSet);
         }
         return super.overScrollBy(deltaX, deltaY, scrollX, scrollY, scrollRangeX, scrollRangeY,
-            maxOverScrollX, maxOverScrollY, isTouchEvent);
+                maxOverScrollX, maxOverScrollY, isTouchEvent);
     }
 
     private int findMax(int[] lastPositions) {
@@ -431,7 +451,7 @@ public class BaseRecyclerView extends RecyclerView {
             mFootView.setLayoutParams(new LayoutParams(layoutParams));
         } else {
             mFootView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams
-                .WRAP_CONTENT));
+                    .WRAP_CONTENT));
         }
 
         mFootView.setVisibility(GONE);
@@ -452,7 +472,7 @@ public class BaseRecyclerView extends RecyclerView {
     public void setLoadMoreEnabled(boolean enabled) {
         if (mWrapAdapter == null) {
             throw new NullPointerException("LRecyclerViewAdapter cannot be null, please make sure the " +
-                "variable mWrapAdapter have been initialized.");
+                    "variable mWrapAdapter have been initialized.");
         }
         mLoadMoreEnabled = enabled;
         if (!enabled) {
@@ -646,26 +666,26 @@ public class BaseRecyclerView extends RecyclerView {
                 layoutManagerType = LayoutManagerType.StaggeredGridLayout;
             } else {
                 throw new RuntimeException(
-                    "Unsupported LayoutManager used. Valid ones are LinearLayoutManager, " +
-                        "GridLayoutManager and StaggeredGridLayoutManager");
+                        "Unsupported LayoutManager used. Valid ones are LinearLayoutManager, " +
+                                "GridLayoutManager and StaggeredGridLayoutManager");
             }
         }
 
         switch (layoutManagerType) {
             case LinearLayout:
                 firstVisibleItemPosition = ((LinearLayoutManager) layoutManager)
-                    .findFirstVisibleItemPosition();
+                        .findFirstVisibleItemPosition();
                 lastVisibleItemPosition = ((LinearLayoutManager) layoutManager)
-                    .findLastVisibleItemPosition();
+                        .findLastVisibleItemPosition();
                 break;
             case GridLayout:
                 firstVisibleItemPosition = ((GridLayoutManager) layoutManager)
-                    .findFirstVisibleItemPosition();
+                        .findFirstVisibleItemPosition();
                 lastVisibleItemPosition = ((GridLayoutManager) layoutManager).findLastVisibleItemPosition();
                 break;
             case StaggeredGridLayout:
                 StaggeredGridLayoutManager staggeredGridLayoutManager = (StaggeredGridLayoutManager)
-                    layoutManager;
+                        layoutManager;
                 if (lastPositions == null) {
                     lastPositions = new int[staggeredGridLayoutManager.getSpanCount()];
                 }
@@ -678,7 +698,7 @@ public class BaseRecyclerView extends RecyclerView {
 
         // 根据类型来计算出第一个可见的item的位置，由此判断是否触发到底部的监听器
         // 计算并判断当前是向上滑动还是向下滑动
-        mIsScrollDown= dy <= 0;
+        mIsScrollDown = dy <= 0;
 
         //  calculateScrollUpOrDown(firstVisibleItemPosition, dy);
         // 移动距离超过一定的范围，我们监听就没有啥实际的意义了
@@ -698,10 +718,10 @@ public class BaseRecyclerView extends RecyclerView {
             int visibleItemCount = layoutManager.getChildCount();
             int totalItemCount = layoutManager.getItemCount();
             if (visibleItemCount > 0
-                && lastVisibleItemPosition >= totalItemCount - 1
-                && totalItemCount > visibleItemCount
-                && !isNoMore
-                && !mRefreshing && !mIsScrollDown) {
+                    && lastVisibleItemPosition >= totalItemCount - 1
+                    && totalItemCount > visibleItemCount
+                    && !isNoMore
+                    && !mRefreshing && !mIsScrollDown) {
 
                 mFootView.setVisibility(View.VISIBLE);
                 if (!mLoadingData) {
@@ -714,8 +734,8 @@ public class BaseRecyclerView extends RecyclerView {
 
         }
         if (isOnTop() && dy > 0 && mRefreshHeader.getType() == IRefreshHeader.TYPE_HEADER_MATERIAL &&
-            !mRefreshing && (appbarState
-            == AppBarStateChangeListener.State.EXPANDED)) {
+                !mRefreshing && (appbarState
+                == AppBarStateChangeListener.State.EXPANDED)) {
             mRefreshHeader.onMove(dy, mScrolledYDistance);
         }
     }

@@ -24,6 +24,7 @@ import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFra
 import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.STATUS;
 import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.TYPE;
 import static com.guyuan.dear.office.approval.ui.ApprovalActivity.APPROVAL_TYPE;
+import static com.guyuan.dear.office.approval.ui.ApprovalActivity.IS_APPROVED;
 
 
 /**
@@ -42,14 +43,15 @@ public class FocusProduceDetailActivity extends BaseToolbarActivity<ActivityWith
         context.startActivity(intent);
     }
 
-    public static void start(Context context, boolean isFooterBtnShow, FocusProduceBean data, int businessId,
-                             int businessType, int type) {
+    public static void start(Context context, boolean isApproval, FocusProduceBean data, int businessId,
+                             int businessType, int apprType) {
         Intent intent = new Intent(context, FocusProduceDetailActivity.class);
         intent.putExtra(ConstantValue.KEY_CONTENT, data);
-        intent.putExtra(ConstantValue.KEY_BOOLEAN, isFooterBtnShow);
+        intent.putExtra(ConstantValue.KEY_BOOLEAN, false);
+        intent.putExtra(IS_APPROVED, isApproval);
+        intent.putExtra(APPROVAL_TYPE, apprType);
         intent.putExtra(BUSINESS_ID, businessId);
         intent.putExtra(BUSINESS_TYPE, businessType);
-        intent.putExtra(TYPE, type);
         context.startActivity(intent);
     }
 
@@ -58,16 +60,16 @@ public class FocusProduceDetailActivity extends BaseToolbarActivity<ActivityWith
     protected void initFragment(Bundle savedInstanceState) {
         FocusProduceBean bean = (FocusProduceBean) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
         boolean isFooterBtnShow = getIntent().getBooleanExtra(ConstantValue.KEY_BOOLEAN, false);
-        boolean isApproval = getIntent().getBooleanExtra(APPROVAL_TYPE, false);
+        boolean isApproval = getIntent().getBooleanExtra(IS_APPROVED, false);
         int businessId = getIntent().getIntExtra(BUSINESS_ID, -1);
         int businessType = getIntent().getIntExtra(BUSINESS_TYPE, -1);
-        int type = getIntent().getIntExtra(TYPE, -1);
+        int type = getIntent().getIntExtra(APPROVAL_TYPE, -1);
         binding.toolbarContainer.titleTv.setText("生产详情");
         BaseFragment mFragment;
         if (ProductStatusType.TYPE_PRODUCE_WAIT == bean.getStatusType()) {
             if (isApproval) {
                 mFragment = FocusProduceDetailSimpleFragment.newInstance(bean, businessId,
-                        businessType,  type);
+                        businessType, type,isApproval);
             } else {
                 mFragment = FocusProduceDetailSimpleFragment.newInstance(bean, isFooterBtnShow);
             }
@@ -76,7 +78,7 @@ public class FocusProduceDetailActivity extends BaseToolbarActivity<ActivityWith
             LogUtils.showLog("listData=" + (bean == null));
             if (isApproval) {
                 mFragment = FocusProduceDetailComplexFragment.newInstance(bean, businessId,
-                        businessType,  type);
+                        businessType, type,isApproval);
             } else {
                 mFragment = FocusProduceDetailComplexFragment.newInstance(bean, isFooterBtnShow);
             }

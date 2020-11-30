@@ -6,13 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
-import com.google.gson.Gson;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentContractPrgDetailLogsBinding;
 import com.guyuan.dear.focus.contract.adapter.contractPrgLog.LogTailAdapter;
 import com.guyuan.dear.focus.contract.adapter.contractPrgLog.SalesReviewAdapter;
-import com.guyuan.dear.focus.contract.bean.ContractLogBean;
 import com.guyuan.dear.focus.contract.bean.ContractStatusFlowBean;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.FirstCreateDate;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.SalesReviewMeeting;

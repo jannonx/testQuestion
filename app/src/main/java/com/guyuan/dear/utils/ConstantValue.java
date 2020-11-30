@@ -127,7 +127,7 @@ public class ConstantValue {
     public static final String WORK_CONTRACT_ASSESS = "work_contract_assess";
     public static final String WORK_GOODS_SIGN = "work_goods_sign";
     public static final String WORK_QC = "work_qc";
-    public static final String WORK_MATTER_APPLY="work_matter_apply";
+    public static final String WORK_MATTER_APPLY = "work_matter_apply";
 
 
     //移动办公
@@ -269,4 +269,5 @@ public class ConstantValue {
     //提示语
     public static final String TIP_SEARCH = "请填写搜索内容";
     public static final String TIP_NO_DATA = "暂无数据";
+
 }

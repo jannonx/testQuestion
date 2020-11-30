@@ -1,24 +1,16 @@
 package com.example.mvvmlibrary.base.data;
 
-import android.annotation.SuppressLint;
-import android.app.Application;
-import android.content.Context;
 import android.os.Bundle;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.mvvmlibrary.data.SingleLiveEvent;
-import com.github.ybq.android.spinkit.animation.SpriteAnimatorBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import dagger.hilt.android.qualifiers.ApplicationContext;
-import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
@@ -129,7 +121,10 @@ public class BaseViewModel extends ViewModel {
         public static String BUNDLE = "BUNDLE";
     }
 
-    protected void addSubscription(Disposable disposable) {
+    protected void addSubscription(@Nullable Disposable disposable) {
+        if (disposable == null) {
+            return;
+        }
         if (mCompositeSubscription == null) {
             mCompositeSubscription = new CompositeDisposable();
         }
@@ -148,10 +143,9 @@ public class BaseViewModel extends ViewModel {
     /**
      * 这里可以处理一些内存释放
      */
-    public void onDestroy(){
+    public void onDestroy() {
 
     }
-
 
 
 }

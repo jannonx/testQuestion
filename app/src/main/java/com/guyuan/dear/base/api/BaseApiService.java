@@ -43,8 +43,7 @@ public interface BaseApiService {
 
     //查询厂房
     @POST(FACTORY)
-    @FormUrlEncoded
-    Observable<ResultBean<FactoryBean>> getFactoryList(@Field(PAGE_INDEX) int pageIndex, @Field(PAGE_SIZE) int pageSize);
+    Observable<ResultBean<FactoryBean>> getFactoryList(@Body RequestBody body);
 
     //上传图片
     @POST(UPLOAD)

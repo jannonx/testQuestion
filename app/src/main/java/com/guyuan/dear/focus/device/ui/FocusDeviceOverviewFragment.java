@@ -29,11 +29,8 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/9/21 14:31
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBean.EquipmentsBean, FragmentFocusDeviceOverviewBinding,FocusDeviceViewModel> {
-
-
+public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBean.EquipmentsBean, FragmentFocusDeviceOverviewBinding, FocusDeviceViewModel> {
     public static final String TAG = "FocusDeviceOverviewFragment";
-    private FocusDeviceViewModel viewModel;
 
     public static FocusDeviceOverviewFragment newInstance() {
 
@@ -42,13 +39,6 @@ public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBe
         FocusDeviceOverviewFragment fragment = new FocusDeviceOverviewFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        FocusDeviceActivity activity = (FocusDeviceActivity) context;
-        viewModel = activity.getViewModel();
     }
 
     @Override
@@ -61,7 +51,7 @@ public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBe
         if (viewModel != null) {
             viewModel.getDeviceTotalNumber();
         }
-        DeviceNumberAdapter numberAdapter = new DeviceNumberAdapter(getContext(), listData,
+        DeviceNumberAdapter numberAdapter = new DeviceNumberAdapter(listData,
                 R.layout.item_focus_device_number);
 
         numberAdapter.setTypeClickListener(new DeviceNumberAdapter.OnTypeClickListener() {
@@ -71,7 +61,7 @@ public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBe
             }
         });
 
-        adapter = new BaseRecyclerViewAdapter(numberAdapter);
+        setDefaultAdapter(numberAdapter);
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
@@ -81,8 +71,6 @@ public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBe
                 FocusDeviceTypeActivity.start(getContext(), title, id, FocusDeviceTypeFragment.TOTAL);
             }
         });
-        recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recycleView.setAdapter(adapter);
 
         binding.totalNumberCv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +117,7 @@ public class FocusDeviceOverviewFragment extends BaseListFragment<DeviceNumberBe
 
     public void setUI(DeviceNumberBean deviceNumberBean) {
         binding.setNumber(deviceNumberBean);
-        if(deviceNumberBean.getEquipments()!=null){
+        if (deviceNumberBean.getEquipments() != null) {
             setListData(deviceNumberBean.getEquipments());
         }
     }

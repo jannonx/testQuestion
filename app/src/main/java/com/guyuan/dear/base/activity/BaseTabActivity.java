@@ -60,7 +60,7 @@ public abstract class BaseTabActivity<V extends ViewDataBinding, VM extends Base
         List<Fragment> fragmentList = getFragments();
         tabIconList = setTabIconList();
         init();
-        new TabLayoutHelper(this, tlBase, vpBase, fragmentList)
+        new TabLayoutHelper(this, tlBase, vpBase, fragmentList, TabLayoutHelper.COMMON)
                 .setTab()
                 .setStartPosition(startPosition)
                 .setListener(this)

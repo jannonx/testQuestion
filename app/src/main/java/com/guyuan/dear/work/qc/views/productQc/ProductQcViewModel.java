@@ -5,13 +5,12 @@ import android.view.View;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.guyuan.dear.base.fragment.DearBaseViewModel;
+import com.guyuan.dear.base.fragment.BaseDearViewModel;
 import com.guyuan.dear.net.reqBean.SubmitQcReportBody;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.qc.beans.BaseProductBatchInfo;
 import com.guyuan.dear.work.qc.beans.BaseProjectBean;
 import com.guyuan.dear.work.qc.beans.BaseQcApproachBean;
-import com.guyuan.dear.work.qc.beans.MaterialInfo;
 import com.guyuan.dear.work.qc.repo.ProductQcRepo;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ import io.reactivex.disposables.Disposable;
  * @since: 2020/11/16 10:47
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ProductQcViewModel extends DearBaseViewModel {
+public class ProductQcViewModel extends BaseDearViewModel {
     /**
      * 数据源
      */

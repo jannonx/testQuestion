@@ -1,17 +1,16 @@
 package com.guyuan.dear.focus.hr.view.hrStatusGrp;
 
-import android.app.Application;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
-
-import com.example.mvvmlibrary.base.data.BaseViewModel;
-import com.guyuan.dear.focus.hr.adapter.StaffsDeptGrpExpListAdapter;
+import com.guyuan.dear.base.fragment.BaseDearViewModel;
+import com.guyuan.dear.focus.hr.adapter.HrStaffAdapter;
 import com.guyuan.dear.focus.hr.bean.HrStaffsByDept;
-import com.guyuan.dear.focus.hr.bean.StaffBasicInfo;
+import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
+import com.guyuan.dear.focus.hr.repos.HrStatusGrpRepo;
+import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import androidx.lifecycle.MutableLiveData;
+import io.reactivex.disposables.Disposable;
 
 /**
  * @author: 廖华凯
@@ -19,73 +18,44 @@ import java.util.List;
  * @since: 2020/9/21 17:54
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class HrStatusGrpViewModel extends BaseViewModel {
+public class HrStatusGrpViewModel extends BaseDearViewModel {
 
-
+    private HrStatusGrpRepo repo = new HrStatusGrpRepo();
     public MutableLiveData<List<HrStaffsByDept>> staffs = new MutableLiveData<>();
-    public int grpType;
-    public StaffsDeptGrpExpListAdapter.DeptGrpExpAdapterCallback callback;
-
-    public void setGrpType(int grpType) {
-        this.grpType = grpType;
-    }
+    public MutableLiveData<HrStaffAdapter.HrStaffAdapterItemClickListener> onItemClickListener = new MutableLiveData<>();
 
     /**
-     * 生成模拟数据，显示UI
+     * @param type {@link HrStatusGroup#GRP_TYPE_NORMAL},{@link HrStatusGroup#GRP_TYPE_LATE},{@link HrStatusGroup#GRP_TYPE_LEAVE_EARLY},
+     * {@link HrStatusGroup#GRP_TYPE_ABSENT},{@link HrStatusGroup#GRP_TYPE_ON_LEAVE}
+     * @return
      */
-    public void loadDataFromNet() {
-        int count=10;
-        List<HrStaffsByDept> list = new ArrayList<>();
-        for(int i=0;i<count;i++){
-            HrStaffsByDept dept = new HrStaffsByDept();
-            dept.setGrpType(grpType);
-            dept.setGrpLabel("部门"+i);
-            dept.setDeptId(i);
-            dept.setStaffs(new ArrayList<StaffBasicInfo>(){
-                {
-                    StaffBasicInfo staff = new StaffBasicInfo();
-                    staff.setDept(dept.getGrpLabel());
-                    staff.setName("Leo");
-                    staff.setId(1);
-                    staff.setDeptId(dept.getDeptId());
-                    add(staff);
-                }
-            });
-            list.add(dept);
-        }
-        staffs.postValue(list);
-    }
-
-    public void setCallback(StaffsDeptGrpExpListAdapter.DeptGrpExpAdapterCallback callback) {
-        this.callback = callback;
-    }
-
-    /**
-     * 下来加载更多时，生成更多模拟数据。
-     * @param grpType
-     * @param deptId
-     * @param startPos
-     * @param size
-     */
-    public void loadMoreStaffs(int grpType, long deptId, int startPos, int size) {
-        if(staffs.getValue()==null){
-            return;
-        }
-        for (HrStaffsByDept dept : staffs.getValue()) {
-            long deptDeptId = dept.getDeptId();
-            if(deptDeptId == deptId){
-                List<StaffBasicInfo> staffs = dept.getStaffs();
-                for(int i=0;i<size;i++){
-                    StaffBasicInfo staff = new StaffBasicInfo();
-                    staff.setName("NewGuy"+(startPos+i));
-                    staff.setId(0);
-                    staff.setDept(dept.getGrpLabel());
-                    staff.setDeptId(deptId);
-                    staffs.add(staff);
-                }
-                break;
+    public Disposable loadStaffListByType(int type) {
+        return repo.getStaffListByAttendType(type, new BaseNetCallback<List<StaffBean>>() {
+            @Override
+            protected void handleResult(List<StaffBean> result) {
+                staffs.postValue(repo.groupStaffsByDept(result));
             }
-        }
-        this.staffs.setValue(this.staffs.getValue());
+        });
+    }
+
+    /**
+     * @param type {@link HrStatusGroup#GRP_TYPE_NORMAL},{@link HrStatusGroup#GRP_TYPE_LATE},{@link HrStatusGroup#GRP_TYPE_LEAVE_EARLY},
+     * {@link HrStatusGroup#GRP_TYPE_ABSENT},{@link HrStatusGroup#GRP_TYPE_ON_LEAVE}
+     * @return
+     */
+    public Disposable loadStaffListByDateAndType(long date, int type) {
+        return repo.getStaffListByDateAndAttendType(date, type, new BaseNetCallback<List<StaffBean>>() {
+            @Override
+            protected void handleResult(List<StaffBean> result) {
+                staffs.postValue(repo.groupStaffsByDept(result));
+            }
+        });
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
     }
 }

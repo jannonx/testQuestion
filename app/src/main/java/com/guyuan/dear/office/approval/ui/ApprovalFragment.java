@@ -6,6 +6,7 @@ import android.view.View;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
+import com.guyuan.dear.databinding.FragmentPickStaffsBindingImpl;
 import com.guyuan.dear.databinding.ItemApprovalBinding;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
@@ -13,6 +14,7 @@ import com.guyuan.dear.office.approval.adapter.ApprovalAdapter;
 import com.guyuan.dear.office.approval.data.ApprovalViewModel;
 import com.guyuan.dear.office.approval.data.bean.ApprovalListBean;
 import com.guyuan.dear.utils.ConstantValue;
+import com.sun.jna.platform.win32.Variant;
 
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
@@ -50,14 +52,25 @@ public class ApprovalFragment extends BaseListFragment<ApprovalListBean.ContentB
             public void onItemClick(View view, int i) {
                 if (listData.size() > 0) {
                     ApprovalListBean.ContentBean bean = listData.get(i);
-                    FocusProduceBean produceBean=new FocusProduceBean();
+                    FocusProduceBean produceBean = new FocusProduceBean();
                     produceBean.setEquipmentId(bean.getEquipmentId());
                     produceBean.setStatusType(bean.getStatus());
-                    FocusProduceDetailActivity.start(getContext(),false,produceBean,
-                            bean.getBusinessId(),bean.getBusinessType(),type);
+                    produceBean.setPlanId(bean.getBusinessId());
+                    switch (type) {
+                        case APPROVAL:
+                            FocusProduceDetailActivity.start(getContext(), true, produceBean,
+                                    bean.getBusinessId(), bean.getBusinessType(), bean.getApprType());
+                            break;
+
+                        case APPROVED:
+                            FocusProduceDetailActivity.start(getContext(), produceBean, false);
+                            break;
+                    }
+
                 }
             }
         });
+
         if (getArguments() != null) {
             type = getArguments().getInt(ConstantValue.KEY_TYPE);
             if (viewModel != null) {
@@ -65,6 +78,7 @@ public class ApprovalFragment extends BaseListFragment<ApprovalListBean.ContentB
             }
         }
     }
+
 
     @Override
     protected void refresh() {

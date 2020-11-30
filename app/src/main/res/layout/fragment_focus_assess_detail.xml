@@ -10,7 +10,7 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/focus_assess_tl"
-            style="@style/tab_blue_layout"
+            style="@style/tab_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -21,7 +21,6 @@ import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.qc.beans.BaseProjectBean;
 import com.guyuan.dear.work.qc.beans.BaseQcApproachBean;
 import com.guyuan.dear.work.qc.beans.MaterialInfo;
-import com.guyuan.dear.work.qc.beans.MaterialSpec;
 
 import java.util.ArrayList;
 import java.util.List;

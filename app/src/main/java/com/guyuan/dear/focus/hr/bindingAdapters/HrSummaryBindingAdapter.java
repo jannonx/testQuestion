@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.hr.bindingAdapters;
 
 import android.view.View;
 
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +11,7 @@ import com.guyuan.dear.customizeview.PieChartView;
 import com.guyuan.dear.focus.hr.adapter.HrSummaryAdapter;
 import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
 import com.guyuan.dear.focus.hr.view.hrStatusGrp.HrStatusGroupActivity;
+import com.guyuan.dear.utils.CalenderUtils;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -62,6 +64,15 @@ public class HrSummaryBindingAdapter {
             pieData.put(label,value);
         }
         view.setData(pieData,"");
+    }
+
+    @BindingAdapter("setHrSumDateFormat")
+    public static void setHrSumDateFormat(AppCompatTextView view,long date){
+        StringBuilder sb = new StringBuilder();
+        sb.append(CalenderUtils.getInstance().toChineseMonthAndDay(date));
+        sb.append(" ");
+        sb.append(CalenderUtils.getInstance().getChineseDayOfWeek(date));
+        view.setText(sb.toString());
     }
 
 }

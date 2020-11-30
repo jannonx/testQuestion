@@ -43,6 +43,7 @@ import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFra
 import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.BUSINESS_TYPE;
 import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.STATUS;
 import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.TYPE;
+import static com.guyuan.dear.office.approval.ui.ApprovalActivity.IS_APPROVED;
 
 /**
  * @description: 我的关注--客户详情(CoordinatorLayout)
@@ -70,6 +71,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
     private int businessType;
     private int status = -1;//1.同意；2.拒绝
     private int type;
+    private boolean isApproved = false;
     private RemarkDialog.OnDialogClickListener remarkListener;
 
     public static FocusProduceDetailComplexFragment newInstance(FocusProduceBean data, boolean isFooterBtnShow) {
@@ -84,7 +86,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
 
     //审批入口
     public static FocusProduceDetailSimpleFragment newInstance(FocusProduceBean data, int businessId,
-                                                               int businessType, int type) {
+                                                               int businessType, int type, boolean isApproved) {
         Bundle bundle = new Bundle();
         FocusProduceDetailSimpleFragment fragment = new FocusProduceDetailSimpleFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
@@ -92,6 +94,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
         bundle.putInt(BUSINESS_ID, businessId);
         bundle.putInt(BUSINESS_TYPE, businessType);
         bundle.putInt(TYPE, type);
+        bundle.putBoolean(IS_APPROVED, isApproved);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -146,7 +149,8 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
         businessType = getArguments().getInt(BUSINESS_TYPE);
         status = getArguments().getInt(STATUS);
         type = getArguments().getInt(TYPE);
-        if (businessId != -1) {
+        isApproved = getArguments().getBoolean(IS_APPROVED);
+        if (isApproved) {
             setRemarkDialogListener();
             binding.produceApprovalLl.setVisibility(View.VISIBLE);
 

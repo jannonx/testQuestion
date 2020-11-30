@@ -29,9 +29,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
  **/
 public class FocusDeviceExceptionFragment extends BaseListFragment<DeviceExceptionBean.ContentBean, FragmentListBinding,FocusDeviceViewModel> {
 
-
     public static final String TAG = "FocusDeviceExceptionFragment";
-    private FocusDeviceViewModel viewModel;
 
     public static FocusDeviceExceptionFragment newInstance() {
 
@@ -40,13 +38,6 @@ public class FocusDeviceExceptionFragment extends BaseListFragment<DeviceExcepti
         FocusDeviceExceptionFragment fragment = new FocusDeviceExceptionFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        FocusDeviceActivity activity = (FocusDeviceActivity) context;
-        viewModel = activity.getViewModel();
     }
 
 

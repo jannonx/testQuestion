@@ -1,14 +1,22 @@
 package com.guyuan.dear.focus.hr.bindingAdapters;
 
-import android.widget.ExpandableListView;
+import android.view.View;
 
 import androidx.databinding.BindingAdapter;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import com.guyuan.dear.focus.hr.adapter.StaffsDeptGrpExpListAdapter;
+import com.guyuan.dear.focus.hr.adapter.HrStaffAdapter;
+import com.guyuan.dear.focus.hr.adapter.HrStaffGrpAdapter;
 import com.guyuan.dear.focus.hr.bean.HrStaffsByDept;
-import com.guyuan.dear.focus.hr.bean.StaffBasicInfo;
+import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 import java.util.List;
+
+import tl.com.easy_recycleview_library.BaseRecyclerView;
+import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @author: 廖华凯
@@ -17,43 +25,39 @@ import java.util.List;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class StaffsStatusGrpBindingAdapter {
-    @BindingAdapter(value = {"setDeptData", "setCallback"}, requireAll = false)
-    public static void setDeptData(ExpandableListView view, List<HrStaffsByDept> depts, StaffsDeptGrpExpListAdapter.DeptGrpExpAdapterCallback callback) {
-        StaffsDeptGrpExpListAdapter adapter = new StaffsDeptGrpExpListAdapter(depts, view.getContext());
-        view.setAdapter(adapter);
-        view.setGroupIndicator(null);
-        view.setChildIndicator(null);
-        view.setDividerHeight(0);
-        view.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+    @BindingAdapter(value = {"hrStaffGrpShowStaffs", "setStaffGridItemClickListener"})
+    public static void hrStaffGrpShowStaffs(BaseRecyclerView view, List<HrStaffsByDept> data, HrStaffAdapter.HrStaffAdapterItemClickListener listener) {
+        if (data == null) {
+            return;
+        }
+        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
+        HrStaffGrpAdapter adapter = new HrStaffGrpAdapter(data);
+        adapter.setItemClickListener(listener);
+        BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
+        view.setLayoutManager(layoutManager);
+        view.setAdapter(wrapper);
+        view.setPullRefreshEnabled(false);
+        view.setLoadMoreEnabled(false);
+    }
+
+
+    @BindingAdapter(value = {"showStaffGridView", "setStaffGridItemClickListener"})
+    public static void showStaffGridView(BaseRecyclerView view, List<StaffBean> data, HrStaffAdapter.HrStaffAdapterItemClickListener listener) {
+        if (data == null) {
+            return;
+        }
+        GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(), 5, RecyclerView.VERTICAL, false);
+        HrStaffAdapter adapter = new HrStaffAdapter(data);
+        BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
+        view.setLayoutManager(layoutManager);
+        view.setAdapter(wrapper);
+        view.setLoadMoreEnabled(false);
+        view.setPullRefreshEnabled(false);
+        wrapper.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onGroupExpand(int groupPosition) {
-                for (int i = 0; i < depts.size(); i++) {
-                    if (groupPosition != i) {
-                        view.collapseGroup(i);
-                    }
-                }
+            public void onItemClick(View view, int i) {
+                listener.onItemClick(data.get(i), i);
             }
         });
-        if (callback != null) {
-            adapter.setCallback(new StaffsDeptGrpExpListAdapter.DeptGrpExpAdapterCallback() {
-                @Override
-                public void onClickLoadMore(int grpType, long deptId, int pageStartIndex, int pageSize, int grpPos) {
-                    callback.onClickLoadMore(grpType, deptId, pageStartIndex, pageSize, grpPos);
-                    view.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            view.expandGroup(grpPos,true);
-                            view.smoothScrollToPosition(grpPos);
-                        }
-                    },4020);
-                }
-
-                @Override
-                public void onClickStaff(StaffBasicInfo bean) {
-                    callback.onClickStaff(bean);
-
-                }
-            });
-        }
     }
 }

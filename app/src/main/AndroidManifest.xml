@@ -62,7 +62,6 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.READ_LOGS" />
 
-
     <application
         android:name=".base.app.DearApplication"
         android:allowBackup="true"
@@ -73,6 +72,8 @@
         android:roundIcon="@mipmap/icon_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".focus.hr.view.hrStaffMonthlyDetail.StaffMonthlyDetailActivity"></activity>
+        <activity android:name=".office.clockIn.view.ClockInActivity" />
         <activity android:name=".work.qc.views.home.QcHomeActivity" />
         <activity android:name=".focus.qc.views.materialQcDetail.MaterialQcReportDetailActivity" />
         <activity android:name=".focus.qc.views.productQcDetail.ProductQcReportDetailActivity" />
@@ -82,7 +83,6 @@
         <activity android:name=".work.contractRestart.view.home.ContractRestartHomeActivity" />
         <activity android:name=".work.contractPause.views.applyDetail.MyApplyDetailActivity" />
         <activity android:name=".work.contractPause.views.home.ContractPauseHomeActivity" />
-        <activity android:name=".focus.contract.view.contractRestartDetail.RestartedContractDetailActivity" />
         <activity android:name=".focus.contract.view.contractApplyDetail.ContractApplyDetailActivity" />
         <activity android:name=".focus.contract.view.zoomView.ZoomViewActivity" />
         <activity android:name=".focus.contract.view.contractProgress.ContractPrgDetailActivity" />
@@ -98,8 +98,7 @@
         </activity> <!-- #############掌上办公############# -->
         <activity android:name=".focus.hr.view.hrStaffAttendDetail.StaffAttendDetailActivity" />
         <activity android:name=".focus.hr.view.hrStatusGrp.HrStatusGroupActivity" />
-        <activity android:name=".focus.hr.view.home.HrHomeActivity" />
-        <!-- 今日头条屏幕适配 -->
+        <activity android:name=".focus.hr.view.home.HrHomeActivity" /> <!-- 今日头条屏幕适配 -->
         <meta-data
             android:name="design_width_in_dp"
             android:value="360" />
@@ -528,7 +527,6 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-
         <activity
             android:name=".office.approval.ui.ApprovalActivity"
             android:launchMode="singleTop"
@@ -539,12 +537,30 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".message.ui.detail.MessageDetailActivity"
+        <activity
+            android:name=".message.ui.detail.MessageDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.device.ui.overview.FocusDeviceTypeActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".focus.device.ui.detail.FocusDeviceDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
         <service android:name=".service.BackService" />
+
+        <!--配置高德地图app key-->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="41d535841fa89a7081869807905be90a" />
+        <!--配置高德地图定位服务-->
+        <service android:name="com.amap.api.location.APSService" />
     </application>
 
 </manifest>

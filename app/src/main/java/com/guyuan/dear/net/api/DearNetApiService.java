@@ -4,6 +4,7 @@ import com.example.httplibrary.bean.BasePageReqBean;
 import com.example.httplibrary.bean.BasePageResultBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.BaseApiService;
+import com.guyuan.dear.net.reqBean.ClockInRqBody;
 import com.guyuan.dear.net.reqBean.ContractApplyBody;
 import com.guyuan.dear.net.reqBean.SearchRqBody;
 import com.guyuan.dear.net.reqBean.SubmitQcReportBody;
@@ -16,17 +17,20 @@ import com.guyuan.dear.net.resultBeans.NetContractInfo;
 import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.net.resultBeans.NetContractStatusFlow;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
+import com.guyuan.dear.net.resultBeans.NetHrSummary;
 import com.guyuan.dear.net.resultBeans.NetMaterialBean;
+import com.guyuan.dear.net.resultBeans.NetClockInConfig;
 import com.guyuan.dear.net.resultBeans.NetProductInfo;
 import com.guyuan.dear.net.resultBeans.NetQcApproach;
 import com.guyuan.dear.net.resultBeans.NetQcReportApproveFlow;
 import com.guyuan.dear.net.resultBeans.NetQcReportDetailBean;
 import com.guyuan.dear.net.resultBeans.NetQcSummaryBean;
+import com.guyuan.dear.net.resultBeans.NetStaffAttendRecord;
+import com.guyuan.dear.net.resultBeans.NetStaffAttendStatus;
 import com.guyuan.dear.net.resultBeans.NetVerifyFlowBean;
 import com.guyuan.dear.net.resultBeans.NetSearchContactInfo;
 import com.guyuan.dear.net.resultBeans.NetServerParam;
 import com.guyuan.dear.net.resultBeans.NetStaffBean;
-import com.guyuan.dear.work.qc.beans.BaseProjectBean;
 
 import java.util.List;
 
@@ -136,8 +140,6 @@ public interface DearNetApiService extends BaseApiService {
     @POST("base/tContractInfo/findFollowById")
     Observable<ResultBean<BasePageResultBean<NetVerifyFlowBean>>> getVerifyFlowById(@Body SearchRqBody body);
 
-
-
     /**
      * 获取质量概况列表
      * @param startTime
@@ -209,6 +211,71 @@ public interface DearNetApiService extends BaseApiService {
      */
     @POST("base/qualitycodedetails/addRecord")
     Observable<ResultBean<Integer>> submitQcReport(@Body SubmitQcReportBody body);
+
+
+    /**
+     * 获取今日人员出勤概况
+     * @return
+     */
+    @GET("base/staffSummary/staffAttendance")
+    Observable<ResultBean<NetHrSummary>> getHrSummary();
+
+
+    /**
+     * 获取我的打卡状态和上下班时间，地点等配置
+     * @return
+     */
+    @GET("base/tCompanyWorkTime/findNowWorkTimeConfig")
+    Observable<ResultBean<NetClockInConfig>> getClockInConfig();
+
+    /**
+     * 上下班打卡
+     */
+    @POST("base/tStaffRecordDay/appClock")
+    Observable<ResultBean<Integer>> clockIn(@Body ClockInRqBody body);
+
+    /**
+     * 根据当天出勤状况获取人员id列表
+     * @return
+     */
+    @GET("base/staffSummary/staffAttendIdByType")
+    Observable<ResultBean<List<Integer>>> getStaffIdsByAttendantType(@Query("type") int type);
+
+    /**
+     * 获取员工当月出勤概况（上半部）
+     * @param userId
+     * @return
+     */
+    @GET("base/staffSummary/getUserDetail")
+    Observable<ResultBean<NetStaffAttendStatus>> getStaffAttendStatus(@Query("userId") int userId);
+
+    /**
+     * 获取员工当月出勤概况（下半部）
+     * @param yearMonth
+     * @param userId
+     * @return
+     */
+    @GET("base/staffSummary/getStaffInfoAchineve")
+    Observable<ResultBean<List<NetStaffAttendRecord>>> getStaffAttendRecord(@Query("month") String yearMonth,@Query("userId") int userId);
+
+
+    /**
+     * 根据月份查询异常的人数
+     * @param month yyyy-mm
+     * @return
+     */
+    @GET("base/staffSummary/getStaffAbnormalAchineve")
+    Observable<ResultBean<NetHrSummary>> getHrAbnormalSumByDate(@Query("month") String month);
+
+    /**
+     * 根据月份和异常类型查询出人员id
+     * @param yearMonth
+     * @param type 异常类型 2.未到岗 3.迟到 4.早退 5.请假
+     * @return
+     */
+    @GET("base/staffSummary/getUserIdAbnormalAchineve")
+    Observable<ResultBean<List<Integer>>> getHrAbnormalListByTypeAndDate(@Query("month") String yearMonth,@Query("type") int type );
+
 
 
 

@@ -111,7 +111,7 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/focus_sale_detail_tl"
-            style="@style/tab_blue_layout"
+            style="@style/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

@@ -25,6 +25,8 @@ import com.guyuan.dear.utils.ToastUtils;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
+import static com.guyuan.dear.office.approval.ui.ApprovalActivity.IS_APPROVED;
+
 /**
  * @description: 我的关注--客户详情(NestedScrollView)
  * @author: 许建宁
@@ -47,6 +49,7 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
     private String remarks;
     private int status;
     private int type;
+    private boolean isApproved = false;
     private RemarkDialog.OnDialogClickListener remarkListener;
 
     public static FocusProduceDetailSimpleFragment newInstance(FocusProduceBean data, boolean isFooterBtnShow) {
@@ -60,7 +63,7 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
 
     //审批入口
     public static FocusProduceDetailSimpleFragment newInstance(FocusProduceBean data, int businessId,
-                                                               int businessType,  int type) {
+                                                               int businessType, int type, boolean isApproved) {
         Bundle bundle = new Bundle();
         FocusProduceDetailSimpleFragment fragment = new FocusProduceDetailSimpleFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
@@ -68,6 +71,7 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
         bundle.putInt(BUSINESS_ID, businessId);
         bundle.putInt(BUSINESS_TYPE, businessType);
         bundle.putInt(TYPE, type);
+        bundle.putBoolean(IS_APPROVED, isApproved);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -97,9 +101,10 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
         businessType = getArguments().getInt(BUSINESS_TYPE);
         status = getArguments().getInt(STATUS);
         type = getArguments().getInt(TYPE);
-        if (businessId != -1) {
+        isApproved = getArguments().getBoolean(IS_APPROVED);
+        if (isApproved) {
+            setRemarkDialogListener();
             binding.produceApprovalLl.setVisibility(View.VISIBLE);
-
             binding.produceRejectTv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

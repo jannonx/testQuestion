@@ -6,12 +6,15 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.api.RxJavaHelper;
+import com.guyuan.dear.busbean.ApprovalBusBean;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.data.FocusClientRepository;
 import com.guyuan.dear.focus.produce.api.FocusProduceApiService;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
 import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -164,6 +167,7 @@ public class FocusProduceViewModel extends BaseViewModel {
                 .success(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
+                        EventBus.getDefault().post(new ApprovalBusBean());
                         finish();
                     }
                 })

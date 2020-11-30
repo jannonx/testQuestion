@@ -123,8 +123,8 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
      */
     private void addContentFooterView() {
 //        footerBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.footer_explore_content, null, false);
-        footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_explore_content, null);
-        adapter.addFooterView(footerView);
+        footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_explore_content, binding.baseRecycleView,false);
+
 //        adapter.addFooterView(footerBinding.getRoot());
 
 
@@ -136,15 +136,22 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
 //        layoutParams1.width = FrameLayout.LayoutParams.MATCH_PARENT;
 //        footerRoot.setLayoutParams(layoutParams1);
 
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tvRemark.getLayoutParams();
-        layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT;
-        layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
-        tvRemark.setLayoutParams(layoutParams);
+//        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tvRemark.getLayoutParams();
+//        layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT;
+//        layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
+//        tvRemark.setLayoutParams(layoutParams);
 
-//        tvRemark.setText("hahaaahahahahhaha");
+      tvRemark.setText("ha");
+
+        //test
+        List<String> imageArr = new ArrayList<>();
+        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
+        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
+        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
+
 
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-                imageDataList, R.layout.item_explorate_image);
+                imageArr, R.layout.item_explorate_image);
         imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
 
         imageRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -152,16 +159,15 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
         imageRecyclerView.setPullRefreshEnabled(false);
         imageRecyclerView.setLoadMoreEnabled(false);
 
-//        List<String> imageArr = new ArrayList<>();
-//        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
-//        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
-//        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
+
 
 
         if (simpleData.getImgUrlList() != null) {
             imageDataList.clear();
             imageDataList.addAll(simpleData.getImgUrlList());
         }
+
+  adapter.addFooterView(footerView);
 //        setTextViewLayParams(footerBinding.tvRemark);
 //        setTextViewLayParams(footerBinding.tvStatus);
         //客户验收隐藏

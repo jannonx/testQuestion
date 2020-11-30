@@ -42,6 +42,18 @@ public class FocusAssessListActivity extends BaseToolbarActivity<ActivityWithout
         listFragment = FocusAssessListFragment.newInstance(type, searchContent, FocusAssessListFragment.FROM_OVERVIEW);
         ActivityUtils.addFragmentToActivity(fragmentManager, listFragment, R.id.fragment_container,
                 FocusAssessListFragment.TAG);
+        setObserver();
+    }
+
+    private void setObserver() {
+        if (viewModel != null) {
+            viewModel.assessOverviewSearchListBean.observe(this, new Observer<AssessListBean>() {
+                @Override
+                public void onChanged(AssessListBean assessListBean) {
+                    listFragment.setListData(assessListBean.getContent());
+                }
+            });
+        }
     }
 
 

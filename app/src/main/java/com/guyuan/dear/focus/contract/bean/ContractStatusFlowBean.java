@@ -19,8 +19,14 @@ public class ContractStatusFlowBean {
 
 
     public ContractStatusFlowBean(NetContractStatusFlow src) {
-        suspendPrgLog = new SuspendPrgLog(src.getContractAbnormalSuspendVO());
-        noDepositPrgLog = new NoDepositPrgLog(src.getContractAbnormalQualityVO());
+        NetContractStatusFlow.ContractAbnormalSuspendVOBean suspendVO = src.getContractAbnormalSuspendVO();
+        if(suspendVO!=null){
+            suspendPrgLog = new SuspendPrgLog(suspendVO);
+        }
+        NetContractStatusFlow.ContractAbnormalQualityVOBean qualityVO = src.getContractAbnormalQualityVO();
+        if(qualityVO!=null){
+            noDepositPrgLog = new NoDepositPrgLog(qualityVO);
+        }
         knotList = new ArrayList<>();
         NetContractStatusFlow.ContractExecutionVOBean vo = src.getContractExecutionVO();
         knotList.add(new ContractPrgKnot("开始",ContractPrgKnot.KNOT_STATUS_FINISHED));
