@@ -23,14 +23,13 @@ public class NetStaffAttendRecord {
      * 上午打卡状态：1.正常 2.迟到
      */
     private int amStatus;
-    private int id;
     private String pmEndTime;
     /**
      * 下午打卡状态：1.正常 2.早退
      */
     private int pmStatus;
     private String todayDate;
-    private int userId;
+    private int isAttendDay;
 
     public String getAmStartTime() {
         return amStartTime;
@@ -46,14 +45,6 @@ public class NetStaffAttendRecord {
 
     public void setAmStatus(int amStatus) {
         this.amStatus = amStatus;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getPmEndTime() {
@@ -80,11 +71,13 @@ public class NetStaffAttendRecord {
         this.todayDate = todayDate;
     }
 
-    public int getUserId() {
-        return userId;
+    public int isAttendDay() {
+        return isAttendDay;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setAttendDay(int attendDay) {
+        isAttendDay = attendDay;
     }
+
+
 }
