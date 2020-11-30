@@ -13,7 +13,8 @@ public enum ProductStatusType {
     TYPE_PRODUCE_WAIT("待生产"),
     TYPE_PRODUCE_ING("生产中"),
     TYPE_PRODUCE_COMPLETE("生产完成"),
-    TYPE_PRODUCE_DELAY("生产拖期"),
+    TYPE_PRODUCE_DELAY_FINISH("生产拖期已完成"),
+    TYPE_PRODUCE_DELAY_NOT_FINISH("生产拖期未完成"),
     TYPE_UNKNOWN("未知类型");
 
     private String des;
@@ -32,8 +33,10 @@ public enum ProductStatusType {
                 return TYPE_PRODUCE_ING;
             case ProduceConstant.INT_PRODUCE_COMPLETE:
                 return TYPE_PRODUCE_COMPLETE;
-            case ProduceConstant.INT_PRODUCE_DELAY:
-                return TYPE_PRODUCE_DELAY;
+            case ProduceConstant.INT_PRODUCE_DELAY_NOT_FINISH:
+                return TYPE_PRODUCE_DELAY_NOT_FINISH;
+            case ProduceConstant.INT_PRODUCE_DELAY_FINISHED:
+                return TYPE_PRODUCE_DELAY_FINISH;
             default:
                 return TYPE_UNKNOWN;
         }
@@ -63,7 +66,9 @@ public enum ProductStatusType {
                 return 2;
             case TYPE_PRODUCE_COMPLETE:
                 return 4;
-            case TYPE_PRODUCE_DELAY:
+            case TYPE_PRODUCE_DELAY_NOT_FINISH:
+                return 5;
+            case TYPE_PRODUCE_DELAY_FINISH:
                 return 6;
             default:
                 return 7;

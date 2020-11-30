@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_window"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="14dp"
+                android:text="设备信息"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/card_text_title"
+                            android:text="设备名称" />
+
+                        <TextView
+                            android:id="@+id/control_report_name"
+                            style="@style/card_text_title_content"
+                            android:layout_marginLeft="20dp"
+                            tools:text="激光切割机" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            style="@style/card_text_title"
+                            android:text="设备编号" />
+
+                        <TextView
+                            android:id="@+id/control_report_number"
+                            style="@style/card_text_title_content"
+                            android:layout_marginLeft="20dp"
+                            tools:text="S001" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            style="@style/card_text_title"
+                            android:text="设备型号" />
+
+                        <TextView
+                            android:id="@+id/control_report_type"
+                            style="@style/card_text_title_content"
+                            android:layout_marginLeft="20dp"
+                            tools:text="AAAA" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            style="@style/card_text_title"
+                            android:text="设备位置" />
+
+                        <TextView
+                            android:id="@+id/control_report_position"
+                            style="@style/card_text_title_content"
+                            android:layout_marginLeft="20dp"
+                            tools:text="车间1" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                style="@style/card_text_title"
+                android:layout_marginLeft="12dp"
+                android:text="上报信息"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:background="@drawable/bg_white_corner_4"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/card_text_title"
+                        android:text="上&#8194;报&#8194;人" />
+
+                    <TextView
+                        android:id="@+id/control_report_person_tv"
+                        style="@style/card_text_title_content"
+                        android:layout_marginLeft="12dp"
+                        tools:text="李雷" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+                    <TextView
+                        style="@style/card_text_title"
+                        android:text="保养时间" />
+
+                    <TextView
+                        android:id="@+id/control_report_time"
+                        style="@style/card_text_title_content"
+                        android:layout_marginLeft="12dp"
+                        tools:text="2019-11-12" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/card_text_title"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:text="故障内容"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+            <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
+                android:id="@+id/control_report_tl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_white_corner_4" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="8dp"
+                    android:text="故障视频/图片"
+                    android:textColor="#333333"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="12dp"
+                    android:orientation="vertical"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp">
+
+                    <ImageView
+                        android:id="@+id/control_report_iv"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="10dp"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/camera_open" />
+
+                    <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
+                        android:id="@+id/picture_tl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginRight="12dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="14dp"
+                android:text="处理人"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/copy_to_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="14dp"
+                android:src="@mipmap/ic_add_blue" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_marginLeft="10dp">
+
+                <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
+                    android:id="@+id/copy_tl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </androidx.core.widget.NestedScrollView>
+
+
+            <TextView
+                android:id="@+id/control_report_commit"
+                style="@style/commit_btn"
+                android:layout_marginBottom="10dp"
+                android:text="提交" />
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

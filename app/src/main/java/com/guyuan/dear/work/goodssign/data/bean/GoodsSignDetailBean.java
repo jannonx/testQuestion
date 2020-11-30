@@ -14,11 +14,11 @@ public class GoodsSignDetailBean {
     private int approvalStatus;          //采购合同审批状态：0.审批中，1.审批通过，2.审批被驳回，3.保存为草稿
     private String arrivalTime;          //到货时间
     private String contractCode;         //采购合同编号
-    private int equipmentPrice;          //配套设备总价
+    private double equipmentPrice;          //配套设备总价
     private String followName;           //跟进人名称
     private int id;                      //主键id
     private String imgUrl;               //附件url，用英文逗号隔开
-    private int materialPrice;           //原材料总价
+    private double materialPrice;           //原材料总价
     private String projectCode;          //项目编号
     private String projectName;          //项目名称
     private String remark;               //备注
@@ -55,7 +55,7 @@ public class GoodsSignDetailBean {
         this.contractCode = contractCode;
     }
 
-    public int getEquipmentPrice() {
+    public double getEquipmentPrice() {
         return equipmentPrice;
     }
 
@@ -87,7 +87,7 @@ public class GoodsSignDetailBean {
         this.imgUrl = imgUrl;
     }
 
-    public int getMaterialPrice() {
+    public double getMaterialPrice() {
         return materialPrice;
     }
 

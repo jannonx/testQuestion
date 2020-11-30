@@ -82,12 +82,12 @@ public class MessageFragment extends BaseListSearchFragment<MessageBean, Fragmen
 
     @Override
     protected boolean isPullEnable() {
-        return false;
+        return true;
     }
 
     @Override
     protected boolean isLoadMoreEnable() {
-        return false;
+        return true;
     }
 
     @Override

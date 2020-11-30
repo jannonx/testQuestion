@@ -203,8 +203,13 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
         binding.tvProduceStatus.setBackgroundResource(data.getStatusTextBg());
         int color_blue_ff1b97fc = data.getStatusTextColor();
         binding.tvProduceStatus.setTextColor(getActivity().getResources().getColor(color_blue_ff1b97fc));
-        binding.tvSubStatus.setVisibility(ProductStatusType.TYPE_PRODUCE_DELAY == data.getStatusType()
-                ? View.VISIBLE : View.GONE);
+        if (data.getStatusType() == ProductStatusType.TYPE_PRODUCE_DELAY_FINISH ||
+                data.getStatusType() == ProductStatusType.TYPE_PRODUCE_DELAY_NOT_FINISH) {
+            binding.tvSubStatus.setVisibility(View.VISIBLE);
+        } else {
+            binding.tvSubStatus.setVisibility(View.GONE);
+        }
+
         binding.tvProjectName.setText(data.getProjectName());
 
         binding.tvActualStart.setText(data.getActualStartTime());
@@ -320,6 +325,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
                 getCustomViewId());
 
         binding.viewPager.setAdapter(tabAdapter);
+
 
         //设置TabLayout和ViewPager联动
         binding.viewPager.setOffscreenPageLimit(2);

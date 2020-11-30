@@ -52,7 +52,9 @@ public class MessageViewModel extends BaseViewModel {
         filtersBean.setQueryParams(content);
         requestBody.setFilters(filtersBean);
         RxJavaHelper.build(this, apiService.getMessageList(
-                CommonUtils.getCommonRequestBody(requestBody))).getHelper().flow(messageListMLD);
+                CommonUtils.getCommonRequestBody(requestBody)))
+                .showLoading(false)
+                .getHelper().flow(messageListMLD);
     }
 
     public void getMessageDetail(int id) {

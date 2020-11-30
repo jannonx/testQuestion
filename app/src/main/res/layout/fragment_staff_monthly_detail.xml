@@ -337,6 +337,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/fragment_staff_monthly_detail_iv_anchor_view_1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/fragment_staff_monthly_detail_iv_anchor_view_1"
+                app:isAttendDay="@{fragment_staff_monthly_detail_vm.currentSelectRecord.attendDay}"
                 app:showAmAttendState="@{fragment_staff_monthly_detail_vm.currentSelectRecord.amStatus}"
                 app:srcCompat="@drawable/ic_svg_round_filled_blue_1890ff_24dp" />
 
@@ -363,6 +364,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/fragment_staff_monthly_detail_iv_anchor_view_2"
                 app:showPmAttendState="@{fragment_staff_monthly_detail_vm.currentSelectRecord.pmStatus}"
+                app:isAttendDay="@{fragment_staff_monthly_detail_vm.currentSelectRecord.attendDay}"
                 app:srcCompat="@drawable/ic_svg_round_filled_blue_1890ff_24dp" />
 
             <androidx.appcompat.widget.AppCompatTextView

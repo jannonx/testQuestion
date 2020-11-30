@@ -17,8 +17,12 @@ public class ProduceConstant {
     public static final int INT_PRODUCE_ING = 2;
     //生产完成
     public static final int INT_PRODUCE_COMPLETE = 4;
-    //生产拖期
-    public static final int INT_PRODUCE_DELAY = 6;
+
+    //生产拖期未完成
+    public static final int INT_PRODUCE_DELAY_NOT_FINISH = 5;
+
+    //生产拖期已完成
+    public static final int INT_PRODUCE_DELAY_FINISHED = 6;
 
 
     //----------------------生产状态原因
