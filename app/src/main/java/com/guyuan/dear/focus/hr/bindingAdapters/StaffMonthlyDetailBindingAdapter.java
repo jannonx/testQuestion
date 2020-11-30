@@ -21,40 +21,50 @@ public class StaffMonthlyDetailBindingAdapter {
      * @param v
      * @param state 上午打卡状态：1.正常 2.迟到
      */
-    @BindingAdapter("showAmAttendState")
-    public static void showAmAttendState(AppCompatImageView v, int state) {
-        switch (state) {
-            case 2:
-                v.setImageResource(R.drawable.ic_svg_round_filled_orange_fa8c16_24dp);
-                break;
-            case 0:
-                v.setImageResource(R.drawable.ic_svg_round_filled_red_f04864_24dp);
-                break;
-            case 1:
-            default:
-                v.setImageResource(R.drawable.ic_svg_round_filled_blue_1890ff_24dp);
-                break;
+    @BindingAdapter(value = {"showAmAttendState", "isAttendDay"})
+    public static void showAmAttendState(AppCompatImageView v, int state, int isAttendDay) {
+        if (isAttendDay > 0) {
+            switch (state) {
+                case 2:
+                    v.setImageResource(R.drawable.ic_svg_round_filled_orange_fa8c16_24dp);
+                    break;
+                case 0:
+                    v.setImageResource(R.drawable.ic_svg_round_filled_red_f04864_24dp);
+                    break;
+                case 1:
+                default:
+                    v.setImageResource(R.drawable.ic_svg_round_filled_blue_1890ff_24dp);
+                    break;
+            }
+        } else {
+            v.setImageResource(R.drawable.ic_svg_round_filled_blue_1890ff_24dp);
         }
+
     }
 
     /**
      * @param v 下午打卡状态：1.正常 2.早退
      */
-    @BindingAdapter("showPmAttendState")
-    public static void showPmAttendState(AppCompatImageView v, int state) {
-        switch (state) {
-            case 2:
-                v.setImageResource(R.drawable.ic_svg_round_filled_purple_3436c7_24dp);
-                break;
+    @BindingAdapter(value = {"showPmAttendState", "isAttendDay"})
+    public static void showPmAttendState(AppCompatImageView v, int state, int isAttendDay) {
+        if (isAttendDay > 0) {
+            switch (state) {
+                case 2:
+                    v.setImageResource(R.drawable.ic_svg_round_filled_purple_3436c7_24dp);
+                    break;
 
-            case 0:
-                v.setImageResource(R.drawable.ic_svg_round_filled_red_f04864_24dp);
-                break;
-            case 1:
-            default:
-                v.setImageResource(R.drawable.ic_svg_round_filled_blue_1890ff_24dp);
-                break;
+                case 0:
+                    v.setImageResource(R.drawable.ic_svg_round_filled_red_f04864_24dp);
+                    break;
+                case 1:
+                default:
+                    v.setImageResource(R.drawable.ic_svg_round_filled_blue_1890ff_24dp);
+                    break;
+            }
+        } else {
+            v.setImageResource(R.drawable.ic_svg_round_filled_blue_1890ff_24dp);
         }
+
 
     }
 
