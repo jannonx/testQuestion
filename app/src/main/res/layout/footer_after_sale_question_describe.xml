@@ -21,6 +21,7 @@
                 android:id="@+id/view_3"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_8"
+                android:layout_marginTop="@dimen/dp_16p5"
                 android:background="@color/color_grey_EDEDED" />
 
             <androidx.constraintlayout.widget.ConstraintLayout

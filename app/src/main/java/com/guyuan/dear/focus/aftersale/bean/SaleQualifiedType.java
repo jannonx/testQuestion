@@ -1,8 +1,6 @@
 package com.guyuan.dear.focus.aftersale.bean;
 
-import com.guyuan.dear.R;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
-import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
 import java.io.Serializable;
 
@@ -19,12 +17,20 @@ public enum SaleQualifiedType implements Serializable {
     /**
      * 验收合格
      */
+    TYPE_QUALIFIED_WAIT(0, "验收合格"),
+    /**
+     * 验收合格
+     */
     TYPE_QUALIFIED(1, "验收合格"),
 
     /**
      * 验收不合格
      */
-    TYPE_UNQUALIFIED(2, "验收不合格");
+    TYPE_UNQUALIFIED(2, "验收不合格"),
+    /**
+     * 验收中
+     */
+    TYPE_QUALIFIED_ING(3, "验收不合格");
 
 
     private int code;
@@ -38,8 +44,8 @@ public enum SaleQualifiedType implements Serializable {
     /**
      * 根据枚举code获取实例，用于switch
      */
-    public static CheckGoodsSatisfyType toType(int index) {
-        for (CheckGoodsSatisfyType type : CheckGoodsSatisfyType.values()) {
+    public static SaleQualifiedType toType(int index) {
+        for (SaleQualifiedType type : SaleQualifiedType.values()) {
             if (type.getCode() == index) {
                 return type;
             }

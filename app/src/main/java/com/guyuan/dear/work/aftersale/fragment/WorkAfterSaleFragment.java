@@ -3,10 +3,6 @@ package com.guyuan.dear.work.aftersale.fragment;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
-import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListSearchBinding;
@@ -21,10 +17,12 @@ import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
@@ -68,12 +66,6 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
 
         viewModel.getAfterSaleList(getListRequestBody(true));
 
-        viewModel.getAfterSaleListEvent().observe(getActivity(), new Observer<RefreshBean<AfterSaleBean>>() {
-            @Override
-            public void onChanged(RefreshBean<AfterSaleBean> data) {
-                dealDataByAddType(data.getContent());
-            }
-        });
 
 
         adapter.setOnItemClickListener(new OnItemClickListener() {
@@ -94,13 +86,15 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
      *
      * @param content 回调数据
      */
-    private void dealDataByAddType(List<AfterSaleBean> content) {
+    public void dealDataByAddType(List<AfterSaleBean> content,SaleSectionType sectionType) {
         List<AfterSaleBean> tempList = new ArrayList<>();
         for (AfterSaleBean bean : content) {
-            bean.setSectionType(saleSectionType);
+            bean.setSectionType(sectionType);
+            LogUtils.showLog("saleSectionType="+(sectionType==null?"null":sectionType.getDes()));
             tempList.add(bean);
         }
         setListData(tempList);
+        adapter.refreshData();
     }
 
 

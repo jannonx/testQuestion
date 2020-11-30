@@ -5,9 +5,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
-
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseFileUploadActivity;
@@ -15,6 +12,7 @@ import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.FragmentSaleCustomerAcceptanceDetailBinding;
 import com.guyuan.dear.focus.aftersale.activity.CustomerAcceptanceDetailActivity;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
+import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
@@ -23,6 +21,9 @@ import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.fragment.ProjectCheckConfirmDialog;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 
 
 /**
@@ -91,8 +92,7 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
      */
     private void setAfterSaleBean(AfterSaleBean data) {
         questionFragment.setQuestionDescribe(data);
-
-
+        data.setSectionType(SaleSectionType.TYPE_SECTION_ACCEPT);
         binding.tvTitle.setText(data.getTitle());
 
         //状态属性设置

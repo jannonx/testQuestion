@@ -3,25 +3,17 @@ package com.guyuan.dear.focus.projectsite.fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FooterExploreContentBinding;
 import com.guyuan.dear.databinding.FragmentExploreContentBinding;
-import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.projectsite.adapter.CheckContentAdapter;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
-import com.guyuan.dear.focus.projectsite.adapter.GoodsListAdapter;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectInstallAdapter;
-import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
 import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
@@ -31,15 +23,15 @@ import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
-import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.adapter.CheckGoodsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import tl.com.easy_recycleview_library.BaseRecyclerView;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
-import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 
 /**
@@ -123,7 +115,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
      * 添加列表FooterView,增加拖动范围
      */
     private void addContentFooterView() {
-        footerBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.footer_explore_content, null, false);
+//        footerBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.footer_explore_content, null, false);
         footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_explore_content, binding.baseRecycleView, false);
 
 //        adapter.addFooterView(footerBinding.getRoot());

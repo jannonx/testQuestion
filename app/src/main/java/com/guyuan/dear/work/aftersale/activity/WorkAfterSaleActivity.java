@@ -3,11 +3,11 @@ package com.guyuan.dear.work.aftersale.activity;
 import android.content.Context;
 import android.content.Intent;
 
-import androidx.fragment.app.Fragment;
-
+import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
+import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
 import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
 import com.guyuan.dear.utils.ConstantValue;
@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
@@ -59,6 +61,19 @@ public class WorkAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBindin
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+        viewModel.getAfterSaleListEvent().observe(this, new Observer<RefreshBean<AfterSaleBean>>() {
+            @Override
+            public void onChanged(RefreshBean<AfterSaleBean> data) {
+                if (checkFragment.isVisible()){
+                    checkFragment.dealDataByAddType(data.getContent(),SaleSectionType.TYPE_SECTION_CHECK);
+                }else {
+                    acceptFragment.dealDataByAddType(data.getContent(),SaleSectionType.TYPE_SECTION_ACCEPT);
+                }
+
+            }
+        });
+
+
     }
 
     @Override

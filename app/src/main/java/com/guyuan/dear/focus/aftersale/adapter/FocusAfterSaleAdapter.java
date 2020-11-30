@@ -3,14 +3,14 @@ package com.guyuan.dear.focus.aftersale.adapter;
 import android.content.Context;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
@@ -31,6 +31,7 @@ public class FocusAfterSaleAdapter extends BaseRecyclerAdapter<AfterSaleBean> {
     protected void bindDataToView(BaseRecyclerViewHolder holder, AfterSaleBean item, int position) {
         holder.setText(R.id.tv_title, item.getTitle());
         //状态属性设置
+        LogUtils.showLog("AfterSaleBean="+(item.getSectionType()==null?"null":item.getSectionType().getDes()));
         holder.setText(R.id.tv_engineering_status, item.getStatusText());
         TextView tvStatus = holder.getView(R.id.tv_engineering_status);
         tvStatus.setBackgroundResource(item.getStatusTextBg());

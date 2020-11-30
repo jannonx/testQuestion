@@ -18,15 +18,25 @@ public enum SaleAcceptedType implements Serializable {
     TYPE_ACCEPTED_UNKNOWN(-1, "未知状态", R.color.color_orange_FF6010,
             R.drawable.bg_orange_ffece3_corner_2),
     /**
+     * 待验收
+     */
+    TYPE_ACCEPTED_WAIT(0, "待验收", R.color.color_blue_1677ff,
+            R.drawable.bg_blue_e7f1ff_corner_2),
+    /**
      * 验收合格
      */
-    TYPE_ACCEPTED_QUALIFIED(1, "验收合格", R.color.color_blue_1677ff,
-            R.drawable.bg_blue_e7f1ff_corner_2),
+    TYPE_ACCEPTED_QUALIFIED(1, "验收合格", R.color.color_green_00B578,
+            R.drawable.bg_green_d4fff1_corner_2),
     /**
      * 验收不合格
      */
     TYPE_ACCEPTED_UNQUALIFIED(2, "验收不合格", R.color.color_orange_FF6010,
-            R.drawable.bg_orange_ffece3_corner_2);
+            R.drawable.bg_orange_ffece3_corner_2),
+    /**
+     * 验收中
+     */
+    TYPE_ACCEPTED_ING(3, "验收中", R.color.color_blue_1677ff,
+                              R.drawable.bg_blue_e7f1ff_corner_2);
 
 
     private int code;
@@ -45,10 +55,10 @@ public enum SaleAcceptedType implements Serializable {
      * 根据枚举code获取实例，用于switch
      */
     public static SaleAcceptedType toType(int index) {
-        if (index == 1) {
-            return TYPE_ACCEPTED_QUALIFIED;
-        } else if (index == 2) {
-            return TYPE_ACCEPTED_UNQUALIFIED;
+        for (SaleAcceptedType type : SaleAcceptedType.values()) {
+            if (type.getCode() == index) {
+                return type;
+            }
         }
         return TYPE_ACCEPTED_UNKNOWN;
     }

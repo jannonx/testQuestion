@@ -22,16 +22,17 @@ public enum SaleCheckType implements Serializable {
      */
     TYPE_CHECK_WAIT(0, "待排查", R.color.color_blue_1677ff,
             R.drawable.bg_blue_e7f1ff_corner_2),
-    /**
-     * 排查中
-     */
-    TYPE_CHECK_ING(3, "排查中", R.color.color_blue_1677ff,
-            R.drawable.bg_blue_e7f1ff_corner_2),
+
     /**
      * 排查完成
      */
     TYPE_CHECK_COMPLETE(2, "排查完成", R.color.color_green_00B578,
-            R.drawable.bg_green_d4fff1_corner_2);
+            R.drawable.bg_green_d4fff1_corner_2),
+    /**
+     * 排查中
+     */
+    TYPE_CHECK_ING(3, "排查中", R.color.color_blue_1677ff,
+            R.drawable.bg_blue_e7f1ff_corner_2);
 
 
     private int code;

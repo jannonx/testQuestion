@@ -4,10 +4,6 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.lifecycle.Observer;
-
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.github.mikephil.charting.data.Entry;
 import com.guyuan.dear.R;
@@ -18,16 +14,10 @@ import com.guyuan.dear.analyse.operate.bean.OperateType;
 import com.guyuan.dear.analyse.operate.data.OperateViewModel;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.databinding.FragmentAnalyseOperateBinding;
-import com.guyuan.dear.databinding.FragmentFocusProjectSiteBinding;
-import com.guyuan.dear.focus.assess.data.bean.AssessOverviewBean;
-import com.guyuan.dear.focus.projectsite.activity.ProjectReportClassifyActivity;
-import com.guyuan.dear.focus.projectsite.bean.ProjectOverViewBean;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.Graph.GraphUtil;
 import com.guyuan.dear.utils.Graph.formatter.MonthXAxisValueFormatter;
-import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.StringUtils;
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
@@ -36,6 +26,10 @@ import com.jzxiang.pickerview.listener.OnDateSetListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.lifecycle.Observer;
 
 /**
  * @description: 我的关注--工程现场
@@ -83,7 +77,7 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
             @Override
 
             public void onChanged(OperateStatisticsBean data) {
-//                setStatisticsData(data);
+                setStatisticsData(data);
             }
         });
         binding.llContent.setOnClickListener(this);
@@ -105,7 +99,7 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
         List<OperateStatisticsBean.CostVOSBean> costVOS = data.getCostVOS();
         for (int i = 0; i < costVOS.size(); i++) {
             Entry passEntry = new Entry(i, costVOS.get(i).getCost());
-            payList.add(passEntry);
+            costList.add(passEntry);
         }
         //准备通过和不通过的数据集合
         List<List<Entry>> dataList = new ArrayList<>();

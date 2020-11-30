@@ -1,6 +1,7 @@
 package com.guyuan.dear.focus.aftersale.bean;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -112,6 +113,7 @@ public class AfterSaleBean implements Serializable {
 
 
     public SaleSectionType getSectionType() {
+        LogUtils.showLog("getSectionType="+(sectionType==null?"null":sectionType.getDes()));
         return sectionType;
     }
 
@@ -141,9 +143,9 @@ public class AfterSaleBean implements Serializable {
      * @return
      */
     public int getStatusTextColor() {
-        if (getSectionType() == null) {
-            return R.color.color_orange_FF6010;
-        }
+//        if (getSectionType() == null) {
+//            return R.color.color_orange_FF6010;
+//        }
         switch (getSectionType()) {
             case TYPE_SECTION_CHECK:
                 return getCheckType().getTextColor();
@@ -160,9 +162,10 @@ public class AfterSaleBean implements Serializable {
      * @return
      */
     public int getStatusTextBg() {
-        if (getSectionType() == null) {
-            return R.drawable.bg_orange_ffece3_corner_2;
-        }
+//        LogUtils.showLog("getStatusTextBg="+(getSectionType()==null?"null":getSectionType().getDes()));
+//        if (getSectionType() == null) {
+//            return R.drawable.bg_orange_ffece3_corner_2;
+//        }
         switch (getSectionType()) {
             case TYPE_SECTION_CHECK:
                 return getCheckType().getTextBgColor();
@@ -179,9 +182,9 @@ public class AfterSaleBean implements Serializable {
      * @return
      */
     public String getStatusText() {
-        if (getSectionType() == null) {
-            return "未设置类型";
-        }
+//        if (getSectionType() == null) {
+//            return "未设置类型";
+//        }
         switch (getSectionType()) {
             case TYPE_SECTION_CHECK:
                 return getCheckType().getDes();

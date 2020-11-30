@@ -6,10 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
@@ -18,6 +14,7 @@ import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.FragmentFocusAfterSaleDetailBinding;
 import com.guyuan.dear.focus.aftersale.activity.FocusAfterSaleDetailActivity;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
+import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.utils.ConstantValue;
@@ -28,6 +25,10 @@ import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 
 /**
@@ -101,8 +102,7 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
      */
     private void setAfterSaleBean(AfterSaleBean data) {
         questionFragment.setQuestionDescribe(data);
-
-
+        data.setSectionType(SaleSectionType.TYPE_SECTION_CHECK);
         binding.tvTitle.setText(data.getTitle());
 
         //状态属性设置

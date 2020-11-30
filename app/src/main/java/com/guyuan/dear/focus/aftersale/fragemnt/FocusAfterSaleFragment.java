@@ -3,26 +3,25 @@ package com.guyuan.dear.focus.aftersale.fragemnt;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListSearchBinding;
+import com.guyuan.dear.focus.aftersale.activity.FocusAfterSaleDetailActivity;
 import com.guyuan.dear.focus.aftersale.adapter.FocusAfterSaleAdapter;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
 import com.guyuan.dear.focus.aftersale.bean.ListSaleRequestBody;
 import com.guyuan.dear.focus.aftersale.bean.SaleQualifiedType;
 import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
-import com.guyuan.dear.focus.aftersale.activity.FocusAfterSaleDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
@@ -108,7 +107,7 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListSaleRequestBody body = new ListSaleRequestBody();
         ListSaleRequestBody.FiltersBean filtersBean = new ListSaleRequestBody.FiltersBean();
-        filtersBean.setStatus(0);
+        filtersBean.setStatus(qualifiedType.getCode());
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);

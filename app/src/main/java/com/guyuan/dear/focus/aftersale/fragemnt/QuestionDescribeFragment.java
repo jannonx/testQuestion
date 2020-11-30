@@ -3,12 +3,7 @@ package com.guyuan.dear.focus.aftersale.fragemnt;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
@@ -19,12 +14,13 @@ import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleQuestionBean;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
-import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import tl.com.easy_recycleview_library.BaseRecyclerView;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
@@ -96,26 +92,15 @@ public class QuestionDescribeFragment extends BaseDataBindingFragment<FragmentAf
      * 添加列表FooterView,增加拖动范围
      */
     private void addContentFooterView() {
-//        footerBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.footer_explore_content, null, false);
-        footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_after_sale_question_describe, null);
+        footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_after_sale_question_describe, binding.baseRecycleView, false);
         adapter.addFooterView(footerView);
-//        adapter.addFooterView(footerBinding.getRoot());
 
 
-        FrameLayout footerRoot = footerView.findViewById(R.id.fl_footer_root);
         TextView tvRemark = footerView.findViewById(R.id.tv_remark);
+        TextView tvRecorder = footerView.findViewById(R.id.tv_recorder);
         BaseRecyclerView imageRecyclerView = footerView.findViewById(R.id.image_recycleView);
-//        ViewGroup.LayoutParams layoutParams1 = footerRoot.getLayoutParams();
-//        layoutParams1.height = FrameLayout.LayoutParams.WRAP_CONTENT;
-//        layoutParams1.width = FrameLayout.LayoutParams.MATCH_PARENT;
-//        footerRoot.setLayoutParams(layoutParams1);
-
-//        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tvRemark.getLayoutParams();
-//        layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT;
-//        layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
-//        tvRemark.setLayoutParams(layoutParams);
-
-//        tvRemark.setText("hahaaahahahahhaha");
+        tvRemark.setText(simpleData.getTitle());
+        tvRecorder.setText(simpleData.getExamineManName());
 
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
                 imageDataList, R.layout.item_explorate_image);
@@ -127,8 +112,6 @@ public class QuestionDescribeFragment extends BaseDataBindingFragment<FragmentAf
         imageRecyclerView.setLoadMoreEnabled(false);
 
 
-
-
 //        if (simpleData.getImgUrlList() != null) {
 //            imageDataList.clear();
 //            imageDataList.addAll(simpleData.getImgUrlList());
@@ -137,36 +120,7 @@ public class QuestionDescribeFragment extends BaseDataBindingFragment<FragmentAf
 
     }
 
-    private void setCustomerAcceptanceData(SiteExploreBean detailProjectData) {
 
-    }
-
-    private void setInstallationDebugData(SiteExploreBean detailProjectData) {
-
-    }
-
-//    private void setCheckSafeData(SiteExploreBean detailProjectData) {
-//        //清点货物 #2FC25B  #F04864 红色
-//        footerBinding.tvRemark.setText(detailProjectData.getAuditItemExplain());
-//        //是否满足条件、是否安全(1:是，2:否)
-//        footerBinding.tvStatus.setTextColor(getActivity().getResources().getColor(
-//                detailProjectData.getSatisfyFlag() == 1 ? R.color.color_green_2fc25b : R.color.color_red_F04864));
-//        footerBinding.tvStatus.setText("存在安全隐患：" + (detailProjectData.getSatisfyFlag() == 1 ? "否" : "是"));
-//    }
-//
-
-
-    /**
-     * 文本设置属性
-     *
-     * @param textView 文本
-     */
-    public void setTextViewLayParams(TextView textView) {
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) textView.getLayoutParams();
-        layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT;
-        layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
-        textView.setLayoutParams(layoutParams);
-    }
 
 
     @Override
