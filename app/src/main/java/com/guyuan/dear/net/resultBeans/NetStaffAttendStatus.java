@@ -33,11 +33,12 @@ public class NetStaffAttendStatus {
     /**
      * 实时状态：1.未到岗 2.迟到 3.请假 4.到岗 5.下班打卡异常
      */
-    private int nowStatus;
+    private String nowStatus;
     private String userPhone;
     private String userPositionName;
     private int userSex;
     private String workId;
+    private String roleName;
 
     public int getDeptId() {
         return deptId;
@@ -87,11 +88,11 @@ public class NetStaffAttendStatus {
         this.name = name;
     }
 
-    public int getNowStatus() {
+    public String getNowStatus() {
         return nowStatus;
     }
 
-    public void setNowStatus(int nowStatus) {
+    public void setNowStatus(String nowStatus) {
         this.nowStatus = nowStatus;
     }
 
@@ -126,5 +127,13 @@ public class NetStaffAttendStatus {
 
     public void setWorkId(String workId) {
         this.workId = workId;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

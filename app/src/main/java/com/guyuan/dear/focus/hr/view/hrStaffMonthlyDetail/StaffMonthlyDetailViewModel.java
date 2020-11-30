@@ -11,6 +11,7 @@ import com.guyuan.dear.net.resultBeans.NetStaffAttendRecord;
 import com.guyuan.dear.net.resultBeans.NetStaffAttendStatus;
 import com.guyuan.dear.utils.CalenderUtils;
 
+import java.util.Date;
 import java.util.List;
 
 import io.reactivex.disposables.Disposable;
@@ -48,31 +49,45 @@ public class StaffMonthlyDetailViewModel extends BaseDearViewModel {
                 imgUrl.postValue(result.getImgUrl());
                 workId.postValue(result.getWorkId());
                 dept.postValue(result.getDeptIdName());
-                post.setValue("服务器无数据");
+                post.postValue(result.getRoleName());
                 contactNo = result.getUserPhone();
                 //实时状态：1.未到岗 2.迟到 3.请假 4.到岗 5.下班打卡异常
-                enrollment.setValue(repo.getCurrentStatus(result.getNowStatus()));
-                loadStaffAttendRecord(staffId, currentSelectDate.getValue());
+                enrollment.postValue(result.getNowStatus());
+                Disposable disposable = repo.getStaffAttendRecord(
+                        staffId,
+                        System.currentTimeMillis(),
+                        new BaseNetCallback<List<NetStaffAttendRecord>>() {
+                            @Override
+                            protected void handleResult(List<NetStaffAttendRecord> result) {
+                                attendRecords.postValue(result);
+                                //遍历是否今天有记录，有的话显示当天的记录
+                                String today = CalenderUtils.getInstance().toSmartFactoryDateFormatByDay(System.currentTimeMillis());
+                                for (NetStaffAttendRecord record : result) {
+                                    String todayDate = record.getTodayDate();
+                                    if (!TextUtils.isEmpty(todayDate) && todayDate.equals(today)) {
+                                        currentSelectRecord.postValue(record);
+                                        break;
+                                    }
+                                }
+                            }
+                        });
+                addSubscription(disposable);
+
             }
         });
     }
 
-    private void loadStaffAttendRecord(int staffId, long date) {
-        Disposable disposable = repo.getStaffAttendRecord(staffId, date, new BaseNetCallback<List<NetStaffAttendRecord>>() {
-            @Override
-            protected void handleResult(List<NetStaffAttendRecord> result) {
-                attendRecords.postValue(result);
-                //遍历是否今天有记录，有的话显示当天的记录
-                String today = CalenderUtils.getInstance().toSmartFactoryDateFormatByDay(System.currentTimeMillis());
-                for (NetStaffAttendRecord record : result) {
-                    String todayDate = record.getTodayDate();
-                    if (!TextUtils.isEmpty(todayDate) && todayDate.equals(today)) {
-                        currentSelectRecord.postValue(record);
-                        break;
+
+    public void updateAttendRecordsByMonth(int staffId, Date month) {
+        Disposable disposable = repo.getStaffAttendRecord(
+                staffId,
+                month.getTime(),
+                new BaseNetCallback<List<NetStaffAttendRecord>>() {
+                    @Override
+                    protected void handleResult(List<NetStaffAttendRecord> result) {
+                        attendRecords.postValue(result);
                     }
-                }
-            }
-        });
+                });
         addSubscription(disposable);
     }
 }

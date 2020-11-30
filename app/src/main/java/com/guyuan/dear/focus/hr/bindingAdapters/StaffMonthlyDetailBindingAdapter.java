@@ -1,13 +1,13 @@
 package com.guyuan.dear.focus.hr.bindingAdapters;
 
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.databinding.BindingAdapter;
+
 import com.guyuan.dear.R;
 import com.guyuan.dear.utils.CalenderUtils;
 
 import java.util.Date;
-
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.databinding.BindingAdapter;
 
 /**
  * @author: 廖华凯
@@ -27,6 +27,9 @@ public class StaffMonthlyDetailBindingAdapter {
             case 2:
                 v.setImageResource(R.drawable.ic_svg_round_filled_orange_fa8c16_24dp);
                 break;
+            case 0:
+                v.setImageResource(R.drawable.ic_svg_round_filled_red_f04864_24dp);
+                break;
             case 1:
             default:
                 v.setImageResource(R.drawable.ic_svg_round_filled_blue_1890ff_24dp);
@@ -43,6 +46,10 @@ public class StaffMonthlyDetailBindingAdapter {
             case 2:
                 v.setImageResource(R.drawable.ic_svg_round_filled_purple_3436c7_24dp);
                 break;
+
+            case 0:
+                v.setImageResource(R.drawable.ic_svg_round_filled_red_f04864_24dp);
+                break;
             case 1:
             default:
                 v.setImageResource(R.drawable.ic_svg_round_filled_blue_1890ff_24dp);
@@ -58,9 +65,9 @@ public class StaffMonthlyDetailBindingAdapter {
     }
 
     @BindingAdapter("convertFullDateToHourMinute")
-    public static void convertFullDateToHourMinute(AppCompatTextView view,String fullDate){
+    public static void convertFullDateToHourMinute(AppCompatTextView view, String fullDate) {
         String data = "";
-        if(fullDate!=null){
+        if (fullDate != null) {
             try {
                 Date format = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(fullDate);
                 data = CalenderUtils.getInstance().toChineseHourAndMinute(format.getTime());

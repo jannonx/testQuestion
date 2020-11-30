@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.hr.view.hrStaffMonthlyDetail;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.lifecycle.Observer;
@@ -11,7 +12,6 @@ import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import com.github.sundeepk.compactcalendarview.domain.Event;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
-import com.guyuan.dear.databinding.FragmentStaffMonthlyDetailBinding;
 import com.guyuan.dear.net.resultBeans.NetStaffAttendRecord;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.ConstantValue;
@@ -30,7 +30,7 @@ import java.util.TimeZone;
  * @since: 2020/11/27 16:32
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class StaffMonthlyDetailFragment extends BaseMvvmFragment<FragmentStaffMonthlyDetailBinding, StaffMonthlyDetailViewModel> {
+public class StaffMonthlyDetailFragment extends BaseMvvmFragment<com.guyuan.dear.databinding.FragmentStaffMonthlyDetailBinding, StaffMonthlyDetailViewModel> {
 
     private int staffId;
     private CompactCalendarView calendar;
@@ -63,6 +63,7 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<FragmentStaffMo
         CompactCalendarView calendar = getViewDataBinding().fragmentStaffMonthlyDetailCalendar;
         calendar.setLocale(TimeZone.getDefault(), Locale.CHINESE);
         calendar.setUseThreeLetterAbbreviation(true);
+        calendar.shouldDrawIndicatorsBelowSelectedDays(true);
 
     }
 
@@ -91,18 +92,26 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<FragmentStaffMo
             @Override
             public void onDayClick(Date dateClicked) {
                 getViewModel().currentSelectDate.postValue(dateClicked.getTime());
-                List<Event> events = calendar.getEvents(dateClicked);
-                if (!events.isEmpty()) {
-                    NetStaffAttendRecord data = (NetStaffAttendRecord) events.get(0).getData();
-                    getViewModel().currentSelectRecord.postValue(data);
-                }else {
-                    getViewModel().currentSelectRecord.postValue(null);
-                }
             }
 
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 getViewModel().calendarDisplayDate.postValue(firstDayOfNewMonth.getTime());
+                getViewModel().updateAttendRecordsByMonth(staffId, firstDayOfNewMonth);
+            }
+        });
+
+        //监听当前选择日期，如果改变，在下方显示该日出勤记录
+        getViewModel().currentSelectDate.observe(getViewLifecycleOwner(), new Observer<Long>() {
+            @Override
+            public void onChanged(Long aLong) {
+                List<Event> events = calendar.getEvents(aLong);
+                if (events != null && !events.isEmpty()) {
+                    NetStaffAttendRecord data = (NetStaffAttendRecord) events.get(0).getData();
+                    getViewModel().currentSelectRecord.postValue(data);
+                } else {
+                    getViewModel().currentSelectRecord.postValue(null);
+                }
             }
         });
 
@@ -113,10 +122,7 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<FragmentStaffMo
                 calendar.removeAllEvents();
                 List<Event> list = new ArrayList<>();
                 for (NetStaffAttendRecord record : netStaffAttendRecords) {
-                    Event event = convertRecordToEvent(record);
-                    if (event != null) {
-                        list.add(event);
-                    }
+                    list.addAll(convertRecordToEvents(record));
                 }
                 calendar.addEvents(list);
             }
@@ -124,36 +130,70 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<FragmentStaffMo
 
     }
 
-    private Event convertRecordToEvent(NetStaffAttendRecord record) {
-        String todayDate = record.getAmStartTime();
-        long timeMillis = 0;
-        try {
-            timeMillis = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(todayDate).getTime();
-        } catch (Exception e) {
-            showToastTip("服务器返回的出勤记录的日期格式无效。");
-            return null;
-        }
-        int color = -1;
-        //上午打卡状态：1.正常 2.迟到
-        int amStatus = record.getAmStatus();
-        if (amStatus == 1) {
-            color = Color.parseColor("#1677FF");
-        } else if (amStatus == 2) {
-            color = Color.parseColor("#FA8C16");
-        }
-        int pmStatus = record.getPmStatus();
-        //下午打卡状态：1.正常 2.早退
-        if (pmStatus == 1) {
-            if (color == -1) {
-                color = Color.parseColor("#1677FF");
+    /**
+     * 根据每日考勤状况生成每日事件，显示在日历上
+     *
+     * @param record
+     * @return
+     */
+    private List<Event> convertRecordToEvents(NetStaffAttendRecord record) {
+        List<Event> eventList = new ArrayList<>();
+        //上午打卡状态：0 缺席 1.正常 2.迟到
+        String amStartTime = record.getAmStartTime();
+        if (!TextUtils.isEmpty(amStartTime)) {
+            try {
+                long time = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(amStartTime).getTime();
+                int amStatus = record.getAmStatus();
+                int amColor = 0;
+                if (amStatus == 1) {
+                    amColor = Color.parseColor("#1677FF");
+                } else if (amStatus == 2) {
+                    amColor = Color.parseColor("#FA8C16");
+                }
+                eventList.add(new Event(amColor, time, record));
+            } catch (Exception e) {
+                showToastTip("服务器返回的日期格式错误。");
             }
-        } else if (pmStatus == 2) {
-            color = Color.parseColor("#3436C7");
+        } else {
+            String todayDate = record.getTodayDate();
+            if (!TextUtils.isEmpty(todayDate) && record.getAmStatus() == 0) {
+                try {
+                    Date date = CalenderUtils.getInstance().parseSmartFactoryDateFormatByDay(todayDate);
+                    eventList.add(new Event(Color.parseColor("#F04864"), date.getTime(), record));
+                } catch (Exception e) {
+                    showToastTip("服务器返回的日期格式错误。");
+                }
+            }
         }
-        if (color == -1) {
-            return null;
+
+        //下午打卡状态：0 缺席 1.正常 2.早退
+        String pmEndTime = record.getPmEndTime();
+        if (!TextUtils.isEmpty(pmEndTime)) {
+            try {
+                long time = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(pmEndTime).getTime();
+                int pmStatus = record.getPmStatus();
+                int pmColor = 0;
+                if (pmStatus == 1) {
+                    pmColor = Color.parseColor("#1677FF");
+                } else if (pmStatus == 2) {
+                    pmColor = Color.parseColor("#FA8C16");
+                }
+                eventList.add(new Event(pmColor, time, record));
+            } catch (Exception e) {
+                showToastTip("服务器返回的日期格式错误。");
+            }
+        } else {
+            String todayDate = record.getTodayDate();
+            if (!TextUtils.isEmpty(todayDate) && record.getPmStatus() == 0) {
+                try {
+                    Date date = CalenderUtils.getInstance().parseSmartFactoryDateFormatByDay(todayDate);
+                    eventList.add(new Event(Color.parseColor("#F04864"), date.getTime(), record));
+                } catch (Exception e) {
+                    showToastTip("服务器返回的日期格式错误。");
+                }
+            }
         }
-        return new Event(color, timeMillis, record);
+        return eventList;
     }
 
     @Override

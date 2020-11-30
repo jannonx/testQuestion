@@ -33,15 +33,15 @@ public class ProductQcViewModel extends BaseDearViewModel {
     public MutableLiveData<List<BaseProjectBean>> projectList = new MutableLiveData<>(new ArrayList<>());
     public MutableLiveData<List<BaseQcApproachBean>> qcApproachList = new MutableLiveData<>(new ArrayList<>());
     public MutableLiveData<List<BaseProductBatchInfo>> productBatchList = new MutableLiveData<>(new ArrayList<>());
+    private List<Integer> judgeConditions = new ArrayList<>();
 
     public MutableLiveData<BaseProductBatchInfo> selectedProductBatch = new MutableLiveData<>();
     public MutableLiveData<BaseProjectBean> selectedProject = new MutableLiveData<>();
     public MutableLiveData<BaseQcApproachBean> selectedQcApproach = new MutableLiveData<>();
-    public MutableLiveData<Integer> sampleSize = new MutableLiveData<>();
-    public MutableLiveData<Integer> reportResult = new MutableLiveData<>();
+    public MutableLiveData<String> sampleSize = new MutableLiveData<>("0");
+    public MutableLiveData<Integer> reportResult = new MutableLiveData<>(2);
     public MutableLiveData<String> comments = new MutableLiveData<>();
-    public MutableLiveData<Boolean> isNeedVerify = new MutableLiveData<>();
-    public MutableLiveData<Integer> judgeCondition = new MutableLiveData<>();
+    public MutableLiveData<Boolean> isNeedVerify = new MutableLiveData<>(false);
 
 
     /**
@@ -104,6 +104,9 @@ public class ProductQcViewModel extends BaseDearViewModel {
         });
     }
 
+    public List<Integer> getJudgeConditions() {
+        return judgeConditions;
+    }
 
     public void updateSelectedProject(BaseProjectBean projectBean) {
         selectedProject.postValue(projectBean);
@@ -117,9 +120,6 @@ public class ProductQcViewModel extends BaseDearViewModel {
         selectedQcApproach.postValue(approachBean);
     }
 
-    public void updateJudgeCondition(int selection) {
-        judgeCondition.postValue(selection);
-    }
 
     public void updateQcCheckers(ArrayList<StaffBean> staffs) {
         qcCheckers.postValue(staffs);
@@ -196,21 +196,19 @@ public class ProductQcViewModel extends BaseDearViewModel {
 
         body.setProductType(2);
 
-        if(judgeCondition.getValue()==null){
+        if(judgeConditions.isEmpty()){
             showToast("请选择判定条件。");
             return;
         }else {
-            List<Integer> list = new ArrayList<>();
-            list.add(judgeCondition.getValue());
-            body.setQualityCondition(list);
+            body.setQualityCondition(judgeConditions);
         }
 
-        Integer sampleSize = this.sampleSize.getValue();
-        if(sampleSize==null){
+        String sampleSize = this.sampleSize.getValue();
+        if(TextUtils.isEmpty(sampleSize)||"0".equals(sampleSize)){
             showToast("请输入抽检数");
             return;
         }else {
-            body.setQualityNum(sampleSize);
+            body.setQualityNum(Integer.valueOf(sampleSize));
         }
 
         String comment = comments.getValue();
@@ -248,10 +246,27 @@ public class ProductQcViewModel extends BaseDearViewModel {
             protected void handleResult(Integer result) {
                 if(result>0){
                     showToast("提交成功。");
+                    resetAllViews();
                 }else {
                     showToast("提交失败。");
                 }
             }
         });
+    }
+
+    private void resetAllViews() {
+        qcCheckers.postValue(new ArrayList<>());
+        verifiers.postValue(new ArrayList<>());
+        projectList.postValue(new ArrayList<>());
+        qcApproachList.postValue(new ArrayList<>());
+        productBatchList.postValue(new ArrayList<>());
+        sampleSize.postValue("0");
+        judgeConditions.clear();
+        reportResult.postValue(2);
+        comments.postValue("");
+        isNeedVerify.postValue(false);
+        selectedProductBatch.postValue(null);
+        selectedProject.postValue(null);
+        selectedQcApproach.postValue(null);
     }
 }
