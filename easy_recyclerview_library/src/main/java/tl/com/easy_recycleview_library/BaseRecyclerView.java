@@ -60,6 +60,7 @@ public class BaseRecyclerView extends RecyclerView {
     private float startY;
     private float startX;
     private boolean isRegisterDataObserver;
+    private int currentItemNumber; //当前的列表数量
     //scroll variables begin
     /**
      * 当前RecyclerView类型
@@ -183,7 +184,13 @@ public class BaseRecyclerView extends RecyclerView {
                     } else {
                         mEmptyView.setVisibility(View.GONE);
                         BaseRecyclerView.this.setVisibility(View.VISIBLE);
+                        if (currentItemNumber == count) {
+                            setNoMore(true);
+                        } else {
+                            setNoMore(false);
+                        }
                     }
+                    currentItemNumber = count;
                 }
             } else {
                 if (adapter != null && mEmptyView != null) {
@@ -252,8 +259,7 @@ public class BaseRecyclerView extends RecyclerView {
                 startY = ev.getY();
                 startX = ev.getX();
                 // 初始化标记
-                mIsVpDragger = false;  //父容器执行手势
-                mIsRvDragger = false;  //自身执行手势
+                mIsVpDragger = false;
                 break;
             case MotionEvent.ACTION_MOVE:
                 // 如果viewpager正在拖拽中，那么不拦截它的事件，直接return false；
@@ -261,38 +267,21 @@ public class BaseRecyclerView extends RecyclerView {
                     return false;
                 }
 
-                //如果自身处于手势状态则自己处理
-                if (mIsRvDragger) {
-                    return super.onInterceptTouchEvent(ev);
-                }
-
                 // 获取当前手指位置
                 float endY = ev.getY();
                 float endX = ev.getX();
                 float distanceX = Math.abs(endX - startX);
                 float distanceY = Math.abs(endY - startY);
-
-                // 水平滑动交给父容器处理
+                // 如果X轴位移大于Y轴位移，那么将事件交给viewPager处理。
                 if (distanceX > mTouchSlop && distanceX > distanceY) {
                     mIsVpDragger = true;
-                    mIsRvDragger = false;
-                    Log.i("gesture", "父容器处理");
                     return false;
                 }
-
-                //垂直滑动自己处理
-                if (distanceY > mTouchSlop && distanceY > distanceX) {
-                    mIsVpDragger = false;
-                    mIsRvDragger = true;
-                    Log.i("gesture", "自身处理");
-                    return super.onInterceptTouchEvent(ev);
-                }
-
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                mIsVpDragger = false;  //父容器执行手势
-                mIsRvDragger = false;  //自身执行手势
+                // 初始化标记
+                mIsVpDragger = false;
                 break;
         }
         // 如果是Y轴位移大于X轴，事件交给swipeRefreshLayout处理。

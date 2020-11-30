@@ -23,7 +23,7 @@ public class GoodsSignBean {
     private String name;                      //商品名称
     private int number;                       //商品数量
     private String outsourcingTime;           //外购资料提供时间
-    private int price;                        //商品单价
+    private double price;                        //商品单价
     private int productId;                    //父级配套设备id
     private int purchaseNum;                  //商品采购数量
     private int qualityResult;                //质检结果：1.合格，2.不合格
@@ -37,7 +37,7 @@ public class GoodsSignBean {
     private String specication;               //规格（暂时不用）
     private int status;                       //即时状态：1.退货，2.换货，3.待签收，4.已到货，5.拖期
     private int taskType;                     //任务类型：1.自制生产2.外购生产3.部分外协4.总体设计
-    private int totalPrice;                   //单条列表总价
+    private double totalPrice;                   //单条列表总价
     private int type;                         //商品类型：1.原材料，2.配套设备
     private String unit;                      //商品单位
     private int updateBy;                     //最后更新人
@@ -163,11 +163,11 @@ public class GoodsSignBean {
         this.outsourcingTime = outsourcingTime;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -275,11 +275,11 @@ public class GoodsSignBean {
         this.taskType = taskType;
     }
 
-    public int getTotalPrice() {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
 

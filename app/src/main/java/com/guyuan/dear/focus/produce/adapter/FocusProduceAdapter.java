@@ -40,8 +40,12 @@ public class FocusProduceAdapter extends BaseRecyclerAdapter<FocusProduceBean> {
         tvStatus.setBackgroundResource(item.getStatusTextBg());
         int color_blue_ff1b97fc = item.getStatusTextColor();
         tvStatus.setTextColor(context.getResources().getColor(color_blue_ff1b97fc));
-        tvSubStatus.setVisibility(ProductStatusType.TYPE_PRODUCE_DELAY == item.getStatusType()
-                ? View.VISIBLE : View.GONE);
+        if (item.getStatusType() == ProductStatusType.TYPE_PRODUCE_DELAY_FINISH ||
+                item.getStatusType() == ProductStatusType.TYPE_PRODUCE_DELAY_NOT_FINISH) {
+            tvSubStatus.setVisibility(View.VISIBLE);
+        } else {
+            tvSubStatus.setVisibility(View.GONE);
+        }
 
         holder.setText(R.id.tv_product_code, item.getCode());
         holder.getView(R.id.tv_produce_company).setVisibility(

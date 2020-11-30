@@ -255,8 +255,10 @@ public class FocusProduceBean implements Serializable {
                 return "生产中";
             case TYPE_PRODUCE_COMPLETE:
                 return "完成";
-            case TYPE_PRODUCE_DELAY:
-                return "已拖期";
+            case TYPE_PRODUCE_DELAY_FINISH:
+                return "拖期已完成";
+            case TYPE_PRODUCE_DELAY_NOT_FINISH:
+                return "拖期未完成";
             default:
                 return "未知";
         }
@@ -286,7 +288,6 @@ public class FocusProduceBean implements Serializable {
 //    }
 
 
-
     public int getStatusTextColor() {
         statusType = ProductStatusType.toType(status);
         switch (statusType) {
@@ -297,7 +298,8 @@ public class FocusProduceBean implements Serializable {
                 return R.color.color_blue_1677ff;
             case TYPE_PRODUCE_COMPLETE:
                 return R.color.color_green_00B578;
-            case TYPE_PRODUCE_DELAY:
+            case TYPE_PRODUCE_DELAY_NOT_FINISH:
+            case TYPE_PRODUCE_DELAY_FINISH:
                 return R.color.color_orange_FF8F1F;
             default:
                 return R.color.transparent;
@@ -314,7 +316,8 @@ public class FocusProduceBean implements Serializable {
                 return R.drawable.bg_blue_e7f1ff_corner_2;
             case TYPE_PRODUCE_COMPLETE:
                 return R.drawable.bg_green_d4fff1_corner_2;
-            case TYPE_PRODUCE_DELAY:
+            case TYPE_PRODUCE_DELAY_NOT_FINISH:
+            case TYPE_PRODUCE_DELAY_FINISH:
                 return R.drawable.bg_orange_ffefdf_corner_2;
             default:
                 return R.drawable.bg_blue_0aad33_corner_4;
@@ -350,7 +353,8 @@ public class FocusProduceBean implements Serializable {
                 return "操作员：" + updateName;
             }
         } else if (ProductStatusType.TYPE_PRODUCE_COMPLETE == statusType
-                || ProductStatusType.TYPE_PRODUCE_DELAY == statusType) {
+                || ProductStatusType.TYPE_PRODUCE_DELAY_FINISH == statusType
+                || ProductStatusType.TYPE_PRODUCE_DELAY_NOT_FINISH == statusType) {
             return "操作员：" + updateName;
         }
 
