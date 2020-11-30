@@ -49,15 +49,15 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @since: 2020/11/18 10:27
  * @company: 固远（深圳）信息技术有限公司
  */
-public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteExploreBean, FragmentListBinding, WorkProjectSiteViewModel> {
+public class WorkCheckSafeListFragment extends BaseListSearchFragment<SiteExploreBean, FragmentListBinding, WorkProjectSiteViewModel> {
 
     public static final String TAG = ProjectReportClassifyFragment.class.getSimpleName();
     private ProjectReportType reportType;
 
 
-    public static WorkProjectReportListFragment newInstance(ProjectReportType type) {
+    public static WorkCheckSafeListFragment newInstance(ProjectReportType type) {
         Bundle args = new Bundle();
-        WorkProjectReportListFragment fragment = new WorkProjectReportListFragment();
+        WorkCheckSafeListFragment fragment = new WorkCheckSafeListFragment();
         args.putSerializable(ConstantValue.KEY_CONTENT, type);
         fragment.setArguments(args);
         return fragment;
@@ -81,9 +81,13 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+//                SiteExploreBean bean = ;
+//                bean.setProjectReportType(reportType);
                 jumpByReportType(listData.get(position));
             }
         });
+
+
         getDataListByClassify(true);
         receiveDataLisByClassify();
     }
@@ -186,31 +190,31 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
         viewModel.getSiteExploreListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
             @Override
             public void onChanged(RefreshBean<SiteExploreBean> data) {
-                dealDataByAddReportType(data.getContent(),ProjectReportType.TYPE_SITE_EXPLORATION);
+                dealDataByAddReportType(data.getContent());
             }
         });
         viewModel.getCheckSafeListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
             @Override
             public void onChanged(RefreshBean<SiteExploreBean> data) {
-                dealDataByAddReportType(data.getContent(),ProjectReportType.TYPE_CHECK_SAFE);
+                dealDataByAddReportType(data.getContent());
             }
         });
         viewModel.getCheckGoodListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
             @Override
             public void onChanged(RefreshBean<SiteExploreBean> data) {
-                dealDataByAddReportType(data.getContent(),ProjectReportType.TYPE_CHECK_GOODS);
+                dealDataByAddReportType(data.getContent());
             }
         });
         viewModel.getInstallDebugListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
             @Override
             public void onChanged(RefreshBean<SiteExploreBean> data) {
-                dealDataByAddReportType(data.getContent(),ProjectReportType.TYPE_INSTALLATION_DEBUG);
+                dealDataByAddReportType(data.getContent());
             }
         });
         viewModel.getCustomerAcceptanceListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
             @Override
             public void onChanged(RefreshBean<SiteExploreBean> data) {
-                dealDataByAddReportType(data.getContent(),ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE);
+                dealDataByAddReportType(data.getContent());
             }
         });
     }
@@ -221,9 +225,10 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
      *
      * @param dataList 数据
      */
-    private void dealDataByAddReportType(List<SiteExploreBean> dataList,ProjectReportType reportType) {
+    private void dealDataByAddReportType(List<SiteExploreBean> dataList) {
         List<SiteExploreBean> tempList = new ArrayList<>();
         for (SiteExploreBean bean : dataList) {
+            LogUtils.showLog("dealDataByAddReportType"+reportType.getDes());
             bean.setProjectReportType(reportType);
             tempList.add(bean);
         }

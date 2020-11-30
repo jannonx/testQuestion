@@ -67,6 +67,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
     List<String> imageDataList = new ArrayList<>();
     private SiteExploreBean simpleData;
     private View footerView;
+    private TextView tvRemark, tvStatus;
 
     public static ExploreContentFragment newInstance(SiteExploreBean detailProjectData) {
         Bundle bundle = new Bundle();
@@ -122,14 +123,13 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
      * 添加列表FooterView,增加拖动范围
      */
     private void addContentFooterView() {
-//        footerBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.footer_explore_content, null, false);
-        footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_explore_content, binding.baseRecycleView,false);
+        footerBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.footer_explore_content, null, false);
+        footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_explore_content, binding.baseRecycleView, false);
 
 //        adapter.addFooterView(footerBinding.getRoot());
 
-
-        FrameLayout footerRoot = footerView.findViewById(R.id.fl_footer_root);
-        TextView tvRemark = footerView.findViewById(R.id.tv_remark);
+        tvRemark = footerView.findViewById(R.id.tv_remark);
+        tvStatus = footerView.findViewById(R.id.tv_status);
         BaseRecyclerView imageRecyclerView = footerView.findViewById(R.id.image_recycleView);
 //        ViewGroup.LayoutParams layoutParams1 = footerRoot.getLayoutParams();
 //        layoutParams1.height = FrameLayout.LayoutParams.WRAP_CONTENT;
@@ -141,17 +141,21 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
 //        layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
 //        tvRemark.setLayoutParams(layoutParams);
 
-      tvRemark.setText("ha");
+        tvRemark.setText("ha");
 
         //test
-        List<String> imageArr = new ArrayList<>();
-        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
-        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
-        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
+//        List<String> imageArr = new ArrayList<>();
+        if (simpleData.getImgUrlList() != null) {
+            imageDataList.clear();
+            imageDataList.addAll(simpleData.getImgUrlList());
+        }
+//        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
+//        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
+//        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
 
 
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-                imageArr, R.layout.item_explorate_image);
+                imageDataList, R.layout.item_explorate_image);
         imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
 
         imageRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -160,41 +164,35 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
         imageRecyclerView.setLoadMoreEnabled(false);
 
 
-
-
-        if (simpleData.getImgUrlList() != null) {
-            imageDataList.clear();
-            imageDataList.addAll(simpleData.getImgUrlList());
-        }
-
-  adapter.addFooterView(footerView);
-//        setTextViewLayParams(footerBinding.tvRemark);
-//        setTextViewLayParams(footerBinding.tvStatus);
-        //客户验收隐藏
+        adapter.addFooterView(footerView);
+//        setTextViewLayParams(tvRemark);
+//        setTextViewLayParams(tvStatus);
+//        客户验收隐藏
 //        footerBinding.llDocument.setVisibility(ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == simpleData.getProjectReportType() ? View.GONE : View.VISIBLE);
 //        footerBinding.llRemark.setVisibility(ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == simpleData.getProjectReportType() ? View.GONE : View.VISIBLE);
-        //安装调试
+//        安装调试
 //        footerBinding.llcContent.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG == simpleData.getProjectReportType() ? View.GONE : View.VISIBLE);
 //        footerBinding.videoPanel.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG == simpleData.getProjectReportType() ? View.VISIBLE : View.GONE);
-//        switch (simpleData.getProjectReportType()) {
-//            case TYPE_SITE_EXPLORATION:
-//                setSiteExplorationData(simpleData);
-//                break;
-//            case TYPE_CHECK_GOODS:
-//                setCheckGoodsData(simpleData);
-//                break;
-//            case TYPE_CHECK_SAFE:
-//                setCheckSafeData(simpleData);
-//                break;
-//            case TYPE_INSTALLATION_DEBUG:
-//                setInstallationDebugData(simpleData);
-//                break;
-//            case TYPE_CUSTOMER_ACCEPTANCE:
-//                setCustomerAcceptanceData(simpleData);
-//                break;
-//
-//            default:
-//        }
+        switch (simpleData.getProjectReportType()) {
+            case TYPE_SITE_EXPLORATION:
+                setSiteExplorationData(simpleData);
+                break;
+            case TYPE_CHECK_GOODS:
+                setCheckGoodsData(simpleData);
+                break;
+            case TYPE_CHECK_SAFE:
+                setCheckSafeData(simpleData);
+                break;
+            case TYPE_INSTALLATION_DEBUG:
+                setInstallationDebugData(simpleData);
+                break;
+            case TYPE_CUSTOMER_ACCEPTANCE:
+                setCustomerAcceptanceData(simpleData);
+                break;
+
+            default:
+        }
+
     }
 
     private void setCustomerAcceptanceData(SiteExploreBean detailProjectData) {
@@ -205,31 +203,32 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
 
     }
 
-//    private void setCheckSafeData(SiteExploreBean detailProjectData) {
-//        //清点货物 #2FC25B  #F04864 红色
-//        footerBinding.tvRemark.setText(detailProjectData.getAuditItemExplain());
-//        //是否满足条件、是否安全(1:是，2:否)
-//        footerBinding.tvStatus.setTextColor(getActivity().getResources().getColor(
-//                detailProjectData.getSatisfyFlag() == 1 ? R.color.color_green_2fc25b : R.color.color_red_F04864));
-//        footerBinding.tvStatus.setText("存在安全隐患：" + (detailProjectData.getSatisfyFlag() == 1 ? "否" : "是"));
-//    }
-//
-//    private void setCheckGoodsData(SiteExploreBean detailProjectData) {
-//        //清点货物 #2FC25B  #F04864 红色
-//        footerBinding.tvRemark.setText(detailProjectData.getCheckRemark());
-//        footerBinding.tvStatus.setTextColor(getActivity().getResources().getColor(
-//                detailProjectData.getIsException() == CHECK_RIGHT ? R.color.color_green_2fc25b : R.color.color_red_F04864));
-//        footerBinding.tvStatus.setText("货物异常：" + (detailProjectData.getIsException() == CHECK_RIGHT ? "否" : "是"));
-//    }
-//
-//    private void setSiteExplorationData(SiteExploreBean detailProjectData) {
-//        //清点货物 #2FC25B  #F04864 红色
-//        footerBinding.tvRemark.setText(detailProjectData.getAuditItemExplain());
-//        //是否满足条件、是否安全(1:是，2:否)
-//        footerBinding.tvStatus.setTextColor(getActivity().getResources().getColor(
-//                detailProjectData.getSatisfyFlag() == 1 ? R.color.color_green_2fc25b : R.color.color_red_F04864));
-//        footerBinding.tvStatus.setText("满足条件：" + (detailProjectData.getSatisfyFlag() == 1 ? "是" : "否"));
-//    }
+    private void setCheckSafeData(SiteExploreBean detailProjectData) {
+
+        //清点货物 #2FC25B  #F04864 红色
+        tvRemark.setText(detailProjectData.getAuditItemExplain());
+        //是否满足条件、是否安全(1:是，2:否)
+        tvStatus.setTextColor(getActivity().getResources().getColor(
+                detailProjectData.getSatisfyFlag() == 1 ? R.color.color_green_2fc25b : R.color.color_red_F04864));
+        tvStatus.setText("存在安全隐患：" + (detailProjectData.getSatisfyFlag() == 1 ? "否" : "是"));
+    }
+
+    private void setCheckGoodsData(SiteExploreBean detailProjectData) {
+
+        tvRemark.setText(detailProjectData.getCheckRemark());
+        tvStatus.setTextColor(getActivity().getResources().getColor(
+                detailProjectData.getIsException() == CHECK_RIGHT ? R.color.color_green_2fc25b : R.color.color_red_F04864));
+        tvStatus.setText("货物异常：" + (detailProjectData.getIsException() == CHECK_RIGHT ? "否" : "是"));
+    }
+
+    private void setSiteExplorationData(SiteExploreBean detailProjectData) {
+        //清点货物 #2FC25B  #F04864 红色
+        tvRemark.setText(detailProjectData.getAuditItemExplain());
+        //是否满足条件、是否安全(1:是，2:否)
+        tvStatus.setTextColor(getActivity().getResources().getColor(
+                detailProjectData.getSatisfyFlag() == 1 ? R.color.color_green_2fc25b : R.color.color_red_F04864));
+        tvStatus.setText("满足条件：" + (detailProjectData.getSatisfyFlag() == 1 ? "是" : "否"));
+    }
 
     /**
      * 根据类型不同设置不同的adapter

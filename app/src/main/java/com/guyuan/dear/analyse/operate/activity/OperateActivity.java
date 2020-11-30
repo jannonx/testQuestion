@@ -15,9 +15,9 @@ import com.guyuan.dear.utils.ConstantValue;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
- * @description: 我的关注--工程现场
+ * @description: 我的关注--运营效益
  * @author: 许建宁
- * @since: 2020/9/17 11:42
+ * @since: 2020/11/30 11:25
  * @company: 固远（深圳）信息技术有限公司
  */
 @AndroidEntryPoint
