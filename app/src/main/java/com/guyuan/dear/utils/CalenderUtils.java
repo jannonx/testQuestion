@@ -64,7 +64,7 @@ public class CalenderUtils {
     }
 
     /**
-     * 时：分：秒 如 “12:30:45” 转成日期
+     * 解析 HH:mm:ss 的时间格式
      * @param format
      * @return
      */
@@ -198,6 +198,11 @@ public class CalenderUtils {
         return simpleDateFormatByDay.format(new Date(time));
     }
 
+    /**
+     * 解析 yyyy-MM-dd HH:mm:ss的时间格式
+     * @param date
+     * @return
+     */
     public Date parseSmartFactoryDateStringFormat(String date) {
         try {
             return simpleDateFormatFull.parse(date);
@@ -222,6 +227,11 @@ public class CalenderUtils {
     }
 
 
+    /**
+     * 解析 yyyy-MM-dd的日期
+     * @param date
+     * @return
+     */
     public Date parseSmartFactoryDateFormatByDay(String date) {
         try {
             return simpleDateFormatByDay.parse(date);
@@ -232,6 +242,11 @@ public class CalenderUtils {
         return null;
     }
 
+    /**
+     * 把日期转成 yyyy-MM-dd 格式
+     * @param time
+     * @return
+     */
     public String toSmartFactoryDateFormatByDay(long time) {
         return simpleDateFormatByDay.format(new Date(time));
     }

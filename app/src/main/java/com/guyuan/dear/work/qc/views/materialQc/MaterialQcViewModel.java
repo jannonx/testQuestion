@@ -33,14 +33,14 @@ public class MaterialQcViewModel extends BaseDearViewModel {
     private MutableLiveData<List<BaseProjectBean>> projectList = new MutableLiveData<>(new ArrayList<>());
     private MutableLiveData<List<BaseQcApproachBean>> qcApproachList = new MutableLiveData<>(new ArrayList<>());
     private MutableLiveData<List<MaterialInfo>> materialList = new MutableLiveData<>(new ArrayList<>());
-    private MutableLiveData<Integer> sampleSize = new MutableLiveData<>();
+    private MutableLiveData<String> sampleSize = new MutableLiveData<>("0");
+    private List<Integer> judgeConditions = new ArrayList<>();
     /**
      * 1 通过 2 不通过
      */
     private MutableLiveData<Integer> reportResult = new MutableLiveData<>(2);
     private MutableLiveData<String> comments = new MutableLiveData<>();
     private MutableLiveData<Boolean> isNeedVerify = new MutableLiveData<>(false);
-    private MutableLiveData<Integer> judgeCondition = new MutableLiveData<>();
     private MutableLiveData<MaterialInfo> selectedMaterial = new MutableLiveData<>();
     private MutableLiveData<BaseProjectBean> selectedProject = new MutableLiveData<>();
     private MutableLiveData<BaseQcApproachBean> selectedQcApproach = new MutableLiveData<>();
@@ -102,7 +102,7 @@ public class MaterialQcViewModel extends BaseDearViewModel {
         return materialList;
     }
 
-    public MutableLiveData<Integer> getSampleSize() {
+    public MutableLiveData<String> getSampleSize() {
         return sampleSize;
     }
 
@@ -116,10 +116,6 @@ public class MaterialQcViewModel extends BaseDearViewModel {
 
     public MutableLiveData<Boolean> getIsNeedVerify() {
         return isNeedVerify;
-    }
-
-    public MutableLiveData<Integer> getJudgeCondition() {
-        return judgeCondition;
     }
 
     public MutableLiveData<MaterialInfo> getSelectedMaterial() {
@@ -179,9 +175,6 @@ public class MaterialQcViewModel extends BaseDearViewModel {
         this.selectedQcApproach.postValue(approachBean);
     }
 
-    public void updateJudgeCondition(int selection) {
-        judgeCondition.postValue(selection);
-    }
 
     public void updateSelectedMaterial(MaterialInfo materialInfo) {
         this.selectedMaterial.postValue(materialInfo);
@@ -203,32 +196,35 @@ public class MaterialQcViewModel extends BaseDearViewModel {
         verifiers.postValue(staffs);
     }
 
+    public List<Integer> getJudgeConditions() {
+        return judgeConditions;
+    }
 
     public void submitApply() {
         SubmitQcReportBody body = new SubmitQcReportBody();
         BaseProjectBean projectBean = getSelectedProject().getValue();
-        if(projectBean==null){
+        if (projectBean == null) {
             showToast("项目不能为空.");
             return;
-        }else {
+        } else {
             body.setProjectId(projectBean.getId());
         }
         MaterialInfo material = getSelectedMaterial().getValue();
-        if(material==null){
+        if (material == null) {
             showToast("请选择材料");
             return;
-        }else {
+        } else {
             body.setSubCodeId(material.getId());
         }
-        if(isNeedVerify.getValue()){
+        if (isNeedVerify.getValue()) {
             body.setApproveFlag(1);
-        }else {
+        } else {
             body.setApproveFlag(2);
         }
-        if(isNeedVerify.getValue()){
+        if (isNeedVerify.getValue()) {
             ArrayList<StaffBean> approvers = getVerifiers().getValue();
             List<Integer> list = new ArrayList<>();
-            if(approvers.isEmpty()){
+            if (approvers.isEmpty()) {
                 showToast("审批人不能为空。");
                 return;
             }
@@ -239,10 +235,10 @@ public class MaterialQcViewModel extends BaseDearViewModel {
         }
 
         ArrayList<StaffBean> qcCheckers = getQcCheckers().getValue();
-        if(qcCheckers.isEmpty()){
+        if (qcCheckers.isEmpty()) {
             showToast("质检人员不能为空。");
             return;
-        }else {
+        } else {
             List<Integer> list = new ArrayList<>();
             for (StaffBean checker : qcCheckers) {
                 list.add(checker.getId().intValue());
@@ -251,44 +247,41 @@ public class MaterialQcViewModel extends BaseDearViewModel {
         }
 
         body.setProductType(1);
-        MutableLiveData<Integer> qcCondition = getJudgeCondition();
-        if(qcCondition.getValue()==null){
+
+        if (judgeConditions.isEmpty()) {
             showToast("请选择判定条件。");
             return;
-        }else {
-            List<Integer> list = new ArrayList<>();
-            list.add(qcCondition.getValue());
-            body.setQualityCondition(list);
+        } else {
+            body.setQualityCondition(judgeConditions);
         }
 
-        Integer sampleSize = getSampleSize().getValue();
-        if(sampleSize==null){
+        String sampleSize = getSampleSize().getValue();
+        if (TextUtils.isEmpty(sampleSize)||"0".equals(sampleSize)) {
             showToast("请输入抽检数");
-            showToast("");
             return;
-        }else {
-            body.setQualityNum(sampleSize);
+        } else {
+            body.setQualityNum(Integer.valueOf(sampleSize));
         }
 
         String comment = getComments().getValue();
-        if(TextUtils.isEmpty(comment)){
+        if (TextUtils.isEmpty(comment)) {
             showToast("请输入原因描述");
             return;
-        }else {
+        } else {
             body.setQualityRemark(comment);
         }
 
         body.setQualityResult(getReportResult().getValue());
         BaseQcApproachBean approachBean = selectedQcApproach.getValue();
-        if(approachBean==null){
+        if (approachBean == null) {
             showToast("请选择质检方式");
             return;
-        }else {
+        } else {
             String approachId = approachBean.getApproachId();
             try {
                 int type = Integer.valueOf(approachId);
                 body.setQualityType(type);
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 showToast("服务器返回的质检方式的参数中的key不是一个数字，请联系开发人员。");
                 return;
             }
@@ -296,12 +289,29 @@ public class MaterialQcViewModel extends BaseDearViewModel {
         repo.submitQcReport(body, new BaseNetCallback<Integer>() {
             @Override
             protected void handleResult(Integer result) {
-                if(result>0){
+                if (result > 0) {
                     showToast("提交成功。");
-                }else {
+                    resetAllViews();
+                } else {
                     showToast("提交失败。");
                 }
             }
         });
+    }
+
+    private void resetAllViews() {
+        qcCheckers.postValue(new ArrayList<>());
+        verifiers.postValue(new ArrayList<>());
+        projectList.postValue(new ArrayList<>());
+        qcApproachList.postValue(new ArrayList<>());
+        materialList.postValue(new ArrayList<>());
+        sampleSize.postValue("0");
+        judgeConditions.clear();
+        reportResult.postValue(2);
+        comments.postValue("");
+        selectedMaterial.postValue(null);
+        selectedProject.postValue(null);
+        selectedQcApproach.postValue(null);
+        isNeedVerify.postValue(false);
     }
 }

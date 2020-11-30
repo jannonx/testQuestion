@@ -176,15 +176,14 @@
                     android:textSize="@dimen/sp_16"
                     android:textStyle="bold" />
 
-                <RadioGroup
-                    android:id="@+id/fragment_product_qc_radio_grp_judge_conditions"
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_48"
                     android:orientation="horizontal">
 
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/fragment_product_qc_radio_btn_judge_conditions_by_scheme"
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/fragment_product_qc_cbx_judge_conditions_by_scheme"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -193,16 +192,16 @@
                         android:padding="@dimen/dp_8"
                         android:text="设计图样" />
 
-                    <androidx.appcompat.widget.AppCompatRadioButton
+                    <androidx.appcompat.widget.AppCompatCheckBox
                         android:enabled="true"
-                        android:id="@+id/fragment_product_qc_radio_btn_judge_conditions_by_nation_standard"
+                        android:id="@+id/fragment_product_qc_cbx_judge_conditions_by_nation_standard"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@drawable/selector_ic_svg_unchecked_to_checked"
                         android:padding="@dimen/dp_8"
                         android:text="国家标准" />
-                </RadioGroup>
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />
@@ -228,7 +227,8 @@
                     android:background="@null"
                     android:gravity="center"
                     android:hint="请输入数量"
-                    android:inputType="number"/>
+                    android:inputType="number"
+                    android:text="@={fragment_product_qc_vm.sampleSize}"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />

@@ -5,6 +5,7 @@ import com.guyuan.dear.net.resultBeans.NetStaffAttendRecord;
 import com.guyuan.dear.net.resultBeans.NetStaffAttendStatus;
 import com.guyuan.dear.utils.CalenderUtils;
 
+import java.util.HashMap;
 import java.util.List;
 
 import io.reactivex.disposables.Disposable;
@@ -16,13 +17,38 @@ import io.reactivex.disposables.Disposable;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class StaffMonthlyDetailRepo {
+
+    private HashMap<Long,List<NetStaffAttendRecord>> cacheAttendRecords = new HashMap<>();
+
     public Disposable getStaffBasicInfo(int staffId, DearNetHelper.NetCallback<NetStaffAttendStatus> callback){
         return DearNetHelper.getInstance().getStaffAttendStatus(staffId,callback);
     }
 
     public Disposable getStaffAttendRecord(int staffId, long date, DearNetHelper.NetCallback<List<NetStaffAttendRecord>> callback){
-        String yearAndMonth = CalenderUtils.getInstance().toLongYearAndMonth(date);
-        return DearNetHelper.getInstance().getStaffAttendRecord(yearAndMonth,staffId,callback);
+        if(cacheAttendRecords.get(date)!=null){
+            callback.onGetResult(cacheAttendRecords.get(date));
+        }else {
+            String yearAndMonth = CalenderUtils.getInstance().toLongYearAndMonth(date);
+            return DearNetHelper.getInstance().getStaffAttendRecord(yearAndMonth, staffId, new DearNetHelper.NetCallback<List<NetStaffAttendRecord>>() {
+                @Override
+                public void onStart(Disposable disposable) {
+                    callback.onStart(disposable);
+                }
+
+                @Override
+                public void onGetResult(List<NetStaffAttendRecord> result) {
+                    cacheAttendRecords.put(date,result);
+                    callback.onGetResult(result);
+
+                }
+
+                @Override
+                public void onError(Throwable error) {
+                    callback.onError(error);
+                }
+            });
+        }
+        return null;
     }
 
     /**
