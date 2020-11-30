@@ -62,15 +62,20 @@ public class SubmitQcReportBody {
      * 质检方式：1.全检，2.抽检，3.按标准质检文件
      */
     private int qualityType;
+
     /**
-     * 商品ID {@link NetMaterialBean#getEquipmentId()}
+     * 商品ID {@link NetMaterialBean#getId()} ()}
      */
     private int subCodeId;
+
     private List<Integer> approvers;
     /**
      * 判定条件：1.设计图样，2.国家标准
+     * {@link SubmitQcReportBody#JUDGE_CONDITION_BLUE_PRINT_SCHEME},{@link SubmitQcReportBody#JUDGE_CONDITION_NATIONAL_STANDARD}
      */
     private List<Integer> qualityCondition;
+    public static final int JUDGE_CONDITION_BLUE_PRINT_SCHEME=1;
+    public static final int JUDGE_CONDITION_NATIONAL_STANDARD=2;
 
     public int getApproveFlag() {
         return approveFlag;
@@ -94,6 +99,14 @@ public class SubmitQcReportBody {
 
     public void setProjectId(int projectId) {
         this.projectId = projectId;
+    }
+
+    public int getSubCodeId() {
+        return subCodeId;
+    }
+
+    public void setSubCodeId(int subCodeId) {
+        this.subCodeId = subCodeId;
     }
 
     public int getQualityBy() {
@@ -136,13 +149,6 @@ public class SubmitQcReportBody {
         this.qualityType = qualityType;
     }
 
-    public int getSubCodeId() {
-        return subCodeId;
-    }
-
-    public void setSubCodeId(int subCodeId) {
-        this.subCodeId = subCodeId;
-    }
 
     public List<Integer> getApprovers() {
         return approvers;

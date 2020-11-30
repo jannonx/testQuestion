@@ -64,9 +64,9 @@ public class HrStatusGroupFragment extends BaseMvvmFragment<FragmentHrGroupBindi
     @Override
     protected void initViews() {
         if (date > 0) {
-            getViewModel().loadStaffListByType(grpType);
-        } else {
             getViewModel().loadStaffListByDateAndType(date, grpType);
+        } else {
+            getViewModel().loadStaffListByType(grpType);
         }
         getViewModel().onItemClickListener.postValue(new HrStaffAdapter.HrStaffAdapterItemClickListener() {
             @Override

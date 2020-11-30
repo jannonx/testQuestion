@@ -12,6 +12,7 @@ import com.guyuan.dear.work.qc.beans.BaseQcSubmitBean;
 import com.guyuan.dear.work.qc.beans.MaterialInfo;
 import com.guyuan.dear.work.qc.beans.ProductInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerView;
@@ -64,7 +65,7 @@ public class ProductQcBingingAdapter {
     @BindingAdapter("setProductionInfos")
     public static void setProductionInfos(BaseRecyclerView view, List<ProductInfo> data){
         if(data==null){
-            return;
+            data = new ArrayList<>();
         }
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL,false);
         ProductionInfoAdapter adapter = new ProductionInfoAdapter(data);

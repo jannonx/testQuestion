@@ -5,6 +5,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentProductQcBinding;
 import com.guyuan.dear.dialog.SelectionDialog;
 import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
+import com.guyuan.dear.net.reqBean.SubmitQcReportBody;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.qc.beans.BaseProductBatchInfo;
@@ -123,21 +125,50 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
             }
         });
 
-        //选择判定条件
-        getViewDataBinding().fragmentProductQcRadioGrpJudgeConditions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//        //选择判定条件
+//        getViewDataBinding().fragmentProductQcRadioGrpJudgeConditions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                switch (checkedId) {
+//                    //设计图样
+//                    case R.id.fragment_product_qc_cbx_judge_conditions_by_scheme:
+//                        getViewModel().updateJudgeCondition(1);
+//                        break;
+//                    //国家标准
+//                    case R.id.fragment_product_qc_cbx_judge_conditions_by_nation_standard:
+//                        getViewModel().updateJudgeCondition(2);
+//                        break;
+//                    default:
+//                        break;
+//                }
+//            }
+//        });
+        getViewDataBinding().fragmentProductQcCbxJudgeConditionsByNationStandard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    //设计图样
-                    case R.id.fragment_product_qc_radio_btn_judge_conditions_by_scheme:
-                        getViewModel().updateJudgeCondition(1);
-                        break;
-                    //国家标准
-                    case R.id.fragment_product_qc_radio_btn_judge_conditions_by_nation_standard:
-                        getViewModel().updateJudgeCondition(2);
-                        break;
-                    default:
-                        break;
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                List<Integer> list = getViewModel().getJudgeConditions();
+                //2 表示国家标准
+                if(isChecked){
+                    if(!list.contains(SubmitQcReportBody.JUDGE_CONDITION_NATIONAL_STANDARD)){
+                        list.add(SubmitQcReportBody.JUDGE_CONDITION_NATIONAL_STANDARD);
+                    }
+                }else {
+                    list.remove(Integer.valueOf(SubmitQcReportBody.JUDGE_CONDITION_NATIONAL_STANDARD));
+                }
+            }
+        });
+
+        getViewDataBinding().fragmentProductQcCbxJudgeConditionsByScheme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                List<Integer> list = getViewModel().getJudgeConditions();
+                //1 表示设计图样
+                if(isChecked){
+                    if(!list.contains(SubmitQcReportBody.JUDGE_CONDITION_BLUE_PRINT_SCHEME)){
+                        list.add(SubmitQcReportBody.JUDGE_CONDITION_BLUE_PRINT_SCHEME);
+                    }
+                }else {
+                    list.remove(Integer.valueOf(SubmitQcReportBody.JUDGE_CONDITION_BLUE_PRINT_SCHEME));
                 }
             }
         });
@@ -191,30 +222,6 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
                         checkers,
                         10
                 );
-
-            }
-        });
-
-        //动态更新抽检数量
-        getViewDataBinding().fragmentProductQcEdtSampleSize.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String string = s.toString();
-                if(TextUtils.isEmpty(string)){
-                    viewModel.sampleSize.postValue(0);
-                }else {
-                    viewModel.sampleSize.postValue(Integer.valueOf(string));
-                }
 
             }
         });
