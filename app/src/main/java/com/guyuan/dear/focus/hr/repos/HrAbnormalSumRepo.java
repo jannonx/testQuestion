@@ -15,7 +15,7 @@ import io.reactivex.disposables.Disposable;
 public class HrAbnormalSumRepo{
     public Disposable getHrAbnormalSum(long date, DearNetHelper.NetCallback<HrSummaryBean> callback){
         String yearAndMonth = CalenderUtils.getInstance().toLongYearAndMonth(date);
-        return DearNetHelper.getInstance().getHrAbnormalListByDate(yearAndMonth,callback);
+        return DearNetHelper.getInstance().getHrAbnormalSumByDate(yearAndMonth,callback);
     }
 
 }

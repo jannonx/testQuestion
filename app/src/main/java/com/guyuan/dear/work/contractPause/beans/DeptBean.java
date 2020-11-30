@@ -15,6 +15,7 @@ public class DeptBean implements Parcelable {
     private String deptName;
     private long id;
     private short level;
+    private int staffTotal;
 
     public DeptBean() {
     }
@@ -23,6 +24,7 @@ public class DeptBean implements Parcelable {
         deptName = in.readString();
         id = in.readLong();
         level = (short) in.readInt();
+        staffTotal = in.readInt();
     }
 
     public DeptBean(DeptEntity deptEntity) {
@@ -77,5 +79,14 @@ public class DeptBean implements Parcelable {
         dest.writeString(deptName);
         dest.writeLong(id);
         dest.writeInt((int) level);
+        dest.writeInt(staffTotal);
+    }
+
+    public int getStaffTotal() {
+        return staffTotal;
+    }
+
+    public void setStaffTotal(int staffTotal) {
+        this.staffTotal = staffTotal;
     }
 }

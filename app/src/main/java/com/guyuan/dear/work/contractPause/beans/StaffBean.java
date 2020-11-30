@@ -10,6 +10,7 @@ import com.guyuan.dear.db.entities.StaffDeptCrosRef;
 import com.guyuan.dear.db.entities.StaffEntity;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,6 +43,12 @@ public class StaffBean implements Parcelable {
                 depts.add(new DeptBean(deptEntity));
             }
         }
+        depts.sort(new Comparator<DeptBean>() {
+            @Override
+            public int compare(DeptBean o1, DeptBean o2) {
+                return o1.getLevel()-o2.getLevel();
+            }
+        });
     }
 
 

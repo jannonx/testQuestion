@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="data"
+            type="com.guyuan.dear.focus.hr.bean.ChildDept" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:gravity="center_vertical">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp_17"
+            android:textColor="@color/color_black_333333"
+            android:padding="@dimen/dp_12"
+            android:text="@{data.deptName}"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/color_grey_999999"
+            android:textSize="@dimen/sp_15"
+            android:layout_marginRight="@dimen/dp_4"
+            android:gravity="end"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(data.staffTotal)}"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="人"
+            android:textColor="@color/color_grey_999999"
+            android:textSize="@dimen/sp_15"
+            android:paddingRight="@dimen/dp_12"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

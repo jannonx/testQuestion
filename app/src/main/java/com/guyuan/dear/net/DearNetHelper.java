@@ -41,6 +41,7 @@ import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.net.resultBeans.NetContractStatusFlow;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
 import com.guyuan.dear.net.resultBeans.NetHrSummary;
+import com.guyuan.dear.net.resultBeans.NetIdAndStatusMapping;
 import com.guyuan.dear.net.resultBeans.NetMaterialBean;
 import com.guyuan.dear.net.resultBeans.NetProductInfo;
 import com.guyuan.dear.net.resultBeans.NetQcApproach;
@@ -950,10 +951,10 @@ public class DearNetHelper {
     /**
      * 上下班打卡
      *
-     * @param clockInType {@link ClockInRqBody#CLOCK_IN_TYPE_CHECK_OUT_INSIDE_COMPANY_AREA}
+     * @param clockInType {@link ClockInRqBody#CLOCK_IN_TYPE_CLOCK_IN_INSIDE_COMPANY_AREA}
+     *                    {@link ClockInRqBody#CLOCK_IN_TYPE_CLOCK_IN_OUTSIDE_COMPANY_AREA}
      *                    {@link ClockInRqBody#CLOCK_IN_TYPE_CHECK_OUT_INSIDE_COMPANY_AREA}
-     *                    {@link ClockInRqBody#CLOCK_IN_TYPE_CHECK_OUT_INSIDE_COMPANY_AREA}
-     *                    {@link ClockInRqBody#CLOCK_IN_TYPE_CHECK_OUT_INSIDE_COMPANY_AREA}
+     *                    {@link ClockInRqBody#CLOCK_IN_TYPE_CHECK_OUT_OUTSIDE_COMPANY_AREA}
      * @param lat         纬度
      * @param lng         经度
      * @return
@@ -1055,7 +1056,7 @@ public class DearNetHelper {
      * @param callback
      * @return
      */
-    public Disposable getHrAbnormalListByDate(String yearMonth, NetCallback<HrSummaryBean> callback) {
+    public Disposable getHrAbnormalSumByDate(String yearMonth, NetCallback<HrSummaryBean> callback) {
         Observable<ResultBean<NetHrSummary>> observable = netApiService.getHrAbnormalSumByDate(yearMonth);
         Mapper<NetHrSummary, HrSummaryBean> mapper = new Mapper<NetHrSummary, HrSummaryBean>() {
             @Override
@@ -1064,6 +1065,17 @@ public class DearNetHelper {
             }
         };
         return getDisposalAsync(observable, callback, mapper);
+    }
+
+
+    /**
+     * 获取所有的id和当前出勤状况的映射表
+     * @param callback
+     * @return
+     */
+    public Disposable getStaffIdAndAttendStatusMapping(NetCallback<List<NetIdAndStatusMapping>> callback){
+        Observable<ResultBean<List<NetIdAndStatusMapping>>> observable = netApiService.getStaffIdAndAttendStatus();
+        return getDisposalAsync(observable, callback, null);
     }
 
 

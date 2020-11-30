@@ -18,6 +18,7 @@ import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.net.resultBeans.NetContractStatusFlow;
 import com.guyuan.dear.net.resultBeans.NetContractSumBean;
 import com.guyuan.dear.net.resultBeans.NetHrSummary;
+import com.guyuan.dear.net.resultBeans.NetIdAndStatusMapping;
 import com.guyuan.dear.net.resultBeans.NetMaterialBean;
 import com.guyuan.dear.net.resultBeans.NetClockInConfig;
 import com.guyuan.dear.net.resultBeans.NetProductInfo;
@@ -275,6 +276,14 @@ public interface DearNetApiService extends BaseApiService {
      */
     @GET("base/staffSummary/getUserIdAbnormalAchineve")
     Observable<ResultBean<List<Integer>>> getHrAbnormalListByTypeAndDate(@Query("month") String yearMonth,@Query("type") int type );
+
+    /**
+     * 获取所有的id和当前出勤状况的映射表
+     * @return
+     */
+    @GET("base/staffSummary/getAllStaffAttendanceStatus")
+    Observable<ResultBean<List<NetIdAndStatusMapping>>> getStaffIdAndAttendStatus();
+
 
 
 
