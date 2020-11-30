@@ -14,6 +14,7 @@ import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.customizeview.TabLayoutHelper;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.List;
 
@@ -72,6 +73,7 @@ public abstract class BaseTabActivity<V extends ViewDataBinding, VM extends Base
     public void setCustomContent(View customView, int currentPosition) {
         ImageView iv = customView.findViewById(R.id.tab_common_iv);
         TextView tv = customView.findViewById(R.id.tab_common_tv);
+        LogUtils.showLog("setCustomContent=" + currentPosition);
         iv.setImageResource(tabIconList.get(currentPosition));
         tv.setText(titleList.get(currentPosition));
     }

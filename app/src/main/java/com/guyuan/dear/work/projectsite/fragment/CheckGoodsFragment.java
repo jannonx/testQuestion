@@ -13,30 +13,23 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseFileUploadActivity;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.base.api.UploadBean;
-import com.guyuan.dear.base.bean.SimpleTabBean;
-import com.guyuan.dear.base.fragment.BaseListSearchFragment;
-import com.guyuan.dear.databinding.FragmentFocusProjectSiteBinding;
-import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.databinding.FragmentWorkCheckGoodImgBinding;
-import com.guyuan.dear.focus.projectsite.adapter.CheckContentAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
-import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
-import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
-import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkCheckGoodsActivity;
-import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.adapter.CheckGoodsAdapter;
+import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostCustomerAcceptanceInfo;
 import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +37,6 @@ import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
-import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @description: 我的工作--工程现场--清点货物
@@ -112,13 +104,8 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
         viewModel.getCommitCheckGoodInfoEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer data) {
-                ToastUtils.showLong(getContext(), "提交成功");
-                if (detailData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING) {
-                    viewModel.getCheckGoodDetailData(detailData.getId());
-                } else {
-                    getActivity().finish();
-                }
-
+                getActivity().finish();
+                EventBus.getDefault().post(new EventInstallDebugRefresh());
             }
         });
         binding.tvActivateBtn.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +124,7 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
                     LogUtils.showLog("upLoadPicAndVideo=" + bean.getUrl());
                     imageUrlList.add(bean.getUrl());
                 }
+                postData.setCheckUrl(imageUrlList);
                 String str = GsonUtil.objectToString(postData);
                 RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
                         "charset=utf-8"), str);
@@ -159,15 +147,7 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
             @Override
             public void onCommitCheckGoodsInfo(PostCheckInfo data) {
                 postData = data;
-                if (data.getCheckUrl().isEmpty()) {
-                    String str = GsonUtil.objectToString(data);
-                    RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
-                            "charset=utf-8"), str);
-                    viewModel.postCheckGoodInfo(requestBody);
-                } else {
-                    activity.checkPhotoAndFileUpLoad(data.getCheckUrl());
-                }
-
+                activity.checkPhotoAndFileUpLoad(photoList);
             }
 
             @Override
@@ -205,9 +185,9 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
         binding.tvProjectStatus.setTextColor(getActivity().getResources().getColor(statusTextColor, null));
 
 
-        binding.tvCompanyName.setText(data.getCusName());
+        binding.tvCompanyName.setText(data.getCustomerName());
         binding.tvTime.setText(data.getCreateTime());
-        binding.tvCompanyLocation.setText(data.getDestination());
+        binding.tvCompanyLocation.setText(data.getAcceptAddress());
 
         List<CheckGoodsBean> checkGoodsListData = data.getCheckTransportProjectListVO();
         binding.tvTotalGoods.setText("共计货物：" + (checkGoodsListData != null ? checkGoodsListData.size() : 0) + "件");
@@ -231,9 +211,11 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> photoList) {
-        photoList.addAll(photoList);
-        customerDialog.setPhotoList(photoList);
+    public void onPhotoSelected(ArrayList<String> dataList) {
+        photoList.clear();
+        photoList.addAll(dataList);
+        LogUtils.showLog("setPhotoList=" + photoList.size());
+        customerDialog.setPhotoList(dataList);
     }
 
     @Override

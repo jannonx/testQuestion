@@ -40,7 +40,7 @@ public class WorkAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBindin
 
     @Override
     protected List<String> getTitles() {
-        String[] titles = getResources().getStringArray(R.array.focus_after_sale_title);
+        String[] titles = getResources().getStringArray(R.array.work_after_sale_title);
         return Arrays.asList(titles);
     }
 

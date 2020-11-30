@@ -46,7 +46,10 @@
         <item>验收合格</item>
         <item>验收不合格</item>
     </array>
-
+    <array name="work_after_sale_title">
+        <item>故障排查</item>
+        <item>客户验收</item>
+    </array>
     <array name="work_customer_title">
         <item>全部客户</item>
         <item>我的跟进</item>

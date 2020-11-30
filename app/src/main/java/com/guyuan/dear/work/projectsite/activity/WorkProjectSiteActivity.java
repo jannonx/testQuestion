@@ -8,16 +8,10 @@ import androidx.fragment.app.Fragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
-import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
-import com.guyuan.dear.focus.projectsite.fragment.ProjectReportClassifyFragment;
-import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
-import com.guyuan.dear.work.projectsite.fragment.CheckGoodsFragment;
-import com.guyuan.dear.work.projectsite.fragment.CheckSafetyFragment;
-import com.guyuan.dear.work.projectsite.fragment.CustomerAcceptanceFragment;
-import com.guyuan.dear.work.projectsite.fragment.SiteExplorationFragment;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.work.projectsite.fragment.WorkCheckGoodsListFragment;
+import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
+import com.guyuan.dear.work.projectsite.fragment.WorkCheckSafeListFragment;
 import com.guyuan.dear.work.projectsite.fragment.WorkProjectReportListFragment;
 
 import java.util.ArrayList;

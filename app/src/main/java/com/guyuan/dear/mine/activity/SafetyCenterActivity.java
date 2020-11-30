@@ -36,8 +36,8 @@ public class SafetyCenterActivity extends BaseToolbarActivity<ActivityWithToolba
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         binding.toolbarContainer.titleTv.setText(title);
         SafetyCenterFragment mFragment = SafetyCenterFragment.newInstance();
-//        ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
-//                ContractProgressDetailFragment.TAG);
+        ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
+                SafetyCenterFragment.TAG);
     }
 
     @Override

@@ -2,24 +2,31 @@ package com.guyuan.dear.analyse.operate.fragment;
 
 import android.os.Bundle;
 import android.view.View;
-
+import androidx.lifecycle.Observer;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
+import com.guyuan.dear.analyse.operate.bean.OperateOverViewBean;
 import com.guyuan.dear.analyse.operate.data.OperateViewModel;
+import com.guyuan.dear.databinding.FragmentAnalyseOperateBinding;
 import com.guyuan.dear.databinding.FragmentFocusProjectSiteBinding;
 import com.guyuan.dear.focus.projectsite.activity.ProjectReportClassifyActivity;
 import com.guyuan.dear.focus.projectsite.bean.ProjectOverViewBean;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
+import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.LogUtils;
+import com.jzxiang.pickerview.TimePickerDialog;
+import com.jzxiang.pickerview.data.Type;
+import com.jzxiang.pickerview.listener.OnDateSetListener;
+
+import java.util.Date;
 
 /**
  * @description: 我的关注--工程现场
- * @author: Jannonx
+ * @author: 许建宁
  * @since: 2020/11/17 11:54
  * @company: 固远（深圳）信息技术有限公司
  */
-public class OperateFragment extends BaseDataBindingFragment<FragmentFocusProjectSiteBinding, OperateViewModel>
-        implements View.OnClickListener {
+public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOperateBinding, OperateViewModel> {
 
     public static final String TAG = OperateFragment.class.getSimpleName();
 
@@ -39,35 +46,45 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentFocusProjec
     @Override
     protected void initialization() {
 
-        LogUtils.showLog("initialization");
-        binding.clSiteExploration.setOnClickListener(this);
-        binding.clGoodsCheck.setOnClickListener(this);
-        binding.clSafeCheck.setOnClickListener(this);
-        binding.clInstallationDebug.setOnClickListener(this);
-        binding.clCustomerAcceptance.setOnClickListener(this);
+        viewModel.getOperateOverViewData("2020-10-10");
+        viewModel.getOverViewEvent().observe(getActivity(), new Observer<OperateOverViewBean>() {
+            @Override
 
-//        viewModel.getProjectSiteOverViewData();
-//        viewModel.getProjectSiteOverViewEvent().observe(getActivity(), new Observer<ProjectOverViewBean>() {
-//            @Override
-//
-//            public void onChanged(ProjectOverViewBean data) {
-//                setData(data);
-//            }
-//        });
+            public void onChanged(OperateOverViewBean data) {
+                setData(data);
+            }
+        });
     }
 
-
+    private void selectStartDate() {
+//        AlertDialogUtils.pickTime(getFragmentManager(), "请选择起始日期", dates[0].getTime(),
+//                Type.YEAR_MONTH_DAY, new OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(TimePickerDialog timePickerView, long millSeconds) {
+//                        if (dates[1].getTime() <= new Date(millSeconds).getTime()) {
+//                            showToastTip("起始日期不能晚于起始日期！");
+//                        } else {
+//                            dates[0] = new Date(millSeconds);
+//                            String yearMonthDay = calenderUtils.getDateByDate(millSeconds);
+//                            dataArr[0] = yearMonthDay;
+//                            mTvSelectStartTime.setText(yearMonthDay);
+//                            viewModel.getProduceOverView(getRequestBody());
+//                        }
+//                    }
+//                });
+    }
     /**
      * 设置数据
      *
      * @param data
      */
-    private void setData(ProjectOverViewBean data) {
-        binding.tvSiteExploration.setText(data.getProspectNumber());
-        binding.tvSafeCheck.setText(data.getSafetyNumber());
-        binding.tvGoodsCheck.setText(data.getGoodsNumber());
-        binding.tvInstallationDebug.setText(data.getInstallNumber());
-        binding.tvCustomerAcceptance.setText(data.getCusNumber());
+    private void setData(OperateOverViewBean data) {
+        binding.tvSum.setText(data.getTotalSales());
+        binding.tvSumPercent.setText(data.getLastTotalSales());
+        binding.tvActual.setText(data.getTotalCollection());
+        binding.tvActualPercent.setText(data.getLastTotalCollection());
+        binding.tvTotal.setText(data.getTotalCost());
+        binding.tvTotalPercent.setText(data.getLastTotalCost());
     }
 
     @Override
@@ -75,32 +92,4 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentFocusProjec
         return 0;
     }
 
-    @Override
-    public void onClick(View v) {
-        LogUtils.showLog("onClick");
-        switch (v.getId()) {
-            //现场勘查报告
-            case R.id.cl_site_exploration:
-                ProjectReportClassifyActivity.start(getContext(), ProjectReportType.TYPE_SITE_EXPLORATION);
-                break;
-            //货物清点报告
-            case R.id.cl_goods_check:
-                ProjectReportClassifyActivity.start(getContext(), ProjectReportType.TYPE_CHECK_GOODS);
-                break;
-            //安全排查报告
-            case R.id.cl_safe_check:
-                ProjectReportClassifyActivity.start(getContext(), ProjectReportType.TYPE_CHECK_SAFE);
-
-                break;
-            //安装调试报告
-            case R.id.cl_installation_debug:
-                ProjectReportClassifyActivity.start(getContext(), ProjectReportType.TYPE_INSTALLATION_DEBUG);
-                break;
-            //客户验收报告
-            case R.id.cl_customer_acceptance:
-                ProjectReportClassifyActivity.start(getContext(), ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE);
-                break;
-            default:
-        }
-    }
 }

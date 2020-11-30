@@ -1,19 +1,11 @@
 package com.guyuan.dear.analyse.operate.data;
 
 
-import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.analyse.operate.api.OperateApiService;
-import com.guyuan.dear.base.api.UploadBean;
-import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
-import com.guyuan.dear.focus.aftersale.bean.AfterSaleStatusBean;
-
-import java.util.List;
-import java.util.Map;
+import com.guyuan.dear.analyse.operate.bean.OperateOverViewBean;
 
 import io.reactivex.Observable;
-import okhttp3.RequestBody;
-import retrofit2.http.PartMap;
 
 /**
  * @description:
@@ -28,27 +20,11 @@ public class OperateRepository {
         this.apiService = focusAfterSaleApiService;
     }
 
-    Observable<ResultBean<List<UploadBean>>> uploadPic(@PartMap Map<String, RequestBody> map) {
-        return apiService.uploadPic(map);
+
+
+    Observable<ResultBean<OperateOverViewBean>> getOperateOverViewData(String time) {
+        return apiService.getOperateOverViewData(time);
     }
 
-    Observable<ResultBean<RefreshBean<AfterSaleBean>>> getAfterSaleList(RequestBody body) {
-        return apiService.getAfterSaleList(body);
-    }
 
-    Observable<ResultBean<AfterSaleBean>> getAfterSaleDetail(long id) {
-        return apiService.getAfterSaleDetail(id);
-    }
-
-    Observable<ResultBean<List<AfterSaleStatusBean>>> getAfterSaleStatusList(long id, int type) {
-        return apiService.getAfterSaleStatusList(id, type);
-    }
-
-    Observable<ResultBean<Integer>> postAnswerInfo(RequestBody body) {
-        return apiService.postAnswerInfo(body);
-    }
-
-    Observable<ResultBean<Integer>> postAcceptInfo(int status) {
-        return apiService.postAcceptInfo(status);
-    }
 }

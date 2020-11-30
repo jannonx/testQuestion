@@ -253,6 +253,7 @@ public class SiteExploreBean implements Serializable {
             case TYPE_CUSTOMER_ACCEPTANCE:
                 return getCustomerAcceptanceSatisfyType().isJudgingCondition();
             case TYPE_CHECK_GOODS:
+                return getCheckGoodsSatisfyType().isJudgingCondition();
             default:
                 return true;
         }

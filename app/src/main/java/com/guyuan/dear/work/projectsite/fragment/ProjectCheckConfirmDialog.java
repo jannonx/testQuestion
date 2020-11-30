@@ -14,6 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RadioGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.StyleRes;
+import androidx.appcompat.widget.AppCompatRadioButton;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.guyuan.dear.R;
@@ -21,7 +27,6 @@ import com.guyuan.dear.databinding.DialogWorkProjectCheckBinding;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
-import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.utils.LogUtils;
@@ -29,12 +34,6 @@ import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostCustomerAcceptanceInfo;
 import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.StyleRes;
-import androidx.appcompat.widget.AppCompatRadioButton;
-import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -216,6 +215,7 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
     }
 
     public void setPhotoList(ArrayList<String> photoList) {
+        LogUtils.showLog("setPhotoList="+photoList.size());
         imageDataList.clear();
         imageDataList.addAll(photoList);
         imageAdapter.refreshData();

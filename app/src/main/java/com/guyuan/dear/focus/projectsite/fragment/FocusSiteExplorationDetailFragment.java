@@ -453,6 +453,9 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvCompanyName.setText(detailProjectData.getCustomerName());
         binding.tvTime.setText(detailProjectData.getCheckTime());
         binding.tvCompanyLocation.setText(detailProjectData.getAcceptAddress());
+
+        binding.tvActivateBtn.setText("反馈问题");
+        binding.tvActivateBtn.setVisibility(ProjectModuleType.TYPE_FOCUS == detailProjectData.getModuleType() ? View.GONE : View.VISIBLE);
     }
 
     /**
