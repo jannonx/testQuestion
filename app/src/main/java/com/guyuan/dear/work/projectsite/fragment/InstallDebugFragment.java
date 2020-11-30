@@ -98,7 +98,6 @@ public class InstallDebugFragment extends BaseDataBindingFragment<FragmentWorkIn
         });
 
         viewModel.getInstallDebugDetailData(detailData.getId());
-
         viewModel.getInstallDebugDetailEvent().observe(getActivity(), new Observer<SiteExploreBean>() {
             @Override
             public void onChanged(SiteExploreBean data) {

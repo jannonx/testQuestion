@@ -3,6 +3,7 @@ package com.guyuan.dear.analyse.operate.api;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.analyse.operate.bean.OperateAnalyseBean;
 import com.guyuan.dear.analyse.operate.bean.OperateOverViewBean;
+import com.guyuan.dear.analyse.operate.bean.OperateStatisticsBean;
 import com.guyuan.dear.base.api.BaseApiService;
 
 import java.util.List;
@@ -28,22 +29,14 @@ public interface OperateApiService extends BaseApiService {
     @GET("base/operational/findOverview")
     Observable<ResultBean<OperateOverViewBean>> getOperateOverViewData(@Query("time") String time);
 
-    /**
-     * 查询项目成本详情
+  /**
+     * 首页
      *
      * @return
      */
-    @GET("base/operational/findCostDetails")
-    Observable<ResultBean<OperateAnalyseBean>> getOperateDetailData();
+    @GET("base/operational/findRevenueStatistics")
+    Observable<ResultBean<OperateStatisticsBean>> getOperateStatistics(@Query("time") String time);
 
-
-    /**
-     * 查询成本列表
-     *
-     * @return
-     */
-    @GET("base/operational/findCost")
-    Observable<ResultBean<List<OperateAnalyseBean>>> getCostList();
 
     /**
      * 查询回款列表
@@ -51,7 +44,23 @@ public interface OperateApiService extends BaseApiService {
      * @return
      */
     @GET("base/operational/findPayment")
-    Observable<ResultBean<List<OperateAnalyseBean>>> getPaymentList();
+    Observable<ResultBean<List<OperateAnalyseBean>>> getPaymentList(@Query("time") String time);
+
+    /**
+     * 查询成本列表
+     *
+     * @return
+     */
+    @GET("base/operational/findCost")
+    Observable<ResultBean<List<OperateAnalyseBean>>> getCostList(@Query("time") String time);
+
+    /**
+     * 查询项目成本详情
+     *
+     * @return
+     */
+    @GET("base/operational/findCostDetails")
+    Observable<ResultBean<List<OperateAnalyseBean>>> getOperateDetailData(@Query("project") long project);
 
 
 } 

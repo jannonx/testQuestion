@@ -54,6 +54,16 @@ public class OperateAnalyseBean implements Serializable {
      */
     private int installationCost;
 
+    private OperateType operateType;
+
+    public OperateType getOperateType() {
+        return operateType;
+    }
+
+    public void setOperateType(OperateType operateType) {
+        this.operateType = operateType;
+    }
+
     public long getId() {
         return id;
     }
@@ -70,8 +80,8 @@ public class OperateAnalyseBean implements Serializable {
         this.cusName = cusName;
     }
 
-    public int getTotalCost() {
-        return totalCost;
+    public String getTotalCost() {
+        return String.valueOf(totalCost);
     }
 
     public void setTotalCost(int totalCost) {

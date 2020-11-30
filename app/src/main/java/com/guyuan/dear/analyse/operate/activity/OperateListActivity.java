@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.guyuan.dear.R;
+import com.guyuan.dear.analyse.operate.bean.OperateOverViewBean;
 import com.guyuan.dear.analyse.operate.data.OperateViewModel;
 import com.guyuan.dear.analyse.operate.fragment.OperateListFragment;
 import com.guyuan.dear.utils.ActivityUtils;
@@ -23,18 +24,18 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class OperateListActivity extends BaseToolbarActivity<ActivityWithToolbarBinding, OperateViewModel> {
 
-    public static void start(Context context, String title) {
+    public static void start(Context context, OperateOverViewBean viewBean) {
         Intent intent = new Intent(context, OperateListActivity.class);
-        intent.putExtra(ConstantValue.KEY_TITLE, title);
+        intent.putExtra(ConstantValue.KEY_TITLE, viewBean);
         context.startActivity(intent);
     }
 
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-        String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
-        binding.toolbarContainer.titleTv.setText(title);
-        OperateListFragment mFragment = OperateListFragment.newInstance();
+        OperateOverViewBean overViewBean = (OperateOverViewBean) getIntent().getSerializableExtra(ConstantValue.KEY_TITLE);
+        binding.toolbarContainer.titleTv.setText(overViewBean.getOperateType().getDes());
+        OperateListFragment mFragment = OperateListFragment.newInstance(overViewBean);
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
                 OperateListFragment.TAG);
     }

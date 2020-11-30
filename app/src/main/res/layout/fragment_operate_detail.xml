@@ -101,6 +101,6 @@
             android:id="@+id/base_recycleView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/color_green_D4FFF1" />
+            tools:background="@color/color_green_D4FFF1" />
     </LinearLayout>
 </layout>

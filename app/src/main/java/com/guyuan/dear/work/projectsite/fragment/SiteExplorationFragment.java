@@ -135,7 +135,6 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
                 viewModel.getCheckSafeDetailData(detailProjectData.getId());
                 break;
 
-
             default:
         }
     }

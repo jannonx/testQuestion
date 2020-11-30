@@ -85,7 +85,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
             }
         });
         getDataListByClassify(true);
-        receiveDataLisByClassify();
+
     }
 
 
@@ -179,41 +179,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
 
     }
 
-    /**
-     * 接收回调数据
-     */
-    private void receiveDataLisByClassify() {
-        viewModel.getSiteExploreListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
-            @Override
-            public void onChanged(RefreshBean<SiteExploreBean> data) {
-                dealDataByAddReportType(data.getContent(),ProjectReportType.TYPE_SITE_EXPLORATION);
-            }
-        });
-        viewModel.getCheckSafeListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
-            @Override
-            public void onChanged(RefreshBean<SiteExploreBean> data) {
-                dealDataByAddReportType(data.getContent(),ProjectReportType.TYPE_CHECK_SAFE);
-            }
-        });
-        viewModel.getCheckGoodListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
-            @Override
-            public void onChanged(RefreshBean<SiteExploreBean> data) {
-                dealDataByAddReportType(data.getContent(),ProjectReportType.TYPE_CHECK_GOODS);
-            }
-        });
-        viewModel.getInstallDebugListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
-            @Override
-            public void onChanged(RefreshBean<SiteExploreBean> data) {
-                dealDataByAddReportType(data.getContent(),ProjectReportType.TYPE_INSTALLATION_DEBUG);
-            }
-        });
-        viewModel.getCustomerAcceptanceListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
-            @Override
-            public void onChanged(RefreshBean<SiteExploreBean> data) {
-                dealDataByAddReportType(data.getContent(),ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE);
-            }
-        });
-    }
+
 
 
     /**
@@ -221,7 +187,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
      *
      * @param dataList 数据
      */
-    private void dealDataByAddReportType(List<SiteExploreBean> dataList,ProjectReportType reportType) {
+    public void dealDataByAddReportType(List<SiteExploreBean> dataList,ProjectReportType reportType) {
         List<SiteExploreBean> tempList = new ArrayList<>();
         for (SiteExploreBean bean : dataList) {
             bean.setProjectReportType(reportType);

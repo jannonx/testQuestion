@@ -20,18 +20,39 @@ public class OperateOverViewBean implements Serializable {
      * lastTotalCost : 0%
      */
 
-    private int totalSales;
-    private int totalCollection;
-    private int totalCost;
+    private long totalSales;
+    private long totalCollection;
+    private long totalCost;
     private String lastTotalSales;
     private String lastTotalCollection;
     private String lastTotalCost;
+    private OperateType operateType;
+    /**
+     * 搜索时间
+     */
+    private String searchTime;
+
+    public String getSearchTime() {
+        return searchTime;
+    }
+
+    public void setSearchTime(String searchTime) {
+        this.searchTime = searchTime;
+    }
+
+    public OperateType getOperateType() {
+        return operateType;
+    }
+
+    public void setOperateType(OperateType operateType) {
+        this.operateType = operateType;
+    }
 
     public String getTotalSales() {
         return String.valueOf(totalSales);
     }
 
-    public void setTotalSales(int totalSales) {
+    public void setTotalSales(long totalSales) {
         this.totalSales = totalSales;
     }
 
@@ -39,7 +60,7 @@ public class OperateOverViewBean implements Serializable {
         return String.valueOf(totalCollection);
     }
 
-    public void setTotalCollection(int totalCollection) {
+    public void setTotalCollection(long totalCollection) {
         this.totalCollection = totalCollection;
     }
 
@@ -47,7 +68,7 @@ public class OperateOverViewBean implements Serializable {
         return String.valueOf(totalCost);
     }
 
-    public void setTotalCost(int totalCost) {
+    public void setTotalCost(long totalCost) {
         this.totalCost = totalCost;
     }
 
