@@ -114,7 +114,6 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
         produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         isFooterBtnShow = arguments.getBoolean(ConstantValue.KEY_BOOLEAN, false);
         LogUtils.showLog("listData=" + (produceBean == null));
-        initViewPager();
         initData();
     }
 
@@ -185,6 +184,8 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
 
 
     private void setProduceData(FocusProduceBean data) {
+        produceBean = data;
+        initViewPager();
         //暂停状态
         isProducePause = ProductStatusType.TYPE_PRODUCE_EXCEPTION == data.getStatusType();
         //生产状态
