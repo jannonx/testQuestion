@@ -64,7 +64,8 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
     private int currentTotalPageIndex = 1;
 
     /**
-     * @param statusType {@link ContractStatusListFragment#STATUS_TYPE_ON_PAUSE} {@link ContractStatusListFragment#STATUS_TYPE_RESTART}
+     * @param statusType {@link ContractStatusListFragment#STATUS_TYPE_ON_PAUSE}
+     * {@link ContractStatusListFragment#STATUS_TYPE_RESTART}
      * @return
      */
     public static ContractStatusListFragment getInstance(int statusType) {
@@ -253,7 +254,6 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
         getViewModel().getTotalContractList().observe(getViewLifecycleOwner(), new Observer<List<ContractBean.ContentBean>>() {
             @Override
             public void onChanged(List<ContractBean.ContentBean> baseContractExcptBeans) {
-//                adapter.getListData().addAll(baseContractExcptBeans);
                 adapter.notifyDataSetChanged();
             }
         });
