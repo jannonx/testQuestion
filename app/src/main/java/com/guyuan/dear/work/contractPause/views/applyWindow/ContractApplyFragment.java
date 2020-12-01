@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.httplibrary.bean.BasePageResultBean;
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
@@ -20,6 +22,10 @@ import com.guyuan.dear.net.resultBeans.NetServerParam;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
+import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeActivity;
+import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeViewModel;
+import com.guyuan.dear.work.contractRestart.view.home.ContractRestartHomeActivity;
+import com.guyuan.dear.work.contractRestart.view.home.ContractRestartHomeViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,6 +146,17 @@ public class ContractApplyFragment extends BaseMvvmFragment<FragmentPauseContrac
         public void onGetResult(Integer result) {
             hideLoading();
             showToastTip("提交成功。");
+            //1,重置UI
+            getViewModel().resetAllViews();
+            //2，更新申请列表
+            FragmentActivity activity = getActivity();
+            if(activity instanceof ContractPauseHomeActivity){
+                ContractPauseHomeViewModel viewModel = ((ContractPauseHomeActivity) activity).getViewModel();
+                viewModel.refreshMyPauseApplyList.postValue(true);
+            }else if(activity instanceof ContractRestartHomeActivity){
+                ContractRestartHomeViewModel viewModel = ((ContractRestartHomeActivity) activity).getViewModel();
+                viewModel.refreshMyRestartApplyList.postValue(true);
+            }
         }
 
         @Override
