@@ -9,7 +9,6 @@ import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentTransportMessageBinding;
 import com.guyuan.dear.dialog.TipDialogFragment;
-import com.guyuan.dear.focus.transport.adapter.TransportMessageAdapter;
 import com.guyuan.dear.focus.transport.data.TransportViewModel;
 import com.guyuan.dear.utils.CommonUtils;
 

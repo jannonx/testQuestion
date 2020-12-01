@@ -1,6 +1,7 @@
 package com.guyuan.dear.work.contractPause.views.home;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import android.content.Context;
 import android.content.Intent;
@@ -52,6 +53,15 @@ public class ContractPauseHomeActivity extends BaseTabActivity<ActivityBaseTabBi
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+
+        getViewModel().refreshMyPauseApplyList.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+                    vpBase.setCurrentItem(1,true);
+                }
+            }
+        });
     }
 
     @Override

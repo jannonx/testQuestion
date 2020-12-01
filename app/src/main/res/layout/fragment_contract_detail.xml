@@ -78,11 +78,13 @@
             </TableRow>
         </TableLayout>
 
+        <!--服务器接口没功能，暂时隐藏-->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40"
             android:gravity="center_vertical"
-            android:background="#F5F7FA">
+            android:background="#F5F7FA"
+            android:visibility="gone">
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

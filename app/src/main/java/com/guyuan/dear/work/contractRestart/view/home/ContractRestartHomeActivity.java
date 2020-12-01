@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
@@ -49,6 +50,14 @@ public class ContractRestartHomeActivity extends BaseTabActivity<ActivityBaseTab
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+        getViewModel().refreshMyRestartApplyList.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+                    vpBase.setCurrentItem(1,true);
+                }
+            }
+        });
 
     }
 

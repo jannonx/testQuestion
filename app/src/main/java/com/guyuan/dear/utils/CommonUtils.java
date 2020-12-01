@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
 import com.example.mvvmlibrary.util.LogUtils;
+import com.example.mvvmlibrary.util.MediaFileUtils;
 import com.google.gson.Gson;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.dialog.TipDialogFragment;
@@ -195,6 +196,20 @@ public class CommonUtils {
                 intent.setData(data);
                 activity.startActivity(intent);
             }
-        }).show(activity.getSupportFragmentManager(),TipDialogFragment.TAG);
+        }).show(activity.getSupportFragmentManager(), TipDialogFragment.TAG);
+    }
+
+    //判断路径文件是否为图片和视频
+    public static boolean isPictureOrVideo(String url) {
+
+        if (MediaFileUtils.isImageFileType(url)) {
+            return true;
+        }
+
+        if (MediaFileUtils.isVideoFileType(url)) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -9,6 +9,7 @@ import com.guyuan.dear.focus.contract.bean.contractPrgLog.Vote;
 import com.guyuan.dear.focus.qc.adapters.QcVerifyLogsAdapter;
 import com.guyuan.dear.focus.qc.beans.verfifyLog.GenericQcLogBean;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,6 +34,7 @@ public class QcReportDetailBindingAdapter {
         if (data == null) {
             return;
         }
+        Collections.reverse(data);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
         QcVerifyLogsAdapter adapter = new QcVerifyLogsAdapter(data, view.getContext());
         view.setLayoutManager(layoutManager);

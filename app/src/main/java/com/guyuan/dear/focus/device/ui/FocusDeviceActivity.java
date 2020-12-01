@@ -95,6 +95,13 @@ public class FocusDeviceActivity extends BaseTabActivity<ActivityBaseTabBinding,
                     profileFragment.setTab(factoryBean);
                 }
             });
+
+            viewModel.getFactoryRealTimeMLD().observe(this, new Observer<FactoryRealTimeBean>() {
+                @Override
+                public void onChanged(FactoryRealTimeBean factoryRealTimeBean) {
+                    profileFragment.setListData(factoryRealTimeBean.getWorkshops());
+                }
+            });
         }
     }
 

@@ -98,7 +98,6 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="9:00"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintBaseline_toBaselineOf="@id/fragment_clock_in_anchor_view_1"
@@ -120,14 +119,14 @@
                         android:layout_width="@dimen/dp_16"
                         android:layout_height="16dp"
                         android:layout_marginRight="@dimen/dp_8"
+                        android:visibility="gone"
                         app:showIsPunched="@{fragment_clock_in_vm.isPunchStartWork}"
                         app:srcCompat="@drawable/ic_svg_checked_blue_2c87ff" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="xxxx时间已经打卡"
-                        app:showMyPunchedDescription="@{fragment_clock_in_vm.myClockInTime}" />
+                        app:showMyClockInDescription="@{fragment_clock_in_vm.myClockInTime}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
 
@@ -160,7 +159,6 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="9:00"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintBaseline_toBaselineOf="@id/fragment_clock_in_anchor_view_3"
@@ -179,6 +177,7 @@
                     app:layout_constraintTop_toBottomOf="@id/fragment_clock_in_anchor_view_3">
 
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:visibility="gone"
                         android:layout_width="@dimen/dp_16"
                         android:layout_height="16dp"
                         android:layout_marginRight="@dimen/dp_8"
@@ -188,8 +187,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="xxxx时间已经打卡"
-                        app:showMyPunchedDescription="@{fragment_clock_in_vm.myPunchOffTime}" />
+                        app:showMyCheckOutDescription="@{fragment_clock_in_vm.myPunchOffTime}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
 
@@ -213,7 +211,7 @@
                 android:id="@+id/fragment_clock_in_central_blue_sphere_tv_hint_clock_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="上班打卡"
+                android:text="正在定位..."
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_16"
                 android:textStyle="bold"
@@ -248,7 +246,7 @@
                 android:layout_marginTop="@dimen/dp_16"
                 android:layout_marginBottom="@dimen/dp_12"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+                android:gravity="center">
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="16dp"
                     android:layout_height="16dp"
@@ -257,11 +255,9 @@
                     app:srcCompat="@drawable/ic_svg_check_green_78c06e_24dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_8"
-                    android:text="已进入考勤范围：xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
                     android:textColor="#999999"
                     android:textSize="@dimen/sp_12"
                     app:isInClockInArea="@{fragment_clock_in_vm.isInClockInArea}"

@@ -29,7 +29,6 @@ public class FullScreenShowActivity extends BaseNoToolbarActivity<ActivityImagev
 
     private static final String URL = "url";
     private static final String POSITION = "position";
-    private List<String> urlList;
     private List<Fragment> fragments;
     private int startPosition;
 
@@ -52,11 +51,8 @@ public class FullScreenShowActivity extends BaseNoToolbarActivity<ActivityImagev
         fragments = new ArrayList<>();
         List<String> urls = getIntent().getStringArrayListExtra(URL);
         startPosition = getIntent().getIntExtra(POSITION, 0);
-        if (urls != null&&urls.size()>0) {
-            urlList = urls;
-            binding.pageTv.setText(startPosition + 1 + "/" + urlList.size());
-
-            for (String url : urlList) {
+        if (urls != null && urls.size() > 0) {
+            for (String url : urls) {
                 if (MediaFileUtils.isImageFileType(url) || !url.contains(".")) {
                     FullScreenImageFragment imageFragment = FullScreenImageFragment.newInstance(url);
                     fragments.add(imageFragment);
@@ -65,7 +61,7 @@ public class FullScreenShowActivity extends BaseNoToolbarActivity<ActivityImagev
                     fragments.add(videoFragment);
                 }
             }
-
+            binding.pageTv.setText(startPosition + 1 + "/" + fragments.size());
 
             FullScreenFileAdapter fileAdapter = new FullScreenFileAdapter(getSupportFragmentManager(),
                     fragments, FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
@@ -84,7 +80,7 @@ public class FullScreenShowActivity extends BaseNoToolbarActivity<ActivityImagev
 
             @Override
             public void onPageSelected(int position) {
-                binding.pageTv.setText(position + 1 + "/" + urlList.size());
+                binding.pageTv.setText(position + 1 + "/" + fragments.size());
             }
 
             @Override

@@ -148,7 +148,7 @@ public class ProductQcViewModel extends BaseDearViewModel {
         });
     }
 
-    public void submitReport() {
+    public void submitReport(SubmitCallback callback) {
         SubmitQcReportBody body = new SubmitQcReportBody();
         BaseProjectBean projectBean = selectedProject.getValue();
         if(projectBean==null){
@@ -241,17 +241,24 @@ public class ProductQcViewModel extends BaseDearViewModel {
                 return;
             }
         }
-        repo.submitQcReport(body, new BaseNetCallback<Integer>() {
+        Disposable disposable = repo.submitQcReport(body, new BaseNetCallback<Integer>() {
             @Override
             protected void handleResult(Integer result) {
-                if(result>0){
+                if (result > 0) {
                     showToast("提交成功。");
                     resetAllViews();
-                }else {
+                    callback.onSubmit(true);
+                } else {
                     showToast("提交失败。");
+                    callback.onSubmit(false);
                 }
             }
         });
+        addSubscription(disposable);
+    }
+
+    public interface SubmitCallback{
+        void onSubmit(boolean success);
     }
 
     private void resetAllViews() {

@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.contract.repos;
 
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
+import com.guyuan.dear.focus.contract.bean.ContractBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
 import com.guyuan.dear.net.DearNetHelper;
 
@@ -16,11 +17,15 @@ import io.reactivex.disposables.Disposable;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class ContractStatusListRepo {
-    public Disposable getPauseContractList(int pageIndex, int pageSize, DearNetHelper.NetCallback<List<BaseContractExcptBean>> callback){
-        return DearNetHelper.getInstance().getPauseContractList(pageIndex,pageSize,callback);
+    public Disposable getPauseContractList(int pageIndex, int pageSize, DearNetHelper.NetCallback<List<BaseContractExcptBean>> callback) {
+        return DearNetHelper.getInstance().getPauseContractList(pageIndex, pageSize, callback);
     }
 
-    public Disposable getRestartedContractList(int pageIndex, int pageSize, DearNetHelper.NetCallback<List<RestartedContractBean>> callback){
-        return DearNetHelper.getInstance().getRestartedContractList(pageIndex,pageSize,callback);
+    public Disposable getRestartedContractList(int pageIndex, int pageSize, DearNetHelper.NetCallback<List<RestartedContractBean>> callback) {
+        return DearNetHelper.getInstance().getRestartedContractList(pageIndex, pageSize, callback);
+    }
+
+    public Disposable getExceptionOrTotalContractList(int type, int pageIndex, String searchContent, DearNetHelper.NetCallback<List<ContractBean.ContentBean>> callback) {
+        return DearNetHelper.getInstance().getExceptionOrTotalContractList(type, pageIndex, searchContent, callback);
     }
 }

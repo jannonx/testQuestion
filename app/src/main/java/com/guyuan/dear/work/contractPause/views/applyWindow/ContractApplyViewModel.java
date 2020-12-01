@@ -217,4 +217,26 @@ public class ContractApplyViewModel extends BaseViewModel {
         bean.setApplyType(applyType);
         return bean;
     }
+
+
+//    /**
+//     * 数据源
+//     */
+//    private MutableLiveData<String> clientName =new MutableLiveData<>();
+//    private MutableLiveData<String> contractNum = new MutableLiveData<>();
+//    private MutableLiveData<String> judgeCondition = new MutableLiveData<>();
+//    public MutableLiveData<String> description = new MutableLiveData<>();
+//    public MutableLiveData<ArrayList<StaffBean>> sendList = new MutableLiveData<>(new ArrayList<>());
+//    public MutableLiveData<ArrayList<StaffBean>> copyList = new MutableLiveData<>(new ArrayList<>());
+//    private int clientId;
+//    private int contractId;
+//    private String judgeConditionKey;
+    public void resetAllViews() {
+        clientName.postValue("");
+        contractNum.postValue("");
+        judgeCondition.postValue("");
+        description.postValue("");
+        sendList.postValue(new ArrayList<>());
+        copyList.postValue(new ArrayList<>());
+    }
 }

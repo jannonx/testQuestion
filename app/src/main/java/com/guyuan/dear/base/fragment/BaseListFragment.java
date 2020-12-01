@@ -143,12 +143,17 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
     }
 
     public void setListData(List<T> dataList) {
+        if (dataList == null) {
+            return;
+        }
+
         switch (currentType) {
             case REFRESH:
                 if (adapter != null) {
                     listData.clear();
                     listData.addAll(dataList);
                     adapter.refreshData();
+                    recycleView.setRefreshing();
                     recycleView.refreshComplete(PAGE_SIZE);
                 }
 //                LogUtils.showLog("REFRESH....dataList=" + dataList.size());

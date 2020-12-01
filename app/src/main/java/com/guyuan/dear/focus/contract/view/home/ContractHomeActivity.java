@@ -36,8 +36,10 @@ public class ContractHomeActivity extends BaseTabActivity<ActivityBaseTabBinding
         return new ArrayList<String>() {
             {
                 add("合同概况");
-                add("合同异常");
+                add("合同暂停");
                 add("合同重启");
+                add("合同异常");
+                add("合同详情");
             }
         };
     }
@@ -49,6 +51,8 @@ public class ContractHomeActivity extends BaseTabActivity<ActivityBaseTabBinding
                 add(ComContractsSumFragment.getInstance());
                 add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_ON_PAUSE));
                 add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_RESTART));
+                add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_EXCEPTION));
+                add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_TOTAL));
             }
         };
     }
@@ -57,12 +61,15 @@ public class ContractHomeActivity extends BaseTabActivity<ActivityBaseTabBinding
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+        vpBase.setOffscreenPageLimit(10);
 
     }
 
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.tab_common_icon_selector);
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
         tabDrawableList.add(R.drawable.tab_common_icon_selector);
         tabDrawableList.add(R.drawable.tab_common_icon_selector);

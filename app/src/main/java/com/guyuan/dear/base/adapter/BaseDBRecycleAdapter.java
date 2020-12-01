@@ -65,4 +65,12 @@ public abstract class BaseDBRecycleAdapter<T, VDB extends ViewDataBinding> exten
             this.binding = binding;
         }
     }
+
+    public List<T> getListData() {
+        return listData;
+    }
+
+    public void setListData(List<T> listData) {
+        this.listData = listData;
+    }
 }
