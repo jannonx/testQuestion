@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
@@ -52,7 +53,15 @@ public class QcHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, QcHo
 
     @Override
     protected void init() {
-
+        //当提交成功后，跳到我的申请列表，并刷新列表
+        getViewModel().refreshMyApplyList.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+                    vpBase.setCurrentItem(2,true);
+                }
+            }
+        });
 
     }
 
