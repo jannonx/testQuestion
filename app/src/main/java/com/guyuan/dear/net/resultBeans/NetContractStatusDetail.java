@@ -315,7 +315,7 @@ public class NetContractStatusDetail {
         private String equipmentName;
         private String equipmentModel;
         private String contractNum;
-        private int totalAmount;
+        private long totalAmount;
         private int qualityDeposit;
         private String receivingUnit;
         private String deliveryAddress;
@@ -382,11 +382,11 @@ public class NetContractStatusDetail {
             this.contractNum = contractNum;
         }
 
-        public int getTotalAmount() {
+        public long getTotalAmount() {
             return totalAmount;
         }
 
-        public void setTotalAmount(int totalAmount) {
+        public void setTotalAmount(long totalAmount) {
             this.totalAmount = totalAmount;
         }
 

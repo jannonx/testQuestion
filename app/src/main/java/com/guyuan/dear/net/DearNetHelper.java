@@ -142,11 +142,12 @@ public class DearNetHelper {
      * 根据客户id获取客户合同列表，列表信息为基本信息。
      *
      * @param id
+     * @param type 1.查已暂停的 2.查正常审批通过的
      * @param callback
      * @return
      */
-    public Disposable getBaseContractListByClientId(long id, NetCallback<List<NetBaseContractInfo>> callback) {
-        Observable<ResultBean<List<NetBaseContractInfo>>> observable = netApiService.getContractBaseInfosByClientId(id);
+    public Disposable getBaseContractListByClientId(long id, int type,NetCallback<List<NetBaseContractInfo>> callback) {
+        Observable<ResultBean<List<NetBaseContractInfo>>> observable = netApiService.getContractBaseInfosByClientId(id,type);
         return getDisposalAsync(observable, callback, null);
     }
 

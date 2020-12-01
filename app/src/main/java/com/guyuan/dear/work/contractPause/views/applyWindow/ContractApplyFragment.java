@@ -6,7 +6,6 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.httplibrary.bean.BasePageResultBean;
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
@@ -44,6 +43,7 @@ public class ContractApplyFragment extends BaseMvvmFragment<FragmentPauseContrac
 
     private static final int REQUEST_CODE_PICK_SEND_LIST = 123;
     private static final int REQUEST_CODE_PICK_COPY_LIST = 321;
+    private int type;
 
     /**
      * @param applyType 参考 {@link ContractApplyBean#APPLY_TYPE_RESUME} , {@link ContractApplyBean#APPLY_TYPE_PAUSE}
@@ -65,7 +65,7 @@ public class ContractApplyFragment extends BaseMvvmFragment<FragmentPauseContrac
     @Override
     protected void initData() {
         Bundle bundle = getArguments();
-        int type = bundle.getInt(ConstantValue.KEY_APPLY_TYPE, ContractApplyBean.APPLY_TYPE_PAUSE);
+        type = bundle.getInt(ConstantValue.KEY_APPLY_TYPE, ContractApplyBean.APPLY_TYPE_PAUSE);
         getViewModel().setApplyType(type);
     }
 
@@ -150,10 +150,10 @@ public class ContractApplyFragment extends BaseMvvmFragment<FragmentPauseContrac
             getViewModel().resetAllViews();
             //2，更新申请列表
             FragmentActivity activity = getActivity();
-            if(activity instanceof ContractPauseHomeActivity){
+            if (activity instanceof ContractPauseHomeActivity) {
                 ContractPauseHomeViewModel viewModel = ((ContractPauseHomeActivity) activity).getViewModel();
                 viewModel.refreshMyPauseApplyList.postValue(true);
-            }else if(activity instanceof ContractRestartHomeActivity){
+            } else if (activity instanceof ContractRestartHomeActivity) {
                 ContractRestartHomeViewModel viewModel = ((ContractRestartHomeActivity) activity).getViewModel();
                 viewModel.refreshMyRestartApplyList.postValue(true);
             }
@@ -218,8 +218,16 @@ public class ContractApplyFragment extends BaseMvvmFragment<FragmentPauseContrac
     }
 
     private void selectContract() {
+        int reqType;
+        //1.查已暂停的 2.查正常审批通过的
+        if (type == ContractApplyBean.APPLY_TYPE_PAUSE) {
+            reqType = 2;
+        } else {
+            reqType = 1;
+        }
         Disposable disposable = DearNetHelper.getInstance().getBaseContractListByClientId(
                 getViewModel().getClientId(),
+                reqType,
                 getContractListCallback
         );
         addDisposable(disposable);

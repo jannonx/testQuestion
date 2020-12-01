@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.base.fragment.BaseDearViewModel;
 import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 import com.guyuan.dear.focus.contract.bean.ContractBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
@@ -23,7 +24,7 @@ import io.reactivex.disposables.Disposable;
  * @since: 2020/10/27 12:02
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ContractStatusListViewModel extends BaseViewModel {
+public class ContractStatusListViewModel extends BaseDearViewModel {
     private ContractStatusListRepo repo = new ContractStatusListRepo();
     private MutableLiveData<List<BaseContractExcptBean>> pauseContractList = new MutableLiveData<>(new ArrayList<>());
     private MutableLiveData<List<RestartedContractBean>> restartContractList = new MutableLiveData<>(new ArrayList<>());
@@ -154,62 +155,36 @@ public class ContractStatusListViewModel extends BaseViewModel {
 
 
     public Disposable getExceptionContractList(int type, int pageIndex, String searchContent) {
-        return repo.getExceptionOrTotalContractList(type, pageIndex, searchContent, getExceptionContractCallBack);
+        return repo.getExceptionOrTotalContractList(type, pageIndex, searchContent, new BaseNetCallback<List<ContractBean.ContentBean>>() {
+            @Override
+            protected void handleResult(List<ContractBean.ContentBean> result) {
+                if (result.isEmpty()) {
+                    isAllExceptionListLoaded.setValue(true);
+                    ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
+                } else {
+                    exceptionContractList.getValue().addAll(result);
+                    exceptionContractList.postValue(exceptionContractList.getValue());
+                }
+            }
+        });
     }
 
-    private DearNetHelper.NetCallback<List<ContractBean.ContentBean>> getExceptionContractCallBack = new DearNetHelper.NetCallback<List<ContractBean.ContentBean>>() {
 
-        @Override
-        public void onStart(Disposable disposable) {
-        //    isShowLoading.setValue(true);
-        }
-
-        @Override
-        public void onGetResult(List<ContractBean.ContentBean> result) {
-            isShowLoading.setValue(false);
-            if (result.isEmpty()) {
-                isAllExceptionListLoaded.setValue(true);
-                ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
-            } else {
-                exceptionContractList.getValue().addAll(result);
-                exceptionContractList.postValue(exceptionContractList.getValue());
-            }
-        }
-
-        @Override
-        public void onError(Throwable error) {
-            isShowLoading.setValue(false);
-            ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
-        }
-    };
 
     public Disposable getTotalContractList(int type, int pageIndex, String searchContent) {
-        return repo.getExceptionOrTotalContractList(type, pageIndex, searchContent, getTotalContractCallBack);
+        return repo.getExceptionOrTotalContractList(type, pageIndex, searchContent, new BaseNetCallback<List<ContractBean.ContentBean>>() {
+            @Override
+            protected void handleResult(List<ContractBean.ContentBean> result) {
+                if (result.isEmpty()) {
+                    isAllTotalListLoaded.setValue(true);
+                    ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
+                } else {
+                    totalContractList.getValue().addAll(result);
+                    totalContractList.postValue(totalContractList.getValue());
+                }
+            }
+        });
     }
 
-    private DearNetHelper.NetCallback<List<ContractBean.ContentBean>> getTotalContractCallBack = new DearNetHelper.NetCallback<List<ContractBean.ContentBean>>() {
 
-        @Override
-        public void onStart(Disposable disposable) {
-        //    isShowLoading.setValue(true);
-        }
-
-        @Override
-        public void onGetResult(List<ContractBean.ContentBean> result) {
-            isShowLoading.setValue(false);
-            if (result.isEmpty()) {
-                isAllTotalListLoaded.setValue(true);
-                ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
-            } else {
-                totalContractList.getValue().addAll(result);
-                totalContractList.postValue(totalContractList.getValue());
-            }
-        }
-
-        @Override
-        public void onError(Throwable error) {
-            isShowLoading.setValue(false);
-            ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
-        }
-    };
 }

@@ -61,6 +61,7 @@ public class ContractHomeActivity extends BaseTabActivity<ActivityBaseTabBinding
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+        vpBase.setOffscreenPageLimit(10);
 
     }
 
