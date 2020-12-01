@@ -87,6 +87,9 @@ public class FocusPurchaseBindingAdapter {
         BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter(recordAdapter);
         rv.setLayoutManager(new LinearLayoutManager(DearApplication.getInstance()));
         rv.setAdapter(adapter);
+        rv.setPullRefreshEnabled(false);
+        rv.setLoadMoreEnabled(false);
+
     }
 
     @BindingAdapter("focusPurchaseResult")

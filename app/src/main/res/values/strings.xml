@@ -442,6 +442,8 @@
     <string name="product_name">产品名称：%s</string>
     <string name="product_code">产品代号：%s</string>
     <string name="number">数量：%d</string>
+    <string name="contract_code">合同编号：%s</string>
+    <string name="sales_person_name">销售人员：%s</string>
 
     <!--我的关注-售后-->
     <string name="focus_after_sale_project_name">项目名称：%s</string>

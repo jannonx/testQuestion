@@ -5,10 +5,12 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
+import com.guyuan.dear.focus.contract.bean.ContractBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
 import com.guyuan.dear.focus.contract.repos.ContractStatusListRepo;
 import com.guyuan.dear.net.DearNetHelper;
 import com.guyuan.dear.utils.ToastUtils;
+import com.sun.jna.platform.win32.Winspool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,13 +27,17 @@ public class ContractStatusListViewModel extends BaseViewModel {
     private ContractStatusListRepo repo = new ContractStatusListRepo();
     private MutableLiveData<List<BaseContractExcptBean>> pauseContractList = new MutableLiveData<>(new ArrayList<>());
     private MutableLiveData<List<RestartedContractBean>> restartContractList = new MutableLiveData<>(new ArrayList<>());
-    private int pauseListPageIndex =1;
+    private MutableLiveData<List<ContractBean.ContentBean>> exceptionContractList = new MutableLiveData<>(new ArrayList<>());
+    private MutableLiveData<List<ContractBean.ContentBean>> totalContractList = new MutableLiveData<>(new ArrayList<>());
+    private int pauseListPageIndex = 1;
     private MutableLiveData<Boolean> isAllPauseListLoaded = new MutableLiveData<>(false);
-    private int restartListPageIndex =1;
+    private int restartListPageIndex = 1;
+    private int exceptionListPageIndex = 1;
+    private int totalListPageIndex = 1;
     private MutableLiveData<Boolean> isAllRestartListLoaded = new MutableLiveData<>(false);
-    private static final int PAGE_SIZE=50;
-
-
+    private MutableLiveData<Boolean> isAllExceptionListLoaded = new MutableLiveData<>(false);
+    private MutableLiveData<Boolean> isAllTotalListLoaded = new MutableLiveData<>(false);
+    private static final int PAGE_SIZE = 50;
 
 
     public MutableLiveData<List<BaseContractExcptBean>> getPauseContractList() {
@@ -42,12 +48,29 @@ public class ContractStatusListViewModel extends BaseViewModel {
         return restartContractList;
     }
 
+
+    public MutableLiveData<List<ContractBean.ContentBean>> getExceptionContractList() {
+        return exceptionContractList;
+    }
+
+    public MutableLiveData<List<ContractBean.ContentBean>> getTotalContractList() {
+        return totalContractList;
+    }
+
     public MutableLiveData<Boolean> getIsAllPauseListLoaded() {
         return isAllPauseListLoaded;
     }
 
     public MutableLiveData<Boolean> getIsAllRestartListLoaded() {
         return isAllRestartListLoaded;
+    }
+
+    public MutableLiveData<Boolean> getIsAllExceptionListLoaded() {
+        return isAllExceptionListLoaded;
+    }
+
+    public MutableLiveData<Boolean> getIsAllTotalListLoaded() {
+        return isAllTotalListLoaded;
     }
 
     public Disposable getPauseContractsFromNet() {
@@ -82,10 +105,10 @@ public class ContractStatusListViewModel extends BaseViewModel {
         @Override
         public void onGetResult(List<BaseContractExcptBean> result) {
             isShowLoading.setValue(false);
-            if(result.isEmpty()){
+            if (result.isEmpty()) {
                 isAllPauseListLoaded.setValue(true);
-                ToastUtils.showShort(DearApplication.getInstance(),"已经全部加载完毕。");
-            }else {
+                ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
+            } else {
                 pauseContractList.getValue().addAll(result);
                 pauseContractList.postValue(pauseContractList.getValue());
             }
@@ -94,12 +117,12 @@ public class ContractStatusListViewModel extends BaseViewModel {
         @Override
         public void onError(Throwable error) {
             isShowLoading.setValue(false);
-            ToastUtils.showShort(DearApplication.getInstance(),error.getMessage());
+            ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
         }
     };
 
-    public Disposable getRestartedContractFromNet(){
-        return repo.getRestartedContractList(restartListPageIndex++,PAGE_SIZE,getRestartListCallback);
+    public Disposable getRestartedContractFromNet() {
+        return repo.getRestartedContractList(restartListPageIndex++, PAGE_SIZE, getRestartListCallback);
     }
 
     private DearNetHelper.NetCallback<List<RestartedContractBean>> getRestartListCallback
@@ -113,10 +136,10 @@ public class ContractStatusListViewModel extends BaseViewModel {
         @Override
         public void onGetResult(List<RestartedContractBean> result) {
             isShowLoading.setValue(false);
-            if(result.isEmpty()){
+            if (result.isEmpty()) {
                 isAllRestartListLoaded.setValue(true);
-                ToastUtils.showShort(DearApplication.getInstance(),"已经全部加载完毕。");
-            }else {
+                ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
+            } else {
                 restartContractList.getValue().addAll(result);
                 restartContractList.postValue(restartContractList.getValue());
             }
@@ -125,9 +148,68 @@ public class ContractStatusListViewModel extends BaseViewModel {
         @Override
         public void onError(Throwable error) {
             isShowLoading.setValue(false);
-            ToastUtils.showShort(DearApplication.getInstance(),error.getMessage());
+            ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
         }
     };
 
 
+    public Disposable getExceptionContractList(int type, int pageIndex, String searchContent) {
+        return repo.getExceptionOrTotalContractList(type, pageIndex, searchContent, getExceptionContractCallBack);
+    }
+
+    private DearNetHelper.NetCallback<List<ContractBean.ContentBean>> getExceptionContractCallBack = new DearNetHelper.NetCallback<List<ContractBean.ContentBean>>() {
+
+        @Override
+        public void onStart(Disposable disposable) {
+        //    isShowLoading.setValue(true);
+        }
+
+        @Override
+        public void onGetResult(List<ContractBean.ContentBean> result) {
+            isShowLoading.setValue(false);
+            if (result.isEmpty()) {
+                isAllExceptionListLoaded.setValue(true);
+                ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
+            } else {
+                exceptionContractList.getValue().addAll(result);
+                exceptionContractList.postValue(exceptionContractList.getValue());
+            }
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            isShowLoading.setValue(false);
+            ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
+        }
+    };
+
+    public Disposable getTotalContractList(int type, int pageIndex, String searchContent) {
+        return repo.getExceptionOrTotalContractList(type, pageIndex, searchContent, getTotalContractCallBack);
+    }
+
+    private DearNetHelper.NetCallback<List<ContractBean.ContentBean>> getTotalContractCallBack = new DearNetHelper.NetCallback<List<ContractBean.ContentBean>>() {
+
+        @Override
+        public void onStart(Disposable disposable) {
+        //    isShowLoading.setValue(true);
+        }
+
+        @Override
+        public void onGetResult(List<ContractBean.ContentBean> result) {
+            isShowLoading.setValue(false);
+            if (result.isEmpty()) {
+                isAllTotalListLoaded.setValue(true);
+                ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
+            } else {
+                totalContractList.getValue().addAll(result);
+                totalContractList.postValue(totalContractList.getValue());
+            }
+        }
+
+        @Override
+        public void onError(Throwable error) {
+            isShowLoading.setValue(false);
+            ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
+        }
+    };
 }

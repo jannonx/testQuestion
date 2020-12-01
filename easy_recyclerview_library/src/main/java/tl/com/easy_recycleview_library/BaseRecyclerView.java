@@ -741,6 +741,16 @@ public class BaseRecyclerView extends RecyclerView {
 
     }
 
+    //设置处于下拉刷新状态
+    public void setRefreshing() {
+        mRefreshing = true;
+    }
+
+    //设置处于上拉加载状态
+    public void setLoadingMore() {
+        mLoadMoreEnabled = true;
+    }
+
     /**
      * 计算当前是向上滑动还是向下滑动
      */

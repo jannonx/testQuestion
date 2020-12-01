@@ -6,11 +6,13 @@ import com.example.httplibrary.bean.ErrorResultBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.example.httplibrary.rx.SchedulersCompat;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.base.bean.ListRequestBody;
 import com.guyuan.dear.db.DearDbManager;
 import com.guyuan.dear.db.entities.StaffEntity;
 import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 import com.guyuan.dear.focus.contract.bean.ComContractsBean;
+import com.guyuan.dear.focus.contract.bean.ContractBean;
 import com.guyuan.dear.focus.contract.bean.ContractComment;
 import com.guyuan.dear.focus.contract.bean.ContractStatusFlowBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
@@ -28,6 +30,7 @@ import com.guyuan.dear.focus.qc.beans.verfifyLog.GenericQcLogBean;
 import com.guyuan.dear.net.api.DearNetApiService;
 import com.guyuan.dear.net.reqBean.ClockInRqBody;
 import com.guyuan.dear.net.reqBean.ContractApplyBody;
+import com.guyuan.dear.net.reqBean.ContractExceptionOrTotalBody;
 import com.guyuan.dear.net.reqBean.SearchRqBody;
 import com.guyuan.dear.net.reqBean.SubmitQcReportBody;
 import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
@@ -55,6 +58,8 @@ import com.guyuan.dear.net.resultBeans.NetStaffAttendStatus;
 import com.guyuan.dear.net.resultBeans.NetStaffBean;
 import com.guyuan.dear.net.resultBeans.NetVerifyFlowBean;
 import com.guyuan.dear.utils.CalenderUtils;
+import com.guyuan.dear.utils.CommonUtils;
+import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
@@ -70,6 +75,7 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.annotation.Nullable;
+
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -298,6 +304,31 @@ public class DearNetHelper {
                             result.add(bean);
                         }
                         return result;
+                    }
+                };
+
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
+
+    /**
+     * 获取合同异常列表或全部列表
+     */
+    public Disposable getExceptionOrTotalContractList(int type, int pageIndex, String searchContent, NetCallback<List<ContractBean.ContentBean>> callback) {
+        ContractExceptionOrTotalBody body = new ContractExceptionOrTotalBody();
+        ContractExceptionOrTotalBody.FiltersBean filtersBean = new ContractExceptionOrTotalBody.FiltersBean();
+        filtersBean.setType(type);
+        filtersBean.setName(searchContent);
+        body.setFilters(filtersBean);
+        body.setPageSize(ConstantValue.PAGE_SIZE);
+        body.setPageNum(pageIndex);
+        Observable<ResultBean<ContractBean>> observable =
+                netApiService.getExceptionOrTotalContractList(CommonUtils.getCommonRequestBody(body));
+        Mapper<ContractBean, List<ContractBean.ContentBean>> mapper =
+                new Mapper<ContractBean, List<ContractBean.ContentBean>>() {
+                    @Override
+                    public List<ContractBean.ContentBean> map(ContractBean src) {
+                        return src.getContent();
                     }
                 };
 
@@ -1089,10 +1120,11 @@ public class DearNetHelper {
 
     /**
      * 获取所有的id和当前出勤状况的映射表
+     *
      * @param callback
      * @return
      */
-    public Disposable getStaffIdAndAttendStatusMapping(NetCallback<List<NetIdAndStatusMapping>> callback){
+    public Disposable getStaffIdAndAttendStatusMapping(NetCallback<List<NetIdAndStatusMapping>> callback) {
         Observable<ResultBean<List<NetIdAndStatusMapping>>> observable = netApiService.getStaffIdAndAttendStatus();
         return getDisposalAsync(observable, callback, null);
     }

@@ -83,12 +83,6 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
                 }
             });
 
-            //todo
-            ViewDataBinding footerViewBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.footer_after_sale_question_describe,
-                    null, false);
-            TextView tv = footerViewBinding.getRoot().findViewById(R.id.tv_recorder);
-            tv.setText("erweoriwoerwerjewioherwhe");
-            adapter.addFooterView(footerViewBinding.getRoot());
         }
 
     }
