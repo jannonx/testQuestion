@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
@@ -16,7 +17,7 @@ import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectInstallAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
-import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
@@ -28,8 +29,10 @@ import com.guyuan.dear.work.projectsite.adapter.CheckGoodsAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import tl.com.easy_recycleview_library.BaseRecyclerView;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
@@ -115,36 +118,20 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
      * 添加列表FooterView,增加拖动范围
      */
     private void addContentFooterView() {
-//        footerBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.footer_explore_content, null, false);
         footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_explore_content, binding.baseRecycleView, false);
-
-//        adapter.addFooterView(footerBinding.getRoot());
 
         tvRemark = footerView.findViewById(R.id.tv_remark);
         tvStatus = footerView.findViewById(R.id.tv_status);
+        RelativeLayout videoPanel = footerView.findViewById(R.id.video_panel);
+        LinearLayoutCompat llContent = footerView.findViewById(R.id.llc_content);
+        LinearLayoutCompat llRemark = footerView.findViewById(R.id.ll_remark);
+        LinearLayoutCompat llDocument = footerView.findViewById(R.id.ll_document);
         BaseRecyclerView imageRecyclerView = footerView.findViewById(R.id.image_recycleView);
-//        ViewGroup.LayoutParams layoutParams1 = footerRoot.getLayoutParams();
-//        layoutParams1.height = FrameLayout.LayoutParams.WRAP_CONTENT;
-//        layoutParams1.width = FrameLayout.LayoutParams.MATCH_PARENT;
-//        footerRoot.setLayoutParams(layoutParams1);
 
-//        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) tvRemark.getLayoutParams();
-//        layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT;
-//        layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
-//        tvRemark.setLayoutParams(layoutParams);
-
-        tvRemark.setText("ha");
-
-        //test
-//        List<String> imageArr = new ArrayList<>();
         if (simpleData.getImgUrlList() != null) {
             imageDataList.clear();
             imageDataList.addAll(simpleData.getImgUrlList());
         }
-//        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
-//        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
-//        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
-
 
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
                 imageDataList, R.layout.item_explorate_image);
@@ -157,14 +144,12 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
 
 
         adapter.addFooterView(footerView);
-//        setTextViewLayParams(tvRemark);
-//        setTextViewLayParams(tvStatus);
 //        客户验收隐藏
-//        footerBinding.llDocument.setVisibility(ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == simpleData.getProjectReportType() ? View.GONE : View.VISIBLE);
-//        footerBinding.llRemark.setVisibility(ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == simpleData.getProjectReportType() ? View.GONE : View.VISIBLE);
+        llDocument.setVisibility(ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == simpleData.getProjectReportType() ? View.GONE : View.VISIBLE);
+        llRemark.setVisibility(ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == simpleData.getProjectReportType() ? View.GONE : View.VISIBLE);
 //        安装调试
-//        footerBinding.llcContent.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG == simpleData.getProjectReportType() ? View.GONE : View.VISIBLE);
-//        footerBinding.videoPanel.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG == simpleData.getProjectReportType() ? View.VISIBLE : View.GONE);
+        llContent.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG == simpleData.getProjectReportType() ? View.GONE : View.VISIBLE);
+        videoPanel.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG == simpleData.getProjectReportType() ? View.VISIBLE : View.GONE);
         switch (simpleData.getProjectReportType()) {
             case TYPE_SITE_EXPLORATION:
                 setSiteExplorationData(simpleData);
@@ -240,7 +225,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
             ///货物清点报告
             case TYPE_CHECK_GOODS:
                 CheckGoodsAdapter checkGoodsAdapter = new CheckGoodsAdapter(getContext(),
-                        checkGoodsContentList, R.layout.item_goods_list, ProjectModuleType.TYPE_FOCUS);
+                        checkGoodsContentList, R.layout.item_goods_list, FunctionModuleType.TYPE_FOCUS);
                 adapter = new BaseRecyclerViewAdapter(checkGoodsAdapter);
                 break;
 

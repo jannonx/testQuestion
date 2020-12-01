@@ -2,6 +2,7 @@ package com.guyuan.dear.analyse.operate.fragment;
 
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
@@ -88,18 +89,54 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
     }
 
     private void setStatisticsData(OperateStatisticsBean data) {
+        /**
+         *    "cost": 3450309,
+         *     "month": "2020-11"
+         */
         Resources resources = DearApplication.getInstance().getResources();
         List<Entry> payList = new ArrayList<>();
         List<Entry> costList = new ArrayList<>();
         List<OperateStatisticsBean.PaymentCollectionVOSBean> paymentCollectionVOS = data.getPaymentCollectionVOS();
-        for (int i = 0; i < paymentCollectionVOS.size(); i++) {
-            Entry passEntry = new Entry(i, paymentCollectionVOS.get(i).getPaymentCollection());
+        for (int i = 0; i < 12; i++) {
+            Entry passEntry = new Entry();
+            passEntry.setX(i);
+            for (int ij = 0; ij < paymentCollectionVOS.size(); ij++) {
+                OperateStatisticsBean.PaymentCollectionVOSBean collectionBean = paymentCollectionVOS.get(ij);
+                if (!TextUtils.isEmpty(collectionBean.getMonth())) {
+                    String[] split = collectionBean.getMonth().split("-");
+                    String monthStr = null;
+                    if (split[1].startsWith("0")) {
+                        monthStr = split[1].substring(1);
+                    } else {
+                        monthStr = split[1];
+                    }
+                    if ((i+1) == Integer.parseInt(monthStr)) {
+                        passEntry.setY(collectionBean.getPaymentCollection());
+                    }
+                }
+            }
             payList.add(passEntry);
         }
         List<OperateStatisticsBean.CostVOSBean> costVOS = data.getCostVOS();
-        for (int i = 0; i < costVOS.size(); i++) {
-            Entry passEntry = new Entry(i, costVOS.get(i).getCost());
-            costList.add(passEntry);
+        for (int i = 0; i < 12; i++) {
+            Entry costEntry = new Entry();
+            costEntry.setX(i);
+            for (int ij = 0; ij < costVOS.size(); ij++) {
+                OperateStatisticsBean.CostVOSBean costBean = costVOS.get(ij);
+                if (!TextUtils.isEmpty(costBean.getMonth())) {
+                    String[] split = costBean.getMonth().split("-");
+                    String monthStr = null;
+                    if (split[1].startsWith("0")) {
+                        monthStr = split[1].substring(1);
+                    } else {
+                        monthStr = split[1];
+                    }
+                    if ((i+1) == Integer.parseInt(monthStr)) {
+                        costEntry.setY(costBean.getCost());
+                    }
+                }
+            }
+            costList.add(costEntry);
         }
         //准备通过和不通过的数据集合
         List<List<Entry>> dataList = new ArrayList<>();

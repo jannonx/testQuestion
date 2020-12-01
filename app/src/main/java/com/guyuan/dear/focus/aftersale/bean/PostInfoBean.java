@@ -1,6 +1,8 @@
 package com.guyuan.dear.focus.aftersale.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @description:
@@ -17,6 +19,7 @@ public class PostInfoBean implements Serializable {
      * 图片（部分业务有图片上传,没有则不用传）
      */
     private String imgUrl;
+    private List<String> imgUrlList=new ArrayList<>();
     /**
      * 标题对应的标识key（对应不同业务状态的枚举标识值）
      */
@@ -37,7 +40,30 @@ public class PostInfoBean implements Serializable {
      * 业务类型
      */
     private int type;
+    /**
+     * 1.验收中 2.验收成功 3.验收失败
+     */
+    private int status;
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public List<String> getImgUrlList() {
+        return imgUrlList;
+    }
+
+    public void setImgUrlList(List<String> dataList) {
+        imgUrlList.clear();
+        this.imgUrlList.addAll(dataList);
+    }
+    public void clearImgUrlList() {
+        imgUrlList.clear();
+    }
     public String getIdea() {
         return idea;
     }

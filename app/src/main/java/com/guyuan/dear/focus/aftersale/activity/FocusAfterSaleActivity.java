@@ -48,7 +48,7 @@ public class FocusAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBindi
     protected List<Fragment> getFragments() {
         List<Fragment> fragmentList = new ArrayList<>();
         qualifiedFragment = FocusAfterSaleFragment.newInstance(SaleQualifiedType.TYPE_QUALIFIED);
-        unqualifiedFragment = FocusAfterSaleFragment.newInstance(SaleQualifiedType.TYPE_QUALIFIED);
+        unqualifiedFragment = FocusAfterSaleFragment.newInstance(SaleQualifiedType.TYPE_UNQUALIFIED);
         fragmentList.add(qualifiedFragment);
         fragmentList.add(unqualifiedFragment);
         return fragmentList;
@@ -64,8 +64,8 @@ public class FocusAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBindi
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_focus_after_sale_right_selector);
-        tabDrawableList.add(R.drawable.tab_focus_after_sale_wrong_selector);
+        tabDrawableList.add(R.drawable.tab_work_after_sale_check_selector);
+        tabDrawableList.add(R.drawable.tab_work_after_sale_customer_selector);
         return tabDrawableList;
     }
 }

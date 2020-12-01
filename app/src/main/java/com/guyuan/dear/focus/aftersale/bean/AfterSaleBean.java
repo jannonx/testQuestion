@@ -1,6 +1,7 @@
 package com.guyuan.dear.focus.aftersale.bean;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.utils.LogUtils;
 
 import java.io.Serializable;
@@ -111,9 +112,23 @@ public class AfterSaleBean implements Serializable {
      */
     private List<AfterSaleQuestionBean> saleIssueSubList;
 
+    /**
+     * 功能模块
+     */
+
+    private FunctionModuleType moduleType;
+
+
+    public FunctionModuleType getModuleType() {
+        return moduleType;
+    }
+
+    public void setModuleType(FunctionModuleType moduleType) {
+        this.moduleType = moduleType;
+    }
 
     public SaleSectionType getSectionType() {
-        LogUtils.showLog("getSectionType="+(sectionType==null?"null":sectionType.getDes()));
+        LogUtils.showLog("getSectionType=" + (sectionType == null ? "null" : sectionType.getDes()));
         return sectionType;
     }
 

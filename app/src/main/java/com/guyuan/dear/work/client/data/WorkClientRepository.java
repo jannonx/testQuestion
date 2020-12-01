@@ -41,12 +41,12 @@ public class WorkClientRepository {
         return apiService.getFollowCommentList(body);
     }
 
-    Observable<ResultBean<Integer>> postClientFollowUp(long customerId, String content) {
-        return apiService.postClientFollowUp(customerId, content);
+    Observable<ResultBean<Integer>> postClientFollowUp(RequestBody body) {
+        return apiService.postClientFollowUp(body);
     }
 
-    Observable<ResultBean<Integer>> postUserFollowUp(long followId, String content) {
-        return apiService.postUserFollowUp(followId, content);
+    Observable<ResultBean<Integer>> postUserFollowUp(RequestBody body) {
+        return apiService.postUserFollowUp(body);
     }
 
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -20,11 +21,14 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.DialogAfterSalePostInfoBinding;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
+import com.guyuan.dear.focus.aftersale.bean.PostInfoBean;
 import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
+import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
@@ -77,7 +81,7 @@ public class AfterSalePostInfoDialog extends BottomSheetDialog implements View.O
 
     private void initView() {
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-                imageDataList, R.layout.item_explorate_image);
+                imageDataList, R.layout.item_explorate_image, true);
         imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
 
         viewBinding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -86,6 +90,7 @@ public class AfterSalePostInfoDialog extends BottomSheetDialog implements View.O
         viewBinding.imageRecycleView.setLoadMoreEnabled(false);
         viewBinding.tvOk.setOnClickListener(this);
         viewBinding.tvCancel.setOnClickListener(this);
+        viewBinding.ivPickImage.setOnClickListener(this);
 
         viewBinding.tvTitle.setText(SaleSectionType.TYPE_SECTION_CHECK == afterSaleBean.getSectionType()
                 ? "反馈问题" : "备注");
@@ -101,9 +106,12 @@ public class AfterSalePostInfoDialog extends BottomSheetDialog implements View.O
                 dismiss();
                 break;
             case R.id.tv_ok:
-
+                commitInstallDebugInfo();
                 break;
             case R.id.iv_pick_image:
+                if (clickListener != null) {
+                    clickListener.onPickImageClick();
+                }
                 break;
             default:
 
@@ -119,14 +127,23 @@ public class AfterSalePostInfoDialog extends BottomSheetDialog implements View.O
 
 
     private void commitInstallDebugInfo() {
-//        PostInstallationDebugInfo body = new PostInstallationDebugInfo();
-//        body.setId(siteExploreBean.getId());
-//        body.setRemark(viewBinding.etSearch.getText().toString());
-//        body.setImgUrl(imageDataList);
-//        if (clickListener != null) {
-//            clickListener.onCommitInstallationDebugInfo(body);
-//            dismiss();
-//        }
+        String string = viewBinding.etSearch.getText().toString();
+        if (TextUtils.isEmpty(string)) {
+            ToastUtils.showLong(getContext(), "请输入文字");
+            return;
+        }
+        if (imageDataList.isEmpty()) {
+            ToastUtils.showLong(getContext(), "请选择图片");
+            return;
+        }
+        PostInfoBean body = new PostInfoBean();
+        body.setPsAuditId(afterSaleBean.getId());
+        body.setImgUrlList(imageDataList);
+        body.setIdea(string);
+        if (clickListener != null) {
+            clickListener.onCommitCheckGoodsInfo(body);
+            dismiss();
+        }
 
     }
 
@@ -168,14 +185,7 @@ public class AfterSalePostInfoDialog extends BottomSheetDialog implements View.O
             }
         });
 
-        viewBinding.ivPickImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (clickListener != null) {
-                    clickListener.onPickImageClick();
-                }
-            }
-        });
+
     }
 
     //就是返回页面高度
@@ -189,7 +199,7 @@ public class AfterSalePostInfoDialog extends BottomSheetDialog implements View.O
 
         void onPickImageClick();
 
-        void onCommitCheckGoodsInfo(PostCheckInfo data);
+        void onCommitCheckGoodsInfo(PostInfoBean data);
 
 
     }

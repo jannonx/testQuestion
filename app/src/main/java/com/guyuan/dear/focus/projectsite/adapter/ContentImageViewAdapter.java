@@ -15,6 +15,8 @@ import com.guyuan.dear.utils.StringUtils;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
+
 import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
@@ -25,15 +27,22 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
  */
 public class ContentImageViewAdapter extends BaseRecyclerAdapter<String> {
 
+    private boolean isDeleteIconVisible = false;
 
     public ContentImageViewAdapter(Context context, @NonNull List<String> listData, int layoutID) {
         super(context, listData, layoutID);
+    }
+
+    public ContentImageViewAdapter(Context context, @NonNull List<String> listData, int layoutID, boolean iconVisible) {
+        super(context, listData, layoutID);
+        isDeleteIconVisible = iconVisible;
     }
 
     @Override
     protected void bindDataToView(BaseRecyclerViewHolder holder, String item,
                                   int position) {
         ImageView imageView = holder.getView(R.id.image_view);
+        AppCompatImageView ivDelete = holder.getView(R.id.iv_delete);
         GlideUtils.getInstance().loadUrlImage(imageView, item);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +50,16 @@ public class ContentImageViewAdapter extends BaseRecyclerAdapter<String> {
                 FullScreenShowActivity.start(context, listData, position);
             }
         });
+
+        ivDelete.setVisibility(isDeleteIconVisible ? View.VISIBLE : View.GONE);
+        ivDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listData.remove(position);
+                notifyDataSetChanged();
+            }
+        });
+
 
     }
 }

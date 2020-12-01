@@ -167,11 +167,15 @@
 
             <TextView
                 android:id="@+id/tv_operator"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="小江"
+                tools:text="小江小江小江小江小江小江小江"
+                android:layout_marginEnd="@dimen/dp_24"
                 android:textColor="@color/color_blue_1890ff"
                 android:textSize="@dimen/sp_12"
+                android:singleLine="true"
+                android:ellipsize="end"
+                app:layout_constraintEnd_toStartOf="@+id/tv_time"
                 app:layout_constraintBottom_toBottomOf="@+id/label_operator"
                 app:layout_constraintStart_toEndOf="@+id/label_operator"
                 app:layout_constraintTop_toTopOf="@+id/label_operator" />

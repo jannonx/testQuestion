@@ -72,13 +72,13 @@ public class WorkProjectSiteActivity extends BaseTabActivity<ActivityBaseTabBind
         viewModel.getCheckSafeListEvent().observe(this, new Observer<RefreshBean<SiteExploreBean>>() {
             @Override
             public void onChanged(RefreshBean<SiteExploreBean> data) {
-                goodsChecksFragment.dealDataByAddReportType(data.getContent(),ProjectReportType.TYPE_CHECK_SAFE);
+                checkSafeFragment.dealDataByAddReportType(data.getContent(),ProjectReportType.TYPE_CHECK_SAFE);
             }
         });
         viewModel.getCheckGoodListEvent().observe(this, new Observer<RefreshBean<SiteExploreBean>>() {
             @Override
             public void onChanged(RefreshBean<SiteExploreBean> data) {
-                checkSafeFragment.dealDataByAddReportType(data.getContent(),ProjectReportType.TYPE_CHECK_GOODS);
+                goodsChecksFragment.dealDataByAddReportType(data.getContent(),ProjectReportType.TYPE_CHECK_GOODS);
             }
         });
         viewModel.getInstallDebugListEvent().observe(this, new Observer<RefreshBean<SiteExploreBean>>() {

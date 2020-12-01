@@ -66,7 +66,7 @@ public class AfterSaleStatusFragment extends BaseListFragment<AfterSaleStatusBea
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-//        viewModel.getAfterSaleStatusList(afterSaleBean.getId(), afterSaleBean.getSectionType().getCode());
+        viewModel.getAfterSaleStatusList(afterSaleBean.getId(), afterSaleBean.getSectionType().getCode());
         viewModel.getAfterSaleStatusEvent().observe(getActivity(), new Observer<List<AfterSaleStatusBean>>() {
             @Override
             public void onChanged(List<AfterSaleStatusBean> data) {
@@ -77,7 +77,7 @@ public class AfterSaleStatusFragment extends BaseListFragment<AfterSaleStatusBea
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onRefreshMessage(EventAnswerListRefresh event) {
-//        viewModel.getProjectSiteStatusList(detailProjectData.getId(), detailProjectData.getProjectReportType().getCode());
+        viewModel.getAfterSaleStatusList(afterSaleBean.getId(), afterSaleBean.getSectionType().getCode());
     }
 
     @Override

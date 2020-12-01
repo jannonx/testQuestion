@@ -66,7 +66,7 @@ public class ProjectReportAdapter extends BaseRecyclerAdapter<SiteExploreBean> {
             case TYPE_CHECK_GOODS:
                 holder.setText(R.id.tv_engineering_name, item.getSendGoodsNumber());
                 labelEngineeringCode.setText("项目名称：");
-                holder.setText(R.id.label_engineering_code, item.getProjectName());
+                holder.setText(R.id.tv_engineering_code, item.getProjectName());
                 labelEngineeringNumber.setText("项目编号：");
                 holder.setText(R.id.tv_engineering_number, item.getProjectNumber());
                 labelDestination.setText(CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING == item.getCheckGoodsSatisfyType()
@@ -77,7 +77,14 @@ public class ProjectReportAdapter extends BaseRecyclerAdapter<SiteExploreBean> {
                 break;
             ///安全排查报告
             case TYPE_CHECK_SAFE:
+                holder.setText(R.id.tv_engineering_name, item.getProjectName());
+                labelEngineeringCode.setText("项目编号：");
+                holder.setText(R.id.tv_engineering_code, item.getProjectNum());
                 labelEngineeringNumber.setText("安全人员：");
+                holder.setText(R.id.tv_engineering_number, item.getName());
+                labelDestination.setText("目的地：");
+                holder.setText(R.id.tv_operator,item.getDestination());
+                holder.setText(R.id.tv_time, item.getCreateTime());
                 break;
             ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:

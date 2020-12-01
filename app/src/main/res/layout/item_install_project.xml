@@ -22,12 +22,16 @@
 
             <TextView
                 android:id="@+id/tv_project_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:text="分馏塔冷箱制作安装"
                 android:textColor="@color/color_black_333333"
                 android:textSize="@dimen/sp_16"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/tv_time"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_12"
-                android:text="勘查人员："
+                android:text="施工："
                 android:textColor="@color/color_grey_999999"
                 android:textSize="@dimen/sp_14"
                 app:layout_constraintStart_toStartOf="@+id/tv_project_name"
@@ -55,12 +59,16 @@
 
             <TextView
                 android:id="@+id/tv_check_person"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="小刘"
+                android:layout_marginEnd="@dimen/dp_24"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="深圳固远深圳固远深圳固远深圳固远深圳固远"
                 android:textColor="@color/color_grey_999999"
                 android:textSize="@dimen/sp_14"
                 app:layout_constraintBottom_toBottomOf="@+id/label_check_person"
+                app:layout_constraintEnd_toStartOf="@+id/tv_project_status"
                 app:layout_constraintStart_toEndOf="@+id/label_check_person"
                 app:layout_constraintTop_toTopOf="@+id/label_check_person" />
 

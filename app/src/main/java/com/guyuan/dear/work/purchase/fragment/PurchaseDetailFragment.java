@@ -6,7 +6,6 @@ import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusAssessOverviewBinding;
 import com.guyuan.dear.databinding.FragmentPurchaseDetailBinding;
-import com.guyuan.dear.work.projectsite.fragment.CustomerAcceptanceFragment;
 import com.guyuan.dear.work.purchase.data.WorkPurchaseViewModel;
 
 /**

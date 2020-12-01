@@ -12,6 +12,7 @@ import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.customizeview.flowlayout.FlowLayout;
 import com.guyuan.dear.customizeview.flowlayout.TagAdapter;
 import com.guyuan.dear.customizeview.flowlayout.TagFlowLayout;
+import com.guyuan.dear.customizeview.fullScreenShowFile.FullScreenShowActivity;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleStatusBean;
 import com.guyuan.dear.utils.GlideUtils;
 
@@ -49,10 +50,16 @@ public class AfterSaleStatusAdapter extends BaseRecyclerAdapter<AfterSaleStatusB
         TagFlowLayout view = holder.getView(R.id.tfl_picture);
         view.setAdapter(new TagAdapter(item.getImgUrlList()) {
             @Override
-            public View getView(FlowLayout parent, int position, Object o) {
+            public View getView(FlowLayout parent, int imagePosition, Object o) {
                 View rootView = LayoutInflater.from(context).inflate(R.layout.item_after_sale_image, parent, false);
                 ImageView imageView = rootView.findViewById(R.id.image_view);
-                GlideUtils.getInstance().loadUrlImage(imageView, item.getImgUrlList().get(position));
+                GlideUtils.getInstance().loadUrlImage(imageView, item.getImgUrlList().get(imagePosition));
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FullScreenShowActivity.start(context, item.getImgUrlList(), imagePosition);
+                    }
+                });
                 return rootView;
             }
         });

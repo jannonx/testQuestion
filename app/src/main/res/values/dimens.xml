@@ -54,6 +54,8 @@
     <dimen name="dp_212p5">212.5dp</dimen>
     <dimen name="dp_14p5">14.5dp</dimen>
     <dimen name="dp_33">33dp</dimen>
+    <dimen name="dp_230">230dp</dimen>
+    <dimen name="dp_240">240dp</dimen>
     <dimen name="dp_8p5">8.5dp</dimen>
     <dimen name="dp_19">19dp</dimen>
     <dimen name="dp_16">16dp</dimen>

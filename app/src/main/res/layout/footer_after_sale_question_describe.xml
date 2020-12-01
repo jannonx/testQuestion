@@ -17,29 +17,32 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <View
-                android:id="@+id/view_3"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_8"
-                android:layout_marginTop="@dimen/dp_16p5"
-                android:background="@color/color_grey_EDEDED" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="@dimen/dp_12"
-                android:paddingEnd="@dimen/dp_12">
+                android:paddingBottom="@dimen/dp_8">
+
+                <View
+                    android:id="@+id/view_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_8"
+                    android:layout_marginTop="@dimen/dp_16p5"
+                    android:background="@color/color_grey_EDEDED"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/label_recorder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_12"
                     android:layout_marginTop="@dimen/dp_12"
                     android:text="记录人员"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/view_3" />
 
                 <TextView
                     android:id="@+id/tv_recorder"
@@ -79,14 +82,15 @@
 
                 <TextView
                     android:id="@+id/tv_remark"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_12"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_remark"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tv_recorder"
                     app:layout_constraintTop_toTopOf="@+id/label_remark"
-                    tools:text="后去客户验收反馈的意见" />
+                    tools:text="后去客户验收反馈的意见后去客户验收反馈的意见后去客户验收反馈的意见后去客户验收反馈的意见" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -95,9 +99,9 @@
                 android:id="@+id/ll_document"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_16"
                 android:background="@color/color_white_f5f7fa"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dp_16">
 
                 <TextView
                     android:id="@+id/label_document"

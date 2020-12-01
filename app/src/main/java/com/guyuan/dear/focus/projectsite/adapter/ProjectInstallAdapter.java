@@ -29,7 +29,7 @@ public class ProjectInstallAdapter extends BaseRecyclerAdapter<InstallDebugBean>
     protected void bindDataToView(BaseRecyclerViewHolder holder, InstallDebugBean item,
                                   int position) {
         holder.setText(R.id.tv_project_name, item.getProjectName());
-        holder.setText(R.id.tv_check_person, item.getPersonLiableName());
+        holder.setText(R.id.tv_check_person, item.getCustomerName());
         holder.setText(R.id.tv_time, item.getDebugStartTime());
         //状态属性设置
         holder.setText(R.id.tv_project_status, item.getStatusText());
