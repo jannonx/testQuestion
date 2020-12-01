@@ -478,6 +478,8 @@ public class DearNetHelper {
         filters.put("listType", "3");
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        //        filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        filters.put("type","1");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -517,6 +519,8 @@ public class DearNetHelper {
         filters.put("listType", "2");
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        //        filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        filters.put("type","1");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -556,7 +560,8 @@ public class DearNetHelper {
         filters.put("listType", "2");
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
-        //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+//        filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        filters.put("type","2");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -596,6 +601,8 @@ public class DearNetHelper {
         filters.put("listType", "2");
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        filters.put("type","0");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -637,6 +644,8 @@ public class DearNetHelper {
         filters.put("listType", "1");
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        filters.put("type","0");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -678,6 +687,8 @@ public class DearNetHelper {
         filters.put("listType", "3");
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        filters.put("type","2");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -717,6 +728,8 @@ public class DearNetHelper {
         filters.put("listType", "4");
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        filters.put("type","0");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
