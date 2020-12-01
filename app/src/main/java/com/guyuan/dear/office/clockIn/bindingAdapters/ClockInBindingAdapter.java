@@ -39,13 +39,23 @@ public class ClockInBindingAdapter {
         }
     }
 
-    @BindingAdapter("showMyPunchedDescription")
-    public static void showMyPunchedDescription(AppCompatTextView view, long myPunchTime) {
+    @BindingAdapter("showMyClockInDescription")
+    public static void showMyClockInDescription(AppCompatTextView view, long myPunchTime) {
         if (myPunchTime <= 0) {
             view.setText("未打卡");
         } else {
             String hourAndMinute = CalenderUtils.getInstance().toChineseHourAndMinute(myPunchTime);
             view.setText(hourAndMinute + "已打卡");
+        }
+    }
+
+    @BindingAdapter("showMyCheckOutDescription")
+    public static void showMyCheckOutDescription(AppCompatTextView view, long myPunchTime) {
+        if (myPunchTime <= 0) {
+            view.setText("未打卡");
+        } else {
+            String hourAndMinute = CalenderUtils.getInstance().toChineseHourAndMinute(myPunchTime);
+            view.setText(hourAndMinute + "已签退");
         }
     }
 
