@@ -11,12 +11,15 @@ import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentContractStatusListBinding;
+import com.guyuan.dear.focus.contract.adapter.ContractExceptionOrTotalAdapter;
 import com.guyuan.dear.focus.contract.adapter.ContractPauseListAdapter;
 import com.guyuan.dear.focus.contract.adapter.ContractRestartedListAdapter;
 import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
+import com.guyuan.dear.focus.contract.bean.ContractBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
 import com.guyuan.dear.focus.contract.view.contractApplyDetail.ContractApplyDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
+import com.sun.jna.platform.win32.Winspool;
 
 import java.util.List;
 
@@ -44,6 +47,20 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
      */
     public static final int STATUS_TYPE_RESTART = 2;
 
+    /**
+     * 异常类型
+     */
+
+    public static final int STATUS_TYPE_EXCEPTION = 6;
+
+    /**
+     * 全部类型
+     */
+
+    public static final int STATUS_TYPE_TOTAL = 0;
+
+    private int currentExceptionPageIndex = 1;
+    private int currentTotalPageIndex = 1;
 
     /**
      * @param statusType {@link ContractStatusListFragment#STATUS_TYPE_ON_PAUSE} {@link ContractStatusListFragment#STATUS_TYPE_RESTART}
@@ -77,6 +94,12 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
                 break;
             case STATUS_TYPE_RESTART:
                 initRestartList();
+                break;
+            case STATUS_TYPE_TOTAL:
+                initTotal();
+                break;
+            case STATUS_TYPE_EXCEPTION:
+                initException();
                 break;
             default:
                 break;
@@ -158,6 +181,84 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
         });
         getViewModel().getPauseContractsFromNet();
     }
+
+    private void initException() {
+        BaseRecyclerView view = getViewDataBinding().fragmentContractStatusListRecyclerView;
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        ContractExceptionOrTotalAdapter adapter = new ContractExceptionOrTotalAdapter(getViewModel().
+                getExceptionContractList().getValue(), R.layout.item_contract_exception_or_total);
+        BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
+        view.setLayoutManager(layoutManager);
+        view.setAdapter(wrapper);
+        view.setLoadMoreEnabled(true);
+        view.setPullRefreshEnabled(false);
+        wrapper.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                ContractBean.ContentBean bean = getViewModel().getExceptionContractList().getValue().get(i);
+                ContractApplyDetailActivity.start(getActivity(), "合同异常详情", bean.getId());
+            }
+        });
+        view.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                getViewModel().getExceptionContractList(STATUS_TYPE_EXCEPTION, ++currentExceptionPageIndex, "");
+            }
+        });
+        getViewModel().getIsAllExceptionListLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                view.setLoadMoreEnabled(!aBoolean);
+            }
+        });
+        getViewModel().getExceptionContractList().observe(getViewLifecycleOwner(), new Observer<List<ContractBean.ContentBean>>() {
+            @Override
+            public void onChanged(List<ContractBean.ContentBean> baseContractExcptBeans) {
+                wrapper.notifyDataSetChanged();
+            }
+        });
+        getViewModel().getExceptionContractList(STATUS_TYPE_EXCEPTION, currentExceptionPageIndex, "");
+    }
+
+    private void initTotal() {
+        BaseRecyclerView view = getViewDataBinding().fragmentContractStatusListRecyclerView;
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
+        ContractExceptionOrTotalAdapter adapter = new ContractExceptionOrTotalAdapter(getViewModel().getTotalContractList()
+                .getValue(), R.layout.item_contract_exception_or_total);
+        BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
+        view.setLayoutManager(layoutManager);
+        view.setAdapter(wrapper);
+        view.setLoadMoreEnabled(true);
+        view.setPullRefreshEnabled(false);
+        wrapper.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                ContractBean.ContentBean bean = getViewModel().getTotalContractList().getValue().get(i);
+                ContractApplyDetailActivity.start(getActivity(), "合同详情", bean.getId());
+            }
+        });
+        view.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                getViewModel().getTotalContractList(STATUS_TYPE_TOTAL, ++currentTotalPageIndex, "");
+            }
+        });
+        getViewModel().getIsAllTotalListLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                view.setLoadMoreEnabled(!aBoolean);
+            }
+        });
+        getViewModel().getTotalContractList().observe(getViewLifecycleOwner(), new Observer<List<ContractBean.ContentBean>>() {
+            @Override
+            public void onChanged(List<ContractBean.ContentBean> baseContractExcptBeans) {
+                adapter.getListData().addAll(baseContractExcptBeans);
+                adapter.notifyDataSetChanged();
+            }
+        });
+        getViewModel().getTotalContractList(STATUS_TYPE_TOTAL, currentTotalPageIndex, "");
+    }
+
 
     @Override
     protected void initListeners() {

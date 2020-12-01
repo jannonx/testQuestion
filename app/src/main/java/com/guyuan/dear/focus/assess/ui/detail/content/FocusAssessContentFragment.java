@@ -21,7 +21,9 @@ import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
 import com.guyuan.dear.focus.assess.data.bean.AssessDetailBean;
 import com.guyuan.dear.focus.assess.data.bean.AuditContentBean;
 import com.guyuan.dear.focus.assess.data.bean.AuditFormResultBean;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,10 +110,20 @@ public class FocusAssessContentFragment extends BaseDataBindingFragment<Fragment
     private List<PicBean> getImgList(List<AuditFormResultBean> resultList) {
         List<PicBean> picBeanList = new ArrayList<>();
         for (AuditFormResultBean resultBean : resultList) {
-            PicBean picBean = new PicBean();
-            picBean.setName(resultBean.getAuditUserName());
-            picBean.setUrl(resultBean.getAuditImgUrl());
-            picBeanList.add(picBean);
+            String url = resultBean.getAuditImgUrl();
+            if (!TextUtils.isEmpty(url)) {
+                List<String> subUrlList = StringUtils.splitPhotoUrl(url);
+                if (subUrlList != null && subUrlList.size() > 0) {
+                    for (String imgUrl : subUrlList) {
+                        if (CommonUtils.isPictureOrVideo(imgUrl)) {   //暂时只显示图片和视频
+                            PicBean picBean = new PicBean();
+                            picBean.setName(resultBean.getAuditUserName());
+                            picBean.setUrl(imgUrl);
+                            picBeanList.add(picBean);
+                        }
+                    }
+                }
+            }
         }
         return picBeanList;
     }
@@ -121,7 +133,14 @@ public class FocusAssessContentFragment extends BaseDataBindingFragment<Fragment
         for (AuditFormResultBean resultBean : resultList) {
             String url = resultBean.getAuditImgUrl();
             if (!TextUtils.isEmpty(url)) {
-                picBeanList.add(url);
+                List<String> subUrlList = StringUtils.splitPhotoUrl(url);
+                if (subUrlList != null && subUrlList.size() > 0) {
+                    for (String imgUrl : subUrlList) {
+                        if (CommonUtils.isPictureOrVideo(imgUrl)) {   //暂时只显示图片和视频
+                            picBeanList.add(imgUrl);
+                        }
+                    }
+                }
             }
         }
         return picBeanList;

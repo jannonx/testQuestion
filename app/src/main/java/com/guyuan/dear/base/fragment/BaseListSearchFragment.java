@@ -98,6 +98,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
                 if (TextUtils.isEmpty(key)) {
                     ToastUtils.showShort(getContext(), ConstantValue.TIP_SEARCH);
                 } else {
+                    currentType = REFRESH;
                     refresh();
                 }
 
