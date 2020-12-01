@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.base.fragment.BaseDearViewModel;
 import com.guyuan.dear.focus.qc.beans.BaseProductQcReport;
 import com.guyuan.dear.focus.qc.beans.ProductQcReportDetail;
 import com.guyuan.dear.focus.qc.repo.ProductQcDetailRepo;
@@ -18,7 +19,7 @@ import io.reactivex.disposables.Disposable;
  * @since: 2020/11/12 18:12
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ProductQcReportDetailViewModel extends BaseViewModel {
+public class ProductQcReportDetailViewModel extends BaseDearViewModel {
     private MutableLiveData<ProductQcReportDetail> report = new MutableLiveData<>();
     private ProductQcDetailRepo repo = new ProductQcDetailRepo();
 
@@ -27,26 +28,12 @@ public class ProductQcReportDetailViewModel extends BaseViewModel {
     }
 
     public Disposable getReportDetail(BaseProductQcReport report) {
-        return repo.getReportDetail(report.getReportId(), getDetailCallback);
+        return repo.getReportDetail(report.getReportId(), new BaseNetCallback<ProductQcReportDetail>() {
+            @Override
+            protected void handleResult(ProductQcReportDetail result) {
+                ProductQcReportDetailViewModel.this.report.postValue(result);
+            }
+        });
     }
 
-    private DearNetHelper.NetCallback<ProductQcReportDetail> getDetailCallback = new DearNetHelper.NetCallback<ProductQcReportDetail>() {
-        @Override
-        public void onStart(Disposable disposable) {
-            isShowLoading.postValue(true);
-        }
-
-        @Override
-        public void onGetResult(ProductQcReportDetail result) {
-            isShowLoading.postValue(false);
-            report.postValue(result);
-        }
-
-        @Override
-        public void onError(Throwable error) {
-            isShowLoading.postValue(false);
-            ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
-
-        }
-    };
 }

@@ -807,6 +807,11 @@ public class DearNetHelper {
             public List<GenericQcLogBean> map(List<NetQcReportApproveFlow> src) {
                 List<GenericQcLogBean> result = new ArrayList<>();
                 for (NetQcReportApproveFlow flow : src) {
+                    int status = flow.getStatus();
+                    //Status 0 待审 1已同意 2已拒绝，如果存在-1的话是后台sb开发人员返回不符合文档描述的信息，应该过滤掉！
+                    if(status<0){
+                        continue;
+                    }
                     GenericQcLogBean bean = new GenericQcLogBean(flow);
                     result.add(bean);
                 }
