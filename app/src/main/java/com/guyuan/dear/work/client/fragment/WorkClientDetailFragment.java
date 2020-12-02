@@ -110,7 +110,8 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
             @Override
             public void onClick(String content) {
                 PostClientInfo postInfoBean=new PostClientInfo();
-                postInfoBean.setId(clientData.getId());
+                postInfoBean.setId(ClientType.TYPE_CLIENT_ALL==clientData.getClientType()?
+                        clientData.getId():clientData.getCusId());
                 postInfoBean.setContent(content);
                 String installStr = GsonUtil.objectToString(postInfoBean);
                 RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +

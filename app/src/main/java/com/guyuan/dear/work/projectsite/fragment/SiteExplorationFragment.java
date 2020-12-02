@@ -188,6 +188,14 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
         binding.tvActivateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (TextUtils.isEmpty(binding.etSearch.getText().toString())) {
+                    ToastUtils.showLong(getContext(), "请填内容");
+                    return;
+                }
+                if (imageDataList == null || imageDataList.size() == 0) {
+                    ToastUtils.showLong(getContext(), "请选择图片");
+                    return;
+                }
                 activity.checkPhotoAndFileUpLoad(imageDataList);
             }
         });
@@ -258,10 +266,6 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
 
     private void postSiteExploreInfo(List<String> imageList) {
         PostSiteExploreInfo body = new PostSiteExploreInfo();
-        if (TextUtils.isEmpty(binding.etSearch.getText().toString())) {
-            ToastUtils.showLong(getContext(), "请填内容");
-            return;
-        }
 
         body.setId(detailProjectData.getId());
         body.setSatisfyFlag(isConditionOK);

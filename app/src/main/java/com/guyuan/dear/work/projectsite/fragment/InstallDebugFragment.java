@@ -20,6 +20,7 @@ import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugSingleActivity;
+import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 
@@ -140,7 +141,7 @@ public class InstallDebugFragment extends BaseDataBindingFragment<FragmentWorkIn
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onInstallDebugMessage(EventInstallDebugRefresh event) {
+    public void onInstallDebugMessage(EventAnswerListRefresh event) {
         viewModel.getInstallDebugDetailData(detailData.getId());
     }
 

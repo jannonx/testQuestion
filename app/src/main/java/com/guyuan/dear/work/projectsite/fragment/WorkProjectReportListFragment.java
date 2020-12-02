@@ -235,7 +235,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
 
     @Override
     protected boolean isPullEnable() {
-        return true;
+        return false;
     }
 
     @Override

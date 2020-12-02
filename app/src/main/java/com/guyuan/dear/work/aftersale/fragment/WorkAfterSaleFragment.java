@@ -135,7 +135,7 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
 
     @Override
     protected boolean isPullEnable() {
-        return true;
+        return false;
     }
 
     @Override

@@ -214,7 +214,7 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
 
     @Override
     protected boolean isLoadMoreEnable() {
-        return false;
+        return true;
     }
 
 

@@ -169,7 +169,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         viewModel.getCommitCustomerAcceptanceInfoEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer data) {
-                ToastUtils.showLong(getContext(),"提交完成");
+                ToastUtils.showLong(getContext(), "提交完成");
                 refreshDataStatus();
             }
         });
@@ -191,17 +191,13 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     /**
      * 改变状态
      */
-    private void  refreshDataStatus(){
-        ToastUtils.showLong(getContext(),"提交完成");
+    private void refreshDataStatus() {
+        ToastUtils.showLong(getContext(), "提交完成");
         getDetailDataByClassify();
-        if (detailProjectData.getModuleType()==FunctionModuleType.TYPE_FOCUS){
-            EventBus.getDefault().post(new EventFocusSiteListRefresh());
-        }else{
-            EventBus.getDefault().post(new EventWorkSiteListRefresh());
-        }
-
+        EventBus.getDefault().post(new EventWorkSiteListRefresh());
         EventBus.getDefault().post(new EventAnswerListRefresh());
     }
+
     /**
      * 根据报告类型请求数据
      */
@@ -538,7 +534,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                         View.GONE : View.VISIBLE);
 
 
-        if (recordFragment!=null){
+        if (recordFragment != null) {
             recordFragment.setRecordData(detailProjectData);
         }
     }

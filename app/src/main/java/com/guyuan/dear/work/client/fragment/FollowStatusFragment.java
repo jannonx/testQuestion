@@ -15,6 +15,7 @@ import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.client.adapter.FollowStatusParentAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
+import com.guyuan.dear.focus.client.bean.ClientType;
 import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
 import com.guyuan.dear.focus.client.bean.PostClientInfo;
@@ -145,7 +146,8 @@ public class FollowStatusFragment extends BaseListFragment<CommentsBean, Fragmen
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListClientRequestBody body = new ListClientRequestBody();
         ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
-        filtersBean.setId(clientData.getId());
+        filtersBean.setId(ClientType.TYPE_CLIENT_ALL==clientData.getClientType()?
+                clientData.getId():clientData.getCusId());
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);

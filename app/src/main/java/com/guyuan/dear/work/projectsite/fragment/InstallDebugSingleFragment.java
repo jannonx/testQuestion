@@ -27,6 +27,8 @@ import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectInstallAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
+import com.guyuan.dear.focus.projectsite.bean.EventFocusSiteListRefresh;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
@@ -37,6 +39,7 @@ import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugSingleActivity;
 import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
+import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventWorkSiteListRefresh;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
@@ -206,7 +209,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
             @Override
             public void onChanged(Integer data) {
                 getActivity().finish();
-                EventBus.getDefault().post(new EventInstallDebugRefresh());
+                EventBus.getDefault().post(new EventAnswerListRefresh());
                 EventBus.getDefault().post(new EventWorkSiteListRefresh());
             }
         });
@@ -219,6 +222,10 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
         PostInstallationDebugInfo body = new PostInstallationDebugInfo();
         if (TextUtils.isEmpty(binding.etSearch.getText().toString())) {
             ToastUtils.showLong(getContext(), "请填内容");
+            return;
+        }
+        if (imageArr == null || imageArr.size() == 0) {
+            ToastUtils.showLong(getContext(), "请选择图片");
             return;
         }
         body.setId(singleDetailData.getId());
