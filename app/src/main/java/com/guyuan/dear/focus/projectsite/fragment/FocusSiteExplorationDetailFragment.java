@@ -83,7 +83,6 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         Bundle bundle = new Bundle();
         FocusSiteExplorationDetailFragment fragment = new FocusSiteExplorationDetailFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
-        LogUtils.showLog("newInstance=" + data.getModuleType().getDes());
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -100,7 +99,6 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
             return;
         }
         detailProjectData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
-        LogUtils.showLog("initialization=" + detailProjectData.getModuleType().getDes());
         binding.tvPauseBtn.setOnClickListener(this);
         binding.tvCompleteBtn.setOnClickListener(this);
         binding.tvActivateBtn.setOnClickListener(this);
@@ -198,12 +196,10 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      * 根据报告类型请求数据
      */
     private void getDetailDataByClassify() {
-        LogUtils.showLog("getDetailDataByClassify=" + detailProjectData.getModuleType().getDes());
         switch (detailProjectData.getProjectReportType()) {
             ///现场勘查报告
             case TYPE_SITE_EXPLORATION:
                 viewModel.getSiteExploreDetailData(detailProjectData.getId());
-                LogUtils.showLog("getDetailDataByClassify000=" + detailProjectData.getModuleType().getDes());
                 break;
             ///货物清点报告
             case TYPE_CHECK_GOODS:
@@ -235,13 +231,9 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      */
     private void setProduceData(SiteExploreBean data) {
         if (getActivity() == null) return;
-        LogUtils.showLog("setProduceData111=" + detailProjectData.getModuleType().getDes());
-        LogUtils.showLog("setProduceData...setProduceData");
         data.setProjectReportType(detailProjectData.getProjectReportType());
         data.setModuleType(detailProjectData.getModuleType());
-        LogUtils.showLog("setProduceData222=" + detailProjectData.getModuleType().getDes());
         detailProjectData = data;
-        LogUtils.showLog("setProduceData333=" + detailProjectData.getModuleType().getDes());
         //设置审核数据
         planFragment.setCheckContentData(detailProjectData);
         switch (detailProjectData.getProjectReportType()) {
@@ -534,6 +526,11 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_OK == detailProjectData.getCustomerAcceptanceSatisfyType()
                         || CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_EXCEPTION == detailProjectData.getCustomerAcceptanceSatisfyType() ?
                         View.GONE : View.VISIBLE);
+
+
+        if (recordFragment!=null){
+            recordFragment.setRecordData(detailProjectData);
+        }
     }
 
     private void initViewPager() {
@@ -541,7 +538,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
         statusFragment = ProjectSiteStatusFragment.newInstance(detailProjectData);
         installDebugStatusFragment = InstallDebugStatusFragment.newInstance(detailProjectData);
-        recordFragment = AcceptanceRecordFragment.newInstance(detailProjectData);
+        recordFragment = AcceptanceRecordFragment.newInstance();
 
         tabFragmentList.add(ProjectReportType.TYPE_INSTALLATION_DEBUG == detailProjectData.getProjectReportType()
                 ? installDebugStatusFragment : ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == detailProjectData.getProjectReportType() ?

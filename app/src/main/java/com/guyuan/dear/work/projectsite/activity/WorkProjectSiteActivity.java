@@ -14,7 +14,6 @@ import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
-import com.guyuan.dear.work.projectsite.fragment.WorkCheckSafeListFragment;
 import com.guyuan.dear.work.projectsite.fragment.WorkProjectReportListFragment;
 
 import java.util.ArrayList;

@@ -128,7 +128,6 @@ public class AfterSaleBean implements Serializable {
     }
 
     public SaleSectionType getSectionType() {
-        LogUtils.showLog("getSectionType=" + (sectionType == null ? "null" : sectionType.getDes()));
         return sectionType;
     }
 

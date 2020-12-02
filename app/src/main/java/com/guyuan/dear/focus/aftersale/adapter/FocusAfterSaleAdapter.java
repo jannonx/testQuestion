@@ -31,7 +31,6 @@ public class FocusAfterSaleAdapter extends BaseRecyclerAdapter<AfterSaleBean> {
     protected void bindDataToView(BaseRecyclerViewHolder holder, AfterSaleBean item, int position) {
         holder.setText(R.id.tv_title, item.getTitle());
         //状态属性设置
-        LogUtils.showLog("AfterSaleBean="+(item.getSectionType()==null?"null":item.getSectionType().getDes()));
         holder.setText(R.id.tv_engineering_status, item.getStatusText());
         TextView tvStatus = holder.getView(R.id.tv_engineering_status);
         tvStatus.setBackgroundResource(item.getStatusTextBg());

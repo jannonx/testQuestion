@@ -111,12 +111,13 @@
                     android:textSize="@dimen/sp_14" />
 
 
-                <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
-                    android:id="@+id/tfl_picture"
+                <tl.com.easy_recycleview_library.BaseRecyclerView
+                    android:id="@+id/base_recycleView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="12dp" />
+                    tools:layout_height="@dimen/dp_150"
+                    android:background="@color/white"
+                    tools:background="@color/color_green_D4FFF1" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>

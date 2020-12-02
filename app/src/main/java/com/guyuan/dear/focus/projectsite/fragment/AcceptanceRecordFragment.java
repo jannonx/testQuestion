@@ -2,13 +2,18 @@ package com.guyuan.dear.focus.projectsite.fragment;
 
 import android.os.Bundle;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentAcceptanceRecordBinding;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
+import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
+
+import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
 
 /**
@@ -20,12 +25,10 @@ import com.guyuan.dear.utils.ConstantValue;
 public class AcceptanceRecordFragment extends BaseDataBindingFragment<FragmentAcceptanceRecordBinding, FocusProjectSiteViewModel> {
 
     public static final String TAG = AcceptanceRecordFragment.class.getSimpleName();
-    private SiteExploreBean detailProjectData;
 
-    public static AcceptanceRecordFragment newInstance(SiteExploreBean data) {
+    public static AcceptanceRecordFragment newInstance() {
         Bundle bundle = new Bundle();
         AcceptanceRecordFragment fragment = new AcceptanceRecordFragment();
-        bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -37,16 +40,24 @@ public class AcceptanceRecordFragment extends BaseDataBindingFragment<FragmentAc
 
     @Override
     protected void initialization() {
-        Bundle arguments = getArguments();
-        if (arguments == null) {
-            return;
-        }
 
-        detailProjectData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+    }
 
-        binding.tvRecorder.setText(detailProjectData.getCheckName());
-        binding.tvRemark.setText(detailProjectData.getCheckRemark());
 
+    public void setRecordData(SiteExploreBean data){
+        binding.tvRecorder.setText(data.getPersonLiableName());
+        binding.tvRemark.setText(data.getCheckRemark());
+
+
+
+        ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
+                data.getImgUrlList(), R.layout.item_explorate_image);
+        BaseRecyclerViewAdapter   imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
+
+        binding.baseRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        binding.baseRecycleView.setAdapter(imageAdapter);
+        binding.baseRecycleView.setPullRefreshEnabled(false);
+        binding.baseRecycleView.setLoadMoreEnabled(false);
     }
 
 
