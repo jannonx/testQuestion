@@ -9,6 +9,7 @@ import android.widget.ExpandableListView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
@@ -170,11 +171,36 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
             }
         });
 
-        //点击搜索到的人员，进入详情界面
+        //点击搜索到的人员，并选中
         getViewModel().onSelectSearchStaff.postValue(new HrSearchView.SelectStaffCallback() {
             @Override
             public void onStaffSelected(StaffBean staff) {
-                StaffMonthlyDetailActivity.start(getActivity(),staff.getName(),staff.getId().intValue());
+                MutableLiveData<List<PickStaffBean>> allStaffs = getViewModel().getAllStaffs();
+                if(allStaffs.getValue()==null){
+                    return;
+                }
+                //改变公共数据源中改员工的点选状态
+                if(!getViewModel().checkStaffSelectable(staff.getId())){
+                    showToastTip("无法选择该员工");
+                    return;
+                }
+                for (PickStaffBean bean : allStaffs.getValue()) {
+                    if(bean.getId().equals(staff.getId())){
+                        bean.setPickTime(System.currentTimeMillis());
+                        bean.setPick(true);
+                        break;
+                    }
+                }
+                //更新最新点选人数UI
+                getViewModel().updateSelectCount();
+                //更新历史选人列表UI
+                ExpandableListView expListView = getViewDataBinding().fragmentPickStaffsExpListView;
+                PickStaffsExpListAdapter adapter = (PickStaffsExpListAdapter) expListView.getExpandableListAdapter();
+                adapter.notifyDataSetChanged();
+                //更新二级选人列表UI
+                RecyclerView view = getViewDataBinding().fragmentPickStaffsRecyclerViewHistoryStaffs;
+                PickStaffsHistoryStaffsAdapter adapter2 = (PickStaffsHistoryStaffsAdapter) view.getAdapter();
+                adapter2.notifyDataSetChanged();
             }
         });
 
