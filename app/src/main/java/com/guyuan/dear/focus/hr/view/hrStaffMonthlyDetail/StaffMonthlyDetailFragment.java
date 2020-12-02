@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.hr.view.hrStaffMonthlyDetail;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.lifecycle.Observer;
@@ -13,6 +14,7 @@ import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.net.resultBeans.NetStaffAttendRecord;
 import com.guyuan.dear.utils.CalenderUtils;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
@@ -124,6 +126,19 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<com.guyuan.dear
                     list.addAll(convertRecordToEvents(record));
                 }
                 calendar.addEvents(list);
+            }
+        });
+
+        //点击右上边角打电话
+        getViewModel().onClickTelNumber.postValue(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String contactNo = getViewModel().contactNo;
+                if(TextUtils.isEmpty(contactNo)){
+                    showToastTip("无联系方式");
+                    return;
+                }
+                CommonUtils.makePhoneCall(getActivity(), contactNo);
             }
         });
 

@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.hr.view.hrTree;
 import android.view.View;
 
 import com.guyuan.dear.base.fragment.BaseDearViewModel;
+import com.guyuan.dear.customizeview.searchview.HrSearchView;
 import com.guyuan.dear.focus.hr.bean.ChildDept;
 import com.guyuan.dear.focus.hr.bean.FactoryBean;
 import com.guyuan.dear.focus.hr.bean.ParentDept;
@@ -31,6 +32,7 @@ public class HrTreeViewModel extends BaseDearViewModel {
     public MutableLiveData<List<ChildDept>> childDeptList = new MutableLiveData<>(new ArrayList<>());
     public MutableLiveData<List<StaffWorkStatusInfo>> staffs = new MutableLiveData<>(new ArrayList<>());
     private MutableLiveData<List<DeptBean>> topNavigationList = new MutableLiveData<>(new ArrayList<>());
+    public MutableLiveData<HrSearchView.SelectStaffCallback> onSelectSearchStaff = new MutableLiveData<>();
 
     public MutableLiveData<View.OnClickListener> onClickNavigateToFrontPage = new MutableLiveData<>(new View.OnClickListener() {
         @Override

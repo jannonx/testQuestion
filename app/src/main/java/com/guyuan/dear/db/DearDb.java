@@ -18,7 +18,7 @@ import com.guyuan.dear.db.entities.StaffSelectHistoryEntity;
  * @since: 2020/11/9 11:16
  * @company: 固远（深圳）信息技术有限公司
  **/
-@Database(entities = {StaffEntity.class, DeptEntity.class, StaffDeptCrosRef.class, StaffSelectHistoryEntity.class}, version = 2)
+@Database(entities = {StaffEntity.class, DeptEntity.class, StaffDeptCrosRef.class, StaffSelectHistoryEntity.class}, version = 3)
 public abstract class DearDb extends RoomDatabase {
 
     public abstract StaffDao getStaffDao();

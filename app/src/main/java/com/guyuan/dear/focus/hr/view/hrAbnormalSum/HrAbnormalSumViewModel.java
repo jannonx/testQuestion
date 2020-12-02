@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.hr.view.hrAbnormalSum;
 import android.view.View;
 
 import com.guyuan.dear.base.fragment.BaseDearViewModel;
+import com.guyuan.dear.customizeview.searchview.HrSearchView;
 import com.guyuan.dear.focus.hr.bean.HrSummaryBean;
 import com.guyuan.dear.focus.hr.repos.HrAbnormalSumRepo;
 import com.guyuan.dear.message.data.bean.MessageUnreadBean;
@@ -30,6 +31,7 @@ public class HrAbnormalSumViewModel extends BaseDearViewModel {
     public MutableLiveData<View.OnClickListener> onClickShowOnLeaveList = new MutableLiveData<>();
     public MutableLiveData<View.OnClickListener> onClickShowLateList = new MutableLiveData<>();
     public MutableLiveData<View.OnClickListener> onClickLeaveEarlyList = new MutableLiveData<>();
+    public MutableLiveData<HrSearchView.SelectStaffCallback> onSelectSearchStaff = new MutableLiveData<>();
 
     private HrAbnormalSumRepo mRepo= new HrAbnormalSumRepo();
 
