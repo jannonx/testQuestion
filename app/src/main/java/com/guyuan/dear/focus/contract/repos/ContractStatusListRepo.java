@@ -1,6 +1,5 @@
 package com.guyuan.dear.focus.contract.repos;
 
-import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 import com.guyuan.dear.focus.contract.bean.ContractBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
@@ -18,11 +17,11 @@ import io.reactivex.disposables.Disposable;
  **/
 public class ContractStatusListRepo {
     public Disposable getPauseContractList(int pageIndex, int pageSize, DearNetHelper.NetCallback<List<BaseContractExcptBean>> callback) {
-        return DearNetHelper.getInstance().getPauseContractList(pageIndex, pageSize, callback);
+        return DearNetHelper.getInstance().getMyPauseContractList(pageIndex, pageSize, callback);
     }
 
     public Disposable getRestartedContractList(int pageIndex, int pageSize, DearNetHelper.NetCallback<List<RestartedContractBean>> callback) {
-        return DearNetHelper.getInstance().getRestartedContractList(pageIndex, pageSize, callback);
+        return DearNetHelper.getInstance().getMyRestartedContractList(pageIndex, pageSize, callback);
     }
 
     public Disposable getExceptionOrTotalContractList(int type, int pageIndex, String searchContent, DearNetHelper.NetCallback<List<ContractBean.ContentBean>> callback) {

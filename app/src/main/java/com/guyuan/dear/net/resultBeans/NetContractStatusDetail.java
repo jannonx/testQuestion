@@ -325,7 +325,7 @@ public class NetContractStatusDetail {
         private String signTime;
         private String salesman;
         private int state;
-        private int approvedBy;
+        private String approvedBy;
         private String fileUrl;
         private String examinationTime;
         /**
@@ -462,11 +462,11 @@ public class NetContractStatusDetail {
             this.state = state;
         }
 
-        public int getApprovedBy() {
+        public String getApprovedBy() {
             return approvedBy;
         }
 
-        public void setApprovedBy(int approvedBy) {
+        public void setApprovedBy(String approvedBy) {
             this.approvedBy = approvedBy;
         }
 

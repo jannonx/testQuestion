@@ -130,7 +130,7 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<com.guyuan.dear
     }
 
     private int colorAbsent = Color.parseColor("#F04864");
-    private int colorNormal = Color.parseColor("#1677FF");
+    private int colorNormal = Color.TRANSPARENT;
     private int colorLate = Color.parseColor("#FA8C16");
     private int colorEarlyLeave = Color.parseColor("#3436C7");
 
@@ -179,70 +179,6 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<com.guyuan.dear
             eventList.add(new Event(colorNormal, time, record));
         }
 
-
-//        String amStartTime = record.getAmStartTime();
-//        if (!TextUtils.isEmpty(amStartTime)) {
-//            try {
-//                long time = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(amStartTime).getTime();
-//                int amStatus = record.getAmStatus();
-//                int amColor = 0;
-//                if (amStatus == 1||!record.isAttendDay()) {
-//                    amColor = Color.parseColor("#1677FF");
-//                } else if (amStatus == 2) {
-//                    amColor = Color.parseColor("#FA8C16");
-//                }
-//                eventList.add(new Event(amColor, time, record));
-//            } catch (Exception e) {
-//                showToastTip("服务器返回的日期格式错误。");
-//            }
-//        } else {
-//            String todayDate = record.getTodayDate();
-//            if (!TextUtils.isEmpty(todayDate)) {
-//                if(!record.isAttendDay()){
-//                    try {
-//                        Date date = CalenderUtils.getInstance().parseSmartFactoryDateFormatByDay(todayDate);
-//                        eventList.add(new Event(Color.parseColor("#1677FF"), date.getTime(), record));
-//                    } catch (Exception e) {
-//                        showToastTip("服务器返回的日期格式错误。");
-//                    }
-//                }else if(record.getAmStatus()==0){
-//                    try {
-//                        Date date = CalenderUtils.getInstance().parseSmartFactoryDateFormatByDay(todayDate);
-//                        eventList.add(new Event(Color.parseColor("#F04864"), date.getTime(), record));
-//                    } catch (Exception e) {
-//                        showToastTip("服务器返回的日期格式错误。");
-//                    }
-//                }
-//            }
-//        }
-//
-//        //下午打卡状态：0 缺席 1.正常 2.早退
-//        String pmEndTime = record.getPmEndTime();
-//        if (!TextUtils.isEmpty(pmEndTime)) {
-//            try {
-//                long time = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(pmEndTime).getTime();
-//                int pmStatus = record.getPmStatus();
-//                int pmColor = 0;
-//                if (pmStatus == 1) {
-//                    pmColor = Color.parseColor("#1677FF");
-//                } else if (pmStatus == 2) {
-//                    pmColor = Color.parseColor("#FA8C16");
-//                }
-//                eventList.add(new Event(pmColor, time, record));
-//            } catch (Exception e) {
-//                showToastTip("服务器返回的日期格式错误。");
-//            }
-//        } else {
-//            String todayDate = record.getTodayDate();
-//            if (!TextUtils.isEmpty(todayDate) && record.getPmStatus() == 0) {
-//                try {
-//                    Date date = CalenderUtils.getInstance().parseSmartFactoryDateFormatByDay(todayDate);
-//                    eventList.add(new Event(Color.parseColor("#F04864"), date.getTime(), record));
-//                } catch (Exception e) {
-//                    showToastTip("服务器返回的日期格式错误。");
-//                }
-//            }
-//        }
         return eventList;
     }
 

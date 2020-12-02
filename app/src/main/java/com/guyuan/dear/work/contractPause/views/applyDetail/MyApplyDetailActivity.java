@@ -18,9 +18,9 @@ public class MyApplyDetailActivity extends BaseToolbarActivity<ActivityMyApplyDe
 
     private int examineId;
 
-    public static void start(Context context, String title, int examineId) {
+    public static void start(Context context, String title, int id) {
         Intent starter = new Intent(context, MyApplyDetailActivity.class);
-        starter.putExtra(ConstantValue.KEY_EXAMINE_ID, examineId);
+        starter.putExtra(ConstantValue.KEY_ID, id);
         starter.putExtra(ConstantValue.KEY_TITLE, title);
         context.startActivity(starter);
     }
@@ -34,7 +34,7 @@ public class MyApplyDetailActivity extends BaseToolbarActivity<ActivityMyApplyDe
     protected void initFragment(Bundle savedInstanceState) {
         Intent intent = getIntent();
         setTitleCenter(intent.getStringExtra(ConstantValue.KEY_TITLE));
-        examineId = intent.getIntExtra(ConstantValue.KEY_EXAMINE_ID, 0);
+        examineId = intent.getIntExtra(ConstantValue.KEY_ID, 0);
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.activity_my_pause_apply_detail_frame_layout, MyApplyDetailFragment.getInstance(examineId))
                 .commit();

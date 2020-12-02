@@ -40,8 +40,8 @@ public class MyApplyDetailViewModel extends BaseViewModel {
     }
 
 
-    public Disposable getMyApplyDetailFromNet(int examineId){
-        return repo.getMyApplyDetail(examineId, getApplyDetailCallback);
+    public Disposable getMyApplyDetailFromNet(int id){
+        return repo.getMyApplyDetail(id, getApplyDetailCallback);
     }
     private DearNetHelper.NetCallback<MyApplyDetailBean> getApplyDetailCallback = new DearNetHelper.NetCallback<MyApplyDetailBean>() {
         @Override

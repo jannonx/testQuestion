@@ -76,7 +76,7 @@ public interface DearNetApiService extends BaseApiService {
      * @param status 1.查已暂停的 2.查正常的
      * @return
      */
-    @GET("base/tContractInfo/findContractNo")
+    @GET("base/tContractInfo/findContractNoByStatus")
     Observable<ResultBean<List<NetBaseContractInfo>>> getContractBaseInfosByClientId(@Query("cusId") long cusId, @Query("status") int status);
 
     /**
@@ -115,39 +115,30 @@ public interface DearNetApiService extends BaseApiService {
     Observable<ResultBean<BasePageResultBean<NetSearchContactInfo>>> getContractListByTypeAndDate(@Body SearchRqBody body);
 
     /**
-     * 获取合同异常或合同重启清单，这个是俊杰写的接口，和文斌的功能一样，但要分开(操！)
+     * 获取当前用户申请的合同异常或合同重启清单
      */
     @POST("base/tContractInfo/findContractStatusPage")
     Observable<ResultBean<BasePageResultBean<NetContractInfo>>> getContractApplyList(@Body SearchRqBody body);
 
     /**
-     * 获取合同异常列表或全部列表，这个是文斌写的接口，和俊杰写的功能一样，但要分开(操！)
+     * 获取合同异常列表或全部列表
      */
     @POST("base/tContractInfo/findContractSearch")
     Observable<ResultBean<ContractBean>> getExceptionOrTotalContractList(@Body RequestBody body);
 
 
-    /**
-     * 获取合同异常/重启详情，这个是文斌写的接口，和俊杰的功能一样，但要分开(操！)
-     *
-     * @param contractId
-     * @return
-     */
-    @GET("base/tContractInfo/findContractStatusChangeInfo")
-    Observable<ResultBean<NetContractStatusDetail>> getContractStatusDetailWrittenByWenBin(@Query("id") int contractId);
-
 
     /**
-     * 获取合同异常/重启详情
+     * 获取合同异常/重启审批状况
      *
      * @param examineId
      * @return
      */
-    @GET("base/tContractInfo/findById")
+    @GET("base/tContractInfo/findContractStatusChangeInfo")
     Observable<ResultBean<NetContractStatusDetail>> getContractStatusDetail(@Query("examineId") int examineId);
 
     /**
-     * 根据合同ID获取详细内容
+     * 根据合同ID获取详细内容(查看合同详情)
      *
      * @return
      */
