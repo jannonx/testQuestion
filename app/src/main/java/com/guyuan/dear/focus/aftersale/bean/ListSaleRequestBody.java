@@ -55,6 +55,10 @@ public class ListSaleRequestBody implements Serializable {
          * 用户Id
          */
         private long userId;
+        /**
+         * 搜索name
+         */
+        private String name;
 
 
         public int getStatus() {
@@ -71,6 +75,14 @@ public class ListSaleRequestBody implements Serializable {
 
         public void setUserId(long userId) {
             this.userId = userId;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
         }
     }
 }

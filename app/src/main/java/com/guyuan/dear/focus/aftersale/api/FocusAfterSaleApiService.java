@@ -78,7 +78,7 @@ public interface FocusAfterSaleApiService extends BaseApiService {
      * @return
      */
     @GET("base//tSaleIssueMain/queryAnswerPage")
-    Observable<ResultBean<List<AfterSaleStatusBean>>> getAfterSaleCustomerAcceptanceDetail(@Query("id") long id,
+    Observable<ResultBean<List<AfterSaleStatusBean>>> getCustomerAcceptanceDetailImageList(@Query("id") long id,
                                                                                @Query("type") int type);
 
     /**

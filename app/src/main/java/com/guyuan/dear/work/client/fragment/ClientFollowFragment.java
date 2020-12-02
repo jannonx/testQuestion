@@ -55,7 +55,7 @@ public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBe
             @Override
             public void onItemClick(View view, int position) {
                 ClientCompanyBean clientCompanyBean = listData.get(position);
-                clientCompanyBean.setClientType(ClientType.TYPE_CLIENT_ALL);
+                clientCompanyBean.setClientType(ClientType.TYPE_CLIENT_MY);
                 WorkClientDetailActivity.start(getContext(), clientCompanyBean);
             }
         });

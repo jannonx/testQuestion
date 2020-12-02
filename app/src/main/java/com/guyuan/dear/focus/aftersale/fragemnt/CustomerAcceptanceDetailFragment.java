@@ -142,7 +142,7 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
 
     private void setImageList(AfterSaleStatusBean afterSaleStatusBean) {
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-                new ArrayList<>(), R.layout.item_explorate_image);
+                afterSaleStatusBean.getImgUrlList(), R.layout.item_explorate_image);
         BaseRecyclerViewAdapter  imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
 
         binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
