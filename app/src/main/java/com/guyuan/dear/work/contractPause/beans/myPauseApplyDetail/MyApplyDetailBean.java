@@ -1,7 +1,6 @@
 package com.guyuan.dear.work.contractPause.beans.myPauseApplyDetail;
 
 import com.guyuan.dear.focus.contract.bean.ContractApproveLog;
-import com.guyuan.dear.focus.contract.bean.ContractComment;
 import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
@@ -40,26 +39,28 @@ public class MyApplyDetailBean extends MyApplyBean {
             setJudgement(examine.getRemark1());
             //状态 0.审批中 1.已同意 2.已拒绝
             int status = examine.getStatus();
-            switch (status){
-                case 0:
-                    setState(MyApplyBean.APPLY_PROCESSING);
-                    break;
+            switch (status) {
                 case 1:
                     setState(MyApplyBean.APPLY_APPROVED);
                     break;
                 case 2:
                     setState(MyApplyBean.APPLY_REJECTED);
                     break;
+                case 0:
                 default:
                     setState(MyApplyBean.APPLY_PENDING_FOR_START);
                     break;
             }
-            List<NetContractStatusDetail.TexamineVoBean.TexamineFlowsBean> flows = examine.getTexamineFlows();
             logs = new ArrayList<>();
-            for (NetContractStatusDetail.TexamineVoBean.TexamineFlowsBean bean : flows) {
-                ContractApproveLog comment = new ContractApproveLog(bean);
-                logs.add(comment);
+            List<NetContractStatusDetail.TexamineVoBean.TexamineFlowsBean> flows = examine.getTexamineFlows();
+            if (flows != null) {
+                for (NetContractStatusDetail.TexamineVoBean.TexamineFlowsBean bean : flows) {
+                    ContractApproveLog comment = new ContractApproveLog(bean);
+                    logs.add(comment);
+                }
             }
+
+
         }
     }
 

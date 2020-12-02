@@ -57,6 +57,11 @@ public class NetContractInfo extends NetBaseContractInfo {
 
     private String signTime;
 
+    /**
+     * 申请批复的状态 0 审批中 1 通过 2 拒绝
+     */
+    private int approveStatus;
+
     public String getSignTime() {
         return signTime;
     }
@@ -119,5 +124,13 @@ public class NetContractInfo extends NetBaseContractInfo {
 
     public void setExamineId(int examineId) {
         this.examineId = examineId;
+    }
+
+    public int getApproveStatus() {
+        return approveStatus;
+    }
+
+    public void setApproveStatus(int approveStatus) {
+        this.approveStatus = approveStatus;
     }
 }
