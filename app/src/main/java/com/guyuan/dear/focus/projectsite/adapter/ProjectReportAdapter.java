@@ -88,6 +88,7 @@ public class ProjectReportAdapter extends BaseRecyclerAdapter<SiteExploreBean> {
                 break;
             ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:
+                holder.setText(R.id.tv_engineering_name, item.getProjectName());
                 holder.setText(R.id.label_engineering_code, "合同编号：");
                 holder.setText(R.id.tv_engineering_code, item.getProjectNumber());
                 labelEngineeringNumber.setText("客户名称：");
@@ -97,6 +98,7 @@ public class ProjectReportAdapter extends BaseRecyclerAdapter<SiteExploreBean> {
                 break;
             ///客户验收报告
             case TYPE_CUSTOMER_ACCEPTANCE:
+                holder.setText(R.id.tv_engineering_name, item.getCustomerName());
                 holder.setText(R.id.label_engineering_code, "合同编号：");
                 holder.setText(R.id.tv_engineering_code, item.getProjectNumber());
                 holder.setText(R.id.tv_engineering_number, item.getProjectName());
