@@ -10,6 +10,7 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
+            app:elevation="0dp"
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -217,15 +218,27 @@
                     app:layout_constraintTop_toBottomOf="@+id/cl_customer_panel" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                style="@style/TabLayoutStyle"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view_2"
-                app:tabIndicatorFullWidth="false"
-                app:tabRippleColor="@android:color/transparent" />
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    style="@style/TabLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabRippleColor="@android:color/transparent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_0p5"
+                    android:background="@color/color_grey_eeeeee"
+                    app:layout_constraintBottom_toBottomOf="@+id/tab_layout"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager.widget.ViewPager

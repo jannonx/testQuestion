@@ -103,14 +103,15 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    tools:background="@color/color_green_D4FFF1"
                     tools:layout_height="@dimen/dp_150"
+                    android:layout_marginBottom="@dimen/dp_20"
                     tools:layout_marginTop="12dp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_75"
-                    android:background="@color/transparent" />
             </androidx.appcompat.widget.LinearLayoutCompat>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_75"
+                android:background="@color/transparent" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <RelativeLayout
