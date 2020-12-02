@@ -182,8 +182,6 @@ dependencies {
     implementation AndroidX.lifeCycleExtension
     implementation AndroidX.lifecycleRuntime
     implementation AndroidX.lifeCycleKT
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     annotationProcessor Room.compiler
     implementation Room.runtime
     kapt Room.persistence
