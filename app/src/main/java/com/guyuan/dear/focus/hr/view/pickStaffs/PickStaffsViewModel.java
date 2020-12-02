@@ -102,6 +102,10 @@ public class PickStaffsViewModel extends BaseViewModel {
         return onToggleStaff;
     }
 
+    public MutableLiveData<List<PickStaffBean>> getAllStaffs() {
+        return allStaffs;
+    }
+
     public void setOnToggleStaff(PickStaffsExpListAdapter.ItemCallback onToggleStaff) {
         this.onToggleStaff.setValue(onToggleStaff);
     }
@@ -383,5 +387,19 @@ public class PickStaffsViewModel extends BaseViewModel {
      */
     public void saveStaffSelectHistoryToLocal(List<StaffBean> staffs) {
         DearDbManager.getInstance().updateStaffSelectHistory(staffs);
+    }
+
+    /**
+     * 判断人员是否能被点选
+     * @param id
+     * @return
+     */
+    public boolean checkStaffSelectable(Long id) {
+        for (StaffBean staff : disabledStaffs) {
+            if(staff.getId().equals(id)){
+                return false;
+            }
+        }
+        return true;
     }
 }
