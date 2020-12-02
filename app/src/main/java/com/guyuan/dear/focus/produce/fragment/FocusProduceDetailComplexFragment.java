@@ -13,6 +13,7 @@ import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailComplexBinding;
+import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.dialog.RemarkDialog;
 import com.guyuan.dear.dialog.SimpleConfirmViewDialog;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
@@ -38,6 +39,7 @@ import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import retrofit2.http.PUT;
 
 import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.BUSINESS_ID;
 import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.BUSINESS_TYPE;
@@ -121,7 +123,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
         binding.tvActivateBtn.setOnClickListener(this);
         binding.tvPauseBtn.setOnClickListener(this);
         binding.tvCompleteBtn.setOnClickListener(this);
-        viewModel.getBasicInfoById(produceBean.getEquipmentId());
+        viewModel.getBasicInfoById(produceBean.getPlanId());
 
         viewModel.getBasicInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
             @Override
@@ -262,8 +264,8 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
             }
 
             @Override
-            public void onSendClick(AddSendListAdapter sendListAdapter,AddCopyListAdapter copyListAdapter) {
-                LogUtils.showLog("size="+( sendListAdapter == null ? "new ArrayList<>()" : sendListAdapter.getList().size()));
+            public void onSendClick(AddSendListAdapter sendListAdapter, AddCopyListAdapter copyListAdapter) {
+                LogUtils.showLog("size=" + (sendListAdapter == null ? "new ArrayList<>()" : sendListAdapter.getList().size()));
                 PickStaffsActivity.startForResult(FocusProduceDetailComplexFragment.this,
                         REQUEST_SEND_SELECT_PERSON,
                         "请选审批送人",
@@ -274,7 +276,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
             }
 
             @Override
-            public void onCopyClick(AddCopyListAdapter addCopyListAdapter,AddSendListAdapter sendListAdapter) {
+            public void onCopyClick(AddCopyListAdapter addCopyListAdapter, AddSendListAdapter sendListAdapter) {
                 PickStaffsActivity.startForResult(FocusProduceDetailComplexFragment.this,
                         REQUEST_COPY_SELECT_PERSON,
                         "请选审抄送人",
@@ -396,6 +398,9 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
         tv.setText(Arrays.asList(titleList).get(position));
     }
 
+    public FocusProduceBean getProduceBean() {
+        return produceBean;
+    }
 
     @Override
     protected int getVariableId() {

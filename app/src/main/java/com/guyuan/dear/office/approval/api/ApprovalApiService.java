@@ -7,6 +7,8 @@ import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.office.approval.data.ApprovalViewModel;
 import com.guyuan.dear.office.approval.data.bean.ApprovalListBean;
 
+import java.util.List;
+
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
@@ -23,24 +25,35 @@ import retrofit2.http.Query;
 
 public interface ApprovalApiService extends BaseApiService {
 
-    String APPROVAL_LIST = BASE + "projectplan/findApprList";
+    String APPROVAL_LIST = BASE + "tExamine/findExamineList";
 
-    String APPROVAL_COMMIT = BASE + "projectplan/ratifySubPlan";
+    String APPROVAL_PRODUCE_COMMIT = BASE + "projectplan/ratifySubPlan";
+
+    String APPROVAL_CONTRACT_COMMIT = BASE + "tContractInfo/changeStatusRatify";
 
     String BUSINESS_ID = "businessId";             //主、子生产计划id
     String BUSINESS_TYPE = "businessType";         //业务类型：1.主生产计划；2.子生产计划
     String REMARKS = "remarks";                    //审批备注
     String STATUS = "status";                      //审批操作类型：1.同意；2.拒绝
     String TYPE = "type";                          //审批类型：1.新建；2.暂停；3.激活
+    String AR_TYPE = "arType";                     //审批类型
 
     //获取待我审批列表
     @POST(APPROVAL_LIST)
     Observable<ResultBean<ApprovalListBean>> getApprovalList(@Body RequestBody body);
 
-    //审批同意或拒绝
-    @GET(APPROVAL_COMMIT)
-    Observable<ResultBean<Integer>> approval(@Query(BUSINESS_ID) int businessId,
-                                             @Query(BUSINESS_TYPE) int businessType,
-                                             @Query(REMARKS) String remarks, @Query(STATUS) int status,
-                                             @Query(TYPE) int type);
+    //生产计划审批同意或拒绝
+    @GET(APPROVAL_PRODUCE_COMMIT)
+    Observable<ResultBean<Integer>> productApproval(@Query(BUSINESS_ID) int businessId,
+                                                    @Query(BUSINESS_TYPE) int businessType,
+                                                    @Query(REMARKS) String remarks, @Query(STATUS) int status,
+                                                    @Query(TYPE) int type);
+
+    //合同审批同意或拒绝
+    @GET(APPROVAL_CONTRACT_COMMIT)
+    Observable<ResultBean<Integer>> contractApproval(@Query(AR_TYPE) int arType,
+                                                     @Query(BUSINESS_ID) int businessId,
+                                                     @Query(REMARKS) String remarks, @Query(STATUS) int status);
+
+
 }

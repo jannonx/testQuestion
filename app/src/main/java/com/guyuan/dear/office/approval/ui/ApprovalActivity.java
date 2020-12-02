@@ -39,6 +39,7 @@ public class ApprovalActivity extends BaseTabActivity<ActivityBaseTabBinding, Ap
 
     public static final String APPROVAL_TYPE = "approvalType";
     public static final String IS_APPROVED = "isApproved";
+    public static final int APPROVING = 0;//审批中
     public static final int ACCEPT = 1;//通过
     public static final int REJECT = 2;//驳回
 

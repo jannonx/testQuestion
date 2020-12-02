@@ -64,6 +64,7 @@ public class FocusAssessViewModel extends BaseViewModel {
         body.setFilters(filtersBean);
         Disposable disposable = RxJavaHelper.build(this,
                 apiService.getAssessList(CommonUtils.getCommonRequestBody(body)))
+                .showLoading(false)
                 .getHelper().flow(getListBeanByStatus(status));
         addSubscription(disposable);
     }
@@ -86,6 +87,7 @@ public class FocusAssessViewModel extends BaseViewModel {
         body.setFilters(filtersBean);
         Disposable disposable = RxJavaHelper.build(this,
                 apiService.getAssessList(CommonUtils.getCommonRequestBody(body)))
+                .showLoading(false)
                 .getHelper().flow(assessOverviewSearchListBean);
         addSubscription(disposable);
     }

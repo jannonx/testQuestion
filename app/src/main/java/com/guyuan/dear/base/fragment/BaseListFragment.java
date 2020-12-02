@@ -153,7 +153,6 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
                     listData.clear();
                     listData.addAll(dataList);
                     adapter.refreshData();
-                    recycleView.setRefreshing();
                     recycleView.refreshComplete(PAGE_SIZE);
                 }
 //                LogUtils.showLog("REFRESH....dataList=" + dataList.size());

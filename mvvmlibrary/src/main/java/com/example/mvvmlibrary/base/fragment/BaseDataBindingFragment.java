@@ -10,9 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.example.mvvmlibrary.base.activity.BaseDataBindingActivity;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
+
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 
 /**
@@ -24,18 +29,42 @@ public abstract class BaseDataBindingFragment<VB extends ViewDataBinding, VM ext
     protected VB binding;
     protected VM viewModel;
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        BaseDataBindingActivity activity = (BaseDataBindingActivity) getActivity();
+        if (activity != null) {
+            if (activity.isSetViewModelToFragment()) {
+                viewModel = (VM) activity.getViewModel();
+            } else {
+                try {
+                    Type genericSuperclass = getClass().getGenericSuperclass();
+                    if (genericSuperclass instanceof ParameterizedType) {
+                        Class<VM> cls;
+                        if (((ParameterizedType) genericSuperclass).getActualTypeArguments().length == 3) {
+                            cls = (Class<VM>) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[2];
+                        } else {
+                            cls = (Class<VM>) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[1];
+                        }
+
+                        viewModel = new ViewModelProvider(getActivity()).get(cls);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, getLayoutID(), container, false);
-        BaseDataBindingActivity activity = (BaseDataBindingActivity) getActivity();
-        if (activity != null) {
-            viewModel = (VM) activity.getViewModel();
-            if (viewModel != null && getVariableId() != 0) {
-                binding.setVariable(getVariableId(), viewModel);
-            }
+        if (viewModel != null && getVariableId() != 0) {
+            binding.setVariable(getVariableId(), viewModel);
         }
-
         rootView = binding.getRoot();
         binding.setLifecycleOwner(this);
         return rootView;

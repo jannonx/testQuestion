@@ -87,8 +87,9 @@ public interface FocusProduceApiService extends BaseApiService {
      * @param equipmentId 配套设备id
      * @return
      */
-    @GET("base/projectplan/findsubPlanById")
-    Observable<ResultBean<FocusProduceBean>> getBasicInfoById(@Query("equipmentId") long equipmentId);
+    //base/projectplan/findsubPlanById
+    @GET("base/projectplan/findSubPlanByIdW")
+    Observable<ResultBean<FocusProduceBean>> getBasicInfoById(@Query("subPlanId") long equipmentId);
 
     /**
      * 根据设备id和操作类型执行操作

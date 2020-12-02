@@ -7,7 +7,8 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.app.DearApplication;import com.guyuan.dear.work.goodssign.data.GoodsSignViewModel;
+import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.work.goodssign.data.GoodsSignViewModel;
 import com.guyuan.dear.work.goodssign.data.bean.GoodsSignBean;
 import com.guyuan.dear.work.goodssign.ui.GoodsSignItemDetailActivity;
 
@@ -85,11 +86,11 @@ public class GoodsSignBindingAdapter {
     @BindingAdapter(value = {"equipmentList", "materialList"})
     public static void setAllSignVisibility(TextView tv, List<GoodsSignBean> equipmentList,
                                             List<GoodsSignBean> materialList) {
+        boolean status = false;
         if (equipmentList != null && equipmentList.size() > 0) {
             for (GoodsSignBean equipBean : equipmentList) {
                 if (equipBean.getReceiveStatus() == 1) {
-                    tv.setVisibility(View.VISIBLE);
-                    return;
+                    status = true;
                 }
             }
         }
@@ -97,11 +98,11 @@ public class GoodsSignBindingAdapter {
         if (materialList != null && materialList.size() > 0) {
             for (GoodsSignBean materialBean : materialList) {
                 if (materialBean.getReceiveStatus() == 1) {
-                    tv.setVisibility(View.VISIBLE);
-                    return;
+                    status = true;
                 }
             }
         }
 
+        tv.setVisibility(status ? View.VISIBLE : View.GONE);
     }
 }

@@ -8,14 +8,17 @@
 
         <import type="android.view.View" />
 
+        <import type="android.text.TextUtils" />
+
         <variable
             name="goodsSignViewModel"
             type="com.guyuan.dear.work.goodssign.data.GoodsSignViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -32,236 +35,246 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
-            android:id="@+id/goods_name_tv"
-            style="@style/TextBigBold"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="16dp"
-            android:text="@{goodsSignViewModel.goodsDetailMLD.name}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar"
-            tools:text="深圳固远" />
+            android:orientation="vertical"
+            android:padding="@dimen/dp_12">
 
-        <TextView
-            android:id="@+id/textView15"
-            style="@style/TextSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            app:goodsStatus="@{goodsSignViewModel.goodsDetailMLD.receiveStatus}"
-            app:layout_constraintBottom_toBottomOf="@+id/goods_name_tv"
-            app:layout_constraintStart_toEndOf="@+id/goods_name_tv"
-            app:layout_constraintTop_toTopOf="@+id/goods_name_tv"
-            tools:text="代签收" />
 
-        <View
-            android:id="@+id/view22"
-            style="@style/DivideLine"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goods_name_tv" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
 
-        <TextView
-            android:id="@+id/goods_code_tv"
-            style="@style/TextBig"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{String.format(@string/focus_purchase_code,goodsSignViewModel.goodsDetailMLD.code)}"
-            app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/view22"
-            tools:text="@string/focus_purchase_code" />
+                <TextView
+                    android:id="@+id/goods_name_tv"
+                    style="@style/TextBigBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{goodsSignViewModel.goodsDetailMLD.name}"
+                    tools:text="深圳固远" />
 
-        <View
-            android:id="@+id/view23"
-            style="@style/DivideLine"
-            android:layout_height="8dp"
-            android:layout_marginTop="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goods_code_tv" />
+                <TextView
+                    android:id="@+id/textView15"
+                    style="@style/TextSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    app:goodsStatus="@{goodsSignViewModel.goodsDetailMLD.receiveStatus}"
+                    tools:text="代签收" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/goods_arrive_time_tv"
-            style="@style/TextNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{String.format(@string/work_goods_sign_time,' ')}"
-            app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/view23"
-            tools:text="@string/work_goods_sign_time" />
 
-        <View
-            android:id="@+id/view24"
-            style="@style/DivideLine"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goods_arrive_time_tv" />
+            <View
+                android:id="@+id/view22"
+                style="@style/DivideLine"
+                android:layout_marginTop="12dp" />
 
-        <TextView
-            android:id="@+id/goods_number_tv"
-            style="@style/TextNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{String.format(@string/work_goods_sign_total_number,goodsSignViewModel.goodsDetailMLD.purchaseNum)}"
-            app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/view24"
-            tools:text="@string/work_goods_sign_total_number" />
+            <TextView
+                android:id="@+id/goods_code_tv"
+                style="@style/TextBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:visibilityByContent="@{String.format(@string/focus_purchase_code,goodsSignViewModel.goodsDetailMLD.code)}"
+                tools:text="@string/focus_purchase_code" />
 
-        <View
-            android:id="@+id/view25"
-            style="@style/DivideLine"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goods_number_tv" />
+            <View
+                android:id="@+id/view23"
+                style="@style/DivideLine"
+                android:layout_height="8dp"
+                android:layout_marginTop="12dp" />
 
-        <TextView
-            android:id="@+id/goods_exchange_tv"
-            style="@style/TextNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{String.format(@string/work_goods_sign_exchange_number,goodsSignViewModel.goodsDetailMLD.exchangeNum)}"
-            app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/view25"
-            tools:text="@string/work_goods_sign_exchange_number" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
 
-        <View
-            android:id="@+id/view26"
-            style="@style/DivideLine"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goods_exchange_tv" />
+                <TextView
+                    android:id="@+id/goods_arrive_time_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@{String.format(@string/work_goods_sign_time,goodsSignViewModel.goodsDetailMLD)}"
+                    app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/view23"
+                    tools:text="@string/work_goods_sign_time" />
 
-        <TextView
-            android:id="@+id/goods_return_number_tv"
-            style="@style/TextNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{String.format(@string/work_goods_sign_return_number,goodsSignViewModel.goodsDetailMLD.returnNum)}"
-            app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/view26"
-            tools:text="@string/work_goods_sign_return_number" />
+                <View
+                    android:id="@+id/view24"
+                    style="@style/DivideLine"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
 
-        <View
-            android:id="@+id/view27"
-            style="@style/DivideLine"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goods_return_number_tv" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{goodsSignViewModel.goodsDetailMLD.purchaseNum==0?View.GONE:View.VISIBLE}">
 
-        <TextView
-            android:id="@+id/goods_unit_tv"
-            style="@style/TextNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{String.format(@string/work_goods_sign_unit,goodsSignViewModel.goodsDetailMLD.unit)}"
-            app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/view27"
-            tools:text="@string/work_goods_sign_unit" />
+                <TextView
+                    android:id="@+id/goods_number_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@{String.format(@string/work_goods_sign_total_number,goodsSignViewModel.goodsDetailMLD.purchaseNum)}"
+                    app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/view24"
+                    tools:text="@string/work_goods_sign_total_number" />
 
-        <View
-            android:id="@+id/view28"
-            style="@style/DivideLine"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goods_unit_tv" />
+                <View
+                    android:id="@+id/view25"
+                    style="@style/DivideLine"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/goods_spec_tv"
-            style="@style/TextNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{String.format(@string/work_goods_sign_spec,goodsSignViewModel.goodsDetailMLD.modelCode)}"
-            app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/view28"
-            tools:text="@string/work_goods_sign_spec" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{goodsSignViewModel.goodsDetailMLD.exchangeNum==0?View.GONE:View.VISIBLE}">
 
-        <View
-            android:id="@+id/view29"
-            style="@style/DivideLine"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goods_spec_tv" />
+                <TextView
+                    android:id="@+id/goods_exchange_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@{String.format(@string/work_goods_sign_exchange_number,goodsSignViewModel.goodsDetailMLD.exchangeNum)}"
+                    app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/view25"
+                    tools:text="@string/work_goods_sign_exchange_number" />
 
-        <TextView
-            android:id="@+id/goods_detail_material_tv"
-            style="@style/TextNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{String.format(@string/work_goods_sign_material,goodsSignViewModel.goodsDetailMLD.material)}"
-            app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/view29"
-            tools:text="@string/work_goods_sign_material" />
+                <View
+                    android:id="@+id/view26"
+                    style="@style/DivideLine"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
 
-        <View
-            android:id="@+id/view30"
-            style="@style/DivideLine"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goods_detail_material_tv" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{goodsSignViewModel.goodsDetailMLD.returnNum==0?View.GONE:View.VISIBLE}">
 
-        <TextView
-            android:id="@+id/goods_detail_remark_tv"
-            style="@style/TextNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{String.format(@string/work_goods_sign_remark,goodsSignViewModel.goodsDetailMLD.remark)}"
-            app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/view30"
-            tools:text="@string/work_goods_sign_remark" />
+                <TextView
+                    android:id="@+id/goods_return_number_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@{String.format(@string/work_goods_sign_return_number,goodsSignViewModel.goodsDetailMLD.returnNum)}"
+                    app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/view26"
+                    tools:text="@string/work_goods_sign_return_number" />
 
-        <View
-            android:id="@+id/view31"
-            style="@style/DivideLine"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goods_detail_remark_tv" />
+                <View
+                    android:id="@+id/view27"
+                    style="@style/DivideLine"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/goods_detail_commit_tv"
-            style="@style/commit_btn"
-            android:layout_marginBottom="20dp"
-            android:text="确认到货"
-            android:visibility='@{goodsSignViewModel.goodsDetailMLD.receiveStatus==1?View.VISIBLE:View.INVISIBLE,default="invisible"}'
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{TextUtils.isEmpty(goodsSignViewModel.goodsDetailMLD.unit)?View.GONE:View.VISIBLE}">
+
+                <TextView
+                    android:id="@+id/goods_unit_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@{String.format(@string/work_goods_sign_unit,goodsSignViewModel.goodsDetailMLD.unit)}"
+                    tools:text="@string/work_goods_sign_unit" />
+
+                <View
+                    android:id="@+id/view28"
+                    style="@style/DivideLine"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{TextUtils.isEmpty(goodsSignViewModel.goodsDetailMLD.modelCode)?View.GONE:View.VISIBLE}">
+
+                <TextView
+                    android:id="@+id/goods_spec_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@{String.format(@string/work_goods_sign_spec,goodsSignViewModel.goodsDetailMLD.modelCode)}"
+                    app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/view28"
+                    tools:text="@string/work_goods_sign_spec" />
+
+                <View
+                    android:id="@+id/view29"
+                    style="@style/DivideLine"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{TextUtils.isEmpty(goodsSignViewModel.goodsDetailMLD.material)?View.GONE:View.VISIBLE}">
+
+                <TextView
+                    android:id="@+id/goods_detail_material_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintStart_toStartOf="@+id/goods_name_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/view29"
+                    app:visibilityByContent="@{String.format(@string/work_goods_sign_material,goodsSignViewModel.goodsDetailMLD.material)}"
+                    tools:text="@string/work_goods_sign_material" />
+
+                <View
+                    android:id="@+id/view30"
+                    style="@style/DivideLine"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{TextUtils.isEmpty(goodsSignViewModel.goodsDetailMLD.remark)?View.GONE:View.VISIBLE}">
+
+                <TextView
+                    android:id="@+id/goods_detail_remark_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:visibilityByContent="@{String.format(@string/work_goods_sign_remark,goodsSignViewModel.goodsDetailMLD.remark)}"
+                    tools:text="@string/work_goods_sign_remark" />
+
+                <View
+                    android:id="@+id/view31"
+                    style="@style/DivideLine"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/goods_detail_commit_tv"
+                style="@style/commit_btn"
+                android:layout_marginBottom="20dp"
+                android:text="确认到货"
+                android:visibility='@{goodsSignViewModel.goodsDetailMLD.receiveStatus==1?View.VISIBLE:View.INVISIBLE,default="invisible"}'
+                tools:visibility="visible" />
+        </LinearLayout>
+
+    </LinearLayout>
 </layout>

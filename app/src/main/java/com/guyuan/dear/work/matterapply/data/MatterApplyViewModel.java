@@ -96,7 +96,7 @@ public class MatterApplyViewModel extends BaseViewModel {
     }
 
     //申请物料
-    public void applyMatter( int approveBy, int id, int materialId, int number,
+    public void applyMatter(int approveBy, int id, int materialId, int number,
                             int productId, int projectId, int taskType) {
         MatterApplyBody matterApplyBody = new MatterApplyBody();
         matterApplyBody.setApproveBy(approveBy);
@@ -121,18 +121,20 @@ public class MatterApplyViewModel extends BaseViewModel {
     }
 
     //领料申请列表
-    public void getMatterApplyList(int pageIndex, String projectName, String productName, String createBy) {
+    public void getMatterApplyList(int pageIndex) {
         ListRequestBody requestBody = new ListRequestBody();
         requestBody.setPageNum(pageIndex);
         requestBody.setPageSize(ConstantValue.PAGE_SIZE);
         ListRequestBody.FiltersBean filtersBean = new ListRequestBody.FiltersBean();
-        filtersBean.setProjectName(projectName);
-        filtersBean.setProductName(productName);
-        filtersBean.setCreateBy(createBy);
+//        filtersBean.setProjectName(projectName);
+//        filtersBean.setProductName(productName);
+//        filtersBean.setCreateBy(createBy);
         requestBody.setFilters(filtersBean);
 
         RxJavaHelper.build(this, applyApiService.getMatterApplyList(
-                CommonUtils.getCommonRequestBody(requestBody))).getHelper().flow(matterApplyListMLD);
+                CommonUtils.getCommonRequestBody(requestBody)))
+                .showLoading(false)
+                .getHelper().flow(matterApplyListMLD);
     }
 
     //领料详情

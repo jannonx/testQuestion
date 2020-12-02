@@ -27,61 +27,61 @@
                 android:layout_marginLeft="@dimen/dp_12"
                 android:layout_marginRight="@dimen/dp_12"
                 android:textColor="#1890FF"
-                app:approvalType="@{approvalContentBean.apprType}"
+                android:text="@{approvalContentBean.businessName}"
                 tools:text="dsuahdsaidhsuh" />
 
-            <TextView
-                style="@style/TextNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_12"
-                android:layout_marginTop="@dimen/dp_8"
-                android:layout_marginRight="@dimen/dp_12"
-                app:visibilityByContent="@{String.format(@string/project_name,approvalContentBean.projectName)}"
-                tools:text="@string/project_name" />
+<!--            <TextView-->
+<!--                style="@style/TextNormal"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/dp_12"-->
+<!--                android:layout_marginTop="@dimen/dp_8"-->
+<!--                android:layout_marginRight="@dimen/dp_12"-->
+<!--                app:visibilityByContent="@{String.format(@string/project_name,approvalContentBean.projectName)}"-->
+<!--                tools:text="@string/project_name" />-->
 
-            <TextView
-                style="@style/TextNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_12"
-                android:layout_marginTop="@dimen/dp_8"
-                android:layout_marginRight="@dimen/dp_12"
-                app:visibilityByContent="@{String.format(@string/project_code,approvalContentBean.projectCode)}"
-                android:textColor="#999999"
-                tools:text="@string/project_code" />
+<!--            <TextView-->
+<!--                style="@style/TextNormal"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/dp_12"-->
+<!--                android:layout_marginTop="@dimen/dp_8"-->
+<!--                android:layout_marginRight="@dimen/dp_12"-->
+<!--                app:visibilityByContent="@{String.format(@string/project_code,approvalContentBean.projectCode)}"-->
+<!--                android:textColor="#999999"-->
+<!--                tools:text="@string/project_code" />-->
 
-            <TextView
-                style="@style/TextNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_12"
-                android:layout_marginTop="@dimen/dp_8"
-                android:layout_marginRight="@dimen/dp_12"
-                app:visibilityByContent="@{String.format(@string/product_code,approvalContentBean.code)}"
-                tools:text="@string/product_code" />
+<!--            <TextView-->
+<!--                style="@style/TextNormal"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/dp_12"-->
+<!--                android:layout_marginTop="@dimen/dp_8"-->
+<!--                android:layout_marginRight="@dimen/dp_12"-->
+<!--                app:visibilityByContent="@{String.format(@string/product_code,approvalContentBean.code)}"-->
+<!--                tools:text="@string/product_code" />-->
 
-            <TextView
-                style="@style/TextNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_12"
-                android:layout_marginTop="@dimen/dp_8"
-                android:layout_marginRight="@dimen/dp_12"
-                app:visibilityByContent="@{String.format(@string/office_approval_duty_unit,approvalContentBean.principalDept)}"
-                android:textColor="#999999"
-                tools:text="@string/office_approval_duty_unit" />
+<!--            <TextView-->
+<!--                style="@style/TextNormal"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/dp_12"-->
+<!--                android:layout_marginTop="@dimen/dp_8"-->
+<!--                android:layout_marginRight="@dimen/dp_12"-->
+<!--                app:visibilityByContent="@{String.format(@string/office_approval_duty_unit,approvalContentBean.principalDept)}"-->
+<!--                android:textColor="#999999"-->
+<!--                tools:text="@string/office_approval_duty_unit" />-->
 
-            <TextView
-                style="@style/TextNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_12"
-                android:layout_marginTop="@dimen/dp_8"
-                android:layout_marginRight="@dimen/dp_12"
-                app:visibilityByContent="@{String.format(@string/office_approval_pause_reason,approvalContentBean.reason)}"
-                android:textColor="#999999"
-                tools:text="@string/office_approval_pause_reason" />
+<!--            <TextView-->
+<!--                style="@style/TextNormal"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="@dimen/dp_12"-->
+<!--                android:layout_marginTop="@dimen/dp_8"-->
+<!--                android:layout_marginRight="@dimen/dp_12"-->
+<!--                app:visibilityByContent="@{String.format(@string/office_approval_pause_reason,approvalContentBean.reason)}"-->
+<!--                android:textColor="#999999"-->
+<!--                tools:text="@string/office_approval_pause_reason" />-->
 
 
             <View

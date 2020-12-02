@@ -13,6 +13,7 @@ import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
 import com.guyuan.dear.office.approval.adapter.ApprovalAdapter;
 import com.guyuan.dear.office.approval.data.ApprovalViewModel;
 import com.guyuan.dear.office.approval.data.bean.ApprovalListBean;
+import com.guyuan.dear.office.approval.ui.approvalDetail.ApprovalDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.sun.jna.platform.win32.Variant;
 
@@ -25,11 +26,12 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class ApprovalFragment extends BaseListFragment<ApprovalListBean.ContentBean, ItemApprovalBinding, ApprovalViewModel> {
+public class ApprovalFragment extends BaseListSearchFragment<ApprovalListBean.ContentBean, ItemApprovalBinding, ApprovalViewModel> {
 
     public static final String TAG = "ApprovalFragment";
-    public static final int APPROVAL = 1;  //待审批
-    public static final int APPROVED = 2;  //已审批
+    public static final int APPROVAL_SEND = 1;//我发起的审批
+    public static final int APPROVAL = 2;  //待我审批
+    public static final int APPROVED = 3;  //我已审批
 
     private int type;
 
@@ -42,9 +44,9 @@ public class ApprovalFragment extends BaseListFragment<ApprovalListBean.ContentB
         return fragment;
     }
 
+
     @Override
-    protected void initView() {
-        setContainerBackground(R.color.bg_window);
+    protected void init() {
         ApprovalAdapter approvalAdapter = new ApprovalAdapter(listData, R.layout.item_approval);
         setDefaultAdapter(approvalAdapter);
         adapter.setOnItemClickListener(new OnItemClickListener() {
@@ -52,21 +54,7 @@ public class ApprovalFragment extends BaseListFragment<ApprovalListBean.ContentB
             public void onItemClick(View view, int i) {
                 if (listData.size() > 0) {
                     ApprovalListBean.ContentBean bean = listData.get(i);
-                    FocusProduceBean produceBean = new FocusProduceBean();
-                    produceBean.setEquipmentId(bean.getEquipmentId());
-                    produceBean.setStatusType(bean.getStatus());
-                    produceBean.setPlanId(bean.getBusinessId());
-                    switch (type) {
-                        case APPROVAL:
-                            FocusProduceDetailActivity.start(getContext(), true, produceBean,
-                                    bean.getBusinessId(), bean.getBusinessType(), bean.getApprType());
-                            break;
-
-                        case APPROVED:
-                            FocusProduceDetailActivity.start(getContext(), produceBean, false);
-                            break;
-                    }
-
+                    ApprovalDetailActivity.start(getContext(), bean.getBusinessName(), bean.getArType(), type, bean.getBusinessId());
                 }
             }
         });
@@ -74,7 +62,7 @@ public class ApprovalFragment extends BaseListFragment<ApprovalListBean.ContentB
         if (getArguments() != null) {
             type = getArguments().getInt(ConstantValue.KEY_TYPE);
             if (viewModel != null) {
-                viewModel.getApprovalList(currentPage, type);
+                viewModel.getApprovalList(currentPage, searchContent, type);
             }
         }
     }
@@ -83,17 +71,17 @@ public class ApprovalFragment extends BaseListFragment<ApprovalListBean.ContentB
     @Override
     protected void refresh() {
         currentPage = FIRST_PAGE;
-        viewModel.getApprovalList(currentPage, type);
+        viewModel.getApprovalList(currentPage, searchContent, type);
     }
 
     @Override
     protected void loadMore() {
-        viewModel.getApprovalList(++currentPage, type);
+        viewModel.getApprovalList(++currentPage, searchContent, type);
     }
 
     @Override
     protected boolean isPullEnable() {
-        return true;
+        return false;
     }
 
     @Override

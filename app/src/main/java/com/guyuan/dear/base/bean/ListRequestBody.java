@@ -63,6 +63,15 @@ public class ListRequestBody {
         private String productName;
         private String createBy;
         private int msgType;
+        private int approvalType;
+
+        public int getApprovalType() {
+            return approvalType;
+        }
+
+        public void setApprovalType(int approvalType) {
+            this.approvalType = approvalType;
+        }
 
         public int getMsgType() {
             return msgType;
