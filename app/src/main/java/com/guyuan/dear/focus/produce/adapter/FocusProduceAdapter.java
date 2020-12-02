@@ -35,17 +35,18 @@ public class FocusProduceAdapter extends BaseRecyclerAdapter<FocusProduceBean> {
         //设置生产状态
         TextView tvStatus = holder.getView(R.id.tv_produce_status);
         TextView tvSubStatus = holder.getView(R.id.tv_sub_status);
+
         holder.setText(R.id.tv_produce_status, item.getStatusText());
 
         tvStatus.setBackgroundResource(item.getStatusTextBg());
         int color_blue_ff1b97fc = item.getStatusTextColor();
         tvStatus.setTextColor(context.getResources().getColor(color_blue_ff1b97fc));
-        if (item.getStatusType() == ProductStatusType.TYPE_PRODUCE_DELAY_FINISH ||
-                item.getStatusType() == ProductStatusType.TYPE_PRODUCE_DELAY_NOT_FINISH) {
-            tvSubStatus.setVisibility(View.VISIBLE);
-        } else {
-            tvSubStatus.setVisibility(View.GONE);
-        }
+//        if (item.getStatusType() == ProductStatusType.TYPE_PRODUCE_DELAY_FINISH ||
+//                item.getStatusType() == ProductStatusType.TYPE_PRODUCE_DELAY_NOT_FINISH) {
+//            tvSubStatus.setVisibility(View.VISIBLE);
+//        } else {
+//            tvSubStatus.setVisibility(View.GONE);
+//        }
 
         holder.setText(R.id.tv_product_code, item.getCode());
         holder.getView(R.id.tv_produce_company).setVisibility(
@@ -67,5 +68,6 @@ public class FocusProduceAdapter extends BaseRecyclerAdapter<FocusProduceBean> {
         holder.setText(R.id.tv_activate_time, item.getDisplayTime());
         holder.setText(R.id.label_reason, item.getReasonTypeStr());
         holder.setText(R.id.tv_reason, item.getDisplayReason());
+
     }
 }

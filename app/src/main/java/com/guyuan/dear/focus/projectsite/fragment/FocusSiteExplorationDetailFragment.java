@@ -20,6 +20,7 @@ import com.guyuan.dear.databinding.FragmentFocusSiteExplorationBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
 import com.guyuan.dear.focus.projectsite.bean.CustomerAcceptanceSatisfyType;
+import com.guyuan.dear.focus.projectsite.bean.EventFocusSiteListRefresh;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
@@ -33,6 +34,7 @@ import com.guyuan.dear.work.client.fragment.FollowCommentDialog;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
 import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
+import com.guyuan.dear.work.projectsite.bean.EventWorkSiteListRefresh;
 import com.guyuan.dear.work.projectsite.bean.PostAnswerInfo;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostCustomerAcceptanceInfo;
@@ -117,7 +119,6 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
             @Override
             public void onChanged(Integer dataRefreshBean) {
                 ToastUtils.showShort(getContext(), "评论成功!");
-//                getDetailDataByClassify();
                 EventBus.getDefault().post(new EventAnswerListRefresh());
             }
         });
@@ -161,19 +162,15 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
             @Override
             public void onChanged(Integer data) {
                 LogUtils.showLog("onCommitInstallationDebugInfo...onChanged");
-                getDetailDataByClassify();
-                EventBus.getDefault().post(new EventInstallDebugRefresh());
-                EventBus.getDefault().post(new EventAnswerListRefresh());
+                refreshDataStatus();
             }
         });
         //提交--安装调试
         viewModel.getCommitCustomerAcceptanceInfoEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer data) {
-                LogUtils.showLog("getCommitCustomerAcceptanceInfoEvent...onChanged");
-                getDetailDataByClassify();
-                EventBus.getDefault().post(new EventInstallDebugRefresh());
-                EventBus.getDefault().post(new EventAnswerListRefresh());
+                ToastUtils.showLong(getContext(),"提交完成");
+                refreshDataStatus();
             }
         });
 
@@ -191,7 +188,20 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         });
     }
 
+    /**
+     * 改变状态
+     */
+    private void  refreshDataStatus(){
+        ToastUtils.showLong(getContext(),"提交完成");
+        getDetailDataByClassify();
+        if (detailProjectData.getModuleType()==FunctionModuleType.TYPE_FOCUS){
+            EventBus.getDefault().post(new EventFocusSiteListRefresh());
+        }else{
+            EventBus.getDefault().post(new EventWorkSiteListRefresh());
+        }
 
+        EventBus.getDefault().post(new EventAnswerListRefresh());
+    }
     /**
      * 根据报告类型请求数据
      */

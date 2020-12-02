@@ -141,7 +141,6 @@ public class InstallDebugFragment extends BaseDataBindingFragment<FragmentWorkIn
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onInstallDebugMessage(EventInstallDebugRefresh event) {
-        ToastUtils.showLong(getContext(), "提交成功");
         viewModel.getInstallDebugDetailData(detailData.getId());
     }
 

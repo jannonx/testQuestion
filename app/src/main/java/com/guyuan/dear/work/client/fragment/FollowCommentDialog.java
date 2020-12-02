@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
@@ -59,10 +60,10 @@ public class FollowCommentDialog extends BottomSheetDialog {
         setContentView(viewBinding.getRoot());//核心代码
 
 
-//        viewBinding.etSearch.setFocusable(true);
-//        viewBinding.etSearch.setFocusableInTouchMode(true);
-//        viewBinding.etSearch.requestFocus();
-//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        viewBinding.etSearch.setFocusable(true);
+        viewBinding.etSearch.setFocusableInTouchMode(true);
+        viewBinding.etSearch.requestFocus();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 
         BottomSheetBehavior mDialogBehavior = BottomSheetBehavior.from((View) viewBinding.getRoot().getParent());
         mDialogBehavior.setPeekHeight(getWindowHeight());

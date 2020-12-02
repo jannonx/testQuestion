@@ -1,6 +1,10 @@
 package com.guyuan.dear.focus.produce.bean;
 
 
+import com.guyuan.dear.R;
+import com.guyuan.dear.focus.projectsite.bean.CustomerAcceptanceSatisfyType;
+import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
+
 /**
  * @description: 子生产状态
  * @author: 许建宁
@@ -9,81 +13,124 @@ package com.guyuan.dear.focus.produce.bean;
  */
 public enum ProductStatusType {
 
-    TYPE_PRODUCE_EXCEPTION("生产异常"),
-    TYPE_PRODUCE_WAIT("待生产"),
-    TYPE_PRODUCE_ING("生产中"),
-    TYPE_PRODUCE_COMPLETE("生产完成"),
-    TYPE_PRODUCE_DELAY_FINISH("生产拖期已完成"),
-    TYPE_PRODUCE_DELAY_NOT_FINISH("生产拖期未完成"),
-    TYPE_UNKNOWN("未知类型");
 
+    /**
+     * 暂停
+     */
+    TYPE_PRODUCE_EXCEPTION(0, "暂停", R.color.color_orange_FF6010,
+            R.drawable.bg_orange_ffece3_corner_2),
+    /**
+     * 待生产
+     */
+    TYPE_PRODUCE_WAIT(1, "待生产", R.color.color_blue_1677ff,
+            R.drawable.bg_blue_e7f1ff_corner_2),
+    /**
+     * 生产中
+     */
+    TYPE_PRODUCE_ING(2, "生产中", R.color.color_blue_1677ff,
+            R.drawable.bg_blue_e7f1ff_corner_2),
+    /**
+     * 激活生产中
+     */
+    TYPE_PRODUCE_ACTIVATE(3, "激活生产中", R.color.color_blue_1677ff,
+            R.drawable.bg_blue_e7f1ff_corner_2),
+    /**
+     * 生产完成
+     */
+    TYPE_PRODUCE_COMPLETE(4, "生产完成", R.color.color_green_00B578,
+            R.drawable.bg_green_d4fff1_corner_2),
+    /**
+     * 拖期未完成
+     */
+    TYPE_PRODUCE_DELAY_FINISH(5, "拖期未完成", R.color.color_orange_FF6010,
+            R.drawable.bg_orange_ffece3_corner_2),
+    /**
+     * 拖期已完成
+     */
+    TYPE_PRODUCE_DELAY_NOT_FINISH(6, "拖期已完成", R.color.color_green_00B578,
+            R.drawable.bg_green_d4fff1_corner_2),
+    /**
+     * 未知类型
+     */
+    TYPE_UNKNOWN(7, "未知类型", R.color.color_orange_FF6010,
+            R.drawable.bg_orange_ffece3_corner_2);
+
+
+    private int code;
     private String des;
+    private int textColor;
+    private int textBgColor;
 
-    ProductStatusType(String des) {
+    ProductStatusType(int code, String des, int textColor, int textBgColor) {
+        this.code = code;
         this.des = des;
-    }
-
-    public static ProductStatusType toType(int type) {
-        switch (type) {
-            case ProduceConstant.INT_PRODUCE_EXCEPTION:
-                return TYPE_PRODUCE_EXCEPTION;
-            case ProduceConstant.INT_PRODUCE_WAIT:
-                return TYPE_PRODUCE_WAIT;
-            case ProduceConstant.INT_PRODUCE_ING:
-                return TYPE_PRODUCE_ING;
-            case ProduceConstant.INT_PRODUCE_COMPLETE:
-                return TYPE_PRODUCE_COMPLETE;
-            case ProduceConstant.INT_PRODUCE_DELAY_NOT_FINISH:
-                return TYPE_PRODUCE_DELAY_NOT_FINISH;
-            case ProduceConstant.INT_PRODUCE_DELAY_FINISHED:
-                return TYPE_PRODUCE_DELAY_FINISH;
-            default:
-                return TYPE_UNKNOWN;
-        }
-
-
+        this.textColor = textColor;
+        this.textBgColor = textBgColor;
     }
 
     /**
-     * //    //生产异常
-     * //    public static final int TYPE_PRODUCE_EXCEPTION = 0;
-     * //    //待生产
-     * //    public static final int TYPE_PRODUCE_WAIT = 1;
-     * //    //生产中
-     * //    public static final int TYPE_PRODUCE_ING = 2;
-     * //    //生产完成
-     * //    public static final int TYPE_PRODUCE_COMPLETE = 4;
-     * //    //生产拖期
-     * //    public static final int TYPE_PRODUCE_DELAY = 6;
+     * 根据枚举code获取实例，用于switch
      */
-    public int toInt() {
-        switch (this) {
-            case TYPE_PRODUCE_EXCEPTION:
-                return 0;
-            case TYPE_PRODUCE_WAIT:
-                return 1;
-            case TYPE_PRODUCE_ING:
-                return 2;
-            case TYPE_PRODUCE_COMPLETE:
-                return 4;
-            case TYPE_PRODUCE_DELAY_NOT_FINISH:
-                return 5;
-            case TYPE_PRODUCE_DELAY_FINISH:
-                return 6;
-            default:
-                return 7;
+    public static ProductStatusType toType(int index) {
+        for (ProductStatusType type : ProductStatusType.values()) {
+            if (type.getCode() == index) {
+                return type;
+            }
         }
+        return TYPE_UNKNOWN;
+    }
 
+    public static CustomerAcceptanceSatisfyType toType(SiteExploreBean bean) {
+        if (bean == null) return CustomerAcceptanceSatisfyType.TYPE_UNKNOWN;
+        //安装状态
+        if (bean.getStatus() == 10) {
+            return CustomerAcceptanceSatisfyType.TYPE_INSTALL_WAIT;
+        } else if (bean.getStatus() == 20) {
+            return CustomerAcceptanceSatisfyType.TYPE_INSTALL_ING;
+            //安装完成，验收状态
+        } else if (bean.getStatus() == 30) {
+            if (bean.getCheckStatus() == 0) {
+                return CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_WAIT;
+            } else if (bean.getCheckStatus() == 10) {
+                return CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_OK;
+            } else if (bean.getCheckStatus() == 20) {
+                return CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_EXCEPTION;
+            }
+        } else if (bean.getStatus() == 40) {
+            return CustomerAcceptanceSatisfyType.TYPE_INSTALL_PAUSE;
+        }
+        return CustomerAcceptanceSatisfyType.TYPE_UNKNOWN;
+    }
 
+    /**
+     * 有没有判定满足条件
+     *
+     * @return
+     */
+    public boolean isJudgingCondition() {
+        return this != TYPE_UNKNOWN;
     }
 
     public static String toText(int type) {
-        return ProductStatusType.toType(type).getDes();
+        return CustomerAcceptanceSatisfyType.toType(type).getDes();
 
     }
 
+
     public String getDes() {
         return des;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public int getTextColor() {
+        return textColor;
+    }
+
+    public int getTextBgColor() {
+        return textBgColor;
     }
 
 

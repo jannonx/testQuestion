@@ -106,6 +106,10 @@ public class ProduceStateBean {
      */
     private String remark;
     /**
+     * 批注信息
+     */
+    private String remarks;
+    /**
      * 跟随状态
      */
     private List<ProduceStateBean> texamineFlows;
@@ -133,6 +137,13 @@ public class ProduceStateBean {
         return R.drawable.bg_green_2fc25b_round;
     }
 
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
 
     public long getId() {
         return id;

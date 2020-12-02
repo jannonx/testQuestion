@@ -249,83 +249,16 @@ public class FocusProduceBean implements Serializable {
      * 4.完成，5.拖期未完成，6.拖期已完成
      */
     public String getStatusText() {
-        statusType = ProductStatusType.toType(status);
-        switch (statusType) {
-            case TYPE_PRODUCE_EXCEPTION:
-                return "暂停";
-            case TYPE_PRODUCE_WAIT:
-                return "待生产";
-            case TYPE_PRODUCE_ING:
-                return "生产中";
-            case TYPE_PRODUCE_COMPLETE:
-                return "完成";
-            case TYPE_PRODUCE_DELAY_FINISH:
-                return "拖期已完成";
-            case TYPE_PRODUCE_DELAY_NOT_FINISH:
-                return "拖期未完成";
-            default:
-                return "未知";
-        }
+        return getStatusType().getDes();
     }
-
-
-    //    /**
-//     * 生产动态圆点颜色
-//     *
-//     * @return
-//     */
-//    public int getStatusPointColor() {
-//        statusType = ProductStatusType.toType(status);
-//        switch (statusType) {
-//            case TYPE_PRODUCE_EXCEPTION:
-//                return R.drawable.bg_red_f04864_round;
-//            case TYPE_PRODUCE_WAIT:
-//            case TYPE_PRODUCE_ING:
-//                return R.drawable.bg_green_2fc25b_round;
-//            case TYPE_PRODUCE_COMPLETE:
-//                return R.drawable.bg_green_2fc25b_round;
-//            case TYPE_PRODUCE_DELAY:
-//                return R.drawable.bg_green_2fc25b_round;
-//            default:
-//                return R.color.transparent;
-//        }
-//    }
-
 
     public int getStatusTextColor() {
-        statusType = ProductStatusType.toType(status);
-        switch (statusType) {
-            case TYPE_PRODUCE_EXCEPTION:
-                return R.color.color_orange_FF6010;
-            case TYPE_PRODUCE_WAIT:
-            case TYPE_PRODUCE_ING:
-                return R.color.color_blue_1677ff;
-            case TYPE_PRODUCE_COMPLETE:
-                return R.color.color_green_00B578;
-            case TYPE_PRODUCE_DELAY_NOT_FINISH:
-            case TYPE_PRODUCE_DELAY_FINISH:
-                return R.color.color_orange_FF8F1F;
-            default:
-                return R.color.transparent;
-        }
-    }
+        return getStatusType().getTextColor();
 
+    }
     public int getStatusTextBg() {
-        statusType = ProductStatusType.toType(status);
-        switch (statusType) {
-            case TYPE_PRODUCE_EXCEPTION:
-                return R.drawable.bg_orange_ffece3_corner_2;
-            case TYPE_PRODUCE_WAIT:
-            case TYPE_PRODUCE_ING:
-                return R.drawable.bg_blue_e7f1ff_corner_2;
-            case TYPE_PRODUCE_COMPLETE:
-                return R.drawable.bg_green_d4fff1_corner_2;
-            case TYPE_PRODUCE_DELAY_NOT_FINISH:
-            case TYPE_PRODUCE_DELAY_FINISH:
-                return R.drawable.bg_orange_ffefdf_corner_2;
-            default:
-                return R.drawable.bg_blue_0aad33_corner_4;
-        }
+       return getStatusType().getTextBgColor();
+
     }
 
     public int getStatus() {
@@ -354,12 +287,12 @@ public class FocusProduceBean implements Serializable {
         if (ProductStatusType.TYPE_PRODUCE_ING == statusType) {
             if (ApprovalStatusType.TYPE_APPROVAL_NOT_APPLY == approvalStatusType
                     || ApprovalStatusType.TYPE_APPROVAL_PAUSE_PASS == approvalStatusType) {
-                return "操作员：" + updateName;
+                return "操作员：" + (updateName==null?"":updateName);
             }
         } else if (ProductStatusType.TYPE_PRODUCE_COMPLETE == statusType
                 || ProductStatusType.TYPE_PRODUCE_DELAY_FINISH == statusType
                 || ProductStatusType.TYPE_PRODUCE_DELAY_NOT_FINISH == statusType) {
-            return "操作员：" + updateName;
+            return "操作员：" + (updateName==null?"":updateName);
         }
 
         return getApprovalStatusType().getDes();

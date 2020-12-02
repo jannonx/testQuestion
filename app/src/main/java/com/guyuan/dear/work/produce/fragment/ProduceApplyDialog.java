@@ -119,11 +119,11 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
                 break;
             case R.id.iv_sent_to:
                 if (clickListener == null) return;
-                clickListener.onSendClick(sendAdapter,copyAdapter);
+                clickListener.onSendClick(sendAdapter, copyAdapter);
                 break;
             case R.id.iv_copy_to:
                 if (clickListener == null) return;
-                clickListener.onCopyClick(copyAdapter,sendAdapter);
+                clickListener.onCopyClick(copyAdapter, sendAdapter);
                 break;
 
         }
@@ -134,6 +134,13 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
         if (TextUtils.isEmpty(viewBinding.etSearch.getText().toString())) {
             ToastUtils.showLong(getContext(), "请填内容");
             return;
+        }
+        if (sendAdapter != null) {
+            ArrayList<StaffBean> tagDataList = (ArrayList<StaffBean>) sendAdapter.getList();
+            if (tagDataList.size() == 0) {
+                ToastUtils.showLong(getContext(),"请选择审批人");
+                return;
+            }
         }
         body.setType(operateProduceType.getCode());
         body.setReason(viewBinding.etSearch.getText().toString());
@@ -257,9 +264,9 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
     public interface OnDialogClickListener {
         void onCommitInfo(ExecuteRequestBody data);
 
-        void onSendClick(AddSendListAdapter sendListAdapter,AddCopyListAdapter addCopyListAdapter);
+        void onSendClick(AddSendListAdapter sendListAdapter, AddCopyListAdapter addCopyListAdapter);
 
-        void onCopyClick(AddCopyListAdapter addCopyListAdapter,AddSendListAdapter sendListAdapter);
+        void onCopyClick(AddCopyListAdapter addCopyListAdapter, AddSendListAdapter sendListAdapter);
     }
 
 }

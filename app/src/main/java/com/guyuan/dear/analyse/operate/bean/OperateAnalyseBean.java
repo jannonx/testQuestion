@@ -20,7 +20,7 @@ public class OperateAnalyseBean implements Serializable {
     /**
      * 成本
      */
-    private int totalCost;
+    private long totalCost;
     /**
      * 合同名称
      */
@@ -32,7 +32,7 @@ public class OperateAnalyseBean implements Serializable {
     /**
      * 回款金额
      */
-    private int tradeReceivables;
+    private long tradeReceivables;
     /**
      * 成本核算的月份
      */
@@ -40,19 +40,19 @@ public class OperateAnalyseBean implements Serializable {
     /**
      * 原材料成本
      */
-    private int materialCosts;
+    private long materialCosts;
     /**
      * 制造成本
      */
-    private int manufacturingCosts;
+    private long manufacturingCosts;
     /**
      * 人力成本
      */
-    private int laborCost;
+    private long laborCost;
     /**
      * 安装成本
      */
-    private int installationCost;
+    private long installationCost;
 
     private OperateType operateType;
 

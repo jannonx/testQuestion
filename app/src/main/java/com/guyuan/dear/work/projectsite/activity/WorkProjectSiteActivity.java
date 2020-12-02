@@ -13,8 +13,15 @@ import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.work.projectsite.bean.EventCheckGoodsListRefresh;
+import com.guyuan.dear.work.projectsite.bean.EventWorkSiteListRefresh;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 import com.guyuan.dear.work.projectsite.fragment.WorkProjectReportListFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,6 +58,7 @@ public class WorkProjectSiteActivity extends BaseTabActivity<ActivityBaseTabBind
     @Override
     protected List<Fragment> getFragments() {
         List<Fragment> fragmentList = new ArrayList<>();
+        EventBus.getDefault().register(this);
         fragmentList.add(siteExplorationFragment=WorkProjectReportListFragment.newInstance(ProjectReportType.TYPE_SITE_EXPLORATION));
         fragmentList.add(goodsChecksFragment=WorkProjectReportListFragment.newInstance(ProjectReportType.TYPE_CHECK_GOODS));
         fragmentList.add(checkSafeFragment=WorkProjectReportListFragment.newInstance(ProjectReportType.TYPE_CHECK_SAFE));
@@ -118,5 +126,30 @@ public class WorkProjectSiteActivity extends BaseTabActivity<ActivityBaseTabBind
         return viewModel;
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onRefreshListMessage(EventWorkSiteListRefresh event) {
+       if (siteExplorationFragment.isVisible()){
+           LogUtils.showLog("onRefreshListMessage....0000");
+           siteExplorationFragment.refreshList();
+       }else if (goodsChecksFragment.isVisible()) {
+           LogUtils.showLog("onRefreshListMessage....1111");
+           goodsChecksFragment.refreshList();
+       }else if (checkSafeFragment.isVisible()) {
+           LogUtils.showLog("onRefreshListMessage....2222");
+           checkSafeFragment.refreshList();
+       }else if (installationDebugFragment.isVisible()) {
+           LogUtils.showLog("onRefreshListMessage....3333");
+           installationDebugFragment.refreshList();
+       }else if (customerAcceptanceFragment.isVisible()) {
+           LogUtils.showLog("onRefreshListMessage....4444");
+           customerAcceptanceFragment.refreshList();
+       }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

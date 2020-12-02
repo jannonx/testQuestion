@@ -1,6 +1,7 @@
 package com.guyuan.dear.focus.produce.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -42,6 +43,7 @@ public class FocusProduceStatusAdapter extends BaseRecyclerAdapter<ProduceStateB
         View normalView = holder.getView(R.id.cl_order_detail);
         View firstAboveLie = holder.getView(R.id.v_first_above);
         View vAboveLie = holder.getView(R.id.v_line_above);
+        View viewEmptyBottom = holder.getView(R.id.view_empty_bottom);
 
         specialView.setVisibility(lastOneItem ? View.VISIBLE : View.GONE);
         firstAboveLie.setVisibility(onlyOneData ? View.GONE : View.VISIBLE);
@@ -62,10 +64,13 @@ public class FocusProduceStatusAdapter extends BaseRecyclerAdapter<ProduceStateB
         vBall.setBackgroundResource(item.getBallBg());
 
         holder.setText(R.id.tv_product_status, item.getTitle());
-        holder.setText(R.id.tv_time, item.getCreateTime());
+        holder.setText(R.id.tv_time, TextUtils.isEmpty(item.getCreateTime())?item.getApprovalTime():item.getCreateTime());
 
-        holder.setText(R.id.tv_name, item.getCreateName());
-        holder.setText(R.id.tv_comment, item.getRemark());
-        holder.setText(R.id.tv_department, item.getDepartmentName());
+        holder.setText(R.id.tv_name, TextUtils.isEmpty(item.getCreateName())?item.getApproveName():item.getCreateName());
+        holder.setText(R.id.tv_comment, item.getRemarks());
+        holder.setText(R.id.tv_department, TextUtils.isEmpty(item.getCreateDept())?item.getDepartmentName():item.getCreateDept());
+
+
+        viewEmptyBottom.setVisibility(listData.size() >= 3 && (position == listData.size() - 1) ? View.VISIBLE : View.GONE);
     }
 }

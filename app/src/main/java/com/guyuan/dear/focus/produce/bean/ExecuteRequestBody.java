@@ -11,6 +11,10 @@ import java.util.List;
  */
 public class ExecuteRequestBody implements Serializable {
     /**
+     * 标识id
+     */
+    private long id;
+    /**
      * 审批人id的集合
      */
     private List<Long> approvers;
@@ -69,5 +73,13 @@ public class ExecuteRequestBody implements Serializable {
 
     public void setType(long type) {
         this.type = type;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
