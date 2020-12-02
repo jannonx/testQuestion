@@ -47,20 +47,26 @@ public class MatterAppliedFragment extends BaseListFragment<MatterApplyBean, Ite
                 MatterApplyDetailActivity.start(getContext(), bean.getProductName(), bean.getId());
             }
         });
-        if (viewModel != null) {
-            viewModel.getMatterApplyList(currentPage, "", "", "");
-        }
+//        if (viewModel != null) {
+//            viewModel.getMatterApplyList(currentPage);
+//        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refresh();
     }
 
     @Override
     protected void refresh() {
         currentPage = ConstantValue.FIRST_PAGE;
-        viewModel.getMatterApplyList(currentPage, "", "", "");
+        viewModel.getMatterApplyList(currentPage);
     }
 
     @Override
     protected void loadMore() {
-        viewModel.getMatterApplyList(++currentPage, "", "", "");
+        viewModel.getMatterApplyList(++currentPage);
     }
 
     @Override

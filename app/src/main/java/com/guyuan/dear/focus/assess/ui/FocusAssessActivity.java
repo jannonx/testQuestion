@@ -49,7 +49,7 @@ public class FocusAssessActivity extends BaseTabActivity<ActivityBaseTabBinding,
     protected List<Fragment> getFragments() {
         List<Fragment> fragmentList = new ArrayList<>();
         overviewFragment = FocusAssessOverviewFragment.newInstance();
-        exceptionFragment = FocusAssessListFragment.newInstance(10, "",
+        exceptionFragment = FocusAssessListFragment.newInstance(FocusAssessListFragment.NOT_PASS, "",
                 FocusAssessListFragment.FROM_OTHER);
         totalFragment = FocusAssessListFragment.newInstance(FocusAssessListFragment.TOTAL, "",
                 FocusAssessListFragment.FROM_OTHER);

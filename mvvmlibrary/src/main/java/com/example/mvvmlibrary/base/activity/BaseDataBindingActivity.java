@@ -21,6 +21,7 @@ import java.util.Map;
 public abstract class BaseDataBindingActivity<V extends ViewDataBinding, VM extends BaseViewModel> extends BaseActivity {
     protected V binding;
     protected VM viewModel;
+    private boolean isSetViewModelToFragment = true;//默认让加载的fragment使用activity的viewModel
 
     @Override
     protected void init(Bundle savedInstanceState) {
@@ -97,6 +98,14 @@ public abstract class BaseDataBindingActivity<V extends ViewDataBinding, VM exte
         }
     }
 
+
+    public void setViewModelToFragment(boolean isSetViewModelToFragment) {
+        this.isSetViewModelToFragment = isSetViewModelToFragment;
+    }
+
+    public boolean isSetViewModelToFragment() {
+        return isSetViewModelToFragment;
+    }
 
     protected abstract void initData(Bundle savedInstanceState);
 

@@ -37,7 +37,7 @@ public class BeanMapper {
     public static void netStaffBeanToEntities(NetStaffBean bean, List<StaffEntity> staffEntities,
                                               List<DeptEntity> deptEntities, List<StaffDeptCrosRef> crosRefs) {
         StaffEntity staff = new StaffEntity();
-        staff.userId = bean.getUserId();
+        staff._id = bean.getUserId();
         staff.deleteFlag = bean.getDeleteFlag();
         staff.imgUrl = bean.getImgUrl();
         staff.name = bean.getName();
@@ -70,7 +70,7 @@ public class BeanMapper {
                     deptEntities.add(dept);
                 }
                 StaffDeptCrosRef crosRef = new StaffDeptCrosRef();
-                crosRef.userId = staff.userId;
+                crosRef._id = staff._id;
                 crosRef.deptId = dept.deptId;
 //                crosRef.level = dept.level;
                 if (!crosRefs.contains(crosRef)) {
@@ -92,7 +92,7 @@ public class BeanMapper {
     public static StaffBean entityToStaffBean(StaffAndDepts entity) {
         StaffBean bean = new StaffBean();
         bean.setImgUrl(entity.staffEntity.imgUrl);
-        bean.setId(entity.staffEntity.userId);
+        bean.setId(entity.staffEntity._id);
         bean.setName(entity.staffEntity.name);
         bean.setWorkId(entity.staffEntity.workId);
         List<DeptBean> deptBeans = new ArrayList<>();

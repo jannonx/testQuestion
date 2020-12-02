@@ -1,5 +1,7 @@
 package com.guyuan.dear.db.dao;
 
+import android.database.Cursor;
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -35,8 +37,11 @@ public interface StaffDao {
     @Transaction
     public List<StaffEntity> loadAll();
 
-    @Query("SELECT * FROM StaffEntity WHERE userId IN (:ids) AND deleteFlag=1")
+    @Query("SELECT * FROM StaffEntity WHERE _id IN (:ids) AND deleteFlag=1")
     public List<StaffEntity> getStaffsById(List<Integer> ids);
+
+    @Query("SELECT * FROM StaffEntity WHERE name LIKE :keyWord AND deleteFlag=1")
+    public Cursor getStaffsByName(String keyWord);
 
 
 }

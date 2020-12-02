@@ -102,7 +102,7 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
 
     @Override
     protected boolean isPullEnable() {
-        return true;
+        return false;
     }
 
     @Override

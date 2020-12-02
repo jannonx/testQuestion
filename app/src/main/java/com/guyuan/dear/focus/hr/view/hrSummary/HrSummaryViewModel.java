@@ -5,6 +5,7 @@ import android.view.View;
 import androidx.lifecycle.MutableLiveData;
 
 import com.guyuan.dear.base.fragment.BaseDearViewModel;
+import com.guyuan.dear.customizeview.searchview.HrSearchView;
 import com.guyuan.dear.focus.hr.bean.HrSummaryBean;
 import com.guyuan.dear.focus.hr.repos.HrSummaryRepo;
 
@@ -24,6 +25,7 @@ public class HrSummaryViewModel extends BaseDearViewModel {
     private MutableLiveData<View.OnClickListener> onClickShowLateStaffs = new MutableLiveData<>();
     private MutableLiveData<View.OnClickListener> onClickShowEarlyLeaveStaffs = new MutableLiveData<>();
     private MutableLiveData<View.OnClickListener> onClickShowOnLeaveStaffs = new MutableLiveData<>();
+    public MutableLiveData<HrSearchView.SelectStaffCallback> onSelectSearchStaff = new MutableLiveData<>();
 
 
     public Disposable updateStaffSum(){

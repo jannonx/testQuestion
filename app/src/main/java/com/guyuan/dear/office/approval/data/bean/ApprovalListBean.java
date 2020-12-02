@@ -68,41 +68,20 @@ public class ApprovalListBean {
     }
 
     public static class ContentBean {
-        private int apprType;                  //审批类型：1.制定主生产计划；2.子生产计划暂停；3.子生产计划激活
-        private int businessId;                //主、子生产计划id
-        private int businessType;              //业务类型：1.主生产计划；2.子生产计划
-        private String code;                   //产品代号
-        private String createName;             //提交人
-        private String createTime;             //提交时间
-        private String principalDept;          //责任单位
-        private String projectCode;            //项目编号
-        private String projectName;            //项目名称
-        private String reason;                 //原因
-        private int equipmentId;               //设备ID
-        private int status;                    //生产计划状态:0.暂停，1.待开始，2.生产中，3.激活生产中，4.完成，5.拖期未完成，6.拖期已完成
+        private int arType;               //审批类型
+        private int businessId;           //业务id
+        private String businessName;      //业务名称
+        private String createName;        //申请人名称
+        private String createTime;        //申请时间
+        private int id;                   //主键
+        private int status;               //状态 0.审批中 1.已同意 2.已拒绝
 
-        public int getStatus() {
-            return status;
+        public int getArType() {
+            return arType;
         }
 
-        public void setStatus(int status) {
-            this.status = status;
-        }
-
-        public int getEquipmentId() {
-            return equipmentId;
-        }
-
-        public void setEquipmentId(int equipmentId) {
-            this.equipmentId = equipmentId;
-        }
-
-        public int getApprType() {
-            return apprType;
-        }
-
-        public void setApprType(int apprType) {
-            this.apprType = apprType;
+        public void setArType(int arType) {
+            this.arType = arType;
         }
 
         public int getBusinessId() {
@@ -113,20 +92,12 @@ public class ApprovalListBean {
             this.businessId = businessId;
         }
 
-        public int getBusinessType() {
-            return businessType;
+        public String getBusinessName() {
+            return businessName;
         }
 
-        public void setBusinessType(int businessType) {
-            this.businessType = businessType;
-        }
-
-        public String getCode() {
-            return code;
-        }
-
-        public void setCode(String code) {
-            this.code = code;
+        public void setBusinessName(String businessName) {
+            this.businessName = businessName;
         }
 
         public String getCreateName() {
@@ -145,36 +116,20 @@ public class ApprovalListBean {
             this.createTime = createTime;
         }
 
-        public String getPrincipalDept() {
-            return principalDept;
+        public int getId() {
+            return id;
         }
 
-        public void setPrincipalDept(String principalDept) {
-            this.principalDept = principalDept;
+        public void setId(int id) {
+            this.id = id;
         }
 
-        public String getProjectCode() {
-            return projectCode;
+        public int getStatus() {
+            return status;
         }
 
-        public void setProjectCode(String projectCode) {
-            this.projectCode = projectCode;
-        }
-
-        public String getProjectName() {
-            return projectName;
-        }
-
-        public void setProjectName(String projectName) {
-            this.projectName = projectName;
-        }
-
-        public String getReason() {
-            return reason;
-        }
-
-        public void setReason(String reason) {
-            this.reason = reason;
+        public void setStatus(int status) {
+            this.status = status;
         }
     }
 }

@@ -1,9 +1,9 @@
 package com.guyuan.dear.work.contractPause.beans;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.guyuan.dear.db.DearDb;
 import com.guyuan.dear.db.DearDbManager;
 import com.guyuan.dear.db.entities.DeptEntity;
 import com.guyuan.dear.db.entities.StaffDeptCrosRef;
@@ -30,15 +30,15 @@ public class StaffBean implements Parcelable {
     public StaffBean() {
     }
 
-    public StaffBean(StaffEntity entity){
+    public StaffBean(StaffEntity entity) {
         setName(entity.name);
-        setId(entity.userId);
+        setId(entity._id);
         setWorkId(entity.workId);
         setImgUrl(entity.imgUrl);
         depts = new ArrayList<>();
         List<StaffDeptCrosRef> crosRefs = DearDbManager.getInstance().getDataBase().getStaffDeptCroRefDao().loadAll();
         for (StaffDeptCrosRef crosRef : crosRefs) {
-            if(crosRef.userId==entity.userId){
+            if (crosRef._id == entity._id) {
                 DeptEntity deptEntity = DearDbManager.getInstance().getDataBase().getDeptDao().findById(crosRef.deptId);
                 depts.add(new DeptBean(deptEntity));
             }
@@ -46,7 +46,7 @@ public class StaffBean implements Parcelable {
         depts.sort(new Comparator<DeptBean>() {
             @Override
             public int compare(DeptBean o1, DeptBean o2) {
-                return o1.getLevel()-o2.getLevel();
+                return o1.getLevel() - o2.getLevel();
             }
         });
     }
@@ -58,6 +58,28 @@ public class StaffBean implements Parcelable {
         imgUrl = in.readString();
         workId = in.readString();
         depts = in.createTypedArrayList(DeptBean.CREATOR);
+    }
+
+    public StaffBean(Cursor cursor) {
+        setName(cursor.getString(cursor.getColumnIndex("name")));
+        setImgUrl(cursor.getString(cursor.getColumnIndex("imgUrl")));
+        setWorkId(cursor.getString(cursor.getColumnIndex("workId")));
+        setId(cursor.getInt(cursor.getColumnIndex("_id")));
+        depts = new ArrayList<>();
+        List<StaffDeptCrosRef> crosRefs = DearDbManager.getInstance().getDataBase().getStaffDeptCroRefDao().loadAll();
+        for (StaffDeptCrosRef crosRef : crosRefs) {
+            if (crosRef._id == getId()) {
+                DeptEntity deptEntity = DearDbManager.getInstance().getDataBase().getDeptDao().findById(crosRef.deptId);
+                depts.add(new DeptBean(deptEntity));
+            }
+        }
+        depts.sort(new Comparator<DeptBean>() {
+            @Override
+            public int compare(DeptBean o1, DeptBean o2) {
+                return o1.getLevel() - o2.getLevel();
+            }
+        });
+
     }
 
     public String getName() {

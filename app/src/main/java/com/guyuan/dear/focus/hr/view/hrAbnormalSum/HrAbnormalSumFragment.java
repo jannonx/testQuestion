@@ -5,10 +5,13 @@ import android.view.View;
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
+import com.guyuan.dear.customizeview.searchview.HrSearchView;
 import com.guyuan.dear.databinding.FragmentHrAnormalSumBinding;
 import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
+import com.guyuan.dear.focus.hr.view.hrStaffMonthlyDetail.StaffMonthlyDetailActivity;
 import com.guyuan.dear.focus.hr.view.hrStatusGrp.HrStatusGroupActivity;
 import com.guyuan.dear.utils.AlertDialogUtils;
+import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
@@ -20,9 +23,9 @@ import com.jzxiang.pickerview.listener.OnDateSetListener;
  * Project: Dear
  * Description:
  */
-public class HrAbnormalSumFragment extends BaseMvvmFragment<FragmentHrAnormalSumBinding,HrAbnormalSumViewModel> {
+public class HrAbnormalSumFragment extends BaseMvvmFragment<FragmentHrAnormalSumBinding, HrAbnormalSumViewModel> {
 
-    public static HrAbnormalSumFragment getInstance(){
+    public static HrAbnormalSumFragment getInstance() {
         return new HrAbnormalSumFragment();
     }
 
@@ -98,6 +101,13 @@ public class HrAbnormalSumFragment extends BaseMvvmFragment<FragmentHrAnormalSum
                         "请假人员",
                         HrStatusGroup.GRP_TYPE_ON_LEAVE,
                         getViewModel().currentSelectedData.getValue());
+            }
+        });
+
+        getViewModel().onSelectSearchStaff.postValue(new HrSearchView.SelectStaffCallback() {
+            @Override
+            public void onStaffSelected(StaffBean staff) {
+                StaffMonthlyDetailActivity.start(getActivity(), staff.getName(), staff.getId().intValue());
             }
         });
 

@@ -14,6 +14,7 @@ import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentContractDetailBinding;
 import com.guyuan.dear.focus.contract.adapter.ContractDetailPagerAdapter;
+import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.view.contractProgress.ContractPrgDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 
@@ -86,6 +87,11 @@ public class ContractDetailFragment extends BaseMvvmFragment<FragmentContractDet
             }
         });
 
+    }
+
+    //审批需要获取详情页数据
+    public DetailContractBean getContractBean() {
+        return getViewModel().getContractBean().getValue();
     }
 
     @Override

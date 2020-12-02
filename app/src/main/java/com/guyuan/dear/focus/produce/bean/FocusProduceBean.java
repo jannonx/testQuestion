@@ -11,6 +11,9 @@ import java.io.Serializable;
  * @company: 固远（深圳）信息技术有限公司
  */
 public class FocusProduceBean implements Serializable {
+
+    private int id;
+
     /**
      * 审批状态：
      * 0.暂停待1级审批，1.暂停审批中，2.暂停审批通过，
@@ -156,6 +159,14 @@ public class FocusProduceBean implements Serializable {
      */
     private String unit;
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getApprovalStatus() {
         return approvalStatus;

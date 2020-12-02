@@ -137,7 +137,7 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
 
     private void initDataAndListener() {
         binding.tvCommitBtn.setVisibility(isFooterBtnShow ? View.VISIBLE : View.GONE);
-        viewModel.getBasicInfoById(produceBean.getEquipmentId());
+        viewModel.getBasicInfoById(produceBean.getPlanId());
         viewModel.getBasicInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
             @Override
             public void onChanged(FocusProduceBean data) {

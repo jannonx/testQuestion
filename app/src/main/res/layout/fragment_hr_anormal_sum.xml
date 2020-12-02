@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="fragment_hr_abnormal_sum_vm"
             type="com.guyuan.dear.focus.hr.view.hrAbnormalSum.HrAbnormalSumViewModel" />
@@ -11,47 +12,56 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/white">
-        <include layout="@layout/layout_search_bar"/>
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <include
+            app:onSelectSearchStaff="@{fragment_hr_abnormal_sum_vm.onSelectSearchStaff}"
+            layout="@layout/layout_search_bar_for_staff" />
+
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:background="#F5F7FA"
-            android:layout_marginTop="@dimen/dp_7"
-            android:layout_marginBottom="@dimen/dp_4"
-            android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginTop="@dimen/dp_7"
+            android:layout_marginBottom="@dimen/dp_4"
+            android:background="#F5F7FA"
+            android:gravity="center_vertical"
             android:padding="@dimen/dp_12">
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="日期"
                 android:textColor="@color/color_black_333333"
                 android:textSize="@dimen/sp_16"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <Space
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
+
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_round_corner_50dp_white_solid"
+                android:gravity="center_vertical"
                 android:onClick="@{fragment_hr_abnormal_sum_vm.onClickSelectDate}"
                 android:paddingLeft="@dimen/dp_12"
-                android:paddingRight="@dimen/dp_12"
                 android:paddingTop="@dimen/dp_4"
-                android:paddingBottom="@dimen/dp_4"
-                android:layout_width="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_round_corner_50dp_white_solid">
+                android:paddingRight="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_4">
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:showYearMonthDayByDate="@{fragment_hr_abnormal_sum_vm.currentSelectedData}"/>
+                    app:showYearMonthDayByDate="@{fragment_hr_abnormal_sum_vm.currentSelectedData}" />
+
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_marginLeft="@dimen/dp_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_svg_arrow_grey_down"/>
+                    android:layout_marginLeft="@dimen/dp_4"
+                    app:srcCompat="@drawable/ic_svg_arrow_grey_down" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -63,8 +73,8 @@
             android:layout_marginTop="@dimen/dp_12"
             android:layout_marginRight="@dimen/dp_12"
             android:background="@color/white"
-            app:cardCornerRadius="@dimen/dp_4"
-            android:onClick="@{fragment_hr_abnormal_sum_vm.onClickShowAbsentList}">
+            android:onClick="@{fragment_hr_abnormal_sum_vm.onClickShowAbsentList}"
+            app:cardCornerRadius="@dimen/dp_4">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -111,8 +121,8 @@
             android:layout_marginTop="@dimen/dp_12"
             android:layout_marginRight="@dimen/dp_12"
             android:background="@color/white"
-            app:cardCornerRadius="@dimen/dp_4"
-            android:onClick="@{fragment_hr_abnormal_sum_vm.onClickShowOnLeaveList}">
+            android:onClick="@{fragment_hr_abnormal_sum_vm.onClickShowOnLeaveList}"
+            app:cardCornerRadius="@dimen/dp_4">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -159,8 +169,8 @@
             android:layout_marginTop="@dimen/dp_12"
             android:layout_marginRight="@dimen/dp_12"
             android:background="@color/white"
-            app:cardCornerRadius="@dimen/dp_4"
-            android:onClick="@{fragment_hr_abnormal_sum_vm.onClickShowLateList}">
+            android:onClick="@{fragment_hr_abnormal_sum_vm.onClickShowLateList}"
+            app:cardCornerRadius="@dimen/dp_4">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -205,8 +215,8 @@
             android:layout_height="53dp"
             android:layout_margin="@dimen/dp_12"
             android:background="@color/white"
-            app:cardCornerRadius="@dimen/dp_4"
-            android:onClick="@{fragment_hr_abnormal_sum_vm.onClickLeaveEarlyList}">
+            android:onClick="@{fragment_hr_abnormal_sum_vm.onClickLeaveEarlyList}"
+            app:cardCornerRadius="@dimen/dp_4">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"

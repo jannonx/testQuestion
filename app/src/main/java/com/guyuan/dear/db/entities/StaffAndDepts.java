@@ -17,7 +17,7 @@ public class StaffAndDepts {
     @Embedded
     public StaffEntity staffEntity;
     @Relation(
-            parentColumn = "userId",
+            parentColumn = "_id",
             entityColumn = "deptId",
             associateBy = @Junction(value = StaffDeptCrosRef.class))
     public List<DeptEntity> deptEntities;

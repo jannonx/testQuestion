@@ -47,6 +47,30 @@ public class DearDbManager {
                                 LogUtils.showLog("升级数据库1->2");
                                 DearApplication.getInstance().saveCacheData(ConstantValue.KEY_STAFF_TABLE_LAST_UPDATE_TIME, 0L);
                             }
+                        },
+                        new Migration(2, 3) {
+                            @Override
+                            public void migrate(@NonNull SupportSQLiteDatabase database) {
+                                LogUtils.showLog("升级数据库2->3");
+
+                                database.execSQL("AlTER TABLE 'StaffEntity' RENAME TO 'StaffEntityOld';");
+                                database.execSQL("CREATE TABLE IF NOT EXISTS 'StaffEntity' (" +
+                                        "'name' TEXT, " +
+                                        "'_id' INTEGER NOT NULL, " +
+                                        "'imgUrl' TEXT, " +
+                                        "'deleteFlag' INTEGER NOT NULL, " +
+                                        "'workId' TEXT, " +
+                                        "PRIMARY KEY('_id'));"
+                                );
+                                database.execSQL("INSERT INTO 'StaffEntity' SELECT name,userId,imgUrl,deleteFlag,workId FROM 'StaffEntityOld';");
+                                database.execSQL("DROP TABLE StaffEntityOld;");
+
+                                database.execSQL("ALTER TABLE StaffDeptCrosRef RENAME TO StaffDeptCrosRefOld;");
+                                database.execSQL("CREATE TABLE IF NOT EXISTS StaffDeptCrosRef (_id INTEGER NOT NULL, deptId INTEGER NOT NULL, PRIMARY KEY(_id, deptId));");
+                                database.execSQL("INSERT INTO StaffDeptCrosRef SELECT userId,deptId FROM StaffDeptCrosRefOld;");
+                                database.execSQL("DROP TABLE StaffDeptCrosRefOld;");
+
+                            }
                         })
                 .build();
     }

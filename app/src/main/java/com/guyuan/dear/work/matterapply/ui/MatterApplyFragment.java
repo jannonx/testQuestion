@@ -141,7 +141,7 @@ public class MatterApplyFragment extends BaseDataBindingFragment<FragmentWorkMat
                 String text = s.toString();
                 int len = s.toString().length();
                 if (len > 1 && text.startsWith("0")) {
-                    s.replace(0,1,"");
+                    s.replace(0, 1, "");
                 }
             }
         });
@@ -424,6 +424,7 @@ public class MatterApplyFragment extends BaseDataBindingFragment<FragmentWorkMat
                 setSelectText(binding.matterApplyProductNameTv, CHOOSE);
             case CLEAR_MATERIAL:
                 currentMaterialID = CLEAR_ID;
+                currentMaterialList.clear();
                 setSelectText(binding.matterApplySpecTv, CHOOSE);
                 setMaterialData(null);
                 break;

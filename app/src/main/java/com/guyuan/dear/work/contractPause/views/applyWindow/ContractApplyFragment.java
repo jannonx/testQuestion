@@ -66,7 +66,7 @@ public class ContractApplyFragment extends BaseMvvmFragment<FragmentPauseContrac
     protected void initData() {
         Bundle bundle = getArguments();
         type = bundle.getInt(ConstantValue.KEY_APPLY_TYPE, ContractApplyBean.APPLY_TYPE_PAUSE);
-        getViewModel().setApplyType(type);
+        getViewModel().applyType.postValue(type);
     }
 
     @Override

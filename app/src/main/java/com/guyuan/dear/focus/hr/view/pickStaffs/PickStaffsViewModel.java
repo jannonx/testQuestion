@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
+import com.guyuan.dear.customizeview.searchview.HrSearchView;
 import com.guyuan.dear.db.DearDbManager;
 import com.guyuan.dear.db.entities.DeptEntity;
 import com.guyuan.dear.db.entities.StaffAndDepts;
@@ -71,6 +72,7 @@ public class PickStaffsViewModel extends BaseViewModel {
      * 点击事件：点击历史选人列表右上角“选择全部”的回调
      */
     private MutableLiveData<CompoundButton.OnCheckedChangeListener> onToggleSelectAllHistoryStaffs = new MutableLiveData<>();
+    public MutableLiveData<HrSearchView.SelectStaffCallback> onSelectSearchStaff = new MutableLiveData<>();
     /**
      * 点击事件：点击提交
      */
@@ -175,7 +177,7 @@ public class PickStaffsViewModel extends BaseViewModel {
                     bean.staffEntity = entity;
                     bean.deptEntities = new ArrayList<>();
                     for (StaffDeptCrosRef ref : crosRefs) {
-                        if (entity.userId == ref.userId) {
+                        if (entity._id == ref._id) {
                             long deptId = ref.deptId;
                             DeptEntity deptEntity = DearDbManager.getInstance().getDataBase().getDeptDao().findById(deptId);
                             bean.deptEntities.add(deptEntity);
