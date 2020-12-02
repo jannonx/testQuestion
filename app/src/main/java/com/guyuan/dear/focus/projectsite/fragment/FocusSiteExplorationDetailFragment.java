@@ -636,14 +636,15 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> photoList) {
-        photoList.addAll(photoList);
+    public void onPhotoSelected(ArrayList<String> dataList) {
+        photoList.clear();
+        photoList.addAll(dataList);
         if (leftDialog != null) {
-            leftDialog.setPhotoList(photoList);
+            leftDialog.setPhotoList(dataList);
         }
 
         if (rightDialog != null) {
-            rightDialog.setPhotoList(photoList);
+            rightDialog.setPhotoList(dataList);
         }
     }
 
