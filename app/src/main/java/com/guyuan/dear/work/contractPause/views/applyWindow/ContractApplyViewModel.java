@@ -39,7 +39,7 @@ public class ContractApplyViewModel extends BaseViewModel {
     /**
      * {@link ContractApplyBean#APPLY_TYPE_PAUSE} {@link ContractApplyBean#APPLY_TYPE_RESUME}
      */
-    private int applyType;
+    public MutableLiveData<Integer> applyType = new MutableLiveData<>(ContractApplyBean.APPLY_TYPE_PAUSE);
 
 
     /**
@@ -72,9 +72,6 @@ public class ContractApplyViewModel extends BaseViewModel {
         return onClickSubmit;
     }
 
-    public void setApplyType(int applyType) {
-        this.applyType = applyType;
-    }
 
     public MutableLiveData<String> getClientName() {
         return clientName;
@@ -214,7 +211,7 @@ public class ContractApplyViewModel extends BaseViewModel {
         bean.setDetailReason(description.getValue());
         bean.setSendList(sendList.getValue());
         bean.setCopyList(copyList.getValue());
-        bean.setApplyType(applyType);
+        bean.setApplyType(applyType.getValue());
         return bean;
     }
 

@@ -1,14 +1,11 @@
 package com.guyuan.dear.work.qc.views.materialQc;
 
 import android.content.Intent;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.RadioGroup;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
@@ -23,6 +20,9 @@ import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.qc.beans.BaseProjectBean;
 import com.guyuan.dear.work.qc.beans.BaseQcApproachBean;
 import com.guyuan.dear.work.qc.beans.MaterialInfo;
+import com.guyuan.dear.work.qc.views.home.QcHomeActivity;
+import com.guyuan.dear.work.qc.views.home.QcHomeViewModel;
+import com.guyuan.dear.work.qc.views.productQc.ProductQcViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -131,7 +131,6 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
         viewModel.onClickSelectProject.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                showDialogSelectProjects();
                 addDisposable(getViewModel().getProjectListFromNet());
 
             }
@@ -172,7 +171,19 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
         viewModel.onClickSubmit.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getViewModel().submitApply();
+                getViewModel().submitApply(new ProductQcViewModel.SubmitCallback() {
+                    @Override
+                    public void onSubmit(boolean success) {
+                        if (success) {
+                            //跳转到我的申请详情并刷新
+                            FragmentActivity activity = getActivity();
+                            if (activity instanceof QcHomeActivity) {
+                                QcHomeViewModel vm = ((QcHomeActivity) activity).getViewModel();
+                                vm.refreshMyApplyList.postValue(true);
+                            }
+                        }
+                    }
+                });
             }
         });
 
@@ -206,27 +217,6 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
             }
         });
 
-//        getViewDataBinding().fragmentProductQcEdtSampleSize.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                String string = s.toString();
-//                if(TextUtils.isEmpty(string)){
-//                    getViewModel().getSampleSize().postValue(0);
-//                }else {
-//                    getViewModel().getSampleSize().postValue(Integer.valueOf(string));
-//                }
-//            }
-//        });
 
     }
 

@@ -12,6 +12,7 @@ import com.guyuan.dear.work.qc.beans.BaseProjectBean;
 import com.guyuan.dear.work.qc.beans.BaseQcApproachBean;
 import com.guyuan.dear.work.qc.beans.MaterialInfo;
 import com.guyuan.dear.work.qc.repo.MaterialQcRepo;
+import com.guyuan.dear.work.qc.views.productQc.ProductQcViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -143,7 +144,7 @@ public class MaterialQcViewModel extends BaseDearViewModel {
 
 
     public Disposable getProjectListFromNet() {
-        return repo.getProjectListFromNet(new BaseNetCallback<List<BaseProjectBean>>() {
+        return repo.getMaterialProjectListFromNet(new BaseNetCallback<List<BaseProjectBean>>() {
             @Override
             protected void handleResult(List<BaseProjectBean> result) {
                 projectList.getValue().clear();
@@ -200,7 +201,7 @@ public class MaterialQcViewModel extends BaseDearViewModel {
         return judgeConditions;
     }
 
-    public void submitApply() {
+    public void submitApply(ProductQcViewModel.SubmitCallback callback) {
         SubmitQcReportBody body = new SubmitQcReportBody();
         BaseProjectBean projectBean = getSelectedProject().getValue();
         if (projectBean == null) {
@@ -292,8 +293,10 @@ public class MaterialQcViewModel extends BaseDearViewModel {
                 if (result > 0) {
                     showToast("提交成功。");
                     resetAllViews();
+                    callback.onSubmit(true);
                 } else {
                     showToast("提交失败。");
+                    callback.onSubmit(false);
                 }
             }
         });
@@ -306,7 +309,6 @@ public class MaterialQcViewModel extends BaseDearViewModel {
         qcApproachList.postValue(new ArrayList<>());
         materialList.postValue(new ArrayList<>());
         sampleSize.postValue("0");
-        judgeConditions.clear();
         reportResult.postValue(2);
         comments.postValue("");
         selectedMaterial.postValue(null);

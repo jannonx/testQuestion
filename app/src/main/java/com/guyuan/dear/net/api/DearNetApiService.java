@@ -200,12 +200,20 @@ public interface DearNetApiService extends BaseApiService {
     Observable<ResultBean<List<NetQcReportApproveFlow>>> getQcReportApproveFlow(@Query("recordId") int qcReportId);
 
     /**
-     * 获取所有项目列表
+     * 成品质检时获取所有项目列表
      *
      * @return
      */
     @GET("base/qualitycodedetails/findAllProject")
-    Observable<ResultBean<List<NetBaseProjectBean>>> getBaseProjectList();
+    Observable<ResultBean<List<NetBaseProjectBean>>> getProductProjectList();
+
+
+    /**
+     * 原材料质检时获取所有项目列表
+     * @return
+     */
+    @GET("base/qualitycodedetails/findAllMateProject")
+    Observable<ResultBean<List<NetBaseProjectBean>>> getMaterialProjectList();
 
     /**
      * 根据项目id获取原材料清单

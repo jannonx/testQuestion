@@ -218,7 +218,7 @@
                 android:paddingBottom="@dimen/dp_12"
                 android:textSize="@dimen/sp_14"
                 android:textColor="@color/color_grey_999999"
-                android:text="暂停：申请一旦通过系统审核，系统会终止所有进行中的任务。"/>
+                app:showApplyBottomHint="@{fragment_pause_contract_vm.applyType}"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:onClick="@{fragment_pause_contract_vm.onClickSubmit}"
@@ -229,9 +229,9 @@
                 android:layout_height="49dp"
                 android:textSize="@dimen/dp_18"
                 android:textStyle="bold"
-                android:text="提交暂停申请"
                 android:textColor="@color/white"
                 android:background="@drawable/ic_bg_svg_button_blue_004fbb"
+                app:showApplyTypeButtonDescription="@{fragment_pause_contract_vm.applyType}"
                 android:layout_marginTop="@dimen/dp_24"
                 android:layout_marginBottom="@dimen/dp_24"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
