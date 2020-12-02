@@ -76,7 +76,7 @@ public class InstallDebugFragment extends BaseDataBindingFragment<FragmentWorkIn
             public void onItemClick(View view, int position) {
                 InstallDebugBean installDebugBean = listData.get(position);
                 if (FunctionModuleType.TYPE_WORK == detailData.getModuleType() &&
-                        InstallDebugSatisfyType.TYPE_INSTALL_WAIT == detailData.getInstallDebugSatisfyType()) {
+                        InstallDebugSatisfyType.TYPE_INSTALL_WAIT == installDebugBean.getInstallDebugSatisfyType()) {
                     WorkInstallDebugSingleActivity.start(getContext(), installDebugBean);
                 } else {
                     SiteExploreBean siteExploreBean = new SiteExploreBean();
@@ -140,8 +140,7 @@ public class InstallDebugFragment extends BaseDataBindingFragment<FragmentWorkIn
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onRefreshMessage(EventInstallDebugRefresh event) {
-        ToastUtils.showLong(getContext(), "提交成功");
+    public void onInstallDebugMessage(EventInstallDebugRefresh event) {
         viewModel.getInstallDebugDetailData(detailData.getId());
     }
 

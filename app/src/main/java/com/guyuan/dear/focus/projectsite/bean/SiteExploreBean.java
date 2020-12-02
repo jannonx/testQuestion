@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.projectsite.bean;
 
+import android.text.TextUtils;
+
 import com.guyuan.dear.R;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.StringUtils;
@@ -510,7 +512,8 @@ public class SiteExploreBean implements Serializable {
     }
 
     public List<String> getImgUrlList() {
-        return StringUtils.splitPhotoUrl(checkUrl);
+        //s-imgUrl、g-checkUrl、c-imgUrl、cu-checkUrl
+        return StringUtils.splitPhotoUrl(TextUtils.isEmpty(imgUrl) ? checkUrl : imgUrl);
     }
 
 

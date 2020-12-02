@@ -33,6 +33,7 @@ import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
+import com.guyuan.dear.work.projectsite.bean.EventWorkSiteListRefresh;
 import com.guyuan.dear.work.projectsite.bean.PostSiteExploreInfo;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 
@@ -187,12 +188,7 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
         binding.tvActivateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (imageDataList.isEmpty()) {
-                    postSiteExploreInfo(new ArrayList<String>());
-                } else {
-                    activity.checkPhotoAndFileUpLoad(imageDataList);
-                }
-
+                activity.checkPhotoAndFileUpLoad(imageDataList);
             }
         });
 
@@ -208,14 +204,14 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
             @Override
             public void onChanged(Integer data) {
                 getActivity().finish();
-                EventBus.getDefault().post(new EventInstallDebugRefresh());
+                EventBus.getDefault().post(new EventWorkSiteListRefresh());
             }
         });
         viewModel.getCommitCheckSafeInfoEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer data) {
                 getActivity().finish();
-                EventBus.getDefault().post(new EventInstallDebugRefresh());
+                EventBus.getDefault().post(new EventWorkSiteListRefresh());
             }
         });
 

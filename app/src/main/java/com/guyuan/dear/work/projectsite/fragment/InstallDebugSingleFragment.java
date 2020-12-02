@@ -38,6 +38,7 @@ import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugSingleActivity;
 import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
+import com.guyuan.dear.work.projectsite.bean.EventWorkSiteListRefresh;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
@@ -206,6 +207,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
             public void onChanged(Integer data) {
                 getActivity().finish();
                 EventBus.getDefault().post(new EventInstallDebugRefresh());
+                EventBus.getDefault().post(new EventWorkSiteListRefresh());
             }
         });
     }

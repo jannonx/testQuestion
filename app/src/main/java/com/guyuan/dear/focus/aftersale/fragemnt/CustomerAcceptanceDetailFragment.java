@@ -14,6 +14,7 @@ import com.guyuan.dear.databinding.FragmentSaleCustomerAcceptanceDetailBinding;
 import com.guyuan.dear.focus.aftersale.activity.CustomerAcceptanceDetailActivity;
 import com.guyuan.dear.focus.aftersale.adapter.FocusAfterSaleQuestionAdapter;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
+import com.guyuan.dear.focus.aftersale.bean.AfterSaleStatusBean;
 import com.guyuan.dear.focus.aftersale.bean.PostInfoBean;
 import com.guyuan.dear.focus.aftersale.bean.SaleAcceptedType;
 import com.guyuan.dear.focus.aftersale.bean.SaleCheckType;
@@ -98,11 +99,22 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
             binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_WORK
                     == afterSaleBean.getModuleType() ? View.VISIBLE : View.GONE);
         }
-        viewModel.getAfterSaleCustomerAcceptanceDetail(afterSaleBean.getId(),SaleSectionType.TYPE_SECTION_ACCEPT.getCode());
-        viewModel.getAfterSaleCustomerAcceptanceDetailEvent().observe(getActivity(), new Observer<AfterSaleBean>() {
+        viewModel.getAfterSaleDetail(afterSaleBean.getId());
+        viewModel.getAfterSaleDetailEvent().observe(getActivity(), new Observer<AfterSaleBean>() {
             @Override
             public void onChanged(AfterSaleBean data) {
                 setAfterSaleBean(data);
+            }
+        });
+
+        viewModel.getAfterSaleCustomerAcceptanceDetail(afterSaleBean.getId(),SaleSectionType.TYPE_SECTION_ACCEPT.getCode());
+        viewModel.getAfterSaleCustomerAcceptanceDetailEvent().observe(getActivity(), new Observer<List<AfterSaleStatusBean>>() {
+            @Override
+            public void onChanged(List<AfterSaleStatusBean> data) {
+                if (data!=null&&data.size()!=0){
+                    setImageList(data.get(0));
+                }
+
             }
         });
 
@@ -127,6 +139,19 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
             }
         });
     }
+
+    private void setImageList(AfterSaleStatusBean afterSaleStatusBean) {
+        ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
+                afterSaleStatusBean.getImgUrlList(), R.layout.item_explorate_image);
+        BaseRecyclerViewAdapter  imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
+
+        binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        binding.imageRecycleView.setAdapter(imageAdapter);
+        binding.imageRecycleView.setPullRefreshEnabled(false);
+        binding.imageRecycleView.setLoadMoreEnabled(false);
+
+    }
+
     private void postAfterSaleInfo(List<String> imageUrlList) {
         postInfoBean.setImgUrl(StringUtils.splicePhotoUrl(imageUrlList));
         String installStr = GsonUtil.objectToString(postInfoBean);
@@ -175,14 +200,7 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
         binding.tvRemark.setText(data.getTitle());
         binding.tvRecorder.setText(data.getExamineManName());
 
-        ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-                new ArrayList<>(), R.layout.item_explorate_image);
-        BaseRecyclerViewAdapter  imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
 
-        binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        binding.imageRecycleView.setAdapter(imageAdapter);
-        binding.imageRecycleView.setPullRefreshEnabled(false);
-        binding.imageRecycleView.setLoadMoreEnabled(false);
     }
 
 

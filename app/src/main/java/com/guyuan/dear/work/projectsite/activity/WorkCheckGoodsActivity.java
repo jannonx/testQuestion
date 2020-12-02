@@ -46,7 +46,7 @@ public class WorkCheckGoodsActivity extends BaseFileUploadActivity<ActivityWithT
         CheckGoodsFragment mFragment = CheckGoodsFragment.newInstance(data);
         setFirstPhotoListener(mFragment);
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
-                WorkProjectReportListFragment.TAG);
+                CheckGoodsFragment.TAG);
     }
 
     @Override

@@ -13,7 +13,16 @@ public class ClientCompanyBean implements Serializable {
     /**
      * 主键id
      */
-    private int id;
+    private long id;
+    /**
+     * 客户id
+     */
+    private long cusId;
+
+    /**
+     * 类型
+     */
+    private ClientType clientType;
     /**
      * 联系人姓名
      */
@@ -55,12 +64,30 @@ public class ClientCompanyBean implements Serializable {
      */
     private List<ClientContactBean> list;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public long getCusId() {
+        return cusId;
+    }
+
+    public void setCusId(long cusId) {
+        this.cusId = cusId;
+    }
+
+
+    public ClientType getClientType() {
+        return clientType;
+    }
+
+    public void setClientType(ClientType clientType) {
+        this.clientType = clientType;
     }
 
     public String getCusName() {

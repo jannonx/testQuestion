@@ -20,6 +20,7 @@ import com.guyuan.dear.databinding.FragmentFocusSiteExplorationBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
 import com.guyuan.dear.focus.projectsite.bean.CustomerAcceptanceSatisfyType;
+import com.guyuan.dear.focus.projectsite.bean.EventFocusSiteListRefresh;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
@@ -33,6 +34,7 @@ import com.guyuan.dear.work.client.fragment.FollowCommentDialog;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
 import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
+import com.guyuan.dear.work.projectsite.bean.EventWorkSiteListRefresh;
 import com.guyuan.dear.work.projectsite.bean.PostAnswerInfo;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostCustomerAcceptanceInfo;
@@ -83,7 +85,6 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         Bundle bundle = new Bundle();
         FocusSiteExplorationDetailFragment fragment = new FocusSiteExplorationDetailFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
-        LogUtils.showLog("newInstance=" + data.getModuleType().getDes());
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -100,7 +101,6 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
             return;
         }
         detailProjectData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
-        LogUtils.showLog("initialization=" + detailProjectData.getModuleType().getDes());
         binding.tvPauseBtn.setOnClickListener(this);
         binding.tvCompleteBtn.setOnClickListener(this);
         binding.tvActivateBtn.setOnClickListener(this);
@@ -119,7 +119,6 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
             @Override
             public void onChanged(Integer dataRefreshBean) {
                 ToastUtils.showShort(getContext(), "评论成功!");
-//                getDetailDataByClassify();
                 EventBus.getDefault().post(new EventAnswerListRefresh());
             }
         });
@@ -163,19 +162,15 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
             @Override
             public void onChanged(Integer data) {
                 LogUtils.showLog("onCommitInstallationDebugInfo...onChanged");
-                getDetailDataByClassify();
-                EventBus.getDefault().post(new EventInstallDebugRefresh());
-                EventBus.getDefault().post(new EventAnswerListRefresh());
+                refreshDataStatus();
             }
         });
         //提交--安装调试
         viewModel.getCommitCustomerAcceptanceInfoEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer data) {
-                LogUtils.showLog("getCommitCustomerAcceptanceInfoEvent...onChanged");
-                getDetailDataByClassify();
-                EventBus.getDefault().post(new EventInstallDebugRefresh());
-                EventBus.getDefault().post(new EventAnswerListRefresh());
+                ToastUtils.showLong(getContext(),"提交完成");
+                refreshDataStatus();
             }
         });
 
@@ -193,17 +188,28 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         });
     }
 
+    /**
+     * 改变状态
+     */
+    private void  refreshDataStatus(){
+        ToastUtils.showLong(getContext(),"提交完成");
+        getDetailDataByClassify();
+        if (detailProjectData.getModuleType()==FunctionModuleType.TYPE_FOCUS){
+            EventBus.getDefault().post(new EventFocusSiteListRefresh());
+        }else{
+            EventBus.getDefault().post(new EventWorkSiteListRefresh());
+        }
 
+        EventBus.getDefault().post(new EventAnswerListRefresh());
+    }
     /**
      * 根据报告类型请求数据
      */
     private void getDetailDataByClassify() {
-        LogUtils.showLog("getDetailDataByClassify=" + detailProjectData.getModuleType().getDes());
         switch (detailProjectData.getProjectReportType()) {
             ///现场勘查报告
             case TYPE_SITE_EXPLORATION:
                 viewModel.getSiteExploreDetailData(detailProjectData.getId());
-                LogUtils.showLog("getDetailDataByClassify000=" + detailProjectData.getModuleType().getDes());
                 break;
             ///货物清点报告
             case TYPE_CHECK_GOODS:
@@ -235,13 +241,9 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      */
     private void setProduceData(SiteExploreBean data) {
         if (getActivity() == null) return;
-        LogUtils.showLog("setProduceData111=" + detailProjectData.getModuleType().getDes());
-        LogUtils.showLog("setProduceData...setProduceData");
         data.setProjectReportType(detailProjectData.getProjectReportType());
         data.setModuleType(detailProjectData.getModuleType());
-        LogUtils.showLog("setProduceData222=" + detailProjectData.getModuleType().getDes());
         detailProjectData = data;
-        LogUtils.showLog("setProduceData333=" + detailProjectData.getModuleType().getDes());
         //设置审核数据
         planFragment.setCheckContentData(detailProjectData);
         switch (detailProjectData.getProjectReportType()) {
@@ -534,6 +536,11 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_OK == detailProjectData.getCustomerAcceptanceSatisfyType()
                         || CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_EXCEPTION == detailProjectData.getCustomerAcceptanceSatisfyType() ?
                         View.GONE : View.VISIBLE);
+
+
+        if (recordFragment!=null){
+            recordFragment.setRecordData(detailProjectData);
+        }
     }
 
     private void initViewPager() {
@@ -541,7 +548,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
         statusFragment = ProjectSiteStatusFragment.newInstance(detailProjectData);
         installDebugStatusFragment = InstallDebugStatusFragment.newInstance(detailProjectData);
-        recordFragment = AcceptanceRecordFragment.newInstance(detailProjectData);
+        recordFragment = AcceptanceRecordFragment.newInstance();
 
         tabFragmentList.add(ProjectReportType.TYPE_INSTALLATION_DEBUG == detailProjectData.getProjectReportType()
                 ? installDebugStatusFragment : ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == detailProjectData.getProjectReportType() ?
@@ -636,14 +643,15 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> photoList) {
-        photoList.addAll(photoList);
+    public void onPhotoSelected(ArrayList<String> dataList) {
+        photoList.clear();
+        photoList.addAll(dataList);
         if (leftDialog != null) {
-            leftDialog.setPhotoList(photoList);
+            leftDialog.setPhotoList(dataList);
         }
 
         if (rightDialog != null) {
-            rightDialog.setPhotoList(photoList);
+            rightDialog.setPhotoList(dataList);
         }
     }
 

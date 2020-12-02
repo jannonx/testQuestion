@@ -25,6 +25,7 @@ import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkCheckGoodsActivity;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugActivity;
 import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
+import com.guyuan.dear.work.projectsite.bean.EventCheckGoodsListRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 
@@ -65,7 +66,6 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
     @Override
     protected void init() {
         etSearch.setHint("输入项目名称、编号、人员");
-        EventBus.getDefault().register(this);
         reportType = (ProjectReportType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
         LogUtils.showLog("siteExploreBean=" + reportType.getDes());
         ProjectReportAdapter checkGoodsAdapter = new ProjectReportAdapter(getContext(),
@@ -150,7 +150,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
      *
      * @param isRefresh 是否刷新
      */
-    private void getDataListByClassify(boolean isRefresh) {
+    public void getDataListByClassify(boolean isRefresh) {
         switch (reportType) {
             ///现场勘查报告
             case TYPE_SITE_EXPLORATION:
@@ -179,20 +179,18 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
     }
 
 
-
-
     /**
      * 给每一条数据，添加报告类型
      *
      * @param dataList 数据
      */
-    public void dealDataByAddReportType(List<SiteExploreBean> dataList,ProjectReportType reportType) {
-        LogUtils.showLog("size="+dataList.size());
+    public void dealDataByAddReportType(List<SiteExploreBean> dataList, ProjectReportType reportType) {
+        LogUtils.showLog("size=" + dataList.size());
         List<SiteExploreBean> tempList = new ArrayList<>();
-        for (int i=0;i<dataList.size();i++) {
+        for (int i = 0; i < dataList.size(); i++) {
             SiteExploreBean siteExploreBean = dataList.get(i);
             siteExploreBean.setProjectReportType(reportType);
-            LogUtils.showLog("dealDataByAddReportType="+reportType.getDes());
+            LogUtils.showLog("dealDataByAddReportType=" + reportType.getDes());
             tempList.add(siteExploreBean);
         }
         setListData(tempList);
@@ -215,9 +213,13 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
                 "charset=utf-8"), str);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onRefreshMessage(EventInstallDebugRefresh event) {
-        ToastUtils.showLong(getContext(),"提交成功");
+
+
+    /**
+     * 刷新列表
+     */
+    public void refreshList() {
+        ToastUtils.showLong(getContext(), "提交成功");
         getDataListByClassify(true);
     }
 
@@ -247,9 +249,5 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
         return 0;
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        EventBus.getDefault().unregister(this);
-    }
+
 }

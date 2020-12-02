@@ -155,7 +155,7 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
                     adapter.refreshData();
                     recycleView.refreshComplete(PAGE_SIZE);
                 }
-//                LogUtils.showLog("REFRESH....dataList=" + dataList.size());
+                LogUtils.showLog("REFRESH....dataList=" + dataList.size());
                 break;
 
             case LOAD_MORE:
@@ -164,7 +164,7 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
                     adapter.refreshData();
                     recycleView.refreshComplete(PAGE_SIZE);
                 }
-//                LogUtils.showLog("LOAD_MORE.....dataList=" + dataList.size());
+                LogUtils.showLog("LOAD_MORE.....dataList=" + dataList.size());
                 break;
             default:
         }

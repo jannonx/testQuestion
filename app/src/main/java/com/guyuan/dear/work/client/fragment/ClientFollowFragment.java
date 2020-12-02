@@ -11,6 +11,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
+import com.guyuan.dear.focus.client.bean.ClientType;
 import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
@@ -53,7 +54,9 @@ public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBe
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                WorkClientDetailActivity.start(getContext(), listData.get(position));
+                ClientCompanyBean clientCompanyBean = listData.get(position);
+                clientCompanyBean.setClientType(ClientType.TYPE_CLIENT_MY);
+                WorkClientDetailActivity.start(getContext(), clientCompanyBean);
             }
         });
 

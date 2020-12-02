@@ -13,7 +13,7 @@ import io.reactivex.disposables.Disposable;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class MyApplyDetailRepo {
-    public Disposable getMyApplyDetail(int examineId,  DearNetHelper.NetCallback<MyApplyDetailBean> callback){
-        return DearNetHelper.getInstance().getMyApplyDetailFromNet(examineId,callback);
+    public Disposable getMyApplyDetail(int id,  DearNetHelper.NetCallback<MyApplyDetailBean> callback){
+        return DearNetHelper.getInstance().getMyApplyDetailFromNet(id,callback);
     }
 }

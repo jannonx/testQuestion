@@ -29,6 +29,7 @@ public class MyApplyBean extends BaseContractExcptBean implements Parcelable {
     @Transient
     public static final int APPLY_PROCESSING = 3;
 
+
     private int state;
     private String applier;
 
@@ -36,6 +37,7 @@ public class MyApplyBean extends BaseContractExcptBean implements Parcelable {
     }
 
     public MyApplyBean(NetContractInfo src) {
+        setContractId(src.getId());
         setBuyer(src.getCusName());
         setContractNum(src.getContractNum());
         setExamineId(src.getExamineId());
@@ -52,21 +54,23 @@ public class MyApplyBean extends BaseContractExcptBean implements Parcelable {
         }
         setDate(time);
         List<String> tags = new ArrayList<>();
-        int state = src.getState();
+        int state = src.getApproveStatus();
+        //审批状态 0 审批中 1 通过 2 拒绝
         String tag = null;
         switch (state) {
+            case 0:
+                this.state = APPLY_PENDING_FOR_START;
+                tag = "待审批";
+                break;
             case 1:
                 this.state = APPLY_APPROVED;
-                tag = "审批通过";
+                tag = "已通过";
                 break;
             case 2:
                 this.state = APPLY_REJECTED;
-                tag = "申请驳回";
+                tag = "已驳回";
                 break;
-            case 0:
             default:
-                this.state = APPLY_PENDING_FOR_START;
-                tag = "未审批";
                 break;
         }
         if (tag != null) {

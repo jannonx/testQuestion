@@ -5,9 +5,12 @@ import android.view.View;
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
+import com.guyuan.dear.customizeview.searchview.HrSearchView;
 import com.guyuan.dear.databinding.FragmentHrSummaryBinding;
 import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
+import com.guyuan.dear.focus.hr.view.hrStaffMonthlyDetail.StaffMonthlyDetailActivity;
 import com.guyuan.dear.focus.hr.view.hrStatusGrp.HrStatusGroupActivity;
+import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 
 /**
@@ -51,7 +54,7 @@ public class HrSummaryFragment extends BaseMvvmFragment<FragmentHrSummaryBinding
         viewModel.setOnClickShowNormalStaffs(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HrStatusGroupActivity.start(getActivity(),"正常出勤", HrStatusGroup.GRP_TYPE_NORMAL);
+                HrStatusGroupActivity.start(getActivity(), "正常出勤", HrStatusGroup.GRP_TYPE_NORMAL);
 
             }
         });
@@ -60,7 +63,7 @@ public class HrSummaryFragment extends BaseMvvmFragment<FragmentHrSummaryBinding
         viewModel.setOnClickShowAbsentStaffs(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HrStatusGroupActivity.start(getActivity(),"本日缺勤", HrStatusGroup.GRP_TYPE_ABSENT);
+                HrStatusGroupActivity.start(getActivity(), "本日缺勤", HrStatusGroup.GRP_TYPE_ABSENT);
             }
         });
 
@@ -68,7 +71,7 @@ public class HrSummaryFragment extends BaseMvvmFragment<FragmentHrSummaryBinding
         viewModel.setOnClickShowLateStaffs(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HrStatusGroupActivity.start(getActivity(),"本日迟到", HrStatusGroup.GRP_TYPE_LATE);
+                HrStatusGroupActivity.start(getActivity(), "本日迟到", HrStatusGroup.GRP_TYPE_LATE);
             }
         });
 
@@ -76,7 +79,7 @@ public class HrSummaryFragment extends BaseMvvmFragment<FragmentHrSummaryBinding
         viewModel.setOnClickShowEarlyLeaveStaffs(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HrStatusGroupActivity.start(getActivity(),"本日早退", HrStatusGroup.GRP_TYPE_LEAVE_EARLY);
+                HrStatusGroupActivity.start(getActivity(), "本日早退", HrStatusGroup.GRP_TYPE_LEAVE_EARLY);
             }
         });
 
@@ -84,7 +87,15 @@ public class HrSummaryFragment extends BaseMvvmFragment<FragmentHrSummaryBinding
         viewModel.setOnClickShowOnLeaveStaffs(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HrStatusGroupActivity.start(getActivity(),"本日请假", HrStatusGroup.GRP_TYPE_ON_LEAVE);
+                HrStatusGroupActivity.start(getActivity(), "本日请假", HrStatusGroup.GRP_TYPE_ON_LEAVE);
+            }
+        });
+
+        //点击搜索栏进入人员搜索界面
+        viewModel.onSelectSearchStaff.postValue(new HrSearchView.SelectStaffCallback() {
+            @Override
+            public void onStaffSelected(StaffBean staff) {
+                StaffMonthlyDetailActivity.start(getActivity(), staff.getName(), staff.getId().intValue());
             }
         });
 

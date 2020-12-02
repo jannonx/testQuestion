@@ -67,12 +67,7 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
 
         viewModel.getAfterSaleList(getListRequestBody(true));
 
-        viewModel.getAfterSaleListEvent().observe(getActivity(), new Observer<RefreshBean<AfterSaleBean>>() {
-            @Override
-            public void onChanged(RefreshBean<AfterSaleBean> data) {
-                dealDataByAddType(data.getContent());
-            }
-        });
+
 
 
         adapter.setOnItemClickListener(new OnItemClickListener() {
@@ -90,7 +85,7 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
      *
      * @param content 回调数据
      */
-    private void dealDataByAddType(List<AfterSaleBean> content) {
+    public void dealDataByAddType(List<AfterSaleBean> content) {
         List<AfterSaleBean> tempList = new ArrayList<>();
         for (AfterSaleBean bean : content) {
             bean.setSectionType(SaleSectionType.TYPE_SECTION_ACCEPT);
@@ -112,6 +107,7 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
         ListSaleRequestBody body = new ListSaleRequestBody();
         ListSaleRequestBody.FiltersBean filtersBean = new ListSaleRequestBody.FiltersBean();
         filtersBean.setStatus(qualifiedType.getCode());
+        filtersBean.setName(searchContent);
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);

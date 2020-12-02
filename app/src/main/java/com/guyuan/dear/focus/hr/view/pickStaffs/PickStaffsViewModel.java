@@ -175,7 +175,7 @@ public class PickStaffsViewModel extends BaseViewModel {
                     bean.staffEntity = entity;
                     bean.deptEntities = new ArrayList<>();
                     for (StaffDeptCrosRef ref : crosRefs) {
-                        if (entity.userId == ref.userId) {
+                        if (entity._id == ref._id) {
                             long deptId = ref.deptId;
                             DeptEntity deptEntity = DearDbManager.getInstance().getDataBase().getDeptDao().findById(deptId);
                             bean.deptEntities.add(deptEntity);

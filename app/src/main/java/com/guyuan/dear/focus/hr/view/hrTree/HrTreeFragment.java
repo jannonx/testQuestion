@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.hr.view.hrTree;
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
+import com.guyuan.dear.customizeview.searchview.HrSearchView;
 import com.guyuan.dear.databinding.FragmentHrTreeBinding;
 import com.guyuan.dear.focus.hr.adapter.HrTreeChildDeptAdapter;
 import com.guyuan.dear.focus.hr.adapter.HrTreeNavigatorAdapter;
@@ -13,6 +14,7 @@ import com.guyuan.dear.focus.hr.bean.ParentDept;
 import com.guyuan.dear.focus.hr.bean.StaffWorkStatusInfo;
 import com.guyuan.dear.focus.hr.view.hrStaffMonthlyDetail.StaffMonthlyDetailActivity;
 import com.guyuan.dear.work.contractPause.beans.DeptBean;
+import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,10 +99,20 @@ public class HrTreeFragment extends BaseMvvmFragment<FragmentHrTreeBinding, HrTr
 
     @Override
     protected void initListeners() {
+        initSearchBar();
         initTopNavigatorListener();
         initParentDeptListener();
         initChildDeptListener();
         initStaffListAdapter();
+    }
+
+    private void initSearchBar() {
+        getViewModel().onSelectSearchStaff.postValue(new HrSearchView.SelectStaffCallback() {
+            @Override
+            public void onStaffSelected(StaffBean staff) {
+                StaffMonthlyDetailActivity.start(getActivity(),staff.getName(),staff.getId().intValue());
+            }
+        });
     }
 
     private void initTopNavigatorListener() {

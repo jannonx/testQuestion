@@ -2,9 +2,7 @@ package com.guyuan.dear.db.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.Relation;
 
-import java.io.LineNumberReader;
 import java.util.Objects;
 
 /**
@@ -29,7 +27,7 @@ public class StaffEntity {
      * 用户ID，平时用这个发起网络申请和本地数据库查询
      */
     @PrimaryKey
-    public long userId;
+    public long _id;
     public String imgUrl;
     /**
      * 1表示正常，0表示已经删除
@@ -45,11 +43,11 @@ public class StaffEntity {
         if (this == o) return true;
         if (!(o instanceof StaffEntity)) return false;
         StaffEntity that = (StaffEntity) o;
-        return userId == that.userId;
+        return _id == that._id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId);
+        return Objects.hash(_id);
     }
 }

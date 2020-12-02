@@ -4,14 +4,18 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
+import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
+import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
 import com.guyuan.dear.focus.aftersale.bean.SaleQualifiedType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
 import com.guyuan.dear.focus.aftersale.fragemnt.FocusAfterSaleFragment;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,6 +63,19 @@ public class FocusAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBindi
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+        viewModel.getAfterSaleListEvent().observe(this, new Observer<RefreshBean<AfterSaleBean>>() {
+            @Override
+            public void onChanged(RefreshBean<AfterSaleBean> data) {
+                if (qualifiedFragment.isVisible()) {
+                    LogUtils.showLog("isVisible00="+(qualifiedFragment.isVisible()));
+                    qualifiedFragment.dealDataByAddType(data.getContent());
+                } else if (unqualifiedFragment.isVisible()) {
+                    LogUtils.showLog("isVisible11="+(unqualifiedFragment.isVisible()));
+                    unqualifiedFragment.dealDataByAddType(data.getContent());
+                }
+
+            }
+        });
     }
 
     @Override

@@ -187,6 +187,7 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
         }
         if (imageDataList == null || imageDataList.size() == 0) {
             ToastUtils.showLong(getContext(), "请选择图片");
+            return;
         }
         switch (siteExploreBean.getProjectReportType()) {
             ///现场勘查报告

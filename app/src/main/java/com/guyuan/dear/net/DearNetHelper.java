@@ -255,7 +255,7 @@ public class DearNetHelper {
      * @param callback
      * @return
      */
-    public Disposable getPauseContractList(int pageIndex, int pageSize, NetCallback<List<BaseContractExcptBean>> callback) {
+    public Disposable getMyPauseContractList(int pageIndex, int pageSize, NetCallback<List<BaseContractExcptBean>> callback) {
         SearchRqBody body = new SearchRqBody();
         body.setPageSize(pageSize);
         body.setPageNum(pageIndex);
@@ -287,7 +287,7 @@ public class DearNetHelper {
      * @param callback
      * @return
      */
-    public Disposable getRestartedContractList(int pageIndex, int pageSize, NetCallback<List<RestartedContractBean>> callback) {
+    public Disposable getMyRestartedContractList(int pageIndex, int pageSize, NetCallback<List<RestartedContractBean>> callback) {
         SearchRqBody body = new SearchRqBody();
         body.setPageSize(pageSize);
         body.setPageNum(pageIndex);
@@ -455,12 +455,12 @@ public class DearNetHelper {
     /**
      * 获取我的合同重启/暂停申请详情信息
      *
-     * @param examineId
+     * @param id
      * @param callback
      * @return
      */
-    public Disposable getMyApplyDetailFromNet(int examineId, NetCallback<MyApplyDetailBean> callback) {
-        Observable<ResultBean<NetContractStatusDetail>> observable = netApiService.getContractStatusDetail(examineId);
+    public Disposable getMyApplyDetailFromNet(int id, NetCallback<MyApplyDetailBean> callback) {
+        Observable<ResultBean<NetContractStatusDetail>> observable = netApiService.getContractStatusDetail(id);
         Mapper<NetContractStatusDetail, MyApplyDetailBean> mapper = new Mapper<NetContractStatusDetail, MyApplyDetailBean>() {
             @Override
             public MyApplyDetailBean map(NetContractStatusDetail src) {

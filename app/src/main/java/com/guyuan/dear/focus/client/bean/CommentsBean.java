@@ -15,6 +15,10 @@ public class CommentsBean implements Serializable {
      */
     private long id;
     /**
+     * 客户id
+     */
+    private long cusId;
+    /**
      * 跟进主表id
      */
     private long followBusinessId;
@@ -54,6 +58,14 @@ public class CommentsBean implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getCusId() {
+        return cusId;
+    }
+
+    public void setCusId(long cusId) {
+        this.cusId = cusId;
     }
 
     public long getFollowBusinessId() {

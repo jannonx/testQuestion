@@ -48,7 +48,7 @@ public interface FocusClientApiService extends BaseApiService {
      * @return
      */
     @GET("base/tCustomer/findDetailsById")
-    Observable<ResultBean<ClientCompanyBean>> getClientBasicInfo(@Query("id") int id);
+    Observable<ResultBean<ClientCompanyBean>> getClientBasicInfo(@Query("id") long id);
 
     /**
      * 根据客户id查询跟进

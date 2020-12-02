@@ -238,6 +238,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
                     public void onConfirm() {
                         ExecuteRequestBody body = new ExecuteRequestBody();
                         body.setEquipmentId(produceBean.getEquipmentId());
+                        body.setId(produceBean.getPlanId());
                         body.setType(OperateProduceType.TYPE_EXECUTE_COMPLETE.getCode());
                         String str = GsonUtil.objectToString(body);
                         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
@@ -257,6 +258,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
             @Override
             public void onCommitInfo(ExecuteRequestBody content) {
                 content.setEquipmentId(produceBean.getEquipmentId());
+                content.setId(produceBean.getPlanId());
                 String str = GsonUtil.objectToString(content);
                 RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
                         "charset=utf-8"), str);

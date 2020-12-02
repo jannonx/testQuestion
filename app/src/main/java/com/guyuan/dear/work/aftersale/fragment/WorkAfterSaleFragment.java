@@ -114,6 +114,7 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
         ListSaleRequestBody body = new ListSaleRequestBody();
         ListSaleRequestBody.FiltersBean filtersBean = new ListSaleRequestBody.FiltersBean();
         filtersBean.setUserId(loginInfo.getUserInfo().getId());
+        filtersBean.setName(searchContent);
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);

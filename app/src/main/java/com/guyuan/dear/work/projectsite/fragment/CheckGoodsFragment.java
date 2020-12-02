@@ -23,7 +23,9 @@ import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkCheckGoodsActivity;
 import com.guyuan.dear.work.projectsite.adapter.CheckGoodsAdapter;
+import com.guyuan.dear.work.projectsite.bean.EventCheckGoodsListRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
+import com.guyuan.dear.work.projectsite.bean.EventWorkSiteListRefresh;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostCustomerAcceptanceInfo;
 import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
@@ -105,7 +107,7 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
             @Override
             public void onChanged(Integer data) {
                 getActivity().finish();
-                EventBus.getDefault().post(new EventInstallDebugRefresh());
+                EventBus.getDefault().post(new EventWorkSiteListRefresh());
             }
         });
         binding.tvActivateBtn.setOnClickListener(new View.OnClickListener() {
@@ -137,7 +139,6 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
      * 确认到货及完成清点
      */
     private void confirmCheckGoods() {
-
         customerDialog = new ProjectCheckConfirmDialog(getActivity(), detailData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
             @Override
             public void onPickImageClick() {

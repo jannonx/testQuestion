@@ -21,7 +21,10 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <include layout="@layout/layout_search_bar" />
+
+        <include
+            layout="@layout/layout_search_bar_for_staff"
+            app:onSelectSearchStaff="@{fragment_hr_summary_vm.onSelectSearchStaff}" />
 
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -34,20 +37,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dp_5"
-                android:textColor="@color/color_black_333333"
-                android:textStyle="bold"
                 android:text="公司总人数: "
-                android:textSize="@dimen/sp_16" />
+                android:textColor="@color/color_black_333333"
+                android:textSize="@dimen/sp_16"
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_8"
                 android:text="@{String.valueOf(fragment_hr_summary_vm.staffSummary.staffTotal),default=0}"
                 android:textColor="#0050B4"
                 android:textSize="@dimen/sp_16"
-                android:layout_marginLeft="@dimen/dp_8"
                 android:textStyle="bold" />
-
 
 
             <Space
@@ -86,8 +88,8 @@
                     android:layout_marginLeft="@dimen/dp_12"
                     android:layout_marginRight="@dimen/dp_12"
                     android:background="@color/white"
-                    app:cardCornerRadius="@dimen/dp_4"
-                    android:onClick="@{fragment_hr_summary_vm.onClickShowNormalStaffs}">
+                    android:onClick="@{fragment_hr_summary_vm.onClickShowNormalStaffs}"
+                    app:cardCornerRadius="@dimen/dp_4">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
@@ -134,8 +136,8 @@
                     android:layout_marginTop="@dimen/dp_12"
                     android:layout_marginRight="@dimen/dp_12"
                     android:background="@color/white"
-                    app:cardCornerRadius="@dimen/dp_4"
-                    android:onClick="@{fragment_hr_summary_vm.onClickShowAbsentStaffs}">
+                    android:onClick="@{fragment_hr_summary_vm.onClickShowAbsentStaffs}"
+                    app:cardCornerRadius="@dimen/dp_4">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
@@ -182,8 +184,8 @@
                     android:layout_marginTop="@dimen/dp_12"
                     android:layout_marginRight="@dimen/dp_12"
                     android:background="@color/white"
-                    app:cardCornerRadius="@dimen/dp_4"
-                    android:onClick="@{fragment_hr_summary_vm.onClickShowOnLeaveStaffs}">
+                    android:onClick="@{fragment_hr_summary_vm.onClickShowOnLeaveStaffs}"
+                    app:cardCornerRadius="@dimen/dp_4">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
@@ -230,8 +232,8 @@
                     android:layout_marginTop="@dimen/dp_12"
                     android:layout_marginRight="@dimen/dp_12"
                     android:background="@color/white"
-                    app:cardCornerRadius="@dimen/dp_4"
-                    android:onClick="@{fragment_hr_summary_vm.onClickShowLateStaffs}">
+                    android:onClick="@{fragment_hr_summary_vm.onClickShowLateStaffs}"
+                    app:cardCornerRadius="@dimen/dp_4">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
@@ -276,8 +278,8 @@
                     android:layout_height="53dp"
                     android:layout_margin="@dimen/dp_12"
                     android:background="@color/white"
-                    app:cardCornerRadius="@dimen/dp_4"
-                    android:onClick="@{fragment_hr_summary_vm.onClickShowEarlyLeaveStaffs}">
+                    android:onClick="@{fragment_hr_summary_vm.onClickShowEarlyLeaveStaffs}"
+                    app:cardCornerRadius="@dimen/dp_4">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"

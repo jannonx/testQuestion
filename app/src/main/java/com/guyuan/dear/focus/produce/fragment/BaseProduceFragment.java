@@ -33,7 +33,7 @@ public abstract class BaseProduceFragment extends BaseListSearchFragment<FocusPr
         ListProduceRequestBody.FiltersBean filtersBean = new ListProduceRequestBody.FiltersBean();
         filtersBean.setName(etSearch.getText().toString());
         if (statusType != null) {
-            filtersBean.setStatus(statusType.toInt());
+            filtersBean.setStatus(statusType.getCode());
         }
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);

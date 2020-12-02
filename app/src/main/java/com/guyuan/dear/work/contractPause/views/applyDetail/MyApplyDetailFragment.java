@@ -21,7 +21,7 @@ public class MyApplyDetailFragment extends BaseMvvmFragment<FragmentMyApplyDetai
 
     public static MyApplyDetailFragment getInstance(int examineId) {
         Bundle bundle = new Bundle();
-        bundle.putInt(ConstantValue.KEY_EXAMINE_ID, examineId);
+        bundle.putInt(ConstantValue.KEY_ID, examineId);
         MyApplyDetailFragment fragment = new MyApplyDetailFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -35,7 +35,7 @@ public class MyApplyDetailFragment extends BaseMvvmFragment<FragmentMyApplyDetai
     @Override
     protected void initData() {
         Bundle bundle = getArguments();
-        examineId = bundle.getInt(ConstantValue.KEY_EXAMINE_ID);
+        examineId = bundle.getInt(ConstantValue.KEY_ID);
         addDisposable(getViewModel().getMyApplyDetailFromNet(examineId));
         getViewDataBinding().fragmentMyPauseApplyDetailNestedScrollerView.fullScroll(View.FOCUS_UP);
 

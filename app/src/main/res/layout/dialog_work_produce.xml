@@ -19,9 +19,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_white_corner_top_8"
                 android:focusable="true"
-                android:paddingBottom="52.5dp"
                 android:focusableInTouchMode="true"
                 android:orientation="vertical"
+                android:paddingBottom="52.5dp"
 
                 android:windowSoftInputMode="adjustPan">
 
@@ -48,7 +48,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="请输入。最长长度最长长度最长长度最长长度"
+                        android:gravity="top|start"
+                        android:hint="请输入备注"
                         android:minHeight="@dimen/dp_64"
                         android:textColor="@color/color_black_333333"
                         android:textSize="@dimen/sp_17" />
