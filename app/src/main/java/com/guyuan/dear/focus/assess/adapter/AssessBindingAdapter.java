@@ -90,7 +90,7 @@ public class AssessBindingAdapter {
     @BindingAdapter("assessLineChartData")
     public static void setAssessLineChartData(LineChart lineChart,
                                               List<AssessOverviewBean.AuditYearInfoVOListBean> list) {
-        if (list != null && list.size() > 0) {
+        if (list != null) {
             Resources resources = DearApplication.getInstance().getResources();
             List<Entry> passList = new ArrayList<>();
             List<Entry> notPassList = new ArrayList<>();
