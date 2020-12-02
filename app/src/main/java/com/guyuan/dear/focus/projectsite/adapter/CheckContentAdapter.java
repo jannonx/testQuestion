@@ -9,10 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
-import com.guyuan.dear.base.bean.SimpleTabBean;
-import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.CheckSafeSatisfyType;
-import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
 import com.guyuan.dear.focus.projectsite.bean.SingleItemResultType;
@@ -57,7 +55,7 @@ public class CheckContentAdapter extends BaseRecyclerAdapter<ProjectSiteOpinionB
         View lineBottom = holder.getView(R.id.line_bottom);
         lineBottom.setVisibility(listData.size() - 1 == position ? View.GONE : View.VISIBLE);
 
-        ProjectModuleType moduleType = siteExploreBean.getModuleType();
+        FunctionModuleType moduleType = siteExploreBean.getModuleType();
 
         //勘查中，排查中
         SiteProjectSatisfyType siteProjectSatisfyType = siteExploreBean.getSiteProjectSatisfyType();
@@ -68,7 +66,7 @@ public class CheckContentAdapter extends BaseRecyclerAdapter<ProjectSiteOpinionB
                 || checkSafeSatisfyType == CheckSafeSatisfyType.TYPE_CHECK_ING;
         LinearLayout clConfirm = holder.getView(R.id.rl_confirm);
         //我的关注
-        if (moduleType == ProjectModuleType.TYPE_FOCUS) {
+        if (moduleType == FunctionModuleType.TYPE_FOCUS) {
             LogUtils.showLog("11111");
             imageView.setVisibility(View.VISIBLE);
             clConfirm.setVisibility(View.GONE);

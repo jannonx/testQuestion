@@ -13,6 +13,7 @@ import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
 import com.guyuan.dear.focus.aftersale.bean.ListSaleRequestBody;
 import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
@@ -67,14 +69,15 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
         viewModel.getAfterSaleList(getListRequestBody(true));
 
 
-
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+                AfterSaleBean bean = listData.get(position);
+                bean.setModuleType(FunctionModuleType.TYPE_WORK);
                 if (SaleSectionType.TYPE_SECTION_CHECK == saleSectionType) {
-                    FocusAfterSaleDetailActivity.start(getContext(), listData.get(position));
+                    FocusAfterSaleDetailActivity.start(getContext(),bean);
                 } else {
-                    CustomerAcceptanceDetailActivity.start(getContext(), listData.get(position));
+                    CustomerAcceptanceDetailActivity.start(getContext(),bean);
                 }
 
             }
@@ -86,11 +89,11 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
      *
      * @param content 回调数据
      */
-    public void dealDataByAddType(List<AfterSaleBean> content,SaleSectionType sectionType) {
+    public void dealDataByAddType(List<AfterSaleBean> content, SaleSectionType sectionType) {
         List<AfterSaleBean> tempList = new ArrayList<>();
         for (AfterSaleBean bean : content) {
             bean.setSectionType(sectionType);
-            LogUtils.showLog("saleSectionType="+(sectionType==null?"null":sectionType.getDes()));
+            LogUtils.showLog("saleSectionType=" + (sectionType == null ? "null" : sectionType.getDes()));
             tempList.add(bean);
         }
         setListData(tempList);
@@ -110,7 +113,7 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListSaleRequestBody body = new ListSaleRequestBody();
         ListSaleRequestBody.FiltersBean filtersBean = new ListSaleRequestBody.FiltersBean();
-//        filtersBean.setUserId(loginInfo.getUserInfo().getId());
+        filtersBean.setUserId(loginInfo.getUserInfo().getId());
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);

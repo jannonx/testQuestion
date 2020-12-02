@@ -262,24 +262,25 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
             }
 
             @Override
-            public void onSendClick(AddSendListAdapter adapter) {
+            public void onSendClick(AddSendListAdapter sendListAdapter,AddCopyListAdapter copyListAdapter) {
+                LogUtils.showLog("size="+( sendListAdapter == null ? "new ArrayList<>()" : sendListAdapter.getList().size()));
                 PickStaffsActivity.startForResult(FocusProduceDetailComplexFragment.this,
                         REQUEST_SEND_SELECT_PERSON,
                         "请选审批送人",
-                        adapter == null ? new ArrayList<>() : adapter.getList(),
+                        sendListAdapter == null ? new ArrayList<>() : sendListAdapter.getList(),
                         new ArrayList<>(),
-                        new ArrayList<>(),
+                        copyListAdapter == null ? new ArrayList<>() : copyListAdapter.getList(),
                         ConstantValue.CONST_MAX_STAFF_COUNT);
             }
 
             @Override
-            public void onCopyClick(AddCopyListAdapter adapter) {
+            public void onCopyClick(AddCopyListAdapter addCopyListAdapter,AddSendListAdapter sendListAdapter) {
                 PickStaffsActivity.startForResult(FocusProduceDetailComplexFragment.this,
                         REQUEST_COPY_SELECT_PERSON,
                         "请选审抄送人",
-                        adapter == null ? new ArrayList<>() : adapter.getList(),
+                        addCopyListAdapter == null ? new ArrayList<>() : addCopyListAdapter.getList(),
                         new ArrayList<>(),
-                        new ArrayList<>(),
+                        sendListAdapter == null ? new ArrayList<>() : sendListAdapter.getList(),
                         ConstantValue.CONST_MAX_STAFF_COUNT);
             }
         };

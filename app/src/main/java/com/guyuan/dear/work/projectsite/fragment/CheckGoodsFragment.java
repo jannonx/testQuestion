@@ -16,7 +16,7 @@ import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.databinding.FragmentWorkCheckGoodImgBinding;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
-import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
@@ -82,7 +82,7 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
 
         binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         CheckGoodsAdapter checkContentAdapter = new CheckGoodsAdapter(getContext(),
-                listData, R.layout.item_goods_list, ProjectModuleType.TYPE_WORK);
+                listData, R.layout.item_goods_list, FunctionModuleType.TYPE_WORK);
         adapter = new BaseRecyclerViewAdapter(checkContentAdapter);
         binding.baseRecycleView.setAdapter(adapter);
         binding.baseRecycleView.setPullRefreshEnabled(false);

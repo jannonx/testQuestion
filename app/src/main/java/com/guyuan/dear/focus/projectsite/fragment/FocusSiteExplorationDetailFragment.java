@@ -21,7 +21,7 @@ import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
 import com.guyuan.dear.focus.projectsite.bean.CustomerAcceptanceSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
-import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
@@ -31,7 +31,6 @@ import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.client.fragment.FollowCommentDialog;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
-import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.bean.PostAnswerInfo;
@@ -434,7 +433,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         //我的关注不显示
         LogUtils.showLog("ProjectModuleType=" + detailProjectData.getModuleType().getDes());
         binding.tvActivateBtn.setText("反馈问题");
-        binding.tvActivateBtn.setVisibility(ProjectModuleType.TYPE_FOCUS == detailProjectData.getModuleType() ? View.GONE : View.VISIBLE);
+        binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType() ? View.GONE : View.VISIBLE);
     }
 
     /**
@@ -455,7 +454,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvCompanyLocation.setText(detailProjectData.getAcceptAddress());
 
         binding.tvActivateBtn.setText("反馈问题");
-        binding.tvActivateBtn.setVisibility(ProjectModuleType.TYPE_FOCUS == detailProjectData.getModuleType() ? View.GONE : View.VISIBLE);
+        binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType() ? View.GONE : View.VISIBLE);
     }
 
     /**
@@ -502,7 +501,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvPauseBtn.setText(leftText);
         binding.tvCompleteBtn.setText("完工");
         //我的关注不显示
-        binding.llApplyPanel.setVisibility(ProjectModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
+        binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
                 ? View.GONE : InstallDebugSatisfyType.TYPE_INSTALL_COMPLETE == detailProjectData.getInstallDebugSatisfyType() ?
                 View.GONE : View.VISIBLE);
     }
@@ -531,7 +530,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvPauseBtn.setText("验收不合格");
         binding.tvCompleteBtn.setText("验收合格");
         LogUtils.showLog("TYPE_WORK=" + detailProjectData.getModuleType().getDes());
-        binding.llApplyPanel.setVisibility(ProjectModuleType.TYPE_FOCUS == detailProjectData.getModuleType() ? View.GONE :
+        binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType() ? View.GONE :
                 CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_OK == detailProjectData.getCustomerAcceptanceSatisfyType()
                         || CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_EXCEPTION == detailProjectData.getCustomerAcceptanceSatisfyType() ?
                         View.GONE : View.VISIBLE);

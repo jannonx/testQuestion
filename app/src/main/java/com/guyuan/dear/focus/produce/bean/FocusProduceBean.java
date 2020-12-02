@@ -86,6 +86,10 @@ public class FocusProduceBean implements Serializable {
      */
     private String actualEndTime;
     /**
+     * 外购资料提供时间
+     */
+    private String outsourcingTime;
+    /**
      * 实际生产开始时间
      */
     private String actualStartTime;
@@ -492,6 +496,14 @@ public class FocusProduceBean implements Serializable {
 
     public void setPrincipalPerson(String principalPerson) {
         this.principalPerson = principalPerson;
+    }
+
+    public String getOutsourcingTime() {
+        return outsourcingTime;
+    }
+
+    public void setOutsourcingTime(String outsourcingTime) {
+        this.outsourcingTime = outsourcingTime;
     }
 
     public String getProjectCode() {

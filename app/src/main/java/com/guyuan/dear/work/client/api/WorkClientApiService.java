@@ -65,9 +65,8 @@ public interface WorkClientApiService extends BaseApiService {
      * @param customerId 客户id
      * @return
      */
-    @GET("base/tCustomer/followUp")
-    Observable<ResultBean<Integer>> postClientFollowUp(@Query("customerId") long customerId,
-                                                       @Query("content") String content
+    @POST("base/tCustomer/followUp")
+    Observable<ResultBean<Integer>> postClientFollowUp(@Body RequestBody body
     );
 
     /**
@@ -77,9 +76,8 @@ public interface WorkClientApiService extends BaseApiService {
      * @param followId 跟进条目id
      * @return
      */
-    @GET("base/tCustomer/followUpComment")
-    Observable<ResultBean<Integer>> postUserFollowUp(@Query("followId") long followId,
-                                                     @Query("content") String content
+    @POST("base/tCustomer/followUpComment")
+    Observable<ResultBean<Integer>> postUserFollowUp(@Body RequestBody body
     );
 
 } 

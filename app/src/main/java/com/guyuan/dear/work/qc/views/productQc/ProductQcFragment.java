@@ -1,14 +1,11 @@
 package com.guyuan.dear.work.qc.views.productQc;
 
 import android.content.Intent;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.RadioGroup;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
@@ -23,6 +20,8 @@ import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.qc.beans.BaseProductBatchInfo;
 import com.guyuan.dear.work.qc.beans.BaseProjectBean;
 import com.guyuan.dear.work.qc.beans.BaseQcApproachBean;
+import com.guyuan.dear.work.qc.views.home.QcHomeActivity;
+import com.guyuan.dear.work.qc.views.home.QcHomeViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -148,11 +147,11 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 List<Integer> list = getViewModel().getJudgeConditions();
                 //2 表示国家标准
-                if(isChecked){
-                    if(!list.contains(SubmitQcReportBody.JUDGE_CONDITION_NATIONAL_STANDARD)){
+                if (isChecked) {
+                    if (!list.contains(SubmitQcReportBody.JUDGE_CONDITION_NATIONAL_STANDARD)) {
                         list.add(SubmitQcReportBody.JUDGE_CONDITION_NATIONAL_STANDARD);
                     }
-                }else {
+                } else {
                     list.remove(Integer.valueOf(SubmitQcReportBody.JUDGE_CONDITION_NATIONAL_STANDARD));
                 }
             }
@@ -163,11 +162,11 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 List<Integer> list = getViewModel().getJudgeConditions();
                 //1 表示设计图样
-                if(isChecked){
-                    if(!list.contains(SubmitQcReportBody.JUDGE_CONDITION_BLUE_PRINT_SCHEME)){
+                if (isChecked) {
+                    if (!list.contains(SubmitQcReportBody.JUDGE_CONDITION_BLUE_PRINT_SCHEME)) {
                         list.add(SubmitQcReportBody.JUDGE_CONDITION_BLUE_PRINT_SCHEME);
                     }
-                }else {
+                } else {
                     list.remove(Integer.valueOf(SubmitQcReportBody.JUDGE_CONDITION_BLUE_PRINT_SCHEME));
                 }
             }
@@ -231,7 +230,19 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
         viewModel.onClickSubmit.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getViewModel().submitReport();
+                getViewModel().submitReport(new ProductQcViewModel.SubmitCallback() {
+                    @Override
+                    public void onSubmit(boolean success) {
+                        if (success) {
+                            //跳转到我的申请详情并刷新
+                            FragmentActivity activity = getActivity();
+                            if (activity instanceof QcHomeActivity) {
+                                QcHomeViewModel vm = ((QcHomeActivity) activity).getViewModel();
+                                vm.refreshMyApplyList.postValue(true);
+                            }
+                        }
+                    }
+                });
             }
         });
 

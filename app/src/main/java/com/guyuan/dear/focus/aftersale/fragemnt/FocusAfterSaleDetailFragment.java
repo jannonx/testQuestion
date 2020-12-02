@@ -11,15 +11,24 @@ import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseFileUploadActivity;
 import com.guyuan.dear.base.activity.BaseTabActivity;
+import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.databinding.FragmentFocusAfterSaleDetailBinding;
 import com.guyuan.dear.focus.aftersale.activity.FocusAfterSaleDetailActivity;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
+import com.guyuan.dear.focus.aftersale.bean.PostInfoBean;
+import com.guyuan.dear.focus.aftersale.bean.SaleAcceptedType;
+import com.guyuan.dear.focus.aftersale.bean.SaleCheckType;
 import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.utils.StringUtils;
+import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
+import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 
 import java.util.ArrayList;
@@ -29,6 +38,11 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+
+import org.greenrobot.eventbus.EventBus;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 
 /**
@@ -50,8 +64,7 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
     private int selectedTextColor, unSelectedTextColor;
     private AfterSaleBean afterSaleBean;
     protected ArrayList<String> photoList = new ArrayList<>();
-    private ProduceApplyDialog dialog;
-
+    private PostInfoBean postInfoBean;
     private FocusAfterSaleDetailActivity activity;
 
     public static FocusAfterSaleDetailFragment newInstance(AfterSaleBean data) {
@@ -78,8 +91,6 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
         if (afterSaleBean == null) {
             return;
         }
-        binding.tvPauseBtn.setOnClickListener(this);
-        binding.tvCompleteBtn.setOnClickListener(this);
         binding.tvActivateBtn.setOnClickListener(this);
 
         initViewPager();
@@ -92,6 +103,47 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
             }
         });
 
+        if (afterSaleBean.getModuleType() != null) {
+            binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_WORK
+                    == afterSaleBean.getModuleType() ? View.VISIBLE : View.GONE);
+        }
+
+        viewModel.getUploadImageEvent().observe(this, new Observer<List<UploadBean>>() {
+            @Override
+            public void onChanged(List<UploadBean> dataList) {
+                if (dataList.isEmpty()) return;
+                List<String> imageUrlList = new ArrayList<>();
+                for (UploadBean bean : dataList) {
+                    LogUtils.showLog("upLoadPicAndVideo=" + bean.getUrl());
+                    imageUrlList.add(bean.getUrl());
+                }
+                postAfterSaleInfo(imageUrlList);
+            }
+        });
+
+        viewModel.getpostAfterSaleInfoEvent().observe(getActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer data) {
+//                setAfterSaleBean(data);
+                ToastUtils.showLong(getContext(), "提交成功");
+                EventBus.getDefault().post(new EventAnswerListRefresh());
+            }
+        });
+
+    }
+
+
+    /**
+     * 提交信息
+     *
+     * @param imageUrlList
+     */
+    private void postAfterSaleInfo(List<String> imageUrlList) {
+        postInfoBean.setImgUrl(StringUtils.splicePhotoUrl(imageUrlList));
+        String installStr = GsonUtil.objectToString(postInfoBean);
+        RequestBody installRequestBody = RequestBody.create(MediaType.parse("application/json; " +
+                "charset=utf-8"), installStr);
+        viewModel.postAfterSaleInfo(installRequestBody);
     }
 
 
@@ -104,7 +156,9 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
         questionFragment.setQuestionDescribe(data);
         data.setSectionType(SaleSectionType.TYPE_SECTION_CHECK);
         binding.tvTitle.setText(data.getTitle());
-
+        binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_WORK == afterSaleBean.getModuleType()
+                ? SaleCheckType.TYPE_CHECK_COMPLETE == data.getCheckType()? View.GONE : View.VISIBLE
+                : View.GONE);
         //状态属性设置
         binding.tvProjectStatus.setText(data.getStatusText());
         binding.tvProjectStatus.setBackgroundResource(data.getStatusTextBg());
@@ -115,19 +169,15 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
         binding.tvCustomerName.setText(data.getConsumerName());
         binding.tvAddress.setText(data.getConstructionLocaltion());
         binding.tvCheckName.setText(data.getExamineManName());
-        binding.tvTime.setText(data.getUpdateTime());
+        binding.tvTime.setText(data.getCreateTime());
     }
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_pause_btn:
-
-                break;
-            case R.id.tv_complete_btn:
-                break;
             case R.id.tv_activate_btn:
+                showDialog();
                 break;
 
             default:
@@ -135,7 +185,7 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
     }
 
 
-    private void clickRightBtn() {
+    private void showDialog() {
         rightDialog = new AfterSalePostInfoDialog(getActivity(), afterSaleBean, new AfterSalePostInfoDialog.OnDialogClickListener() {
             @Override
             public void onPickImageClick() {
@@ -143,8 +193,12 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
             }
 
             @Override
-            public void onCommitCheckGoodsInfo(PostCheckInfo data) {
-
+            public void onCommitCheckGoodsInfo(PostInfoBean data) {
+                postInfoBean = data;
+                postInfoBean.setStatus(SaleCheckType.TYPE_CHECK_ING.getCode());
+                postInfoBean.setType(SaleSectionType.TYPE_SECTION_CHECK.getCode());
+                activity.checkPhotoAndFileUpLoad(data.getImgUrlList());
+                postInfoBean.clearImgUrlList();
             }
 
         });
@@ -157,7 +211,6 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
             }
         });
     }
-
 
 
     private void initViewPager() {
@@ -254,11 +307,11 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> photoList) {
-        photoList.addAll(photoList);
-
+    public void onPhotoSelected(ArrayList<String> dataList) {
+        photoList.clear();
+        photoList.addAll(dataList);
         if (rightDialog != null) {
-            rightDialog.setPhotoList(photoList);
+            rightDialog.setPhotoList(dataList);
         }
     }
 

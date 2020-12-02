@@ -142,11 +142,12 @@ public class DearNetHelper {
      * 根据客户id获取客户合同列表，列表信息为基本信息。
      *
      * @param id
+     * @param type 1.查已暂停的 2.查正常审批通过的
      * @param callback
      * @return
      */
-    public Disposable getBaseContractListByClientId(long id, NetCallback<List<NetBaseContractInfo>> callback) {
-        Observable<ResultBean<List<NetBaseContractInfo>>> observable = netApiService.getContractBaseInfosByClientId(id);
+    public Disposable getBaseContractListByClientId(long id, int type,NetCallback<List<NetBaseContractInfo>> callback) {
+        Observable<ResultBean<List<NetBaseContractInfo>>> observable = netApiService.getContractBaseInfosByClientId(id,type);
         return getDisposalAsync(observable, callback, null);
     }
 
@@ -509,6 +510,8 @@ public class DearNetHelper {
         filters.put("listType", "3");
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        //        filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        filters.put("type","1");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -548,6 +551,8 @@ public class DearNetHelper {
         filters.put("listType", "2");
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        //        filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        filters.put("type","1");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -587,7 +592,8 @@ public class DearNetHelper {
         filters.put("listType", "2");
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
-        //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+//        filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        filters.put("type","2");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -627,6 +633,8 @@ public class DearNetHelper {
         filters.put("listType", "2");
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        filters.put("type","0");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -668,6 +676,8 @@ public class DearNetHelper {
         filters.put("listType", "1");
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        filters.put("type","0");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -709,6 +719,8 @@ public class DearNetHelper {
         filters.put("listType", "3");
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        filters.put("type","2");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -748,6 +760,8 @@ public class DearNetHelper {
         filters.put("listType", "4");
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
+        //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        filters.put("type","0");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -825,6 +839,11 @@ public class DearNetHelper {
             public List<GenericQcLogBean> map(List<NetQcReportApproveFlow> src) {
                 List<GenericQcLogBean> result = new ArrayList<>();
                 for (NetQcReportApproveFlow flow : src) {
+                    int status = flow.getStatus();
+                    //Status 0 待审 1已同意 2已拒绝，如果存在-1的话是后台sb开发人员返回不符合文档描述的信息，应该过滤掉！
+                    if(status<0){
+                        continue;
+                    }
                     GenericQcLogBean bean = new GenericQcLogBean(flow);
                     result.add(bean);
                 }

@@ -26,6 +26,7 @@ import com.guyuan.dear.customizeview.itemDecorator.AddCopyListItemDecorator;
 import com.guyuan.dear.customizeview.itemDecorator.AddSendListItemDecorator;
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
 import com.guyuan.dear.focus.produce.bean.OperateProduceType;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
 import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
@@ -118,11 +119,11 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
                 break;
             case R.id.iv_sent_to:
                 if (clickListener == null) return;
-                clickListener.onSendClick(sendAdapter);
+                clickListener.onSendClick(sendAdapter,copyAdapter);
                 break;
             case R.id.iv_copy_to:
                 if (clickListener == null) return;
-                clickListener.onCopyClick(copyAdapter);
+                clickListener.onCopyClick(copyAdapter,sendAdapter);
                 break;
 
         }
@@ -169,18 +170,22 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
      * 显示处理人数据
      */
     public void setSendToList(List<StaffBean> staffBeanList) {
+        LogUtils.showLog("setSendToList00=" + sendStaffList.size() + "....staffBeanList=" + staffBeanList.size());
         sendStaffList.clear();
+        LogUtils.showLog("setSendToList11=" + sendStaffList.size() + "....staffBeanList=" + staffBeanList.size());
         sendStaffList.addAll(staffBeanList);
-        if (sendAdapter == null) {
-            sendAdapter = new AddSendListAdapter(sendStaffList, getContext());
-            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4, RecyclerView.VERTICAL, false);
-            viewBinding.rvSent.setLayoutManager(layoutManager);
-            viewBinding.rvSent.addItemDecoration(new AddSendListItemDecorator());
+        LogUtils.showLog("setSendToList22=" + sendStaffList.size() + "....staffBeanList=" + staffBeanList.size());
+//        if (sendAdapter == null) {
+        sendAdapter = new AddSendListAdapter(sendStaffList, getContext());
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4, RecyclerView.VERTICAL, false);
+        viewBinding.rvSent.setLayoutManager(layoutManager);
+        viewBinding.rvSent.addItemDecoration(new AddSendListItemDecorator());
 //            baseSendAdapter = new BaseRecyclerViewAdapter(sendAdapter);
-            viewBinding.rvSent.setAdapter(sendAdapter);
-        } else {
-            sendAdapter.setDataList(sendStaffList, false);
-        }
+        viewBinding.rvSent.setAdapter(sendAdapter);
+
+//        } else {
+//            sendAdapter.setDataList(sendStaffList, true);
+//        }
 //        baseSendAdapter.refreshData();
 
     }
@@ -191,16 +196,16 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
     public void setCopyToList(List<StaffBean> staffBeanList) {
         copyStaffList.clear();
         copyStaffList.addAll(staffBeanList);
-        if (copyAdapter == null) {
-            copyAdapter = new AddCopyListAdapter(copyStaffList, getContext());
-            GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4, RecyclerView.VERTICAL, false);
-            viewBinding.rvCopyTo.setLayoutManager(layoutManager);
-            viewBinding.rvCopyTo.addItemDecoration(new AddCopyListItemDecorator());
+//        if (copyAdapter == null) {
+        copyAdapter = new AddCopyListAdapter(copyStaffList, getContext());
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4, RecyclerView.VERTICAL, false);
+        viewBinding.rvCopyTo.setLayoutManager(layoutManager);
+        viewBinding.rvCopyTo.addItemDecoration(new AddCopyListItemDecorator());
 //            baseSendAdapter = new BaseRecyclerViewAdapter(sendAdapter);
-            viewBinding.rvCopyTo.setAdapter(copyAdapter);
-        } else {
-            copyAdapter.setDataList(copyStaffList, false);
-        }
+        viewBinding.rvCopyTo.setAdapter(copyAdapter);
+//        } else {
+//            copyAdapter.setDataList(copyStaffList, true);
+//        }
 //        baseCopyAdapter.refreshData();
     }
 
@@ -252,9 +257,9 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
     public interface OnDialogClickListener {
         void onCommitInfo(ExecuteRequestBody data);
 
-        void onSendClick(AddSendListAdapter adapter);
+        void onSendClick(AddSendListAdapter sendListAdapter,AddCopyListAdapter addCopyListAdapter);
 
-        void onCopyClick(AddCopyListAdapter adapter);
+        void onCopyClick(AddCopyListAdapter addCopyListAdapter,AddSendListAdapter sendListAdapter);
     }
 
 }

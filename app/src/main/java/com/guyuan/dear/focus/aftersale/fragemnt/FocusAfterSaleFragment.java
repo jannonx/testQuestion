@@ -7,6 +7,7 @@ import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListSearchBinding;
+import com.guyuan.dear.focus.aftersale.activity.CustomerAcceptanceDetailActivity;
 import com.guyuan.dear.focus.aftersale.activity.FocusAfterSaleDetailActivity;
 import com.guyuan.dear.focus.aftersale.adapter.FocusAfterSaleAdapter;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
@@ -14,6 +15,7 @@ import com.guyuan.dear.focus.aftersale.bean.ListSaleRequestBody;
 import com.guyuan.dear.focus.aftersale.bean.SaleQualifiedType;
 import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 
@@ -76,7 +78,9 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                FocusAfterSaleDetailActivity.start(getContext(), listData.get(position));
+                AfterSaleBean bean = listData.get(position);
+                bean.setModuleType(FunctionModuleType.TYPE_FOCUS);
+                CustomerAcceptanceDetailActivity.start(getContext(), bean);
             }
         });
     }

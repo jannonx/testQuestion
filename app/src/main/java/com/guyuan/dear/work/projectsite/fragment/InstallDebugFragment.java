@@ -8,25 +8,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
-import com.guyuan.dear.databinding.FragmentWorkCheckGoodImgBinding;
 import com.guyuan.dear.databinding.FragmentWorkInstallationDebugIngBinding;
 import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectInstallAdapter;
-import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
-import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
-import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugSingleActivity;
-import com.guyuan.dear.work.projectsite.adapter.CheckGoodsAdapter;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
-import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 
 import org.greenrobot.eventbus.EventBus;
@@ -36,8 +30,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
@@ -83,13 +75,14 @@ public class InstallDebugFragment extends BaseDataBindingFragment<FragmentWorkIn
             @Override
             public void onItemClick(View view, int position) {
                 InstallDebugBean installDebugBean = listData.get(position);
-                if (InstallDebugSatisfyType.TYPE_INSTALL_WAIT == detailData.getInstallDebugSatisfyType()) {
+                if (FunctionModuleType.TYPE_WORK == detailData.getModuleType() &&
+                        InstallDebugSatisfyType.TYPE_INSTALL_WAIT == detailData.getInstallDebugSatisfyType()) {
                     WorkInstallDebugSingleActivity.start(getContext(), installDebugBean);
                 } else {
                     SiteExploreBean siteExploreBean = new SiteExploreBean();
                     siteExploreBean.setId(installDebugBean.getId());
                     siteExploreBean.setStatus(installDebugBean.getStatus());
-                    siteExploreBean.setModuleType(ProjectModuleType.TYPE_WORK);
+                    siteExploreBean.setModuleType(detailData.getModuleType());
                     siteExploreBean.setProjectReportType(ProjectReportType.TYPE_INSTALLATION_DEBUG);
                     FocusSiteExplorationDetailActivity.start(getContext(), siteExploreBean);
                 }
@@ -110,6 +103,7 @@ public class InstallDebugFragment extends BaseDataBindingFragment<FragmentWorkIn
 
     private void setDetailData(SiteExploreBean data) {
         data.setProjectReportType(detailData.getProjectReportType());
+        data.setModuleType(detailData.getModuleType());
         detailData = data;
 
         binding.tvProjectName.setText(data.getProjectName());

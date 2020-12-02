@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseFileUploadActivity;
+import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.databinding.FragmentWorkInstallationDebugIngBinding;
 import com.guyuan.dear.databinding.FragmentWrokInstallationDebugDetailSingleBinding;
@@ -181,10 +182,22 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
         binding.tvActivateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (TextUtils.isEmpty(binding.etSearch.getText().toString())) {
+                    ToastUtils.showLong(getContext(), "请填写文本");
+                    return;
+                }
                 if (photoList.isEmpty()) {
                     ToastUtils.showLong(getContext(), "请选择图片");
+                    return;
                 }
                 activity.checkPhotoAndFileUpLoad(imageDataList);
+            }
+        });
+
+        binding.ivPick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.openAlbum(BaseTabActivity.FIRST);
             }
         });
 
@@ -237,8 +250,9 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> photoList) {
-        photoList.addAll(photoList);
+    public void onPhotoSelected(ArrayList<String> dataList) {
+        photoList.clear();
+        photoList.addAll(dataList);
         imageDataList.clear();
         imageDataList.addAll(photoList);
         imageAdapter.refreshData();

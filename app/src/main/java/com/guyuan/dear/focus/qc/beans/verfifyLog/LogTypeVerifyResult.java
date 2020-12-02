@@ -24,13 +24,13 @@ public class LogTypeVerifyResult extends Vote {
         setDept(src.getCreateDept());
         try {
             setDate(CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(src.getCreateTime()).getTime());
-        }catch (Exception e){
+        } catch (Exception e) {
             setDate(0);
         }
         int status = src.getStatus();
-        if(status==1){
+        if (status == 1) {
             setResult(VOTE_RESULT_PASS);
-        }else {
+        } else if (status == 2) {
             setResult(VOTE_RESULT_REJECT);
         }
         setName(src.getCreateName());
@@ -61,7 +61,7 @@ public class LogTypeVerifyResult extends Vote {
         this.date = date;
     }
 
-    public GenericQcLogBean toGenericLogBean(){
+    public GenericQcLogBean toGenericLogBean() {
         GenericQcLogBean bean = new GenericQcLogBean();
         bean.setLogType(GenericQcLogBean.LOG_TYPE_VERIFY_RESULT);
         bean.setJsonString(new Gson().toJson(this));

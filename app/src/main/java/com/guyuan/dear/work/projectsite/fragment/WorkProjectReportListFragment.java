@@ -3,10 +3,8 @@ package com.guyuan.dear.work.projectsite.fragment;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
@@ -15,7 +13,7 @@ import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.CheckSafeSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ListProjectRequestBody;
-import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteProjectSatisfyType;
@@ -95,7 +93,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
      * @param siteExploreBean 数据
      */
     private void jumpByReportType(SiteExploreBean siteExploreBean) {
-        siteExploreBean.setModuleType(ProjectModuleType.TYPE_WORK);
+        siteExploreBean.setModuleType(FunctionModuleType.TYPE_WORK);
         LogUtils.showLog("jumpByReportType=" + siteExploreBean.getProjectReportType().getDes());
         switch (reportType) {
             ///现场勘查报告
@@ -134,6 +132,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
                 break;
             ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:
+                siteExploreBean.setModuleType(FunctionModuleType.TYPE_WORK);
                 WorkInstallDebugActivity.start(getContext(), siteExploreBean);
                 break;
             ///客户验收报告
@@ -188,10 +187,13 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
      * @param dataList 数据
      */
     public void dealDataByAddReportType(List<SiteExploreBean> dataList,ProjectReportType reportType) {
+        LogUtils.showLog("size="+dataList.size());
         List<SiteExploreBean> tempList = new ArrayList<>();
-        for (SiteExploreBean bean : dataList) {
-            bean.setProjectReportType(reportType);
-            tempList.add(bean);
+        for (int i=0;i<dataList.size();i++) {
+            SiteExploreBean siteExploreBean = dataList.get(i);
+            siteExploreBean.setProjectReportType(reportType);
+            LogUtils.showLog("dealDataByAddReportType="+reportType.getDes());
+            tempList.add(siteExploreBean);
         }
         setListData(tempList);
     }
@@ -203,7 +205,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
         ListProjectRequestBody body = new ListProjectRequestBody();
         ListProjectRequestBody.FiltersBean filtersBean = new ListProjectRequestBody.FiltersBean();
         filtersBean.setQueryParams(searchContent);
-        filtersBean.setMyWork(ProjectModuleType.TYPE_WORK.getCode());
+        filtersBean.setMyWork(FunctionModuleType.TYPE_WORK.getCode());
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);

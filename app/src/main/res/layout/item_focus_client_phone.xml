@@ -43,11 +43,11 @@
             android:id="@+id/tv_client_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_58"
+            android:layout_marginStart="@dimen/dp_16"
             android:text="185 5076 6404"
             android:textColor="@color/color_grey_999999"
             android:textSize="@dimen/sp_14"
-            app:layout_constraintStart_toEndOf="@+id/label_client_contact"
+            app:layout_constraintStart_toEndOf="@+id/tv_client_contact"
             app:layout_constraintTop_toTopOf="parent" />
 
 

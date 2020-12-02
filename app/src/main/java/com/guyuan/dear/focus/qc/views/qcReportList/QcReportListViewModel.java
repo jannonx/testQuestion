@@ -336,6 +336,12 @@ public class QcReportListViewModel extends BaseViewModel {
         });
     }
 
+    public void clearAllMyQcReport(){
+        myQcReports.postValue(new ArrayList<>());
+        isAllMyQcReportLoaded.postValue(false);
+        myQcReportPageIndex=1;
+    }
+
     public Disposable updateMyQcReports(long dateFrom, long dateTo) {
         return repo.getMyQcReports(dateFrom, dateTo, myQcReportPageIndex++, PAGE_SIZE, new DearNetHelper.NetCallback<List<GenericQcReport>>() {
             @Override

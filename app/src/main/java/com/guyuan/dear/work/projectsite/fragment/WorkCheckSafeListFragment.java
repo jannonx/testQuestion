@@ -15,7 +15,7 @@ import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.CheckSafeSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ListProjectRequestBody;
-import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteProjectSatisfyType;
@@ -99,7 +99,7 @@ public class WorkCheckSafeListFragment extends BaseListSearchFragment<SiteExplor
      * @param siteExploreBean 数据
      */
     private void jumpByReportType(SiteExploreBean siteExploreBean) {
-        siteExploreBean.setModuleType(ProjectModuleType.TYPE_WORK);
+        siteExploreBean.setModuleType(FunctionModuleType.TYPE_WORK);
         LogUtils.showLog("jumpByReportType=" + siteExploreBean.getProjectReportType().getDes());
         switch (reportType) {
             ///现场勘查报告
@@ -242,7 +242,7 @@ public class WorkCheckSafeListFragment extends BaseListSearchFragment<SiteExplor
         ListProjectRequestBody body = new ListProjectRequestBody();
         ListProjectRequestBody.FiltersBean filtersBean = new ListProjectRequestBody.FiltersBean();
         filtersBean.setQueryParams(searchContent);
-        filtersBean.setMyWork(ProjectModuleType.TYPE_WORK.getCode());
+        filtersBean.setMyWork(FunctionModuleType.TYPE_WORK.getCode());
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);

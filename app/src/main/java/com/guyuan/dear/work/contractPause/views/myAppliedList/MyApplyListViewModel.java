@@ -1,8 +1,5 @@
 package com.guyuan.dear.work.contractPause.views.myAppliedList;
 
-import android.view.View;
-import android.widget.AdapterView;
-
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
@@ -113,6 +110,18 @@ public class MyApplyListViewModel extends BaseViewModel {
             ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
         }
     };
+
+    public void clearPauseApplyList() {
+        pauseApplyList.postValue(new ArrayList<>());
+        isLoadAllPauseList.postValue(false);
+        pauseApplyPageIndex = 1;
+    }
+
+    public void clearRestartApplyList() {
+        restartApplyList.postValue(new ArrayList<>());
+        isLoadAllRestartList.postValue(false);
+        restartApplyPageIndex = 1;
+    }
 
 
 //    /**

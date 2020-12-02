@@ -18,7 +18,7 @@
                 android:orientation="vertical">
 
 
-                <LinearLayout
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/ll_remark"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -65,13 +65,13 @@
                         android:text="货物状态：正常"
                         android:textColor="@color/color_red_F04864"
                         android:textSize="@dimen/sp_14" />
-                </LinearLayout>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/ll_document"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_16"
+                    android:paddingTop="@dimen/dp_16"
                     android:background="@color/color_white_f5f7fa"
                     android:orientation="vertical">
 

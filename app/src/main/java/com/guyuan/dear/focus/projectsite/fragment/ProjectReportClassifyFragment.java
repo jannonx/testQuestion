@@ -10,21 +10,16 @@ import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
-import com.guyuan.dear.focus.projectsite.activity.FocusCheckGoodsDetailActivity;
-import com.guyuan.dear.focus.projectsite.activity.FocusCheckSafeDetailActivity;
-import com.guyuan.dear.focus.projectsite.activity.FocusCustomerAcceptanceDetailActivity;
-import com.guyuan.dear.focus.projectsite.activity.FocusInstallationDebugAllActivity;
 import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ListProjectRequestBody;
-import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
-import com.guyuan.dear.work.projectsite.activity.ResultReportDetailActivity;
 import com.guyuan.dear.work.projectsite.activity.WorkCheckGoodsActivity;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugActivity;
 
@@ -74,7 +69,7 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
             @Override
             public void onItemClick(View view, int position) {
                 SiteExploreBean siteExploreBean = listData.get(position);
-                siteExploreBean.setModuleType(ProjectModuleType.TYPE_FOCUS);
+                siteExploreBean.setModuleType(FunctionModuleType.TYPE_FOCUS);
                 switch (reportType) {
                     case TYPE_SITE_EXPLORATION:
                         if (siteExploreBean.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
@@ -85,6 +80,7 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
                         }
                         break;
                     case TYPE_INSTALLATION_DEBUG:
+                        siteExploreBean.setModuleType(FunctionModuleType.TYPE_FOCUS);
                         WorkInstallDebugActivity.start(getContext(),siteExploreBean );
                         break;
                     default:
@@ -136,7 +132,7 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
     /**
      * 接收回调数据
      */
-    private void receiveDataLisByClassify() {
+    public void receiveDataLisByClassify() {
         viewModel.getSiteExploreListEvent().observe(getActivity(), new Observer<RefreshBean<SiteExploreBean>>() {
             @Override
             public void onChanged(RefreshBean<SiteExploreBean> data) {

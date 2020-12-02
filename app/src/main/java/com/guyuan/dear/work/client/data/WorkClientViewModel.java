@@ -122,9 +122,9 @@ public class WorkClientViewModel extends BaseViewModel {
      * @param content    评价内容
      * @param customerId 客户id
      */
-    public void postClientFollowUp(long customerId, String content) {
+    public void postClientFollowUp(RequestBody body) {
 
-        Disposable disposable = RxJavaHelper.build(this, repository.postClientFollowUp(customerId, content))
+        Disposable disposable = RxJavaHelper.build(this, repository.postClientFollowUp(body))
                 .getHelper().flow(followClientEvent);
         addSubscription(disposable);
     }
@@ -136,9 +136,9 @@ public class WorkClientViewModel extends BaseViewModel {
      * @param content    评价内容
      * @param followId 客户id
      */
-    public void postUserFollowUp(long followId, String content) {
+    public void postUserFollowUp(RequestBody body) {
 
-        Disposable disposable = RxJavaHelper.build(this, repository.postUserFollowUp(followId, content))
+        Disposable disposable = RxJavaHelper.build(this, repository.postUserFollowUp(body))
                 .getHelper().flow(followUserEvent);
         addSubscription(disposable);
     }

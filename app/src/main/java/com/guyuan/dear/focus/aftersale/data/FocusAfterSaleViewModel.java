@@ -33,10 +33,12 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
 
     private MutableLiveData<RefreshBean<AfterSaleBean>> afterSaleListEvent = new MutableLiveData<>();
     private MutableLiveData<AfterSaleBean> afterSaleDetailEvent = new MutableLiveData<>();
+    private MutableLiveData<AfterSaleBean> afterSaleCustomerAcceptanceDetailEvent = new MutableLiveData<>();
     private MutableLiveData<List<AfterSaleStatusBean>> afterSaleStatusEvent = new MutableLiveData<>();
-    private MutableLiveData<Integer> postAnswerInfoEvent = new MutableLiveData<>();
+    private MutableLiveData<Integer> postAfterSaleInfoEvent = new MutableLiveData<>();
     private MutableLiveData<List<UploadBean>> uploadImageEvent = new MutableLiveData<>();//上传图片
     private MutableLiveData<Integer> postAcceptInfoEvent = new MutableLiveData<>();
+
     /**
      * 获取列表
      *
@@ -63,6 +65,12 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
         addSubscription(disposable);
     }
 
+    public void getAfterSaleCustomerAcceptanceDetail(long id, int type) {
+        Disposable disposable = RxJavaHelper.build(this, repository.getAfterSaleCustomerAcceptanceDetail(id, type))
+                .getHelper().flow(afterSaleDetailEvent);
+        addSubscription(disposable);
+    }
+
     /**
      * 工程现场-意见回复-异步查询意见回复集
      */
@@ -72,6 +80,7 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
                 .getHelper().flow(afterSaleStatusEvent);
         addSubscription(disposable);
     }
+
     /**
      * 验收成功/失败-改变状态
      */
@@ -88,10 +97,10 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
      * @param body
      * @return
      */
-    public void postAnswerInfo(RequestBody body) {
+    public void postAfterSaleInfo(RequestBody body) {
 
-        Disposable disposable = RxJavaHelper.build(this, repository.postAnswerInfo(body))
-                .getHelper().flow(postAnswerInfoEvent);
+        Disposable disposable = RxJavaHelper.build(this, repository.postAfterSaleInfo(body))
+                .getHelper().flow(postAfterSaleInfoEvent);
         addSubscription(disposable);
     }
 
@@ -131,12 +140,12 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
         this.afterSaleStatusEvent = afterSaleStatusEvent;
     }
 
-    public MutableLiveData<Integer> getPostAnswerInfoEvent() {
-        return postAnswerInfoEvent;
+    public MutableLiveData<Integer> getpostAfterSaleInfoEvent() {
+        return postAfterSaleInfoEvent;
     }
 
-    public void setPostAnswerInfoEvent(MutableLiveData<Integer> postAnswerInfoEvent) {
-        this.postAnswerInfoEvent = postAnswerInfoEvent;
+    public void setpostAfterSaleInfoEvent(MutableLiveData<Integer> postAfterSaleInfoEvent) {
+        this.postAfterSaleInfoEvent = postAfterSaleInfoEvent;
     }
 
     public MutableLiveData<List<UploadBean>> getUploadImageEvent() {
@@ -145,5 +154,13 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
 
     public void setUploadImageEvent(MutableLiveData<List<UploadBean>> uploadImageEvent) {
         this.uploadImageEvent = uploadImageEvent;
+    }
+
+    public MutableLiveData<AfterSaleBean> getAfterSaleCustomerAcceptanceDetailEvent() {
+        return afterSaleCustomerAcceptanceDetailEvent;
+    }
+
+    public void setAfterSaleCustomerAcceptanceDetailEvent(MutableLiveData<AfterSaleBean> afterSaleCustomerAcceptanceDetailEvent) {
+        this.afterSaleCustomerAcceptanceDetailEvent = afterSaleCustomerAcceptanceDetailEvent;
     }
 }

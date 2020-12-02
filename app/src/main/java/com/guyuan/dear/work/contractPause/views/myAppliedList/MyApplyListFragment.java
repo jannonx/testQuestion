@@ -2,9 +2,10 @@ package com.guyuan.dear.work.contractPause.views.myAppliedList;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +17,10 @@ import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.adapters.MyApplyListAdapter;
 import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
 import com.guyuan.dear.work.contractPause.views.applyDetail.MyApplyDetailActivity;
+import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeActivity;
+import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeViewModel;
+import com.guyuan.dear.work.contractRestart.view.home.ContractRestartHomeActivity;
+import com.guyuan.dear.work.contractRestart.view.home.ContractRestartHomeViewModel;
 
 import java.util.List;
 
@@ -114,6 +119,23 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
         });
         getViewModel().updateRestartApplyListFromNet();
 
+        //监听view model，刷新列表
+        FragmentActivity activity = getActivity();
+        if(activity instanceof ContractRestartHomeActivity){
+            ContractRestartHomeViewModel viewModel = new ViewModelProvider(activity).get(ContractRestartHomeViewModel.class);
+            viewModel.refreshMyRestartApplyList.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                @Override
+                public void onChanged(Boolean aBoolean) {
+                    if(aBoolean){
+                        //刷新列表
+                        getViewModel().clearRestartApplyList();
+                        getViewModel().updateRestartApplyListFromNet();
+
+                    }
+                }
+            });
+        }
+
     }
 
     private void initPauseList() {
@@ -152,6 +174,22 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
             }
         });
         getViewModel().updatePauseApplyListFromNet();
+
+        //监听view model，刷新列表
+        FragmentActivity activity = getActivity();
+        if(activity instanceof ContractPauseHomeActivity){
+            ContractPauseHomeViewModel viewModel = new ViewModelProvider(activity).get(ContractPauseHomeViewModel.class);
+            viewModel.refreshMyPauseApplyList.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                @Override
+                public void onChanged(Boolean aBoolean) {
+                    if(aBoolean){
+                        //刷新列表
+                        getViewModel().clearPauseApplyList();
+                        getViewModel().updatePauseApplyListFromNet();
+                    }
+                }
+            });
+        }
 
     }
 

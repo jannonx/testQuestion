@@ -47,9 +47,10 @@ public class FollowProducePlanFragment extends BaseDataBindingFragment<FragmentF
         binding.tvProductNumber.setText(String.valueOf(data.getNum()));
         binding.tvProductUnit.setText(data.getUnit());
 
-        binding.tvDateProvidedTime.setText(data.getActualStartTime());
+
+        binding.tvDateProvidedTime.setText(data.getOutsourcingTime());
         binding.tvDrawingsIssuedTime.setText(data.getDrawingIssuedTime());
-        binding.tvMaterialListIssuedTime.setText(data.getDrawingIssuedTime());
+        binding.tvMaterialListIssuedTime.setText(data.getMaterialIssuedTime());
         binding.tvMaterialToFactoryTime.setText(data.getMaterialReceiveTime());
         binding.tvOutBuyTime.setText(data.getPurchaseReceiveTime());
         binding.tvPlanPutInTime.setText(data.getPlanStockTime());

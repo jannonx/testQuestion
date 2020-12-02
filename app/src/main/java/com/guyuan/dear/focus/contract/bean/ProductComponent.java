@@ -29,7 +29,7 @@ public class ProductComponent implements Parcelable {
     /**
      * 部件数量
      */
-    private int count;
+    private long count;
     /**
      * 单位
      */
@@ -47,7 +47,7 @@ public class ProductComponent implements Parcelable {
         componentName = in.readString();
         modelName = in.readString();
         spec = in.readString();
-        count = in.readInt();
+        count = in.readLong();
         unit = in.readString();
     }
 
@@ -80,11 +80,11 @@ public class ProductComponent implements Parcelable {
     }
 
 
-    public int getCount() {
+    public long getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(long count) {
         this.count = count;
     }
 
@@ -114,7 +114,7 @@ public class ProductComponent implements Parcelable {
         dest.writeString(componentName);
         dest.writeString(modelName);
         dest.writeString(spec);
-        dest.writeInt(count);
+        dest.writeLong(count);
         dest.writeString(unit);
     }
 

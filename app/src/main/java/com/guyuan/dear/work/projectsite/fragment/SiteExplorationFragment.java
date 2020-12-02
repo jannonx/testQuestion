@@ -1,7 +1,6 @@
 package com.guyuan.dear.work.projectsite.fragment;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -17,36 +16,23 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.httplibrary.bean.RefreshBean;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseFileUploadActivity;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.base.api.UploadBean;
-import com.guyuan.dear.base.bean.SimpleTabBean;
-import com.guyuan.dear.base.fragment.BaseListSearchFragment;
-import com.guyuan.dear.databinding.DialogWorkProjectCheckBinding;
-import com.guyuan.dear.databinding.FragmentListBinding;
-import com.guyuan.dear.databinding.FragmentWorkCheckGoodImgBinding;
 import com.guyuan.dear.databinding.FragmentWorkSiteExplorationIngBinding;
 import com.guyuan.dear.focus.projectsite.adapter.CheckContentAdapter;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
-import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
-import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
-import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
-import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
-import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
-import com.guyuan.dear.mine.activity.UserInfoActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
-import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostSiteExploreInfo;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 
@@ -58,7 +44,6 @@ import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
-import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @description: 我的工作--工程现场--现场勘查

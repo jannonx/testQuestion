@@ -16,19 +16,29 @@ public class GenericQcLogBean implements Parcelable {
     private int logType;
     private String jsonString;
     public static final int LOG_TYPE_FIRST_CREATE_DATE = 0;
-    public static final int LOG_TYPE_SUBMIT_DETAIL=1;
-    public static final int LOG_TYPE_VERIFY_RESULT=2;
+    public static final int LOG_TYPE_SUBMIT_DETAIL = 1;
+    public static final int LOG_TYPE_VERIFY_RESULT = 2;
+    public static final int LOG_TYPE_PENDING_FOR_VERIFY = 3;
 
     public GenericQcLogBean() {
     }
 
-    public GenericQcLogBean(NetQcReportApproveFlow src){
+    public GenericQcLogBean(NetQcReportApproveFlow src) {
         int status = src.getStatus();
-        if(status==0){
-            LogTypeSubmitDetail submitDetail = new LogTypeSubmitDetail(src);
-            setLogType(LOG_TYPE_SUBMIT_DETAIL);
-            setJsonString(new Gson().toJson(submitDetail));
-        }else {
+        //0表示待审批以及申请详情
+        if (status == 0) {
+            //数量大于1表示申请详情
+            if (src.getQualityNum() > 0) {
+                LogTypeSubmitDetail submitDetail = new LogTypeSubmitDetail(src);
+                setLogType(LOG_TYPE_SUBMIT_DETAIL);
+                setJsonString(new Gson().toJson(submitDetail));
+            } else {
+                //数量为0表示待审批
+                LogTypePendingForVerify pending = new LogTypePendingForVerify(src);
+                setLogType(LOG_TYPE_PENDING_FOR_VERIFY);
+                setJsonString(new Gson().toJson(pending));
+            }
+        } else if (status == 1 || status == 2) {
             LogTypeVerifyResult verifyResult = new LogTypeVerifyResult(src);
             setLogType(LOG_TYPE_VERIFY_RESULT);
             setJsonString(new Gson().toJson(verifyResult));

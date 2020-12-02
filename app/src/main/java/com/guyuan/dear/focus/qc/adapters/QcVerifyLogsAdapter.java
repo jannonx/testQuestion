@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.ItemQcReportLogFirstCreateDateBinding;
+import com.guyuan.dear.databinding.ItemQcReportLogPendingForApprovalBinding;
 import com.guyuan.dear.databinding.ItemQcReportLogSubmitDetailBinding;
 import com.guyuan.dear.databinding.ItemQcReportLogVerifyResultBinding;
 import com.guyuan.dear.focus.qc.beans.verfifyLog.GenericQcLogBean;
 import com.guyuan.dear.focus.qc.beans.verfifyLog.LogTypeFirstCreateDate;
+import com.guyuan.dear.focus.qc.beans.verfifyLog.LogTypePendingForVerify;
 import com.guyuan.dear.focus.qc.beans.verfifyLog.LogTypeSubmitDetail;
 import com.guyuan.dear.focus.qc.beans.verfifyLog.LogTypeVerifyResult;
 
@@ -49,6 +51,9 @@ public class QcVerifyLogsAdapter extends RecyclerView.Adapter<QcVerifyLogsAdapte
         View bindingView = null;
         int layoutId = -1;
         switch (viewType) {
+            case GenericQcLogBean.LOG_TYPE_PENDING_FOR_VERIFY:
+                layoutId = R.layout.item_qc_report_log_pending_for_approval;
+                break;
             case GenericQcLogBean.LOG_TYPE_SUBMIT_DETAIL:
                 layoutId = R.layout.item_qc_report_log_submit_detail;
                 break;
@@ -72,6 +77,10 @@ public class QcVerifyLogsAdapter extends RecyclerView.Adapter<QcVerifyLogsAdapte
         Gson gson = new Gson();
         ViewDataBinding binding = DataBindingUtil.getBinding(holder.itemView);
         switch (viewType) {
+            case GenericQcLogBean.LOG_TYPE_PENDING_FOR_VERIFY:
+                ItemQcReportLogPendingForApprovalBinding pendingBinding = (ItemQcReportLogPendingForApprovalBinding) binding;
+                pendingBinding.setData(gson.fromJson(genericQcLogBean.getJsonString(), LogTypePendingForVerify.class));
+                break;
             case GenericQcLogBean.LOG_TYPE_SUBMIT_DETAIL:
                 ItemQcReportLogSubmitDetailBinding detailBinding = (ItemQcReportLogSubmitDetailBinding) binding;
                 detailBinding.setData(gson.fromJson(genericQcLogBean.getJsonString(), LogTypeSubmitDetail.class));

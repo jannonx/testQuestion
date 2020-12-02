@@ -18,6 +18,7 @@ import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 import com.guyuan.dear.focus.contract.bean.ContractBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
 import com.guyuan.dear.focus.contract.view.contractApplyDetail.ContractApplyDetailActivity;
+import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.sun.jna.platform.win32.Winspool;
 
@@ -63,7 +64,8 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
     private int currentTotalPageIndex = 1;
 
     /**
-     * @param statusType {@link ContractStatusListFragment#STATUS_TYPE_ON_PAUSE} {@link ContractStatusListFragment#STATUS_TYPE_RESTART}
+     * @param statusType {@link ContractStatusListFragment#STATUS_TYPE_ON_PAUSE}
+     * {@link ContractStatusListFragment#STATUS_TYPE_RESTART}
      * @return
      */
     public static ContractStatusListFragment getInstance(int statusType) {
@@ -196,7 +198,7 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
             @Override
             public void onItemClick(View view, int i) {
                 ContractBean.ContentBean bean = getViewModel().getExceptionContractList().getValue().get(i);
-                ContractApplyDetailActivity.start(getActivity(), "合同异常详情", bean.getId());
+                ContractDetailActivity.start(getActivity(),"合同异常详情",bean.getId());
             }
         });
         view.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -234,7 +236,7 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
             @Override
             public void onItemClick(View view, int i) {
                 ContractBean.ContentBean bean = getViewModel().getTotalContractList().getValue().get(i);
-                ContractApplyDetailActivity.start(getActivity(), "合同详情", bean.getId());
+                ContractDetailActivity.start(getActivity(),"合同详情",bean.getId());
             }
         });
         view.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -252,7 +254,6 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
         getViewModel().getTotalContractList().observe(getViewLifecycleOwner(), new Observer<List<ContractBean.ContentBean>>() {
             @Override
             public void onChanged(List<ContractBean.ContentBean> baseContractExcptBeans) {
-                adapter.getListData().addAll(baseContractExcptBeans);
                 adapter.notifyDataSetChanged();
             }
         });

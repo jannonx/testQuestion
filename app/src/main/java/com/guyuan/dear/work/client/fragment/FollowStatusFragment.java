@@ -17,6 +17,7 @@ import com.guyuan.dear.focus.client.adapter.FollowStatusParentAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
+import com.guyuan.dear.focus.client.bean.PostClientInfo;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
@@ -25,6 +26,7 @@ import com.guyuan.dear.work.client.data.WorkClientViewModel;
 
 import java.util.List;
 
+import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
@@ -114,7 +116,13 @@ public class FollowStatusFragment extends BaseListFragment<CommentsBean, Fragmen
         FollowCommentDialog.show(getActivity(), new FollowCommentDialog.OnFollowClickListener() {
             @Override
             public void onClick(String content) {
-                viewModel.postUserFollowUp(followId, content);
+                PostClientInfo postInfoBean=new PostClientInfo();
+                postInfoBean.setId(followId);
+                postInfoBean.setContent(content);
+                String installStr = GsonUtil.objectToString(postInfoBean);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), installStr);
+                viewModel.postUserFollowUp(requestBody);
             }
         });
         viewModel.getFollowUserEvent().observe(getActivity(), new Observer<Integer>() {

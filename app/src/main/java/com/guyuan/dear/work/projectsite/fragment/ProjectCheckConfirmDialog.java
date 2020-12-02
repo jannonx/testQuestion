@@ -110,7 +110,7 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
 //        viewBinding.tvOk.setClickable(false);
 //        viewBinding.tvOk.setEnabled(false);
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-                imageDataList, R.layout.item_explorate_image);
+                imageDataList, R.layout.item_explorate_image, true);
         imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
 
         viewBinding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -185,7 +185,7 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
             ToastUtils.showLong(getContext(), "请填内容");
             return;
         }
-        if (imageDataList.isEmpty()) {
+        if (imageDataList == null || imageDataList.size() == 0) {
             ToastUtils.showLong(getContext(), "请选择图片");
         }
         switch (siteExploreBean.getProjectReportType()) {
@@ -215,7 +215,7 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
     }
 
     public void setPhotoList(ArrayList<String> photoList) {
-        LogUtils.showLog("setPhotoList="+photoList.size());
+        LogUtils.showLog("setPhotoList=" + photoList.size());
         imageDataList.clear();
         imageDataList.addAll(photoList);
         imageAdapter.refreshData();

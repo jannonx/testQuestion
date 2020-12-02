@@ -192,7 +192,7 @@
                     android:id="@+id/question_recycleView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/color_green_D4FFF1"
+                    tools:background="@color/color_green_D4FFF1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view_2"
                     tools:layout_height="@dimen/dp_150" />
@@ -293,7 +293,7 @@
                         android:id="@+id/image_recycleView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/color_green_D4FFF1"
+                        tools:background="@color/color_green_D4FFF1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:layout_height="@dimen/dp_200"

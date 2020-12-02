@@ -72,13 +72,22 @@ public interface FocusAfterSaleApiService extends BaseApiService {
     @GET("base/tSaleIssueMain/checkSuccess")
     Observable<ResultBean<Integer>> postAcceptInfo(@Query("status") int status);
 
-
     /**
-     * 意见回复-回复操作
+     * 查询排查或验收回答列表
      *
-     * @param body
      * @return
      */
-    @POST("base/replyIdea/reply")
-    Observable<ResultBean<Integer>> postAnswerInfo(@Body RequestBody body);
+    @GET("base//tSaleIssueMain/queryAnswerPage")
+    Observable<ResultBean<AfterSaleBean>> getAfterSaleCustomerAcceptanceDetail(@Query("id") long id,
+                                                                               @Query("type") int type);
+
+    /**
+     * 验收成功/失败-改变状态
+     *
+     * @return
+     */
+    @POST("base/tSaleIssueMain/issueAnswer")
+    Observable<ResultBean<Integer>> postAfterSaleInfo(@Body RequestBody body);
+
+
 } 

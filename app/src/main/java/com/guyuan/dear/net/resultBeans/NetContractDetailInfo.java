@@ -149,7 +149,7 @@ public class NetContractDetailInfo extends NetContractInfo {
         private String specifications;
         private String model;
         private String company;
-        private int num;
+        private long num;
 
         public int getId() {
             return id;
@@ -191,11 +191,11 @@ public class NetContractDetailInfo extends NetContractInfo {
             this.company = company;
         }
 
-        public int getNum() {
+        public long getNum() {
             return num;
         }
 
-        public void setNum(int num) {
+        public void setNum(long num) {
             this.num = num;
         }
     }

@@ -49,8 +49,8 @@ public class FocusClientRepository {
 
 
 
-    Observable<ResultBean<Integer>> postCommentFollowUp(long followId, String content) {
-        return apiService.postCommentFollowUp(followId, content);
+    Observable<ResultBean<Integer>> postCommentFollowUp(RequestBody body) {
+        return apiService.postCommentFollowUp( body);
     }
 
 }

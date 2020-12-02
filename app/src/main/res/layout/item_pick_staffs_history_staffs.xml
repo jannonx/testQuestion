@@ -26,7 +26,8 @@
                 android:layout_width="@dimen/dp_36"
                 android:layout_height="@dimen/dp_36"
                 android:layout_marginBottom="@dimen/dp_4"
-                app:srcCompat="@drawable/ic_svg_staff_icon_default"/>
+                app:srcCompat="@drawable/ic_svg_staff_icon_default"
+                app:setUserCircleNetImage="@{data.imgUrl}"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="@dimen/dp_36"

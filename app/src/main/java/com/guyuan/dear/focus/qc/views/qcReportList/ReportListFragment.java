@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.qc.views.qcReportList;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +23,7 @@ import com.guyuan.dear.focus.qc.views.productQcDetail.ProductQcReportDetailActiv
 import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.work.qc.views.home.QcHomeActivity;
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
@@ -104,6 +106,20 @@ public class ReportListFragment extends BaseMvvmFragment<FragmentAllQcReportList
                 selectStartTime();
             }
         });
+
+        //当收到我的工作-质量报告中刷新我的报告清单的信号时，进行刷新操作。
+        FragmentActivity activity = getActivity();
+        if (activity instanceof QcHomeActivity) {
+            ((QcHomeActivity) activity).getViewModel().refreshMyApplyList.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+                @Override
+                public void onChanged(Boolean aBoolean) {
+                    if (aBoolean) {
+                        getViewModel().clearAllMyQcReport();
+                        addDisposable(getViewModel().updateMyQcReports(dateFrom, dateTo));
+                    }
+                }
+            });
+        }
     }
 
     private void selectStartTime() {
@@ -158,13 +174,13 @@ public class ReportListFragment extends BaseMvvmFragment<FragmentAllQcReportList
             getViewModel().getRejectedReportList().observe(getViewLifecycleOwner(), observerUpdateItem);
             getViewModel().getIsAllRejectedReportLoaded().observe(getViewLifecycleOwner(), observerEnableRefresh);
         } else if (reportType == REPORT_TYPE_SHOW_ALL_REPORTS) {
-            list= getViewModel().getAllReportList().getValue();
+            list = getViewModel().getAllReportList().getValue();
             getViewModel().getAllReportList().observe(getViewLifecycleOwner(), observerUpdateItem);
-            getViewModel().getIsAllQcReportLoaded().observe(getViewLifecycleOwner(),observerEnableRefresh);
+            getViewModel().getIsAllQcReportLoaded().observe(getViewLifecycleOwner(), observerEnableRefresh);
         } else if (reportType == REPORT_TYPE_ONLY_MY_REPORTS) {
             list = getViewModel().getMyQcReports().getValue();
             getViewModel().getMyQcReports().observe(getViewLifecycleOwner(), observerUpdateItem);
-            getViewModel().getIsAllMyQcReportLoaded().observe(getViewLifecycleOwner(),observerEnableRefresh);
+            getViewModel().getIsAllMyQcReportLoaded().observe(getViewLifecycleOwner(), observerEnableRefresh);
         }
         if (list == null) {
             return;
@@ -221,7 +237,7 @@ public class ReportListFragment extends BaseMvvmFragment<FragmentAllQcReportList
     private Observer<List<GenericQcReport>> observerUpdateItem = new Observer<List<GenericQcReport>>() {
         @Override
         public void onChanged(List<GenericQcReport> genericQcReports) {
-            if(list!=null){
+            if (list != null) {
                 list.clear();
                 list.addAll(genericQcReports);
                 wrapper.notifyDataSetChanged();

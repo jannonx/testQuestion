@@ -7,10 +7,8 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
-import com.guyuan.dear.base.bean.SimpleTabBean;
-import com.guyuan.dear.customizeview.CheckedImageView;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
-import com.guyuan.dear.focus.projectsite.bean.ProjectModuleType;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.R;
 
 import java.util.List;
@@ -31,14 +29,14 @@ public class CheckGoodsAdapter extends BaseRecyclerAdapter<CheckGoodsBean> {
      */
     private static final int CHECK_RIGHT = 0;
     private static final int CHECK_WRONG = 1;
-    private ProjectModuleType moduleType;
+    private FunctionModuleType moduleType;
 
 
     public CheckGoodsAdapter(Context context, @NonNull List<CheckGoodsBean> listData, int layoutID) {
         super(context, listData, layoutID);
     }
 
-    public CheckGoodsAdapter(Context context, @NonNull List<CheckGoodsBean> listData, int layoutID, ProjectModuleType type) {
+    public CheckGoodsAdapter(Context context, @NonNull List<CheckGoodsBean> listData, int layoutID, FunctionModuleType type) {
         super(context, listData, layoutID);
         this.moduleType = type;
     }
@@ -47,9 +45,9 @@ public class CheckGoodsAdapter extends BaseRecyclerAdapter<CheckGoodsBean> {
     protected void bindDataToView(BaseRecyclerViewHolder holder, CheckGoodsBean item,
                                   int position) {
         AppCompatImageView imageView = holder.getView(R.id.image_view);
-        imageView.setVisibility(ProjectModuleType.TYPE_FOCUS == moduleType ? View.VISIBLE : View.GONE);
+        imageView.setVisibility(FunctionModuleType.TYPE_FOCUS == moduleType ? View.VISIBLE : View.GONE);
         RelativeLayout rlConfirm = holder.getView(R.id.rl_confirm);
-        rlConfirm.setVisibility(ProjectModuleType.TYPE_WORK == moduleType ? View.VISIBLE : View.GONE);
+        rlConfirm.setVisibility(FunctionModuleType.TYPE_WORK == moduleType ? View.VISIBLE : View.GONE);
 
         holder.setText(R.id.tv_good_name, item.getProjectName());
         holder.setText(R.id.tv_goods_code, item.getProjectCode());
@@ -70,7 +68,7 @@ public class CheckGoodsAdapter extends BaseRecyclerAdapter<CheckGoodsBean> {
 
         View viewBottom = holder.getView(R.id.view_bottom);
         //处在我的工作，列表数大于2条，且最后一条，显示空白块
-        viewBottom.setVisibility(ProjectModuleType.TYPE_WORK == moduleType && listData.size() > 2
+        viewBottom.setVisibility(FunctionModuleType.TYPE_WORK == moduleType && listData.size() > 2
                 && listData.size() - 1 == position ? View.VISIBLE : View.GONE);
         ivRightBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -25,7 +25,7 @@ public class SiteExploreBean implements Serializable {
      */
     private int satisfyFlag;
 
-    private ProjectModuleType moduleType;
+    private FunctionModuleType moduleType;
     /**
      * 类型
      */
@@ -150,6 +150,10 @@ public class SiteExploreBean implements Serializable {
      */
     private String imgUrl;
     /**
+     * 附件
+     */
+    private String checkUrl;
+    /**
      * 问题描述
      */
     private String auditItemExplain;
@@ -209,11 +213,11 @@ public class SiteExploreBean implements Serializable {
         return satisfyFlag;
     }
 
-    public ProjectModuleType getModuleType() {
+    public FunctionModuleType getModuleType() {
         return moduleType;
     }
 
-    public void setModuleType(ProjectModuleType moduleType) {
+    public void setModuleType(FunctionModuleType moduleType) {
         this.moduleType = moduleType;
     }
 
@@ -344,6 +348,13 @@ public class SiteExploreBean implements Serializable {
         return projectReportType;
     }
 
+    public String getCheckUrl() {
+        return checkUrl;
+    }
+
+    public void setCheckUrl(String checkUrl) {
+        this.checkUrl = checkUrl;
+    }
 
     public void setProjectReportType(ProjectReportType projectReportType) {
         this.projectReportType = projectReportType;
@@ -499,7 +510,7 @@ public class SiteExploreBean implements Serializable {
     }
 
     public List<String> getImgUrlList() {
-        return StringUtils.splitPhotoUrl(imgUrl);
+        return StringUtils.splitPhotoUrl(checkUrl);
     }
 
 

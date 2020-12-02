@@ -116,17 +116,17 @@ public class ClockInViewModel extends BaseDearViewModel {
         if (!TextUtils.isEmpty(myStartTime)) {
             Date date = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(myStartTime);
             myClockInTime.postValue(date.getTime());
-            isPunchStartWork.postValue(true);
+            isPunchStartWork.setValue(true);
         } else {
-            isPunchStartWork.postValue(false);
+            isPunchStartWork.setValue(false);
         }
         String myEndTime = myWorkTime.getPmEndTime();
         if (!TextUtils.isEmpty(myEndTime)) {
             Date date = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(myEndTime);
             myPunchOffTime.postValue(date.getTime());
-            isPunchOffWork.postValue(true);
+            isPunchOffWork.setValue(true);
         } else {
-            isPunchOffWork.postValue(false);
+            isPunchOffWork.setValue(false);
         }
 
     }
