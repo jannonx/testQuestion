@@ -76,7 +76,7 @@ public class FocusClientViewModel extends BaseViewModel {
      *
      * @param id 客户id
      */
-    public void getClientBasicInfo(int id) {
+    public void getClientBasicInfo(long id) {
 
         Disposable disposable = RxJavaHelper.build(this, repository.getClientBasicInfo(id)).
                 getHelper().flow(clientBasicEvent);

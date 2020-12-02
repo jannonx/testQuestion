@@ -39,7 +39,7 @@ public class FocusClientRepository {
         return apiService.getClientList(body);
     }
 
-    Observable<ResultBean<ClientCompanyBean>> getClientBasicInfo(int id) {
+    Observable<ResultBean<ClientCompanyBean>> getClientBasicInfo(long id) {
         return apiService.getClientBasicInfo(id);
     }
 

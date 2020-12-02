@@ -33,7 +33,7 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
 
     private MutableLiveData<RefreshBean<AfterSaleBean>> afterSaleListEvent = new MutableLiveData<>();
     private MutableLiveData<AfterSaleBean> afterSaleDetailEvent = new MutableLiveData<>();
-    private MutableLiveData<AfterSaleBean> afterSaleCustomerAcceptanceDetailEvent = new MutableLiveData<>();
+    private MutableLiveData<List<AfterSaleStatusBean>> afterSaleCustomerAcceptanceDetailEvent = new MutableLiveData<>();
     private MutableLiveData<List<AfterSaleStatusBean>> afterSaleStatusEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> postAfterSaleInfoEvent = new MutableLiveData<>();
     private MutableLiveData<List<UploadBean>> uploadImageEvent = new MutableLiveData<>();//上传图片
@@ -67,7 +67,7 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
 
     public void getAfterSaleCustomerAcceptanceDetail(long id, int type) {
         Disposable disposable = RxJavaHelper.build(this, repository.getAfterSaleCustomerAcceptanceDetail(id, type))
-                .getHelper().flow(afterSaleDetailEvent);
+                .getHelper().flow(afterSaleCustomerAcceptanceDetailEvent);
         addSubscription(disposable);
     }
 
@@ -156,11 +156,11 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
         this.uploadImageEvent = uploadImageEvent;
     }
 
-    public MutableLiveData<AfterSaleBean> getAfterSaleCustomerAcceptanceDetailEvent() {
+    public MutableLiveData<List<AfterSaleStatusBean>> getAfterSaleCustomerAcceptanceDetailEvent() {
         return afterSaleCustomerAcceptanceDetailEvent;
     }
 
-    public void setAfterSaleCustomerAcceptanceDetailEvent(MutableLiveData<AfterSaleBean> afterSaleCustomerAcceptanceDetailEvent) {
+    public void setAfterSaleCustomerAcceptanceDetailEvent(MutableLiveData<List<AfterSaleStatusBean>> afterSaleCustomerAcceptanceDetailEvent) {
         this.afterSaleCustomerAcceptanceDetailEvent = afterSaleCustomerAcceptanceDetailEvent;
     }
 }

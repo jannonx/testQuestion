@@ -47,7 +47,7 @@ public interface WorkClientApiService extends BaseApiService {
      * @return
      */
     @GET("base/tCustomer/findDetailsById")
-    Observable<ResultBean<ClientCompanyBean>> getClientBasicInfo(@Query("id") Long id);
+    Observable<ResultBean<ClientCompanyBean>> getClientBasicInfo(@Query("id") long id);
 
     /**
      * 根据客户id查询跟进

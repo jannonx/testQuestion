@@ -15,6 +15,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentWorkClientDetailBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
+import com.guyuan.dear.focus.client.bean.ClientType;
 import com.guyuan.dear.focus.client.bean.PostClientInfo;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
@@ -73,7 +74,8 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
      * 发起请求数据
      */
     private void initData() {
-        viewModel.getClientBasicInfo(clientData.getId());
+        viewModel.getClientBasicInfo(ClientType.TYPE_CLIENT_ALL==clientData.getClientType()?
+                clientData.getId():clientData.getCusId());
         viewModel.getClientBasicEvent().observe(getActivity(), new Observer<ClientCompanyBean>() {
             @Override
             public void onChanged(ClientCompanyBean dataRefreshBean) {

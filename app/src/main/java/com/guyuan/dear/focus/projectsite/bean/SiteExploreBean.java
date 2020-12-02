@@ -510,6 +510,7 @@ public class SiteExploreBean implements Serializable {
     }
 
     public List<String> getImgUrlList() {
+        //s-imgUrl、g-checkUrl、
         return StringUtils.splitPhotoUrl(checkUrl);
     }
 

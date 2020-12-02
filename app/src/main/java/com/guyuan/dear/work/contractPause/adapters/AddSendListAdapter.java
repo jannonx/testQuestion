@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.ItemAddSendListBinding;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 import java.lang.reflect.Array;
@@ -26,7 +27,7 @@ import java.util.List;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class AddSendListAdapter extends RecyclerView.Adapter<AddSendListAdapter.ViewHolder> {
-    private List<StaffBean> list;
+    private List<StaffBean> list = new ArrayList<>();
     private Context context;
 
     public AddSendListAdapter(List<StaffBean> list, Context context) {
@@ -66,9 +67,17 @@ public class AddSendListAdapter extends RecyclerView.Adapter<AddSendListAdapter.
         }
     }
 
-    public void setDataList(List<StaffBean> dataList, boolean isAdd) {
-        if (isAdd) list.clear();
+    public void setDataList(List<StaffBean> dataList, boolean isNewAdd) {
+        LogUtils.showLog("setDataList1100=" + dataList.size());
+        LogUtils.showLog("setDataList1102123=" + list.size());
+        if (isNewAdd) {
+            LogUtils.showLog("isNewAdd000=" + list.size());
+            list.clear();
+            LogUtils.showLog("isNewAdd111=" + list.size());
+        }
         list.addAll(dataList);
+        LogUtils.showLog("setDataList1111=" + list.size());
+        LogUtils.showLog("setDataList1111=" + dataList.size());
         notifyDataSetChanged();
     }
 

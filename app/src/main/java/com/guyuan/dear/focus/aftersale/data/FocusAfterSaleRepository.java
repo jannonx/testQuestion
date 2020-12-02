@@ -39,7 +39,7 @@ public class FocusAfterSaleRepository {
     Observable<ResultBean<AfterSaleBean>> getAfterSaleDetail(long id) {
         return apiService.getAfterSaleDetail(id);
     }
-    Observable<ResultBean<AfterSaleBean>> getAfterSaleCustomerAcceptanceDetail(long id,int type) {
+    Observable<ResultBean<List<AfterSaleStatusBean>>> getAfterSaleCustomerAcceptanceDetail(long id,int type) {
         return apiService.getAfterSaleCustomerAcceptanceDetail(id,type);
     }
 
