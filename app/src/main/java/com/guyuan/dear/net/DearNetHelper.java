@@ -6,7 +6,6 @@ import com.example.httplibrary.bean.ErrorResultBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.example.httplibrary.rx.SchedulersCompat;
 import com.guyuan.dear.base.app.DearApplication;
-import com.guyuan.dear.base.bean.ListRequestBody;
 import com.guyuan.dear.db.DearDbManager;
 import com.guyuan.dear.db.entities.StaffEntity;
 import com.guyuan.dear.focus.contract.bean.BaseContractBean;
@@ -872,13 +871,34 @@ public class DearNetHelper {
     }
 
     /**
-     * 获取所有项目的清单
+     * 成品质检时获取所有项目列表
      *
      * @param callback
      * @return
      */
-    public Disposable getBaseProjectList(NetCallback<List<BaseProjectBean>> callback) {
-        Observable<ResultBean<List<NetBaseProjectBean>>> observable = netApiService.getBaseProjectList();
+    public Disposable getProductProjectList(NetCallback<List<BaseProjectBean>> callback) {
+        Observable<ResultBean<List<NetBaseProjectBean>>> observable = netApiService.getProductProjectList();
+        Mapper<List<NetBaseProjectBean>, List<BaseProjectBean>> mapper = new Mapper<List<NetBaseProjectBean>, List<BaseProjectBean>>() {
+            @Override
+            public List<BaseProjectBean> map(List<NetBaseProjectBean> src) {
+                List<BaseProjectBean> result = new ArrayList<>();
+                for (NetBaseProjectBean bean : src) {
+                    result.add(new BaseProjectBean(bean));
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
+    /**
+     * 原材料质检时获取所有项目列表
+     *
+     * @param callback
+     * @return
+     */
+    public Disposable getMaterialProjectList(NetCallback<List<BaseProjectBean>> callback) {
+        Observable<ResultBean<List<NetBaseProjectBean>>> observable = netApiService.getMaterialProjectList();
         Mapper<List<NetBaseProjectBean>, List<BaseProjectBean>> mapper = new Mapper<List<NetBaseProjectBean>, List<BaseProjectBean>>() {
             @Override
             public List<BaseProjectBean> map(List<NetBaseProjectBean> src) {

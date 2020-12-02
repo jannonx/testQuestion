@@ -3,6 +3,7 @@ package com.guyuan.dear.work.contractPause.bindingAdapters;
 import android.graphics.Color;
 import android.text.TextUtils;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -12,6 +13,7 @@ import com.guyuan.dear.customizeview.itemDecorator.AddCopyListItemDecorator;
 import com.guyuan.dear.customizeview.itemDecorator.AddSendListItemDecorator;
 import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
 import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
+import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 import java.util.List;
@@ -29,8 +31,8 @@ public class ContractApplyBindingAdapter {
         if (staffs == null) {
             return;
         }
-        AddSendListAdapter adapter = new AddSendListAdapter(staffs,view.getContext());
-        GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(),4,RecyclerView.VERTICAL,false);
+        AddSendListAdapter adapter = new AddSendListAdapter(staffs, view.getContext());
+        GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(), 4, RecyclerView.VERTICAL, false);
         view.setLayoutManager(layoutManager);
         view.addItemDecoration(new AddSendListItemDecorator());
         view.setAdapter(adapter);
@@ -41,8 +43,8 @@ public class ContractApplyBindingAdapter {
         if (staffs == null) {
             return;
         }
-        AddCopyListAdapter adapter = new AddCopyListAdapter(staffs,view.getContext());
-        GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(),4,RecyclerView.VERTICAL,false);
+        AddCopyListAdapter adapter = new AddCopyListAdapter(staffs, view.getContext());
+        GridLayoutManager layoutManager = new GridLayoutManager(view.getContext(), 4, RecyclerView.VERTICAL, false);
         view.setLayoutManager(layoutManager);
         view.addItemDecoration(new AddCopyListItemDecorator());
         view.setAdapter(adapter);
@@ -64,4 +66,23 @@ public class ContractApplyBindingAdapter {
             view.setTextColor(Color.parseColor("#999999"));
         }
     }
+
+    @BindingAdapter("showApplyTypeButtonDescription")
+    public static void showApplyTypeButtonDescription(AppCompatButton view, int type) {
+        if (ContractApplyBean.APPLY_TYPE_PAUSE == type) {
+            view.setText("提交暂停申请");
+        } else if (ContractApplyBean.APPLY_TYPE_RESUME == type) {
+            view.setText("提交重启申请");
+        }
+    }
+
+    @BindingAdapter("showApplyBottomHint")
+    public static void showApplyBottomHint(AppCompatTextView view,int type){
+        if (ContractApplyBean.APPLY_TYPE_PAUSE == type) {
+            view.setText("暂停：申请一旦通过系统审核，系统会终止所有进行中的任务。");
+        } else if (ContractApplyBean.APPLY_TYPE_RESUME == type) {
+            view.setText("重启：申请一旦通过系统审核，系统会终止所有暂停的任务。");
+        }
+    }
+
 }

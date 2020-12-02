@@ -83,7 +83,7 @@ public class ProductQcViewModel extends BaseDearViewModel {
 
 
     public Disposable getProjectListFromNet() {
-        return repo.getProjectListFromNet(new BaseNetCallback<List<BaseProjectBean>>() {
+        return repo.getProductProjectListFromNet(new BaseNetCallback<List<BaseProjectBean>>() {
             @Override
             protected void handleResult(List<BaseProjectBean> result) {
                 projectList.getValue().clear();
@@ -268,7 +268,6 @@ public class ProductQcViewModel extends BaseDearViewModel {
         qcApproachList.postValue(new ArrayList<>());
         productBatchList.postValue(new ArrayList<>());
         sampleSize.postValue("0");
-        judgeConditions.clear();
         reportResult.postValue(2);
         comments.postValue("");
         isNeedVerify.postValue(false);

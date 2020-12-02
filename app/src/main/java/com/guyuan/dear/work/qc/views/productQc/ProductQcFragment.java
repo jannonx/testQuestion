@@ -124,24 +124,6 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
             }
         });
 
-//        //选择判定条件
-//        getViewDataBinding().fragmentProductQcRadioGrpJudgeConditions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                switch (checkedId) {
-//                    //设计图样
-//                    case R.id.fragment_product_qc_cbx_judge_conditions_by_scheme:
-//                        getViewModel().updateJudgeCondition(1);
-//                        break;
-//                    //国家标准
-//                    case R.id.fragment_product_qc_cbx_judge_conditions_by_nation_standard:
-//                        getViewModel().updateJudgeCondition(2);
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//        });
         getViewDataBinding().fragmentProductQcCbxJudgeConditionsByNationStandard.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
