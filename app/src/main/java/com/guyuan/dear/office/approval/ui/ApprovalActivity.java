@@ -102,8 +102,8 @@ public class ApprovalActivity extends BaseTabActivity<ActivityBaseTabBinding, Ap
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.selector_approval);
+        tabDrawableList.add(R.drawable.selector_approved);
         return tabDrawableList;
     }
 

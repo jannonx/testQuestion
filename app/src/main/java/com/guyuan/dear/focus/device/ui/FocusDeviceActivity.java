@@ -108,9 +108,9 @@ public class FocusDeviceActivity extends BaseTabActivity<ActivityBaseTabBinding,
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.selector_device_overview);
+        tabDrawableList.add(R.drawable.selector_device_exception);
+        tabDrawableList.add(R.drawable.selector_device_total);
         return tabDrawableList;
     }
 

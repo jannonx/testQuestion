@@ -70,9 +70,9 @@ public class FocusAssessActivity extends BaseTabActivity<ActivityBaseTabBinding,
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.selector_assess_overview);
+        tabDrawableList.add(R.drawable.selector_assess_exception);
+        tabDrawableList.add(R.drawable.selector_assess_total);
         return tabDrawableList;
     }
 

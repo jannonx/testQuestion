@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.guyuan.dear.R;
+import com.guyuan.dear.busbean.ApprovalBusBean;
 import com.guyuan.dear.databinding.ActivityApprovalDetailBinding;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.dialog.RemarkDialog;
@@ -25,6 +26,8 @@ import com.guyuan.dear.office.approval.ui.ApprovalActivity;
 import com.guyuan.dear.office.approval.ui.ApprovalFragment;
 import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
+
+import org.greenrobot.eventbus.EventBus;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -71,11 +74,11 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
         if (approvalType == ApprovalFragment.APPROVAL) {
             binding.approvalLl.setVisibility(View.VISIBLE);
         }
-
         setContent();
     }
 
     private void setContent() {
+        viewModel.setListener(this);
         switch (type) {
             //合同审批
             case ApprovalTypeBean.CONTRACT_EXAMINE_MASTER_TYPE:
@@ -169,7 +172,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                         tipDialogFragment.setOnSureListener(new TipDialogFragment.OnSure() {
                             @Override
                             public void sure() {
-                                viewModel.produceApproval((int) focusProduceBean.getPlanId(), 2, remarks, ApprovalActivity.ACCEPT, type);
+                                viewModel.produceApproval((int) focusProduceBean.getPlanId(), 2, remarks, ApprovalActivity.ACCEPT, getProduceApprovalType(type));
                                 tipDialogFragment.dismiss();
                             }
                         })
@@ -204,7 +207,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                                 @Override
                                 public void onCommitInfo(ExecuteRequestBody data) {
                                     //businessType传2:子生产计划
-                                    viewModel.produceApproval((int) bean.getPlanId(), 2, remarks, ApprovalActivity.REJECT, type);
+                                    viewModel.produceApproval((int) bean.getPlanId(), 2, remarks, ApprovalActivity.REJECT, getProduceApprovalType(type));
                                 }
                             });
                         } else {
@@ -249,6 +252,27 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
     }
 
 
+    private int getProduceApprovalType(int type) {
+        switch (type) {
+            case ApprovalTypeBean.MAKING_PLAN:
+
+                return 1;
+
+            case ApprovalTypeBean.PAUSE_PLAN:
+
+                return 2;
+
+            case ApprovalTypeBean.ACTIVATE_PLAN:
+
+                return 3;
+
+            default:
+
+                return 0;
+        }
+    }
+
+
     @Override
     protected int getLayoutID() {
         return R.layout.activity_approval_detail;
@@ -257,6 +281,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
     @Override
     public void handled() {
         showToastTip("提交成功");
-        binding.approvalLl.setVisibility(View.GONE);
+        EventBus.getDefault().post(new ApprovalBusBean());
+        finish();
     }
 }
