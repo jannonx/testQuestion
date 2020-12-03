@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.mvvmlibrary.util.LogUtils;
 import com.example.mvvmlibrary.util.MediaFileUtils;
 import com.google.gson.Gson;
+import com.guyuan.dear.BuildConfig;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.dialog.TipDialogFragment;
 import com.guyuan.dear.focus.device.data.beans.FactoryBean;
@@ -211,5 +212,14 @@ public class CommonUtils {
         }
 
         return false;
+    }
+
+    //设置消息间隔
+    public static int getMessageUpdateTime() {
+        if (BuildConfig.BUILD_TYPE.equals("debug") || BuildConfig.BUILD_TYPE.equals("dev")) {
+            return 1000;
+        } else {
+            return 1;
+        }
     }
 }
