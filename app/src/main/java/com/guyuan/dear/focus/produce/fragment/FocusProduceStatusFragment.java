@@ -2,6 +2,8 @@ package com.guyuan.dear.focus.produce.fragment;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +17,7 @@ import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.utils.ScreenUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,6 +59,11 @@ public class FocusProduceStatusFragment extends BaseListFragment<ProduceStateBea
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+//        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) llEmptyView.getLayoutParams();
+//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+//        layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+//        layoutParams.topMargin= ScreenUtils.dip2px(getContext(),30f);
+//        llEmptyView.setLayoutParams(layoutParams);
 
         viewModel.getProduceStateList(produceBean.getPlanId());
 

@@ -47,7 +47,7 @@ public class WorkProduceFragment extends BaseListSearchFragment<FocusProduceBean
         adapter = new BaseRecyclerViewAdapter(listAdapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
-
+        etSearch.setHint("输入产品名称、产品代号");
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {

@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -41,6 +42,7 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
     protected TextView tv_empty;
     protected FrameLayout list_container;
     protected MaterialButton tv_refresh;
+    protected LinearLayoutCompat llEmptyView;
     private int emptyImgID = R.mipmap.ic_no_data;
     private String emptyTip = ConstantValue.TIP_NO_DATA;
 
@@ -72,6 +74,7 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
         no_data_iv = rootView.findViewById(R.id.no_data_iv);
         tv_empty = rootView.findViewById(R.id.tv_empty);
         tv_refresh = rootView.findViewById(R.id.tv_refresh);
+        llEmptyView = rootView.findViewById(R.id.ll_empty_view);
         tv_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

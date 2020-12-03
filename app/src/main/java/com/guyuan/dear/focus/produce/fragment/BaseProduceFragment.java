@@ -85,7 +85,7 @@ public abstract class BaseProduceFragment extends BaseListSearchFragment<FocusPr
 
     @Override
     protected boolean isPullEnable() {
-        return true;
+        return false;
     }
 
     @Override
