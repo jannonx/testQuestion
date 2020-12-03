@@ -25,7 +25,7 @@ public class PurchaseDetailBean {
     private int number;                //采购数量
     private String projectCode;        //项目编号
     private String projectName;        //项目名称
-    private int qualityResult;         //质检结果：1.合格，2.不合格
+    private int qualityResult;         //质检结果：0.未质检完成1.合格，2.不合格
     private String reason;             //退货原因
     private int receiveStatus;         //签收状态：1.待签收，2.已签收
     private int returnSum;             //退货总数

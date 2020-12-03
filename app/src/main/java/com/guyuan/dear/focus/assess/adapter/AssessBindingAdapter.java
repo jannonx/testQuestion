@@ -71,15 +71,40 @@ public class AssessBindingAdapter {
      * @param iv
      * @param result 评审结果
      */
-    @BindingAdapter("assessStatus")
-    public static void setAssessStatus(ImageView iv, String result) {
-        if (!TextUtils.isEmpty(result)) {
-            if (result.contains("通过")) {
-                iv.setImageResource(R.mipmap.right);
-            } else if (result.contains("不通过")) {
+    @BindingAdapter("assessImgStatus")
+    public static void setAssessStatus(ImageView iv, int result) {
+        switch (result) {
+            case 0://未评审
                 iv.setImageResource(R.mipmap.wrong);
-            }
+                break;
+
+            case 1://通过
+                iv.setImageResource(R.mipmap.right);
+                break;
+
+            case 2://不通过
+                iv.setImageResource(R.mipmap.wrong);
+                break;
         }
+
+    }
+
+    @BindingAdapter("assessResultStatus")
+    public static void setAssessResultStatus(TextView tv, int result) {
+        switch (result) {
+            case 0://未评审
+                tv.setText("未评审");
+                break;
+
+            case 1://通过
+                tv.setText("通过评审");
+                break;
+
+            case 2://不通过
+                tv.setText("未通过评审");
+                break;
+        }
+
     }
 
 

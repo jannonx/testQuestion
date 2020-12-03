@@ -13,14 +13,14 @@ import android.os.Parcelable;
 public class AuditFormResultBean implements Parcelable {
     private String auditExplain;        //评审结论
     private String auditImgUrl;         //附件集
-    private String auditResult;         //评审结果
+    private int auditResult;         //评审结果
     private String auditUserName;       //评审人员名称
     private String auditUserPhotoUrl;   //评审人头像
 
     protected AuditFormResultBean(Parcel in) {
         auditExplain = in.readString();
         auditImgUrl = in.readString();
-        auditResult = in.readString();
+        auditResult = in.readInt();
         auditUserName = in.readString();
         auditUserPhotoUrl = in.readString();
     }
@@ -61,11 +61,11 @@ public class AuditFormResultBean implements Parcelable {
         this.auditImgUrl = auditImgUrl;
     }
 
-    public String getAuditResult() {
+    public int getAuditResult() {
         return auditResult;
     }
 
-    public void setAuditResult(String auditResult) {
+    public void setAuditResult(int auditResult) {
         this.auditResult = auditResult;
     }
 
@@ -86,7 +86,7 @@ public class AuditFormResultBean implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(auditExplain);
         dest.writeString(auditImgUrl);
-        dest.writeString(auditResult);
+        dest.writeInt(auditResult);
         dest.writeString(auditUserName);
         dest.writeString(auditUserPhotoUrl);
     }

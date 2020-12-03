@@ -412,6 +412,9 @@
     <string name="focus_purchase_seal_person">销售人员：%s</string>
 
 
+    <!--我的关注-评审-->
+    <string name="focus_assess_point">评审点%d</string>
+
     <!--我的工作-货物签收-->
     <string name="work_goods_sign_contract">合同编号：%s</string>
     <string name="work_goods_sign_person">采购跟进：%s</string>

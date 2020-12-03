@@ -95,6 +95,10 @@ public class FocusPurchaseBindingAdapter {
     @BindingAdapter("focusPurchaseResult")
     public static void setFocusPurchaseResult(TextView tv, int status) {
         switch (status) {
+            case 0:
+                tv.setText(String.format(tv.getResources().getString(R.string.focus_purchase_result), "未质检完成"));
+                break;
+
             case 1:
                 tv.setText(String.format(tv.getResources().getString(R.string.focus_purchase_result), "合格"));
                 break;

@@ -87,6 +87,7 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
 
     }
 
+
     @Override
     protected void refresh() {
         String searchContent = etSearch.getText() == null ? "" : etSearch.getText().toString();
