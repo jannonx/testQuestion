@@ -27,7 +27,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
  * @since: 2020/9/21 17:54
  * @company : 固远（深圳）信息技术有限公司
  **/
-public class FocusDeviceExceptionFragment extends BaseListFragment<DeviceExceptionBean.ContentBean, FragmentListBinding,FocusDeviceViewModel> {
+public class FocusDeviceExceptionFragment extends BaseListFragment<DeviceExceptionBean.ContentBean, FragmentListBinding, FocusDeviceViewModel> {
 
     public static final String TAG = "FocusDeviceExceptionFragment";
 
@@ -43,6 +43,7 @@ public class FocusDeviceExceptionFragment extends BaseListFragment<DeviceExcepti
 
     @Override
     protected void initView() {
+        setContainerBackground(R.color.bg_window);
         if (viewModel != null) {
             viewModel.getExceptionDevice(ConstantValue.FIRST_PAGE);
         }

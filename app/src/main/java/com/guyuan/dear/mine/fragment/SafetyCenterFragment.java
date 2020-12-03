@@ -13,6 +13,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentSafetyCenterBinding;
 import com.guyuan.dear.mine.activity.SafetyCenterActivity;
 import com.guyuan.dear.mine.data.MineViewModel;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ToastUtils;
 
 
@@ -51,7 +52,7 @@ public class SafetyCenterFragment extends BaseDataBindingFragment<FragmentSafety
             @Override
             public void onChanged(Integer dataRefreshBean) {
                 ToastUtils.showShort(getContext(), "修改密码成功！");
-                getActivity().finish();
+                CommonUtils.logout(getContext());
             }
         });
     }
@@ -70,6 +71,11 @@ public class SafetyCenterFragment extends BaseDataBindingFragment<FragmentSafety
 
         if (!newPw.equals(confirmPw)) {
             ToastUtils.showLong(getContext(), "新密码和确认密码不一致");
+            return;
+        }
+
+        if (newPw.equals(curPw)) {
+            showToastTip("新密码不能与原密码一致");
             return;
         }
 
