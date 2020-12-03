@@ -12,7 +12,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/bg_white_corner_4"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -49,6 +49,7 @@
                 android:paddingRight="@dimen/dp_4"
                 android:paddingTop="@dimen/dp_2"
                 android:paddingBottom="@dimen/dp_2"
+                app:setContractSearchListRightTag="@{data.executingState}"
                 android:text="执行异常" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

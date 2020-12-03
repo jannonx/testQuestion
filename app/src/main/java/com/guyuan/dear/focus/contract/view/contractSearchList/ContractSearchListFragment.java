@@ -20,6 +20,7 @@ import com.guyuan.dear.utils.ConstantValue;
 import tl.com.easy_recycleview_library.BaseRecyclerView;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
+import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;
 
 /**
  * @author: 廖华凯
@@ -31,6 +32,7 @@ public class ContractSearchListFragment extends BaseMvvmFragment<FragmentContrac
 
     private BaseRecyclerView recyclerView;
     private BaseRecyclerViewAdapter wrapper;
+    private String searchContent;
 
     public static ContractSearchListFragment getInstance(String companyNameOrContractNo) {
         Bundle bundle = new Bundle();
@@ -47,6 +49,9 @@ public class ContractSearchListFragment extends BaseMvvmFragment<FragmentContrac
 
     @Override
     protected void initData() {
+        Bundle bundle = getArguments();
+        searchContent = bundle.getString(ConstantValue.KEY_KEY_WORD);
+        getViewModel().getContractListByComNameOrContractNo(searchContent);
 
     }
 
@@ -61,6 +66,12 @@ public class ContractSearchListFragment extends BaseMvvmFragment<FragmentContrac
         recyclerView.setAdapter(wrapper);
         recyclerView.setPullRefreshEnabled(false);
         recyclerView.setLoadMoreEnabled(true);
+        recyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                getViewModel().getContractListByComNameOrContractNo(searchContent);
+            }
+        });
     }
 
     @Override
@@ -80,6 +91,7 @@ public class ContractSearchListFragment extends BaseMvvmFragment<FragmentContrac
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
+                    recyclerView.refreshComplete(0);
                     wrapper.notifyDataSetChanged();
                 }
             }

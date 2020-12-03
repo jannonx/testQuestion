@@ -5,8 +5,6 @@ import android.os.Parcelable;
 
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
 
-import kotlin.jvm.Transient;
-
 /**
  * @author: 廖华凯
  * @description:
@@ -32,11 +30,13 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
      */
     private int examineId;
 
+    private int state;
+
     public BaseContractExcptBean() {
     }
 
     public BaseContractExcptBean(NetContractInfo info){
-        int state = info.getChangeType();
+        this.state = info.getChangeType();
         String tag = null;
         switch (state){
             case 10002:
@@ -66,6 +66,7 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
         judgement = in.readString();
         judgementKey = in.readString();
         examineId = in.readInt();
+        state=in.readInt();
     }
 
     public static final Creator<BaseContractExcptBean> CREATOR = new Creator<BaseContractExcptBean>() {
@@ -120,6 +121,14 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
         this.examineId = examineId;
     }
 
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -133,5 +142,6 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
         dest.writeString(judgement);
         dest.writeString(judgementKey);
         dest.writeInt(examineId);
+        dest.writeInt(state);
     }
 }

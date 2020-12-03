@@ -3,14 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="hint"
-            type="String" />
-        <variable
-            name="onClickSearch"
-            type="android.view.View.OnClickListener" />
-    </data>
 
     <RelativeLayout
         android:id="@+id/rl_search_bar"
@@ -23,7 +15,6 @@
         android:paddingBottom="@dimen/dp_7">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:onClick="@{onClickSearch}"
             android:id="@+id/cl_search_bar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_30"

@@ -30,7 +30,7 @@ public class MyApplyBean extends BaseContractExcptBean implements Parcelable {
     public static final int APPLY_PROCESSING = 3;
 
 
-    private int state;
+    private int applyState;
     private String applier;
 
     public MyApplyBean() {
@@ -59,15 +59,15 @@ public class MyApplyBean extends BaseContractExcptBean implements Parcelable {
         String tag = null;
         switch (state) {
             case 0:
-                this.state = APPLY_PENDING_FOR_START;
+                this.applyState = APPLY_PENDING_FOR_START;
                 tag = "待审批";
                 break;
             case 1:
-                this.state = APPLY_APPROVED;
+                this.applyState = APPLY_APPROVED;
                 tag = "已通过";
                 break;
             case 2:
-                this.state = APPLY_REJECTED;
+                this.applyState = APPLY_REJECTED;
                 tag = "已驳回";
                 break;
             default:
@@ -81,7 +81,7 @@ public class MyApplyBean extends BaseContractExcptBean implements Parcelable {
 
     protected MyApplyBean(Parcel in) {
         super(in);
-        state = in.readInt();
+        applyState = in.readInt();
         applier = in.readString();
     }
 
@@ -97,12 +97,12 @@ public class MyApplyBean extends BaseContractExcptBean implements Parcelable {
         }
     };
 
-    public int getState() {
-        return state;
+    public int getApplyState() {
+        return applyState;
     }
 
-    public void setState(int state) {
-        this.state = state;
+    public void setApplyState(int applyState) {
+        this.applyState = applyState;
     }
 
     public String getApplier() {
@@ -121,7 +121,7 @@ public class MyApplyBean extends BaseContractExcptBean implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
-        dest.writeInt(state);
+        dest.writeInt(applyState);
         dest.writeString(applier);
     }
 }

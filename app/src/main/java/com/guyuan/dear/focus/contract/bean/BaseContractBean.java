@@ -66,6 +66,8 @@ public class BaseContractBean implements Parcelable {
     @Transient
     public static final int CONTRACT_TYPE_EXCEPTION_CONTRACTS = 5;
 
+    private int executingState;
+
 
     public BaseContractBean() {
     }
@@ -79,16 +81,16 @@ public class BaseContractBean implements Parcelable {
         setSalesPerson(info.getSalesman());
         setDate(CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(info.getSignTime()).getTime());
         setTags(new ArrayList<String>());
-        int state = info.getState();
+        this.executingState = info.getState();
         //0 正常执行 1 质保金异常 2 验收合格 3 暂停
         String tag = null;
-        if (state == 0) {
+        if (executingState == 0) {
             tag = "正常执行";
-        } else if (state == 1) {
+        } else if (executingState == 1) {
             tag = "质保金异常";
-        } else if (state == 2) {
+        } else if (executingState == 2) {
             tag = "验收合格";
-        }else if (state == 3) {
+        }else if (executingState == 3) {
             tag = "合同暂停";
         }
         if (tag != null) {
@@ -106,6 +108,7 @@ public class BaseContractBean implements Parcelable {
         productName = in.readString();
         productModel = in.readString();
         tags = in.createStringArrayList();
+        executingState = in.readInt();
     }
 
     public static final Creator<BaseContractBean> CREATOR = new Creator<BaseContractBean>() {
@@ -192,6 +195,14 @@ public class BaseContractBean implements Parcelable {
         this.contractId = contractId;
     }
 
+    public int getExecutingState() {
+        return executingState;
+    }
+
+    public void setExecutingState(int executingState) {
+        this.executingState = executingState;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -208,5 +219,6 @@ public class BaseContractBean implements Parcelable {
         dest.writeString(productName);
         dest.writeString(productModel);
         dest.writeStringList(tags);
+        dest.writeInt(executingState);
     }
 }
