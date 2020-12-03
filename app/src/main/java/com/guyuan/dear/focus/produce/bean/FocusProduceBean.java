@@ -76,6 +76,7 @@ public class FocusProduceBean implements Serializable {
      * 4.实际激活时间；5.实际暂停时间；6.审批驳回时间；7.审批通过时间
      */
     private int timeType;
+    private DisPlayTimeType disPlayTimeType;
     /**
      * 操作人
      */
@@ -292,6 +293,14 @@ public class FocusProduceBean implements Serializable {
         return timeType;
     }
 
+    public DisPlayTimeType getDisPlayTimeType() {
+        return DisPlayTimeType.toType(timeType);
+    }
+
+    public void setDisPlayTimeType(DisPlayTimeType disPlayTimeType) {
+        this.disPlayTimeType = disPlayTimeType;
+    }
+
     public String getOperatorStr() {
         statusType = ProductStatusType.toType(status);
         approvalStatusType = ApprovalStatusType.toType(approvalStatus);
@@ -310,8 +319,7 @@ public class FocusProduceBean implements Serializable {
     }
 
     public String getTimeTypeStr() {
-        DisPlayTimeType disPlayTimeType = DisPlayTimeType.toType(timeType);
-        return disPlayTimeType == null ? "未知时间" : disPlayTimeType.getMessage();
+        return getDisPlayTimeType().getMessage();
     }
 
     public void setTimeType(int timeType) {

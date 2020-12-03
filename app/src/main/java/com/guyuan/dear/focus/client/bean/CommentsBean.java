@@ -43,6 +43,10 @@ public class CommentsBean implements Serializable {
      */
     private String departmentName;
     /**
+     * 跟进/评论人部门名称
+     */
+    private String deptName;
+    /**
      * 最后更新人名称（跟进/评论人）
      */
     private String updateName;
@@ -74,6 +78,14 @@ public class CommentsBean implements Serializable {
 
     public void setFollowBusinessId(long followBusinessId) {
         this.followBusinessId = followBusinessId;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 
     public String getImgUrl() {

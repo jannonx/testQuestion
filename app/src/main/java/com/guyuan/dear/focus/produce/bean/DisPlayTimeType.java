@@ -36,9 +36,21 @@ public enum DisPlayTimeType {
      */
     APPLY_PAUSE_TIME(7, "申请暂停时间："),
     /**
+     * 申请激活时间
+     */
+    APPLY_ACTIVE_TIME(8, "申请激活时间："),
+    /**
      * 审批通过时间
      */
-    PASS_TIME(8, "审批通过时间：");
+    PASS_TIME(9, "审批通过时间："),
+    /**
+     * 计划完成时间
+     */
+    PLAN_END_TIME(10, "计划完成时间："),
+    /**
+     * 未知时间类型
+     */
+    TYPE_UNKNOWN(11, "未知时间类型：");
 
     private int code;
 
@@ -74,6 +86,6 @@ public enum DisPlayTimeType {
                 return c;
             }
         }
-        return null;
+        return TYPE_UNKNOWN;
     }
 }
