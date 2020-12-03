@@ -179,7 +179,7 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
                 if(allStaffs.getValue()==null){
                     return;
                 }
-                //改变公共数据源中改员工的点选状态
+                //改变公共数据源中员工的点选状态
                 if(!getViewModel().checkStaffSelectable(staff.getId())){
                     showToastTip("无法选择该员工");
                     return;

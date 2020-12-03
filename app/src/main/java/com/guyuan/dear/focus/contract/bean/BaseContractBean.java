@@ -80,13 +80,16 @@ public class BaseContractBean implements Parcelable {
         setDate(CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(info.getSignTime()).getTime());
         setTags(new ArrayList<String>());
         int state = info.getState();
+        //0 正常执行 1 质保金异常 2 验收合格 3 暂停
         String tag = null;
         if (state == 0) {
             tag = "正常执行";
         } else if (state == 1) {
-            tag = "异常执行";
-        } else if (state == 3) {
+            tag = "质保金异常";
+        } else if (state == 2) {
             tag = "验收合格";
+        }else if (state == 3) {
+            tag = "合同暂停";
         }
         if (tag != null) {
             getTags().add(tag);
