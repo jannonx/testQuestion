@@ -42,7 +42,7 @@ public class FollowStatusParentAdapter extends BaseRecyclerAdapter<CommentsBean>
                                   int position) {
         holder.setText(R.id.tv_name, item.getCreateName());
         holder.setText(R.id.tv_time, item.getCreateTime());
-        holder.setText(R.id.tv_department, item.getDepartmentName());
+        holder.setText(R.id.tv_department, item.getDeptName());
         holder.setText(R.id.tv_comment, item.getContent());
 
         TextView tvRemarkBtn = holder.getView(R.id.tv_remark_on);
