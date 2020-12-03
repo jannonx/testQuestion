@@ -29,7 +29,6 @@ public class AssessDetailPointAdapter extends BaseDBRecycleAdapter<AuditContentB
 
     @Override
     protected void bindDataToView(Holder holder, AuditContentBean item, int position) {
-        holder.binding.assessPointTitleTv.setText("评审点" + position + 1);
         holder.binding.setVariable(BR.pointBean, item);
     }
 }

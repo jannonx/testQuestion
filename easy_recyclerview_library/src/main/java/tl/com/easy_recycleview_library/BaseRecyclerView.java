@@ -163,10 +163,10 @@ public class BaseRecyclerView extends RecyclerView {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
 
-        if (mWrapAdapter != null && mDataObserver != null && isRegisterDataObserver) {
-            mWrapAdapter.getInnerAdapter().unregisterAdapterDataObserver(mDataObserver);
-            isRegisterDataObserver = false;
-        }
+//        if (mWrapAdapter != null && mDataObserver != null && isRegisterDataObserver) {
+//            mWrapAdapter.getInnerAdapter().unregisterAdapterDataObserver(mDataObserver);
+//            isRegisterDataObserver = false;
+//        }
 
     }
 

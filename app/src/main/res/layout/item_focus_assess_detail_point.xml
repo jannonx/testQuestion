@@ -23,10 +23,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:text="@{String.format(@string/focus_assess_point,pointBean.sort)}"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="第1个评审点" />
+            tools:text="@string/focus_assess_point" />
 
         <TextView
             android:id="@+id/assess_point_tv"

@@ -112,7 +112,7 @@ public class FocusPurchaseListFragment extends BaseListSearchFragment<PurchaseLi
 
     @Override
     protected boolean isPullEnable() {
-        return true;
+        return false;
     }
 
     @Override
