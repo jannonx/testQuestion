@@ -4,57 +4,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         tools:ignore="UseCompoundDrawables">
 
-        <ImageView
-            android:id="@+id/no_data_iv"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll_empty_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/tv_empty"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:ignore="ContentDescription"
-            tools:src="@mipmap/ic_no_data" />
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_refresh"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/no_data_iv"
-            tools:text="暂无数据" />
+            <ImageView
+                android:id="@+id/no_data_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="ContentDescription"
+                tools:src="@mipmap/ic_no_data" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/tv_refresh"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="重新获取"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:backgroundTint="@color/blue"
-            app:cornerRadius="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_empty" />
+            <TextView
+                android:id="@+id/tv_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:textSize="@dimen/sp_16"
+                tools:text="暂无数据" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/tv_refresh"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="重新获取"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                app:backgroundTint="@color/blue"
+                app:cornerRadius="@dimen/dp_4" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </RelativeLayout>
 </layout>
 
 

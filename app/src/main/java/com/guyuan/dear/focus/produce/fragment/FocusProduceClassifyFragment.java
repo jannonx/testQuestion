@@ -41,6 +41,7 @@ public class FocusProduceClassifyFragment extends BaseProduceFragment {
         statusType = (ProductStatusType) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         FocusProduceAdapter listAdapter = new FocusProduceAdapter(getContext(), listData,
                 R.layout.item_focus_produce);
+        etSearch.setHint("输入产品名称、产品代号");
         adapter = new BaseRecyclerViewAdapter(listAdapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);

@@ -176,7 +176,7 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
                 break;
             case R.id.cl_produce_delay:
                 FocusProduceClassifyActivity.start(
-                        getContext(), ProductStatusType.TYPE_PRODUCE_DELAY_NOT_FINISH);
+                        getContext(), ProductStatusType.TYPE_PRODUCE_DELAY_FINISH);
 
                 break;
             case R.id.tv_select_start_time:

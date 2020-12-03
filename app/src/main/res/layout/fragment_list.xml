@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
         android:id="@+id/list_container"
@@ -16,6 +17,7 @@
         <include
             android:id="@+id/empty_view"
             layout="@layout/empty"
+            tools:visibility="visible"
             android:visibility="gone" />
     </FrameLayout>
 </layout>

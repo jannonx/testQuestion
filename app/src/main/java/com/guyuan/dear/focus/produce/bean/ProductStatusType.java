@@ -12,8 +12,6 @@ import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
  * @company: 固远（深圳）信息技术有限公司
  */
 public enum ProductStatusType {
-
-
     /**
      * 暂停
      */
