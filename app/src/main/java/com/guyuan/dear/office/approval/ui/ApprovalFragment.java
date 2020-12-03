@@ -47,6 +47,7 @@ public class ApprovalFragment extends BaseListSearchFragment<ApprovalListBean.Co
 
     @Override
     protected void init() {
+        etSearch.setHint("搜索客户名称、合同编号");
         ApprovalAdapter approvalAdapter = new ApprovalAdapter(listData, R.layout.item_approval);
         setDefaultAdapter(approvalAdapter);
         adapter.setOnItemClickListener(new OnItemClickListener() {

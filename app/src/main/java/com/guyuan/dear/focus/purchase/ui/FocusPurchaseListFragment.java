@@ -64,6 +64,7 @@ public class FocusPurchaseListFragment extends BaseListSearchFragment<PurchaseLi
     @Override
     protected void init() {
         if (getArguments() != null) {
+            etSearch.setHint("输入产品名称、产品代号");
             statusType = getArguments().getInt(STATUS_TYPE);
             searchContent = getArguments().getString(NAME);
             mouthDate = getArguments().getString(MOUTH_DATE);
