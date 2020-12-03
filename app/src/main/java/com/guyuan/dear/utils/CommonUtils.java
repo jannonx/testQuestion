@@ -216,7 +216,7 @@ public class CommonUtils {
 
     //设置消息间隔
     public static int getMessageUpdateTime() {
-        if (BuildConfig.BUILD_TYPE.equals("debug") || BuildConfig.BUILD_TYPE.equals("dev")) {
+        if (BuildConfig.BUILD_TYPE.equals("debug")) {
             return 1000;
         } else {
             return 1;
