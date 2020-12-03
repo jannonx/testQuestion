@@ -71,7 +71,7 @@ public class MatterAppliedFragment extends BaseListFragment<MatterApplyBean, Ite
 
     @Override
     protected boolean isPullEnable() {
-        return true;
+        return false;
     }
 
     @Override

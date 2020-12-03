@@ -32,9 +32,7 @@ public abstract class BaseProduceFragment extends BaseListSearchFragment<FocusPr
         ListProduceRequestBody body = new ListProduceRequestBody();
         ListProduceRequestBody.FiltersBean filtersBean = new ListProduceRequestBody.FiltersBean();
         filtersBean.setName(etSearch.getText().toString());
-        if (statusType != null) {
-            filtersBean.setStatus(statusType.getCode());
-        }
+        filtersBean.setStatus(statusType != null ? statusType.getCode() : null);
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);
@@ -46,8 +44,8 @@ public abstract class BaseProduceFragment extends BaseListSearchFragment<FocusPr
 
 
     protected RequestBody getListRequestBody(String name) {
-        currentType = REFRESH ;
-        currentPage = FIRST_PAGE ;
+        currentType = REFRESH;
+        currentPage = FIRST_PAGE;
         ListProduceRequestBody body = new ListProduceRequestBody();
         ListProduceRequestBody.FiltersBean filtersBean = new ListProduceRequestBody.FiltersBean();
         filtersBean.setName(name);

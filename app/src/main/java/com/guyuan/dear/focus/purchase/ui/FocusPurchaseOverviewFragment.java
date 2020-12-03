@@ -66,6 +66,7 @@ public class FocusPurchaseOverviewFragment extends BaseDataBindingFragment<
 
     //设置时间
     private void setDate() {
+        binding.purchaseSearchRl.etSearch.setHint("输入产品名称、产品代号");
         currentDate = CalenderUtils.getInstance().toLongYearAndMonth(System.currentTimeMillis());
         binding.focusPurchaseDateTv.setText(currentDate);
         binding.focusPurchaseDateTv.setOnClickListener(this);
