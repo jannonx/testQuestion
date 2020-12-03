@@ -41,14 +41,14 @@ public class MyApplyDetailBean extends MyApplyBean {
             int status = examine.getStatus();
             switch (status) {
                 case 1:
-                    setState(MyApplyBean.APPLY_APPROVED);
+                    setApplyState(MyApplyBean.APPLY_APPROVED);
                     break;
                 case 2:
-                    setState(MyApplyBean.APPLY_REJECTED);
+                    setApplyState(MyApplyBean.APPLY_REJECTED);
                     break;
                 case 0:
                 default:
-                    setState(MyApplyBean.APPLY_PENDING_FOR_START);
+                    setApplyState(MyApplyBean.APPLY_PENDING_FOR_START);
                     break;
             }
             logs = new ArrayList<>();

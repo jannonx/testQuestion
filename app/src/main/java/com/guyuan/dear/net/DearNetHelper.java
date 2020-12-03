@@ -246,6 +246,37 @@ public class DearNetHelper {
 
     }
 
+
+
+    /**
+     * 根据客户名字或合同编号查找合同列表
+     * @param callback
+     * @return
+     */
+    public Disposable getContractListByCompanyNameOrContractNo(String companyNameOrContractNo, int pageIndex, int pageSize, NetCallback<List<BaseContractBean>> callback) {
+        SearchRqBody body = new SearchRqBody();
+        HashMap<String, String> filters = new HashMap<>(1);
+        filters.put("name", companyNameOrContractNo);
+        body.setFilters(filters);
+        body.setPageNum(pageIndex);
+        body.setPageSize(pageSize);
+        Observable<ResultBean<BasePageResultBean<NetSearchContactInfo>>> observable = netApiService.getContractListByCompanyNameOrContractNo(body);
+        Mapper<BasePageResultBean<NetSearchContactInfo>, List<BaseContractBean>> mapper = new Mapper<BasePageResultBean<NetSearchContactInfo>, List<BaseContractBean>>() {
+            @Override
+            public List<BaseContractBean> map(BasePageResultBean<NetSearchContactInfo> netResult) {
+                List<NetSearchContactInfo> src = netResult.getContent();
+                List<BaseContractBean> result = new ArrayList<>();
+                for (NetSearchContactInfo info : src) {
+                    BaseContractBean bean = new BaseContractBean(info);
+                    result.add(bean);
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable, callback, mapper);
+
+    }
+
     /**
      * 获取所有合同异常列表
      *

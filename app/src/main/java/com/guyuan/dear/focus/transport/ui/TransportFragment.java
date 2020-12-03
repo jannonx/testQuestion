@@ -41,6 +41,7 @@ public class TransportFragment extends BaseListSearchFragment<TransportListBean.
     @Override
     protected void init() {
         if (getArguments() != null) {
+            etSearch.setHint("输入项目名称、发货编号");
             type = getArguments().getInt(ConstantValue.KEY_STATUS_TYPE);
             searchContent = getArguments().getString(ConstantValue.KEY_CONTENT);
             TransportAdapter transportAdapter = new TransportAdapter(listData, R.layout.item_focus_transport);

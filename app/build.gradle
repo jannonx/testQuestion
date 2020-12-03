@@ -94,7 +94,6 @@ android {
         release {
             initWith(buildTypes.commons)
             buildConfigField "String", "SERVER_URL", properties.getProperty("RELEASE_SERVER_URL")
-            buildConfigField "String", "PIC_URL", properties.getProperty("RELEASE_SERVER_PIC_URL")
             buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_LOCAL_APP_KEY")
             buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_LOCAL_MSG_SECRET")
             buildConfigField "String", "XIAO_MI_APP_ID", properties.getProperty("XIAO_MI_LOCAL_APP_ID")
@@ -118,7 +117,22 @@ android {
         debug {
             initWith(buildTypes.commons)
             buildConfigField "String", "SERVER_URL", properties.getProperty("DEBUG_SERVER_URL")
-            buildConfigField "String", "PIC_URL", properties.getProperty("DEBUG_SERVER_PIC_URL")
+            buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_LOCAL_APP_KEY")
+            buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_LOCAL_MSG_SECRET")
+            buildConfigField "String", "XIAO_MI_APP_ID", properties.getProperty("XIAO_MI_LOCAL_APP_ID")
+            buildConfigField "String", "XIAO_MI_APP_KEY", properties.getProperty("XIAO_MI_LOCAL_APP_KEY")
+            buildConfigField "Integer", "MORNING_BRIEFING_START_HOUR", properties.getProperty("MORNING_BRIEFING_START_HOUR")
+            buildConfigField "Integer", "MORNING_BRIEFING_START_MINUTE", properties.getProperty("MORNING_BRIEFING_START_MINUTE")
+            buildConfigField "Integer", "MORNING_BRIEFING_STOP_HOUR", properties.getProperty("MORNING_BRIEFING_STOP_HOUR")
+            buildConfigField "Integer", "MORNING_BRIEFING_STOP_MINUTE", properties.getProperty("MORNING_BRIEFING_STOP_MINUTE")
+            applicationIdSuffix ".debug"//测试包APPID后缀
+            debuggable true
+            signingConfig signingConfigs.config
+        }
+
+        dev{
+            initWith(buildTypes.commons)
+            buildConfigField "String", "SERVER_URL", properties.getProperty("DEV_SERVER_URL")
             buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_LOCAL_APP_KEY")
             buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_LOCAL_MSG_SECRET")
             buildConfigField "String", "XIAO_MI_APP_ID", properties.getProperty("XIAO_MI_LOCAL_APP_ID")
@@ -132,6 +146,9 @@ android {
             signingConfig signingConfigs.config
         }
     }
+
+
+
 
     //lint检测设置
     lintOptions {

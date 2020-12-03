@@ -12,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <include layout="@layout/layout_search_bar"/>
+        <com.guyuan.dear.customizeview.contractSearchBar.ContractSearchBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <tl.com.easy_recycleview_library.BaseRecyclerView
             android:id="@+id/fragment_contract_status_list_recycler_view"
             android:layout_width="match_parent"

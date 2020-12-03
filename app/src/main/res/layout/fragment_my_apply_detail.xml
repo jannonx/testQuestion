@@ -50,7 +50,7 @@
                     android:paddingBottom="@dimen/dp_2"
                     android:textSize="@dimen/sp_12"
                     android:textStyle="bold"
-                    app:setMyApplyListTagTextProperty="@{fragment_my_apply_detail_vm.applyBean.state}" />
+                    app:setMyApplyListTagTextProperty="@{fragment_my_apply_detail_vm.applyBean.applyState}" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View

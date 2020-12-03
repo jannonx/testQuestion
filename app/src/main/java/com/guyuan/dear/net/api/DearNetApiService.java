@@ -115,6 +115,14 @@ public interface DearNetApiService extends BaseApiService {
     Observable<ResultBean<BasePageResultBean<NetSearchContactInfo>>> getContractListByTypeAndDate(@Body SearchRqBody body);
 
     /**
+     * 根据客户名字或合同编号查找合同列表
+     * @param body
+     * @return
+     */
+    @POST("base/tContractInfo/findContractSearch")
+    Observable<ResultBean<BasePageResultBean<NetSearchContactInfo>>> getContractListByCompanyNameOrContractNo(@Body SearchRqBody body);
+
+    /**
      * 获取当前用户申请的合同异常或合同重启清单
      */
     @POST("base/tContractInfo/findContractStatusPage")
@@ -330,6 +338,8 @@ public interface DearNetApiService extends BaseApiService {
      */
     @GET("base/staffSummary/getAllStaffAttendanceStatus")
     Observable<ResultBean<List<NetIdAndStatusMapping>>> getStaffIdAndAttendStatus();
+
+
 
 
 }

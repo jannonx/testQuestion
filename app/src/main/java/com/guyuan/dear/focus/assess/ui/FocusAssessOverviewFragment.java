@@ -108,6 +108,7 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
 
 
     private void setSearch() {
+        binding.include.etSearch.setHint("输入客户名称、合同编号");
         binding.include.tvSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

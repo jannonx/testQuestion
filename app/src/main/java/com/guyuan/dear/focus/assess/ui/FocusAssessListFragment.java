@@ -63,6 +63,7 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
     @Override
     protected void init() {
         if (getArguments() != null) {
+            etSearch.setHint("输入客户名称、合同编号");
             type = getArguments().getInt(TYPE);
             entryType = getArguments().getInt(ENTRY_TYPE);
             String searchContent = getArguments().getString(ConstantValue.KEY_CONTENT);

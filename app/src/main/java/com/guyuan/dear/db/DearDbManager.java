@@ -53,6 +53,9 @@ public class DearDbManager {
                             public void migrate(@NonNull SupportSQLiteDatabase database) {
                                 LogUtils.showLog("升级数据库2->3");
 
+                                //SQLite supports a limited subset of ALTER TABLE. The ALTER TABLE command in SQLite allows the user to
+                                // rename a table or to add a new column to an existing table. It is not possible to rename a column,
+                                // remove a column, or add or remove constraints from a table.
                                 database.execSQL("AlTER TABLE 'StaffEntity' RENAME TO 'StaffEntityOld';");
                                 database.execSQL("CREATE TABLE IF NOT EXISTS 'StaffEntity' (" +
                                         "'name' TEXT, " +
