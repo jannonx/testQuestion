@@ -67,7 +67,7 @@ public class FocusDeviceExceptionFragment extends BaseListFragment<DeviceExcepti
 
     @Override
     protected boolean isPullEnable() {
-        return true;
+        return false;
     }
 
     @Override

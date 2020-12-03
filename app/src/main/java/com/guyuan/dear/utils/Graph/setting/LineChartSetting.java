@@ -159,6 +159,7 @@ public class LineChartSetting {
             data.setValueTextSize(9f);
             lineChart.setData(data);
         }
+        lineChart.invalidate();
     }
 
     //设置线的参数

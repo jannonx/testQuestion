@@ -94,7 +94,7 @@ public class FocusAssessViewModel extends BaseViewModel {
 
     //根据类型设置返回的数据到liveData中
     public MutableLiveData<AssessListBean> getListBeanByStatus(int status) {
-        if (status == 10) {
+        if (status == FocusAssessListFragment.NOT_PASS) {
             return assessNotPassListBean;
         } else if (status == FocusAssessListFragment.PASS) {
             return assessPassListBean;
