@@ -99,6 +99,7 @@ public class WorkProduceFragment extends BaseListSearchFragment<FocusProduceBean
         ListProduceRequestBody body = new ListProduceRequestBody();
         ListProduceRequestBody.FiltersBean filtersBean = new ListProduceRequestBody.FiltersBean();
         filtersBean.setName(etSearch.getText().toString());
+        filtersBean.setStatus(null);
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);
