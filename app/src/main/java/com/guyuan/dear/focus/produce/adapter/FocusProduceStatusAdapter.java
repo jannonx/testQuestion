@@ -37,8 +37,8 @@ public class FocusProduceStatusAdapter extends BaseRecyclerAdapter<ProduceStateB
         //最后一条数据
         boolean lastOneItem = listData != null && (listData.size() - 1) == position;
 
-        LogUtils.showLog("size=" + listData.size() + "...position=" + position);
-        LogUtils.showLog("onlyOneData=" + onlyOneData + "...lastOneItem=" + lastOneItem);
+//        LogUtils.showLog("size=" + listData.size() + "...position=" + position);
+//        LogUtils.showLog("onlyOneData=" + onlyOneData + "...lastOneItem=" + lastOneItem);
         View specialView = holder.getView(R.id.rl_first_view);
         View normalView = holder.getView(R.id.cl_order_detail);
         View firstAboveLie = holder.getView(R.id.v_first_above);

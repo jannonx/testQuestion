@@ -1,6 +1,7 @@
 package com.guyuan.dear.focus.produce.bean;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.io.Serializable;
 
@@ -319,6 +320,7 @@ public class FocusProduceBean implements Serializable {
     }
 
     public String getTimeTypeStr() {
+        LogUtils.showLog("getTimeTypeStr="+getDisPlayTimeType().getCode());
         return getDisPlayTimeType().getMessage();
     }
 
