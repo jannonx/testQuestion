@@ -63,9 +63,9 @@ public class QcHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, QcHo
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.selector_tab_qc_home_summary);
+        tabDrawableList.add(R.drawable.selector_tab_qc_home_exceptions);
+        tabDrawableList.add(R.drawable.selector_tab_qc_home_details);
         return tabDrawableList;
     }
 }
