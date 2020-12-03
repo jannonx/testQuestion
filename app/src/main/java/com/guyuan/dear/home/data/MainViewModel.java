@@ -41,7 +41,7 @@ public class MainViewModel extends BaseViewModel {
     public void getLastUnReadMessage(int msgType) {
 
         //间隔获取消息
-        Disposable disposable = Observable.interval(0,1000, TimeUnit.SECONDS).subscribe(new Consumer<Long>() {
+        Disposable disposable = Observable.interval(0,1, TimeUnit.SECONDS).subscribe(new Consumer<Long>() {
             @Override
             public void accept(Long aLong) throws Exception {
                 RxJavaHelper.build(MainViewModel.this, apiService.getLastUnReadMessage(msgType))
