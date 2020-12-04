@@ -67,11 +67,11 @@ public class ContractHomeActivity extends BaseTabActivity<ActivityBaseTabBinding
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.selector_tab_contract_home_summary);
+        tabDrawableList.add(R.drawable.selector_tab_contract_home_pause);
+        tabDrawableList.add(R.drawable.selector_tab_contract_home_restart);
+        tabDrawableList.add(R.drawable.selector_tab_contract_home_exceptions);
+        tabDrawableList.add(R.drawable.selector_tab_contract_home_details);
         return tabDrawableList;
     }
 
