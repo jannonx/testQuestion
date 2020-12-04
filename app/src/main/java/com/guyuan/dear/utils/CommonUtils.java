@@ -28,16 +28,20 @@ import com.guyuan.dear.dialog.TipDialogFragment;
 import com.guyuan.dear.focus.device.data.beans.FactoryBean;
 import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.login.ui.LoginActivity;
+import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import okhttp3.RequestBody;
+import retrofit2.http.PUT;
 
 /**
  * Created by admin
@@ -221,5 +225,14 @@ public class CommonUtils {
         } else {
             return 1;
         }
+    }
+
+    //获取当前账号staffbean
+    public static ArrayList<StaffBean> getCurrentStaffList() {
+        ArrayList<StaffBean> staffBeanList = new ArrayList<>();
+        StaffBean staffBean = new StaffBean();
+        staffBean.setId(getLoginInfo().getUserInfo().getId());
+        staffBeanList.add(staffBean);
+        return staffBeanList;
     }
 }
