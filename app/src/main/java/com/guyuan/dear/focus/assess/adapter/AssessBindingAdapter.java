@@ -42,26 +42,31 @@ public class AssessBindingAdapter {
         switch (status) {
             case SAVED:
                 tv.setTextAppearance(R.style.TextTagBlue);
+                tv.setBackgroundResource(R.drawable.bg_assess);
                 tv.setText("保存草稿");
                 break;
 
             case PREPARED:
                 tv.setTextAppearance(R.style.TextTagBlue);
+                tv.setBackgroundResource(R.drawable.bg_assess);
                 tv.setText("待评审");
                 break;
 
             case ASSESSING:
                 tv.setTextAppearance(R.style.TextTagBlue);
+                tv.setBackgroundResource(R.drawable.bg_assess);
                 tv.setText("评审中");
                 break;
 
             case PASSED:
                 tv.setTextAppearance(R.style.TextTagGreen);
+                tv.setBackgroundResource(R.drawable.bg_pass);
                 tv.setText("通过");
                 break;
 
             case NOT_PASSED:
                 tv.setTextAppearance(R.style.TextNotPass);
+                tv.setBackgroundResource(R.drawable.bg_not_pass);
                 tv.setText("不通过");
                 break;
         }

@@ -66,9 +66,11 @@ public class GoodsSignBindingAdapter {
         if (status == 1) {
             tv.setText("待到货");
             tv.setTextAppearance(tv.getContext(), R.style.TextTagBlue);
+            tv.setBackgroundResource(R.drawable.bg_assess);
         } else if (status == 2) {
             tv.setText("全部到货");
             tv.setTextAppearance(tv.getContext(), R.style.TextTagGreen);
+            tv.setBackgroundResource(R.drawable.bg_pass);
         }
     }
 

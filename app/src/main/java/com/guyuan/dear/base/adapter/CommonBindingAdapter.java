@@ -59,4 +59,5 @@ public class CommonBindingAdapter {
             view.setVisibility(targetView.getVisibility());
         }
     }
+
 }
