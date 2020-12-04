@@ -37,13 +37,22 @@ public interface FocusAfterSaleApiService extends BaseApiService {
     Observable<ResultBean<List<UploadBean>>> uploadPic(@PartMap Map<String, RequestBody> map);
 
     /**
-     * 获取列表
+     * 鼓掌排查列表(验收合格)
      *
      * @param body 参数体
      * @return
      */
     @POST("base/tSaleIssueMain/findPage")
     Observable<ResultBean<RefreshBean<AfterSaleBean>>> getAfterSaleList(@Body RequestBody body);
+
+    /**
+     * 客户验收列表(验收不合格)
+     *
+     * @param body 参数体
+     * @return
+     */
+    @POST("base/tSaleIssueMain/findPage")
+    Observable<ResultBean<RefreshBean<AfterSaleBean>>> getAfterSaleCustomerAcceptanceList(@Body RequestBody body);
 
     /**
      * 获取详情
@@ -79,7 +88,7 @@ public interface FocusAfterSaleApiService extends BaseApiService {
      */
     @GET("base//tSaleIssueMain/queryAnswerPage")
     Observable<ResultBean<List<AfterSaleStatusBean>>> getCustomerAcceptanceDetailImageList(@Query("id") long id,
-                                                                               @Query("type") int type);
+                                                                                           @Query("type") int type);
 
     /**
      * 验收成功/失败-改变状态

@@ -64,9 +64,10 @@ public class FocusProduceExceptionFragment extends BaseProduceFragment {
     }
 
     @Override
-    public void bindRefresh() {
-        viewModel.getProduceExceptionList(getListRequestBody(true));
+    protected void refresh() {
+        viewModel.getProduceList(getListRequestBody(true));
     }
+
 
     @Override
     protected void loadMore() {

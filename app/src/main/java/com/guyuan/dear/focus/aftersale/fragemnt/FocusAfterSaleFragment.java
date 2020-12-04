@@ -64,12 +64,7 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
         recycleView.setAdapter(adapter);
         recycleView.setPullRefreshEnabled(isPullEnable());
         recycleView.setLoadMoreEnabled(isLoadMoreEnable());
-
-        viewModel.getAfterSaleList(getListRequestBody(true));
-
-
-
-
+        getListDataByClassify(true);
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -79,7 +74,13 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
             }
         });
     }
-
+    public void getListDataByClassify(boolean isRefresh){
+        if (SaleQualifiedType.TYPE_QUALIFIED == qualifiedType){
+            viewModel.getAfterSaleCustomerAcceptanceList(getListRequestBody(isRefresh));
+        }else if (SaleQualifiedType.TYPE_UNQUALIFIED == qualifiedType){
+            viewModel.getAfterSaleList(getListRequestBody(isRefresh));
+        }
+    }
     /**
      * 设置处理数据
      *
@@ -118,12 +119,12 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
 
     @Override
     protected void refresh() {
-        viewModel.getAfterSaleList(getListRequestBody(true));
+        getListDataByClassify(true);
     }
 
     @Override
     protected void loadMore() {
-        viewModel.getAfterSaleList(getListRequestBody(false));
+        getListDataByClassify(false);
     }
 
     @Override

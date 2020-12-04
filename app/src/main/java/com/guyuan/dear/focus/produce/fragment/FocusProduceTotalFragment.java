@@ -65,10 +65,10 @@ public class FocusProduceTotalFragment extends BaseProduceFragment {
     protected void loadMore() {
         viewModel.getProduceList(getListRequestBody(false));
     }
-
     @Override
-    public void bindRefresh() {
+    protected void refresh() {
         viewModel.getProduceList(getListRequestBody(true));
     }
+
 
 }

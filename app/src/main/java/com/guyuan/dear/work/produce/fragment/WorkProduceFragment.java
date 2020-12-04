@@ -11,12 +11,18 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.produce.adapter.FocusProduceAdapter;
+import com.guyuan.dear.focus.produce.bean.EventProduceListRefresh;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ListProduceRequestBody;
 import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.produce.data.WorkProduceViewModel;
+import com.guyuan.dear.work.projectsite.bean.EventWorkSiteListRefresh;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
@@ -42,6 +48,7 @@ public class WorkProduceFragment extends BaseListSearchFragment<FocusProduceBean
 
     @Override
     protected void init() {
+        EventBus.getDefault().register(this);
         FocusProduceAdapter listAdapter = new FocusProduceAdapter(getContext(), listData,
                 R.layout.item_focus_produce);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
@@ -68,16 +75,6 @@ public class WorkProduceFragment extends BaseListSearchFragment<FocusProduceBean
     }
 
     @Override
-    protected void editEmptyChange() {
-        viewModel.getProduceList(getListRequestBody(true));
-    }
-
-    @Override
-    protected void onSearch(String text) {
-        viewModel.getProduceList(getListRequestBody(true));
-    }
-
-    @Override
     protected void refresh() {
         viewModel.getProduceList(getListRequestBody(true));
     }
@@ -98,7 +95,7 @@ public class WorkProduceFragment extends BaseListSearchFragment<FocusProduceBean
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListProduceRequestBody body = new ListProduceRequestBody();
         ListProduceRequestBody.FiltersBean filtersBean = new ListProduceRequestBody.FiltersBean();
-        filtersBean.setName(etSearch.getText().toString());
+        filtersBean.setName(searchContent);
         filtersBean.setStatus(null);
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
@@ -108,7 +105,10 @@ public class WorkProduceFragment extends BaseListSearchFragment<FocusProduceBean
         return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
                 "charset=utf-8"), str);
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onRefreshListMessage(EventProduceListRefresh event) {
+        viewModel.getProduceList(getListRequestBody(true));
+    }
     @Override
     protected boolean isPullEnable() {
         return true;
@@ -122,5 +122,11 @@ public class WorkProduceFragment extends BaseListSearchFragment<FocusProduceBean
     @Override
     protected int getVariableId() {
         return 0;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        EventBus.getDefault().unregister(this);
     }
 }

@@ -59,7 +59,7 @@ public class InstallDebugStatusFragment extends BaseListFragment<ProjectSiteStat
         }
 
         InstallDebugStatusAdapter listAdapter = new InstallDebugStatusAdapter(getContext(), listData,
-                R.layout.item_focus_produce_status);
+                R.layout.item_install_debug_status);
 
         adapter = new BaseRecyclerViewAdapter(listAdapter);
         recycleView.setAdapter(adapter);

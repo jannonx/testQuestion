@@ -123,6 +123,8 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
         getListData(entryType, ++currentPage, ConstantValue.PAGE_SIZE, text, type);
     }
 
+
+
     private void getListData(int entryType, int pageIndex, int pageSize, String content, int type) {
         switch (entryType) {
             case FROM_OVERVIEW:

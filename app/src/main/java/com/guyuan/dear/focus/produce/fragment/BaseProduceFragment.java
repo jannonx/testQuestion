@@ -58,27 +58,7 @@ public abstract class BaseProduceFragment extends BaseListSearchFragment<FocusPr
                 "charset=utf-8"), str);
     }
 
-    @Override
-    protected void onSearch(String text) {
-        bindRefresh();
-    }
 
-    @Override
-    protected void editTextChanged(String text) {
-        bindRefresh();
-    }
-
-    @Override
-    protected void refresh() {
-        bindRefresh();
-    }
-
-    @Override
-    protected void loadMore() {
-
-    }
-
-    public abstract void bindRefresh();
 
 
     @Override

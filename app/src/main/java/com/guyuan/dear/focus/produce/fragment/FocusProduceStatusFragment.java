@@ -50,20 +50,13 @@ public class FocusProduceStatusFragment extends BaseListFragment<ProduceStateBea
         Bundle arguments = getArguments();
         produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
 
-//        footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_focus_produce_status, null);
         FocusProduceStatusAdapter listAdapter = new FocusProduceStatusAdapter(getContext(), listData,
                 R.layout.item_focus_produce_status);
 
         adapter = new BaseRecyclerViewAdapter(listAdapter);
-//        adapter.addFooterView(footerView);
+
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-//        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) llEmptyView.getLayoutParams();
-//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
-//        layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-//        layoutParams.topMargin= ScreenUtils.dip2px(getContext(),30f);
-//        llEmptyView.setLayoutParams(layoutParams);
 
         viewModel.getProduceStateList(produceBean.getPlanId());
 
@@ -81,25 +74,21 @@ public class FocusProduceStatusFragment extends BaseListFragment<ProduceStateBea
      * @param data
      */
     private void dealStateDataList(List<ProduceStateBean> data) {
-        List<ProduceStateBean> tempListO = new ArrayList<>();
-
+        List<ProduceStateBean> reverseList = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
             ProduceStateBean parentBean = data.get(i);
-            tempListO.add(parentBean);
-            LogUtils.showLog("tempListO="+tempListO.get(i).getProdStatus());
             List<ProduceStateBean> texamineFlows = parentBean.getTexamineFlows();
             if (texamineFlows != null && texamineFlows.size() != 0) {
-                tempListO.addAll(texamineFlows);
-                LogUtils.showLog("texamineFlows="+tempListO.get(i).getProdStatus());
+                Collections.reverse(texamineFlows);
+                for (int ik = 0; ik < texamineFlows.size(); ik++) {
+                    ProduceStateBean produceStateBean = texamineFlows.get(ik);
+                    produceStateBean.setArType(parentBean.getArType());
+                    reverseList.add(produceStateBean);
+                }
             }
+            reverseList.add(parentBean);
         }
-        List<ProduceStateBean> tempListT = new ArrayList<>();
-        for (int i = tempListO.size() - 1; i >= 0; i--) {
-            LogUtils.showLog("tempListT="+tempListO.get(i).getProdStatus());
-            tempListT.add(tempListO.get(i));
-        }
-
-        setListData(tempListT);
+        setListData(reverseList);
     }
 
     @Override

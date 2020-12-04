@@ -54,7 +54,7 @@ public class ListSaleRequestBody implements Serializable {
         /**
          * 用户Id
          */
-        private long userId;
+        private Long userId;
         /**
          * 搜索name
          */
@@ -73,7 +73,7 @@ public class ListSaleRequestBody implements Serializable {
             return userId;
         }
 
-        public void setUserId(long userId) {
+        public void setUserId(Long userId) {
             this.userId = userId;
         }
 

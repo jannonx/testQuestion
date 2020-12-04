@@ -36,23 +36,11 @@ public class InstallDebugStatusAdapter extends BaseRecyclerAdapter<ProjectSiteSt
         //最后一条数据
         boolean lastOneItem = listData != null && (listData.size() - 1) == position;
 
-//        LogUtils.showLog("size=" + listData.size() + "...position=" + position);
-//        LogUtils.showLog("onlyOneData=" + onlyOneData + "...lastOneItem=" + lastOneItem);
-        View specialView = holder.getView(R.id.rl_first_view);
-        View normalView = holder.getView(R.id.cl_order_detail);
-        View firstAboveLie = holder.getView(R.id.v_first_above);
+        View vLineBelow = holder.getView(R.id.v_line_below);
         View vAboveLie = holder.getView(R.id.v_line_above);
 
-//        specialView.setVisibility(lastOneItem ? View.VISIBLE : View.GONE);
-        firstAboveLie.setVisibility(onlyOneData ? View.GONE : View.VISIBLE);
-
-        normalView.setVisibility(View.VISIBLE);
         vAboveLie.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
-
-        //specialData
-//        holder.setText(R.id.tv_activate_name, item.getCreateName() + "：生产开始");
-//        holder.setText(R.id.tv_activate_time, item.getCreateTime());
-        //normalData
+        vLineBelow.setVisibility(lastOneItem ? View.GONE : View.VISIBLE);
 
         ImageView imageView = holder.getView(R.id.iv_avatar);
         GlideUtils.getInstance().loadUrlImage(imageView, item.getImgUrl());

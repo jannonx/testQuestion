@@ -66,18 +66,17 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
         recycleView.setPullRefreshEnabled(isPullEnable());
         recycleView.setLoadMoreEnabled(isLoadMoreEnable());
 
-        viewModel.getAfterSaleList(getListRequestBody(true));
 
-
+        getListDataByClassify(true);
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 AfterSaleBean bean = listData.get(position);
                 bean.setModuleType(FunctionModuleType.TYPE_WORK);
                 if (SaleSectionType.TYPE_SECTION_CHECK == saleSectionType) {
-                    FocusAfterSaleDetailActivity.start(getContext(),bean);
+                    FocusAfterSaleDetailActivity.start(getContext(), bean);
                 } else {
-                    CustomerAcceptanceDetailActivity.start(getContext(),bean);
+                    CustomerAcceptanceDetailActivity.start(getContext(), bean);
                 }
 
             }
@@ -113,7 +112,7 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListSaleRequestBody body = new ListSaleRequestBody();
         ListSaleRequestBody.FiltersBean filtersBean = new ListSaleRequestBody.FiltersBean();
-        filtersBean.setUserId(loginInfo.getUserInfo().getId());
+        filtersBean.setUserId(SaleSectionType.TYPE_SECTION_ACCEPT == saleSectionType ? loginInfo.getUserInfo().getId() : null);
         filtersBean.setName(searchContent);
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
@@ -123,14 +122,22 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
                 "charset=utf-8"), str);
     }
 
+
+    public void getListDataByClassify(boolean isRefresh){
+        if (SaleSectionType.TYPE_SECTION_ACCEPT == saleSectionType){
+            viewModel.getAfterSaleCustomerAcceptanceList(getListRequestBody(isRefresh));
+        }else if (SaleSectionType.TYPE_SECTION_CHECK == saleSectionType){
+            viewModel.getAfterSaleList(getListRequestBody(isRefresh));
+        }
+    }
     @Override
     protected void refresh() {
-        viewModel.getAfterSaleList(getListRequestBody(true));
+        getListDataByClassify(true);
     }
 
     @Override
     protected void loadMore() {
-        viewModel.getAfterSaleList(getListRequestBody(false));
+        getListDataByClassify(false);
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -37,8 +38,6 @@ public class FocusProduceStatusAdapter extends BaseRecyclerAdapter<ProduceStateB
         //最后一条数据
         boolean lastOneItem = listData != null && (listData.size() - 1) == position;
 
-//        LogUtils.showLog("size=" + listData.size() + "...position=" + position);
-//        LogUtils.showLog("onlyOneData=" + onlyOneData + "...lastOneItem=" + lastOneItem);
         View specialView = holder.getView(R.id.rl_first_view);
         View normalView = holder.getView(R.id.cl_order_detail);
         View firstAboveLie = holder.getView(R.id.v_first_above);
@@ -54,22 +53,23 @@ public class FocusProduceStatusAdapter extends BaseRecyclerAdapter<ProduceStateB
         //specialData
         holder.setText(R.id.tv_activate_name, item.getCreateName() + "：生产开始");
         holder.setText(R.id.tv_activate_time, item.getCreateTime());
-        //normalData
 
+        //normalData
         ImageView imageView = holder.getView(R.id.iv_avatar);
         GlideUtils.getInstance().loadUrlImage(imageView, item.getImgUrl());
 
         View vBall = holder.getView(R.id.view_ball);
-
         vBall.setBackgroundResource(item.getBallBg());
 
         holder.setText(R.id.tv_product_status, item.getTitle());
-        holder.setText(R.id.tv_time, TextUtils.isEmpty(item.getCreateTime())?item.getApprovalTime():item.getCreateTime());
-
-        holder.setText(R.id.tv_name, TextUtils.isEmpty(item.getCreateName())?item.getApproveName():item.getCreateName());
-        holder.setText(R.id.tv_comment, item.getRemarks());
-        holder.setText(R.id.tv_department, TextUtils.isEmpty(item.getCreateDept())?item.getDepartmentName():item.getCreateDept());
-
+        TextView tvTime = holder.getView(R.id.tv_time);
+        tvTime.setText(TextUtils.isEmpty(item.getCreateTime()) ? item.getApprovalTime() : item.getCreateTime());
+        tvTime.setVisibility(TextUtils.isEmpty(item.getCreateTime()) || TextUtils.isEmpty(item.getApprovalTime()) ? View.VISIBLE : View.GONE);
+        holder.setText(R.id.tv_name, TextUtils.isEmpty(item.getCreateName()) ? item.getApproveName() : item.getCreateName());
+        TextView tvComment = holder.getView(R.id.tv_comment);
+        tvComment.setText(item.getRemarks());
+        tvComment.setVisibility(TextUtils.isEmpty(item.getRemarks()) ? View.VISIBLE : View.GONE);
+        holder.setText(R.id.tv_department, TextUtils.isEmpty(item.getCreateDept()) ? item.getDepartmentName() : item.getCreateDept());
 
         viewEmptyBottom.setVisibility(listData.size() >= 3 && (position == listData.size() - 1) ? View.VISIBLE : View.GONE);
     }

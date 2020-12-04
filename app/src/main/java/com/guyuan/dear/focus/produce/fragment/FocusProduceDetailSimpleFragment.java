@@ -12,6 +12,7 @@ import com.guyuan.dear.databinding.FragmentFocusProduceDetailSimpleBinding;
 import com.guyuan.dear.dialog.RemarkDialog;
 import com.guyuan.dear.dialog.SimpleConfirmViewDialog;
 
+import com.guyuan.dear.focus.produce.bean.EventProduceListRefresh;
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.OperateProduceType;
@@ -21,6 +22,8 @@ import com.guyuan.dear.office.approval.ui.ApprovalActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.ToastUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -149,6 +152,7 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
             public void onConfirm() {
                 ExecuteRequestBody body = new ExecuteRequestBody();
                 body.setEquipmentId(produceBean.getEquipmentId());
+                body.setId(produceBean.getPlanId());
                 body.setType(OperateProduceType.TYPE_EXECUTE_START.getCode());
                 String str = GsonUtil.objectToString(body);
                 RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
@@ -168,6 +172,7 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
             @Override
             public void onChanged(Integer dataRefreshBean) {
                 ToastUtils.showLong(getContext(), "提交成功!");
+                EventBus.getDefault().post(new EventProduceListRefresh());
                 getActivity().finish();
             }
         });
@@ -177,8 +182,8 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
     private void setProduceData(FocusProduceBean data) {
         planFragment.setProduceData(data);
 
-        binding.tvProductName.setText(data.getName());
-        binding.tvProductCode.setText(data.getCode());
+        binding.tvProductName.setText(data.getProjectName());
+        binding.tvProductCode.setText(data.getProjectCode());
         binding.tvDutyUnit.setText(data.getPrincipalDept());
 
         //设置生产状态

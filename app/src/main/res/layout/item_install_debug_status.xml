@@ -140,68 +140,8 @@
             app:layout_constraintTop_toBottomOf="@+id/label_department" />
 
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rl_first_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/dp_12"
-        android:visibility="gone"
-        android:paddingEnd="@dimen/dp_12"
-        android:paddingBottom="@dimen/dp_16"
-        tools:background="@color/color_red_F04864">
-
-        <View
-            android:id="@+id/v_first_above"
-            android:layout_width="@dimen/dp_0p5"
-            android:layout_height="0dp"
-            android:background="@color/color_blue_E7F1FF"
-            app:layout_constraintBottom_toTopOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
-            android:layout_marginTop="@dimen/dp_12"
-            android:gravity="center_vertical"
-            android:src="@mipmap/ic_clock_blue"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_activate_name"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp_24"
-            android:layout_marginStart="@dimen/dp_12"
-            android:gravity="center_vertical"
-            android:text="小江：生产开始"
-            android:textColor="@color/color_black_333333"
-            android:textSize="@dimen/sp_14"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-
-        <TextView
-            android:id="@+id/tv_activate_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_36"
-            android:layout_marginTop="@dimen/dp_4"
-            android:text="2020-09-03 18:53"
-            android:textColor="@color/color_grey_999999"
-            android:textSize="@dimen/sp_14"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
     <View
         android:id="@+id/view_empty_bottom"
         android:visibility="gone"

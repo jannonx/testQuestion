@@ -177,7 +177,7 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
                 int selectionEnd = binding.etSearch.getSelectionEnd();
                 if (enterWords.length() > wordLimitNum) {
                     //删除多余输入的字（不会显示出来）
-                    editable.delete(selectionStart - 1, selectionEnd);
+                    editable.delete(selectionStart - 1, selectionEnd);//
                     binding.etSearch.setText(editable);
                     //设置光标在最后
                     binding.etSearch.setSelection(selectionEnd);

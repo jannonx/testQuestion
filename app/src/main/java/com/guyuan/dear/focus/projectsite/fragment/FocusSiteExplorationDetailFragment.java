@@ -78,7 +78,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     private SiteExploreBean detailProjectData;
     protected ArrayList<String> photoList = new ArrayList<>();
     private ProduceApplyDialog dialog;
-
+    private PostInstallationDebugInfo postInstallationDebugInfo;
+    private PostCustomerAcceptanceInfo postCustomerAcceptanceInfo;
     private FocusSiteExplorationDetailActivity activity;
 
     public static FocusSiteExplorationDetailFragment newInstance(SiteExploreBean data) {
@@ -285,11 +286,22 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 clickRightBtn();
                 break;
             case R.id.tv_activate_btn:
-                postStatusInfo();
+                /**
+                 * 1.安装调试：继续安装
+                 * 2.其他：反馈问题
+                 */
+                if (ProjectReportType.TYPE_INSTALLATION_DEBUG == detailProjectData.getProjectReportType()) {
+                    clickLeftBtn();
+                } else {
+                    postStatusInfo();
+                }
                 break;
         }
     }
 
+    /**
+     * 其他：反馈问题
+     */
     private void postStatusInfo() {
         FollowCommentDialog.show(getActivity(), new FollowCommentDialog.OnFollowClickListener() {
             @Override
@@ -305,45 +317,6 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
             }
         });
 
-    }
-
-    private void clickRightBtn() {
-        rightDialog = new ProjectCheckConfirmDialog(getActivity(), detailProjectData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
-            @Override
-            public void onPickImageClick() {
-                activity.openAlbum(BaseTabActivity.FIRST);
-            }
-
-            @Override
-            public void onCommitCheckGoodsInfo(PostCheckInfo data) {
-
-            }
-
-            @Override
-            public void onCommitInstallationDebugInfo(PostInstallationDebugInfo data) {
-                LogUtils.showLog("onCommitInstallationDebugInfo");
-                //安装调试
-                data.setStatus(InstallDebugSatisfyType.TYPE_INSTALL_COMPLETE.getCode());
-                postInstallationDebugInfo = data;
-                activity.checkPhotoAndFileUpLoad(data.getImgUrl());
-            }
-
-            @Override
-            public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data) {
-                //验收状态，0:待验收，10合格，20不合格
-                data.setCheckStatus(10);
-                postCustomerAcceptanceInfo = data;
-                activity.checkPhotoAndFileUpLoad(data.getCheckUrl());
-            }
-        });
-        rightDialog.show();
-        rightDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                LogUtils.showLog("rightDialog....dismiss");
-                rightDialog = null;
-            }
-        });
     }
 
     private void clickLeftBtn() {
@@ -388,8 +361,44 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         });
     }
 
-    PostInstallationDebugInfo postInstallationDebugInfo;
-    PostCustomerAcceptanceInfo postCustomerAcceptanceInfo;
+    private void clickRightBtn() {
+        rightDialog = new ProjectCheckConfirmDialog(getActivity(), detailProjectData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
+            @Override
+            public void onPickImageClick() {
+                activity.openAlbum(BaseTabActivity.FIRST);
+            }
+
+            @Override
+            public void onCommitCheckGoodsInfo(PostCheckInfo data) {
+
+            }
+
+            @Override
+            public void onCommitInstallationDebugInfo(PostInstallationDebugInfo data) {
+                LogUtils.showLog("onCommitInstallationDebugInfo");
+                //安装调试
+                data.setStatus(InstallDebugSatisfyType.TYPE_INSTALL_COMPLETE.getCode());
+                postInstallationDebugInfo = data;
+                activity.checkPhotoAndFileUpLoad(data.getImgUrl());
+            }
+
+            @Override
+            public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data) {
+                //验收状态，0:待验收，10合格，20不合格
+                data.setCheckStatus(10);
+                postCustomerAcceptanceInfo = data;
+                activity.checkPhotoAndFileUpLoad(data.getCheckUrl());
+            }
+        });
+        rightDialog.show();
+        rightDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                LogUtils.showLog("rightDialog....dismiss");
+                rightDialog = null;
+            }
+        });
+    }
 
 
     private void postInfo(List<String> imageUrlList) {
@@ -498,10 +507,14 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 "继续" : "暂停";
         binding.tvPauseBtn.setText(leftText);
         binding.tvCompleteBtn.setText("完工");
-        //我的关注不显示
+        //我的关注，我的工作(暂停，完成)不显示
         binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
-                ? View.GONE : InstallDebugSatisfyType.TYPE_INSTALL_COMPLETE == detailProjectData.getInstallDebugSatisfyType() ?
-                View.GONE : View.VISIBLE);
+                ? View.GONE : InstallDebugSatisfyType.TYPE_INSTALL_COMPLETE == detailProjectData.getInstallDebugSatisfyType()
+                || InstallDebugSatisfyType.TYPE_INSTALL_PAUSE == detailProjectData.getInstallDebugSatisfyType() ? View.GONE : View.VISIBLE);
+        //暂停，隐藏--llApplyPanel，显示--tvActivateBtn
+        binding.tvActivateBtn.setText("继续安装");
+        binding.tvActivateBtn.setVisibility(InstallDebugSatisfyType.TYPE_INSTALL_PAUSE == detailProjectData.getInstallDebugSatisfyType()
+                ? View.VISIBLE : View.GONE);
     }
 
     /**

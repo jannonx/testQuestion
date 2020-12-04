@@ -14,15 +14,6 @@ import java.util.List;
  */
 public class ProduceStateBean {
 
-    //0.审批中 1.已同意 2.已拒绝
-    public static final int APPLY_ING = 0;
-    public static final int APPLY_PASS = 1;
-    public static final int APPLY_REJECT = 2;
-
-    //10502，暂停；10503，激活
-    public static final int TYPE_PAUSE = 10502;
-    public static final int TYPE_ACTIVATE = 10503;
-
     /**
      * id : 51
      * arType : 10501
@@ -114,27 +105,30 @@ public class ProduceStateBean {
      */
     private List<ProduceStateBean> texamineFlows;
 
+    private ProductInnerStatusType innerStatusType;
+
+    public ProductInnerStatusType getInnerStatusType() {
+        return ProductInnerStatusType.toType(this);
+    }
+
+    public void setInnerStatusType(ProductInnerStatusType innerStatusType) {
+        this.innerStatusType = innerStatusType;
+    }
+
+    /**
+     * 标题
+     *
+     * @return
+     */
     public String getTitle() {
-        if (TextUtils.isEmpty(getProdStatus())) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(TYPE_PAUSE == arType ? "暂停" : "激活");
-            stringBuilder.append(APPLY_ING == status ? "申请" :
-                    APPLY_PASS == status ? "申请通过" : "申请被驳回");
-            return stringBuilder.toString();
-
-        }
-
-        return getProdStatus();
+        return getInnerStatusType().getDes();
     }
 
     /**
      * 圆点的背景
      */
     public int getBallBg() {
-        if (TextUtils.isEmpty(getProdStatus())) {
-            return R.drawable.bg_blue_1890ff_round;
-        }
-        return R.drawable.bg_green_2fc25b_round;
+        return getInnerStatusType().getTextColor();
     }
 
     public String getRemarks() {
@@ -219,6 +213,10 @@ public class ProduceStateBean {
 
     public long getBusinessId() {
         return businessId;
+    }
+
+    public String getBusinessIdText() {
+        return String.valueOf(businessId);
     }
 
     public void setBusinessId(long businessId) {

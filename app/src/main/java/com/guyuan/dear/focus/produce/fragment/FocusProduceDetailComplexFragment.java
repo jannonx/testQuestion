@@ -18,6 +18,7 @@ import com.guyuan.dear.dialog.RemarkDialog;
 import com.guyuan.dear.dialog.SimpleConfirmViewDialog;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
+import com.guyuan.dear.focus.produce.bean.EventProduceListRefresh;
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.OperateProduceType;
@@ -32,6 +33,8 @@ import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
 import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -136,6 +139,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
             @Override
             public void onChanged(Integer dataRefreshBean) {
                 ToastUtils.showLong(getContext(), "提交成功!");
+                EventBus.getDefault().post(new EventProduceListRefresh());
                 getActivity().finish();
             }
         });
@@ -197,8 +201,8 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
 
         planFragment.setProduceData(data);
 
-        binding.tvProductName.setText(data.getName());
-        binding.tvProductCode.setText(data.getCode());
+        binding.tvProductName.setText(data.getProjectName());
+        binding.tvProductCode.setText(data.getProjectCode());
         binding.tvDutyUnit.setText(data.getPrincipalDept());
 
         //设置生产状态
