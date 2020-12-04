@@ -39,12 +39,13 @@ public class MaterialQcViewModel extends BaseDearViewModel {
     /**
      * 1 通过 2 不通过
      */
-    private MutableLiveData<Integer> reportResult = new MutableLiveData<>(2);
+    private MutableLiveData<Integer> reportResult = new MutableLiveData<>();
     private MutableLiveData<String> comments = new MutableLiveData<>();
     private MutableLiveData<Boolean> isNeedVerify = new MutableLiveData<>(false);
     private MutableLiveData<MaterialInfo> selectedMaterial = new MutableLiveData<>();
     private MutableLiveData<BaseProjectBean> selectedProject = new MutableLiveData<>();
     private MutableLiveData<BaseQcApproachBean> selectedQcApproach = new MutableLiveData<>();
+    public MutableLiveData<Boolean> isCheckAllMaterials = new MutableLiveData<>(false);
 
 
     /**
@@ -169,16 +170,36 @@ public class MaterialQcViewModel extends BaseDearViewModel {
     public void updateProjectInfo(BaseProjectBean projectBean) {
         this.selectedMaterial.postValue(null);
         this.selectedProject.postValue(projectBean);
+        isCheckAllMaterials.postValue(false);
     }
 
 
     public void updateQcApproach(BaseQcApproachBean approachBean) {
         this.selectedQcApproach.postValue(approachBean);
+        //1表示全检
+        if (approachBean.getApproachId().equals("1")) {
+            isCheckAllMaterials.postValue(true);
+            MaterialInfo value = selectedMaterial.getValue();
+            //强行选择最大抽检数量
+            if (value != null) {
+                sampleSize.postValue(String.valueOf(value.getQuantity()));
+            }
+        } else {
+            isCheckAllMaterials.postValue(false);
+        }
     }
 
 
     public void updateSelectedMaterial(MaterialInfo materialInfo) {
         this.selectedMaterial.postValue(materialInfo);
+        BaseQcApproachBean value = selectedQcApproach.getValue();
+        if (value != null) {
+            String approachId = value.getApproachId();
+            //1表示全检，这时默认选择最大数量
+            if ("1".equals(approachId)) {
+                sampleSize.postValue(String.valueOf(materialInfo.getQuantity()));
+            }
+        }
     }
 
     public void updateQcCheckers(ArrayList<StaffBean> staffs) {
@@ -257,7 +278,7 @@ public class MaterialQcViewModel extends BaseDearViewModel {
         }
 
         String sampleSize = getSampleSize().getValue();
-        if (TextUtils.isEmpty(sampleSize)||"0".equals(sampleSize)) {
+        if (TextUtils.isEmpty(sampleSize) || "0".equals(sampleSize)) {
             showToast("请输入抽检数");
             return;
         } else {
@@ -309,11 +330,12 @@ public class MaterialQcViewModel extends BaseDearViewModel {
         qcApproachList.postValue(new ArrayList<>());
         materialList.postValue(new ArrayList<>());
         sampleSize.postValue("0");
-        reportResult.postValue(2);
+        reportResult.postValue(null);
         comments.postValue("");
         selectedMaterial.postValue(null);
         selectedProject.postValue(null);
         selectedQcApproach.postValue(null);
         isNeedVerify.postValue(false);
+        isCheckAllMaterials.postValue(false);
     }
 }

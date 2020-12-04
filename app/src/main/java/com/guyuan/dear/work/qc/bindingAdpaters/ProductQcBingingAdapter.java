@@ -5,7 +5,6 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport;
 import com.guyuan.dear.work.qc.adapers.ProductionInfoAdapter;
 import com.guyuan.dear.work.qc.beans.BaseQcApproachBean;
 import com.guyuan.dear.work.qc.beans.BaseQcSubmitBean;
@@ -26,36 +25,38 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
  **/
 public class ProductQcBingingAdapter {
     @BindingAdapter("showQcResult")
-    public static void showQcResult(AppCompatTextView view,int result){
-        if(result == BaseQcSubmitBean.QC_RESULT_PASS){
+    public static void showQcResult(AppCompatTextView view, int result) {
+        if (result == BaseQcSubmitBean.QC_RESULT_PASS) {
             view.setText("合格");
-        }else {
+        } else if (result == BaseQcSubmitBean.QC_RESULT_REJECT) {
             view.setText("异常");
+        }else {
+            view.setText("");
         }
     }
 
     @BindingAdapter("showNegativePositive")
-    public static void showNegativePositive(AppCompatTextView view,boolean isPositive){
-        if(isPositive){
+    public static void showNegativePositive(AppCompatTextView view, boolean isPositive) {
+        if (isPositive) {
             view.setText("是");
-        }else {
+        } else {
             view.setText("否");
         }
     }
 
     @BindingAdapter("showMaterialNameAndSpec")
-    public static void showMaterialNameAndSpec(AppCompatTextView view, MaterialInfo bean){
-        if(bean==null){
+    public static void showMaterialNameAndSpec(AppCompatTextView view, MaterialInfo bean) {
+        if (bean == null) {
             view.setText("");
             return;
         }
-        String text = bean.getMaterialName()+" "+bean.getSpec();
+        String text = bean.getMaterialName() + " " + bean.getSpec();
         view.setText(text);
     }
 
     @BindingAdapter("showQcApproachName")
-    public static void showQcApproachName(AppCompatTextView view, BaseQcApproachBean bean){
-        if(bean==null){
+    public static void showQcApproachName(AppCompatTextView view, BaseQcApproachBean bean) {
+        if (bean == null) {
             view.setText("");
             return;
         }
@@ -63,11 +64,11 @@ public class ProductQcBingingAdapter {
     }
 
     @BindingAdapter("setProductionInfos")
-    public static void setProductionInfos(BaseRecyclerView view, List<ProductInfo> data){
-        if(data==null){
+    public static void setProductionInfos(BaseRecyclerView view, List<ProductInfo> data) {
+        if (data == null) {
             data = new ArrayList<>();
         }
-        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL,false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
         ProductionInfoAdapter adapter = new ProductionInfoAdapter(data);
         BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
         view.setLayoutManager(layoutManager);

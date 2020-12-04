@@ -24,6 +24,7 @@ public class ContractSearchListViewModel extends BaseDearViewModel {
     private static final int PAGE_SIZE = 50;
     public MutableLiveData<Boolean> isLoadAll = new MutableLiveData<>(false);
     public MutableLiveData<Boolean> shouldNotifyDateSetChange = new MutableLiveData<>(false);
+    public MutableLiveData<Boolean> shouldShowNoData = new MutableLiveData<>(true);
 
     public Disposable getContractListByComNameOrContractNo(String companyNameOrContractNo) {
         return repo.getContractListFromNet(companyNameOrContractNo, currentIndex++, PAGE_SIZE, callback);
@@ -37,6 +38,7 @@ public class ContractSearchListViewModel extends BaseDearViewModel {
             } else {
                 contractList.getValue().addAll(result);
                 shouldNotifyDateSetChange.postValue(true);
+                shouldShowNoData.postValue(false);
             }
         }
     };

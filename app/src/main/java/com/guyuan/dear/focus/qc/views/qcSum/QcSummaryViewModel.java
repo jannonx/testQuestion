@@ -8,10 +8,13 @@ import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.qc.beans.QcSummaryBean;
 import com.guyuan.dear.focus.qc.repo.QcSummaryRepo;
+import com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity;
 import com.guyuan.dear.net.DearNetHelper;
 import com.guyuan.dear.utils.ToastUtils;
 
 import io.reactivex.disposables.Disposable;
+
+import static com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity.SEARCH_TYPE_ALL;
 
 /**
  * @author: 廖华凯
@@ -44,6 +47,16 @@ public class QcSummaryViewModel extends BaseViewModel {
      * 基础数据源
      */
     private MutableLiveData<QcSummaryBean> qcSummaryBean = new MutableLiveData<>();
+
+    /**
+     * 搜索qc报告
+     *
+     * @param searchType {@link QcSearchListActivity#SEARCH_TYPE_ALL}
+     * {@link QcSearchListActivity#SEARCH_TYPE_ALL_PASS_REPORTS}
+     * {@link QcSearchListActivity#SEARCH_TYPE_ALL_REJECTED_REPORTS}
+     * {@link QcSearchListActivity#SEARCH_TYPE_ALL_MY_REPORTS}
+     */
+    public MutableLiveData<Integer> searchType = new MutableLiveData<>(SEARCH_TYPE_ALL);
     /**
      * 数据源实现类
      */

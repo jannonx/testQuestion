@@ -72,6 +72,9 @@
         android:roundIcon="@mipmap/icon_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".focus.qc.views.qcSearchList.QcSearchListActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity android:name=".focus.contract.view.contractSearchList.ContractSearchListActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

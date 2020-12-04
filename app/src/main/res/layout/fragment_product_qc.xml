@@ -4,7 +4,7 @@
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="fragment_product_qc_vm"
@@ -42,6 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
+                    android:hint="请选择"
                     android:paddingRight="@dimen/dp_5"
                     android:text="@{fragment_product_qc_vm.selectedProject.projectName}"
                     android:textColor="@color/color_grey_999999"
@@ -99,6 +100,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
+                    android:hint="请选择"
                     android:layout_height="wrap_content"
                     android:text="@{fragment_product_qc_vm.selectedProductBatch.batchId}"
                     android:textColor="@color/color_grey_999999"
@@ -117,10 +119,10 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dp_12">
 
-               <tl.com.easy_recycleview_library.BaseRecyclerView
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   app:setProductionInfos="@{fragment_product_qc_vm.selectedProductBatch.products}"/>
+                <tl.com.easy_recycleview_library.BaseRecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:setProductionInfos="@{fragment_product_qc_vm.selectedProductBatch.products}" />
             </FrameLayout>
 
             <include
@@ -148,11 +150,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="请选择"
+                    android:hint="请选择"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_15"
-                    app:showQcApproachName="@{fragment_product_qc_vm.selectedQcApproach}"
-                    />
+                    app:showQcApproachName="@{fragment_product_qc_vm.selectedQcApproach}" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
@@ -187,18 +188,18 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:enabled="true"
                         android:button="@drawable/selector_ic_svg_unchecked_to_checked"
+                        android:enabled="true"
                         android:padding="@dimen/dp_8"
                         android:text="设计图样" />
 
                     <androidx.appcompat.widget.AppCompatCheckBox
-                        android:enabled="true"
                         android:id="@+id/fragment_product_qc_cbx_judge_conditions_by_nation_standard"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:button="@drawable/selector_ic_svg_unchecked_to_checked"
+                        android:enabled="true"
                         android:padding="@dimen/dp_8"
                         android:text="国家标准" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -225,10 +226,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@null"
+                    android:focusable="@{!fragment_product_qc_vm.isCheckAllProducts}"
                     android:gravity="center"
                     android:hint="请输入数量"
                     android:inputType="number"
-                    android:text="@={fragment_product_qc_vm.sampleSize}"/>
+                    android:text="@={fragment_product_qc_vm.sampleSize}" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />
@@ -248,15 +250,15 @@
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    app:setPauseContractCopyList="@{fragment_product_qc_vm.qcCheckers}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    app:setPauseContractCopyList="@{fragment_product_qc_vm.qcCheckers}" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:onClick="@{fragment_product_qc_vm.onClickAddQcCheckers}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="@{fragment_product_qc_vm.onClickAddQcCheckers}"
                     android:padding="@dimen/dp_12"
                     android:scaleType="centerInside"
                     app:srcCompat="@mipmap/add" />
@@ -268,8 +270,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:padding="@dimen/dp_12"
-                android:onClick="@{fragment_product_qc_vm.onClickSelectResult}">
+                android:onClick="@{fragment_product_qc_vm.onClickSelectResult}"
+                android:padding="@dimen/dp_12">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
@@ -286,10 +288,10 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:paddingRight="@dimen/dp_5"
-                    android:text="请选择"
+                    android:hint="请选择"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_15"
-                    app:showQcResult="@{fragment_product_qc_vm.reportResult}"/>
+                    app:showQcResult="@{fragment_product_qc_vm.reportResult}" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
@@ -323,9 +325,11 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_120"/>
+                        android:layout_height="@dimen/dp_120" />
+
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/fragment_product_qc_edt_comment"
                         android:layout_width="match_parent"
@@ -334,15 +338,15 @@
                         android:gravity="start|top"
                         android:hint="请输入原因，最长不超过240个字符。"
                         android:padding="@dimen/dp_12"
-                        android:text="@={fragment_product_qc_vm.comments}"/>
+                        android:text="@={fragment_product_qc_vm.comments}" />
                 </FrameLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|bottom"
-                    app:showInputCount="@{fragment_product_qc_vm.comments}"
-                    android:text="0/240" />
+                    android:text="0/240"
+                    app:showInputCount="@{fragment_product_qc_vm.comments}" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />
@@ -351,8 +355,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:padding="@dimen/dp_12"
-                android:onClick="@{fragment_product_qc_vm.onClickSelectIfNeedVerify}">
+                android:onClick="@{fragment_product_qc_vm.onClickSelectIfNeedVerify}"
+                android:padding="@dimen/dp_12">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
@@ -367,11 +371,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="是"
+                    android:hint="请选择"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_15"
-                    app:showNegativePositive="@{fragment_product_qc_vm.isNeedVerify}"
-                    />
+                    app:showNegativePositive="@{fragment_product_qc_vm.isNeedVerify}" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
@@ -379,7 +382,7 @@
                     app:srcCompat="@drawable/ic_svg_right_arrow" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <include layout="@layout/view_divider_horizontal_grey_e5e5e5"/>
+            <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -400,15 +403,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    app:setPauseContractSendList="@{fragment_product_qc_vm.verifiers}"/>
+                    app:setPauseContractSendList="@{fragment_product_qc_vm.verifiers}" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="@{fragment_product_qc_vm.onClickAddVerifiers}"
                     android:padding="@dimen/dp_12"
                     android:scaleType="centerInside"
-                    app:srcCompat="@mipmap/add"
-                    android:onClick="@{fragment_product_qc_vm.onClickAddVerifiers}"/>
+                    app:srcCompat="@mipmap/add" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -416,11 +419,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_12"
                 android:background="@drawable/bg_blue_0050b4_corner_50"
+                android:onClick="@{fragment_product_qc_vm.onClickSubmit}"
                 android:text="提交质检报告"
-                android:textSize="@dimen/sp_18"
-                android:textStyle="bold"
                 android:textColor="@color/white"
-                android:onClick="@{fragment_product_qc_vm.onClickSubmit}"/>
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

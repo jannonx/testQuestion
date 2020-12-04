@@ -33,12 +33,11 @@ public class ContractStatusListViewModel extends BaseDearViewModel {
     private int pauseListPageIndex = 1;
     private MutableLiveData<Boolean> isAllPauseListLoaded = new MutableLiveData<>(false);
     private int restartListPageIndex = 1;
-    private int exceptionListPageIndex = 1;
-    private int totalListPageIndex = 1;
     private MutableLiveData<Boolean> isAllRestartListLoaded = new MutableLiveData<>(false);
     private MutableLiveData<Boolean> isAllExceptionListLoaded = new MutableLiveData<>(false);
     private MutableLiveData<Boolean> isAllTotalListLoaded = new MutableLiveData<>(false);
     private static final int PAGE_SIZE = 50;
+    public MutableLiveData<Boolean> shouldShowNoData=new MutableLiveData<>(true);
 
 
     public MutableLiveData<List<BaseContractExcptBean>> getPauseContractList() {
@@ -75,23 +74,6 @@ public class ContractStatusListViewModel extends BaseDearViewModel {
     }
 
     public Disposable getPauseContractsFromNet() {
-//        List<BaseContractExcptBean> list = new ArrayList<>();
-//        for (int i = 0; i < 10; i++) {
-//            BaseContractExcptBean bean = new BaseContractExcptBean();
-//            bean.setContractNum(System.currentTimeMillis()+"");
-//            bean.setBuyer("深圳固远智能机器人有限公司");
-//            if(i%2==0){
-//                bean.setJudgement("国家政策暂停");
-//                bean.setExceptionTag("暂停");
-//                bean.setCause("客户要求此暂缓项目。");
-//            }else {
-//                bean.setJudgement("成本预算亏损导致终止");
-//                bean.setExceptionTag("终止");
-//                bean.setCause("需要和客户重新商定工程造价。");
-//            }
-//            list.add(bean);
-//        }
-//        contractList.postValue(list);
         return repo.getPauseContractList(pauseListPageIndex++, PAGE_SIZE, getPauseListCallback);
     }
 
@@ -108,10 +90,10 @@ public class ContractStatusListViewModel extends BaseDearViewModel {
             isShowLoading.setValue(false);
             if (result.isEmpty()) {
                 isAllPauseListLoaded.setValue(true);
-                ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
             } else {
                 pauseContractList.getValue().addAll(result);
                 pauseContractList.postValue(pauseContractList.getValue());
+                shouldShowNoData.postValue(false);
             }
         }
 
@@ -139,10 +121,10 @@ public class ContractStatusListViewModel extends BaseDearViewModel {
             isShowLoading.setValue(false);
             if (result.isEmpty()) {
                 isAllRestartListLoaded.setValue(true);
-                ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
             } else {
                 restartContractList.getValue().addAll(result);
                 restartContractList.postValue(restartContractList.getValue());
+                shouldShowNoData.postValue(false);
             }
         }
 
@@ -160,10 +142,10 @@ public class ContractStatusListViewModel extends BaseDearViewModel {
             protected void handleResult(List<ContractBean.ContentBean> result) {
                 if (result.isEmpty()) {
                     isAllExceptionListLoaded.setValue(true);
-                    ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
                 } else {
                     exceptionContractList.getValue().addAll(result);
                     exceptionContractList.postValue(exceptionContractList.getValue());
+                    shouldShowNoData.postValue(false);
                 }
             }
         });
@@ -177,10 +159,10 @@ public class ContractStatusListViewModel extends BaseDearViewModel {
             protected void handleResult(List<ContractBean.ContentBean> result) {
                 if (result.isEmpty()) {
                     isAllTotalListLoaded.setValue(true);
-                    ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
                 } else {
                     totalContractList.getValue().addAll(result);
                     totalContractList.postValue(totalContractList.getValue());
+                    shouldShowNoData.postValue(false);
                 }
             }
         });

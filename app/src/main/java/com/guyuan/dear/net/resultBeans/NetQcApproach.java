@@ -23,6 +23,9 @@ public class NetQcApproach {
      * value :
      */
 
+    /**
+     * 1 全检 2 抽检 3 按照质检文件抽检
+     */
     private String key;
     private String value;
 

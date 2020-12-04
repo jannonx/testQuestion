@@ -85,6 +85,10 @@ public class CommonUtils {
         return new Gson().fromJson(loginStr, LoginBean.class);
     }
 
+    public static long getCurrentUserId(){
+        return getLoginInfo().getUserInfo().getId();
+    }
+
     public static FactoryBean getFactoryListFromCache() {
         FactoryBean bean = null;
         String factoryCache =

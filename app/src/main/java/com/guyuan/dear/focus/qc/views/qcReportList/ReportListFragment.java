@@ -20,6 +20,7 @@ import com.guyuan.dear.focus.qc.beans.BaseProductQcReport;
 import com.guyuan.dear.focus.qc.beans.GenericQcReport;
 import com.guyuan.dear.focus.qc.views.materialQcDetail.MaterialQcReportDetailActivity;
 import com.guyuan.dear.focus.qc.views.productQcDetail.ProductQcReportDetailActivity;
+import com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity;
 import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.ConstantValue;
@@ -90,6 +91,13 @@ public class ReportListFragment extends BaseMvvmFragment<FragmentAllQcReportList
         dateFrom = CalenderUtils.getInstance().getXMonthsAgoInYearMonthFormat(dateTo, 3);
         Bundle arguments = getArguments();
         reportType = arguments.getInt(ConstantValue.KEY_REPORT_TYPE, REPORT_TYPE_SHOW_ALL_REPORTS);
+        if (reportType == REPORT_TYPE_ONLY_REJECTED_REPORTS) {
+            getViewModel().searchType.postValue(QcSearchListActivity.SEARCH_TYPE_ALL_REJECTED_REPORTS);
+        } else if (reportType == REPORT_TYPE_SHOW_ALL_REPORTS) {
+            getViewModel().searchType.postValue(QcSearchListActivity.SEARCH_TYPE_ALL);
+        } else if (reportType == REPORT_TYPE_ONLY_MY_REPORTS) {
+            getViewModel().searchType.postValue(QcSearchListActivity.SEARCH_TYPE_ALL_MY_REPORTS);
+        }
         resetAndSearchQcReportsByTimePeriod(dateFrom, dateTo);
     }
 
@@ -129,7 +137,6 @@ public class ReportListFragment extends BaseMvvmFragment<FragmentAllQcReportList
                     public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
                         dateFrom = millseconds;
                         selectEndTime();
-
                     }
                 });
     }

@@ -27,9 +27,13 @@ public class QcSummaryBindingAdapter {
         view.setText(yearAndMonth);
     }
 
-    @BindingAdapter(value = {"setQcPassCount","setQcSampleSize"},requireAll = true)
-    public static void calculateQcSummaryPassRate(AppCompatTextView view,int passCount,int sampleSize){
-        float rate = passCount*1.f/sampleSize;
-        view.setText(String.format(Locale.CHINA,"%.2f%%",rate*100));
+    @BindingAdapter(value = {"setQcPassCount", "setQcSampleSize"}, requireAll = true)
+    public static void calculateQcSummaryPassRate(AppCompatTextView view, int passCount, int sampleSize) {
+        if (sampleSize == 0) {
+            view.setText("0%");
+            return;
+        }
+        float rate = passCount * 1.f / sampleSize;
+        view.setText(String.format(Locale.CHINA, "%.2f%%", rate * 100));
     }
 }

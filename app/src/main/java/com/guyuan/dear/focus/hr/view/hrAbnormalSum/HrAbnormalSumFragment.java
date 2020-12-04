@@ -50,12 +50,15 @@ public class HrAbnormalSumFragment extends BaseMvvmFragment<FragmentHrAnormalSum
         getViewModel().onClickSelectDate.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialogUtils.pickTime(getParentFragmentManager(), "请选择日期", Type.YEAR_MONTH_DAY, new OnDateSetListener() {
-                    @Override
-                    public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
-                        getViewModel().getDataFromNet(millseconds);
-                    }
-                });
+                AlertDialogUtils.pickTime(getParentFragmentManager(), "请选择日期",
+                        0, System.currentTimeMillis(), getViewModel().currentSelectedData.getValue(),
+                        Type.YEAR_MONTH_DAY, new OnDateSetListener() {
+                            @Override
+                            public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
+                                getViewModel().currentSelectedData.postValue(millseconds);
+                                getViewModel().getDataFromNet(millseconds);
+                            }
+                        });
             }
         });
 

@@ -14,10 +14,12 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentPauseContractBinding;
 import com.guyuan.dear.dialog.SelectionDialog;
 import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
+import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.net.DearNetHelper;
 import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
 import com.guyuan.dear.net.resultBeans.NetClientInfo;
 import com.guyuan.dear.net.resultBeans.NetServerParam;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
@@ -67,6 +69,11 @@ public class ContractApplyFragment extends BaseMvvmFragment<FragmentPauseContrac
         Bundle bundle = getArguments();
         type = bundle.getInt(ConstantValue.KEY_APPLY_TYPE, ContractApplyBean.APPLY_TYPE_PAUSE);
         getViewModel().applyType.postValue(type);
+
+        //选人时把自己过滤掉
+        StaffBean me = new StaffBean();
+        me.setId(CommonUtils.getCurrentUserId());
+        getViewModel().hiddenList.getValue().add(me);
     }
 
     @Override
@@ -107,8 +114,9 @@ public class ContractApplyFragment extends BaseMvvmFragment<FragmentPauseContrac
             public void onClick(View v) {
                 ArrayList<StaffBean> sendList = getViewModel().sendList.getValue();
                 ArrayList<StaffBean> copyList = getViewModel().copyList.getValue();
+                ArrayList<StaffBean> hiddenList = getViewModel().hiddenList.getValue();
                 PickStaffsActivity.startForResult(ContractApplyFragment.this, REQUEST_CODE_PICK_SEND_LIST, "请选择审批人",
-                        sendList, null, copyList, 10);
+                        sendList, hiddenList, copyList, 10);
             }
         });
 
@@ -117,8 +125,9 @@ public class ContractApplyFragment extends BaseMvvmFragment<FragmentPauseContrac
             public void onClick(View v) {
                 ArrayList<StaffBean> sendList = getViewModel().sendList.getValue();
                 ArrayList<StaffBean> copyList = getViewModel().copyList.getValue();
+                ArrayList<StaffBean> hiddenList = getViewModel().hiddenList.getValue();
                 PickStaffsActivity.startForResult(ContractApplyFragment.this, REQUEST_CODE_PICK_COPY_LIST, "请选择抄送人",
-                        copyList, null, sendList, 10);
+                        copyList, hiddenList, sendList, 10);
 
             }
         });

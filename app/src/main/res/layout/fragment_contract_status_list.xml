@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
+        <import type="android.view.View" />
+
         <variable
             name="fragment_contract_status_list_vm"
             type="com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListViewModel" />
@@ -12,12 +14,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <com.guyuan.dear.customizeview.contractSearchBar.ContractSearchBar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <tl.com.easy_recycleview_library.BaseRecyclerView
-            android:id="@+id/fragment_contract_status_list_recycler_view"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+            <tl.com.easy_recycleview_library.BaseRecyclerView
+                android:id="@+id/fragment_contract_status_list_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <include
+                layout="@layout/layout_no_data"
+                android:visibility="visible" />
+        </FrameLayout>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

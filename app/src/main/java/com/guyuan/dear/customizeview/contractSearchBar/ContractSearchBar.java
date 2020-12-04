@@ -44,7 +44,7 @@ public class ContractSearchBar extends FrameLayout {
             public void onClick(View v) {
                 String content = edtSearchContent.getText().toString();
                 if(!TextUtils.isEmpty(content)){
-                    ContractSearchListActivity.start(getContext(),"合同详情",content);
+                    ContractSearchListActivity.start(getContext(),"合同搜索",content);
                 }
             }
         });
