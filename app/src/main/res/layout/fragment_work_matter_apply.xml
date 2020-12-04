@@ -3,267 +3,272 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/bg_window"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/matter_apply_project_name_ll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="@dimen/dp_12">
-
-            <TextView
-                style="@style/TextBig"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="项目名称" />
-
-            <TextView
-                android:id="@+id/matter_apply_project_name_tv"
-                style="@style/TextBig"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/right_direction"
-                android:drawablePadding="5dp"
-                android:text="请选择"
-                android:textColor="#999999" />
-        </LinearLayout>
-
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_1"
-            android:background="@color/white"
-            android:padding="@dimen/dp_12">
+            android:layout_height="match_parent"
+            android:background="@color/bg_window"
+            android:orientation="vertical">
 
-            <TextView
-                style="@style/TextNormal"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/matter_apply_project_name_ll"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="项目编号："
-                android:textColor="#999999" />
+                android:background="@color/white"
+                android:padding="@dimen/dp_12">
 
+                <TextView
+                    style="@style/TextBig"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="项目名称" />
 
-            <TextView
-                android:id="@+id/matter_apply_project_code_tv"
-                style="@style/TextNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#999999"
-                tools:text="sdsadffsdf" />
+                <TextView
+                    android:id="@+id/matter_apply_project_name_tv"
+                    style="@style/TextBig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@mipmap/right_direction"
+                    android:drawablePadding="5dp"
+                    android:text="请选择"
+                    android:textColor="#999999" />
+            </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/matter_apply_type_ll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
-            android:background="@color/white"
-            android:padding="@dimen/dp_12">
-
-            <TextView
-                style="@style/TextBig"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="生产类型" />
-
-            <TextView
-                android:id="@+id/matter_apply_produce_type_tv"
-                style="@style/TextBig"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/right_direction"
-                android:drawablePadding="5dp"
-                android:text="请选择"
-                android:textColor="#999999" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/matter_apply_product_ll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_1"
-            android:background="@color/white"
-            android:padding="@dimen/dp_12">
-
-            <TextView
-                style="@style/TextBig"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="产品名称" />
-
-            <TextView
-                android:id="@+id/matter_apply_product_name_tv"
-                style="@style/TextBig"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/right_direction"
-                android:drawablePadding="5dp"
-                android:text="请选择"
-                android:textColor="#999999" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/matter_apply_material_ll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_8"
-            android:background="@color/white"
-            android:padding="@dimen/dp_12">
-
-            <TextView
-                style="@style/TextBig"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="名称+规格材料" />
-
-            <TextView
-                android:id="@+id/matter_apply_spec_tv"
-                style="@style/TextBig"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/right_direction"
-                android:drawablePadding="5dp"
-                android:text="请选择"
-                android:textColor="#999999" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_1"
-            android:background="@color/white"
-            android:padding="@dimen/dp_12">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#F5F7FA"
-                android:orientation="vertical"
+                android:layout_marginTop="@dimen/dp_1"
+                android:background="@color/white"
+                android:padding="@dimen/dp_12">
+
+                <TextView
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="项目编号："
+                    android:textColor="#999999" />
+
+
+                <TextView
+                    android:id="@+id/matter_apply_project_code_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#999999"
+                    tools:text="sdsadffsdf" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/matter_apply_type_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:background="@color/white"
+                android:padding="@dimen/dp_12">
+
+                <TextView
+                    style="@style/TextBig"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="生产类型" />
+
+                <TextView
+                    android:id="@+id/matter_apply_produce_type_tv"
+                    style="@style/TextBig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@mipmap/right_direction"
+                    android:drawablePadding="5dp"
+                    android:text="请选择"
+                    android:textColor="#999999" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/matter_apply_product_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_1"
+                android:background="@color/white"
+                android:padding="@dimen/dp_12">
+
+                <TextView
+                    style="@style/TextBig"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="产品名称" />
+
+                <TextView
+                    android:id="@+id/matter_apply_product_name_tv"
+                    style="@style/TextBig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@mipmap/right_direction"
+                    android:drawablePadding="5dp"
+                    android:text="请选择"
+                    android:textColor="#999999" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/matter_apply_material_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
+                android:background="@color/white"
+                android:padding="@dimen/dp_12">
+
+                <TextView
+                    style="@style/TextBig"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="名称+规格材料" />
+
+                <TextView
+                    android:id="@+id/matter_apply_spec_tv"
+                    style="@style/TextBig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableRight="@mipmap/right_direction"
+                    android:drawablePadding="5dp"
+                    android:text="请选择"
+                    android:textColor="#999999" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_1"
+                android:background="@color/white"
                 android:padding="@dimen/dp_12">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="#F5F7FA"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_12">
 
-                    <TextView
-                        android:id="@+id/matter_apply_material_name_tv"
-                        style="@style/TextNormal"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/matter_apply_material_name_tv"
+                            style="@style/TextNormal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            tools:text="标牌" />
+
+                        <TextView
+                            android:id="@+id/matter_apply_material_number_tv"
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="3台" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        tools:text="标牌" />
+                        android:layout_marginTop="@dimen/dp_12">
+
+                        <TextView
+                            android:id="@+id/matter_apply_material_code_tv"
+                            style="@style/TextNormal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="#757575"
+                            tools:text="@string/code" />
+
+                        <TextView
+                            android:id="@+id/matter_apply_material_quality_tv"
+                            style="@style/TextNormal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#757575"
+                            tools:text="@string/quality" />
+                    </LinearLayout>
 
                     <TextView
-                        android:id="@+id/matter_apply_material_number_tv"
+                        android:id="@+id/matter_apply_material_remark_tv"
                         style="@style/TextNormal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="3台" />
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:textColor="#757575"
+                        tools:text="@string/remark" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_12">
-
-                    <TextView
-                        android:id="@+id/matter_apply_material_code_tv"
-                        style="@style/TextNormal"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="#757575"
-                        tools:text="@string/code" />
-
-                    <TextView
-                        android:id="@+id/matter_apply_material_quality_tv"
-                        style="@style/TextNormal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#757575"
-                        tools:text="@string/quality" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/matter_apply_material_remark_tv"
-                    style="@style/TextNormal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_12"
-                    android:textColor="#757575"
-                    tools:text="@string/remark" />
             </LinearLayout>
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/dp_12">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="@dimen/dp_12">
+                <TextView
+                    style="@style/TextBig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="领用数量" />
+
+                <EditText
+                    android:id="@+id/matter_apply_et"
+                    style="@style/edit_text_style"
+                    android:layout_marginLeft="@dimen/dp_48"
+                    android:hint="请输入"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:numeric="integer" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_1"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dp_12">
+
+                <TextView
+                    style="@style/TextBig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="审核人" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/matter_apply_rv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10" />
+
+                <ImageView
+                    android:id="@+id/matter_apply_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:src="@mipmap/add" />
+            </LinearLayout>
+
 
             <TextView
-                style="@style/TextBig"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="领用数量" />
+                android:id="@+id/matter_commit_tv"
+                style="@style/commit_btn"
+                android:text="提交领料申请" />
 
-            <EditText
-                android:id="@+id/matter_apply_et"
-                style="@style/edit_text_style"
-                android:layout_marginLeft="@dimen/dp_48"
-                android:hint="请输入"
-                android:inputType="number"
-                android:maxLength="5"
-                android:numeric="integer" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_1"
-            android:background="@color/white"
-            android:gravity="center_vertical"
-            android:padding="@dimen/dp_12">
-
-            <TextView
-                style="@style/TextBig"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="审核人" />
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/matter_apply_rv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_10" />
-
-            <ImageView
-                android:id="@+id/matter_apply_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:src="@mipmap/add" />
-        </LinearLayout>
-
-
-        <TextView
-            android:id="@+id/matter_commit_tv"
-            style="@style/commit_btn"
-            android:text="提交领料申请" />
-
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

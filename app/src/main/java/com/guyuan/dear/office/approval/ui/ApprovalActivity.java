@@ -80,7 +80,12 @@ public class ApprovalActivity extends BaseTabActivity<ActivityBaseTabBinding, Ap
         viewModel.getApprovalListMLD().observe(this, new Observer<ApprovalListBean>() {
             @Override
             public void onChanged(ApprovalListBean approvalListBean) {
-                approvalFragment.setListData(approvalListBean.getContent());
+                List<ApprovalListBean.ContentBean> contentBeanList = approvalListBean.getContent();
+                for (int i = 0; i < contentBeanList.size(); i++) {
+                    ApprovalListBean.ContentBean contentBean = contentBeanList.get(i);
+                    contentBean.setApproval(true);
+                }
+                approvalFragment.setListData(contentBeanList);
             }
         });
 
@@ -102,8 +107,8 @@ public class ApprovalActivity extends BaseTabActivity<ActivityBaseTabBinding, Ap
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.selector_approval);
+        tabDrawableList.add(R.drawable.selector_approved);
         return tabDrawableList;
     }
 

@@ -10,8 +10,10 @@ import com.guyuan.dear.focus.transport.data.bean.TransportDetailBean;
 import com.guyuan.dear.focus.transport.ui.detail.TransportDocumentFragment;
 import com.guyuan.dear.focus.transport.ui.detail.TransportInventoryFragment;
 import com.guyuan.dear.focus.transport.ui.detail.TransportMessageFragment;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,8 +34,16 @@ public class TransportBindingAdapter {
             TransportDocumentFragment documentFragment = (TransportDocumentFragment) fragmentList.get(2);
             inventoryFragment.setListData(detailBean.getTransportDetailVOList());
             List<String> imgList = StringUtils.splitPhotoUrl(detailBean.getFileUrl());
-            if (imgList != null) {
-                documentFragment.setListData(imgList);
+            if (imgList != null && imgList.size() > 0) {
+                List<String> picList = new ArrayList<>();
+                for (String url : imgList) {
+                    if (CommonUtils.isPictureOrVideo(url)) {
+                        picList.add(url);
+                    }
+                }
+
+
+                documentFragment.setListData(picList);
             }
         }
 

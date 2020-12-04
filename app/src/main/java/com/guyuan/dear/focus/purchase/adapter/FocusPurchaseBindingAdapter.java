@@ -1,5 +1,6 @@
 package com.guyuan.dear.focus.purchase.adapter;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
@@ -30,26 +31,31 @@ public class FocusPurchaseBindingAdapter {
             case 1:
                 tv.setText("退货");
                 tv.setTextAppearance(tv.getContext(), R.style.TextTagOrange);
+                tv.setBackgroundResource(R.drawable.bg_tag_orange);
                 break;
 
             case 2:
                 tv.setText("换货");
                 tv.setTextAppearance(tv.getContext(), R.style.TextTagBlue);
+                tv.setBackgroundResource(R.drawable.bg_assess);
                 break;
 
             case 3:
                 tv.setText("待签收");
                 tv.setTextAppearance(tv.getContext(), R.style.TextTagBlue);
+                tv.setBackgroundResource(R.drawable.bg_assess);
                 break;
 
             case 4:
                 tv.setText("已到货");
                 tv.setTextAppearance(tv.getContext(), R.style.TextTagGreen);
+                tv.setBackgroundResource(R.drawable.bg_pass);
                 break;
 
             case 5:
                 tv.setText("拖期");
                 tv.setTextAppearance(tv.getContext(), R.style.TextTagOrange);
+                tv.setBackgroundResource(R.drawable.bg_tag_orange);
                 break;
         }
     }
@@ -76,6 +82,20 @@ public class FocusPurchaseBindingAdapter {
 
             case 5:
                 tv.setText("拖期");
+                break;
+        }
+    }
+
+    @BindingAdapter(value = {"purchaseStatus", "purchaseNumber"})
+    public static void setPurchaseReturnOrReplaceNumber(TextView tv, int status, int number) {
+        Context context = tv.getContext();
+        switch (status) {
+            case 1://退货数量
+                tv.setText(String.format(context.getString(R.string.return_goods_number), number));
+                break;
+
+            case 2://换货数量
+                tv.setText(String.format(context.getString(R.string.replace_goods_number), number));
                 break;
         }
     }

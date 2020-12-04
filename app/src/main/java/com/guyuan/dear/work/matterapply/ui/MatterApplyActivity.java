@@ -78,8 +78,8 @@ public class MatterApplyActivity extends BaseTabActivity<ActivityBaseTabBinding,
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.selector_material_apply);
+        tabDrawableList.add(R.drawable.selector_material_applied);
         return tabDrawableList;
     }
 

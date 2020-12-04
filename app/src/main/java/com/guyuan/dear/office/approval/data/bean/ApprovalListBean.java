@@ -75,6 +75,15 @@ public class ApprovalListBean {
         private String createTime;        //申请时间
         private int id;                   //主键
         private int status;               //状态 0.审批中 1.已同意 2.已拒绝
+        private boolean isApproval=false;       //是否是待审批列表
+
+        public boolean isApproval() {
+            return isApproval;
+        }
+
+        public void setApproval(boolean approval) {
+            isApproval = approval;
+        }
 
         public int getArType() {
             return arType;

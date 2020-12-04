@@ -87,9 +87,9 @@ public class FocusPurchaseActivity extends BaseTabActivity<ActivityBaseTabBindin
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.selector_purchase_overview);
+        tabDrawableList.add(R.drawable.selector_purchase_exception);
+        tabDrawableList.add(R.drawable.selector_purchase_total);
         return tabDrawableList;
     }
 }

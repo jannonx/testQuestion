@@ -49,6 +49,7 @@
                 android:layout_height="@dimen/dp_16"
                 android:layout_marginEnd="@dimen/dp_12"
                 android:src="@mipmap/ic_qr"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1"
                 app:layout_constraintRight_toRightOf="parent"

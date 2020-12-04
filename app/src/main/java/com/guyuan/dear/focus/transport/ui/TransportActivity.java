@@ -81,8 +81,8 @@ public class TransportActivity extends BaseTabActivity<ActivityBaseTabBinding, T
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.selector_transporting);
+        tabDrawableList.add(R.drawable.selector_transported);
         return tabDrawableList;
     }
 }

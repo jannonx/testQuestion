@@ -65,9 +65,9 @@ public class HrHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, HrHo
     @Override
     protected List<Integer> setTabIconList() {
         List<Integer> tabDrawableList = new ArrayList<>();
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
-        tabDrawableList.add(R.drawable.tab_common_icon_selector);
+        tabDrawableList.add(R.drawable.selector_tab_hr_home_summary);
+        tabDrawableList.add(R.drawable.selector_tab_hr_home_abnormal_list);
+        tabDrawableList.add(R.drawable.selector_tab_hr_home_hr_tree);
         return tabDrawableList;
     }
 

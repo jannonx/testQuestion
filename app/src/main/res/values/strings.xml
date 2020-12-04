@@ -447,6 +447,8 @@
     <string name="number">数量：%d</string>
     <string name="contract_code">合同编号：%s</string>
     <string name="sales_person_name">销售人员：%s</string>
+    <string name="return_goods_number">退货数量：%d</string>
+    <string name="replace_goods_number">换货数量：%d</string>
 
     <!--我的关注-售后-->
     <string name="focus_after_sale_project_name">项目名称：%s</string>

@@ -24,18 +24,6 @@ public class ComponentInfoAdapter extends BaseDBRecycleAdapter<ProductComponent,
     public ComponentInfoAdapter(List<ProductComponent> listData) {
         super(listData, R.layout.item_contract_base_info);
     }
-//    public ComponentInfoAdapter(Context context, @NonNull List<ProductComponent> listData) {
-//        super(context, listData, R.layout.item_contract_base_info);
-//    }
-//
-//    @Override
-//    protected void bindDataToView(BaseRecyclerViewHolder holder, ProductComponent item, int position) {
-//        holder.setText(R.id.item_contract_base_info_tv_name,item.getComponentName());
-//        holder.setText(R.id.item_contract_base_info_tv_model,item.getModelName());
-//        holder.setText(R.id.item_contract_base_info_tv_blue_print_id,item.getBluePrintId());
-//        String quantity = item.getCount()+item.getUnit();
-//        holder.setText(R.id.item_contract_base_info_tv_quantity,quantity);
-//    }
 
     @Override
     protected void bindDataToView(Holder holder, ProductComponent item, int position) {

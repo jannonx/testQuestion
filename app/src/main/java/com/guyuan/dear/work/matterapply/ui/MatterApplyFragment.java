@@ -20,6 +20,7 @@ import com.guyuan.dear.customizeview.itemDecorator.AddSendListItemDecorator;
 import com.guyuan.dear.databinding.FragmentWorkMatterApplyBinding;
 import com.guyuan.dear.dialog.SelectionDialog;
 import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
@@ -68,6 +69,7 @@ public class MatterApplyFragment extends BaseDataBindingFragment<FragmentWorkMat
     private List<MatterMaterialBean> currentMaterialList = new ArrayList<>();
     private BaseRecyclerViewAdapter adapter;
     private ArrayList<StaffBean> currentPersonList = new ArrayList<>();
+    private int currentNumber;
 
     public static MatterApplyFragment newInstance() {
 
@@ -95,13 +97,12 @@ public class MatterApplyFragment extends BaseDataBindingFragment<FragmentWorkMat
         setProductObserver();
         setMaterialObserver();
 
-
         binding.matterApplyIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PickStaffsActivity.startForResult(MatterApplyFragment.this,
                         REQUEST_CODE, "请选择质检人", null,
-                        null, null, 1);
+                        CommonUtils.getCurrentStaffList(), null, 1);
             }
         });
 
@@ -140,8 +141,15 @@ public class MatterApplyFragment extends BaseDataBindingFragment<FragmentWorkMat
             public void afterTextChanged(Editable s) {
                 String text = s.toString();
                 int len = s.toString().length();
-                if (len > 1 && text.startsWith("0")) {
-                    s.replace(0, 1, "");
+                if (len > 1) {
+                    if (text.startsWith("0")) {
+                        s.replace(0, 1, "");//第一位不能为0
+                    }
+
+                    int number = Integer.valueOf(text);
+                    if (number > currentNumber) {
+                        s.replace(0, s.length(), currentNumber + "");
+                    }
                 }
             }
         });
@@ -445,12 +453,14 @@ public class MatterApplyFragment extends BaseDataBindingFragment<FragmentWorkMat
     //设置材料数据
     private void setMaterialData(MatterMaterialBean bean) {
         if (bean != null) {
+            currentNumber = bean.getPurchaseNum();
             binding.matterApplyMaterialNameTv.setText(bean.getName());
-            binding.matterApplyMaterialNumberTv.setText(bean.getPurchaseNum() + bean.getUnit());
+            binding.matterApplyMaterialNumberTv.setText(currentNumber + bean.getUnit());
             binding.matterApplyMaterialCodeTv.setText(String.format(getString(R.string.code), bean.getCode()));
             binding.matterApplyMaterialQualityTv.setText(String.format(getString(R.string.quality), bean.getModelCode()));
             binding.matterApplyMaterialRemarkTv.setText(String.format(getString(R.string.remark), bean.getRemark()));
         } else {
+            currentNumber = 0;
             binding.matterApplyMaterialNameTv.setText("");
             binding.matterApplyMaterialNumberTv.setText("");
             binding.matterApplyMaterialCodeTv.setText("");

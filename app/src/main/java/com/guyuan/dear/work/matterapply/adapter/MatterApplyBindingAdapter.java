@@ -20,16 +20,19 @@ public class MatterApplyBindingAdapter {
             case 1:
                 tv.setText("审批中");
                 tv.setTextAppearance(R.style.TextTagBlue);
+                tv.setBackgroundResource(R.drawable.bg_assess);
                 break;
 
             case 2:
                 tv.setText("审批通过");
                 tv.setTextAppearance(R.style.TextTagGreen);
+                tv.setBackgroundResource(R.drawable.bg_pass);
                 break;
 
             case 3:
                 tv.setText("审批被驳回");
                 tv.setTextAppearance(R.style.TextTagOrange);
+                tv.setBackgroundResource(R.drawable.bg_tag_orange);
                 break;
         }
     }
