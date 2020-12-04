@@ -11,6 +11,10 @@ import com.guyuan.dear.databinding.ItemTransportDocumentsBinding;
 import com.guyuan.dear.focus.transport.adapter.TransportDocumentAdapter;
 import com.guyuan.dear.focus.transport.data.TransportViewModel;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
 /**
@@ -24,11 +28,12 @@ public class TransportDocumentFragment extends BaseListFragment<String,
         ItemTransportDocumentsBinding, TransportViewModel> {
 
     public static final String TAG = "TransportDocumentFragment";
+    public static final String IMG_URL_LIST = "imgUrlList";
 
     public static TransportDocumentFragment newInstance() {
 
         Bundle args = new Bundle();
-
+    //    args.putStringArrayList(IMG_URL_LIST, new ArrayList<>(picUrl));
         TransportDocumentFragment fragment = new TransportDocumentFragment();
         fragment.setArguments(args);
         return fragment;
@@ -36,12 +41,16 @@ public class TransportDocumentFragment extends BaseListFragment<String,
 
     @Override
     protected void initView() {
-        list_container.setBackgroundColor(getResources().getColor(R.color.bg_window));
-        TransportDocumentAdapter documentAdapter = new TransportDocumentAdapter(listData,
-                R.layout.item_transport_documents);
-        adapter = new BaseRecyclerViewAdapter(documentAdapter);
-        recycleView.setLayoutManager(new GridLayoutManager(getContext(), 4));
-        recycleView.setAdapter(adapter);
+        if (getArguments() != null) {
+            List<String> url = getArguments().getStringArrayList(IMG_URL_LIST);
+            listData.addAll(url);
+            list_container.setBackgroundColor(getResources().getColor(R.color.bg_window));
+            TransportDocumentAdapter documentAdapter = new TransportDocumentAdapter(listData,
+                    R.layout.item_transport_documents);
+            adapter = new BaseRecyclerViewAdapter(documentAdapter);
+            recycleView.setLayoutManager(new GridLayoutManager(getContext(), 4));
+            recycleView.setAdapter(adapter);
+        }
     }
 
     @Override

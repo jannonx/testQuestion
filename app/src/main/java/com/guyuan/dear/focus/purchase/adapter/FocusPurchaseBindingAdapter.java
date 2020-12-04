@@ -1,5 +1,6 @@
 package com.guyuan.dear.focus.purchase.adapter;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
@@ -81,6 +82,20 @@ public class FocusPurchaseBindingAdapter {
 
             case 5:
                 tv.setText("拖期");
+                break;
+        }
+    }
+
+    @BindingAdapter(value = {"purchaseStatus", "purchaseNumber"})
+    public static void setPurchaseReturnOrReplaceNumber(TextView tv, int status, int number) {
+        Context context = tv.getContext();
+        switch (status) {
+            case 1://退货数量
+                tv.setText(String.format(context.getString(R.string.return_goods_number), number));
+                break;
+
+            case 2://换货数量
+                tv.setText(String.format(context.getString(R.string.replace_goods_number), number));
                 break;
         }
     }

@@ -101,8 +101,8 @@
                 app:focusPurchaseType="@{purchaseListContentBean.immediately?purchaseListContentBean.status:purchaseListContentBean.abnormalType}"
                 app:layout_constraintStart_toStartOf="@+id/purchase_item_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/view17"
-                app:replaceNumber="@{purchaseListContentBean.exchangeSum}"
-                app:returnNumber="@{purchaseListContentBean.returnSum}"
+                app:replaceNumber="@{purchaseListContentBean.abnormalSum}"
+                app:returnNumber="@{purchaseListContentBean.abnormalSum}"
                 tools:text="@string/focus_purchase_return" />
 
             <!--            <TextView-->
