@@ -170,9 +170,10 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
 //        questionFragment.setQuestionDescribe(data);
         data.setSectionType(SaleSectionType.TYPE_SECTION_ACCEPT);
         binding.tvTitle.setText(data.getTitle());
+        //我的工作(待验收)--显示
         binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_WORK == afterSaleBean.getModuleType()
                 ? SaleAcceptedType.TYPE_ACCEPTED_QUALIFIED == data.getAcceptedType()
-                || SaleAcceptedType.TYPE_ACCEPTED_QUALIFIED == data.getAcceptedType() ? View.GONE : View.VISIBLE
+                || SaleAcceptedType.TYPE_ACCEPTED_UNQUALIFIED == data.getAcceptedType() ? View.GONE : View.VISIBLE
                 : View.GONE);
 
         //状态属性设置

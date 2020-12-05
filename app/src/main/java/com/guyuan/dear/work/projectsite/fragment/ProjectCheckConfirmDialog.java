@@ -31,6 +31,7 @@ import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
+import com.guyuan.dear.work.projectsite.bean.OnConfirmDialogListener;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostCustomerAcceptanceInfo;
 import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
@@ -56,7 +57,7 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
     private static final int TYPE_CHECK_EXCEPTION = 1;
 
     private Activity activity;
-    private OnDialogClickListener clickListener;
+    private OnConfirmDialogListener clickListener;
     private DialogWorkProjectCheckBinding viewBinding;
     private SiteExploreBean siteExploreBean;
     private int isCheckOK = 0;
@@ -68,20 +69,14 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
         this.activity = activity;
     }
 
-    public ProjectCheckConfirmDialog(Activity activity, SiteExploreBean siteExploreBean, OnDialogClickListener clickListener) {
+    public ProjectCheckConfirmDialog(Activity activity, SiteExploreBean siteExploreBean, OnConfirmDialogListener clickListener) {
         this(activity, 0, activity);
         this.clickListener = clickListener;
         this.siteExploreBean = siteExploreBean;
-//        if (siteExploreBean.getCheckTransportProjectListVO() != null) {
-//            for (CheckGoodsBean checkGoodsBean : siteExploreBean.getCheckTransportProjectListVO()) {
-//                LogUtils.showLog("checkGoodsBean=" + checkGoodsBean.getIsException());
-//            }
-//        }
 
     }
 
-
-    public static void show(Activity activity, SiteExploreBean siteExploreBean, OnDialogClickListener clickListener) {
+    public static void show(Activity activity, SiteExploreBean siteExploreBean, OnConfirmDialogListener clickListener) {
         ProjectCheckConfirmDialog customerDialog = new ProjectCheckConfirmDialog(activity, siteExploreBean, clickListener);
         customerDialog.show();
     }
@@ -91,12 +86,6 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
         super.onCreate(savedInstanceState);
         viewBinding = DataBindingUtil.inflate(LayoutInflater.from(activity), R.layout.dialog_work_project_check, null, false);
         setContentView(viewBinding.getRoot());//核心代码
-
-
-//        viewBinding.etSearch.setFocusable(true);
-//        viewBinding.etSearch.setFocusableInTouchMode(true);
-//        viewBinding.etSearch.requestFocus();
-//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 
         BottomSheetBehavior mDialogBehavior = BottomSheetBehavior.from((View) viewBinding.getRoot().getParent());
         mDialogBehavior.setPeekHeight(getWindowHeight());
@@ -180,9 +169,12 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
         }
     }
 
+    /**
+     * 根据类型提交信息
+     */
     private void commitApplyInfo() {
         if (TextUtils.isEmpty(viewBinding.etSearch.getText().toString())) {
-            ToastUtils.showLong(getContext(), "请填内容");
+            ToastUtils.showLong(getContext(), "请填写内容");
             return;
         }
         if (imageDataList == null || imageDataList.size() == 0) {
@@ -215,6 +207,11 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
 
     }
 
+    /**
+     * 设置回调图片
+     *
+     * @param photoList 图片资源
+     */
     public void setPhotoList(ArrayList<String> photoList) {
         LogUtils.showLog("setPhotoList=" + photoList.size());
         imageDataList.clear();
@@ -248,12 +245,6 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
 
     private void commitCheckGoodsInfo() {
         PostCheckInfo body = new PostCheckInfo();
-        if (TextUtils.isEmpty(viewBinding.etSearch.getText().toString())) {
-            ToastUtils.showLong(getContext(), "请填内容");
-            return;
-        }
-
-
         body.setId(siteExploreBean.getId());
         body.setIsException(isCheckOK);
         body.setSign(siteExploreBean.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
@@ -306,7 +297,7 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
                 //已输入字数
                 int enteredWords = wordLimitNum - editable.length();
                 //TextView显示剩余字数
-                viewBinding.tvNumber.setText((wordLimitNum - enteredWords )+ "/240");
+                viewBinding.tvNumber.setText((wordLimitNum - enteredWords) + "/240");
             }
         });
 
@@ -327,16 +318,5 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
         return displayMetrics.heightPixels;
     }
 
-    public interface OnDialogClickListener {
-
-        void onPickImageClick();
-
-        void onCommitCheckGoodsInfo(PostCheckInfo data);
-
-        void onCommitInstallationDebugInfo(PostInstallationDebugInfo data);
-
-        void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data);
-
-    }
 
 }

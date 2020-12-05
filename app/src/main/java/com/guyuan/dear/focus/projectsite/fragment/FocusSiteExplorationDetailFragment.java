@@ -35,6 +35,7 @@ import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
 import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventWorkSiteListRefresh;
+import com.guyuan.dear.work.projectsite.bean.OnConfirmDialogListenerImpl;
 import com.guyuan.dear.work.projectsite.bean.PostAnswerInfo;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostCustomerAcceptanceInfo;
@@ -320,17 +321,11 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     }
 
     private void clickLeftBtn() {
-        leftDialog = new ProjectCheckConfirmDialog(getActivity(), detailProjectData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
+        leftDialog = new ProjectCheckConfirmDialog(getActivity(), detailProjectData, new OnConfirmDialogListenerImpl() {
             @Override
             public void onPickImageClick() {
                 activity.openAlbum(BaseTabActivity.FIRST);
             }
-
-            @Override
-            public void onCommitCheckGoodsInfo(PostCheckInfo data) {
-
-            }
-
             @Override
             public void onCommitInstallationDebugInfo(PostInstallationDebugInfo data) {
                 LogUtils.showLog("onCommitInstallationDebugInfo");
@@ -362,15 +357,10 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     }
 
     private void clickRightBtn() {
-        rightDialog = new ProjectCheckConfirmDialog(getActivity(), detailProjectData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
+        rightDialog = new ProjectCheckConfirmDialog(getActivity(), detailProjectData, new OnConfirmDialogListenerImpl() {
             @Override
             public void onPickImageClick() {
                 activity.openAlbum(BaseTabActivity.FIRST);
-            }
-
-            @Override
-            public void onCommitCheckGoodsInfo(PostCheckInfo data) {
-
             }
 
             @Override
