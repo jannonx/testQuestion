@@ -25,10 +25,6 @@ import static android.media.MediaMetadataRetriever.OPTION_CLOSEST_SYNC;
  */
 public class FullScreenShowVideoFragment extends BaseDataBindingFragment<FragmentFullScreenVideoBinding, BaseViewModel> {
 
-    private CustomVideoView full_screen_vv = binding.fullScreenVv;
-    private ImageView first_pic_iv = binding.firstPicIv;
-    private FrameLayout first_pic_fl = binding.firstPicFl;
-
     public static final String TAG = "FullScreenShowVideoFrag";
     public static final String URL = "url";
     private long currentTime;//当前视频播放位置
@@ -58,10 +54,10 @@ public class FullScreenShowVideoFragment extends BaseDataBindingFragment<Fragmen
 //        if (getArguments() != null) {
 //            url = getArguments().getString(URL);
 //            if (url.contains("storage")) {
-//                full_screen_vv.setVideoPath(url);
+//                binding.fullScreenVv.setVideoPath(url);
 //            } else {
 //                showLoadingWithStatus(childFragmentManager, "视频加载中...");
-//                full_screen_vv.setVideoURI(Uri.parse(url));
+//                binding.fullScreenVv.setVideoURI(Uri.parse(url));
 //            }
 //        }
 //    }
@@ -77,22 +73,22 @@ public class FullScreenShowVideoFragment extends BaseDataBindingFragment<Fragmen
     protected void initialization() {
         //创建MediaController对象
         mediaController = new MediaController(getContext());
-        mediaController.setAnchorView(full_screen_vv);
+        mediaController.setAnchorView(binding.fullScreenVv);
         //VideoView与MediaController建立关联
-        full_screen_vv.setMediaController(mediaController);
+        binding.fullScreenVv.setMediaController(mediaController);
 
         //视频装载监听
-        full_screen_vv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+        binding.fullScreenVv.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
                 hideLoading();
                 isPrepared = true;
                 setVideoPic();
-                first_pic_fl.setOnClickListener(new View.OnClickListener() {
+                binding.firstPicFl.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        first_pic_fl.setVisibility(View.GONE);
-                        full_screen_vv.start();
+                        binding.firstPicFl.setVisibility(View.GONE);
+                        binding.fullScreenVv.start();
                     }
                 });
             }
@@ -100,7 +96,7 @@ public class FullScreenShowVideoFragment extends BaseDataBindingFragment<Fragmen
 
 
         //视频缓冲监听
-        full_screen_vv.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+        binding.fullScreenVv.setOnInfoListener(new MediaPlayer.OnInfoListener() {
             @Override
             public boolean onInfo(MediaPlayer mediaPlayer, int i, int i1) {
                 switch (i) {
@@ -118,7 +114,7 @@ public class FullScreenShowVideoFragment extends BaseDataBindingFragment<Fragmen
         });
 
         //视频错误监听
-        full_screen_vv.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+        binding.fullScreenVv.setOnErrorListener(new MediaPlayer.OnErrorListener() {
             @Override
             public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
                 hideLoading();
@@ -128,18 +124,18 @@ public class FullScreenShowVideoFragment extends BaseDataBindingFragment<Fragmen
     }
 
     public void playVideo() {
-        if (full_screen_vv != null) {
-            first_pic_fl.setVisibility(View.GONE);
-            full_screen_vv.requestFocus();
-            full_screen_vv.start();
+        if (binding.fullScreenVv != null) {
+            binding.firstPicFl.setVisibility(View.GONE);
+            binding.fullScreenVv.requestFocus();
+            binding.fullScreenVv.start();
         }
     }
 
 
     public void pauseVideo() {
-        if (full_screen_vv != null && isPrepared) {
-            full_screen_vv.pause();
-            currentTime = full_screen_vv.getCurrentPosition() * 1000;
+        if (binding.fullScreenVv != null && isPrepared) {
+            binding.fullScreenVv.pause();
+            currentTime = binding.fullScreenVv.getCurrentPosition() * 1000;
             setVideoPic();
         }
     }
@@ -147,11 +143,11 @@ public class FullScreenShowVideoFragment extends BaseDataBindingFragment<Fragmen
 
     //设置视频封面
     private void setVideoPic() {
-        first_pic_fl.setVisibility(View.VISIBLE);
+        binding.firstPicFl.setVisibility(View.VISIBLE);
         if (url.contains("storage")) {
-            first_pic_iv.setImageBitmap(getLocalVideoBitmap(url, currentTime));
+            binding.firstPicIv.setImageBitmap(getLocalVideoBitmap(url, currentTime));
         } else {
-            first_pic_iv.setImageBitmap(getNetVideoBitmap(url, currentTime));
+            binding.firstPicIv.setImageBitmap(getNetVideoBitmap(url, currentTime));
         }
     }
 
