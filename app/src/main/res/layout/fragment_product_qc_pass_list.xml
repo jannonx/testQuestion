@@ -2,6 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
+        <import type="android.view.View" />
+
         <variable
             name="fragment_product_qc_list_vm"
             type="com.guyuan.dear.focus.qc.views.qcReportList.QcReportListViewModel" />
@@ -15,5 +18,9 @@
             android:id="@+id/fragment_product_qc_list_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <include
+            layout="@layout/layout_no_data"
+            android:visibility="@{fragment_product_qc_list_vm.shouldShowNoData?View.VISIBLE:View.GONE}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

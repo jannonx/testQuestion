@@ -36,6 +36,9 @@ public class ContractListViewModel extends BaseDearViewModel {
                     protected void handleResult(List<BaseContractBean> result) {
                         if (result.isEmpty()) {
                             isAllLoaded.setValue(true);
+                            if(contractList.getValue().isEmpty()){
+                                shouldShowNoData.postValue(true);
+                            }
                         } else {
                             contractList.getValue().addAll(result);
                             contractList.postValue(contractList.getValue());

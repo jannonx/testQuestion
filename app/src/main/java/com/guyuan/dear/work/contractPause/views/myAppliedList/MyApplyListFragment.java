@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,6 +47,7 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
      */
     public static final int TYPE_MY_RESTART_APPLY_LIST=1;
     private int type;
+    private MutableLiveData<Boolean> shouldShowNoData=new MutableLiveData<>(true);
 
     /**
      *
@@ -102,6 +104,11 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
             public void onChanged(List<MyApplyBean> myApplyBeans) {
                 wrapper.notifyDataSetChanged();
                 recyclerView.refreshComplete(0);
+                if(myApplyBeans.isEmpty()){
+                    shouldShowNoData.postValue(true);
+                }else {
+                    shouldShowNoData.postValue(false);
+                }
             }
         });
         getViewModel().getIsLoadAllRestartList().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
@@ -158,6 +165,11 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
             public void onChanged(List<MyApplyBean> myApplyBeans) {
                 wrapper.notifyDataSetChanged();
                 recyclerView.refreshComplete(0);
+                if(myApplyBeans.isEmpty()){
+                    shouldShowNoData.postValue(true);
+                }else {
+                    shouldShowNoData.postValue(false);
+                }
             }
         });
         getViewModel().getIsLoadAllPauseList().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
@@ -200,6 +212,12 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
 
     @Override
     protected void initListeners() {
+        shouldShowNoData.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                getViewDataBinding().fragmentMyApplyListNoData.setIsShow(aBoolean);
+            }
+        });
 
 
     }

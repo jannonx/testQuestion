@@ -7,8 +7,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="fragment_all_qc_report_list_vm"
-            type="com.guyuan.dear.focus.qc.views.qcReportList.QcReportListViewModel" />
+            name="fragment_abnormal_qc_report_list_vm"
+            type="com.guyuan.dear.focus.qc.views.abNormalList.AbnormalQcListViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -19,10 +19,10 @@
         <com.guyuan.dear.customizeview.searchview.QcReportsSearchView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:searchType="@{fragment_all_qc_report_list_vm.searchType}" />
+            app:searchType="@{fragment_abnormal_qc_report_list_vm.searchType}" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/fragment_all_qc_report_list_date_selector"
+            android:id="@+id/fragment_abnormal_qc_report_list_date_selector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_round_corner_50dp_white_solid"
                 android:gravity="center_vertical"
-                android:onClick="@{fragment_all_qc_report_list_vm.onClickSelectTimePeriod}"
+                android:onClick="@{fragment_abnormal_qc_report_list_vm.onClickSelectTimePeriod}"
                 android:paddingLeft="@dimen/dp_12"
                 android:paddingTop="@dimen/dp_4"
                 android:paddingRight="@dimen/dp_12"
@@ -58,7 +58,7 @@
                     android:text="2010-1"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_12"
-                    app:showYearMonthDayByDate="@{fragment_all_qc_report_list_vm.dateFrom}" />
+                    app:showYearMonthDayByDate="@{fragment_abnormal_qc_report_list_vm.dateFrom}" />
 
                 <View
                     android:layout_width="@dimen/dp_12"
@@ -74,7 +74,7 @@
                     android:text="2020-2"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_12"
-                    app:showYearMonthDayByDate="@{fragment_all_qc_report_list_vm.dateTo}" />
+                    app:showYearMonthDayByDate="@{fragment_abnormal_qc_report_list_vm.dateTo}" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="@dimen/dp_16"
@@ -90,7 +90,7 @@
             android:layout_height="match_parent">
 
             <tl.com.easy_recycleview_library.BaseRecyclerView
-                android:id="@+id/fragment_all_qc_report_list_recycler_view"
+                android:id="@+id/fragment_abnormal_qc_report_list_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -98,7 +98,7 @@
                 android:id="@+id/bg_no_data_view_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="@{fragment_all_qc_report_list_vm.shouldShowNoData?View.VISIBLE:View.GONE}">
+                android:visibility="@{fragment_abnormal_qc_report_list_vm.shouldShowNoData?View.VISIBLE:View.GONE}">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/bg_no_data_iv_warning"

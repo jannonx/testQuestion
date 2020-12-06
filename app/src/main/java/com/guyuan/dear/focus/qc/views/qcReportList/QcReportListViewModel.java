@@ -2,8 +2,6 @@ package com.guyuan.dear.focus.qc.views.qcReportList;
 
 import android.view.View;
 
-import androidx.lifecycle.MutableLiveData;
-
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.qc.beans.GenericQcReport;
@@ -15,6 +13,7 @@ import com.guyuan.dear.utils.ToastUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.lifecycle.MutableLiveData;
 import io.reactivex.disposables.Disposable;
 
 import static com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity.SEARCH_TYPE_ALL;
@@ -147,26 +146,26 @@ public class QcReportListViewModel extends BaseViewModel {
         return materialReports;
     }
 
-    public void reset(){
+    public void reset() {
         materialReports.postValue(new ArrayList<>());
         isAllMaterialReportLoaded.postValue(false);
-        materialReportPageIndex=1;
+        materialReportPageIndex = 1;
 
         myQcReports.postValue(new ArrayList<>());
         isAllMyQcReportLoaded.postValue(false);
-        myQcReportPageIndex=1;
+        myQcReportPageIndex = 1;
 
         productReports.postValue(new ArrayList<>());
         isAllProductReportLoaded.postValue(false);
-        productReportPageIndex=1;
+        productReportPageIndex = 1;
 
         allReportList.postValue(new ArrayList<>());
         isAllQcReportLoaded.postValue(false);
-        allQcReportPageIndex=1;
+        allQcReportPageIndex = 1;
 
         rejectedReportList.postValue(new ArrayList<>());
         isAllRejectedReportLoaded.postValue(false);
-        rejectedReportPageIndex=1;
+        rejectedReportPageIndex = 1;
 
         shouldShowNoData.postValue(true);
     }
@@ -352,10 +351,10 @@ public class QcReportListViewModel extends BaseViewModel {
         });
     }
 
-    public void clearAllMyQcReport(){
+    public void clearAllMyQcReport() {
         myQcReports.postValue(new ArrayList<>());
         isAllMyQcReportLoaded.postValue(false);
-        myQcReportPageIndex=1;
+        myQcReportPageIndex = 1;
         shouldShowNoData.postValue(true);
     }
 

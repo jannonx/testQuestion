@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.contract.view.contractStatusList;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +12,7 @@ import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentContractStatusListBinding;
+import com.guyuan.dear.databinding.LayoutNoDataBinding;
 import com.guyuan.dear.focus.contract.adapter.ContractExceptionOrTotalAdapter;
 import com.guyuan.dear.focus.contract.adapter.ContractPauseListAdapter;
 import com.guyuan.dear.focus.contract.adapter.ContractRestartedListAdapter;
@@ -62,6 +64,8 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
 
     private int currentExceptionPageIndex = 1;
     private int currentTotalPageIndex = 1;
+    private MutableLiveData<Boolean> shouldShowNoData = new MutableLiveData<>(true);
+    private LayoutNoDataBinding mNoDataSign;
 
     /**
      * @param statusType {@link ContractStatusListFragment#STATUS_TYPE_ON_PAUSE}
@@ -90,6 +94,7 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
 
     @Override
     protected void initViews() {
+        mNoDataSign = getViewDataBinding().fragmentContractStatusListLayoutNoData;
         switch (statusType) {
             case STATUS_TYPE_ON_PAUSE:
                 initPauseList();
@@ -140,6 +145,9 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
         getViewModel().getRestartContractList().observe(getViewLifecycleOwner(), new Observer<List<RestartedContractBean>>() {
             @Override
             public void onChanged(List<RestartedContractBean> beans) {
+                if(!beans.isEmpty()){
+                    shouldShowNoData.postValue(false);
+                }
                 wrapper.notifyDataSetChanged();
             }
         });
@@ -178,6 +186,9 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
         getViewModel().getPauseContractList().observe(getViewLifecycleOwner(), new Observer<List<BaseContractExcptBean>>() {
             @Override
             public void onChanged(List<BaseContractExcptBean> baseContractExcptBeans) {
+                if(!baseContractExcptBeans.isEmpty()){
+                    shouldShowNoData.postValue(false);
+                }
                 wrapper.notifyDataSetChanged();
             }
         });
@@ -216,6 +227,9 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
         getViewModel().getExceptionContractList().observe(getViewLifecycleOwner(), new Observer<List<ContractBean.ContentBean>>() {
             @Override
             public void onChanged(List<ContractBean.ContentBean> baseContractExcptBeans) {
+                if(!baseContractExcptBeans.isEmpty()){
+                    shouldShowNoData.postValue(false);
+                }
                 wrapper.notifyDataSetChanged();
             }
         });
@@ -254,6 +268,9 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
         getViewModel().getTotalContractList().observe(getViewLifecycleOwner(), new Observer<List<ContractBean.ContentBean>>() {
             @Override
             public void onChanged(List<ContractBean.ContentBean> baseContractExcptBeans) {
+                if(!baseContractExcptBeans.isEmpty()){
+                    shouldShowNoData.postValue(false);
+                }
                 adapter.notifyDataSetChanged();
             }
         });
@@ -263,6 +280,12 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
 
     @Override
     protected void initListeners() {
+        shouldShowNoData.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                mNoDataSign.setIsShow(aBoolean);
+            }
+        });
 
 
     }
