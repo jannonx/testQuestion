@@ -10,6 +10,7 @@ import com.guyuan.dear.focus.aftersale.activity.CustomerAcceptanceDetailActivity
 import com.guyuan.dear.focus.aftersale.activity.FocusAfterSaleDetailActivity;
 import com.guyuan.dear.focus.aftersale.adapter.FocusAfterSaleAdapter;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
+import com.guyuan.dear.focus.aftersale.bean.EventSaleListRefresh;
 import com.guyuan.dear.focus.aftersale.bean.ListSaleRequestBody;
 import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
@@ -19,11 +20,16 @@ import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
@@ -58,7 +64,7 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
         }
         etSearch.setHint("输入项目名称、编号、人员");
         saleSectionType = (SaleSectionType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
-
+        EventBus.getDefault().register(this);
         FocusAfterSaleAdapter saleAdapter = new FocusAfterSaleAdapter(getContext(),
                 listData, R.layout.item_focus_after_sale);
         adapter = new BaseRecyclerViewAdapter(saleAdapter);
@@ -123,14 +129,23 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
                 "charset=utf-8"), str);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onRefreshMessage(EventSaleListRefresh event) {
+        getListDataByClassify(true, true);
+    }
 
-    public void getListDataByClassify(boolean isRefresh){
-        if (SaleSectionType.TYPE_SECTION_ACCEPT == saleSectionType){
+    public void getListDataByClassify(boolean isRefresh) {
+        getListDataByClassify(isRefresh, false);
+    }
+
+    public void getListDataByClassify(boolean isRefresh, boolean isAll) {
+        if (isAll || SaleSectionType.TYPE_SECTION_ACCEPT == saleSectionType) {
             viewModel.getAfterSaleCustomerAcceptanceList(getListRequestBody(isRefresh));
-        }else if (SaleSectionType.TYPE_SECTION_CHECK == saleSectionType){
+        } else if (isAll || SaleSectionType.TYPE_SECTION_CHECK == saleSectionType) {
             viewModel.getAfterSaleList(getListRequestBody(isRefresh));
         }
     }
+
     @Override
     protected void refresh() {
         getListDataByClassify(true);
@@ -154,5 +169,11 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
     @Override
     protected int getVariableId() {
         return 0;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        EventBus.getDefault().unregister(this);
     }
 }

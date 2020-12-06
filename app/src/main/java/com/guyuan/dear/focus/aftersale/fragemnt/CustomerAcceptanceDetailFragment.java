@@ -15,6 +15,7 @@ import com.guyuan.dear.focus.aftersale.activity.CustomerAcceptanceDetailActivity
 import com.guyuan.dear.focus.aftersale.adapter.FocusAfterSaleQuestionAdapter;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleStatusBean;
+import com.guyuan.dear.focus.aftersale.bean.EventSaleListRefresh;
 import com.guyuan.dear.focus.aftersale.bean.PostInfoBean;
 import com.guyuan.dear.focus.aftersale.bean.SaleAcceptedType;
 import com.guyuan.dear.focus.aftersale.bean.SaleCheckType;
@@ -97,8 +98,10 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
         binding.tvPauseBtn.setOnClickListener(this);
         binding.tvCompleteBtn.setOnClickListener(this);
         if (afterSaleBean.getModuleType() != null) {
-            binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_WORK
-                    == afterSaleBean.getModuleType() ? View.VISIBLE : View.GONE);
+            binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_WORK == afterSaleBean.getModuleType()
+                    ? SaleAcceptedType.TYPE_ACCEPTED_QUALIFIED == afterSaleBean.getAcceptedType()
+                    || SaleAcceptedType.TYPE_ACCEPTED_UNQUALIFIED == afterSaleBean.getAcceptedType() ? View.GONE : View.VISIBLE
+                    : View.GONE);
         }
         viewModel.getAfterSaleDetail(afterSaleBean.getId());
         viewModel.getAfterSaleDetailEvent().observe(getActivity(), new Observer<AfterSaleBean>() {
@@ -108,11 +111,12 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
             }
         });
 
-        viewModel.getAfterSaleCustomerAcceptanceDetail(afterSaleBean.getId(),SaleSectionType.TYPE_SECTION_ACCEPT.getCode());
+        viewModel.getAfterSaleCustomerAcceptanceDetail(afterSaleBean.getId(), SaleSectionType.TYPE_SECTION_ACCEPT.getCode());
         viewModel.getAfterSaleCustomerAcceptanceDetailEvent().observe(getActivity(), new Observer<List<AfterSaleStatusBean>>() {
             @Override
             public void onChanged(List<AfterSaleStatusBean> data) {
-                if (data!=null&&data.size()!=0){
+                binding.llDocument.setVisibility(data == null || data.size() == 0 ? View.GONE : View.VISIBLE);
+                if (data != null && data.size() != 0) {
                     setImageList(data.get(0));
                 }
 
@@ -136,15 +140,19 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
             public void onChanged(Integer data) {
 //                setAfterSaleBean(data);
 //                ToastUtils.showLong(getContext(), "提交成功");
-                viewModel.getAfterSaleCustomerAcceptanceDetail(afterSaleBean.getId(),SaleSectionType.TYPE_SECTION_ACCEPT.getCode());
+                EventBus.getDefault().post(new EventSaleListRefresh());
+                viewModel.getAfterSaleDetail(afterSaleBean.getId());
+                viewModel.getAfterSaleCustomerAcceptanceDetail(afterSaleBean.getId(), SaleSectionType.TYPE_SECTION_ACCEPT.getCode());
             }
         });
     }
 
     private void setImageList(AfterSaleStatusBean afterSaleStatusBean) {
+
+
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
                 afterSaleStatusBean.getImgUrlList(), R.layout.item_explorate_image);
-        BaseRecyclerViewAdapter  imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
+        BaseRecyclerViewAdapter imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
 
         binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         binding.imageRecycleView.setAdapter(imageAdapter);
@@ -193,7 +201,7 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
         binding.questionRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         FocusAfterSaleQuestionAdapter checkContentAdapter = new FocusAfterSaleQuestionAdapter(getContext(),
                 data.getSaleIssueSubList(), R.layout.item_aftet_sale_question_answer);
-        BaseRecyclerViewAdapter   adapter = new BaseRecyclerViewAdapter(checkContentAdapter);
+        BaseRecyclerViewAdapter adapter = new BaseRecyclerViewAdapter(checkContentAdapter);
         binding.questionRecycleView.setAdapter(adapter);
         binding.questionRecycleView.setPullRefreshEnabled(false);
         binding.questionRecycleView.setLoadMoreEnabled(false);

@@ -95,9 +95,7 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
     }
 
     private void initView() {
-        //设置不可点击状态
-//        viewBinding.tvOk.setClickable(false);
-//        viewBinding.tvOk.setEnabled(false);
+        setRefreshTipText();
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
                 imageDataList, R.layout.item_explorate_image, true);
         imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
@@ -108,6 +106,7 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
         viewBinding.imageRecycleView.setLoadMoreEnabled(false);
         viewBinding.tvOk.setOnClickListener(this);
         viewBinding.tvCancel.setOnClickListener(this);
+        viewBinding.clPickPic.setOnClickListener(this);
         switchRadioButton(viewBinding.rbRight, true);
         switchRadioButton(viewBinding.rbWrong, false);
         //默认正常
@@ -133,6 +132,14 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
 
         viewBinding.clStatus.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG == siteExploreBean.getProjectReportType() ||
                 ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == siteExploreBean.getProjectReportType() ? View.GONE : View.VISIBLE);
+
+        imageViewAdapter.setAdapterListener(new ContentImageViewAdapter.OnListAdapterListener() {
+            @Override
+            public void onListEmpty() {
+                viewBinding.labelDocument.setText("拍照电子档");
+                viewBinding.tvTip.setText("点击此框上传资料拍照照片");
+            }
+        });
     }
 
     /**
@@ -162,7 +169,10 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
             case R.id.tv_ok:
                 commitApplyInfo();
                 break;
-            case R.id.iv_pick_image:
+            case R.id.cl_pick_pic:
+                if (clickListener != null) {
+                    clickListener.onPickImageClick();
+                }
                 break;
             default:
 
@@ -217,6 +227,16 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
         imageDataList.clear();
         imageDataList.addAll(photoList);
         imageAdapter.refreshData();
+        setRefreshTipText();
+    }
+
+
+    /**
+     * 设置拍照或者浏览图片文本提示
+     */
+    private void setRefreshTipText() {
+        viewBinding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
+        viewBinding.tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
     }
 
     private void commitCustomerAcceptanceInfo() {
@@ -301,14 +321,7 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
             }
         });
 
-        viewBinding.ivPickImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (clickListener != null) {
-                    clickListener.onPickImageClick();
-                }
-            }
-        });
+
     }
 
     //就是返回页面高度

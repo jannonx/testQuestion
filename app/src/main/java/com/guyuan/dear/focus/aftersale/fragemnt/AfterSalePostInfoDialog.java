@@ -90,10 +90,18 @@ public class AfterSalePostInfoDialog extends BottomSheetDialog implements View.O
         viewBinding.imageRecycleView.setLoadMoreEnabled(false);
         viewBinding.tvOk.setOnClickListener(this);
         viewBinding.tvCancel.setOnClickListener(this);
-        viewBinding.ivPickImage.setOnClickListener(this);
+        viewBinding.clPickPic.setOnClickListener(this);
 
         viewBinding.tvTitle.setText(SaleSectionType.TYPE_SECTION_CHECK == afterSaleBean.getSectionType()
                 ? "反馈问题" : "备注");
+
+        imageViewAdapter.setAdapterListener(new ContentImageViewAdapter.OnListAdapterListener() {
+            @Override
+            public void onListEmpty() {
+                viewBinding.labelDocument.setText("拍照电子档");
+                viewBinding.tvTip.setText("点击此框上传资料拍照照片");
+            }
+        });
 
 
     }
@@ -108,7 +116,7 @@ public class AfterSalePostInfoDialog extends BottomSheetDialog implements View.O
             case R.id.tv_ok:
                 commitInstallDebugInfo();
                 break;
-            case R.id.iv_pick_image:
+            case R.id.cl_pick_pic:
                 if (clickListener != null) {
                     clickListener.onPickImageClick();
                 }
@@ -123,6 +131,8 @@ public class AfterSalePostInfoDialog extends BottomSheetDialog implements View.O
         imageDataList.clear();
         imageDataList.addAll(photoList);
         imageAdapter.refreshData();
+        viewBinding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
+        viewBinding.tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
     }
 
 

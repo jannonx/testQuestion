@@ -2,10 +2,13 @@ package com.guyuan.dear.mine.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
@@ -55,7 +58,12 @@ public class SafetyCenterFragment extends BaseDataBindingFragment<FragmentSafety
                 CommonUtils.logout(getContext());
             }
         });
+
+        setInputEditView(binding.etCurrentPw);
+        setInputEditView(binding.etNewPw);
+        setInputEditView(binding.etConfirmPw);
     }
+
 
     /**
      * 保存密码
@@ -66,6 +74,12 @@ public class SafetyCenterFragment extends BaseDataBindingFragment<FragmentSafety
         String confirmPw = binding.etConfirmPw.getText().toString();
         if (TextUtils.isEmpty(curPw) || TextUtils.isEmpty(newPw) || TextUtils.isEmpty(confirmPw)) {
             ToastUtils.showLong(getContext(), "密码信息不能为空");
+            return;
+        }
+
+        if (checkInputMinLength(binding.etCurrentPw) || checkInputMinLength(binding.etNewPw)
+                || checkInputMinLength(binding.etConfirmPw)) {
+            ToastUtils.showLong(getContext(), "输入字数必须大于或等于6位");
             return;
         }
 
@@ -87,12 +101,45 @@ public class SafetyCenterFragment extends BaseDataBindingFragment<FragmentSafety
         return 0;
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (getActivity() != null) {
-            SafetyCenterActivity activity = (SafetyCenterActivity) getActivity();
-            viewModel = activity.getViewModel();
-        }
+    /**
+     * 输入文字下限
+     */
+    private boolean checkInputMinLength(AppCompatEditText editView) {
+        //输入文字下限
+        int wordMinNum = 6;
+        return editView.getText().length() < wordMinNum;
+
+    }
+
+    private void setInputEditView(AppCompatEditText editView) {
+        //记录字数上限
+        int wordLimitNum = 16;
+        editView.addTextChangedListener(new TextWatcher() {
+            //记录输入的字数
+            private CharSequence enterWords;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //实时记录输入的字数
+                enterWords = s;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editable.length() > wordLimitNum) {
+                    //删除多余输入的字（不会显示出来）
+                    editable.delete(wordLimitNum, editable.length());
+                    editView.setText(editable);
+                    //设置光标在最后
+                    editView.setSelection(editView.getText().toString().length());
+                }
+            }
+        });
+
+
     }
 }

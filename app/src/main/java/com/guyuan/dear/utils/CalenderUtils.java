@@ -1,5 +1,7 @@
 package com.guyuan.dear.utils;
 
+import android.text.TextUtils;
+
 import com.example.mvvmlibrary.util.LogUtils;
 
 import java.text.ParseException;
@@ -30,6 +32,7 @@ public class CalenderUtils {
     private SimpleDateFormat simpleDateFormatByNumericYearMonth;
     private SimpleDateFormat mSimpleDateFormatByYearMonthDayHourMin;
     private SimpleDateFormat mSimpleDateFormatByLongYearAndMonth;
+    private SimpleDateFormat mSimplePointYearMonthDay;
     private static CalenderUtils instance;
     private String[] chineseMonths =
             new String[]{"一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月",};
@@ -51,24 +54,27 @@ public class CalenderUtils {
         simpleDateFormatByYearMonth = new SimpleDateFormat("yy-MM", Locale.CHINA);
         mSimpleDateFormatByYearMonthDayHourMin = new SimpleDateFormat("yyyy年MM月dd日HH时mm分", Locale.CHINA);
         mSimpleDateFormatByLongYearAndMonth = new SimpleDateFormat("yyyy-MM", Locale.CHINA);
-        stdHourMinSecFormat = new SimpleDateFormat("HH:mm:ss",Locale.CHINA);
+        mSimplePointYearMonthDay = new SimpleDateFormat("yy.MM.dd", Locale.CHINA);
+        stdHourMinSecFormat = new SimpleDateFormat("HH:mm:ss", Locale.CHINA);
     }
 
     /**
      * 时：分：秒 如 “12:30:45”
+     *
      * @param timeMills
      * @return
      */
-    public String toStandardHourMinSecFormat(long timeMills){
+    public String toStandardHourMinSecFormat(long timeMills) {
         return stdHourMinSecFormat.format(new Date(timeMills));
     }
 
     /**
      * 解析 HH:mm:ss 的时间格式
+     *
      * @param format
      * @return
      */
-    public Date parseStandardHourMinSecFormat(String format){
+    public Date parseStandardHourMinSecFormat(String format) {
         try {
             return stdHourMinSecFormat.parse(format);
         } catch (ParseException e) {
@@ -200,6 +206,7 @@ public class CalenderUtils {
 
     /**
      * 解析 yyyy-MM-dd HH:mm:ss的时间格式
+     *
      * @param date
      * @return
      */
@@ -212,6 +219,7 @@ public class CalenderUtils {
         }
         return null;
     }
+
 
     public String parseSmartFactoryChineseDateStringFormat(String date) {
         try {
@@ -229,6 +237,7 @@ public class CalenderUtils {
 
     /**
      * 解析 yyyy-MM-dd的日期
+     *
      * @param date
      * @return
      */
@@ -242,8 +251,34 @@ public class CalenderUtils {
         return null;
     }
 
+    public String toSmartFactoryDateFormatByFull(long time) {
+        return mSimplePointYearMonthDay.format(new Date(time));
+    }
+
+    public String toSmartFactoryDateFormatByFull(Date date) {
+        return mSimplePointYearMonthDay.format(date);
+    }
+
+    public String toSmartFactoryDateFormatByFull(String dateString) {
+        if (TextUtils.isEmpty(dateString)) return "";
+        Date date = null;
+        try {
+            date = simpleDateFormatByDay.parse(dateString);
+        } catch (Exception e) {
+            e.printStackTrace();
+            LogUtils.showLog(e.getMessage());
+        }
+        if (date != null) {
+            return mSimplePointYearMonthDay.format(date);
+        } else {
+            return "未知日期";
+        }
+
+    }
+
     /**
      * 把日期转成 yyyy-MM-dd 格式
+     *
      * @param time
      * @return
      */

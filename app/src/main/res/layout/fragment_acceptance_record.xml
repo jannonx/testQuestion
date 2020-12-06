@@ -4,11 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    <ScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:scrollbars="none">-->
-
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -18,14 +13,16 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:paddingStart="@dimen/dp_12"
+                android:paddingTop="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_8"
                 android:paddingEnd="@dimen/dp_12">
 
                 <TextView
                     android:id="@+id/label_recorder"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_12"
                     android:text="记录人员"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
@@ -70,12 +67,13 @@
 
                 <TextView
                     android:id="@+id/tv_remark"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    tools:text="设计图样、国家标准"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="设计图样、国家标准设计图样、国家标准设计图样、国家标准设计图样、国家标准设计图样、国家标准"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_remark"
                     app:layout_constraintStart_toStartOf="@+id/tv_recorder"
                     app:layout_constraintTop_toTopOf="@+id/label_remark" />
 
@@ -84,7 +82,7 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@color/color_white_f5f7fa"
                 android:orientation="vertical">
 
@@ -116,7 +114,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:layout_height="@dimen/dp_150"
-                    android:background="@color/white"
                     tools:background="@color/color_green_D4FFF1" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
