@@ -87,6 +87,7 @@
                 app:layout_constraintTop_toTopOf="@+id/label_project_name" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_view"
                 android:layout_width="@dimen/dp_18"
                 android:layout_height="@dimen/dp_18"
                 android:src="@mipmap/ic_arrow_gray_right"

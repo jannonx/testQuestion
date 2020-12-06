@@ -10,6 +10,7 @@ import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.R;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
  */
 public class CheckGoodsAdapter extends BaseRecyclerAdapter<CheckGoodsBean> {
     /**
-     * 清点是否异常，0正常，1异常
+     * 清点确认状态(-1尚未操作，0:正常,1:异常)
      */
     private static final int CHECK_RIGHT = 0;
     private static final int CHECK_WRONG = 1;
@@ -56,13 +57,14 @@ public class CheckGoodsAdapter extends BaseRecyclerAdapter<CheckGoodsBean> {
         holder.setText(R.id.tv_goods_number, item.getAmount() + item.getUnit());
 
         //我的关注
-        imageView.setImageResource(item.getIsException() == CHECK_RIGHT ? R.mipmap.right : R.mipmap.wrong);
+
+        imageView.setImageResource(item.getStatus() == CHECK_RIGHT ? R.mipmap.right : R.mipmap.wrong);
 
         //我的工作
         AppCompatImageView ivRightBtn = holder.getView(R.id.iv_right_btn);
         AppCompatImageView ivWrongBtn = holder.getView(R.id.iv_wrong_btn);
 
-        item.setIsException(CHECK_RIGHT);
+        item.setStatus(CHECK_RIGHT);
         ivRightBtn.setImageResource(R.mipmap.right);
         ivWrongBtn.setImageResource(R.mipmap.ic_wrong_gray_unselect);
 
@@ -73,7 +75,7 @@ public class CheckGoodsAdapter extends BaseRecyclerAdapter<CheckGoodsBean> {
         ivRightBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                item.setIsException(CHECK_RIGHT);
+                item.setStatus(CHECK_RIGHT);
                 ivRightBtn.setImageResource(R.mipmap.right);
                 ivWrongBtn.setImageResource(R.mipmap.ic_wrong_gray_unselect);
             }
@@ -81,7 +83,7 @@ public class CheckGoodsAdapter extends BaseRecyclerAdapter<CheckGoodsBean> {
         ivWrongBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                item.setIsException(CHECK_WRONG);
+                item.setStatus(CHECK_WRONG);
                 ivRightBtn.setImageResource(R.mipmap.ic_right_gray_unselect);
                 ivWrongBtn.setImageResource(R.mipmap.wrong);
             }

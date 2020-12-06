@@ -171,7 +171,7 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
         viewModel.getExecuteEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer dataRefreshBean) {
-                ToastUtils.showLong(getContext(), "提交成功!");
+//                ToastUtils.showLong(getContext(), "提交成功!");
                 EventBus.getDefault().post(new EventProduceListRefresh());
                 getActivity().finish();
             }

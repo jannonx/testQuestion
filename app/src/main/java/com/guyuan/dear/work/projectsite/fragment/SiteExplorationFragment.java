@@ -96,7 +96,7 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
 
 
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-                imageDataList, R.layout.item_explorate_image);
+                imageDataList, R.layout.item_explorate_image,true);
         imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
 
         binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));

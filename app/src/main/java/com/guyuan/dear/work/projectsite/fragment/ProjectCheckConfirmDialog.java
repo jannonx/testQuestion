@@ -255,7 +255,7 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
             LogUtils.showLog("checkGoodsBean=" + checkGoodsBean.getIsException());
             PostCheckInfo.CheckDetailParamsListBean bean = new PostCheckInfo.CheckDetailParamsListBean();
             bean.setId(checkGoodsBean.getId());
-            bean.setStatus(checkGoodsBean.getIsException());
+            bean.setStatus(checkGoodsBean.getStatus());
             goodList.add(bean);
         }
         body.setCheckDetailParamsList(goodList);

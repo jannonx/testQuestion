@@ -43,7 +43,7 @@ public class AllClientFragment extends BaseListSearchFragment<ClientCompanyBean,
 
     @Override
     protected void init() {
-        etSearch.setHint("输入客户名称");
+        etSearch.setHint("输入客户名称、销售人员");
         ClientAllAdapter listAdapter = new ClientAllAdapter(getContext(), listData,
                 R.layout.item_work_all_customer);
         adapter = new BaseRecyclerViewAdapter(listAdapter);

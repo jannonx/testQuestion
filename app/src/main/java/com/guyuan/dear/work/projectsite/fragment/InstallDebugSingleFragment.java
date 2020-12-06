@@ -93,7 +93,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
         debugBean = (InstallDebugBean) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
 
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-                imageDataList, R.layout.item_explorate_image);
+                imageDataList, R.layout.item_explorate_image,true);
         imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
 
         binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));

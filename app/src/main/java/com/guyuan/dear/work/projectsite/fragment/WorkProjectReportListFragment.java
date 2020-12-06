@@ -219,7 +219,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
      * 刷新列表
      */
     public void refreshList() {
-        ToastUtils.showLong(getContext(), "提交成功");
+//        ToastUtils.showLong(getContext(), "提交成功");
         getDataListByClassify(true);
     }
 

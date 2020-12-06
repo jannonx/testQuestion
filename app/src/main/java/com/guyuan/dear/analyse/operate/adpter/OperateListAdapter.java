@@ -2,9 +2,11 @@ package com.guyuan.dear.analyse.operate.adpter;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.analyse.operate.bean.OperateAnalyseBean;
@@ -37,6 +39,10 @@ public class OperateListAdapter extends BaseRecyclerAdapter<OperateAnalyseBean> 
         holder.setText(R.id.tv_money, OperateType.TYPE_ACTUAL == item.getOperateType() ? item.getTradeReceivables() : item.getTotalCost());
         holder.setText(R.id.tv_customer_name, item.getCusName());
         holder.setText(R.id.tv_project_name, item.getProjectName());
+
+
+        AppCompatImageView imageView = holder.getView(R.id.image_view);
+        imageView.setVisibility(OperateType.TYPE_TOTAL == item.getOperateType() ? View.VISIBLE : View.GONE);
 
     }
 }

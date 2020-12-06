@@ -24,7 +24,9 @@ import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.OperateProduceType;
 import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
+import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.office.approval.ui.ApprovalActivity;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
@@ -77,6 +79,8 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
     private int status = -1;//1.同意；2.拒绝
     private int type;
     private boolean isApproved = false;
+    //自己隐藏
+    private ArrayList<StaffBean> hiddenStaffList = new ArrayList<>();
     private RemarkDialog.OnDialogClickListener remarkListener;
 
     public static FocusProduceDetailComplexFragment newInstance(FocusProduceBean data, boolean isFooterBtnShow) {
@@ -128,6 +132,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
         binding.tvCompleteBtn.setOnClickListener(this);
         viewModel.getBasicInfoById(produceBean.getPlanId());
 
+
         viewModel.getBasicInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
             @Override
             public void onChanged(FocusProduceBean data) {
@@ -138,7 +143,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
         viewModel.getExecuteEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer dataRefreshBean) {
-                ToastUtils.showLong(getContext(), "提交成功!");
+//                ToastUtils.showLong(getContext(), "提交成功!");
                 EventBus.getDefault().post(new EventProduceListRefresh());
                 getActivity().finish();
             }
@@ -201,8 +206,8 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
 
         planFragment.setProduceData(data);
 
-        binding.tvProductName.setText(data.getProjectName());
-        binding.tvProductCode.setText(data.getProjectCode());
+        binding.tvProductName.setText(data.getName());
+        binding.tvProductCode.setText(data.getCode());
         binding.tvDutyUnit.setText(data.getPrincipalDept());
 
         //设置生产状态
@@ -212,10 +217,16 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
         binding.tvProduceStatus.setTextColor(getActivity().getResources().getColor(color_blue_ff1b97fc));
 
         binding.tvProjectName.setText(data.getProjectName());
+        binding.tvProjectCode.setText(data.getProjectCode());
 
-        binding.tvActualStart.setText(data.getActualStartTime());
-        binding.tvPlanStart.setText(data.getPlanStartTime());
-        binding.tvActualComplete.setText(data.getActualEndTime());
+        //暂停--其他
+        binding.labelActualStart.setText(isProducePause ? "实际暂停生产时间：" : "实际开始生产时间：");
+        binding.labelPlanStart.setText(isProducePause ? "实际开始生产时间：" : "计划生产开始时间：");
+        binding.tvActualStart.setText(isProducePause ? data.getPauseTime() : data.getActualStartTime());
+        binding.tvPlanStart.setText(isProducePause ? data.getActualStartTime() : data.getPlanStartTime());
+
+
+        binding.tvActualComplete.setText(isProducePause ? "暂停中" : data.getActualEndTime());
         binding.tvPlanComplete.setText(data.getPlanEndTime());
 
 
@@ -255,6 +266,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
         ProduceApplyDialog.OnDialogClickListener dialogListener = new ProduceApplyDialog.OnDialogClickListener() {
             @Override
             public void onCommitInfo(ExecuteRequestBody content) {
+                LogUtils.showLog("tv_ok....onCommitInfo");
                 content.setEquipmentId(produceBean.getEquipmentId());
                 content.setId(produceBean.getPlanId());
                 String str = GsonUtil.objectToString(content);
@@ -270,7 +282,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
                         REQUEST_SEND_SELECT_PERSON,
                         "请选审批送人",
                         sendListAdapter == null ? new ArrayList<>() : sendListAdapter.getList(),
-                        new ArrayList<>(),
+                        CommonUtils.getCurrentStaffList(),
                         copyListAdapter == null ? new ArrayList<>() : copyListAdapter.getList(),
                         ConstantValue.CONST_MAX_STAFF_COUNT);
             }
@@ -281,7 +293,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
                         REQUEST_COPY_SELECT_PERSON,
                         "请选审抄送人",
                         addCopyListAdapter == null ? new ArrayList<>() : addCopyListAdapter.getList(),
-                        new ArrayList<>(),
+                        CommonUtils.getCurrentStaffList(),
                         sendListAdapter == null ? new ArrayList<>() : sendListAdapter.getList(),
                         ConstantValue.CONST_MAX_STAFF_COUNT);
             }

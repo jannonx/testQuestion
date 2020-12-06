@@ -81,8 +81,6 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
     protected void initialization() {
         detailData = (SiteExploreBean) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
 
-        binding.clGoodsList.setVisibility(detailData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
-                ? View.GONE : View.VISIBLE);
 
         binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         CheckGoodsAdapter checkContentAdapter = new CheckGoodsAdapter(getContext(),
@@ -199,8 +197,13 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
         binding.tvTime.setText(data.getCreateTime());
         binding.tvCompanyLocation.setText(data.getAcceptAddress());
 
+        binding.clGoodsList.setVisibility(detailData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
+                ? View.GONE : View.VISIBLE);
+
         List<CheckGoodsBean> checkGoodsListData = data.getCheckTransportProjectListVO();
         binding.tvTotalGoods.setText("共计货物：" + (checkGoodsListData != null ? checkGoodsListData.size() : 0) + "件");
+
+        listData.clear();
         listData.addAll(checkGoodsListData);
         adapter.refreshData();
 

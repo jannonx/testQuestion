@@ -18,6 +18,7 @@ import com.guyuan.dear.scan.ScanActivity;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.GlideUtils;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -91,6 +92,7 @@ public class MineFragment extends BaseDataBindingFragment<FragmentMineBinding, M
             //系统设置
             case R.id.ll_system_setting:
 //                SystemSettingActivity.start(getContext(), "系统设置");
+                ToastUtils.showLong(getContext(),"正在研发中...");
                 break;
             //修改密码
             case R.id.ll_safety_center:

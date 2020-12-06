@@ -64,11 +64,11 @@ public class FocusProduceStatusAdapter extends BaseRecyclerAdapter<ProduceStateB
         holder.setText(R.id.tv_product_status, item.getTitle());
         TextView tvTime = holder.getView(R.id.tv_time);
         tvTime.setText(TextUtils.isEmpty(item.getCreateTime()) ? item.getApprovalTime() : item.getCreateTime());
-        tvTime.setVisibility(TextUtils.isEmpty(item.getCreateTime()) || TextUtils.isEmpty(item.getApprovalTime()) ? View.VISIBLE : View.GONE);
+        tvTime.setVisibility(TextUtils.isEmpty(item.getCreateTime()) || TextUtils.isEmpty(item.getApprovalTime()) ? View.GONE : View.VISIBLE);
         holder.setText(R.id.tv_name, TextUtils.isEmpty(item.getCreateName()) ? item.getApproveName() : item.getCreateName());
         TextView tvComment = holder.getView(R.id.tv_comment);
         tvComment.setText(item.getRemarks());
-        tvComment.setVisibility(TextUtils.isEmpty(item.getRemarks()) ? View.VISIBLE : View.GONE);
+        tvComment.setVisibility(TextUtils.isEmpty(item.getRemarks()) ? View.GONE : View.VISIBLE);
         holder.setText(R.id.tv_department, TextUtils.isEmpty(item.getCreateDept()) ? item.getDepartmentName() : item.getCreateDept());
 
         viewEmptyBottom.setVisibility(listData.size() >= 3 && (position == listData.size() - 1) ? View.VISIBLE : View.GONE);

@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -66,11 +66,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_8"
-            tools:text="2020-09-03 18:53"
             android:textColor="@color/color_grey_999999"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toStartOf="@+id/tv_product_status"
-            app:layout_constraintTop_toBottomOf="@+id/tv_product_status" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_product_status"
+            tools:text="2020-09-03 18:53" />
 
         <com.guyuan.dear.customizeview.roundedimageview.RoundedImageView
             android:id="@+id/iv_avatar"
@@ -102,12 +102,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_6"
             android:layout_marginTop="@dimen/dp_8"
-            tools:text="深圳市南山区西湖大道3046号香江金融中心大厦1708室"
             android:textColor="@color/color_black_333333"
             android:textSize="@dimen/sp_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_avatar"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text="深圳市南山区西湖大道3046号香江金融中心大厦1708室" />
 
 
         <TextView
@@ -139,19 +139,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/label_department" />
 
-
+        <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout
+            android:id="@+id/tfl_picture"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:background="@color/color_green_00B578"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/view_bottom"
+            tools:layout_height="@dimen/dp_120" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
         android:id="@+id/view_empty_bottom"
-        android:visibility="gone"
-        tools:visibility="visible"
         android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp_75"
+        android:background="@color/transparent"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_bottom"
-        android:background="@color/transparent"
         tools:background="@color/color_green_D4FFF1"
-        android:layout_height="@dimen/dp_75"/>
+        tools:visibility="visible" />
 </androidx.appcompat.widget.LinearLayoutCompat>
 
 

@@ -22,6 +22,8 @@ import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
+import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
@@ -67,7 +69,6 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
     private int selectedTextColor, unSelectedTextColor;
     private AfterSaleBean afterSaleBean;
     protected ArrayList<String> photoList = new ArrayList<>();
-    private ProduceApplyDialog dialog;
     private SaleAcceptedType saleAcceptedType = SaleAcceptedType.TYPE_ACCEPTED_QUALIFIED;
     private CustomerAcceptanceDetailActivity activity;
     private PostInfoBean postInfoBean;
@@ -134,7 +135,7 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
             @Override
             public void onChanged(Integer data) {
 //                setAfterSaleBean(data);
-                ToastUtils.showLong(getContext(), "提交成功");
+//                ToastUtils.showLong(getContext(), "提交成功");
                 viewModel.getAfterSaleCustomerAcceptanceDetail(afterSaleBean.getId(),SaleSectionType.TYPE_SECTION_ACCEPT.getCode());
             }
         });

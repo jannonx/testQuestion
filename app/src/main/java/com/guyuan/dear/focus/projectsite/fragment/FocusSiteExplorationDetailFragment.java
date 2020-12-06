@@ -326,6 +326,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
             public void onPickImageClick() {
                 activity.openAlbum(BaseTabActivity.FIRST);
             }
+
             @Override
             public void onCommitInstallationDebugInfo(PostInstallationDebugInfo data) {
                 LogUtils.showLog("onCommitInstallationDebugInfo");
@@ -472,7 +473,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvTime.setText(detailProjectData.getCreateTime());
         binding.tvCompanyLocation.setText(detailProjectData.getDestination());
 
-
+        binding.tvActivateBtn.setText("反馈问题");
+        binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType() ? View.GONE : View.VISIBLE);
     }
 
     /**
@@ -503,7 +505,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 || InstallDebugSatisfyType.TYPE_INSTALL_PAUSE == detailProjectData.getInstallDebugSatisfyType() ? View.GONE : View.VISIBLE);
         //暂停，隐藏--llApplyPanel，显示--tvActivateBtn
         binding.tvActivateBtn.setText("继续安装");
-        binding.tvActivateBtn.setVisibility(InstallDebugSatisfyType.TYPE_INSTALL_PAUSE == detailProjectData.getInstallDebugSatisfyType()
+        binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
+                ? View.GONE : InstallDebugSatisfyType.TYPE_INSTALL_PAUSE == detailProjectData.getInstallDebugSatisfyType()
                 ? View.VISIBLE : View.GONE);
     }
 

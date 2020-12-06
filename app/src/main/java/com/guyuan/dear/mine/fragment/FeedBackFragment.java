@@ -114,19 +114,18 @@ public class FeedBackFragment extends BaseDataBindingFragment<FragmentFeedBackBi
 
             @Override
             public void afterTextChanged(Editable editable) {
+                if (editable.length() > wordLimitNum) {
+                    //删除多余输入的字（不会显示出来）
+                    editable.delete(wordLimitNum, editable.length());
+                    binding.etFeedBack.setText(editable);
+                    //设置光标在最后
+                    binding.etFeedBack.setSelection(binding.etFeedBack.getText().toString().length());
+                }
+
                 //已输入字数
                 int enteredWords = wordLimitNum - editable.length();
                 //TextView显示剩余字数
-                binding.tvNumber.setText(wordLimitNum - enteredWords + "/240");
-                int selectionStart = binding.etFeedBack.getSelectionStart();
-                int selectionEnd = binding.etFeedBack.getSelectionEnd();
-                if (enterWords.length() > wordLimitNum) {
-                    //删除多余输入的字（不会显示出来）
-                    editable.delete(selectionStart - 1, selectionEnd);
-                    binding.etFeedBack.setText(editable);
-                    //设置光标在最后
-                    binding.etFeedBack.setSelection(selectionEnd);
-                }
+                binding.tvNumber.setText((wordLimitNum - enteredWords) + "/240");
             }
         });
     }
