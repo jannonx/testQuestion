@@ -11,6 +11,7 @@ import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.google.gson.Gson;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
+import com.guyuan.dear.customizeview.itemDecorator.LinearVerticalPaddingDecorator;
 import com.guyuan.dear.databinding.FragmentQcSearchListBinding;
 import com.guyuan.dear.focus.qc.adapters.AllQcListAdapter;
 import com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport;
@@ -73,6 +74,7 @@ public class QcSearchListFragment extends BaseMvvmFragment<FragmentQcSearchListB
         recyclerView = getViewDataBinding().fragmentQcSearchListRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         AllQcListAdapter adapter = new AllQcListAdapter(getViewModel().reportList.getValue(), getContext());
+        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator(12,16));
         this.adapter = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(this.adapter);

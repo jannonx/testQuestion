@@ -18,4 +18,5 @@ public class ContractCommentsViewModel extends BaseViewModel {
     public MutableLiveData<List<ContractComment>> comments = new MutableLiveData<>();
     public MutableLiveData<Long> contractDate = new MutableLiveData<>();
     public MutableLiveData<String> applier = new MutableLiveData<>();
+    public MutableLiveData<Boolean> isShowNoData=new MutableLiveData<>(true);
 }
