@@ -6,6 +6,7 @@ import androidx.databinding.library.baseAdapters.BR;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
+import com.guyuan.dear.databinding.FragmentTransportInventoryBinding;
 import com.guyuan.dear.databinding.ItemTransportDetailInventoryBinding;
 import com.guyuan.dear.focus.transport.adapter.InventoryAdapter;
 import com.guyuan.dear.focus.transport.data.TransportViewModel;
@@ -19,7 +20,7 @@ import com.guyuan.dear.focus.transport.data.bean.TransportDetailBean;
  **/
 
 public class TransportInventoryFragment extends BaseListFragment<TransportDetailBean.TransportDetailVOListBean,
-        ItemTransportDetailInventoryBinding, TransportViewModel> {
+        FragmentTransportInventoryBinding, TransportViewModel> {
 
     public static final String TAG = "TransportInventoryFragment";
 
@@ -34,10 +35,16 @@ public class TransportInventoryFragment extends BaseListFragment<TransportDetail
 
     @Override
     protected void initView() {
-        list_container.setBackgroundColor(getResources().getColor(R.color.bg_window));
+    //    list_container.setBackgroundColor(getResources().getColor(R.color.bg_window));
         InventoryAdapter inventoryAdapter = new InventoryAdapter(listData,
                 R.layout.item_transport_detail_inventory);
         setDefaultAdapter(inventoryAdapter);
+    }
+
+
+    @Override
+    public int getLayoutID() {
+        return R.layout.fragment_transport_inventory;
     }
 
     @Override
@@ -48,6 +55,10 @@ public class TransportInventoryFragment extends BaseListFragment<TransportDetail
     @Override
     protected void loadMore() {
 
+    }
+
+    public void setTotalNumber(int number) {
+        binding.transportTotalNumberTv.setText(String.format(getString(R.string.focus_transport_total_number), number));
     }
 
     @Override

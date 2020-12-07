@@ -32,6 +32,7 @@ public class TransportBindingAdapter {
             TransportInventoryFragment inventoryFragment = (TransportInventoryFragment) fragmentList.get(0);
             TransportMessageFragment messageFragment = (TransportMessageFragment) fragmentList.get(1);
             TransportDocumentFragment documentFragment = (TransportDocumentFragment) fragmentList.get(2);
+            inventoryFragment.setTotalNumber(getInventoryNumber(detailBean.getTransportDetailVOList()));
             inventoryFragment.setListData(detailBean.getTransportDetailVOList());
             List<String> imgList = StringUtils.splitPhotoUrl(detailBean.getFileUrl());
             if (imgList != null && imgList.size() > 0) {
@@ -41,12 +42,21 @@ public class TransportBindingAdapter {
                         picList.add(url);
                     }
                 }
-
-
-                documentFragment.setListData(picList);
+                documentFragment.setData(picList);
             }
         }
 
     }
 
+
+    private static int getInventoryNumber(List<TransportDetailBean.TransportDetailVOListBean> detailVOListBeanList) {
+        int totalNumber = 0;
+        if (detailVOListBeanList != null && detailVOListBeanList.size() > 0) {
+            for (TransportDetailBean.TransportDetailVOListBean bean : detailVOListBeanList) {
+                totalNumber += bean.getAmount();
+            }
+        }
+
+        return totalNumber;
+    }
 }

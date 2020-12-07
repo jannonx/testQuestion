@@ -152,4 +152,18 @@ public class AssessBindingAdapter {
                     monthXAxisValueFormatter, null);
         }
     }
+
+    @BindingAdapter(value = {"assessStartTime", "assessEndTime"})
+    public static void setAssessTime(TextView tv, String startTime, String endTime) {
+        StringBuilder time = new StringBuilder();
+        if (!TextUtils.isEmpty(startTime)) {
+            time.append(startTime);
+        }
+
+        if (!TextUtils.isEmpty(endTime)) {
+            time.append(" ~ " + endTime);
+        }
+
+        tv.setText(time);
+    }
 }

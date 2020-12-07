@@ -467,6 +467,7 @@
     <string name="focus_transport_spec">规格：%s</string>
     <string name="focus_transport_remark">备注：%s</string>
     <string name="focus_transport_contract_name">联系人：%s</string>
+    <string name="focus_transport_total_number">共%d个</string>
 
     <!--我的工作-物料申请-->
     <string name="work_matter_apply_spec">材料规格：%s</string>
