@@ -20,10 +20,10 @@
 
             <ImageView
                 android:id="@+id/no_data_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="154dp"
                 tools:ignore="ContentDescription"
-                tools:src="@mipmap/ic_no_data" />
+                tools:src="@drawable/ic_svg_no_data" />
 
             <TextView
                 android:id="@+id/tv_empty"
@@ -62,7 +62,7 @@
                 android:layout_width="@dimen/dp_75"
                 android:layout_height="@dimen/dp_75"
                 tools:ignore="ContentDescription"
-                android:src="@mipmap/ic_no_data" />
+                android:src="@drawable/ic_svg_no_data" />
 
             <TextView
                 android:id="@+id/tem_tv_empty"
