@@ -8,10 +8,11 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentQcSummaryBinding;
 import com.guyuan.dear.focus.qc.views.qcReportList.QcSumTypeListActivity;
 import com.guyuan.dear.utils.AlertDialogUtils;
-import com.guyuan.dear.utils.CalenderUtils;
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
+
+import java.util.Calendar;
 
 /**
  * @author: 廖华凯
@@ -36,8 +37,12 @@ public class QcSummaryFragment extends BaseMvvmFragment<FragmentQcSummaryBinding
     @Override
     protected void initData() {
         dateTo = System.currentTimeMillis();
-        dateFrom = CalenderUtils.getInstance().getXMonthsAgoInYearMonthFormat(dateTo, 3);
-        addDisposable(getViewModel().updateQcSummaryByTimePeriod(dateFrom, dateTo));
+        Calendar dateFrom = Calendar.getInstance();
+        dateFrom.set(Calendar.HOUR_OF_DAY, 0);
+        dateFrom.set(Calendar.MINUTE, 0);
+        dateFrom.set(Calendar.SECOND, 0);
+        this.dateFrom = dateFrom.getTimeInMillis();
+        addDisposable(getViewModel().updateQcSummaryByTimePeriod(this.dateFrom, dateTo));
 
     }
 
