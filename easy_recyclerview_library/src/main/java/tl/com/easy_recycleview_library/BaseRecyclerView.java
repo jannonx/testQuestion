@@ -823,4 +823,7 @@ public class BaseRecyclerView extends RecyclerView {
         }
     }
 
+    public void initCurrentItem() {
+        currentItemNumber = 0;
+    }
 }
