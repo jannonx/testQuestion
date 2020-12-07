@@ -99,7 +99,7 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
     private void initView() {
 //        setRefreshTipText();
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-       getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+        getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
             @Override
             public void onSystemUiVisibilityChange(int visibility) {
                 int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
