@@ -275,7 +275,6 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
 
     @Override
     public void onPhotoSelected(ArrayList<Uri> dataList) {
-    public void onPhotoSelected(ArrayList<String> dataList) {
         photoList.clear();
         photoList.addAll(dataList);
         if (dialog != null) {

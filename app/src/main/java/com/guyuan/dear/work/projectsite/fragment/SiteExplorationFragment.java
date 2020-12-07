@@ -390,9 +390,7 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<Uri> photoList) {
-    public void onPhotoSelected(ArrayList<String> dataList) {
-
+    public void onPhotoSelected(ArrayList<Uri> dataList) {
         photoList.clear();
         photoList.addAll(dataList);
         imageDataList.clear();
