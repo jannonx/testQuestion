@@ -10,6 +10,7 @@ import com.guyuan.dear.customizeview.fullScreenShowFile.FullScreenShowActivity;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
 import com.guyuan.dear.utils.GlideUtils;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.StringUtils;
 
 import java.util.List;
@@ -57,11 +58,14 @@ public class ContentImageViewAdapter extends BaseRecyclerAdapter<String> {
         ivDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                LogUtils.showLog("setOnClickListener..setOnClickListener000=" + listData.size());
                 listData.remove(position);
+                LogUtils.showLog("setOnClickListener..setOnClickListener111=" + listData.size());
                 notifyDataSetChanged();
-                if (adapterListener != null && listData.size() == 0) {
-                    adapterListener.onListEmpty();
+                if (adapterListener != null ) {
+                    adapterListener.onDeleteCLick(position);
                 }
+
             }
         });
 
@@ -73,6 +77,6 @@ public class ContentImageViewAdapter extends BaseRecyclerAdapter<String> {
     }
 
     public interface OnListAdapterListener {
-        void onListEmpty();
+        void onDeleteCLick(int position);
     }
 }

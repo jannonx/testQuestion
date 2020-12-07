@@ -51,7 +51,6 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
     public final int LOAD_MORE = 0X0100;
     public final int REFRESH = 0X0101;
     protected List<T> listData = new ArrayList<T>();
-    private boolean isFirstLoad = true;
     /**
      * 一页拉取的数据条数
      */
@@ -111,16 +110,6 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
 
     protected abstract boolean isLoadMoreEnable();
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        //第一次加载不刷新，再次进入页面刷新数据
-//        if (!isFirstLoad) {
-//            refresh();
-//        }
-//
-//        isFirstLoad = false;
-//    }
 
     /**
      * 是否开启下拉刷新 (默认开启)

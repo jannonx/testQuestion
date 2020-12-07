@@ -54,37 +54,11 @@ public class HrCursorAdapter extends CursorAdapter {
                 });
     }
 
-    public void updateSuggestionsByKeyWordName(String keyWord) {
-        Cursor cursor = DearDbManager.getInstance().getDataBase().getStaffDao().getStaffsByName(keyWord);
+    public void updateSuggestionsByKeyWordName(String keyWord, List<Long> hiddenList) {
+        Cursor cursor = DearDbManager.getInstance().getDataBase().getStaffDao().getStaffsByNameWithHiddenList(keyWord, hiddenList);
         swapCursor(cursor);
     }
 
-//    @Override
-//    public Cursor swapCursor(Cursor newCursor) {
-//        if (newCursor == mCursor) {
-//            return null;
-//        }
-//        Cursor oldCursor = mCursor;
-//        if (oldCursor != null) {
-//            if (mChangeObserver != null) oldCursor.unregisterContentObserver(mChangeObserver);
-//            if (mDataSetObserver != null) oldCursor.unregisterDataSetObserver(mDataSetObserver);
-//        }
-//        this.mCursor = newCursor;
-//        if (newCursor != null) {
-//            if (mChangeObserver != null) newCursor.registerContentObserver(mChangeObserver);
-//            if (mDataSetObserver != null) newCursor.registerDataSetObserver(mDataSetObserver);
-//            mRowIDColumn = newCursor.getColumnIndexOrThrow("_id");
-//            mDataValid = true;
-//            // notify the observers about the new cursor
-//            notifyDataSetChanged();
-//        } else {
-//            mRowIDColumn = -1;
-//            mDataValid = false;
-//            // notify the observers about the lack of a data set
-//            notifyDataSetInvalidated();
-//        }
-//        return oldCursor;
-//    }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {

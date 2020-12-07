@@ -21,7 +21,6 @@ import com.guyuan.dear.focus.hr.adapter.PickStaffsExpListAdapter;
 import com.guyuan.dear.focus.hr.adapter.PickStaffsHistoryStaffsAdapter;
 import com.guyuan.dear.focus.hr.bean.PickStaffBean;
 import com.guyuan.dear.focus.hr.bean.PickStaffsExpParentBean;
-import com.guyuan.dear.focus.hr.view.hrStaffMonthlyDetail.StaffMonthlyDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
@@ -77,6 +76,10 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
         ArrayList<StaffBean> disabled = bundle.getParcelableArrayList(ConstantValue.KEY_DISABLE_STAFFS);
         int maxSelect = bundle.getInt(ConstantValue.KEY_MAX_SELECT_COUNT);
         getViewModel().init(preSelected,hiddenStaffs,disabled,maxSelect);
+        //如果有需要隐藏起来的人员，设置成在搜索栏里也搜索不到。
+        if(hiddenStaffs!=null){
+            getViewDataBinding().fragmentPickStaffsHrSearchView.searchBarForStaffSearchView.addHiddenStaffs(hiddenStaffs);
+        }
 
     }
 
@@ -87,10 +90,19 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
 
     @Override
     protected void initListeners() {
-        //点击历史选人列表，将联动二级选人列表UI人员选择状态
+        //点击历史选人列表，将联动二级选人列表中人员选择状态的UI
         getViewModel().setOnClickHistoryStaff(new PickStaffsHistoryStaffsAdapter.PickStaffsHistoryItemClickListener() {
             @Override
             public void onItemClick(PickStaffBean bean, int pos) {
+                if(bean.isPick()){
+                    if(getViewModel().checkIsExceedMaxSelectCount()){
+                        bean.setPick(false);
+                        bean.setPickTime(0);
+                        showToastTip("已经超出最大选择人数。");
+                        return;
+                    }
+                }
+
                 List<PickStaffsExpParentBean> grpBeans = getViewModel().getGrpBeans().getValue();
                 //遍历二级选人列表，找到被点选/反选的人，更新UI
                 for (int i = 0; i < grpBeans.size(); i++) {
@@ -118,10 +130,20 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
             }
         });
 
-        //点击二级选人列表，将联动历史选人列表UI人员选择状态
+        //点击二级选人列表，将联动历史选人列表中的人员选择状态的UI
         getViewModel().setOnToggleStaff(new PickStaffsExpListAdapter.ItemCallback() {
             @Override
             public void onTogglePickStaff(int grpPos, int childPos, PickStaffBean item) {
+
+                if(item.isPick()){
+                    if(getViewModel().checkIsExceedMaxSelectCount()){
+                        item.setPick(false);
+                        item.setPickTime(0);
+                        showToastTip("已经超出最大选择人数。");
+                        return;
+                    }
+                }
+
                 RecyclerView view = getViewDataBinding().fragmentPickStaffsRecyclerViewHistoryStaffs;
                 PickStaffsHistoryStaffsAdapter adapter = (PickStaffsHistoryStaffsAdapter) view.getAdapter();
                 List<PickStaffBean> list = adapter.getList();
@@ -171,7 +193,7 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
             }
         });
 
-        //点击搜索到的人员，并选中
+        //点击上方搜索栏下拉的人员，并选中
         getViewModel().onSelectSearchStaff.postValue(new HrSearchView.SelectStaffCallback() {
             @Override
             public void onStaffSelected(StaffBean staff) {

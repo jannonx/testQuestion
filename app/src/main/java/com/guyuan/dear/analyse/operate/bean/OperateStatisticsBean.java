@@ -36,14 +36,14 @@ public class OperateStatisticsBean implements Serializable {
          * month : 2020-11
          */
 
-        private int paymentCollection;
+        private float paymentCollection;
         private String month;
 
-        public int getPaymentCollection() {
+        public float getPaymentCollection() {
             return paymentCollection;
         }
 
-        public void setPaymentCollection(int paymentCollection) {
+        public void setPaymentCollection(float paymentCollection) {
             this.paymentCollection = paymentCollection;
         }
 
@@ -62,14 +62,14 @@ public class OperateStatisticsBean implements Serializable {
          * month : 2020-11
          */
 
-        private int cost;
+        private float cost;
         private String month;
 
-        public int getCost() {
+        public float getCost() {
             return cost;
         }
 
-        public void setCost(int cost) {
+        public void setCost(float cost) {
             this.cost = cost;
         }
 

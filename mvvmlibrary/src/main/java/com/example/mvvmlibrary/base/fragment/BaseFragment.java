@@ -1,27 +1,19 @@
 package com.example.mvvmlibrary.base.fragment;
 
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.content.PermissionChecker;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.mvvmlibrary.util.AlertDialogUtils;
+import com.example.mvvmlibrary.util.ToastUtils;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.security.Permission;
 
 /**
  * created by tl
@@ -68,10 +60,11 @@ public abstract class BaseFragment extends Fragment {
 
     public void showToastTip(String message) {
         //第二个参数设为null，解决小米手机toast显示app名的问题
-        Toast toast = Toast.makeText(getContext(), null, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.BOTTOM, 0, 0);
-        toast.setText(message);
-        toast.show();
+//        Toast toast = Toast.makeText(getContext(), null, Toast.LENGTH_SHORT);
+//        toast.setGravity(Gravity.BOTTOM, 0, 0);
+//        toast.setText(message);
+//        toast.show();
+        ToastUtils.showToast(getContext(), message);
     }
 
     public void showSnackBarTip(String message) {

@@ -39,6 +39,7 @@ public class OperateListAdapter extends BaseRecyclerAdapter<OperateAnalyseBean> 
         holder.setText(R.id.tv_money, OperateType.TYPE_ACTUAL == item.getOperateType() ? item.getTradeReceivables() : item.getTotalCost());
         holder.setText(R.id.tv_customer_name, item.getCusName());
         holder.setText(R.id.tv_project_name, item.getProjectName());
+        holder.setText(R.id.tv_time, item.getMonthTime());
 
 
         AppCompatImageView imageView = holder.getView(R.id.image_view);

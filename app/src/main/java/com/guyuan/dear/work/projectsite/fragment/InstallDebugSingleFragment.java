@@ -106,9 +106,12 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
 
         imageViewAdapter.setAdapterListener(new ContentImageViewAdapter.OnListAdapterListener() {
             @Override
-            public void onListEmpty() {
-                binding.labelDocument.setText("拍照电子档");
-                binding.tvTip.setText("点击此框上传资料拍照照片");
+            public void onDeleteCLick(int position) {
+                photoList.remove(position);
+                if (imageDataList.size() == 0) {
+                    binding.labelDocument.setText("拍照电子档");
+                    binding.tvTip.setText("点击此框上传资料拍照照片");
+                }
             }
         });
         viewModel.getInstallDebugDetailBySingleEvent().observe(getActivity(), new Observer<SiteExploreBean>() {
@@ -143,7 +146,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
         binding.tvProjectName.setText(data.getProjectName());
         binding.tvConstructionOrganization.setText(data.getProjectName());
         binding.tvDutyPerson.setText(data.getPersonLiableName());
-        binding.tvTime.setText(data.getDebugStartTime());
+        binding.tvTime.setText(data.getShowDebugTime());
 
         //状态属性设置
         binding.tvProjectStatus.setText(data.getStatusText());
@@ -220,6 +223,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
             @Override
             public void onChanged(Integer data) {
                 getActivity().finish();
+                photoList.clear();
                 EventBus.getDefault().post(new EventAnswerListRefresh());
                 EventBus.getDefault().post(new EventWorkSiteListRefresh());
             }

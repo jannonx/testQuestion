@@ -71,7 +71,8 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
             public void onItemClick(View view, int position) {
                 AfterSaleBean bean = listData.get(position);
                 bean.setModuleType(FunctionModuleType.TYPE_FOCUS);
-                CustomerAcceptanceDetailActivity.start(getContext(), bean);
+                bean.setSectionType(SaleSectionType.TYPE_SECTION_ACCEPT);
+                FocusAfterSaleDetailActivity.start(getContext(), bean);
             }
         });
     }

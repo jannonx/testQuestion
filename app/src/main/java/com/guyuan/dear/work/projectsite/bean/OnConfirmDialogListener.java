@@ -14,4 +14,11 @@ public interface OnConfirmDialogListener {
     void onCommitInstallationDebugInfo(PostInstallationDebugInfo data);
 
     void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data);
+
+    /**
+     * 删除图片position监听
+     *
+     * @param position 下标值
+     */
+    void onDeleteClick(int position);
 }

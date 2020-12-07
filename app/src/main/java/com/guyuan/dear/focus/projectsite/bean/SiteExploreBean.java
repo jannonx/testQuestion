@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.projectsite.bean;
 import android.text.TextUtils;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.StringUtils;
 
@@ -333,6 +334,13 @@ public class SiteExploreBean implements Serializable {
             default:
                 return 0;
         }
+    }
+
+    public String getShowDebugTime() {
+        CalenderUtils calenderUtils = CalenderUtils.getInstance();
+        String debugStartTime = calenderUtils.toSmartFactoryDateFormatByFull(getDebugStartTime());
+        String debugEndTime = calenderUtils.toSmartFactoryDateFormatByFull(getDebugEndTime());
+        return debugStartTime + "~" + debugEndTime;
     }
 
     public int getAuditFormType() {

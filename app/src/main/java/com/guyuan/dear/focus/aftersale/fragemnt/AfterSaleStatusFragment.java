@@ -12,6 +12,7 @@ import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.aftersale.adapter.AfterSaleStatusAdapter;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleStatusBean;
+import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
@@ -66,7 +67,7 @@ public class AfterSaleStatusFragment extends BaseListFragment<AfterSaleStatusBea
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-        viewModel.getAfterSaleStatusList(afterSaleBean.getId(), afterSaleBean.getSectionType().getCode());
+        viewModel.getAfterSaleStatusList(afterSaleBean.getId(), SaleSectionType.TYPE_SECTION_CHECK.getCode());
         viewModel.getAfterSaleStatusEvent().observe(getActivity(), new Observer<List<AfterSaleStatusBean>>() {
             @Override
             public void onChanged(List<AfterSaleStatusBean> data) {

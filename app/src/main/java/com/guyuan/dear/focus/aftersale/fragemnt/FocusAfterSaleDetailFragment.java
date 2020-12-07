@@ -16,6 +16,7 @@ import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.databinding.FragmentFocusAfterSaleDetailBinding;
 import com.guyuan.dear.focus.aftersale.activity.FocusAfterSaleDetailActivity;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
+import com.guyuan.dear.focus.aftersale.bean.AfterSaleStatusBean;
 import com.guyuan.dear.focus.aftersale.bean.PostInfoBean;
 import com.guyuan.dear.focus.aftersale.bean.SaleAcceptedType;
 import com.guyuan.dear.focus.aftersale.bean.SaleCheckType;
@@ -104,6 +105,16 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
             }
         });
 
+        //问题描述图片
+        viewModel.getCustomerAcceptanceDetailImageList(afterSaleBean.getId(), SaleSectionType.TYPE_SECTION_ACCEPT.getCode());
+        viewModel.getCustomerAcceptanceDetailImageEvent().observe(getActivity(), new Observer<List<AfterSaleStatusBean>>() {
+            @Override
+            public void onChanged(List<AfterSaleStatusBean> data) {
+                questionFragment.setImageList(data);
+            }
+        });
+
+
         if (afterSaleBean.getModuleType() != null) {
             binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_WORK
                     == afterSaleBean.getModuleType() ? View.VISIBLE : View.GONE);
@@ -155,10 +166,11 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
      */
     private void setAfterSaleBean(AfterSaleBean data) {
         questionFragment.setQuestionDescribe(data);
-        data.setSectionType(SaleSectionType.TYPE_SECTION_CHECK);
+        data.setSectionType(afterSaleBean.getSectionType());
+
         binding.tvTitle.setText(data.getTitle());
         binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_WORK == afterSaleBean.getModuleType()
-                ? SaleCheckType.TYPE_CHECK_COMPLETE == data.getCheckType()? View.GONE : View.VISIBLE
+                ? SaleCheckType.TYPE_CHECK_COMPLETE == data.getCheckType() ? View.GONE : View.VISIBLE
                 : View.GONE);
         //状态属性设置
         binding.tvProjectStatus.setText(data.getStatusText());
@@ -200,6 +212,11 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
                 postInfoBean.setType(SaleSectionType.TYPE_SECTION_CHECK.getCode());
                 activity.checkPhotoAndFileUpLoad(data.getImgUrlList());
                 postInfoBean.clearImgUrlList();
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+                photoList.remove(position);
             }
 
         });

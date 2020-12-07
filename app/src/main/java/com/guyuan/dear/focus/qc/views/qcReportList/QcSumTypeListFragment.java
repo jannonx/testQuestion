@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.qc.views.qcReportList;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,6 +49,7 @@ public class QcSumTypeListFragment extends BaseMvvmFragment<FragmentProductQcPas
     public static final int TYPE_MATERIAL_REJECT = 4;
     private List<GenericQcReport> list;
     private BaseRecyclerViewAdapter wrapper;
+    private MutableLiveData<Boolean> shouldShowNoData = new MutableLiveData<>(true);
 
 
     /**
@@ -116,9 +118,16 @@ public class QcSumTypeListFragment extends BaseMvvmFragment<FragmentProductQcPas
                 getViewModel().getProductReports().observe(getViewLifecycleOwner(), new Observer<List<GenericQcReport>>() {
                     @Override
                     public void onChanged(List<GenericQcReport> genericQcReports) {
-                        if (wrapper != null) {
-                            wrapper.notifyDataSetChanged();
+                        if (genericQcReports.isEmpty()) {
+                            shouldShowNoData.postValue(true);
+                        } else {
+                            shouldShowNoData.postValue(false);
+                            if (wrapper != null) {
+                                shouldShowNoData.postValue(false);
+                                wrapper.notifyDataSetChanged();
+                            }
                         }
+
                     }
                 });
                 break;
@@ -134,9 +143,16 @@ public class QcSumTypeListFragment extends BaseMvvmFragment<FragmentProductQcPas
                 getViewModel().getMaterialReports().observe(getViewLifecycleOwner(), new Observer<List<GenericQcReport>>() {
                     @Override
                     public void onChanged(List<GenericQcReport> genericQcReports) {
-                        if (wrapper != null) {
-                            wrapper.notifyDataSetChanged();
+                        if (genericQcReports.isEmpty()) {
+                            shouldShowNoData.postValue(true);
+                        } else {
+                            shouldShowNoData.postValue(false);
+                            if (wrapper != null) {
+                                shouldShowNoData.postValue(false);
+                                wrapper.notifyDataSetChanged();
+                            }
                         }
+
                     }
                 });
                 break;
@@ -214,6 +230,12 @@ public class QcSumTypeListFragment extends BaseMvvmFragment<FragmentProductQcPas
 
     @Override
     protected void initListeners() {
+        shouldShowNoData.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                getViewDataBinding().fragmentProductQcListNoDarta.setIsShow(aBoolean);
+            }
+        });
 
 
     }

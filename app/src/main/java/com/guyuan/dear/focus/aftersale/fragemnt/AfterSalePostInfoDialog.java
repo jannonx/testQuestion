@@ -26,6 +26,7 @@ import com.guyuan.dear.focus.aftersale.bean.PostInfoBean;
 import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.utils.CommonUtils;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 
@@ -99,9 +100,15 @@ public class AfterSalePostInfoDialog extends BottomSheetDialog implements View.O
 
         imageViewAdapter.setAdapterListener(new ContentImageViewAdapter.OnListAdapterListener() {
             @Override
-            public void onListEmpty() {
-                viewBinding.labelDocument.setText("拍照电子档");
-                viewBinding.tvTip.setText("点击此框上传资料拍照照片");
+            public void onDeleteCLick(int position) {
+                if (clickListener != null) {
+                    clickListener.onDeleteClick(position);
+                }
+                if (imageDataList.size() == 0) {
+                    viewBinding.labelDocument.setText("拍照电子档");
+                    viewBinding.tvTip.setText("点击此框上传资料拍照照片");
+                }
+
             }
         });
 
@@ -210,6 +217,7 @@ public class AfterSalePostInfoDialog extends BottomSheetDialog implements View.O
 
         void onCommitCheckGoodsInfo(PostInfoBean data);
 
+        void onDeleteClick(int position);
 
     }
 

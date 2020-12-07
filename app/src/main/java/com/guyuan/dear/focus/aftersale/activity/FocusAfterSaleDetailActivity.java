@@ -36,7 +36,7 @@ public class FocusAfterSaleDetailActivity extends BaseFileUploadActivity<Activit
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         AfterSaleBean bean = (AfterSaleBean) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
-        binding.toolbarContainer.titleTv.setText("详情");
+        binding.toolbarContainer.titleTv.setText(bean.getSectionType().getDes()+"详情");
         FocusAfterSaleDetailFragment mFragment = FocusAfterSaleDetailFragment.newInstance(bean);
         setFirstPhotoListener(mFragment);
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,

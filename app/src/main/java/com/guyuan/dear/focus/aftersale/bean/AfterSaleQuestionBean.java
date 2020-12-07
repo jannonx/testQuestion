@@ -87,7 +87,7 @@ public class AfterSaleQuestionBean implements Serializable {
     }
 
     public String getAnswer() {
-        return answer == null ? "无" : answer;
+        return answer == null ? "-" : answer;
     }
 
     public void setAnswer(String answer) {

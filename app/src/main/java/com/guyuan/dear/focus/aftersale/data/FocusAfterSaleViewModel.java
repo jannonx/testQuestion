@@ -79,7 +79,7 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
         addSubscription(disposable);
     }
 
-    public void getAfterSaleCustomerAcceptanceDetail(long id, int type) {
+    public void getCustomerAcceptanceDetailImageList(long id, int type) {
         Disposable disposable = RxJavaHelper.build(this, repository.getCustomerAcceptanceDetailImageList(id, type))
                 .getHelper().flow(customerAcceptanceDetailImageEvent);
         addSubscription(disposable);
@@ -170,11 +170,11 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
         this.uploadImageEvent = uploadImageEvent;
     }
 
-    public MutableLiveData<List<AfterSaleStatusBean>> getAfterSaleCustomerAcceptanceDetailEvent() {
+    public MutableLiveData<List<AfterSaleStatusBean>> getCustomerAcceptanceDetailImageEvent() {
         return customerAcceptanceDetailImageEvent;
     }
 
-    public void setAfterSaleCustomerAcceptanceDetailEvent(MutableLiveData<List<AfterSaleStatusBean>> customerAcceptanceDetailImageEvent) {
+    public void setCustomerAcceptanceDetailImageEvent(MutableLiveData<List<AfterSaleStatusBean>> customerAcceptanceDetailImageEvent) {
         this.customerAcceptanceDetailImageEvent = customerAcceptanceDetailImageEvent;
     }
 

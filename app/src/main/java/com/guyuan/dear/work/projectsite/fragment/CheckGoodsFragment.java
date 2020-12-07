@@ -108,9 +108,10 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
         viewModel.getCommitCheckGoodInfoEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer data) {
-                if (detailData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING) {
+                photoList.clear();
+                if (detailData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING){
                     viewModel.getCheckGoodDetailData(detailData.getId());
-                } else {
+                }else{
                     getActivity().finish();
                 }
                 EventBus.getDefault().post(new EventWorkSiteListRefresh());
@@ -170,6 +171,10 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
                 activity.checkPhotoAndFileUpLoad(CommonUtils.getFilePath(photoList));
             }
 
+            @Override
+            public void onDeleteClick(int position) {
+                photoList.remove(position);
+            }
         });
         customerDialog.show();
 

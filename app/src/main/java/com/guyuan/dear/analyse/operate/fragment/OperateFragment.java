@@ -28,6 +28,7 @@ import com.jzxiang.pickerview.listener.OnDateSetListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -79,7 +80,7 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
             @Override
 
             public void onChanged(OperateStatisticsBean data) {
-//                setStatisticsData(data);
+                setStatisticsData(data);
             }
         });
         binding.llContent.setOnClickListener(this);
@@ -93,14 +94,34 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
         /**
          *    "cost": 3450309,
          *     "month": "2020-11"
+         * 1171595852
          */
+
         Resources resources = DearApplication.getInstance().getResources();
         List<Entry> payList = new ArrayList<>();
         List<Entry> costList = new ArrayList<>();
         List<OperateStatisticsBean.PaymentCollectionVOSBean> paymentCollectionVOS = data.getPaymentCollectionVOS();
-        for(OperateStatisticsBean.PaymentCollectionVOSBean bean:paymentCollectionVOS){
-            LogUtils.showLog(".getMonth="+bean.getMonth()+"...Payment="+bean.getPaymentCollection());
-        }
+//        for (OperateStatisticsBean.PaymentCollectionVOSBean bean : paymentCollectionVOS) {
+//            LogUtils.showLog(".getMonth=" + bean.getMonth() + "...Payment=" + bean.getPaymentCollection());
+//        }
+//        for (int i = 0; i < 12; i++) {
+//            Entry passEntry = new Entry();
+//            passEntry.setX(i);
+//            Random random = new Random();
+//            float floatNumber = random.nextFloat() * 10000;
+//            passEntry.setY(floatNumber);
+//            payList.add(passEntry);
+//        }
+//
+//        for (int i = 0; i < 12; i++) {
+//            Entry passEntry = new Entry();
+//            passEntry.setX(i);
+//            Random random = new Random();
+//            float floatNumber = random.nextFloat() * 10000;
+//            passEntry.setY(floatNumber);
+//            costList.add(passEntry);
+//        }
+
         for (int i = 0; i < 12; i++) {
             Entry passEntry = new Entry();
             passEntry.setX(i);
@@ -114,7 +135,7 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
                     } else {
                         monthStr = split[1];
                     }
-                    if ((i+1) == Integer.parseInt(monthStr)) {
+                    if ((i + 1) == Integer.parseInt(monthStr)) {
                         passEntry.setY(collectionBean.getPaymentCollection());
                     }
                 }
@@ -122,9 +143,9 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
             payList.add(passEntry);
         }
         List<OperateStatisticsBean.CostVOSBean> costVOS = data.getCostVOS();
-        for(OperateStatisticsBean.CostVOSBean bean:costVOS){
-            LogUtils.showLog(".getMonth="+bean.getMonth()+"...getCost="+bean.getCost());
-        }
+//        for (OperateStatisticsBean.CostVOSBean bean : costVOS) {
+//            LogUtils.showLog(".getMonth=" + bean.getMonth() + "...getCost=" + bean.getCost());
+//        }
         for (int i = 0; i < 12; i++) {
             Entry costEntry = new Entry();
             costEntry.setX(i);
@@ -138,7 +159,7 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
                     } else {
                         monthStr = split[1];
                     }
-                    if ((i+1) == Integer.parseInt(monthStr)) {
+                    if ((i + 1) == Integer.parseInt(monthStr)) {
                         costEntry.setY(costBean.getCost());
                     }
                 }
@@ -146,12 +167,12 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
             costList.add(costEntry);
         }
 
-        for(int i = 0; i < 12; i++){
-            LogUtils.showLog("payList.getX="+payList.get(i).getX()+"...getY="+payList.get(i).getY());
-        }
-        for(int i = 0; i < 12; i++){
-            LogUtils.showLog("costList.getX="+costList.get(i).getX()+"...getY="+costList.get(i).getY());
-        }
+//        for (int i = 0; i < 12; i++) {
+//            LogUtils.showLog("payList.getX=" + payList.get(i).getX() + "...getY=" + payList.get(i).getY());
+//        }
+//        for (int i = 0; i < 12; i++) {
+//            LogUtils.showLog("costList.getX=" + costList.get(i).getX() + "...getY=" + costList.get(i).getY());
+//        }
         //准备通过和不通过的数据集合
         List<List<Entry>> dataList = new ArrayList<>();
         dataList.add(payList);
@@ -168,8 +189,8 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
         legendList.add("成本");
 
         MonthXAxisValueFormatter monthXAxisValueFormatter = new MonthXAxisValueFormatter();
-//        GraphUtil.showLineChart(binding.lineChart, dataList, legendList, colorList, 12,
-//                monthXAxisValueFormatter, null);
+        GraphUtil.showLineChart(binding.lineChart, dataList, legendList, colorList, 12,
+                monthXAxisValueFormatter, null);
     }
 
 
@@ -215,6 +236,7 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
                         dates = new Date(millSeconds);
                         binding.tvSelectEndTime.setText(calenderUtils.getYearByDate(dates.getTime()));
                         viewModel.getOperateOverViewData(calenderUtils.getDateByDate(dates.getTime()));
+                        viewModel.getOperateStatistics(calenderUtils.getDateByDate(dates.getTime()));
 
                     }
                 });
