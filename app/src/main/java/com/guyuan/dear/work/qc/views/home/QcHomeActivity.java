@@ -54,6 +54,11 @@ public class QcHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, QcHo
 
     @Override
     protected void init() {
+
+        Intent intent = getIntent();
+        String title = intent.getStringExtra(ConstantValue.KEY_TITLE);
+        setTitleCenter(title);
+
         //当提交成功后，跳到我的申请列表，并刷新列表
         getViewModel().refreshMyApplyList.observe(this, new Observer<Boolean>() {
             @Override

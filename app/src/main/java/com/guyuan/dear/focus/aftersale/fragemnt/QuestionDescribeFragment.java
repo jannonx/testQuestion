@@ -19,6 +19,7 @@ import com.guyuan.dear.utils.ConstantValue;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import tl.com.easy_recycleview_library.BaseRecyclerView;
@@ -98,9 +99,13 @@ public class QuestionDescribeFragment extends BaseDataBindingFragment<FragmentAf
 
         TextView tvRemark = footerView.findViewById(R.id.tv_remark);
         TextView tvRecorder = footerView.findViewById(R.id.tv_recorder);
+        LinearLayoutCompat llDocument = footerView.findViewById(R.id.ll_document);
         BaseRecyclerView imageRecyclerView = footerView.findViewById(R.id.image_recycleView);
         tvRemark.setText(simpleData.getTitle());
         tvRecorder.setText(simpleData.getExamineManName());
+
+
+//        llDocument.setVisibility(data == null || data.size() == 0 ? View.GONE : View.VISIBLE);
 
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
                 imageDataList, R.layout.item_explorate_image);

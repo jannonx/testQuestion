@@ -65,8 +65,10 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
 
     @Override
     protected void init() {
-        etSearch.setHint("输入项目名称、编号、人员");
+
         reportType = (ProjectReportType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
+        etSearch.setHint(ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == reportType
+                ? "输入客户名称、项目名称" : "输入项目名称、编号、人员");
         LogUtils.showLog("siteExploreBean=" + reportType.getDes());
         ProjectReportAdapter checkGoodsAdapter = new ProjectReportAdapter(getContext(),
                 listData, R.layout.item_focus_project_site);
@@ -93,7 +95,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
      * @param siteExploreBean 数据
      */
     private void jumpByReportType(SiteExploreBean siteExploreBean) {
-        siteExploreBean.setModuleType(FunctionModuleType.TYPE_WORK);
+//        siteExploreBean.setModuleType(FunctionModuleType.TYPE_WORK);
         LogUtils.showLog("jumpByReportType=" + siteExploreBean.getProjectReportType().getDes());
         switch (reportType) {
             ///现场勘查报告
@@ -132,7 +134,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
                 break;
             ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:
-                siteExploreBean.setModuleType(FunctionModuleType.TYPE_WORK);
+//                siteExploreBean.setModuleType(FunctionModuleType.TYPE_WORK);
                 WorkInstallDebugActivity.start(getContext(), siteExploreBean);
                 break;
             ///客户验收报告
@@ -189,6 +191,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
         List<SiteExploreBean> tempList = new ArrayList<>();
         for (int i = 0; i < dataList.size(); i++) {
             SiteExploreBean siteExploreBean = dataList.get(i);
+            siteExploreBean.setModuleType(FunctionModuleType.TYPE_WORK);
             siteExploreBean.setProjectReportType(reportType);
             LogUtils.showLog("dealDataByAddReportType=" + reportType.getDes());
             tempList.add(siteExploreBean);
@@ -214,12 +217,11 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
     }
 
 
-
     /**
      * 刷新列表
      */
     public void refreshList() {
-        ToastUtils.showLong(getContext(), "提交成功");
+//        ToastUtils.showLong(getContext(), "提交成功");
         getDataListByClassify(true);
     }
 

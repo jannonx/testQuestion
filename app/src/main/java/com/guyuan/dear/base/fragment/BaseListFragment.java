@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.Observer;
@@ -42,13 +43,15 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
     protected TextView tv_empty;
     protected FrameLayout list_container;
     protected MaterialButton tv_refresh;
-    protected LinearLayoutCompat llEmptyView;
+    protected AppCompatTextView tvTepRefresh;
+    protected LinearLayoutCompat llEmptyView, llTepEmptyView;
     private int emptyImgID = R.mipmap.ic_no_data;
     private String emptyTip = ConstantValue.TIP_NO_DATA;
 
     public final int LOAD_MORE = 0X0100;
     public final int REFRESH = 0X0101;
     protected List<T> listData = new ArrayList<T>();
+    private boolean isFirstLoad = true;
     /**
      * 一页拉取的数据条数
      */
@@ -74,8 +77,16 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
         no_data_iv = rootView.findViewById(R.id.no_data_iv);
         tv_empty = rootView.findViewById(R.id.tv_empty);
         tv_refresh = rootView.findViewById(R.id.tv_refresh);
+        tvTepRefresh = rootView.findViewById(R.id.tem_tv_refresh);
         llEmptyView = rootView.findViewById(R.id.ll_empty_view);
+        llTepEmptyView = rootView.findViewById(R.id.ll_tem_empty_view);
         tv_refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refresh();
+            }
+        });
+        tvTepRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 refresh();
@@ -99,6 +110,17 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
     protected abstract boolean isPullEnable();
 
     protected abstract boolean isLoadMoreEnable();
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        //第一次加载不刷新，再次进入页面刷新数据
+//        if (!isFirstLoad) {
+//            refresh();
+//        }
+//
+//        isFirstLoad = false;
+//    }
 
     /**
      * 是否开启下拉刷新 (默认开启)

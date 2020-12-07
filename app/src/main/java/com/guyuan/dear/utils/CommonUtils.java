@@ -85,6 +85,10 @@ public class CommonUtils {
         return new Gson().fromJson(loginStr, LoginBean.class);
     }
 
+    public static long getCurrentUserId(){
+        return getLoginInfo().getUserInfo().getId();
+    }
+
     public static FactoryBean getFactoryListFromCache() {
         FactoryBean bean = null;
         String factoryCache =
@@ -223,7 +227,7 @@ public class CommonUtils {
         if (BuildConfig.BUILD_TYPE.equals("debug")) {
             return 1000;
         } else {
-            return 1;
+            return 1000;
         }
     }
 

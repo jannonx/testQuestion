@@ -33,6 +33,7 @@ public class ContractApplyViewModel extends BaseViewModel {
     public MutableLiveData<String> description = new MutableLiveData<>();
     public MutableLiveData<ArrayList<StaffBean>> sendList = new MutableLiveData<>(new ArrayList<>());
     public MutableLiveData<ArrayList<StaffBean>> copyList = new MutableLiveData<>(new ArrayList<>());
+    public MutableLiveData<ArrayList<StaffBean>> hiddenList =new MutableLiveData<>(new ArrayList<>());
     private int clientId;
     private int contractId;
     private String judgeConditionKey;

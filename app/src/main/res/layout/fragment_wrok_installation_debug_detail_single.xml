@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:gravity="start|top"
-                    android:hint="请输入问题能容"
+                    android:hint="请输入内容"
                     android:minHeight="@dimen/dp_64"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_17" />
@@ -173,7 +173,7 @@
             </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_pick_tip"
+                android:id="@+id/cl_pick_pic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_12"
@@ -224,7 +224,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/bg_window"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cl_pick_tip"
+                app:layout_constraintTop_toBottomOf="@+id/cl_pick_pic"
                 tools:background="@color/color_green_D4FFF1"
                 tools:layout_height="@dimen/dp_150" />
         </androidx.constraintlayout.widget.ConstraintLayout>

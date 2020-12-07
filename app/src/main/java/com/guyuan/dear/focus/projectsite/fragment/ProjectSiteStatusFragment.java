@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.projectsite.fragment;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +18,7 @@ import com.guyuan.dear.focus.projectsite.bean.ProjectSiteStatusBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.ScreenUtils;
 import com.guyuan.dear.work.projectsite.adapter.InstallDebugStatusAdapter;
 import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
@@ -76,6 +78,13 @@ public class ProjectSiteStatusFragment extends BaseListFragment<ProjectSiteStatu
                 setListData(data);
             }
         });
+
+        llEmptyView.setVisibility(View.GONE);
+        llTepEmptyView.setVisibility(View.VISIBLE);
+//        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+//        layoutParams.topMargin = ScreenUtils.dip2px(getContext(), 30f);
+//        llEmptyView.setLayoutParams(layoutParams);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -85,7 +94,7 @@ public class ProjectSiteStatusFragment extends BaseListFragment<ProjectSiteStatu
 
     @Override
     protected void refresh() {
-
+        viewModel.getProjectSiteStatusList(detailProjectData.getId(), detailProjectData.getProjectReportType().getCode());
     }
 
     @Override

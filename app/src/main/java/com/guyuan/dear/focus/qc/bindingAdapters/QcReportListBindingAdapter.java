@@ -1,6 +1,8 @@
 package com.guyuan.dear.focus.qc.bindingAdapters;
 
 import android.graphics.Color;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.BindingAdapter;
@@ -54,7 +56,15 @@ public class QcReportListBindingAdapter {
                 view.setBackgroundResource(0);
                 break;
         }
+    }
 
+    @BindingAdapter("setVisibility")
+    public static void setVisibility(ViewGroup view, Boolean isVisible) {
+        if (isVisible != null && !isVisible) {
+            view.setVisibility(View.GONE);
+        } else {
+            view.setVisibility(View.VISIBLE);
+        }
     }
 
 }

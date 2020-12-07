@@ -28,7 +28,7 @@ public class BaseQcSubmitBean {
      */
     private int qcResult;
     public static final int QC_RESULT_PASS =1;
-    public static final int QC_RESULT_REJECT=0;
+    public static final int QC_RESULT_REJECT=2;
     private String qcComment;
     /**
      * 是否审批

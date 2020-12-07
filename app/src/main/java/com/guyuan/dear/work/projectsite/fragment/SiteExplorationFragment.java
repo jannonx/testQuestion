@@ -94,9 +94,11 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
         binding.baseRecycleView.setPullRefreshEnabled(false);
         binding.baseRecycleView.setLoadMoreEnabled(false);
 
+        binding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
+        binding.tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
 
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-                imageDataList, R.layout.item_explorate_image);
+                imageDataList, R.layout.item_explorate_image, true);
         imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
 
         binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -106,6 +108,13 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
 
         binding.tvActivateBtn.setText(detailProjectData.getProjectReportType() == ProjectReportType.TYPE_SITE_EXPLORATION
                 ? "完成勘查" : "完成排查");
+        imageViewAdapter.setAdapterListener(new ContentImageViewAdapter.OnListAdapterListener() {
+            @Override
+            public void onListEmpty() {
+                binding.labelDocument.setText("拍照电子档");
+                binding.tvTip.setText("点击此框上传资料拍照照片");
+            }
+        });
         getWorkDetailData();
         initListener();
     }
@@ -177,7 +186,7 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
                 int selectionEnd = binding.etSearch.getSelectionEnd();
                 if (enterWords.length() > wordLimitNum) {
                     //删除多余输入的字（不会显示出来）
-                    editable.delete(selectionStart - 1, selectionEnd);
+                    editable.delete(selectionStart - 1, selectionEnd);//
                     binding.etSearch.setText(editable);
                     //设置光标在最后
                     binding.etSearch.setSelection(selectionEnd);
@@ -200,7 +209,7 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
             }
         });
 
-        binding.ivPickImage.setOnClickListener(new View.OnClickListener() {
+        binding.clPickPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activity.openAlbum(BaseTabActivity.FIRST);
@@ -379,6 +388,9 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
         imageDataList.clear();
         imageDataList.addAll(photoList);
         imageAdapter.refreshData();
+
+        binding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
+        binding.tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
 
     }
 

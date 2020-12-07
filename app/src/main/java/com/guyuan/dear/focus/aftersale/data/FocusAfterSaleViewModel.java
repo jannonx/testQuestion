@@ -32,6 +32,7 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
     }
 
     private MutableLiveData<RefreshBean<AfterSaleBean>> afterSaleListEvent = new MutableLiveData<>();
+    private MutableLiveData<RefreshBean<AfterSaleBean>> afterSaleCustomerAcceptanceListEvent = new MutableLiveData<>();
     private MutableLiveData<AfterSaleBean> afterSaleDetailEvent = new MutableLiveData<>();
     private MutableLiveData<List<AfterSaleStatusBean>> customerAcceptanceDetailImageEvent = new MutableLiveData<>();
     private MutableLiveData<List<AfterSaleStatusBean>> afterSaleStatusEvent = new MutableLiveData<>();
@@ -40,7 +41,7 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
     private MutableLiveData<Integer> postAcceptInfoEvent = new MutableLiveData<>();
 
     /**
-     * 获取列表
+     * 鼓掌排查列表(验收合格)
      *
      * @param body 参数体
      * @return
@@ -49,6 +50,19 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
 
         Disposable disposable = RxJavaHelper.build(this, repository.getAfterSaleList(body))
                 .getHelper().flow(afterSaleListEvent);
+        addSubscription(disposable);
+    }
+
+    /**
+     * 客户验收列表(验收不合格)
+     *
+     * @param body 参数体
+     * @return
+     */
+    public void getAfterSaleCustomerAcceptanceList(RequestBody body) {
+
+        Disposable disposable = RxJavaHelper.build(this, repository.getAfterSaleCustomerAcceptanceList(body))
+                .getHelper().flow(afterSaleCustomerAcceptanceListEvent);
         addSubscription(disposable);
     }
 
@@ -162,5 +176,13 @@ public class FocusAfterSaleViewModel extends BaseViewModel {
 
     public void setAfterSaleCustomerAcceptanceDetailEvent(MutableLiveData<List<AfterSaleStatusBean>> customerAcceptanceDetailImageEvent) {
         this.customerAcceptanceDetailImageEvent = customerAcceptanceDetailImageEvent;
+    }
+
+    public MutableLiveData<RefreshBean<AfterSaleBean>> getAfterSaleCustomerAcceptanceListEvent() {
+        return afterSaleCustomerAcceptanceListEvent;
+    }
+
+    public void setAfterSaleCustomerAcceptanceListEvent(MutableLiveData<RefreshBean<AfterSaleBean>> afterSaleCustomerAcceptanceListEvent) {
+        this.afterSaleCustomerAcceptanceListEvent = afterSaleCustomerAcceptanceListEvent;
     }
 }

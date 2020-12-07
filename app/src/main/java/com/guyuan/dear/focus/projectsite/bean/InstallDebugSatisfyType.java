@@ -13,27 +13,27 @@ import java.io.Serializable;
  */
 public enum InstallDebugSatisfyType implements Serializable {
     /**
-     *  状态（10待开始，20安装中，30完成,40暂停）
+     *  状态（10待开始，20,40调试中，30完工）
      */
     /**
      * 待开始
      */
-    TYPE_INSTALL_WAIT(10, "待安装", R.color.color_blue_1677ff,
+    TYPE_INSTALL_WAIT(10, "待开始", R.color.color_blue_1677ff,
             R.drawable.bg_blue_e7f1ff_corner_2),
     /**
-     * 安装中
+     * 调试中
      */
-    TYPE_INSTALL_ING(20, "安装中", R.color.color_blue_1677ff,
+    TYPE_INSTALL_ING(20, "调试中", R.color.color_blue_1677ff,
             R.drawable.bg_blue_e7f1ff_corner_2),
     /**
-     * 安装完成
+     * 完工
      */
-    TYPE_INSTALL_COMPLETE(30, "安装完成", R.color.color_green_00B578,
+    TYPE_INSTALL_COMPLETE(30, "完工", R.color.color_green_00B578,
             R.drawable.bg_green_d4fff1_corner_2),
     /**
-     * 安装暂停
+     * 异常
      */
-    TYPE_INSTALL_PAUSE(40, "安装暂停", R.color.color_orange_FF6010,
+    TYPE_INSTALL_PAUSE(40, "异常", R.color.color_orange_FF6010,
             R.drawable.bg_orange_ffece3_corner_2),
     /**
      * 未知状态
@@ -56,8 +56,14 @@ public enum InstallDebugSatisfyType implements Serializable {
 
     /**
      * 根据枚举code获取实例，用于switch
+     * 状态（10待开始，20,40调试中，30完工）
      */
     public static InstallDebugSatisfyType toType(int index) {
+//        if (index==10){
+//            return InstallDebugSatisfyType.TYPE_INSTALL_WAIT;
+//        }else if (index==20||index==40){
+//            return InstallDebugSatisfyType.TYPE_INSTALL_WAIT;
+//        }
         for (InstallDebugSatisfyType type : InstallDebugSatisfyType.values()) {
             if (type.getCode() == index) {
                 return type;

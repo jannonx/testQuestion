@@ -39,7 +39,7 @@ public class ProductQcViewModel extends BaseDearViewModel {
     public MutableLiveData<BaseProjectBean> selectedProject = new MutableLiveData<>();
     public MutableLiveData<BaseQcApproachBean> selectedQcApproach = new MutableLiveData<>();
     public MutableLiveData<String> sampleSize = new MutableLiveData<>("0");
-    public MutableLiveData<Integer> reportResult = new MutableLiveData<>(2);
+    public MutableLiveData<Integer> reportResult = new MutableLiveData<>();
     public MutableLiveData<String> comments = new MutableLiveData<>();
     public MutableLiveData<Boolean> isNeedVerify = new MutableLiveData<>(false);
 
@@ -78,8 +78,7 @@ public class ProductQcViewModel extends BaseDearViewModel {
     public MutableLiveData<View.OnClickListener> onClickSubmit = new MutableLiveData<>();
 
     private ProductQcRepo repo = new ProductQcRepo();
-
-
+    public MutableLiveData<Boolean> isCheckAllProducts = new MutableLiveData<>(false);
 
 
     public Disposable getProjectListFromNet() {
@@ -93,7 +92,7 @@ public class ProductQcViewModel extends BaseDearViewModel {
         });
     }
 
-    public Disposable getQcApproachesFromNet(){
+    public Disposable getQcApproachesFromNet() {
         return repo.getQcApproaches(new BaseNetCallback<List<BaseQcApproachBean>>() {
             @Override
             protected void handleResult(List<BaseQcApproachBean> result) {
@@ -110,14 +109,35 @@ public class ProductQcViewModel extends BaseDearViewModel {
 
     public void updateSelectedProject(BaseProjectBean projectBean) {
         selectedProject.postValue(projectBean);
+        selectedProductBatch.postValue(null);
+        sampleSize.postValue("0");
     }
 
     public void updateSelectedBatchInfo(BaseProductBatchInfo info) {
         selectedProductBatch.postValue(info);
+        BaseQcApproachBean value = selectedQcApproach.getValue();
+        if (value != null) {
+            String approachId = value.getApproachId();
+            //1表示全检，这时默认选择最大数量
+            if ("1".equals(approachId)) {
+                sampleSize.postValue(String.valueOf(info.getProducts().get(0).getQuantity()));
+            }
+        }
     }
 
     public void updateSelectedQcApproach(BaseQcApproachBean approachBean) {
-        selectedQcApproach.postValue(approachBean);
+        this.selectedQcApproach.postValue(approachBean);
+        //1表示全检
+        if (approachBean.getApproachId().equals("1")) {
+            isCheckAllProducts.postValue(true);
+            BaseProductBatchInfo value = selectedProductBatch.getValue();
+            //强行选择最大抽检数量
+            if (value != null) {
+                sampleSize.postValue(String.valueOf(value.getProducts().get(0).getQuantity()));
+            }
+        } else {
+            isCheckAllProducts.postValue(false);
+        }
     }
 
 
@@ -151,28 +171,28 @@ public class ProductQcViewModel extends BaseDearViewModel {
     public void submitReport(SubmitCallback callback) {
         SubmitQcReportBody body = new SubmitQcReportBody();
         BaseProjectBean projectBean = selectedProject.getValue();
-        if(projectBean==null){
+        if (projectBean == null) {
             showToast("项目不能为空.");
             return;
-        }else {
+        } else {
             body.setProjectId(projectBean.getId());
         }
         BaseProductBatchInfo batchInfo = selectedProductBatch.getValue();
-        if(batchInfo==null){
+        if (batchInfo == null) {
             showToast("请选择产品");
             return;
-        }else {
+        } else {
             body.setSubCodeId(batchInfo.getSubmitId());
         }
-        if(isNeedVerify.getValue()){
+        if (isNeedVerify.getValue()) {
             body.setApproveFlag(1);
-        }else {
+        } else {
             body.setApproveFlag(2);
         }
-        if(isNeedVerify.getValue()){
+        if (isNeedVerify.getValue()) {
             ArrayList<StaffBean> approvers = verifiers.getValue();
             List<Integer> list = new ArrayList<>();
-            if(approvers.isEmpty()){
+            if (approvers.isEmpty()) {
                 showToast("审批人不能为空。");
                 return;
             }
@@ -183,10 +203,10 @@ public class ProductQcViewModel extends BaseDearViewModel {
         }
 
         ArrayList<StaffBean> qcCheckers = this.qcCheckers.getValue();
-        if(qcCheckers.isEmpty()){
+        if (qcCheckers.isEmpty()) {
             showToast("质检人员不能为空。");
             return;
-        }else {
+        } else {
             List<Integer> list = new ArrayList<>();
             for (StaffBean checker : qcCheckers) {
                 list.add(checker.getId().intValue());
@@ -196,47 +216,47 @@ public class ProductQcViewModel extends BaseDearViewModel {
 
         body.setProductType(2);
 
-        if(judgeConditions.isEmpty()){
+        if (judgeConditions.isEmpty()) {
             showToast("请选择判定条件。");
             return;
-        }else {
+        } else {
             body.setQualityCondition(judgeConditions);
         }
 
         String sampleSize = this.sampleSize.getValue();
-        if(TextUtils.isEmpty(sampleSize)||"0".equals(sampleSize)){
+        if (TextUtils.isEmpty(sampleSize) || "0".equals(sampleSize)) {
             showToast("请输入抽检数");
             return;
-        }else {
+        } else {
             body.setQualityNum(Integer.valueOf(sampleSize));
         }
 
         String comment = comments.getValue();
-        if(TextUtils.isEmpty(comment)){
+        if (TextUtils.isEmpty(comment)) {
             showToast("请输入原因描述");
             return;
-        }else {
+        } else {
             body.setQualityRemark(comment);
         }
 
         Integer reportResultValue = reportResult.getValue();
-        if(reportResultValue==null){
+        if (reportResultValue == null) {
             showToast("请选择报告结果");
             return;
-        }else {
+        } else {
             body.setQualityResult(reportResultValue);
         }
 
         BaseQcApproachBean approachBean = selectedQcApproach.getValue();
-        if(approachBean==null){
+        if (approachBean == null) {
             showToast("请选择质检方式");
             return;
-        }else {
+        } else {
             String approachId = approachBean.getApproachId();
             try {
                 int type = Integer.valueOf(approachId);
                 body.setQualityType(type);
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 showToast("服务器返回的质检方式的参数中的key不是一个数字，请联系开发人员。");
                 return;
             }
@@ -257,7 +277,7 @@ public class ProductQcViewModel extends BaseDearViewModel {
         addSubscription(disposable);
     }
 
-    public interface SubmitCallback{
+    public interface SubmitCallback {
         void onSubmit(boolean success);
     }
 
@@ -268,11 +288,12 @@ public class ProductQcViewModel extends BaseDearViewModel {
         qcApproachList.postValue(new ArrayList<>());
         productBatchList.postValue(new ArrayList<>());
         sampleSize.postValue("0");
-        reportResult.postValue(2);
+        reportResult.postValue(null);
         comments.postValue("");
         isNeedVerify.postValue(false);
         selectedProductBatch.postValue(null);
         selectedProject.postValue(null);
         selectedQcApproach.postValue(null);
+        isCheckAllProducts.postValue(false);
     }
 }

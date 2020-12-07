@@ -43,10 +43,24 @@ public class ChartViewUtils {
             return;
         }
         LinkedHashMap<String, Float> pieData = new LinkedHashMap<>();
-        pieData.put("待生产", data.getPrepareNum() * 1.f);
-        pieData.put("生产完成", data.getCompleteNum() * 1.f);
-        pieData.put("生产中", data.getProcessingNum() * 1.f);
-        pieData.put("生产异常", data.getAbnormalNum() * 1.f);
+        List<Integer> colorData = new ArrayList<>();
+        if (data.getPrepareNum() != 0) {
+            pieData.put("待生产", data.getPrepareNum() * 1.f);
+            colorData.add(Color.parseColor("#FA8C16"));
+        }
+        if (data.getCompleteNum() != 0) {
+            pieData.put("生产完成", data.getCompleteNum() * 1.f);
+            colorData.add(Color.parseColor("#2FC25B"));
+        }
+        if (data.getProcessingNum() != 0) {
+            pieData.put("生产中", data.getProcessingNum() * 1.f);
+            colorData.add(Color.parseColor("#1890FF"));
+        }
+        if (data.getAbnormalNum() != 0) {
+            pieData.put("生产异常", data.getAbnormalNum() * 1.f);
+            colorData.add(Color.parseColor("#F04864"));
+        }
+
         view.setData(pieData, "");
         view.getLegend().setEnabled(false);
         PieData dateSet = view.getData();
@@ -54,14 +68,7 @@ public class ChartViewUtils {
         pieDataSet.setYValuePosition(PieDataSet.ValuePosition.INSIDE_SLICE);
         pieDataSet.setValueTextColor(Color.WHITE);
         pieDataSet.setValueTextSize(10);
-        pieDataSet.setColors(new ArrayList<Integer>() {
-            {
-                add(Color.parseColor("#FA8C16"));
-                add(Color.parseColor("#2FC25B"));
-                add(Color.parseColor("#1890FF"));
-                add(Color.parseColor("#F04864"));
-            }
-        });
+        pieDataSet.setColors(colorData);
         dateSet.setDrawValues(true);
         dateSet.setValueFormatter(new IValueFormatter() {
             @Override

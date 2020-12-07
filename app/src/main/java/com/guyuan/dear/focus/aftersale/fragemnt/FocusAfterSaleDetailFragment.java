@@ -125,7 +125,7 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
             @Override
             public void onChanged(Integer data) {
 //                setAfterSaleBean(data);
-                ToastUtils.showLong(getContext(), "提交成功");
+//                ToastUtils.showLong(getContext(), "提交成功");
                 EventBus.getDefault().post(new EventAnswerListRefresh());
             }
         });

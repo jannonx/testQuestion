@@ -44,15 +44,13 @@ public class AcceptanceRecordFragment extends BaseDataBindingFragment<FragmentAc
     }
 
 
-    public void setRecordData(SiteExploreBean data){
+    public void setRecordData(SiteExploreBean data) {
         binding.tvRecorder.setText(data.getPersonLiableName());
         binding.tvRemark.setText(data.getCheckRemark());
 
-
-
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
                 data.getImgUrlList(), R.layout.item_explorate_image);
-        BaseRecyclerViewAdapter   imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
+        BaseRecyclerViewAdapter imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
 
         binding.baseRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         binding.baseRecycleView.setAdapter(imageAdapter);

@@ -1,5 +1,7 @@
 package com.guyuan.dear.net;
 
+import androidx.annotation.Nullable;
+
 import com.example.httplibrary.bean.BasePageReqBean;
 import com.example.httplibrary.bean.BasePageResultBean;
 import com.example.httplibrary.bean.ErrorResultBean;
@@ -26,6 +28,7 @@ import com.guyuan.dear.focus.qc.beans.MaterialQcReportDetail;
 import com.guyuan.dear.focus.qc.beans.ProductQcReportDetail;
 import com.guyuan.dear.focus.qc.beans.QcSummaryBean;
 import com.guyuan.dear.focus.qc.beans.verfifyLog.GenericQcLogBean;
+import com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity;
 import com.guyuan.dear.net.api.DearNetApiService;
 import com.guyuan.dear.net.reqBean.ClockInRqBody;
 import com.guyuan.dear.net.reqBean.ContractApplyBody;
@@ -73,12 +76,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import androidx.annotation.Nullable;
-
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+
+import static com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity.SEARCH_TYPE_ALL;
+import static com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity.SEARCH_TYPE_ALL_MY_REPORTS;
+import static com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity.SEARCH_TYPE_ALL_PASS_REPORTS;
+import static com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity.SEARCH_TYPE_ALL_REJECTED_REPORTS;
 
 /**
  * @author: 廖华凯
@@ -127,12 +133,17 @@ public class DearNetHelper {
      * 获取所有客户清单
      *
      * @param callback
+     * @param type     1表示只搜索可以暂停的客户 2表示只搜索可以重启的客户
      * @return
      */
-    public Disposable getClientList(NetCallback<BasePageResultBean<NetClientInfo>> callback) {
-        BasePageReqBean body = new BasePageReqBean();
+    public Disposable getClientList(int type, NetCallback<BasePageResultBean<NetClientInfo>> callback) {
+        SearchRqBody body = new SearchRqBody();
         body.setPageNum(0);
         body.setPageSize(-1);
+        HashMap<String,String> filters = new HashMap<>();
+        filters.put("type",String.valueOf(type));
+        body.setFilters(filters);
+
         Observable<ResultBean<BasePageResultBean<NetClientInfo>>> observable = netApiService.getClientInfos(body);
         return getDisposalAsync(observable, callback, null);
     }
@@ -141,12 +152,12 @@ public class DearNetHelper {
      * 根据客户id获取客户合同列表，列表信息为基本信息。
      *
      * @param id
-     * @param type 1.查已暂停的 2.查正常审批通过的
+     * @param type     1.查已暂停的 2.查正常审批通过的
      * @param callback
      * @return
      */
-    public Disposable getBaseContractListByClientId(long id, int type,NetCallback<List<NetBaseContractInfo>> callback) {
-        Observable<ResultBean<List<NetBaseContractInfo>>> observable = netApiService.getContractBaseInfosByClientId(id,type);
+    public Disposable getBaseContractListByClientId(long id, int type, NetCallback<List<NetBaseContractInfo>> callback) {
+        Observable<ResultBean<List<NetBaseContractInfo>>> observable = netApiService.getContractBaseInfosByClientId(id, type);
         return getDisposalAsync(observable, callback, null);
     }
 
@@ -247,9 +258,9 @@ public class DearNetHelper {
     }
 
 
-
     /**
      * 根据客户名字或合同编号查找合同列表
+     *
      * @param callback
      * @return
      */
@@ -541,7 +552,7 @@ public class DearNetHelper {
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
         //        filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
-        filters.put("type","1");
+        filters.put("type", "1");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -582,7 +593,7 @@ public class DearNetHelper {
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
         //        filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
-        filters.put("type","1");
+        filters.put("type", "1");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -623,7 +634,7 @@ public class DearNetHelper {
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
 //        filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
-        filters.put("type","2");
+        filters.put("type", "2");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -664,7 +675,7 @@ public class DearNetHelper {
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
         //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
-        filters.put("type","0");
+        filters.put("type", "0");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -707,7 +718,7 @@ public class DearNetHelper {
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
         //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
-        filters.put("type","0");
+        filters.put("type", "0");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -750,7 +761,7 @@ public class DearNetHelper {
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
         //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
-        filters.put("type","2");
+        filters.put("type", "2");
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -791,7 +802,70 @@ public class DearNetHelper {
         filters.put("startTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(startTime));
         filters.put("endTime", CalenderUtils.getInstance().toSmartFactoryDateStringFormat(endTime));
         //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
-        filters.put("type","0");
+        filters.put("type", "0");
+        body.setFilters(filters);
+        Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
+        Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
+                = new Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>>() {
+            @Override
+            public List<GenericQcReport> map(BasePageResultBean<NetBaseQcBean> src) {
+                List<GenericQcReport> result = new ArrayList<>();
+                List<NetBaseQcBean> content = src.getContent();
+                if (content != null && !content.isEmpty()) {
+                    for (NetBaseQcBean bean : content) {
+                        int productType = bean.getProductType();
+                        if (productType == 2) {
+                            BaseProductQcReport report = new BaseProductQcReport(bean);
+                            result.add(report.toGenericQcReport());
+                        } else if (productType == 1) {
+                            BaseMaterialQcReport report = new BaseMaterialQcReport(bean);
+                            result.add(report.toGenericQcReport());
+                        }
+                    }
+                }
+                return result;
+            }
+        };
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
+
+    /**
+     * 搜索qc报告
+     *
+     * @param searchType {@link QcSearchListActivity#SEARCH_TYPE_ALL}
+     *                   {@link QcSearchListActivity#SEARCH_TYPE_ALL_PASS_REPORTS}
+     *                   {@link QcSearchListActivity#SEARCH_TYPE_ALL_REJECTED_REPORTS}
+     *                   {@link QcSearchListActivity#SEARCH_TYPE_ALL_MY_REPORTS}
+     */
+    public Disposable searchQcReportsByKeyWords(String keyWord, int searchType,
+                                                int pageIndex, int pageSize, NetCallback<List<GenericQcReport>> callback) {
+
+        SearchRqBody body = new SearchRqBody();
+        body.setPageNum(pageIndex);
+        body.setPageSize(pageSize);
+        Map<String, String> filters = new HashMap<>();
+        //listType（必填）：1.详情列表，2.不合格列表，3.合格列表，4.我的工作列表
+        //filters.put("type",0:全部（成+材料）/1（原材料）/2（成品）)
+        int listType;
+        switch (searchType) {
+            case SEARCH_TYPE_ALL_PASS_REPORTS:
+                listType = 3;
+                break;
+            case SEARCH_TYPE_ALL_REJECTED_REPORTS:
+                listType = 2;
+                break;
+            case SEARCH_TYPE_ALL_MY_REPORTS:
+                listType = 4;
+                break;
+            case SEARCH_TYPE_ALL:
+            default:
+                listType = 1;
+                break;
+        }
+        filters.put("listType", String.valueOf(listType));
+        filters.put("type", "0");
+        filters.put("name", keyWord);
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetBaseQcBean>>> observable = netApiService.getBaseQcListByType(body);
         Mapper<BasePageResultBean<NetBaseQcBean>, List<GenericQcReport>> mapper
@@ -871,7 +945,7 @@ public class DearNetHelper {
                 for (NetQcReportApproveFlow flow : src) {
                     int status = flow.getStatus();
                     //Status 0 待审 1已同意 2已拒绝，如果存在-1的话是后台sb开发人员返回不符合文档描述的信息，应该过滤掉！
-                    if(status<0){
+                    if (status < 0) {
                         continue;
                     }
                     GenericQcLogBean bean = new GenericQcLogBean(flow);

@@ -96,8 +96,6 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
 
     private void initView() {
         //设置不可点击状态
-        viewBinding.tvOk.setClickable(false);
-        viewBinding.tvOk.setEnabled(false);
         viewBinding.tvOk.setOnClickListener(this);
         viewBinding.tvCancel.setOnClickListener(this);
         viewBinding.ivSentTo.setOnClickListener(this);
@@ -135,13 +133,37 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
             ToastUtils.showLong(getContext(), "请填内容");
             return;
         }
+        boolean isSendPersonEmpty = false;
+        LogUtils.showLog("sendAdapter=" + (sendAdapter == null));
+        if (sendAdapter == null) {
+            isSendPersonEmpty = true;
+        }
         if (sendAdapter != null) {
             ArrayList<StaffBean> tagDataList = (ArrayList<StaffBean>) sendAdapter.getList();
             if (tagDataList.size() == 0) {
-                ToastUtils.showLong(getContext(),"请选择审批人");
-                return;
+                isSendPersonEmpty = true;
             }
         }
+        if (isSendPersonEmpty) {
+            ToastUtils.showLong(getContext(), "请选择审批人");
+            return;
+        }
+        boolean isCopyPersonEmpty = false;
+        LogUtils.showLog("copyAdapter=" + (copyAdapter == null));
+        if (copyAdapter == null) {
+            isCopyPersonEmpty = true;
+        }
+        if (copyAdapter != null) {
+            ArrayList<StaffBean> tagDataList = (ArrayList<StaffBean>) copyAdapter.getList();
+            if (tagDataList.size() == 0) {
+                isCopyPersonEmpty = true;
+            }
+        }
+        if (isCopyPersonEmpty) {
+            ToastUtils.showLong(getContext(), "请选择抄送人");
+            return;
+        }
+        
         body.setType(operateProduceType.getCode());
         body.setReason(viewBinding.etSearch.getText().toString());
         //审批人
@@ -235,21 +257,18 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
 
             @Override
             public void afterTextChanged(Editable editable) {
-                viewBinding.tvOk.setClickable(!TextUtils.isEmpty(editable.toString()));
-                viewBinding.tvOk.setEnabled(!TextUtils.isEmpty(editable.toString()));
+                if (editable.length() > wordLimitNum) {
+                    //删除多余输入的字（不会显示出来）
+                    editable.delete(wordLimitNum, editable.length());
+                    viewBinding.etSearch.setText(editable);
+                    //设置光标在最后
+                    viewBinding.etSearch.setSelection(viewBinding.etSearch.getText().toString().length());
+                }
+
                 //已输入字数
                 int enteredWords = wordLimitNum - editable.length();
                 //TextView显示剩余字数
-                viewBinding.tvNumber.setText(wordLimitNum - enteredWords + "/240");
-                int selectionStart = viewBinding.etSearch.getSelectionStart();
-                int selectionEnd = viewBinding.etSearch.getSelectionEnd();
-                if (enterWords.length() > wordLimitNum) {
-                    //删除多余输入的字（不会显示出来）
-                    editable.delete(selectionStart - 1, selectionEnd);
-                    viewBinding.etSearch.setText(editable);
-                    //设置光标在最后
-                    viewBinding.etSearch.setSelection(selectionEnd);
-                }
+                viewBinding.tvNumber.setText((wordLimitNum - enteredWords) + "/240");
             }
         });
     }

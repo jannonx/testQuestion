@@ -63,17 +63,16 @@ public class FocusAfterSaleActivity extends BaseTabActivity<ActivityBaseTabBindi
     protected void init() {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         setTitleCenter(title);
+        viewModel.getAfterSaleCustomerAcceptanceListEvent().observe(this, new Observer<RefreshBean<AfterSaleBean>>() {
+            @Override
+            public void onChanged(RefreshBean<AfterSaleBean> data) {
+                qualifiedFragment.dealDataByAddType(data.getContent());
+            }
+        });
         viewModel.getAfterSaleListEvent().observe(this, new Observer<RefreshBean<AfterSaleBean>>() {
             @Override
             public void onChanged(RefreshBean<AfterSaleBean> data) {
-                if (qualifiedFragment.isVisible()) {
-                    LogUtils.showLog("isVisible00="+(qualifiedFragment.isVisible()));
-                    qualifiedFragment.dealDataByAddType(data.getContent());
-                } else if (unqualifiedFragment.isVisible()) {
-                    LogUtils.showLog("isVisible11="+(unqualifiedFragment.isVisible()));
-                    unqualifiedFragment.dealDataByAddType(data.getContent());
-                }
-
+                unqualifiedFragment.dealDataByAddType(data.getContent());
             }
         });
     }

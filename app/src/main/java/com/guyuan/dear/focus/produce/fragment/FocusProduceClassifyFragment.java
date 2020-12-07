@@ -63,9 +63,10 @@ public class FocusProduceClassifyFragment extends BaseProduceFragment {
 
 
     @Override
-    public void bindRefresh() {
-        viewModel.getProduceListByStatus(getListRequestBody(true));
+    protected void refresh() {
+        viewModel.getProduceList(getListRequestBody(true));
     }
+
 
     @Override
     protected void loadMore() {

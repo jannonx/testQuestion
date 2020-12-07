@@ -125,13 +125,26 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
         RelativeLayout videoPanel = footerView.findViewById(R.id.video_panel);
         LinearLayoutCompat llContent = footerView.findViewById(R.id.llc_content);
         LinearLayoutCompat llRemark = footerView.findViewById(R.id.ll_remark);
+
         LinearLayoutCompat llDocument = footerView.findViewById(R.id.ll_document);
+        TextView labelDocument = footerView.findViewById(R.id.label_document);
+        TextView tvTip = footerView.findViewById(R.id.tv_tip);
+
         BaseRecyclerView imageRecyclerView = footerView.findViewById(R.id.image_recycleView);
 
         if (simpleData.getImgUrlList() != null) {
             imageDataList.clear();
             imageDataList.addAll(simpleData.getImgUrlList());
         }
+
+//        if (FunctionModuleType.TYPE_FOCUS == simpleData.getModuleType()) {
+//            labelDocument.setText("电子文件档");
+//            tvTip.setText("点击图片，放大查看");
+            llDocument.setVisibility(imageDataList.size() == 0 ? View.GONE : View.VISIBLE);
+//        } else {
+//            labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
+//            tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
+//        }
 
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
                 imageDataList, R.layout.item_explorate_image);
@@ -240,18 +253,6 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
 
             default:
         }
-    }
-
-    /**
-     * 文本设置属性
-     *
-     * @param textView 文本
-     */
-    public void setTextViewLayParams(TextView textView) {
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) textView.getLayoutParams();
-        layoutParams.height = FrameLayout.LayoutParams.WRAP_CONTENT;
-        layoutParams.width = FrameLayout.LayoutParams.WRAP_CONTENT;
-        textView.setLayoutParams(layoutParams);
     }
 
 

@@ -42,6 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
+                    android:hint="请选择"
                     android:paddingRight="@dimen/dp_5"
                     android:text="@{fragment_material_qc_vm.selectedProject.projectName}"
                     android:textColor="@color/color_grey_999999"
@@ -103,6 +104,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_15"
+                    android:hint="请选择"
                     app:showMaterialNameAndSpec="@{fragment_material_qc_vm.selectedMaterial}" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -232,7 +234,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="请选择"
+                    android:hint="请选择"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_15"
                     app:showQcApproachName="@{fragment_material_qc_vm.selectedQcApproach}" />
@@ -312,6 +314,7 @@
                     android:gravity="center"
                     android:hint="请输入数量"
                     android:inputType="number"
+                    android:enabled="@{!fragment_material_qc_vm.isCheckAllMaterials}"
                     android:text="@={fragment_material_qc_vm.sampleSize}" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -370,7 +373,7 @@
                     android:layout_weight="1"
                     android:gravity="end"
                     android:paddingRight="@dimen/dp_5"
-                    android:text="请选择"
+                    android:hint="请选择"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_15"
                     app:showQcResult="@{fragment_material_qc_vm.reportResult}" />
@@ -453,7 +456,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="end"
-                    android:text="是"
+                    android:hint="请选择"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_15"
                     app:showNegativePositive="@{fragment_material_qc_vm.isNeedVerify}" />

@@ -81,7 +81,6 @@ public class ContractSearchListFragment extends BaseMvvmFragment<FragmentContrac
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
                     recyclerView.setLoadMoreEnabled(false);
-                    showToastTip("已经全部加载完毕。");
                 }
 
             }

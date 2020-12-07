@@ -26,6 +26,7 @@ import com.guyuan.dear.work.projectsite.adapter.CheckGoodsAdapter;
 import com.guyuan.dear.work.projectsite.bean.EventCheckGoodsListRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventWorkSiteListRefresh;
+import com.guyuan.dear.work.projectsite.bean.OnConfirmDialogListenerImpl;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostCustomerAcceptanceInfo;
 import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
@@ -48,6 +49,9 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
  */
 public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkCheckGoodImgBinding, WorkProjectSiteViewModel>
         implements BaseFileUploadActivity.PhotoSelectListener {
+    // 到货或清点操作,1：到货操作标识，2：清点操作标识
+    private static final int TYPE_GOOD_ARRIVE = 1;
+    private static final int TYPE_GOOD_CHECK = 2;
 
     public static final String TAG = CheckGoodsFragment.class.getSimpleName();
     private SiteExploreBean detailData;
@@ -78,10 +82,6 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
         detailData = (SiteExploreBean) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
 
 
-        binding.clGoodsList.setVisibility(detailData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
-                ? View.GONE : View.VISIBLE);
-
-
         binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         CheckGoodsAdapter checkContentAdapter = new CheckGoodsAdapter(getContext(),
                 listData, R.layout.item_goods_list, FunctionModuleType.TYPE_WORK);
@@ -106,14 +106,31 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
         viewModel.getCommitCheckGoodInfoEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer data) {
-                getActivity().finish();
+                if (detailData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING){
+                    viewModel.getCheckGoodDetailData(detailData.getId());
+                }else{
+                    getActivity().finish();
+                }
                 EventBus.getDefault().post(new EventWorkSiteListRefresh());
             }
         });
         binding.tvActivateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                confirmCheckGoods();
+                //确定到货
+                if (detailData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING) {
+                    postData = new PostCheckInfo();
+                    postData.setId(detailData.getId());
+                    postData.setSign(TYPE_GOOD_ARRIVE);
+                    String str = GsonUtil.objectToString(postData);
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                            "charset=utf-8"), str);
+                    viewModel.postCheckGoodInfo(requestBody);
+                } else {
+                    //确认庆典
+                    confirmCheckGoods();
+                }
+
             }
         });
 
@@ -139,7 +156,7 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
      * 确认到货及完成清点
      */
     private void confirmCheckGoods() {
-        customerDialog = new ProjectCheckConfirmDialog(getActivity(), detailData, new ProjectCheckConfirmDialog.OnDialogClickListener() {
+        customerDialog = new ProjectCheckConfirmDialog(getActivity(), detailData, new OnConfirmDialogListenerImpl() {
             @Override
             public void onPickImageClick() {
                 activity.openAlbum(BaseTabActivity.FIRST);
@@ -149,16 +166,6 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
             public void onCommitCheckGoodsInfo(PostCheckInfo data) {
                 postData = data;
                 activity.checkPhotoAndFileUpLoad(photoList);
-            }
-
-            @Override
-            public void onCommitInstallationDebugInfo(PostInstallationDebugInfo data) {
-
-            }
-
-            @Override
-            public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data) {
-
             }
 
         });
@@ -190,8 +197,13 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
         binding.tvTime.setText(data.getCreateTime());
         binding.tvCompanyLocation.setText(data.getAcceptAddress());
 
+        binding.clGoodsList.setVisibility(detailData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
+                ? View.GONE : View.VISIBLE);
+
         List<CheckGoodsBean> checkGoodsListData = data.getCheckTransportProjectListVO();
         binding.tvTotalGoods.setText("共计货物：" + (checkGoodsListData != null ? checkGoodsListData.size() : 0) + "件");
+
+        listData.clear();
         listData.addAll(checkGoodsListData);
         adapter.refreshData();
 

@@ -58,18 +58,14 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
         etSearch.setHint("输入项目名称、编号、人员");
         qualifiedType = (SaleQualifiedType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
 
-        FocusAfterSaleAdapter saleAdapter = new FocusAfterSaleAdapter(getContext(), listData, R.layout.item_focus_after_sale);
+        FocusAfterSaleAdapter saleAdapter = new FocusAfterSaleAdapter(getContext(),
+                listData, R.layout.item_focus_after_sale);
         adapter = new BaseRecyclerViewAdapter(saleAdapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
         recycleView.setPullRefreshEnabled(isPullEnable());
         recycleView.setLoadMoreEnabled(isLoadMoreEnable());
-
-        viewModel.getAfterSaleList(getListRequestBody(true));
-
-
-
-
+        getListDataByClassify(true);
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -79,7 +75,13 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
             }
         });
     }
-
+    public void getListDataByClassify(boolean isRefresh){
+        if (SaleQualifiedType.TYPE_QUALIFIED == qualifiedType){
+            viewModel.getAfterSaleCustomerAcceptanceList(getListRequestBody(isRefresh));
+        }else if (SaleQualifiedType.TYPE_UNQUALIFIED == qualifiedType){
+            viewModel.getAfterSaleList(getListRequestBody(isRefresh));
+        }
+    }
     /**
      * 设置处理数据
      *
@@ -118,12 +120,12 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
 
     @Override
     protected void refresh() {
-        viewModel.getAfterSaleList(getListRequestBody(true));
+        getListDataByClassify(true);
     }
 
     @Override
     protected void loadMore() {
-        viewModel.getAfterSaleList(getListRequestBody(false));
+        getListDataByClassify(false);
     }
 
     @Override

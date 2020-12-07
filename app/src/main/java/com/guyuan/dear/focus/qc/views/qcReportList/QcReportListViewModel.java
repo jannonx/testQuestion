@@ -2,19 +2,21 @@ package com.guyuan.dear.focus.qc.views.qcReportList;
 
 import android.view.View;
 
-import androidx.lifecycle.MutableLiveData;
-
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.qc.beans.GenericQcReport;
 import com.guyuan.dear.focus.qc.repo.QcListRepo;
+import com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity;
 import com.guyuan.dear.net.DearNetHelper;
 import com.guyuan.dear.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.lifecycle.MutableLiveData;
 import io.reactivex.disposables.Disposable;
+
+import static com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity.SEARCH_TYPE_ALL;
 
 /**
  * @author: 廖华凯
@@ -68,6 +70,17 @@ public class QcReportListViewModel extends BaseViewModel {
     private MutableLiveData<Long> dateTo = new MutableLiveData<>(0L);
     private QcListRepo repo = new QcListRepo();
     private static final int PAGE_SIZE = 50;
+    /**
+     * 搜索qc报告
+     *
+     * @param searchType {@link QcSearchListActivity#SEARCH_TYPE_ALL}
+     * {@link QcSearchListActivity#SEARCH_TYPE_ALL_PASS_REPORTS}
+     * {@link QcSearchListActivity#SEARCH_TYPE_ALL_REJECTED_REPORTS}
+     * {@link QcSearchListActivity#SEARCH_TYPE_ALL_MY_REPORTS}
+     */
+    public MutableLiveData<Integer> searchType = new MutableLiveData<>(SEARCH_TYPE_ALL);
+
+    public MutableLiveData<Boolean> shouldShowNoData = new MutableLiveData<>(true);
 
     public MutableLiveData<Boolean> getIsAllProductReportLoaded() {
         return isAllProductReportLoaded;
@@ -133,26 +146,28 @@ public class QcReportListViewModel extends BaseViewModel {
         return materialReports;
     }
 
-    public void reset(){
+    public void reset() {
         materialReports.postValue(new ArrayList<>());
         isAllMaterialReportLoaded.postValue(false);
-        materialReportPageIndex=1;
+        materialReportPageIndex = 1;
 
         myQcReports.postValue(new ArrayList<>());
         isAllMyQcReportLoaded.postValue(false);
-        myQcReportPageIndex=1;
+        myQcReportPageIndex = 1;
 
         productReports.postValue(new ArrayList<>());
         isAllProductReportLoaded.postValue(false);
-        productReportPageIndex=1;
+        productReportPageIndex = 1;
 
         allReportList.postValue(new ArrayList<>());
         isAllQcReportLoaded.postValue(false);
-        allQcReportPageIndex=1;
+        allQcReportPageIndex = 1;
 
         rejectedReportList.postValue(new ArrayList<>());
         isAllRejectedReportLoaded.postValue(false);
-        rejectedReportPageIndex=1;
+        rejectedReportPageIndex = 1;
+
+        shouldShowNoData.postValue(true);
     }
 
 
@@ -174,10 +189,10 @@ public class QcReportListViewModel extends BaseViewModel {
                 isShowLoading.postValue(false);
                 if (result.isEmpty()) {
                     isAllProductReportLoaded.postValue(true);
-                    showToast("已经全部加载完毕。");
                 } else {
                     productReports.getValue().addAll(result);
                     productReports.postValue(productReports.getValue());
+                    shouldShowNoData.postValue(false);
                 }
 
 
@@ -210,10 +225,10 @@ public class QcReportListViewModel extends BaseViewModel {
                 isShowLoading.postValue(false);
                 if (result.isEmpty()) {
                     isAllProductReportLoaded.postValue(true);
-                    showToast("已经全部加载完毕。");
                 } else {
                     productReports.getValue().addAll(result);
                     productReports.postValue(productReports.getValue());
+                    shouldShowNoData.postValue(false);
                 }
             }
 
@@ -238,10 +253,10 @@ public class QcReportListViewModel extends BaseViewModel {
                 isShowLoading.postValue(false);
                 if (result.isEmpty()) {
                     isAllMaterialReportLoaded.postValue(true);
-                    showToast("已经全部加载完毕。");
                 } else {
                     materialReports.getValue().addAll(result);
                     materialReports.postValue(materialReports.getValue());
+                    shouldShowNoData.postValue(false);
                 }
 
             }
@@ -266,10 +281,10 @@ public class QcReportListViewModel extends BaseViewModel {
                 isShowLoading.postValue(false);
                 if (result.isEmpty()) {
                     isAllMaterialReportLoaded.postValue(true);
-                    showToast("已经全部加载完毕。");
                 } else {
                     materialReports.getValue().addAll(result);
                     materialReports.postValue(materialReports.getValue());
+                    shouldShowNoData.postValue(false);
                 }
 
             }
@@ -293,10 +308,10 @@ public class QcReportListViewModel extends BaseViewModel {
             public void onGetResult(List<GenericQcReport> result) {
                 if (result.isEmpty()) {
                     isAllRejectedReportLoaded.postValue(true);
-                    showToast("已经全部加载完毕。");
                 } else {
                     rejectedReportList.getValue().addAll(result);
                     rejectedReportList.postValue(rejectedReportList.getValue());
+                    shouldShowNoData.postValue(false);
                 }
                 isShowLoading.postValue(false);
             }
@@ -321,10 +336,10 @@ public class QcReportListViewModel extends BaseViewModel {
                 isShowLoading.postValue(false);
                 if (result.isEmpty()) {
                     isAllQcReportLoaded.postValue(true);
-                    showToast("已经全部加载完毕。");
                 } else {
                     allReportList.getValue().addAll(result);
                     allReportList.postValue(allReportList.getValue());
+                    shouldShowNoData.postValue(false);
                 }
             }
 
@@ -336,10 +351,11 @@ public class QcReportListViewModel extends BaseViewModel {
         });
     }
 
-    public void clearAllMyQcReport(){
+    public void clearAllMyQcReport() {
         myQcReports.postValue(new ArrayList<>());
         isAllMyQcReportLoaded.postValue(false);
-        myQcReportPageIndex=1;
+        myQcReportPageIndex = 1;
+        shouldShowNoData.postValue(true);
     }
 
     public Disposable updateMyQcReports(long dateFrom, long dateTo) {
@@ -354,10 +370,10 @@ public class QcReportListViewModel extends BaseViewModel {
                 isShowLoading.postValue(false);
                 if (result.isEmpty()) {
                     isAllMyQcReportLoaded.postValue(true);
-                    showToast("已经全部加载完毕。");
                 } else {
                     myQcReports.getValue().addAll(result);
                     myQcReports.postValue(myQcReports.getValue());
+                    shouldShowNoData.postValue(false);
                 }
             }
 
@@ -369,7 +385,4 @@ public class QcReportListViewModel extends BaseViewModel {
         });
     }
 
-    private void showToast(String msg) {
-        ToastUtils.showShort(DearApplication.getInstance(), msg);
-    }
 }

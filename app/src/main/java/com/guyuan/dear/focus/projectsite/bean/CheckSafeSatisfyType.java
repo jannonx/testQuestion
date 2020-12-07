@@ -32,9 +32,9 @@ public enum CheckSafeSatisfyType implements Serializable {
     TYPE_CHECK_ING(20, "排查中", R.color.color_blue_1677ff,
             R.drawable.bg_blue_e7f1ff_corner_2),
     /**
-     * 排查完成
+     * 完成排查
      */
-    TYPE_CHECK_COMPLETE(30, "排查完成", R.color.color_green_00B578,
+    TYPE_CHECK_COMPLETE(30, "完成排查", R.color.color_green_00B578,
             R.drawable.bg_green_d4fff1_corner_2),
     /**
      * 满足条件
@@ -44,7 +44,7 @@ public enum CheckSafeSatisfyType implements Serializable {
     /**
      * 满足条件
      */
-    TYPE_CONDITION_EXCEPTION(2, "不安全", R.color.color_orange_FF6010,
+    TYPE_CONDITION_EXCEPTION(2, "异常", R.color.color_orange_FF6010,
             R.drawable.bg_orange_ffece3_corner_2);
 
 
@@ -88,11 +88,19 @@ public enum CheckSafeSatisfyType implements Serializable {
             }
         } else if (bean.getStatus() == 30) {
             //勘查完成，条件状态
-            if (bean.getSatisfyFlag() == 1) {
-                return CheckSafeSatisfyType.TYPE_CONDITION_OK;
-            } else if (bean.getSatisfyFlag() == 2) {
-                return CheckSafeSatisfyType.TYPE_CONDITION_EXCEPTION;
+            if (bean.getModuleType() == null) return CheckSafeSatisfyType.TYPE_UNKNOWN;
+            //我的关注
+            if (FunctionModuleType.TYPE_FOCUS == bean.getModuleType()) {
+                if (bean.getSatisfyFlag() == 1) {
+                    return CheckSafeSatisfyType.TYPE_CONDITION_OK;
+                } else if (bean.getSatisfyFlag() == 2) {
+                    return CheckSafeSatisfyType.TYPE_CONDITION_EXCEPTION;
+                }
+                //我的工作
+            } else if (FunctionModuleType.TYPE_WORK == bean.getModuleType()) {
+                return CheckSafeSatisfyType.TYPE_CHECK_COMPLETE;
             }
+
         }
         return CheckSafeSatisfyType.TYPE_UNKNOWN;
     }

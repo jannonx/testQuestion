@@ -54,9 +54,9 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
 
     @Override
     protected void init() {
-        etSearch.setHint("输入项目名称、编号、人员");
         reportType = (ProjectReportType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
-
+        etSearch.setHint(ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == reportType
+                ? "输入客户名称、项目名称" : "输入项目名称、编号、人员");
         ProjectReportAdapter checkGoodsAdapter = new ProjectReportAdapter(getContext(),
                 listData, R.layout.item_focus_project_site);
         adapter = new BaseRecyclerViewAdapter(checkGoodsAdapter);
@@ -69,7 +69,6 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
             @Override
             public void onItemClick(View view, int position) {
                 SiteExploreBean siteExploreBean = listData.get(position);
-                siteExploreBean.setModuleType(FunctionModuleType.TYPE_FOCUS);
                 switch (reportType) {
                     case TYPE_SITE_EXPLORATION:
                         if (siteExploreBean.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
@@ -80,7 +79,7 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
                         }
                         break;
                     case TYPE_INSTALLATION_DEBUG:
-                        siteExploreBean.setModuleType(FunctionModuleType.TYPE_FOCUS);
+//                        siteExploreBean.setModuleType(FunctionModuleType.TYPE_FOCUS);
                         WorkInstallDebugActivity.start(getContext(),siteExploreBean );
                         break;
                     default:
@@ -174,6 +173,7 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
     private void dealDataByAddReportType(List<SiteExploreBean> dataList) {
         List<SiteExploreBean> tempList = new ArrayList<>();
         for (SiteExploreBean bean : dataList) {
+            bean.setModuleType(FunctionModuleType.TYPE_FOCUS);
             bean.setProjectReportType(reportType);
             tempList.add(bean);
         }

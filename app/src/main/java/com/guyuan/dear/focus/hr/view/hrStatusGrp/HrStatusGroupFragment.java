@@ -2,15 +2,21 @@ package com.guyuan.dear.focus.hr.view.hrStatusGrp;
 
 import android.os.Bundle;
 
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentHrGroupBinding;
 import com.guyuan.dear.focus.hr.adapter.HrStaffAdapter;
+import com.guyuan.dear.focus.hr.bean.HrStaffsByDept;
 import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
 import com.guyuan.dear.focus.hr.view.hrStaffMonthlyDetail.StaffMonthlyDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
+
+import java.util.List;
 
 /**
  * @author: 廖华凯
@@ -22,6 +28,7 @@ public class HrStatusGroupFragment extends BaseMvvmFragment<FragmentHrGroupBindi
 
     private int grpType;
     private long date = -1;
+    private MutableLiveData<Boolean> shouldShowNoData = new MutableLiveData<>(true);
 
     /**
      * @param grpType {@link HrStatusGroup#GRP_TYPE_NORMAL},{@link HrStatusGroup#GRP_TYPE_LATE},{@link HrStatusGroup#GRP_TYPE_LEAVE_EARLY},
@@ -71,7 +78,6 @@ public class HrStatusGroupFragment extends BaseMvvmFragment<FragmentHrGroupBindi
         getViewModel().onItemClickListener.postValue(new HrStaffAdapter.HrStaffAdapterItemClickListener() {
             @Override
             public void onItemClick(StaffBean staffBean, int pos) {
-                //                StaffAttendDetailActivity.start(getActivity(),staffBean.getId());
                 StaffMonthlyDetailActivity.start(getContext(), "", staffBean.getId().intValue());
             }
         });
@@ -81,6 +87,23 @@ public class HrStatusGroupFragment extends BaseMvvmFragment<FragmentHrGroupBindi
 
     @Override
     protected void initListeners() {
+        getViewModel().staffs.observe(this, new Observer<List<HrStaffsByDept>>() {
+            @Override
+            public void onChanged(List<HrStaffsByDept> depts) {
+                if (depts.isEmpty()) {
+                    shouldShowNoData.postValue(true);
+                } else {
+                    shouldShowNoData.postValue(false);
+                }
+            }
+        });
+
+        shouldShowNoData.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                getViewDataBinding().fragmentHrGroupNoData.setIsShow(aBoolean);
+            }
+        });
 
 
     }

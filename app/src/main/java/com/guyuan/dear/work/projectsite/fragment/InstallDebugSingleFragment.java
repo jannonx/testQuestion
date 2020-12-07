@@ -93,7 +93,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
         debugBean = (InstallDebugBean) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
 
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-                imageDataList, R.layout.item_explorate_image);
+                imageDataList, R.layout.item_explorate_image,true);
         imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
 
         binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -102,7 +102,13 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
         binding.imageRecycleView.setLoadMoreEnabled(false);
         viewModel.getInstallDebugDetailDataBySingle(debugBean.getId());
 
-
+        imageViewAdapter.setAdapterListener(new ContentImageViewAdapter.OnListAdapterListener() {
+            @Override
+            public void onListEmpty() {
+                binding.labelDocument.setText("拍照电子档");
+                binding.tvTip.setText("点击此框上传资料拍照照片");
+            }
+        });
         viewModel.getInstallDebugDetailBySingleEvent().observe(getActivity(), new Observer<SiteExploreBean>() {
             @Override
             public void onChanged(SiteExploreBean data) {
@@ -144,6 +150,9 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
         binding.tvProjectStatus.setBackgroundResource(data.getStatusTextBg());
         int statusTextColor = data.getStatusTextColor();
         binding.tvProjectStatus.setTextColor(getActivity().getResources().getColor(statusTextColor, null));
+
+        binding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
+        binding.tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
     }
 
     private void initListener() {
@@ -198,7 +207,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
             }
         });
 
-        binding.ivPick.setOnClickListener(new View.OnClickListener() {
+        binding.clPickPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activity.openAlbum(BaseTabActivity.FIRST);
@@ -265,5 +274,8 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
         imageDataList.clear();
         imageDataList.addAll(photoList);
         imageAdapter.refreshData();
+
+        binding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
+        binding.tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
     }
 }

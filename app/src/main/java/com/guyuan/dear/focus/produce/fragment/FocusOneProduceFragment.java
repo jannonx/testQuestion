@@ -76,10 +76,12 @@ public class FocusOneProduceFragment extends BaseProduceFragment {
         viewModel.getProduceList(getListRequestBody(false));
     }
 
+
     @Override
-    public void bindRefresh() {
+    protected void refresh() {
         viewModel.getProduceList(getListRequestBody(true));
     }
+
 
 
 }

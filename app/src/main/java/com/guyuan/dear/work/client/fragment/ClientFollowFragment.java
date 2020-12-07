@@ -43,7 +43,7 @@ public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBe
 
     @Override
     protected void init() {
-        etSearch.setHint("输入客户名称");
+        etSearch.setHint("输入客户名称、销售人员");
 
         ClientFollowAdapter listAdapter = new ClientFollowAdapter(getContext(), listData,
                 R.layout.item_work_follow_customer);

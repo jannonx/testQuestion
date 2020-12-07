@@ -32,7 +32,7 @@ public enum SiteProjectSatisfyType implements Serializable {
     /**
      * 勘查完成
      */
-    TYPE_EXPLORE_COMPLETE(30, "勘查完成", R.color.color_green_00B578,
+    TYPE_EXPLORE_COMPLETE(30, "完成勘查", R.color.color_green_00B578,
             R.drawable.bg_green_d4fff1_corner_2),
     /**
      * 满足条件
@@ -86,10 +86,17 @@ public enum SiteProjectSatisfyType implements Serializable {
             }
         } else if (bean.getStatus() == 30) {
             //勘查完成，条件状态
-            if (bean.getSatisfyFlag() == 1) {
-                return SiteProjectSatisfyType.TYPE_CONDITION_OK;
-            } else if (bean.getSatisfyFlag() == 2) {
-                return SiteProjectSatisfyType.TYPE_CONDITION_EXCEPTION;
+            if (bean.getModuleType() == null) return SiteProjectSatisfyType.TYPE_UNKNOWN;
+            //我的关注
+            if (FunctionModuleType.TYPE_FOCUS == bean.getModuleType()) {
+                if (bean.getSatisfyFlag() == 1) {
+                    return SiteProjectSatisfyType.TYPE_CONDITION_OK;
+                } else if (bean.getSatisfyFlag() == 2) {
+                    return SiteProjectSatisfyType.TYPE_CONDITION_EXCEPTION;
+                }
+                //我的工作
+            } else if (FunctionModuleType.TYPE_WORK == bean.getModuleType()) {
+                return SiteProjectSatisfyType.TYPE_EXPLORE_COMPLETE;
             }
         }
         return SiteProjectSatisfyType.TYPE_UNKNOWN;

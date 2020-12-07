@@ -35,24 +35,24 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
 
-                <TextView
-                    android:id="@+id/tv_sub_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_12"
-                    android:background="@drawable/bg_green_d4fff1_corner_2"
-                    android:paddingStart="@dimen/dp_4"
-                    android:paddingTop="@dimen/dp_2"
-                    android:paddingEnd="@dimen/dp_4"
-                    android:paddingBottom="@dimen/dp_2"
-                    android:text="完成"
-                    android:textColor="@color/color_green_00B578"
-                    android:textSize="@dimen/sp_12"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_product_name"
-                    app:layout_constraintStart_toEndOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toTopOf="@+id/tv_product_name"
-                    tools:visibility="visible" />
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_sub_status"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/dp_12"-->
+<!--                    android:background="@drawable/bg_green_d4fff1_corner_2"-->
+<!--                    android:paddingStart="@dimen/dp_4"-->
+<!--                    android:paddingTop="@dimen/dp_2"-->
+<!--                    android:paddingEnd="@dimen/dp_4"-->
+<!--                    android:paddingBottom="@dimen/dp_2"-->
+<!--                    android:text="完成"-->
+<!--                    android:textColor="@color/color_green_00B578"-->
+<!--                    android:textSize="@dimen/sp_12"-->
+<!--                    android:visibility="gone"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/tv_product_name"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/tv_product_name"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/tv_product_name"-->
+<!--                    tools:visibility="visible" />-->
 
                 <TextView
                     android:id="@+id/tv_produce_status"
@@ -68,8 +68,8 @@
                     android:textColor="@color/color_orange_FF6010"
                     android:textSize="@dimen/sp_12"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_product_name"
-                    app:layout_constraintStart_toEndOf="@+id/tv_sub_status"
-                    app:layout_constraintTop_toTopOf="@+id/tv_product_name" />
+                    app:layout_constraintStart_toEndOf="@+id/tv_product_name"
+                    app:layout_constraintTop_toTopOf="@+id/tv_product_name"/>
 
                 <View
                     android:id="@+id/v_line_0"

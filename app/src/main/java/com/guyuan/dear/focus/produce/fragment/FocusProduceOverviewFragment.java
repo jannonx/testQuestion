@@ -100,7 +100,8 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
     }
 
     private void initDate() {
-        dates[0] = calenderUtils.getSettingDate(CalenderUtils.getPassOneYear(), 0, 0, 0);
+        dates[0] = calenderUtils.getSettingDate(new Date(), 0, 0, 0);
+//        dates[0] = calenderUtils.getSettingDate(CalenderUtils.getPassOneYear(), 0, 0, 0);
         dates[1] = calenderUtils.getSettingDate(new Date(), 23, 59, 59);
 
         dataArr[0] = calenderUtils.toSmartFactoryDateFormatByDay(dates[0].getTime());

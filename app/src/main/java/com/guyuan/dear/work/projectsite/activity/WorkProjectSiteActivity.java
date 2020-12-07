@@ -140,6 +140,8 @@ public class WorkProjectSiteActivity extends BaseTabActivity<ActivityBaseTabBind
        }else if (installationDebugFragment.isVisible()) {
            LogUtils.showLog("onRefreshListMessage....3333");
            installationDebugFragment.refreshList();
+           LogUtils.showLog("onRefreshListMessage....33000");
+           customerAcceptanceFragment.refreshList();
        }else if (customerAcceptanceFragment.isVisible()) {
            LogUtils.showLog("onRefreshListMessage....4444");
            customerAcceptanceFragment.refreshList();

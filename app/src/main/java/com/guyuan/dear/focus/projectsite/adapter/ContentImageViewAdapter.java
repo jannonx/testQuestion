@@ -28,6 +28,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 public class ContentImageViewAdapter extends BaseRecyclerAdapter<String> {
 
     private boolean isDeleteIconVisible = false;
+    private OnListAdapterListener adapterListener;
 
     public ContentImageViewAdapter(Context context, @NonNull List<String> listData, int layoutID) {
         super(context, listData, layoutID);
@@ -48,6 +49,7 @@ public class ContentImageViewAdapter extends BaseRecyclerAdapter<String> {
             @Override
             public void onClick(View view) {
                 FullScreenShowActivity.start(context, listData, position);
+
             }
         });
 
@@ -57,9 +59,20 @@ public class ContentImageViewAdapter extends BaseRecyclerAdapter<String> {
             public void onClick(View v) {
                 listData.remove(position);
                 notifyDataSetChanged();
+                if (adapterListener != null && listData.size() == 0) {
+                    adapterListener.onListEmpty();
+                }
             }
         });
 
 
+    }
+
+    public void setAdapterListener(OnListAdapterListener adapterListener) {
+        this.adapterListener = adapterListener;
+    }
+
+    public interface OnListAdapterListener {
+        void onListEmpty();
     }
 }

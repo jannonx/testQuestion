@@ -130,19 +130,18 @@ public class RemarkDialog extends BottomSheetDialog {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                if (editable.length() > wordLimitNum) {
+                    //删除多余输入的字（不会显示出来）
+                    editable.delete(wordLimitNum, editable.length());
+                    viewBinding.etSearch.setText(editable);
+                    //设置光标在最后
+                    viewBinding.etSearch.setSelection(viewBinding.etSearch.getText().toString().length());
+                }
+
                 //已输入字数
                 int enteredWords = wordLimitNum - editable.length();
                 //TextView显示剩余字数
-                viewBinding.tvNumber.setText(wordLimitNum - enteredWords + "/240");
-                int selectionStart = viewBinding.etSearch.getSelectionStart();
-                int selectionEnd = viewBinding.etSearch.getSelectionEnd();
-                if (enterWords.length() > wordLimitNum) {
-                    //删除多余输入的字（不会显示出来）
-                    editable.delete(selectionStart - 1, selectionEnd);
-                    viewBinding.etSearch.setText(editable);
-                    //设置光标在最后
-                    viewBinding.etSearch.setSelection(selectionEnd);
-                }
+                viewBinding.tvNumber.setText((wordLimitNum - enteredWords )+ "/240");
             }
         });
     }
