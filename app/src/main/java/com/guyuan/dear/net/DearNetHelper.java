@@ -133,12 +133,17 @@ public class DearNetHelper {
      * 获取所有客户清单
      *
      * @param callback
+     * @param type     1表示只搜索可以暂停的客户 2表示只搜索可以重启的客户
      * @return
      */
-    public Disposable getClientList(NetCallback<BasePageResultBean<NetClientInfo>> callback) {
-        BasePageReqBean body = new BasePageReqBean();
+    public Disposable getClientList(int type, NetCallback<BasePageResultBean<NetClientInfo>> callback) {
+        SearchRqBody body = new SearchRqBody();
         body.setPageNum(0);
         body.setPageSize(-1);
+        HashMap<String,String> filters = new HashMap<>();
+        filters.put("type",String.valueOf(type));
+        body.setFilters(filters);
+
         Observable<ResultBean<BasePageResultBean<NetClientInfo>>> observable = netApiService.getClientInfos(body);
         return getDisposalAsync(observable, callback, null);
     }
