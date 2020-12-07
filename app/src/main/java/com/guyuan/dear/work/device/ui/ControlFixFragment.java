@@ -3,6 +3,7 @@ package com.guyuan.dear.work.device.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +47,7 @@ public class ControlFixFragment extends BaseDataBindingFragment<FragmentControlR
     private ControlDeviceBean controlDeviceBean;
     private ArrayList<StaffBean> copyList = new ArrayList<>();
     private TagAdapter<StaffBean> copyAdapter;
-    private ArrayList<String> photoList = new ArrayList<>();
+    private ArrayList<Uri> photoList = new ArrayList<>();
     private TagPhotoAdapter photoAdapter;
     private List<String> selectedContent = new ArrayList<>();
 
@@ -97,7 +98,7 @@ public class ControlFixFragment extends BaseDataBindingFragment<FragmentControlR
                     if (binding.controlReportTl.getSelected().size() > 0 && photoList != null &&
                             photoList.size() > 0 && copyList.size() > 0) {
                         controlDeviceActivity.setCurrentPhotoType(BaseTabActivity.SECOND);
-                        controlDeviceActivity.checkPhotoAndFileUpLoad(photoList);
+                        controlDeviceActivity.checkPhotoAndFileUpLoad(CommonUtils.getFilePath(photoList));
                     } else {
                         Toast.makeText(getContext(), "请选择故障类型和照片及抄送人", Toast.LENGTH_SHORT).show();
                     }
@@ -165,16 +166,16 @@ public class ControlFixFragment extends BaseDataBindingFragment<FragmentControlR
     }
 
     @Override
-    public ArrayList<String> getSelectedMediaList() {
+    public ArrayList<Uri> getSelectedMediaList() {
         return photoList;
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> selectedPhotoList) {
+    public void onPhotoSelected(ArrayList<Uri> selectedPhotoList) {
         photoList.clear();
         photoList.addAll(selectedPhotoList);
         if (photoAdapter == null) {
-            photoAdapter = new TagPhotoAdapter(getContext(), photoList);
+            photoAdapter = new TagPhotoAdapter(getContext(), CommonUtils.getFilePath(photoList));
             binding.pictureTl.setAdapter(photoAdapter);
         } else {
             photoAdapter.notifyDataChanged();

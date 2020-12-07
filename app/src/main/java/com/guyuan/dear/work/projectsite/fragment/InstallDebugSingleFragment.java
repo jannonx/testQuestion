@@ -1,34 +1,50 @@
 package com.guyuan.dear.work.projectsite.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseFileUploadActivity;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.base.api.UploadBean;
+import com.guyuan.dear.databinding.FragmentWorkInstallationDebugIngBinding;
 import com.guyuan.dear.databinding.FragmentWrokInstallationDebugDetailSingleBinding;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
+import com.guyuan.dear.focus.projectsite.adapter.ProjectInstallAdapter;
+import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
+import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
+import com.guyuan.dear.focus.projectsite.bean.EventFocusSiteListRefresh;
+import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
-import com.guyuan.dear.focus.projectsite.type.InstallDebugSatisfyType;
-import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
+import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
+import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugSingleActivity;
+import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
+import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventWorkSiteListRefresh;
+import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 
@@ -40,6 +56,7 @@ import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @description: 我的工作--工程现场--安装调试
@@ -51,7 +68,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
         implements BaseFileUploadActivity.PhotoSelectListener {
 
     public static final String TAG = InstallDebugSingleFragment.class.getSimpleName();
-    protected ArrayList<String> photoList = new ArrayList<>();
+    protected ArrayList<Uri> photoList = new ArrayList<>();
     protected ArrayList<String> imageDataList = new ArrayList<>();
     private InstallDebugBean debugBean;
     private List<InstallDebugBean> listData = new ArrayList<>();
@@ -244,7 +261,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
     }
 
     @Override
-    public ArrayList<String> getSelectedMediaList() {
+    public ArrayList<Uri> getSelectedMediaList() {
         return photoList;
     }
 
@@ -257,11 +274,11 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> dataList) {
+    public void onPhotoSelected(ArrayList<Uri> dataList) {
         photoList.clear();
         photoList.addAll(dataList);
         imageDataList.clear();
-        imageDataList.addAll(photoList);
+        imageDataList.addAll(CommonUtils.getFilePath(photoList));
         imageAdapter.refreshData();
 
         binding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");

@@ -1,12 +1,14 @@
 package com.guyuan.dear.focus.transport.ui.detail;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
+import com.guyuan.dear.customizeview.fullScreenShowFile.FullScreenShowActivity;
 import com.guyuan.dear.databinding.ItemTransportDocumentsBinding;
 import com.guyuan.dear.focus.transport.adapter.TransportDocumentAdapter;
 import com.guyuan.dear.focus.transport.data.TransportViewModel;
@@ -16,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**
  * @author : 唐力
@@ -33,7 +36,6 @@ public class TransportDocumentFragment extends BaseListFragment<String,
     public static TransportDocumentFragment newInstance() {
 
         Bundle args = new Bundle();
-    //    args.putStringArrayList(IMG_URL_LIST, new ArrayList<>(picUrl));
         TransportDocumentFragment fragment = new TransportDocumentFragment();
         fragment.setArguments(args);
         return fragment;
@@ -42,15 +44,23 @@ public class TransportDocumentFragment extends BaseListFragment<String,
     @Override
     protected void initView() {
         if (getArguments() != null) {
-            List<String> url = getArguments().getStringArrayList(IMG_URL_LIST);
-            listData.addAll(url);
             list_container.setBackgroundColor(getResources().getColor(R.color.bg_window));
             TransportDocumentAdapter documentAdapter = new TransportDocumentAdapter(listData,
                     R.layout.item_transport_documents);
             adapter = new BaseRecyclerViewAdapter(documentAdapter);
+            adapter.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    FullScreenShowActivity.start(getContext(), listData, position);
+                }
+            });
             recycleView.setLayoutManager(new GridLayoutManager(getContext(), 4));
             recycleView.setAdapter(adapter);
         }
+    }
+
+    public void setData(List<String> picUrl) {
+        listData.addAll(picUrl);
     }
 
     @Override

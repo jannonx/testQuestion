@@ -47,20 +47,17 @@ public class FullScreenShowVideoFragment extends BaseDataBindingFragment<Fragmen
         return R.layout.fragment_full_screen_video;
     }
 
-
-
-//    @Override
-//    protected void initInViewPager() {
-//        if (getArguments() != null) {
-//            url = getArguments().getString(URL);
-//            if (url.contains("storage")) {
-//                binding.fullScreenVv.setVideoPath(url);
-//            } else {
-//                showLoadingWithStatus(childFragmentManager, "视频加载中...");
-//                binding.fullScreenVv.setVideoURI(Uri.parse(url));
-//            }
-//        }
-//    }
+    private void setUrl() {
+        if (getArguments() != null) {
+            url = getArguments().getString(URL);
+            if (url.contains("storage")) {
+                binding.fullScreenVv.setVideoPath(url);
+            } else {
+                showLoadingWithStatus(childFragmentManager, "视频加载中...");
+                binding.fullScreenVv.setVideoURI(Uri.parse(url));
+            }
+        }
+    }
 
     @Override
     public void onPause() {
@@ -71,6 +68,7 @@ public class FullScreenShowVideoFragment extends BaseDataBindingFragment<Fragmen
 
     @Override
     protected void initialization() {
+        setUrl();
         //创建MediaController对象
         mediaController = new MediaController(getContext());
         mediaController.setAnchorView(binding.fullScreenVv);

@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.aftersale.fragemnt;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -58,7 +59,7 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
     private AfterSaleBean afterSaleBean;
-    protected ArrayList<String> photoList = new ArrayList<>();
+    protected ArrayList<Uri> photoList = new ArrayList<>();
     private SaleAcceptedType saleAcceptedType = SaleAcceptedType.TYPE_ACCEPTED_QUALIFIED;
     private CustomerAcceptanceDetailActivity activity;
     private PostInfoBean postInfoBean;
@@ -260,12 +261,12 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
 
 
     @Override
-    public ArrayList<String> getSelectedMediaList() {
+    public ArrayList<Uri> getSelectedMediaList() {
         return photoList;
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> dataList) {
+    public void onPhotoSelected(ArrayList<Uri> dataList) {
         photoList.clear();
         photoList.addAll(dataList);
         if (dialog != null) {

@@ -1,6 +1,7 @@
 package com.guyuan.dear.work.device.ui;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.gson.Gson;
 import com.guyuan.dear.R;
@@ -23,8 +25,10 @@ import com.guyuan.dear.work.device.data.WorkDeviceViewModel;
 import com.guyuan.dear.work.device.data.bean.ControlDeviceBean;
 import com.guyuan.dear.work.device.data.bean.MaintainCommitBody;
 import com.sun.jna.platform.win32.OaIdl;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import okhttp3.RequestBody;
 
 public class ControlMaintainFragment extends BaseDataBindingFragment<FragmentControlMaintainBinding, WorkDeviceViewModel>
@@ -34,7 +38,7 @@ public class ControlMaintainFragment extends BaseDataBindingFragment<FragmentCon
     public static final String TAG = "ControlMaintainFragment";
     private WorkDeviceActivity controlDeviceActivity;
     private ControlDeviceBean controlDeviceBean;
-    private ArrayList<String> photoList = new ArrayList<>();
+    private ArrayList<Uri> photoList = new ArrayList<>();
     private TagPhotoAdapter photoAdapter;
 
     public static ControlMaintainFragment newInstance() {
@@ -110,7 +114,7 @@ public class ControlMaintainFragment extends BaseDataBindingFragment<FragmentCon
                         && photoList.size() > 0
                         && binding.maintainTypeTl.getSelected().size() > 0) {
                     controlDeviceActivity.setCurrentPhotoType(BaseTabActivity.FIRST);
-                    controlDeviceActivity.checkPhotoAndFileUpLoad(photoList);
+                    controlDeviceActivity.checkPhotoAndFileUpLoad(CommonUtils.getFilePath(photoList));
                 } else {
                     Toast.makeText(getContext(), "请选择保养类型,照片和保养类型", Toast.LENGTH_SHORT).show();
                 }
@@ -150,16 +154,16 @@ public class ControlMaintainFragment extends BaseDataBindingFragment<FragmentCon
     }
 
     @Override
-    public ArrayList<String> getSelectedMediaList() {
+    public ArrayList<Uri> getSelectedMediaList() {
         return photoList;
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> selectedPhotoList) {
+    public void onPhotoSelected(ArrayList<Uri> selectedPhotoList) {
         photoList.clear();
         photoList.addAll(selectedPhotoList);
         if (photoAdapter == null) {
-            photoAdapter = new TagPhotoAdapter(getContext(), photoList);
+            photoAdapter = new TagPhotoAdapter(getContext(), CommonUtils.getFilePath(photoList));
             binding.pictureTl.setAdapter(photoAdapter);
         } else {
             photoAdapter.notifyDataChanged();

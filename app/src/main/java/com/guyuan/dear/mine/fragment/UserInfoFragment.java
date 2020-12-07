@@ -1,6 +1,7 @@
 package com.guyuan.dear.mine.fragment;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -31,6 +32,8 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
+
+import droidninja.filepicker.utils.ContentUriUtils;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
@@ -43,7 +46,7 @@ import okhttp3.RequestBody;
 public class UserInfoFragment extends BaseDataBindingFragment<FragmentUserInfoBinding, MineViewModel>
         implements View.OnClickListener, BaseFileUploadActivity.PhotoSelectListener {
     // BaseTabActivity.PhotoSelectListener
-    protected ArrayList<String> photoList = new ArrayList<>();
+    protected ArrayList<Uri> photoList = new ArrayList<>();
     public static final String TAG = "UserInfoFragment";
     private UserInfoActivity activity;
     private String avatarUrl;
@@ -149,17 +152,23 @@ public class UserInfoFragment extends BaseDataBindingFragment<FragmentUserInfoBi
 
 
     @Override
-    public ArrayList<String> getSelectedMediaList() {
+    public ArrayList<Uri> getSelectedMediaList() {
         return photoList;
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> dataList) {
+    public void onPhotoSelected(ArrayList<Uri> dataList) {
         photoList.clear();
         if (dataList.isEmpty()) return;
         List<String> tempListData = new ArrayList<>();
-        tempListData.add(dataList.get(0));
-        activity.checkPhotoAndFileUpLoad(tempListData);
-        GlideUtils.getInstance().loadUserCircleImageFromGuYuanServer(binding.ivAvatar, dataList.get(0));
+        try {
+            String imgPath = ContentUriUtils.INSTANCE.getFilePath(DearApplication.getInstance(), dataList.get(0));
+            tempListData.add(imgPath);
+            activity.checkPhotoAndFileUpLoad(tempListData);
+            GlideUtils.getInstance().loadUserCircleImageFromGuYuanServer(binding.ivAvatar, imgPath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

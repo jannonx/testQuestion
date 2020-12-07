@@ -6,6 +6,7 @@ import android.view.View;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.base.fragment.BaseListSearchFragment;
+import com.guyuan.dear.databinding.FragmentListSearchBinding;
 import com.guyuan.dear.databinding.FragmentPickStaffsBindingImpl;
 import com.guyuan.dear.databinding.ItemApprovalBinding;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
@@ -26,7 +27,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class ApprovalFragment extends BaseListSearchFragment<ApprovalListBean.ContentBean, ItemApprovalBinding, ApprovalViewModel> {
+public class ApprovalFragment extends BaseListSearchFragment<ApprovalListBean.ContentBean, FragmentListSearchBinding, ApprovalViewModel> {
 
     public static final String TAG = "ApprovalFragment";
     public static final int APPROVAL_SEND = 1;//我发起的审批
@@ -47,7 +48,8 @@ public class ApprovalFragment extends BaseListSearchFragment<ApprovalListBean.Co
 
     @Override
     protected void init() {
-        etSearch.setHint("搜索客户名称、合同编号");
+        etSearch.setHint("搜索提交人");
+        //binding.searchBar.rlSearchBar.setVisibility(View.GONE);
         ApprovalAdapter approvalAdapter = new ApprovalAdapter(listData, R.layout.item_approval);
         setDefaultAdapter(approvalAdapter);
         adapter.setOnItemClickListener(new OnItemClickListener() {

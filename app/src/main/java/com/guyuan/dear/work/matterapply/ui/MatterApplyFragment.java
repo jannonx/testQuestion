@@ -62,13 +62,11 @@ public class MatterApplyFragment extends BaseDataBindingFragment<FragmentWorkMat
     private int currentTypeID = CLEAR_ID;
     private int currentProductID = CLEAR_ID;
     private int currentMaterialID = CLEAR_ID;
-    private int currentPersonID = CLEAR_ID;
     private List<MatterProjectBean> currentProjectList = new ArrayList<>();
     private List<MatterTypeBean> currentTypeList = new ArrayList<>();
     private List<MatterProductBean> currentProductList = new ArrayList<>();
     private List<MatterMaterialBean> currentMaterialList = new ArrayList<>();
     private BaseRecyclerViewAdapter adapter;
-    private ArrayList<StaffBean> currentPersonList = new ArrayList<>();
     private int currentNumber;
 
     public static MatterApplyFragment newInstance() {
@@ -114,10 +112,13 @@ public class MatterApplyFragment extends BaseDataBindingFragment<FragmentWorkMat
                 if (!TextUtils.isEmpty(inputNumber)) {
                     number = Integer.valueOf(inputNumber);
                 }
-                if (currentPersonID != CLEAR_ID && currentMaterialID != CLEAR_ID && number > 0
+                AddSendListAdapter addSendListAdapter = (AddSendListAdapter) binding.matterApplyRv.getAdapter();
+                ArrayList<StaffBean> staffBeans = addSendListAdapter.getList();
+                if (staffBeans.size() > 0 && currentMaterialID != CLEAR_ID && number > 0
                         && currentProductID != CLEAR_ID && currentProjectID != CLEAR_ID
                         && currentTypeID != CLEAR_ID) {
-                    viewModel.applyMatter(currentPersonID, 0, currentMaterialID, number,
+                    StaffBean staffBean = staffBeans.get(0);
+                    viewModel.applyMatter(staffBean.getId().intValue(), 0, currentMaterialID, number,
                             currentProductID, currentProjectID, currentTypeID);
                 } else {
                     showToastTip("请填写完整数据");
@@ -141,7 +142,7 @@ public class MatterApplyFragment extends BaseDataBindingFragment<FragmentWorkMat
             public void afterTextChanged(Editable s) {
                 String text = s.toString();
                 int len = s.toString().length();
-                if (len > 1) {
+                if (len >=1) {
                     if (text.startsWith("0")) {
                         s.replace(0, 1, "");//第一位不能为0
                     }
@@ -160,11 +161,7 @@ public class MatterApplyFragment extends BaseDataBindingFragment<FragmentWorkMat
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 ArrayList<StaffBean> list = data.getParcelableArrayListExtra(ConstantValue.KEY_SELECTED_STAFFS);
-                currentPersonList.clear();
-                currentPersonList.addAll(list);
-                if (currentPersonList.size() > 0) {
-                    StaffBean staffBean = list.get(0);
-                    currentPersonID = staffBean.getId().intValue();
+                if (list != null) {
                     ContractApplyBindingAdapter.setPauseContractSendList(binding.matterApplyRv, list);
                 }
             }
@@ -419,9 +416,8 @@ public class MatterApplyFragment extends BaseDataBindingFragment<FragmentWorkMat
                 binding.matterApplyProjectCodeTv.setText("");
                 setSelectText(binding.matterApplyProjectNameTv, CHOOSE);
                 binding.matterApplyEt.setText("");
-                currentPersonID = CLEAR_ID;
-                currentPersonList.clear();
-                binding.matterApplyRv.getAdapter().notifyDataSetChanged();
+                AddSendListAdapter addSendListAdapter = (AddSendListAdapter) binding.matterApplyRv.getAdapter();
+                addSendListAdapter.clearData();
             case CLEAR_TYPE:
                 currentTypeID = CLEAR_ID;
                 currentTypeList.clear();

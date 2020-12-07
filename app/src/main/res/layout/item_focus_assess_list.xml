@@ -5,42 +5,51 @@
 
     <data>
 
+        <import type="android.text.TextUtils" />
+
         <variable
             name="assessListContentBean"
             type="com.guyuan.dear.focus.assess.data.bean.AssessListBean.ContentBean" />
     </data>
 
-    <androidx.cardview.widget.CardView
-        style="@style/CardViewNoElevation">
+    <androidx.cardview.widget.CardView style="@style/CardViewNoElevation">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white">
 
-            <TextView
-                android:id="@+id/custom_title_tv"
-                style="@style/TextBigBold"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/assess_title_ll"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
-                android:text="@{assessListContentBean.customerName}"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="深圳固远" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/custom_status_tv"
-                style="@style/TextTagBlue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                app:assessStatus="@{assessListContentBean.status}"
-                app:layout_constraintBottom_toBottomOf="@+id/custom_title_tv"
-                app:layout_constraintStart_toEndOf="@+id/custom_title_tv"
-                app:layout_constraintTop_toTopOf="@+id/custom_title_tv"
-                tools:text="不通过" />
+                <TextView
+                    android:id="@+id/custom_title_tv"
+                    style="@style/TextBigBold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:rightContent="@{assessListContentBean.customerName}"
+                    tools:text="深圳固远" />
+
+                <TextView
+                    android:id="@+id/custom_status_tv"
+                    style="@style/TextTagBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    app:assessStatus="@{assessListContentBean.status}"
+                    tools:text="不通过" />
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/contract_title_tv"
@@ -49,17 +58,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="合同编号："
-                app:layout_constraintStart_toStartOf="@+id/custom_title_tv"
-                app:layout_constraintTop_toBottomOf="@+id/custom_title_tv" />
+                app:layout_constraintStart_toStartOf="@+id/assess_title_ll"
+                app:layout_constraintTop_toBottomOf="@+id/assess_title_ll" />
 
             <TextView
                 android:id="@+id/contract_number_tv"
                 style="@style/TextNormal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{assessListContentBean.contractNumber}"
                 app:layout_constraintStart_toEndOf="@+id/contract_title_tv"
                 app:layout_constraintTop_toTopOf="@+id/contract_title_tv"
+                app:rightContent="@{assessListContentBean.contractNumber}"
                 tools:text="2312312" />
 
             <TextView
@@ -77,7 +86,7 @@
                 style="@style/TextNormal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{assessListContentBean.compereName}"
+                android:text="@{ assessListContentBean.compereName}"
                 app:layout_constraintStart_toEndOf="@+id/assess_person_title"
                 app:layout_constraintTop_toTopOf="@+id/assess_person_title"
                 tools:text="张三" />
@@ -88,7 +97,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
-                android:text="@{assessListContentBean.auditStartTime+'~'+assessListContentBean.auditEndTime}"
+                app:assessEndTime="@{assessListContentBean.auditEndTime}"
+                app:assessStartTime="@{assessListContentBean.auditStartTime}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/assess_room_title_tv"
                 tools:text="2012-11-21" />
@@ -97,9 +107,9 @@
                 android:id="@+id/assess_room_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{assessListContentBean.meetingName}"
                 app:layout_constraintStart_toEndOf="@+id/assess_room_title_tv"
                 app:layout_constraintTop_toTopOf="@+id/assess_room_title_tv"
+                app:rightContent="@{assessListContentBean.meetingName}"
                 tools:text="2号" />
 
             <TextView

@@ -1,6 +1,7 @@
 package com.guyuan.dear.work.projectsite.fragment;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -18,6 +19,7 @@ import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.type.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
@@ -51,7 +53,7 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
 
     public static final String TAG = CheckGoodsFragment.class.getSimpleName();
     private SiteExploreBean detailData;
-    protected ArrayList<String> photoList = new ArrayList<>();
+    protected ArrayList<Uri> photoList = new ArrayList<>();
     private List<CheckGoodsBean> listData = new ArrayList<>();
     private BaseRecyclerViewAdapter adapter;
     private WorkCheckGoodsActivity activity;
@@ -162,7 +164,7 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
             @Override
             public void onCommitCheckGoodsInfo(PostCheckInfo data) {
                 postData = data;
-                activity.checkPhotoAndFileUpLoad(photoList);
+                activity.checkPhotoAndFileUpLoad(CommonUtils.getFilePath(photoList));
             }
 
             @Override
@@ -220,12 +222,12 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
     }
 
     @Override
-    public ArrayList<String> getSelectedMediaList() {
+    public ArrayList<Uri> getSelectedMediaList() {
         return photoList;
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> dataList) {
+    public void onPhotoSelected(ArrayList<Uri> dataList) {
         photoList.clear();
         photoList.addAll(dataList);
         LogUtils.showLog("setPhotoList=" + photoList.size());

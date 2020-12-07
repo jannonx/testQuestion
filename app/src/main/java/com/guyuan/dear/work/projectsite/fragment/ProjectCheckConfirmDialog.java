@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -29,6 +30,7 @@ import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.type.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.bean.OnConfirmDialogListener;
@@ -243,10 +245,10 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
      *
      * @param photoList 图片资源
      */
-    public void setPhotoList(ArrayList<String> photoList) {
+    public void setPhotoList(ArrayList<Uri> photoList) {
         LogUtils.showLog("setPhotoList=" + photoList.size());
         imageDataList.clear();
-        imageDataList.addAll(photoList);
+        imageDataList.addAll(CommonUtils.getFilePath(photoList));
         imageAdapter.refreshData();
         setRefreshTipText();
     }

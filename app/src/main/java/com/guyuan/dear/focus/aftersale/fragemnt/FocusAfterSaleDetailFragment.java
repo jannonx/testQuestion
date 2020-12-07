@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.aftersale.fragemnt;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -60,7 +61,7 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
     private AfterSaleBean afterSaleBean;
-    protected ArrayList<String> photoList = new ArrayList<>();
+    protected ArrayList<Uri> photoList = new ArrayList<>();
     private PostInfoBean postInfoBean;
     private FocusAfterSaleDetailActivity activity;
 
@@ -315,12 +316,12 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
 
 
     @Override
-    public ArrayList<String> getSelectedMediaList() {
+    public ArrayList<Uri> getSelectedMediaList() {
         return photoList;
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> dataList) {
+    public void onPhotoSelected(ArrayList<Uri> dataList) {
         photoList.clear();
         photoList.addAll(dataList);
         if (rightDialog != null) {

@@ -1,6 +1,7 @@
 package com.guyuan.dear.work.device.ui.detail;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.guyuan.dear.base.adapter.TagPhotoAdapter;
 import com.guyuan.dear.customizeview.flowlayout.FlowLayout;
 import com.guyuan.dear.customizeview.flowlayout.TagAdapter;
 import com.guyuan.dear.databinding.FragmentWorkDeviceDetailBinding;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.StringUtils;
 import com.guyuan.dear.work.device.data.WorkDeviceViewModel;
@@ -33,7 +35,7 @@ public class WorkDeviceDetailFragment extends BaseDataBindingFragment<FragmentWo
     public static final int REPAIR = 1;
     public static final int OTHER = 2;
     private WorkDeviceDetailActivity workDeviceDetailActivity;
-    private ArrayList<String> photoList = new ArrayList<>();
+    private ArrayList<Uri> photoList = new ArrayList<>();
     private TagPhotoAdapter photoAdapter;
     private long deviceID;
     private int state;
@@ -125,7 +127,7 @@ public class WorkDeviceDetailFragment extends BaseDataBindingFragment<FragmentWo
                     List<String> checkedList = binding.controlDetailRv.getSelected();
                     if (checkedList.size() > 0 && photoList != null && photoList.size() > 0) {
                         workDeviceDetailActivity.setCurrentPhotoType(BaseFileUploadActivity.FIRST);
-                        workDeviceDetailActivity.checkPhotoAndFileUpLoad(photoList);
+                        workDeviceDetailActivity.checkPhotoAndFileUpLoad(CommonUtils.getFilePath(photoList));
                     } else {
                         Toast.makeText(getContext(), "请选择故障类型和照片", Toast.LENGTH_SHORT).show();
                     }
@@ -146,16 +148,16 @@ public class WorkDeviceDetailFragment extends BaseDataBindingFragment<FragmentWo
 
 
     @Override
-    public ArrayList<String> getSelectedMediaList() {
+    public ArrayList<Uri> getSelectedMediaList() {
         return photoList;
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> dataList) {
+    public void onPhotoSelected(ArrayList<Uri> dataList) {
         photoList.clear();
         photoList.addAll(dataList);
         if (photoAdapter == null) {
-            photoAdapter = new TagPhotoAdapter(getContext(), photoList);
+            photoAdapter = new TagPhotoAdapter(getContext(), CommonUtils.getFilePath(photoList));
             binding.pictureTl.setAdapter(photoAdapter);
         } else {
             photoAdapter.notifyDataChanged();

@@ -2,6 +2,7 @@ package com.guyuan.dear.base.adapter;
 
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewOutlineProvider;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -60,4 +61,28 @@ public class CommonBindingAdapter {
         }
     }
 
+    //null默认显示空字符串
+    @BindingAdapter("rightContent")
+    public static void setRightContent(TextView tv, String content) {
+        if (TextUtils.isEmpty(content)) {
+            tv.setText("");
+        } else {
+            tv.setText(content);
+        }
+    }
+
+    @BindingAdapter("rightContentWithTitle")
+    public static void setRightContentWithTitle(TextView tv, String content) {
+        if (TextUtils.isEmpty(content) ||
+                content.endsWith("：null") || content.endsWith("：") || content.endsWith(":null")
+                || content.endsWith(":")) {
+            if (content.contains(":")) {
+                tv.setText(content.split(":")[0]);
+            } else if (content.contains("：")) {
+                tv.setText(content.split("：")[0]);
+            }
+        } else {
+            tv.setText(content);
+        }
+    }
 }

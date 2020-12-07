@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.projectsite.fragment;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -74,7 +75,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
     private SiteExploreBean detailProjectData;
-    protected ArrayList<String> photoList = new ArrayList<>();
+    protected ArrayList<Uri> photoList = new ArrayList<>();
     private ProduceApplyDialog dialog;
     private PostInstallationDebugInfo postInstallationDebugInfo;
     private PostCustomerAcceptanceInfo postCustomerAcceptanceInfo;
@@ -648,12 +649,12 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
 
     @Override
-    public ArrayList<String> getSelectedMediaList() {
+    public ArrayList<Uri> getSelectedMediaList() {
         return photoList;
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> dataList) {
+    public void onPhotoSelected(ArrayList<Uri> dataList) {
         photoList.clear();
         photoList.addAll(dataList);
         if (leftDialog != null) {

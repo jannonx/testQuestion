@@ -29,93 +29,86 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <androidx.cardview.widget.CardView style="@style/CardViewCommon">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingLeft="@dimen/dp_12"
-            android:paddingTop="@dimen/dp_6"
-            android:paddingRight="@dimen/dp_12"
-            android:paddingBottom="@dimen/dp_6">
-
-            <TextView
-                android:id="@+id/transport_detail_name_tv"
-                style="@style/TextBigBold"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@{transportViewModel.transportDetailMLD.projectName}"
-                tools:text="深圳固远" />
+                android:orientation="vertical"
+                android:padding="@dimen/dp_12">
 
-            <TextView
-                android:id="@+id/transport_detail_code_tv"
-                style="@style/TextNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{transportViewModel.transportDetailMLD.projectNumber}"
-                tools:text="2321312312" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/transport_detail_name_tv"
+                    style="@style/TextBigBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:rightContentWithTitle="@{String.format(@string/project_name,transportViewModel.transportDetailMLD.projectName)}"
+                    tools:text="@string/project_name" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:background="@color/white"
-            android:paddingLeft="@dimen/dp_12"
-            android:paddingTop="@dimen/dp_6"
-            android:paddingRight="@dimen/dp_12"
-            android:paddingBottom="@dimen/dp_6">
+                <TextView
+                    android:id="@+id/transport_detail_code_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    app:rightContentWithTitle="@{String.format(@string/project_code,transportViewModel.transportDetailMLD.projectNumber)}"
+                    tools:text="@string/project_code" />
 
-            <TextView
-                android:id="@+id/transport_detail_address_tv"
-                style="@style/TextNormal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@{transportViewModel.transportDetailMLD.acceptAddress}"
-                android:textColor="#999999"
-                tools:text="深圳固远" />
+                <TextView
+                    android:id="@+id/transport_detail_send_code_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    app:rightContentWithTitle="@{String.format(@string/focus_transport_send_code,transportViewModel.transportDetailMLD.sendGoodsNumber)}"
+                    tools:text="@string/focus_transport_send_code" />
 
-            <TextView
-                android:id="@+id/transport_detail_time_tv"
-                style="@style/TextNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{transportViewModel.transportDetailMLD.arrivePlanTime}"
-                android:textColor="#999999"
-                tools:text="2321312312" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/transport_detail_address_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_weight="1"
+                    android:textColor="#999999"
+                    app:rightContentWithTitle="@{String.format(@string/focus_transport_arrive_address,transportViewModel.transportDetailMLD.acceptAddress)}"
+                    tools:text="@string/focus_transport_arrive_address" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:background="@color/white"
-            android:paddingLeft="@dimen/dp_12"
-            android:paddingTop="@dimen/dp_6"
-            android:paddingRight="@dimen/dp_12"
-            android:paddingBottom="@dimen/dp_6">
+                <TextView
+                    android:id="@+id/transport_detail_time_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="#999999"
+                    app:rightContentWithTitle="@{String.format(@string/focus_transport_plan_arrive_time,transportViewModel.transportDetailMLD.arrivePlanTime)}"
+                    tools:text="@string/focus_transport_plan_arrive_time" />
 
-            <TextView
-                android:id="@+id/transport_detail_car_number_tv"
-                style="@style/TextBigBold"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@{transportViewModel.transportDetailMLD.carNumber}"
-                tools:text="深圳固远" />
+                <TextView
+                    android:id="@+id/transport_detail_car_number_tv"
+                    style="@style/TextBigBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_weight="1"
+                    app:rightContentWithTitle="@{String.format(@string/car_number,transportViewModel.transportDetailMLD.carNumber)}"
+                    tools:text="@string/car_number" />
 
-            <TextView
-                android:id="@+id/transport_detail_phone_tv"
-                style="@style/TextNormal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableRight="@mipmap/ic_phone_blue"
-                android:drawablePadding="8dp"
-                android:text="@{transportViewModel.transportDetailMLD.motormanPhone}"
-                tools:text="2321312312" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/transport_detail_phone_tv"
+                    style="@style/TextNormal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:drawableRight="@mipmap/ic_phone_blue"
+                    android:drawablePadding="8dp"
+                    app:rightContentWithTitle="@{String.format(@string/focus_transport_driver_phone,transportViewModel.transportDetailMLD.motormanPhone)}"
+                    tools:text="@string/focus_transport_driver_phone" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/transport_detail_tl"

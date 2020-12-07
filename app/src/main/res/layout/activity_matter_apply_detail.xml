@@ -91,7 +91,7 @@
                     style="@style/TextSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{String.format(@string/quality,matterApplyViewModel.matterDetailMLD.modelCode)}"
+                    android:text="@{String.format(@string/quality,matterApplyViewModel.matterDetailMLD.material)}"
                     tools:text="@string/quality" />
             </LinearLayout>
 
