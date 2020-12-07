@@ -136,11 +136,13 @@ public class WorkFragment extends BaseListFragment<ChildrenBean, FragmentWorkBin
                                 break;
 
                             case ConstantValue.CONTRACT_PAUSE://合同暂停
-                                ContractPauseHomeActivity.start(getContext(), title);
+                                showToastTip("正在研发中...");
+                                //ContractPauseHomeActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.CONTRACT_RESTART://合同重启
-                                ContractRestartHomeActivity.start(getContext(), title);
+                                showToastTip("正在研发中...");
+                                // ContractRestartHomeActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.WORK_CONTRACT_ASSESS://合同评审
@@ -190,7 +192,7 @@ public class WorkFragment extends BaseListFragment<ChildrenBean, FragmentWorkBin
             }
         });
 
-       setMessage();
+        setMessage();
     }
 
 
