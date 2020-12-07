@@ -9,7 +9,7 @@
             type="com.guyuan.dear.focus.hr.view.hrStatusGrp.HrStatusGrpViewModel" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -19,5 +19,8 @@
             android:layout_height="match_parent"
             app:hrStaffGrpShowStaffs="@{fragment_hr_group_vm.staffs}"
             app:setStaffGridItemClickListener="@{fragment_hr_group_vm.onItemClickListener}" />
-    </LinearLayout>
+        <include
+            android:id="@+id/fragment_hr_group_no_data"
+            layout="@layout/layout_no_data"/>
+    </FrameLayout>
 </layout>
