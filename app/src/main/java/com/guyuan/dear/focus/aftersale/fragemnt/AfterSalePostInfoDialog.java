@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.aftersale.fragemnt;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -24,6 +25,7 @@ import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
 import com.guyuan.dear.focus.aftersale.bean.PostInfoBean;
 import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 
@@ -127,9 +129,9 @@ public class AfterSalePostInfoDialog extends BottomSheetDialog implements View.O
     }
 
 
-    public void setPhotoList(ArrayList<String> photoList) {
+    public void setPhotoList(ArrayList<Uri> photoList) {
         imageDataList.clear();
-        imageDataList.addAll(photoList);
+        imageDataList.addAll(CommonUtils.getFilePath(photoList));
         imageAdapter.refreshData();
         viewBinding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
         viewBinding.tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
@@ -188,7 +190,7 @@ public class AfterSalePostInfoDialog extends BottomSheetDialog implements View.O
                 //已输入字数
                 int enteredWords = wordLimitNum - editable.length();
                 //TextView显示剩余字数
-                viewBinding.tvNumber.setText((wordLimitNum - enteredWords )+ "/240");
+                viewBinding.tvNumber.setText((wordLimitNum - enteredWords) + "/240");
             }
         });
 

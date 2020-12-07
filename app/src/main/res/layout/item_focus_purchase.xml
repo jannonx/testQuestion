@@ -43,9 +43,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@{String.format(@string/focus_purchase_code,purchaseListContentBean.code)}"
                 app:layout_constraintStart_toStartOf="@+id/purchase_item_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/purchase_item_name_tv"
+                app:rightContentWithTitle="@{String.format(@string/focus_purchase_code,purchaseListContentBean.code)}"
                 tools:text="@string/focus_purchase_code" />
 
             <TextView
@@ -66,9 +66,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@{String.format(@string/focus_purchase_spec,purchaseListContentBean.modelCode)}"
                 app:layout_constraintStart_toStartOf="@+id/purchase_item_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/purchase_item_code_tv"
+                app:rightContentWithTitle="@{String.format(@string/focus_purchase_spec,purchaseListContentBean.modelCode)}"
                 tools:text="@string/focus_purchase_spec" />
 
             <TextView
@@ -77,10 +77,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
-                android:text="@{String.format(@string/focus_purchase_quality,purchaseListContentBean.material)}"
                 app:layout_constraintBottom_toBottomOf="@+id/purchase_item_spec_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/purchase_item_spec_tv"
+                app:rightContentWithTitle="@{String.format(@string/focus_purchase_quality,purchaseListContentBean.material)}"
                 tools:text="@string/focus_purchase_quality" />
 
             <View
@@ -123,11 +123,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@{String.format(@string/focus_purchase_support_name,purchaseListContentBean.suppName)}"
                 android:textColor="#1890FF"
                 android:textSize="@dimen/sp_12"
                 app:layout_constraintStart_toStartOf="@+id/purchase_item_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/purchase_item_number_tv"
+                app:rightContentWithTitle="@{String.format(@string/focus_purchase_support_name,purchaseListContentBean.suppName)}"
                 tools:text="@string/focus_purchase_support_name" />
 
             <View
@@ -144,9 +144,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@{String.format(@string/focus_purchase_seal_person,purchaseListContentBean.createName)}"
                 app:layout_constraintStart_toStartOf="@+id/purchase_item_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/view18"
+                app:rightContentWithTitle="@{String.format(@string/focus_purchase_seal_person,purchaseListContentBean.createName)}"
                 tools:text="@string/focus_purchase_seal_person" />
 
             <TextView
@@ -155,10 +155,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
-                android:text="@{purchaseListContentBean.createTime}"
                 app:layout_constraintBottom_toBottomOf="@+id/purchase_item_person_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/purchase_item_person_tv"
+                app:rightContent="@{purchaseListContentBean.createTime}"
                 tools:text="2020-11-23" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

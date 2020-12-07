@@ -3,6 +3,7 @@ package com.guyuan.dear.work.projectsite.fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -33,6 +34,7 @@ import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
@@ -66,7 +68,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
         implements BaseFileUploadActivity.PhotoSelectListener {
 
     public static final String TAG = InstallDebugSingleFragment.class.getSimpleName();
-    protected ArrayList<String> photoList = new ArrayList<>();
+    protected ArrayList<Uri> photoList = new ArrayList<>();
     protected ArrayList<String> imageDataList = new ArrayList<>();
     private InstallDebugBean debugBean;
     private List<InstallDebugBean> listData = new ArrayList<>();
@@ -93,7 +95,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
         debugBean = (InstallDebugBean) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
 
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-                imageDataList, R.layout.item_explorate_image,true);
+                imageDataList, R.layout.item_explorate_image, true);
         imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
 
         binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
@@ -255,7 +257,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
     }
 
     @Override
-    public ArrayList<String> getSelectedMediaList() {
+    public ArrayList<Uri> getSelectedMediaList() {
         return photoList;
     }
 
@@ -268,11 +270,11 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> dataList) {
+    public void onPhotoSelected(ArrayList<Uri> dataList) {
         photoList.clear();
         photoList.addAll(dataList);
         imageDataList.clear();
-        imageDataList.addAll(photoList);
+        imageDataList.addAll(CommonUtils.getFilePath(photoList));
         imageAdapter.refreshData();
 
         binding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");

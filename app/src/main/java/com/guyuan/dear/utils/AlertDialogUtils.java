@@ -307,7 +307,7 @@ public class AlertDialogUtils {
                 alertDialog.dismiss();
                 FilePickerBuilder.getInstance()
                         .setMaxCount(1)
-                        .setSelectedFiles(new ArrayList<String>())
+                        .setSelectedFiles(new ArrayList<Uri>())
                         .setActivityTheme(R.style.LibAppTheme)
                         .pickPhoto(fragment);
             }

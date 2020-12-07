@@ -3,6 +3,7 @@ package com.guyuan.dear.work.projectsite.fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -27,6 +28,7 @@ import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
@@ -56,7 +58,7 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
         implements BaseFileUploadActivity.PhotoSelectListener {
 
     public static final String TAG = SiteExplorationFragment.class.getSimpleName();
-    protected ArrayList<String> photoList = new ArrayList<>();
+    protected ArrayList<Uri> photoList = new ArrayList<>();
     protected ArrayList<String> imageDataList = new ArrayList<>();
     private SiteExploreBean detailProjectData;
     // 是否满足条件、是否安全(1:是，2:否)
@@ -379,14 +381,14 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
     }
 
     @Override
-    public ArrayList<String> getSelectedMediaList() {
+    public ArrayList<Uri> getSelectedMediaList() {
         return photoList;
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> photoList) {
+    public void onPhotoSelected(ArrayList<Uri> photoList) {
         imageDataList.clear();
-        imageDataList.addAll(photoList);
+        imageDataList.addAll(CommonUtils.getFilePath(photoList));
         imageAdapter.refreshData();
 
         binding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");

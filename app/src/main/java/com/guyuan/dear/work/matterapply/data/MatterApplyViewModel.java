@@ -126,11 +126,8 @@ public class MatterApplyViewModel extends BaseViewModel {
         requestBody.setPageNum(pageIndex);
         requestBody.setPageSize(ConstantValue.PAGE_SIZE);
         ListRequestBody.FiltersBean filtersBean = new ListRequestBody.FiltersBean();
-//        filtersBean.setProjectName(projectName);
-//        filtersBean.setProductName(productName);
-//        filtersBean.setCreateBy(createBy);
+        filtersBean.setListType(2);
         requestBody.setFilters(filtersBean);
-
         RxJavaHelper.build(this, applyApiService.getMatterApplyList(
                 CommonUtils.getCommonRequestBody(requestBody)))
                 .showLoading(false)

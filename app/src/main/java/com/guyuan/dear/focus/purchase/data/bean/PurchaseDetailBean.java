@@ -34,6 +34,15 @@ public class PurchaseDetailBean {
     private String suppName;           //供应商名称
     private int type;                  //商品类型：1.原材料，2.配套设备
     private int status;                //即时状态：1.退货，2.换货，3.待签收，4.已到货，5.拖期
+    private String remark;             //备注
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 
     public int getStatus() {
         return status;

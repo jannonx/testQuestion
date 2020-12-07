@@ -8,6 +8,7 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.adapter.CommonBindingAdapter;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.focus.purchase.data.bean.PurchaseRecordBean;
 
@@ -137,11 +138,17 @@ public class FocusPurchaseBindingAdapter {
     public static void setFocusPurchaseReason(TextView tv, int type, String reason) {
         switch (type) {
             case 1:    //退货
-                tv.setText(String.format(tv.getResources().getString(R.string.focus_purchase_return_reason), reason));
+                CommonBindingAdapter.setRightContentWithTitle(tv, String.format(tv.getResources()
+                        .getString(R.string.focus_purchase_return_reason), reason));
                 break;
 
             case 2:   //换货
-                tv.setText(String.format(tv.getResources().getString(R.string.focus_purchase_replace_reason), reason));
+                CommonBindingAdapter.setRightContentWithTitle(tv, String.format(tv.getResources()
+                        .getString(R.string.focus_purchase_replace_reason), reason));
+
+            case 5:
+                CommonBindingAdapter.setRightContentWithTitle(tv, String.format(tv.getResources()
+                        .getString(R.string.focus_purchase_delay_reason), reason));
                 break;
         }
     }

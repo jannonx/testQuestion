@@ -397,6 +397,7 @@
     <string name="focus_purchase_result">质检结果：%s</string>
     <string name="focus_purchase_return_reason">退货原因：%s</string>
     <string name="focus_purchase_replace_reason">换货原因：%s</string>
+    <string name="focus_purchase_delay_reason">拖期原因：%s</string>
     <string name="focus_purchase_project_code">项目编号：%s</string>
     <string name="focus_purchase_project_name">项目名称：%s</string>
     <string name="focus_purchase_support_name">供应商名称：%s</string>
@@ -468,6 +469,10 @@
     <string name="focus_transport_remark">备注：%s</string>
     <string name="focus_transport_contract_name">联系人：%s</string>
     <string name="focus_transport_total_number">共%d个</string>
+    <string name="focus_transport_arrive_address">收货地址：%s</string>
+    <string name="focus_transport_plan_arrive_time">预计到货时间：%s</string>
+    <string name="focus_transport_driver_phone">司机手机号：%s</string>
+    <string name="focus_transport_send_code">发货编号：%s</string>
 
     <!--我的工作-物料申请-->
     <string name="work_matter_apply_spec">材料规格：%s</string>

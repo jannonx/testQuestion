@@ -33,6 +33,7 @@ import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,8 +41,11 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import droidninja.filepicker.utils.ContentUriUtils;
 import okhttp3.RequestBody;
 import retrofit2.http.PUT;
+
+import static java.security.AccessController.getContext;
 
 /**
  * Created by admin
@@ -85,7 +89,7 @@ public class CommonUtils {
         return new Gson().fromJson(loginStr, LoginBean.class);
     }
 
-    public static long getCurrentUserId(){
+    public static long getCurrentUserId() {
         return getLoginInfo().getUserInfo().getId();
     }
 
@@ -238,5 +242,20 @@ public class CommonUtils {
         staffBean.setId(getLoginInfo().getUserInfo().getId());
         staffBeanList.add(staffBean);
         return staffBeanList;
+    }
+
+    //获取uri对应filepath
+    public static List<String> getFilePath(List<Uri> uriList) {
+        List<String> filePathList = new ArrayList<>();
+        if (uriList != null && uriList.size() > 0) {
+            for (Uri uri : uriList) {
+                try {
+                    filePathList.add(ContentUriUtils.INSTANCE.getFilePath(DearApplication.getInstance(), uri));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return filePathList;
     }
 }

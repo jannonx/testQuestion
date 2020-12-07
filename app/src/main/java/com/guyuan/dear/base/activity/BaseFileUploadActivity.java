@@ -3,6 +3,7 @@ package com.guyuan.dear.base.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.ViewDataBinding;
@@ -42,12 +43,12 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
     public static final int TYPE_UP_LOAD_IMAGE = 0x100;//上传类型：图片
     public static final int TYPE_UP_LOAD_IMAGE_VIDEO = 101;//上传类型:图片和视频
 
-    private ArrayList<String> firstPhotoList = new ArrayList<>(), secondPhotoList =
+    private ArrayList<Uri> firstPhotoList = new ArrayList<>(), secondPhotoList =
             new ArrayList<>(),
             thirdPhotoList = new ArrayList<>(), fourthPhotoList = new ArrayList<>(),
             fifthPhotoList = new ArrayList<>();
 
-    private ArrayList<String> firstFileList = new ArrayList<>(), secondFileList = new ArrayList<>(),
+    private ArrayList<Uri> firstFileList = new ArrayList<>(), secondFileList = new ArrayList<>(),
             thirdFileList = new ArrayList<>(), fourthFileList = new ArrayList<>(),
             fifthFileList = new ArrayList<>();
 
@@ -71,8 +72,8 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
         switch (requestCode) {
             case FilePickerConst.REQUEST_CODE_PHOTO:
                 if (resultCode == Activity.RESULT_OK && data != null) {
-                    ArrayList<String> photoPaths =
-                            data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA);
+                    ArrayList<Uri> photoPaths =
+                            data.getParcelableArrayListExtra(FilePickerConst.KEY_SELECTED_MEDIA);
                     if (photoPaths != null) {
                         if (currentPhotoType == FIRST && firstPhotoListener != null) {
                             firstPhotoList.clear();
@@ -101,8 +102,8 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
                 break;
             case FilePickerConst.REQUEST_CODE_DOC:
                 if (resultCode == Activity.RESULT_OK && data != null) {
-                    ArrayList<String> filePaths =
-                            data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_DOCS);
+                    ArrayList<Uri> filePaths =
+                            data.getParcelableArrayListExtra(FilePickerConst.KEY_SELECTED_DOCS);
                     if (filePaths != null && filePaths.size() > 0) {
                         if (currentFileType == FIRST && firstFileListener != null) {
                             firstFileList.addAll(filePaths);
@@ -130,7 +131,7 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
     @Override
     public void onAllPermissionsGranted() {
         super.onAllPermissionsGranted();
-        ArrayList<String> currentPhotoList = getCurrentPhotoList(currentPhotoType);
+        ArrayList<Uri> currentPhotoList = getCurrentPhotoList(currentPhotoType);
         if (currentPhotoList != null) {
             FilePickerBuilder.getInstance().setMaxCount(maxSelectImageNumber)
                     .setSelectedFiles(currentPhotoList)
@@ -152,7 +153,7 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
     public void openFile(int type) {
         checkPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA);
         currentFileType = type;
-        ArrayList<String> currentFileList = getCurrentFileList(currentFileType);
+        ArrayList<Uri> currentFileList = getCurrentFileList(currentFileType);
         if (currentFileList != null) {
             FilePickerBuilder.getInstance().setMaxCount(1)
                     .setSelectedFiles(currentFileList)
@@ -174,7 +175,7 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
         currentFileType = type;
     }
 
-    private ArrayList<String> getCurrentPhotoList(int photoType) {
+    private ArrayList<Uri> getCurrentPhotoList(int photoType) {
         switch (photoType) {
             case FIRST:
                 return firstPhotoListener.getSelectedMediaList();
@@ -195,7 +196,7 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
         }
     }
 
-    private ArrayList<String> getCurrentFileList(int fileType) {
+    private ArrayList<Uri> getCurrentFileList(int fileType) {
         switch (fileType) {
             case FIRST:
                 firstFileList.clear();
@@ -310,16 +311,16 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
 
     public interface PhotoSelectListener {
         //获取已选中的媒体路径
-        ArrayList<String> getSelectedMediaList();
+        ArrayList<Uri> getSelectedMediaList();
 
-        void onPhotoSelected(ArrayList<String> photoList);
+        void onPhotoSelected(ArrayList<Uri> photoList);
     }
 
     public interface FileSelectListener {
         //获取已选中的文件路径
-        ArrayList<String> getSelectedFileList();
+        ArrayList<Uri> getSelectedFileList();
 
-        void onFileSelected(ArrayList<String> fileList);
+        void onFileSelected(ArrayList<Uri> fileList);
     }
 
     public void setCurrentPhotoType(int type) {

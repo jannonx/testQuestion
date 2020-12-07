@@ -84,4 +84,9 @@ public class AddSendListAdapter extends RecyclerView.Adapter<AddSendListAdapter.
     public ArrayList<StaffBean> getList() {
         return (ArrayList<StaffBean>) list;
     }
+
+    public void clearData() {
+        list.clear();
+        notifyDataSetChanged();
+    }
 }
