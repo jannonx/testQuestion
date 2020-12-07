@@ -99,6 +99,7 @@ public class UserInfoBean implements Parcelable {
      * dsadsadasd
      */
     private String deptIdName;
+
     /**
      * dsadsadasd
      */
@@ -220,6 +221,10 @@ public class UserInfoBean implements Parcelable {
      */
     private String achieves;
 
+    private String deptName; //部门
+
+    private String roleName; //岗位
+
     @Override
     public int describeContents() {
         return 0;
@@ -280,6 +285,8 @@ public class UserInfoBean implements Parcelable {
         dest.writeString(this.workStarttime);
         dest.writeString(this.workStoptime);
         dest.writeString(this.achieves);
+        dest.writeString(this.deptName);
+        dest.writeString(this.roleName);
     }
 
     public UserInfoBean() {
@@ -339,6 +346,8 @@ public class UserInfoBean implements Parcelable {
         this.workStarttime = in.readString();
         this.workStoptime = in.readString();
         this.achieves = in.readString();
+        this.deptName = in.readString();
+        this.roleName = in.readString();
     }
 
     public static final Parcelable.Creator<UserInfoBean> CREATOR = new Parcelable.Creator<UserInfoBean>() {
@@ -491,6 +500,22 @@ public class UserInfoBean implements Parcelable {
 
     public String getMobile() {
         return mobile;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public void setMobile(String mobile) {

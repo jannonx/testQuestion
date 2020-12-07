@@ -145,9 +145,9 @@
                 android:layout_marginLeft="@dimen/dp_12"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="@dimen/dp_12"
-                app:rightContentWithTitle="@{focusPurchaseVM.purchaseDetailMLD.remark}"
                 app:layout_constraintStart_toStartOf="@+id/purchase_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/purchase_reason_tv"
+                app:rightContentWithTitle="@{String.format(@string/remark,focusPurchaseVM.purchaseDetailMLD.remark)}"
                 tools:text="@string/remark" />
 
 
@@ -168,10 +168,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                app:rightContentWithTitle="@{String.format(@string/focus_purchase_project_name,focusPurchaseVM.purchaseDetailMLD.projectName)}"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/purchase_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/view9"
+                app:rightContentWithTitle="@{String.format(@string/focus_purchase_project_name,focusPurchaseVM.purchaseDetailMLD.projectName)}"
                 tools:text="@string/focus_purchase_project_name" />
 
             <TextView
@@ -180,10 +180,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                app:rightContentWithTitle="@{String.format(@string/focus_purchase_project_code,focusPurchaseVM.purchaseDetailMLD.projectCode)}"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/textView24"
                 app:layout_constraintTop_toBottomOf="@+id/textView24"
+                app:rightContentWithTitle="@{String.format(@string/focus_purchase_project_code,focusPurchaseVM.purchaseDetailMLD.projectCode)}"
                 tools:text="@string/focus_purchase_project_code" />
 
             <TextView
@@ -192,10 +192,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                app:rightContentWithTitle="@{String.format(@string/focus_purchase_person,focusPurchaseVM.purchaseDetailMLD.createName)}"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@+id/purchase_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/purchase_project_code_tv"
+                app:rightContentWithTitle="@{String.format(@string/focus_purchase_person,focusPurchaseVM.purchaseDetailMLD.createName)}"
                 tools:text="@string/focus_purchase_person" />
 
             <TextView
@@ -204,11 +204,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12dp"
-                app:rightContent="@{focusPurchaseVM.purchaseDetailMLD.createTime}"
                 android:textSize="@dimen/dp_14"
                 app:layout_constraintBottom_toBottomOf="@+id/purchase_person_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/purchase_person_tv"
+                app:rightContent="@{focusPurchaseVM.purchaseDetailMLD.createTime}"
                 tools:text="2020-11-12 15:22:21" />
 
             <View

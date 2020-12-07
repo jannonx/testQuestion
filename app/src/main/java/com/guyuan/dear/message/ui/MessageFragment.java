@@ -56,6 +56,7 @@ public class MessageFragment extends BaseListSearchFragment<MessageBean, Fragmen
                     MessageBean bean = listData.get(i);
                     List<MessageInfosBean> infosBeans = bean.getMessageInfos();
                     if (infosBeans != null && infosBeans.size() > 0) {
+                        recycleView.initCurrentItem();
                         MessageDetailActivity.start(getContext(), bean.getMsgTitle(),
                                 infosBeans.get(0).getId());
                     }
@@ -72,6 +73,7 @@ public class MessageFragment extends BaseListSearchFragment<MessageBean, Fragmen
 
     @Override
     protected void refresh() {
+        currentType = REFRESH;
         currentPage = ConstantValue.FIRST_PAGE;
         viewModel.getMessageList(currentPage, msgType, searchContent);
     }

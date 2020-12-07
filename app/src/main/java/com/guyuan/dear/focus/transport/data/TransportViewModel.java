@@ -30,7 +30,7 @@ public class TransportViewModel extends BaseViewModel {
 
     private MutableLiveData<TransportListBean> transportFollowListMLD = new MutableLiveData<>();
     private MutableLiveData<TransportListBean> transportArrivedListMLD = new MutableLiveData<>();
-    private MutableLiveData<TransportDetailBean> transportDetailMLD=new MutableLiveData<>();
+    private MutableLiveData<TransportDetailBean> transportDetailMLD = new MutableLiveData<>();
 
     @ViewModelInject
     public TransportViewModel(TransportRepository repository) {
@@ -71,7 +71,9 @@ public class TransportViewModel extends BaseViewModel {
         filtersBean.setTransportStatus(type);
         requestBody.setFilters(filtersBean);
         RxJavaHelper.build(this, apiService.getTransportList(
-                CommonUtils.getCommonRequestBody(requestBody))).getHelper().flow(getListMLD(type));
+                CommonUtils.getCommonRequestBody(requestBody)))
+                .showLoading(false)
+                .getHelper().flow(getListMLD(type));
     }
 
 

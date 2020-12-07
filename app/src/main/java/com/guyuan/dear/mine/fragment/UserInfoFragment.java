@@ -76,8 +76,8 @@ public class UserInfoFragment extends BaseDataBindingFragment<FragmentUserInfoBi
     protected void initialization() {
         LoginBean user = CommonUtils.getLoginInfo();
         if (user != null && user.getUserInfo() != null) {
-            binding.tvDepartment.setText(user.getUserInfo().getDeptIdName());
-            binding.tvPosition.setText(user.getUserInfo().getPointIdName());
+            binding.tvDepartment.setText(user.getUserInfo().getDeptName());
+            binding.tvPosition.setText(user.getUserInfo().getRoleName());
             String imgUrl = user.getUserInfo().getImgUrl();
             GlideUtils.getInstance().loadUserCircleImageFromGuYuanServer(binding.ivAvatar, imgUrl);
         } else {

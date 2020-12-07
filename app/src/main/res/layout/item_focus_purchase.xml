@@ -68,7 +68,7 @@
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="@+id/purchase_item_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/purchase_item_code_tv"
-                app:rightContentWithTitle="@{String.format(@string/focus_purchase_spec,purchaseListContentBean.modelCode)}"
+                app:visibilityByContent="@{String.format(@string/focus_purchase_spec,purchaseListContentBean.modelCode)}"
                 tools:text="@string/focus_purchase_spec" />
 
             <TextView
@@ -80,7 +80,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/purchase_item_spec_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/purchase_item_spec_tv"
-                app:rightContentWithTitle="@{String.format(@string/focus_purchase_quality,purchaseListContentBean.material)}"
+                app:visibilityByContent="@{String.format(@string/focus_purchase_quality,purchaseListContentBean.material)}"
                 tools:text="@string/focus_purchase_quality" />
 
             <View
