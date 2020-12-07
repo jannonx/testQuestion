@@ -41,42 +41,6 @@ public class ContractDetailViewModel extends BaseViewModel {
     }
 
     public Disposable loadContractDetail(int contractId) {
-//        DetailContractBean bean = new DetailContractBean();
-//        bean.setDate(System.currentTimeMillis());
-//        bean.setBuyer("深圳固远智能机器人有限公司");
-//        bean.setSalesPerson("兰特芳");
-//        bean.setContractNum("DEAR-2020/10/10");
-//        bean.setProductName("空气压缩机");
-//        bean.setBuyerAddress("深圳南山科技园11栋1102");
-//        bean.setReceivePerson("周全贵");
-//        bean.setContactNumber("13726799842");
-//        bean.setBuyerFirstCreateDate(
-//                CalenderUtils.getInstance().getXMonthsAgoInYearMonthFormat(System.currentTimeMillis(),36)
-//        );
-//        bean.setProductModel("空气压缩机TK028");
-//        List<ProductComponent> componentList = new ArrayList<>();
-//        for(int i=0;i<20;i++){
-//            ProductComponent component = new ProductComponent();
-//            component.setComponentName("部件"+(i+1));
-//            component.setModelName("TK835");
-//            component.setBluePrintId("TK835-"+(i+1));
-//            component.setCount(1);
-//            component.setUnit("台");
-//            componentList.add(component);
-//        }
-//        List<ContractComment> commentList = new ArrayList<>();
-//        for(int i=0;i<5;i++){
-//            ContractComment comment = new ContractComment();
-//            comment.setDate(System.currentTimeMillis());
-//            comment.setContent("老客户比较满意我们的产品。");
-//            comment.setCommenterDept("销售部");
-//            comment.setCommenter("戴金银");
-//            comment.setSubComments(new ArrayList<>());
-//            commentList.add(comment);
-//        }
-//        bean.setProductComponents(componentList);
-//        bean.setCommentList(commentList);
-
         return repo.loadContractDetailById(contractId, callbackGetDetail);
     }
 
