@@ -26,4 +26,9 @@ public class OnConfirmDialogListenerImpl implements OnConfirmDialogListener {
     public void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data) {
 
     }
+
+    @Override
+    public void onDeleteClick(int position) {
+
+    }
 }

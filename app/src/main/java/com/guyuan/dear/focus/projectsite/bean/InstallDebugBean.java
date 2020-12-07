@@ -1,6 +1,9 @@
 package com.guyuan.dear.focus.projectsite.bean;
 
+import android.text.TextUtils;
+
 import com.guyuan.dear.R;
+import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.LogUtils;
 import com.sun.jna.platform.win32.WinNT;
 
@@ -68,7 +71,7 @@ public class InstallDebugBean implements Serializable {
     private int status;
 
     public InstallDebugSatisfyType getInstallDebugSatisfyType() {
-        LogUtils.showLog("status="+status);
+        LogUtils.showLog("status=" + status);
         return InstallDebugSatisfyType.toType(status);
     }
 
@@ -90,6 +93,20 @@ public class InstallDebugBean implements Serializable {
     public String getStatusText() {
         return getInstallDebugSatisfyType().getDes();
 
+    }
+
+    /**
+     * 没有实际开始，显示预计开始和预计完工
+     */
+    public String getShowTime() {
+        CalenderUtils calenderUtils = CalenderUtils.getInstance();
+        String debugStartTime = calenderUtils.toSmartFactoryDateFormatByFull(getDebugStartTime());
+        String debugEndTime = calenderUtils.toSmartFactoryDateFormatByFull(getDebugEndTime());
+        String realStartTime = calenderUtils.toSmartFactoryDateFormatByFull(getRealityStartTime());
+        String realEndTime = calenderUtils.toSmartFactoryDateFormatByFull(getRealityEndTime());
+//        LogUtils.showLog("debugStartTime=" + debugStartTime + "...debugEndTime=" + debugEndTime
+//                + "...realStartTime=" + realStartTime + "...realEndTime=" + realEndTime);
+        return TextUtils.isEmpty(realStartTime) ? (debugStartTime + "~" + debugEndTime) : (realStartTime + "~" + realEndTime);
     }
 
     public long getId() {

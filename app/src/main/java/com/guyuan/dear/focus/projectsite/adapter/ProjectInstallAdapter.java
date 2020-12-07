@@ -35,16 +35,8 @@ public class ProjectInstallAdapter extends BaseRecyclerAdapter<InstallDebugBean>
                                   int position) {
         holder.setText(R.id.tv_project_name, item.getProjectName());
         holder.setText(R.id.tv_check_person, item.getCustomerName());
-        //没有实际开始，显示预计开始和预计完工
-        CalenderUtils calenderUtils = CalenderUtils.getInstance();
-        String debugStartTime = calenderUtils.toSmartFactoryDateFormatByFull(item.getDebugStartTime());
-        String debugEndTime = calenderUtils.toSmartFactoryDateFormatByFull(item.getDebugEndTime());
-        String realStartTime = calenderUtils.toSmartFactoryDateFormatByFull(item.getRealityStartTime());
-        String realEndTime = calenderUtils.toSmartFactoryDateFormatByFull(item.getRealityEndTime());
-        LogUtils.showLog("debugStartTime=" + debugStartTime + "...debugEndTime=" + debugEndTime
-                + "...realStartTime=" + realStartTime + "...realEndTime=" + realEndTime);
-        String showTime = TextUtils.isEmpty(realStartTime) ? (debugStartTime + "~" + debugEndTime) : (realStartTime + "~" + realEndTime);
-        holder.setText(R.id.tv_time, showTime);
+
+        holder.setText(R.id.tv_time, item.getShowTime());
         //状态属性设置
         holder.setText(R.id.tv_project_status, InstallDebugSatisfyInnerType.toType(item.getStatus()).getDes());
         TextView tvStatus = holder.getView(R.id.tv_project_status);

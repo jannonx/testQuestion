@@ -135,9 +135,14 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
 
         imageViewAdapter.setAdapterListener(new ContentImageViewAdapter.OnListAdapterListener() {
             @Override
-            public void onListEmpty() {
-                viewBinding.labelDocument.setText("拍照电子档");
-                viewBinding.tvTip.setText("点击此框上传资料拍照照片");
+            public void onDeleteCLick(int position) {
+                if (clickListener != null) {
+                    clickListener.onDeleteClick(position);
+                }
+                if (imageDataList.size() == 0) {
+                    viewBinding.labelDocument.setText("拍照电子档");
+                    viewBinding.tvTip.setText("点击此框上传资料拍照照片");
+                }
             }
         });
     }

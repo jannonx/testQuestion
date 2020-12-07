@@ -40,6 +40,8 @@ import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
+import static com.guyuan.dear.focus.projectsite.bean.ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE;
+
 /**
  * @description: 我的工作--工程现场
  * --现场勘查报告/货物清点报告/安全排查报告/安装调试报告/客户验收报告/
@@ -52,7 +54,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
 
     public static final String TAG = ProjectReportClassifyFragment.class.getSimpleName();
     private ProjectReportType reportType;
-
+    private boolean isFirstLoad = true;
 
     public static WorkProjectReportListFragment newInstance(ProjectReportType type) {
         Bundle args = new Bundle();
@@ -67,7 +69,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
     protected void init() {
 
         reportType = (ProjectReportType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
-        etSearch.setHint(ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == reportType
+        etSearch.setHint(TYPE_CUSTOMER_ACCEPTANCE == reportType
                 ? "输入客户名称、项目名称" : "输入项目名称、编号、人员");
         LogUtils.showLog("siteExploreBean=" + reportType.getDes());
         ProjectReportAdapter checkGoodsAdapter = new ProjectReportAdapter(getContext(),
@@ -146,6 +148,16 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        //第一次加载不刷新，再次进入页面刷新数据
+        if (!isFirstLoad && reportType == TYPE_CUSTOMER_ACCEPTANCE) {
+            viewModel.getCustomerAcceptanceList(getListRequestBody(true));
+        }
+
+        isFirstLoad = false;
+    }
 
     /**
      * 根据报告类型请求数据

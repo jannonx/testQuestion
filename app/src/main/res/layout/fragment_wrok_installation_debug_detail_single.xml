@@ -15,36 +15,59 @@
             android:paddingTop="@dimen/dp_16"
             app:layout_scrollFlags="scroll|enterAlways">
 
-
-            <TextView
-                android:id="@+id/tv_project_name"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/rl_name"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_12"
-                android:text="迪尔空分机项目"
-                android:textColor="@color/color_black_333333"
-                android:textSize="@dimen/sp_16"
-                android:textStyle="bold"
+                android:layout_marginEnd="@dimen/dp_12"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_project_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold"
+                    android:maxWidth="@dimen/dp_200"
+                    tools:text="迪尔空分机项目迪尔空" />
+
+                <FrameLayout
+                    android:id="@+id/fl_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/tv_project_name"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    android:layout_toStartOf="@+id/tv_time">
+
+                    <TextView
+                        android:id="@+id/tv_project_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_12"
+                        android:background="@drawable/bg_orange_ffece3_corner_2"
+                        android:paddingStart="@dimen/dp_4"
+                        android:paddingTop="@dimen/dp_2"
+                        android:paddingEnd="@dimen/dp_4"
+                        android:paddingBottom="@dimen/dp_2"
+                        android:textColor="@color/color_orange_FF6010"
+                        android:textSize="@dimen/sp_12"
+                        tools:text="异常" />
+                </FrameLayout>
 
 
-            <TextView
-                android:id="@+id/tv_project_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_12"
-                android:background="@drawable/bg_orange_ffece3_corner_2"
-                android:paddingStart="@dimen/dp_4"
-                android:paddingTop="@dimen/dp_2"
-                android:paddingEnd="@dimen/dp_4"
-                android:paddingBottom="@dimen/dp_2"
-                android:text="异常"
-                android:textColor="@color/color_orange_FF6010"
-                android:textSize="@dimen/sp_12"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_project_name"
-                app:layout_constraintStart_toEndOf="@+id/tv_project_name"
-                app:layout_constraintTop_toTopOf="@+id/tv_project_name" />
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_14"
+                    tools:text="20-08-17~20-08-19" />
+            </RelativeLayout>
 
             <View
                 android:id="@+id/v_line_0"
@@ -54,8 +77,8 @@
                 android:layout_marginEnd="@dimen/dp_12"
                 android:background="@color/color_grey_e5e5e5"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tv_project_name"
-                app:layout_constraintTop_toBottomOf="@+id/tv_project_name"
+                app:layout_constraintStart_toStartOf="@+id/rl_name"
+                app:layout_constraintTop_toBottomOf="@+id/rl_name"
 
                 />
 
@@ -67,19 +90,19 @@
                 android:text="施工："
                 android:textColor="@color/color_black_333333"
                 android:textSize="@dimen/sp_14"
-                app:layout_constraintStart_toStartOf="@+id/tv_project_name"
+                app:layout_constraintStart_toStartOf="@+id/rl_name"
                 app:layout_constraintTop_toBottomOf="@+id/v_line_0" />
 
             <TextView
                 android:id="@+id/tv_construction_organization"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="XMBH6546487"
                 android:textColor="@color/color_black_333333"
                 android:textSize="@dimen/sp_14"
                 app:layout_constraintBottom_toBottomOf="@+id/label_construction_organization"
                 app:layout_constraintStart_toEndOf="@+id/label_construction_organization"
-                app:layout_constraintTop_toTopOf="@+id/label_construction_organization" />
+                app:layout_constraintTop_toTopOf="@+id/label_construction_organization"
+                tools:text="XMBH6546487" />
 
             <TextView
                 android:id="@+id/label_duty_person"
@@ -89,32 +112,20 @@
                 android:text="负责人："
                 android:textColor="@color/color_grey_999999"
                 android:textSize="@dimen/sp_14"
-                app:layout_constraintStart_toStartOf="@+id/tv_project_name"
+                app:layout_constraintStart_toStartOf="@+id/rl_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_construction_organization" />
 
             <TextView
                 android:id="@+id/tv_duty_person"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="小刘"
                 android:textColor="@color/color_grey_999999"
                 android:textSize="@dimen/sp_14"
                 app:layout_constraintBottom_toBottomOf="@+id/label_duty_person"
                 app:layout_constraintStart_toEndOf="@+id/label_duty_person"
-                app:layout_constraintTop_toTopOf="@+id/label_duty_person" />
+                app:layout_constraintTop_toTopOf="@+id/label_duty_person"
+                tools:text="小刘" />
 
-
-            <TextView
-                android:id="@+id/tv_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dp_12"
-                android:text="2020-08-17 15:00"
-                android:textColor="@color/color_black_333333"
-                android:textSize="@dimen/sp_14"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_project_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_project_name" />
 
             <View
                 android:id="@+id/view_2"

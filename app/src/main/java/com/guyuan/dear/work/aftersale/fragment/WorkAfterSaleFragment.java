@@ -81,6 +81,7 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
                 AfterSaleBean bean = listData.get(position);
                 bean.setModuleType(FunctionModuleType.TYPE_WORK);
                 if (SaleSectionType.TYPE_SECTION_CHECK == saleSectionType) {
+                    bean.setSectionType(SaleSectionType.TYPE_SECTION_CHECK );
                     FocusAfterSaleDetailActivity.start(getContext(), bean);
                 } else {
                     CustomerAcceptanceDetailActivity.start(getContext(), bean);

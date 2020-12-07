@@ -70,11 +70,6 @@ public class CheckGoodsListFragment extends BaseDataBindingFragment<FragmentGood
     }
 
 
-    private void setProduceData(FocusProduceBean data) {
-
-
-    }
-
     @Override
     protected int getVariableId() {
         return 0;

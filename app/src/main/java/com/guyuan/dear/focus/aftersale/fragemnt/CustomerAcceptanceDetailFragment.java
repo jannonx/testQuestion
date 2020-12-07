@@ -60,10 +60,7 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
         implements BaseFileUploadActivity.PhotoSelectListener, View.OnClickListener {
 
     public static final String TAG = CustomerAcceptanceDetailFragment.class.getSimpleName();
-    private QuestionDescribeFragment questionFragment;
-    private AfterSaleStatusFragment statusFragment;
-    private ProjectCheckConfirmDialog leftDialog;
-    private AfterSalePostInfoDialog rightDialog;
+    private AfterSalePostInfoDialog dialog;
 
     private int startPosition = 0;//起始选中位置
     private String[] titleList;
@@ -111,8 +108,8 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
             }
         });
 
-        viewModel.getAfterSaleCustomerAcceptanceDetail(afterSaleBean.getId(), SaleSectionType.TYPE_SECTION_ACCEPT.getCode());
-        viewModel.getAfterSaleCustomerAcceptanceDetailEvent().observe(getActivity(), new Observer<List<AfterSaleStatusBean>>() {
+        viewModel.getCustomerAcceptanceDetailImageList(afterSaleBean.getId(), SaleSectionType.TYPE_SECTION_ACCEPT.getCode());
+        viewModel.getCustomerAcceptanceDetailImageEvent().observe(getActivity(), new Observer<List<AfterSaleStatusBean>>() {
             @Override
             public void onChanged(List<AfterSaleStatusBean> data) {
                 binding.llDocument.setVisibility(data == null || data.size() == 0 ? View.GONE : View.VISIBLE);
@@ -142,7 +139,7 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
 //                ToastUtils.showLong(getContext(), "提交成功");
                 EventBus.getDefault().post(new EventSaleListRefresh());
                 viewModel.getAfterSaleDetail(afterSaleBean.getId());
-                viewModel.getAfterSaleCustomerAcceptanceDetail(afterSaleBean.getId(), SaleSectionType.TYPE_SECTION_ACCEPT.getCode());
+                viewModel.getCustomerAcceptanceDetailImageList(afterSaleBean.getId(), SaleSectionType.TYPE_SECTION_ACCEPT.getCode());
             }
         });
     }
@@ -231,7 +228,7 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
 
 
     private void showDialog() {
-        rightDialog = new AfterSalePostInfoDialog(getActivity(), afterSaleBean, new AfterSalePostInfoDialog.OnDialogClickListener() {
+        dialog = new AfterSalePostInfoDialog(getActivity(), afterSaleBean, new AfterSalePostInfoDialog.OnDialogClickListener() {
             @Override
             public void onPickImageClick() {
                 activity.openAlbum(BaseTabActivity.FIRST);
@@ -246,13 +243,19 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
                 postInfoBean.clearImgUrlList();
             }
 
+            @Override
+            public void onDeleteClick(int position) {
+                LogUtils.showLog("showDialog=" + position);
+                photoList.remove(position);
+            }
+
         });
-        rightDialog.show();
-        rightDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        dialog.show();
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                LogUtils.showLog("rightDialog....dismiss");
-                rightDialog = null;
+                LogUtils.showLog("dialog....dismiss");
+                dialog = null;
             }
         });
     }
@@ -271,9 +274,10 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
 
     @Override
     public void onPhotoSelected(ArrayList<String> dataList) {
+        photoList.clear();
         photoList.addAll(dataList);
-        if (rightDialog != null) {
-            rightDialog.setPhotoList(photoList);
+        if (dialog != null) {
+            dialog.setPhotoList(photoList);
         }
     }
 

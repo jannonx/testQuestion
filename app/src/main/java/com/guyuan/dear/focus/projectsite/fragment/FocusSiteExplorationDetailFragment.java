@@ -163,7 +163,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         viewModel.getPostInstallDebugInfoEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer data) {
-                LogUtils.showLog("onCommitInstallationDebugInfo...onChanged");
+                photoList.clear();
+                LogUtils.showLog("getPostInstallDebugInfoEvent...onChanged");
                 refreshDataStatus();
             }
         });
@@ -171,7 +172,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         viewModel.getCommitCustomerAcceptanceInfoEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer data) {
-                ToastUtils.showLong(getContext(), "提交完成");
+                photoList.clear();
+                LogUtils.showLog("getCommitCustomerAcceptanceInfoEvent...onChanged");
                 refreshDataStatus();
             }
         });
@@ -194,7 +196,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      * 改变状态
      */
     private void refreshDataStatus() {
-        ToastUtils.showLong(getContext(), "提交完成");
+//        ToastUtils.showLong(getContext(), "提交完成");
         getDetailDataByClassify();
         EventBus.getDefault().post(new EventWorkSiteListRefresh());
         EventBus.getDefault().post(new EventAnswerListRefresh());
@@ -345,9 +347,13 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 postCustomerAcceptanceInfo = data;
                 activity.checkPhotoAndFileUpLoad(data.getCheckUrl());
             }
+
+            @Override
+            public void onDeleteClick(int position) {
+                photoList.remove(position);
+            }
         });
         leftDialog.show();
-
         leftDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
@@ -379,6 +385,11 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 data.setCheckStatus(10);
                 postCustomerAcceptanceInfo = data;
                 activity.checkPhotoAndFileUpLoad(data.getCheckUrl());
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+                photoList.remove(position);
             }
         });
         rightDialog.show();

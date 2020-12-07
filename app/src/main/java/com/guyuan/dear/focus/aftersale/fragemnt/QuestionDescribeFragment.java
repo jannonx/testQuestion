@@ -12,6 +12,7 @@ import com.guyuan.dear.databinding.FragmentAfterSaleQuestionDescribeBinding;
 import com.guyuan.dear.focus.aftersale.adapter.FocusAfterSaleQuestionAdapter;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
 import com.guyuan.dear.focus.aftersale.bean.AfterSaleQuestionBean;
+import com.guyuan.dear.focus.aftersale.bean.AfterSaleStatusBean;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.utils.ConstantValue;
@@ -22,6 +23,7 @@ import java.util.List;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import tl.com.easy_recycleview_library.BaseRecyclerView;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
@@ -47,6 +49,10 @@ public class QuestionDescribeFragment extends BaseDataBindingFragment<FragmentAf
     List<String> imageDataList = new ArrayList<>();
     private AfterSaleBean simpleData;
     private View footerView;
+    private BaseRecyclerView imageRecyclerView;
+    private LinearLayoutCompat llDocument;
+
+    private List<AfterSaleStatusBean> imageData;
 
     public static QuestionDescribeFragment newInstance(AfterSaleBean afterSaleBean) {
         Bundle bundle = new Bundle();
@@ -96,36 +102,35 @@ public class QuestionDescribeFragment extends BaseDataBindingFragment<FragmentAf
         footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_after_sale_question_describe, binding.baseRecycleView, false);
         adapter.addFooterView(footerView);
 
-
         TextView tvRemark = footerView.findViewById(R.id.tv_remark);
         TextView tvRecorder = footerView.findViewById(R.id.tv_recorder);
-        LinearLayoutCompat llDocument = footerView.findViewById(R.id.ll_document);
-        BaseRecyclerView imageRecyclerView = footerView.findViewById(R.id.image_recycleView);
+        llDocument = footerView.findViewById(R.id.ll_document);
+        imageRecyclerView = footerView.findViewById(R.id.image_recycleView);
         tvRemark.setText(simpleData.getTitle());
         tvRecorder.setText(simpleData.getExamineManName());
-
-
-//        llDocument.setVisibility(data == null || data.size() == 0 ? View.GONE : View.VISIBLE);
-
-        ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-                imageDataList, R.layout.item_explorate_image);
-        imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
-
-        imageRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        imageRecyclerView.setAdapter(imageAdapter);
-        imageRecyclerView.setPullRefreshEnabled(false);
-        imageRecyclerView.setLoadMoreEnabled(false);
-
-
-//        if (simpleData.getImgUrlList() != null) {
-//            imageDataList.clear();
-//            imageDataList.addAll(simpleData.getImgUrlList());
-//        }
-
-
+        setImageList(imageData);
     }
 
+    /**
+     * 设置图片
+     */
+    public void setImageList(List<AfterSaleStatusBean> data) {
+        imageData = data;
+        if (llDocument == null) return;
+        llDocument.setVisibility(data == null || data.size() == 0 ? View.GONE : View.VISIBLE);
+        if (data != null && data.size() != 0) {
+            AfterSaleStatusBean afterSaleStatusBean = data.get(0);
+            ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
+                    afterSaleStatusBean.getImgUrlList(), R.layout.item_explorate_image);
+            imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
 
+            imageRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+            imageRecyclerView.setAdapter(imageAdapter);
+            imageRecyclerView.setPullRefreshEnabled(false);
+            imageRecyclerView.setLoadMoreEnabled(false);
+        }
+
+    }
 
 
     @Override

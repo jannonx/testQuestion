@@ -110,9 +110,13 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
                 ? "完成勘查" : "完成排查");
         imageViewAdapter.setAdapterListener(new ContentImageViewAdapter.OnListAdapterListener() {
             @Override
-            public void onListEmpty() {
-                binding.labelDocument.setText("拍照电子档");
-                binding.tvTip.setText("点击此框上传资料拍照照片");
+            public void onDeleteCLick(int position) {
+                photoList.remove(position);
+                if (imageDataList.size() == 0) {
+                    binding.labelDocument.setText("拍照电子档");
+                    binding.tvTip.setText("点击此框上传资料拍照照片");
+                }
+
             }
         });
         getWorkDetailData();
@@ -384,7 +388,10 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
     }
 
     @Override
-    public void onPhotoSelected(ArrayList<String> photoList) {
+    public void onPhotoSelected(ArrayList<String> dataList) {
+
+        photoList.clear();
+        photoList.addAll(dataList);
         imageDataList.clear();
         imageDataList.addAll(photoList);
         imageAdapter.refreshData();

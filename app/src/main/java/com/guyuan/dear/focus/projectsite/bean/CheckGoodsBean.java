@@ -73,7 +73,7 @@ public class CheckGoodsBean implements Serializable {
     }
 
     public String getProjectCode() {
-        return projectCode;
+        return projectCode == null ? "-" : projectCode;
     }
 
     public void setProjectCode(String projectCode) {
@@ -81,7 +81,7 @@ public class CheckGoodsBean implements Serializable {
     }
 
     public String getModel() {
-        return model;
+        return model == null ? "-" : model;
     }
 
     public void setModel(String model) {
