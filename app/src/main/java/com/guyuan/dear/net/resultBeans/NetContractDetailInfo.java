@@ -31,7 +31,7 @@ public class NetContractDetailInfo extends NetContractInfo {
      * tcontractParts : [{"id":8970,"name":"配套1","specifications":"PT1","model":"PT1","company":"件","num":11123},{"id":8971,"name":"PT2","specifications":"ce","model":"pt2","company":"件","num":2222}]
      */
 
-    private int totalAmount;
+    private long totalAmount;
     private int qualityDeposit;
     private String receivingUnit;
     private String deliveryAddress;
@@ -43,11 +43,11 @@ public class NetContractDetailInfo extends NetContractInfo {
     private String fileUrl;
     private List<TcontractPartsBean> tcontractParts;
 
-    public int getTotalAmount() {
+    public long getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(int totalAmount) {
+    public void setTotalAmount(long totalAmount) {
         this.totalAmount = totalAmount;
     }
 

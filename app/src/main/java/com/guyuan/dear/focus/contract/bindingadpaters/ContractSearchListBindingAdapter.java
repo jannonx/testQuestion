@@ -16,7 +16,7 @@ import com.guyuan.dear.R;
 public class ContractSearchListBindingAdapter {
 
     @BindingAdapter("setContractSearchListRightTag")
-    public void setContractSearchListRightTag(AppCompatTextView view, int contractStatus) {
+    public static void setContractSearchListRightTag(AppCompatTextView view, int contractStatus) {
         //0 正常执行 1 质保金异常 2 验收合格 3 暂停
         String tag = "";
         if (contractStatus == 0) {
