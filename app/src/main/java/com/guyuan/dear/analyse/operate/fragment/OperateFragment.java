@@ -19,6 +19,7 @@ import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.Graph.GraphUtil;
 import com.guyuan.dear.utils.Graph.formatter.MonthXAxisValueFormatter;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.StringUtils;
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
@@ -78,7 +79,7 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
             @Override
 
             public void onChanged(OperateStatisticsBean data) {
-                setStatisticsData(data);
+//                setStatisticsData(data);
             }
         });
         binding.llContent.setOnClickListener(this);
@@ -97,6 +98,9 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
         List<Entry> payList = new ArrayList<>();
         List<Entry> costList = new ArrayList<>();
         List<OperateStatisticsBean.PaymentCollectionVOSBean> paymentCollectionVOS = data.getPaymentCollectionVOS();
+        for(OperateStatisticsBean.PaymentCollectionVOSBean bean:paymentCollectionVOS){
+            LogUtils.showLog(".getMonth="+bean.getMonth()+"...Payment="+bean.getPaymentCollection());
+        }
         for (int i = 0; i < 12; i++) {
             Entry passEntry = new Entry();
             passEntry.setX(i);
@@ -118,6 +122,9 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
             payList.add(passEntry);
         }
         List<OperateStatisticsBean.CostVOSBean> costVOS = data.getCostVOS();
+        for(OperateStatisticsBean.CostVOSBean bean:costVOS){
+            LogUtils.showLog(".getMonth="+bean.getMonth()+"...getCost="+bean.getCost());
+        }
         for (int i = 0; i < 12; i++) {
             Entry costEntry = new Entry();
             costEntry.setX(i);
@@ -138,6 +145,13 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
             }
             costList.add(costEntry);
         }
+
+        for(int i = 0; i < 12; i++){
+            LogUtils.showLog("payList.getX="+payList.get(i).getX()+"...getY="+payList.get(i).getY());
+        }
+        for(int i = 0; i < 12; i++){
+            LogUtils.showLog("costList.getX="+costList.get(i).getX()+"...getY="+costList.get(i).getY());
+        }
         //准备通过和不通过的数据集合
         List<List<Entry>> dataList = new ArrayList<>();
         dataList.add(payList);
@@ -154,8 +168,8 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
         legendList.add("成本");
 
         MonthXAxisValueFormatter monthXAxisValueFormatter = new MonthXAxisValueFormatter();
-        GraphUtil.showLineChart(binding.lineChart, dataList, legendList, colorList, 12,
-                monthXAxisValueFormatter, null);
+//        GraphUtil.showLineChart(binding.lineChart, dataList, legendList, colorList, 12,
+//                monthXAxisValueFormatter, null);
     }
 
 

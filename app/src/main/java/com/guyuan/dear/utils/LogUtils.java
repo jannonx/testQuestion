@@ -11,7 +11,7 @@ import com.guyuan.dear.BuildConfig;
 public class LogUtils {
     public static void showLog(String msg) {
         //debug模式下显示
-        if (BuildConfig.DEBUG) {
+//        if (BuildConfig.DEBUG) {
             StringBuilder sb = new StringBuilder();
             Throwable throwable = new Throwable();
             StackTraceElement element = throwable.getStackTrace()[1];
@@ -23,7 +23,7 @@ public class LogUtils {
             sb.append(element.getLineNumber()).append(":");
             sb.append(msg);
             Log.e("GuYuanLog", sb.toString());
-        }
+//        }
 
     }
 }

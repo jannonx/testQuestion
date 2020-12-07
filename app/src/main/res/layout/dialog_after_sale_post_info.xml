@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_8"
                 android:layout_marginEnd="@dimen/dp_12"
-                android:text="点击图片，点击此框上传资料拍照照片"
+                android:text="点击此框上传资料拍照照片"
                 android:textColor="@color/color_black_333333"
                 android:textSize="@dimen/sp_14"
                 app:layout_constraintStart_toStartOf="parent"

@@ -21,9 +21,9 @@ public enum CheckGoodsSatisfyType implements Serializable {
     TYPE_GOODS_TRANSPORTING(0, "运输中", R.color.color_blue_1677ff,
             R.drawable.bg_blue_e7f1ff_corner_2),
     /**
-     * 已到达,待清点
+     * 已到达,清点中
      */
-    TYPE_GOODS_CHECK_ING(2, "待清点", R.color.color_blue_1677ff,
+    TYPE_GOODS_CHECK_ING(2, "清点中", R.color.color_blue_1677ff,
             R.drawable.bg_blue_e7f1ff_corner_2),
     /**
      * 清点正常
