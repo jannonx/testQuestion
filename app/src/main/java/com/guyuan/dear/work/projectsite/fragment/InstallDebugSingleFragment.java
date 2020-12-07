@@ -25,15 +25,12 @@ import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.databinding.FragmentWorkInstallationDebugIngBinding;
 import com.guyuan.dear.databinding.FragmentWrokInstallationDebugDetailSingleBinding;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
-import com.guyuan.dear.focus.projectsite.adapter.ProjectInstallAdapter;
-import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
-import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
-import com.guyuan.dear.focus.projectsite.bean.EventFocusSiteListRefresh;
-import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
+
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
-import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyType;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
+
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
+import com.guyuan.dear.focus.projectsite.type.InstallDebugSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
