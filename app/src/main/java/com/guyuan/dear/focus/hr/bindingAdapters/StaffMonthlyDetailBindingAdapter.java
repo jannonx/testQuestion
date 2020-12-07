@@ -19,12 +19,15 @@ public class StaffMonthlyDetailBindingAdapter {
 
     /**
      * @param v
-     * @param state 上午打卡状态：1.正常 2.迟到
+     * @param state 上午打卡状态：1.正常 2.迟到 -1未到打卡时间
      */
     @BindingAdapter(value = {"showAmAttendState", "isAttendDay"})
     public static void showAmAttendState(AppCompatImageView v, int state, int isAttendDay) {
         if (isAttendDay > 0) {
             switch (state) {
+                case -1:
+                    v.setImageResource(R.drawable.ic_svg_round_filled_grey_cccccc_24dp);
+                    break;
                 case 2:
                     v.setImageResource(R.drawable.ic_svg_round_filled_orange_fa8c16_24dp);
                     break;
@@ -49,6 +52,9 @@ public class StaffMonthlyDetailBindingAdapter {
     public static void showPmAttendState(AppCompatImageView v, int state, int isAttendDay) {
         if (isAttendDay > 0) {
             switch (state) {
+                case -1:
+                    v.setImageResource(R.drawable.ic_svg_round_filled_grey_cccccc_24dp);
+                    break;
                 case 2:
                     v.setImageResource(R.drawable.ic_svg_round_filled_purple_3436c7_24dp);
                     break;

@@ -134,7 +134,7 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<com.guyuan.dear
             @Override
             public void onClick(View v) {
                 String contactNo = getViewModel().contactNo;
-                if(TextUtils.isEmpty(contactNo)){
+                if (TextUtils.isEmpty(contactNo)) {
                     showToastTip("无联系方式");
                     return;
                 }
@@ -148,6 +148,7 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<com.guyuan.dear
     private int colorNormal = Color.TRANSPARENT;
     private int colorLate = Color.parseColor("#FA8C16");
     private int colorEarlyLeave = Color.parseColor("#3436C7");
+    private int colorBeforeArrangeTime = Color.TRANSPARENT;
 
     /**
      * 根据每日考勤状况生成每日事件，显示在日历上
@@ -168,6 +169,8 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<com.guyuan.dear
                 color = colorNormal;
             } else if (amStatus == 2) {
                 color = colorLate;
+            } else if (amStatus == -1) {
+                color = colorBeforeArrangeTime;
             }
             long time = CalenderUtils.getInstance().parseSmartFactoryDateFormatByDay(record.getTodayDate()).getTime();
             eventList.add(new Event(color, time, record));
@@ -186,6 +189,8 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<com.guyuan.dear
                 color = colorNormal;
             } else if (pmStatus == 2) {
                 color = colorEarlyLeave;
+            } else if (pmStatus == -1) {
+                color = colorBeforeArrangeTime;
             }
             long time = CalenderUtils.getInstance().parseSmartFactoryDateFormatByDay(record.getTodayDate()).getTime();
             eventList.add(new Event(color, time, record));
