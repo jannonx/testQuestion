@@ -288,7 +288,7 @@ public class ContractApplyFragment extends BaseMvvmFragment<FragmentPauseContrac
     }
 
     private void selectBuyer() {
-        Disposable disposable = DearNetHelper.getInstance().getClientList(getClientsCallback);
+        Disposable disposable = DearNetHelper.getInstance().getClientList(type,getClientsCallback);
         addDisposable(disposable);
     }
 

@@ -2,7 +2,6 @@ package com.guyuan.dear.db.dao;
 
 import android.database.Cursor;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -12,7 +11,6 @@ import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.guyuan.dear.db.entities.StaffEntity;
-import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 import java.util.List;
 
@@ -42,6 +40,9 @@ public interface StaffDao {
 
     @Query("SELECT * FROM StaffEntity WHERE name LIKE :keyWord AND deleteFlag=1")
     public Cursor getStaffsByName(String keyWord);
+
+    @Query("SELECT * FROM StaffEntity WHERE name LIKE :keyWord AND deleteFlag=1 AND _id NOT IN (:hiddenList)")
+    public Cursor getStaffsByNameWithHiddenList(String keyWord, List<Long> hiddenList);
 
 
 }

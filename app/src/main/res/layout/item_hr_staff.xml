@@ -20,7 +20,8 @@
             android:id="@+id/item_hr_staff_iv_icon"
             android:layout_width="@dimen/dp_36"
             android:layout_height="@dimen/dp_36"
-            app:srcCompat="@drawable/ic_svg_staff_icon_default" />
+            app:srcCompat="@drawable/ic_svg_staff_icon_default"
+            setUserCircleNetImage="@{data.imgUrl}"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_hr_staff_tv_name"

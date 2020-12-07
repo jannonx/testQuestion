@@ -8,6 +8,9 @@ import androidx.appcompat.widget.SearchView;
 
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.reactivex.disposables.Disposable;
 
 /**
@@ -21,6 +24,10 @@ public class HrSearchView extends SearchView {
     private SelectStaffCallback mSelectStaffCallback;
     private Disposable mDisposable;
     private StaffBean mSelectedStaff;
+    /**
+     * 需要隐藏起来的人员的ID
+     */
+    private List<Long> hiddenList = new ArrayList<>();
 
 
     public HrSearchView(Context context) {
@@ -58,8 +65,8 @@ public class HrSearchView extends SearchView {
                 if (TextUtils.isEmpty(newText)) {
                     return false;
                 }
-                newText="%"+newText+"%";
-                mHrCursorAdapter.updateSuggestionsByKeyWordName(newText);
+                newText = "%" + newText + "%";
+                mHrCursorAdapter.updateSuggestionsByKeyWordName(newText, hiddenList);
                 return false;
             }
         });
@@ -93,6 +100,14 @@ public class HrSearchView extends SearchView {
         super.onDetachedFromWindow();
         if (mDisposable != null) {
             mDisposable.dispose();
+        }
+    }
+
+    public void addHiddenStaffs(ArrayList<StaffBean> staffs) {
+        for (StaffBean bean : staffs) {
+            if (!hiddenList.contains(bean.getId())) {
+                hiddenList.add(bean.getId());
+            }
         }
     }
 }

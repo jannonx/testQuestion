@@ -67,7 +67,7 @@ public interface DearNetApiService extends BaseApiService {
      * @return
      */
     @POST("base/tCustomer/findCustomerQueryList")
-    Observable<ResultBean<BasePageResultBean<NetClientInfo>>> getClientInfos(@Body BasePageReqBean body);
+    Observable<ResultBean<BasePageResultBean<NetClientInfo>>> getClientInfos(@Body SearchRqBody body);
 
     /**
      * 根据客户id获取所签的合同列表
