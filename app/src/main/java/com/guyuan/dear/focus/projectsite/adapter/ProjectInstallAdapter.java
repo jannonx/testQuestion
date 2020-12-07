@@ -1,19 +1,14 @@
 package com.guyuan.dear.focus.projectsite.adapter;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
-import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
 import com.guyuan.dear.R;
-import com.guyuan.dear.focus.projectsite.bean.InstallDebugSatisfyInnerType;
-import com.guyuan.dear.utils.CalenderUtils;
-import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.focus.projectsite.type.InstallDebugSatisfyInnerType;
 
 import java.util.List;
 

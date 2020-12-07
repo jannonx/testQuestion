@@ -4,8 +4,6 @@ package com.guyuan.dear.focus.produce.bean;
 import android.text.TextUtils;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.focus.projectsite.bean.CustomerAcceptanceSatisfyType;
-import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
 import java.io.Serializable;
 

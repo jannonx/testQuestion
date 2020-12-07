@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.projectsite.bean;
 import android.text.TextUtils;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.focus.projectsite.type.InstallDebugStatusType;
 import com.guyuan.dear.utils.StringUtils;
 
 import java.io.Serializable;
@@ -25,6 +26,7 @@ public class ProjectSiteStatusBean implements Serializable {
     private String imgList;
     private String name;
     private String title;
+    private InstallDebugStatusType statusType;
 
     public String getCreateTime() {
         return createTime;
@@ -82,38 +84,23 @@ public class ProjectSiteStatusBean implements Serializable {
         this.imgList = imgList;
     }
 
+    public InstallDebugStatusType getStatusType() {
+        return InstallDebugStatusType.toType(getTitle());
+    }
+
+    public void setStatusType(InstallDebugStatusType statusType) {
+        this.statusType = statusType;
+    }
+
     public String getTitle() {
-        if (TextUtils.isEmpty(title)) return "未知操作";
-        if ("安装中".equals(title)) {
-            return "继续安装";
-        } else if ("暂停".equals(title)) {
-            return "暂停安装";
-        } else if (title.equals("安装完成") || title.contains("完")) {
-            return "完工";
-        } else if ("修改信息".equals(title)) {
-            return "修改信息";
-        } else if ("指导意见".equals(title)) {
-            return "指导意见";
-        } else {
-            return "未知操作";
-        }
+        return title;
     }
 
     /**
      * 圆点的背景
      */
     public int getBallBg() {
-        if (TextUtils.isEmpty(title)) return R.drawable.bg_red_f04864_round;
-        if ("安装中".equals(title) || "修改信息".equals(title)
-                || "指导意见".equals(title)) {
-            return R.drawable.bg_blue_1890ff_round;
-        } else if ("暂停".equals(title)) {
-            return R.drawable.bg_red_f04864_round;
-        } else if ("安装完成".equals(title) || title.contains("完")) {
-            return R.drawable.bg_green_2fc25b_round;
-        } else {
-            return R.drawable.bg_red_f04864_round;
-        }
+        return getStatusType().getBallBg();
     }
 
     public void setTitle(String title) {

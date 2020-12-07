@@ -1,7 +1,8 @@
-package com.guyuan.dear.focus.projectsite.bean;
+package com.guyuan.dear.focus.projectsite.type;
 
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.utils.LogUtils;
 
 import java.io.Serializable;

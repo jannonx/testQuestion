@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.projectsite.bean;
 
+import com.guyuan.dear.focus.projectsite.type.SingleItemResultType;
+
 import java.io.Serializable;
 
 /**

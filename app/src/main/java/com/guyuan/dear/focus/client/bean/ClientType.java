@@ -1,8 +1,6 @@
 package com.guyuan.dear.focus.client.bean;
 
-import com.guyuan.dear.R;
-import com.guyuan.dear.focus.projectsite.bean.CheckStatusType;
-import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
+import com.guyuan.dear.focus.projectsite.type.CheckStatusType;
 
 import java.io.Serializable;
 

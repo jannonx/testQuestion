@@ -1,6 +1,6 @@
 package com.guyuan.dear.focus.aftersale.bean;
 
-import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.CheckGoodsSatisfyType;
 
 import java.io.Serializable;
 

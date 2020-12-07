@@ -10,28 +10,21 @@ import com.guyuan.dear.base.fragment.BaseListSearchFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectReportAdapter;
-import com.guyuan.dear.focus.projectsite.bean.CheckGoodsSatisfyType;
-import com.guyuan.dear.focus.projectsite.bean.CheckSafeSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.CheckGoodsSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.CheckSafeSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.ListProjectRequestBody;
-import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
+import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
+import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
-import com.guyuan.dear.focus.projectsite.bean.SiteProjectSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.SiteProjectSatisfyType;
 import com.guyuan.dear.focus.projectsite.fragment.ProjectReportClassifyFragment;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
-import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkCheckGoodsActivity;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugActivity;
 import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
-import com.guyuan.dear.work.projectsite.bean.EventCheckGoodsListRefresh;
-import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +33,7 @@ import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
-import static com.guyuan.dear.focus.projectsite.bean.ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE;
+import static com.guyuan.dear.focus.projectsite.type.ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE;
 
 /**
  * @description: 我的工作--工程现场
@@ -218,6 +211,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
         ListProjectRequestBody body = new ListProjectRequestBody();
         ListProjectRequestBody.FiltersBean filtersBean = new ListProjectRequestBody.FiltersBean();
         filtersBean.setQueryParams(searchContent);
+        filtersBean.setMyWork(null);
         filtersBean.setMyWork(FunctionModuleType.TYPE_WORK.getCode());
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);

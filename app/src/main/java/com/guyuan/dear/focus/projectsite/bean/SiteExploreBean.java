@@ -3,6 +3,13 @@ package com.guyuan.dear.focus.projectsite.bean;
 import android.text.TextUtils;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.focus.projectsite.type.CheckGoodsSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.CheckSafeSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.CustomerAcceptanceSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
+import com.guyuan.dear.focus.projectsite.type.InstallDebugSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
+import com.guyuan.dear.focus.projectsite.type.SiteProjectSatisfyType;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.StringUtils;

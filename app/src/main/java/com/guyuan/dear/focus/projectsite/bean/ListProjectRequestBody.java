@@ -52,7 +52,7 @@ public class ListProjectRequestBody {
          /**
          * 来自模块类型
          */
-        private int myWork;
+        private Integer myWork;
 
         private String name;
         /**
@@ -68,11 +68,11 @@ public class ListProjectRequestBody {
             this.id = id;
         }
 
-        public int getMyWork() {
+        public Integer getMyWork() {
             return myWork;
         }
 
-        public void setMyWork(int myWork) {
+        public void setMyWork(Integer myWork) {
             this.myWork = myWork;
         }
 

@@ -58,7 +58,7 @@ public class InstallDebugStatusAdapter extends BaseRecyclerAdapter<ProjectSiteSt
 
         vBall.setBackgroundResource(item.getBallBg());
 
-        holder.setText(R.id.tv_product_status, position == listData.size() - 1 ? "实际开始" : item.getTitle());
+        holder.setText(R.id.tv_product_status, item.getTitle());
         holder.setText(R.id.tv_time, item.getCreateTime());
 
         holder.setText(R.id.tv_name, item.getName());

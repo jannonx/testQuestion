@@ -2,7 +2,7 @@ package com.guyuan.dear.focus.produce.bean;
 
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.focus.projectsite.bean.CustomerAcceptanceSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.CustomerAcceptanceSatisfyType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
 /**

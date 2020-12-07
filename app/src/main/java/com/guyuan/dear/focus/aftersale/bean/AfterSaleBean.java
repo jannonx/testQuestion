@@ -1,8 +1,7 @@
 package com.guyuan.dear.focus.aftersale.bean;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
-import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
 
 import java.io.Serializable;
 import java.util.List;

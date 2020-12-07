@@ -8,9 +8,8 @@ import androidx.annotation.NonNull;
 
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
-import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
+import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
 import com.guyuan.dear.R;
-import com.guyuan.dear.utils.LogUtils;
 
 import java.util.List;
 
