@@ -83,6 +83,7 @@ public class FocusPurchaseViewModel extends BaseViewModel {
         requestBody.setFilters(filtersBean);
         RxJavaHelper.build(this,
                 apiService.getPurchaseList(CommonUtils.getCommonRequestBody(requestBody)))
+                .showLoading(false)
                 .success(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
