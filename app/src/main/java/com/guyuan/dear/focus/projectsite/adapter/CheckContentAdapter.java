@@ -9,14 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
-import com.guyuan.dear.focus.projectsite.bean.CheckSafeSatisfyType;
-import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
+import com.guyuan.dear.focus.projectsite.type.CheckSafeSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
+import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
-import com.guyuan.dear.focus.projectsite.bean.SingleItemResultType;
+import com.guyuan.dear.focus.projectsite.type.SingleItemResultType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.R;
-import com.guyuan.dear.focus.projectsite.bean.SiteProjectSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.SiteProjectSatisfyType;
 import com.guyuan.dear.utils.GlideUtils;
 import com.guyuan.dear.utils.LogUtils;
 

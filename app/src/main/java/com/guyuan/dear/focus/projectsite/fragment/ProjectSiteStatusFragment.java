@@ -2,26 +2,19 @@ package com.guyuan.dear.focus.projectsite.fragment;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RelativeLayout;
 
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.bean.SimpleTabBean;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
-import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectSiteStatusAdapter;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteStatusBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.ScreenUtils;
-import com.guyuan.dear.work.projectsite.adapter.InstallDebugStatusAdapter;
 import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
-import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

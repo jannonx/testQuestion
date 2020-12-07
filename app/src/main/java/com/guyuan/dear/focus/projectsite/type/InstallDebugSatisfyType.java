@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.projectsite.bean;
+package com.guyuan.dear.focus.projectsite.type;
 
 
 import com.guyuan.dear.R;
@@ -11,29 +11,29 @@ import java.io.Serializable;
  * @since: 2020/11/10 15:31
  * @company: 固远（深圳）信息技术有限公司
  */
-public enum InstallDebugSatisfyInnerType implements Serializable {
+public enum InstallDebugSatisfyType implements Serializable {
     /**
-     *  状态（10待开始，20安装中，30完成,40暂停）
+     *  状态（10待开始，20,40调试中，30完工）
      */
     /**
      * 待开始
      */
-    TYPE_INSTALL_WAIT(10, "待安装", R.color.color_blue_1677ff,
+    TYPE_INSTALL_WAIT(10, "待开始", R.color.color_blue_1677ff,
             R.drawable.bg_blue_e7f1ff_corner_2),
     /**
-     * 安装中
+     * 调试中
      */
-    TYPE_INSTALL_ING(20, "安装中", R.color.color_blue_1677ff,
+    TYPE_INSTALL_ING(20, "调试中", R.color.color_blue_1677ff,
             R.drawable.bg_blue_e7f1ff_corner_2),
     /**
-     * 完成
+     * 完工
      */
-    TYPE_INSTALL_COMPLETE(30, "完成", R.color.color_green_00B578,
+    TYPE_INSTALL_COMPLETE(30, "完工", R.color.color_green_00B578,
             R.drawable.bg_green_d4fff1_corner_2),
     /**
-     * 暂停
+     * 异常
      */
-    TYPE_INSTALL_PAUSE(40, "暂停", R.color.color_orange_FF6010,
+    TYPE_INSTALL_PAUSE(40, "异常", R.color.color_orange_FF6010,
             R.drawable.bg_orange_ffece3_corner_2),
     /**
      * 未知状态
@@ -47,7 +47,7 @@ public enum InstallDebugSatisfyInnerType implements Serializable {
     private int textColor;
     private int textBgColor;
 
-    InstallDebugSatisfyInnerType(int code, String des, int textColor, int textBgColor) {
+    InstallDebugSatisfyType(int code, String des, int textColor, int textBgColor) {
         this.code = code;
         this.des = des;
         this.textColor = textColor;
@@ -56,9 +56,15 @@ public enum InstallDebugSatisfyInnerType implements Serializable {
 
     /**
      * 根据枚举code获取实例，用于switch
+     * 状态（10待开始，20,40调试中，30完工）
      */
-    public static InstallDebugSatisfyInnerType toType(int index) {
-        for (InstallDebugSatisfyInnerType type : InstallDebugSatisfyInnerType.values()) {
+    public static InstallDebugSatisfyType toType(int index) {
+//        if (index==10){
+//            return InstallDebugSatisfyType.TYPE_INSTALL_WAIT;
+//        }else if (index==20||index==40){
+//            return InstallDebugSatisfyType.TYPE_INSTALL_WAIT;
+//        }
+        for (InstallDebugSatisfyType type : InstallDebugSatisfyType.values()) {
             if (type.getCode() == index) {
                 return type;
             }
@@ -67,7 +73,7 @@ public enum InstallDebugSatisfyInnerType implements Serializable {
     }
 
     public static String toText(int type) {
-        return InstallDebugSatisfyInnerType.toType(type).getDes();
+        return InstallDebugSatisfyType.toType(type).getDes();
 
     }
 

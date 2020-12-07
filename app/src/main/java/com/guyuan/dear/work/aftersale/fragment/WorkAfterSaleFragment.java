@@ -14,13 +14,12 @@ import com.guyuan.dear.focus.aftersale.bean.EventSaleListRefresh;
 import com.guyuan.dear.focus.aftersale.bean.ListSaleRequestBody;
 import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
-import com.guyuan.dear.focus.projectsite.bean.FunctionModuleType;
+import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
 import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
-import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
 
 import java.util.ArrayList;
 import java.util.List;

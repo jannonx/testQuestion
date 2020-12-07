@@ -7,11 +7,8 @@ import android.widget.ImageView;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.customizeview.fullScreenShowFile.FullScreenShowActivity;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
-import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
 import com.guyuan.dear.utils.GlideUtils;
 import com.guyuan.dear.utils.LogUtils;
-import com.guyuan.dear.utils.StringUtils;
 
 import java.util.List;
 

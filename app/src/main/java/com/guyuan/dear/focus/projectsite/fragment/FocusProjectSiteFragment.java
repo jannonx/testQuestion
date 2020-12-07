@@ -10,7 +10,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProjectSiteBinding;
 import com.guyuan.dear.focus.projectsite.activity.ProjectReportClassifyActivity;
 import com.guyuan.dear.focus.projectsite.bean.ProjectOverViewBean;
-import com.guyuan.dear.focus.projectsite.bean.ProjectReportType;
+import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.LogUtils;
 

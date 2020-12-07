@@ -1,4 +1,4 @@
-package com.guyuan.dear.focus.projectsite.bean;
+package com.guyuan.dear.focus.projectsite.type;
 
 
 import java.io.Serializable;
