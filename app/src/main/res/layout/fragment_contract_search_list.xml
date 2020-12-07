@@ -17,6 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         <include layout="@layout/layout_no_data"
-            android:visibility="visible"/>
+            android:visibility="@{fragment_contract_search_list_vm.shouldShowNoData?View.VISIBLE:View.GONE}"/>
     </FrameLayout>
 </layout>

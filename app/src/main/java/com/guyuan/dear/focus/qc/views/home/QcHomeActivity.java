@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
+import com.guyuan.dear.focus.qc.views.abNormalList.AbnormalQcListFragment;
 import com.guyuan.dear.focus.qc.views.qcReportList.ReportListFragment;
 import com.guyuan.dear.focus.qc.views.qcSum.QcSummaryFragment;
 import com.guyuan.dear.utils.ConstantValue;
@@ -46,7 +47,7 @@ public class QcHomeActivity extends BaseTabActivity<ActivityBaseTabBinding, QcHo
         return new ArrayList<Fragment>() {
             {
                 add(QcSummaryFragment.getInstance());
-                add(ReportListFragment.getInstance(ReportListFragment.REPORT_TYPE_ONLY_REJECTED_REPORTS));
+                add(AbnormalQcListFragment.getInstance());
                 add(ReportListFragment.getInstance(ReportListFragment.REPORT_TYPE_SHOW_ALL_REPORTS));
             }
         };

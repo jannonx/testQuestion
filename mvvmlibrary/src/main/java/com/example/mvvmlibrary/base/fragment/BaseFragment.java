@@ -69,7 +69,7 @@ public abstract class BaseFragment extends Fragment {
     public void showToastTip(String message) {
         //第二个参数设为null，解决小米手机toast显示app名的问题
         Toast toast = Toast.makeText(getContext(), null, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setGravity(Gravity.BOTTOM, 0, 0);
         toast.setText(message);
         toast.show();
     }

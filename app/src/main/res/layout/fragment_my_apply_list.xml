@@ -9,14 +9,16 @@
             type="com.guyuan.dear.work.contractPause.views.myAppliedList.MyApplyListViewModel" />
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <tl.com.easy_recycleview_library.BaseRecyclerView
             android:id="@+id/fragment_my_apply_list_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <include
+            android:id="@+id/fragment_my_apply_list_no_data"
+            layout="@layout/layout_no_data"/>
+    </FrameLayout>
 </layout>

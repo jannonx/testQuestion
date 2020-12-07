@@ -29,8 +29,9 @@
                 android:layout_height="match_parent" />
 
             <include
+                android:id="@+id/fragment_contract_status_list_layout_no_data"
                 layout="@layout/layout_no_data"
-                android:visibility="visible" />
+                android:visibility="gone" />
         </FrameLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>

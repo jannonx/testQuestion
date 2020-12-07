@@ -37,7 +37,6 @@ public class ContractStatusListViewModel extends BaseDearViewModel {
     private MutableLiveData<Boolean> isAllExceptionListLoaded = new MutableLiveData<>(false);
     private MutableLiveData<Boolean> isAllTotalListLoaded = new MutableLiveData<>(false);
     private static final int PAGE_SIZE = 50;
-    public MutableLiveData<Boolean> shouldShowNoData=new MutableLiveData<>(true);
 
 
     public MutableLiveData<List<BaseContractExcptBean>> getPauseContractList() {
@@ -93,7 +92,6 @@ public class ContractStatusListViewModel extends BaseDearViewModel {
             } else {
                 pauseContractList.getValue().addAll(result);
                 pauseContractList.postValue(pauseContractList.getValue());
-                shouldShowNoData.postValue(false);
             }
         }
 
@@ -124,7 +122,6 @@ public class ContractStatusListViewModel extends BaseDearViewModel {
             } else {
                 restartContractList.getValue().addAll(result);
                 restartContractList.postValue(restartContractList.getValue());
-                shouldShowNoData.postValue(false);
             }
         }
 
@@ -145,7 +142,6 @@ public class ContractStatusListViewModel extends BaseDearViewModel {
                 } else {
                     exceptionContractList.getValue().addAll(result);
                     exceptionContractList.postValue(exceptionContractList.getValue());
-                    shouldShowNoData.postValue(false);
                 }
             }
         });
@@ -162,7 +158,6 @@ public class ContractStatusListViewModel extends BaseDearViewModel {
                 } else {
                     totalContractList.getValue().addAll(result);
                     totalContractList.postValue(totalContractList.getValue());
-                    shouldShowNoData.postValue(false);
                 }
             }
         });

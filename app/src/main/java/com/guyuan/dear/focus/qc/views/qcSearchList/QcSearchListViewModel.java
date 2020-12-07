@@ -1,13 +1,13 @@
 package com.guyuan.dear.focus.qc.views.qcSearchList;
 
-import androidx.lifecycle.MutableLiveData;
-
 import com.guyuan.dear.base.fragment.BaseDearViewModel;
 import com.guyuan.dear.focus.qc.beans.GenericQcReport;
 import com.guyuan.dear.focus.qc.repo.QcSearchListRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.lifecycle.MutableLiveData;
 
 /**
  * @author: 廖华凯
@@ -22,6 +22,7 @@ public class QcSearchListViewModel extends BaseDearViewModel {
     public MutableLiveData<Boolean> isAllLoaded = new MutableLiveData<>(false);
     private int currentPage = 1;
     private static final int PAGE_SIZE = 50;
+    public MutableLiveData<Boolean> shouldShowNoData = new MutableLiveData<>(true);
 
     public void updateSearchResult(String keyWord, int searchType) {
         addSubscription(repo.getSearchList(keyWord, searchType, currentPage++, PAGE_SIZE, callback));
@@ -30,11 +31,15 @@ public class QcSearchListViewModel extends BaseDearViewModel {
     private BaseNetCallback<List<GenericQcReport>> callback = new BaseNetCallback<List<GenericQcReport>>() {
         @Override
         protected void handleResult(List<GenericQcReport> result) {
-            if(result==null||result.isEmpty()){
+            if (result == null || result.isEmpty()) {
                 isAllLoaded.postValue(true);
-            }else {
+                if(reportList.getValue().isEmpty()){
+                    shouldShowNoData.postValue(true);
+                }
+            } else {
                 reportList.getValue().addAll(result);
                 isShouldNotifyDataSetChange.postValue(true);
+                shouldShowNoData.postValue(false);
             }
         }
     };
