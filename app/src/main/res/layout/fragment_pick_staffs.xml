@@ -14,7 +14,9 @@
         android:orientation="vertical"
         android:background="@color/white">
 
-        <include layout="@layout/layout_search_bar_for_staff"
+        <include
+            android:id="@+id/fragment_pick_staffs_hr_search_view"
+            layout="@layout/layout_search_bar_for_staff"
             app:onSelectSearchStaff="@{fragment_pick_staffs_vm.onSelectSearchStaff}"/>
         <View
             android:layout_width="match_parent"
