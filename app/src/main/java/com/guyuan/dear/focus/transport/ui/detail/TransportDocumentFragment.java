@@ -56,6 +56,9 @@ public class TransportDocumentFragment extends BaseListFragment<String,
             });
             recycleView.setLayoutManager(new GridLayoutManager(getContext(), 4));
             recycleView.setAdapter(adapter);
+            List<String> picList = new ArrayList<>();
+            picList.addAll(listData);
+            setListData(picList);
         }
     }
 

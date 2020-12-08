@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.approve.fragment.ApplyForLeaveFragment;
 import com.guyuan.dear.approve.fragment.PurchaseFragment;
-import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
 

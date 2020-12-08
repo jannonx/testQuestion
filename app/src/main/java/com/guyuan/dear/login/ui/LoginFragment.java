@@ -2,6 +2,7 @@ package com.guyuan.dear.login.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -9,10 +10,21 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
+import com.google.gson.Gson;
 import com.guyuan.dear.BuildConfig;
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.databinding.FragmentLoginBinding;
+import com.guyuan.dear.home.MainActivity;
+import com.guyuan.dear.login.data.AppMenusBean;
+import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.login.data.LoginViewModel;
+import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.SharedPreferencesUtils;
+
+import java.util.List;
+
+import io.reactivex.functions.Consumer;
 
 
 /**
@@ -71,7 +83,14 @@ public class LoginFragment extends BaseDataBindingFragment<FragmentLoginBinding,
             case R.id.login_tv:
                 String name = binding.etAccount.getText().toString();
                 String pwd = binding.etPw.getText().toString();
-                viewModel.checkLogin(name, pwd);
+                viewModel.checkLogin(name, pwd, new Consumer<Object>() {
+                    @Override
+                    public void accept(Object o) throws Exception {
+                        LoginBean loginBean = (LoginBean) o;
+                        showToastTip("登录成功");
+                        saveLoginData(loginBean);
+                    }
+                });
                 break;
 
             case R.id.iv_clear:
@@ -96,6 +115,28 @@ public class LoginFragment extends BaseDataBindingFragment<FragmentLoginBinding,
                 break;
         }
     }
+
+    private void saveLoginData(LoginBean newUser) {
+        Context context = DearApplication.getInstance();
+        List<AppMenusBean> menus = newUser.getAppMenus();
+        if (menus != null && menus.size() > 0) {
+            String name = binding.etAccount.getText().toString();
+            String pwd = binding.etPw.getText().toString();
+            DearApplication.getInstance().saveCacheData(ConstantValue.KEY_USER_NAME, name);
+            DearApplication.getInstance().saveCacheData(ConstantValue.KEY_USER_PW, pwd);
+            DearApplication.getInstance().saveCacheData(ConstantValue.USER_JSON_STRING, new Gson().toJson(newUser));
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            intent.putExtra(MainActivity.OPEN_TYPE, MainActivity.LOGIN);
+            startActivity(intent);
+            getActivity().finish();
+        } else {
+            SharedPreferencesUtils.removeData(context, ConstantValue.KEY_USER_NAME);
+            SharedPreferencesUtils.removeData(context, ConstantValue.KEY_USER_PW);
+            SharedPreferencesUtils.removeData(context, ConstantValue.USER_JSON_STRING);
+            showToastTip("用户角色未设置任何权限，请联系系统管理员！");
+        }
+    }
+
 
     @Override
     protected int getVariableId() {

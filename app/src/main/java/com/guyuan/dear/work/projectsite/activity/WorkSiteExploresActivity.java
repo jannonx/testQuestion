@@ -4,22 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseFileUploadActivity;
-import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
-import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
-import com.guyuan.dear.work.projectsite.fragment.CheckGoodsFragment;
 import com.guyuan.dear.work.projectsite.fragment.SiteExplorationFragment;
-import com.guyuan.dear.work.projectsite.fragment.WorkProjectReportListFragment;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import dagger.hilt.android.AndroidEntryPoint;

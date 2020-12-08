@@ -6,13 +6,9 @@ import android.os.Bundle;
 
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.focus.client.fragment.FocusClientDetailFragment;
-import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
-import com.guyuan.dear.focus.produce.fragment.FocusProduceClassifyFragment;
-import com.guyuan.dear.focus.produce.ui.FocusProduceActivity;
-import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.produce.data.WorkProduceViewModel;
 import com.guyuan.dear.work.produce.fragment.WorkProduceFragment;

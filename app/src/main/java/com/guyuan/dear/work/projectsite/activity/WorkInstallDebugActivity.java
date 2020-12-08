@@ -6,15 +6,13 @@ import android.os.Bundle;
 
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
-import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
-import com.guyuan.dear.work.projectsite.fragment.CheckGoodsFragment;
 import com.guyuan.dear.work.projectsite.fragment.InstallDebugFragment;
-import com.guyuan.dear.work.projectsite.fragment.WorkProjectReportListFragment;
 
 import dagger.hilt.android.AndroidEntryPoint;
 

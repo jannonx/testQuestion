@@ -11,6 +11,7 @@ import androidx.databinding.ViewDataBinding;
 import com.example.mvvmlibrary.base.activity.BaseActivity;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.activity.MineApplyListActivity;
 
@@ -18,7 +19,6 @@ import com.guyuan.dear.base.adapter.TagStaffAdapter;
 import com.guyuan.dear.customizeview.flowlayout.TagFlowLayout;
 import com.guyuan.dear.customizeview.flowlayout.TagAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
-import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.CommonUtils;

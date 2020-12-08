@@ -37,7 +37,7 @@ public class LoginViewModel extends BaseViewModel {
     }
 
 
-    public void checkLogin(String name, String pwd) {
+    public void checkLogin(String name, String pwd,Consumer success) {
         if (!name.equals("") && !pwd.equals("")) {
             this.name = name;
             this.pwd = pwd;
@@ -48,7 +48,7 @@ public class LoginViewModel extends BaseViewModel {
             String str = new Gson().toJson(loginBody);
             RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; " +
                     "charset=utf-8"), str);
-            login(body);
+            login(body,success);
         } else {
             getTip().setValue("请输入完整信息");
         }
@@ -59,42 +59,10 @@ public class LoginViewModel extends BaseViewModel {
         return name;
     }
 
-    public void login(RequestBody requestBody) {
+    public void login(RequestBody requestBody,Consumer success) {
         Disposable disposable = RxJavaHelper.build(this, loginRepository.getLoginData(requestBody))
-                .success(new Consumer<Object>() {
-                    @Override
-                    public void accept(Object o) throws Exception {
-                        loginBean = (LoginBean) o;
-                        getTip().setValue("登录成功");
-                        saveLoginData(loginBean);
-                        //getCallBack().postValue(loginBean);
-                    }
-                })
-                .fail(new ErrorResultBean() {
-                    @Override
-                    protected void onError(ErrorBean errorBean) {
-                        getTip().setValue(errorBean.getErrorResult());
-                       // getCallBack().setValue(errorBean);
-                    }
-                }).getHelper().flow();
+                .success(success).getHelper().flow();
         addSubscription(disposable);
     }
 
-    private void saveLoginData(LoginBean newUser) {
-        Context context = DearApplication.getInstance();
-        List<AppMenusBean> menus = newUser.getAppMenus();
-        if (menus != null && menus.size() > 0) {
-            DearApplication.getInstance().saveCacheData(ConstantValue.KEY_USER_NAME, name);
-            DearApplication.getInstance().saveCacheData(ConstantValue.KEY_USER_PW, pwd);
-            DearApplication.getInstance().saveCacheData(ConstantValue.USER_JSON_STRING, new Gson().toJson(newUser));
-            Bundle bundle = new Bundle();
-            bundle.putInt(MainActivity.OPEN_TYPE, MainActivity.LOGIN);
-            startActivity(MainActivity.class, bundle);
-        } else {
-            SharedPreferencesUtils.removeData(context, ConstantValue.KEY_USER_NAME);
-            SharedPreferencesUtils.removeData(context, ConstantValue.KEY_USER_PW);
-            SharedPreferencesUtils.removeData(context, ConstantValue.USER_JSON_STRING);
-            getTip().setValue("用户角色未设置任何权限，请联系系统管理员！");
-        }
-    }
 }

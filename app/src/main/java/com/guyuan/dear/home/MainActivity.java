@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.RadioGroup;
 
 import com.example.mvvmlibrary.base.activity.BaseNoToolbarActivity;
-import com.example.mvvmlibrary.base.data.BaseViewModel;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.analyse.AnalyseFragment;
 import com.guyuan.dear.base.app.DearApplication;
@@ -22,12 +22,9 @@ import com.guyuan.dear.home.data.MainViewModel;
 import com.guyuan.dear.login.data.AppMenusBean;
 import com.guyuan.dear.login.data.ChildrenBean;
 import com.guyuan.dear.login.data.LoginBean;
-import com.guyuan.dear.message.data.bean.MessageUnreadBean;
-import com.guyuan.dear.message.ui.MessageFragment;
 import com.guyuan.dear.mine.MineFragment;
 import com.guyuan.dear.office.OfficeFragment;
 import com.guyuan.dear.service.BackService;
-import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.WorkFragment;
@@ -42,7 +39,6 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 
 import dagger.hilt.android.AndroidEntryPoint;
 

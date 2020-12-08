@@ -150,6 +150,10 @@ public class FocusPurchaseBindingAdapter {
                 CommonBindingAdapter.setRightContentWithTitle(tv, String.format(tv.getResources()
                         .getString(R.string.focus_purchase_delay_reason), reason));
                 break;
+
+            default:
+                tv.setVisibility(View.GONE);
+                break;
         }
     }
 

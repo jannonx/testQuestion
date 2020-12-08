@@ -8,11 +8,10 @@ import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithoutToolbarBinding;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
 import com.guyuan.dear.focus.assess.data.bean.AssessListBean;
-import com.guyuan.dear.scan.util.ConstanceValues;
-import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
 import dagger.hilt.android.AndroidEntryPoint;

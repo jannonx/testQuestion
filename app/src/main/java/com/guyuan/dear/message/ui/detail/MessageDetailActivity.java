@@ -3,15 +3,12 @@ package com.guyuan.dear.message.ui.detail;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.message.data.MessageViewModel;
-import com.guyuan.dear.message.ui.MessageFragment;
-import com.guyuan.dear.utils.ActivityUtils;
-import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
 import dagger.hilt.android.AndroidEntryPoint;

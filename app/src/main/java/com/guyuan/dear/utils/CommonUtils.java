@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.example.mvvmlibrary.util.LogUtils;
 import com.example.mvvmlibrary.util.MediaFileUtils;
 import com.google.gson.Gson;

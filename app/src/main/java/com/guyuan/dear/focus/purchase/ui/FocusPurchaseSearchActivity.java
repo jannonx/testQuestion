@@ -9,10 +9,10 @@ import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithoutToolbarBinding;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
 import com.guyuan.dear.focus.purchase.data.bean.PurchaseListBean;
-import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
 import dagger.hilt.android.AndroidEntryPoint;

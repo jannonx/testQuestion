@@ -5,13 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.mvvmlibrary.base.activity.BaseNoToolbarActivity;
-import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithoutToolbarBinding;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
-import com.guyuan.dear.home.MainActivity;
-import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.login.data.LoginViewModel;
-import com.guyuan.dear.utils.ActivityUtils;
 
 import dagger.hilt.android.AndroidEntryPoint;
 

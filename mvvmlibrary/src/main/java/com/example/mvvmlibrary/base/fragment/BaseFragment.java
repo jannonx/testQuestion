@@ -1,9 +1,11 @@
 package com.example.mvvmlibrary.base.fragment;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -66,6 +68,14 @@ public abstract class BaseFragment extends Fragment {
 //        toast.show();
         ToastUtils.showToast(getContext(), message);
     }
+
+    public void showToastTip(String tip, int gravity) {
+        Toast toast = Toast.makeText(getContext(), null, Toast.LENGTH_SHORT);
+        toast.setGravity(gravity, 0, 0);
+        toast.setText(tip);
+        toast.show();
+    }
+
 
     public void showSnackBarTip(String message) {
         Snackbar.make(rootView, message, Snackbar.LENGTH_SHORT).show();

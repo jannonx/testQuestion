@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.base.adapter.ScanPicAdapter;
+import com.guyuan.dear.base.adapter.TagStaffAdapter;
 import com.guyuan.dear.base.bean.PicBean;
 import com.guyuan.dear.customizeview.TabLayoutHelper;
 import com.guyuan.dear.customizeview.fullScreenShowFile.FullScreenShowActivity;
@@ -21,9 +23,12 @@ import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
 import com.guyuan.dear.focus.assess.data.bean.AssessDetailBean;
 import com.guyuan.dear.focus.assess.data.bean.AuditContentBean;
 import com.guyuan.dear.focus.assess.data.bean.AuditFormResultBean;
+import com.guyuan.dear.focus.assess.data.bean.PartnerBean;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.StringUtils;
+import com.guyuan.dear.work.contractPause.beans.StaffBean;
+import com.sun.jna.platform.win32.OaIdl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +78,10 @@ public class FocusAssessContentFragment extends BaseDataBindingFragment<Fragment
         List<Fragment> fragmentList = new ArrayList<>();
         List<AuditFormResultBean> resultList = detailBean.getAuditFormResultVOList();
         List<AuditContentBean> pointList = detailBean.getAuditContentList();
+        List<PartnerBean> partnerBeanList = detailBean.getAuditStaffVOList();
+
+        setPartner(partnerBeanList);
+
         if (resultList != null && resultList.size() > 0) {
             setImg(resultList);
             FocusAssessResultFragment resultFragment = FocusAssessResultFragment.newInstance(resultList);
@@ -106,6 +115,25 @@ public class FocusAssessContentFragment extends BaseDataBindingFragment<Fragment
             binding.imgRv.setPullRefreshEnabled(false);
         }
     }
+
+    private void setPartner(List<PartnerBean> partnerBeanList) {
+        if (partnerBeanList != null && partnerBeanList.size() > 0) {
+            binding.partnerLl.setVisibility(View.VISIBLE);
+            List<StaffBean> staffBeanList = new ArrayList<>();
+            for (PartnerBean partnerBean : partnerBeanList) {
+                StaffBean staffBean = new StaffBean();
+                staffBean.setId(partnerBean.getId());
+                staffBean.setName(partnerBean.getName());
+                staffBean.setImgUrl(partnerBean.getUrl());
+                staffBeanList.add(staffBean);
+            }
+            TagStaffAdapter staffAdapter = new TagStaffAdapter(getContext(), staffBeanList, false);
+            binding.partnerTl.setAdapter(staffAdapter);
+        } else {
+            binding.partnerLl.setVisibility(View.GONE);
+        }
+    }
+
 
     private List<PicBean> getImgList(List<AuditFormResultBean> resultList) {
         List<PicBean> picBeanList = new ArrayList<>();

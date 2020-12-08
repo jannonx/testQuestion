@@ -56,8 +56,12 @@ public class GoodsSignBindingAdapter {
     public static void setGoodsStatus(TextView tv, int status) {
         if (status == 1) {
             tv.setText("待签收");
+            tv.setTextAppearance(R.style.TextTagBlue);
+            tv.setBackgroundResource(R.drawable.bg_assess);
         } else if (status == 2) {
             tv.setText("已签收");
+            tv.setTextAppearance(R.style.TextTagGreen);
+            tv.setBackgroundResource(R.drawable.bg_pass);
         }
     }
 
