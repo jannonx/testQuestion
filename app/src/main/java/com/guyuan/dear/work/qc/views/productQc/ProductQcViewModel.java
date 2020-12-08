@@ -190,6 +190,7 @@ public class ProductQcViewModel extends BaseDearViewModel {
             return;
         } else {
             body.setSubCodeId(batchInfo.getSubmitId());
+            body.setTotalNum(batchInfo.getTotalNumber());
         }
         if (isNeedVerify.getValue()) {
             body.setApproveFlag(1);

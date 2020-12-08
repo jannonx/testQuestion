@@ -33,7 +33,7 @@ public class NetMaterialBean {
     private String model;//型号
     private String productCode;//
     private String productName;//
-    private int productNum;//
+    private long productNum;//
     private String productUnit;//
     private String remarks;//
 
@@ -77,11 +77,11 @@ public class NetMaterialBean {
         this.productName = productName;
     }
 
-    public int getProductNum() {
+    public long getProductNum() {
         return productNum;
     }
 
-    public void setProductNum(int productNum) {
+    public void setProductNum(long productNum) {
         this.productNum = productNum;
     }
 

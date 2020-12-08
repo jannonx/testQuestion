@@ -12,7 +12,6 @@ import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.google.gson.Gson;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
-import com.guyuan.dear.customizeview.itemDecorator.LinearVerticalPaddingDecorator;
 import com.guyuan.dear.customizeview.itemDecorator.LinearVerticalPaddingDecorator2P0;
 import com.guyuan.dear.databinding.FragmentAllQcReportListBinding;
 import com.guyuan.dear.focus.qc.adapters.AllQcListAdapter;
@@ -30,6 +29,7 @@ import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
 
+import java.util.Calendar;
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerView;
@@ -88,7 +88,11 @@ public class ReportListFragment extends BaseMvvmFragment<FragmentAllQcReportList
 
     @Override
     protected void initData() {
-        dateTo = System.currentTimeMillis();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        dateTo = calendar.getTimeInMillis();
         dateFrom = CalenderUtils.getInstance().getXMonthsAgoInYearMonthFormat(dateTo, 3);
         Bundle arguments = getArguments();
         reportType = arguments.getInt(ConstantValue.KEY_REPORT_TYPE, REPORT_TYPE_SHOW_ALL_REPORTS);
@@ -147,7 +151,7 @@ public class ReportListFragment extends BaseMvvmFragment<FragmentAllQcReportList
                 System.currentTimeMillis(), dateTo, Type.YEAR_MONTH_DAY, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
-                        if (dateFrom > dateTo) {
+                        if (dateFrom > millseconds) {
                             showToastTip("结束时间不能小于开始时间。");
                         } else {
                             dateTo = millseconds;
@@ -197,7 +201,7 @@ public class ReportListFragment extends BaseMvvmFragment<FragmentAllQcReportList
         wrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(wrapper);
-        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0(12, 0,12,12,16));
+        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0(12, 0, 12, 12, 16));
         recyclerView.setLoadMoreEnabled(true);
         recyclerView.setPullRefreshEnabled(false);
         recyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {

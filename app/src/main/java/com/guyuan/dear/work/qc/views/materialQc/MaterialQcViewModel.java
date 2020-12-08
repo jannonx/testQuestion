@@ -40,7 +40,7 @@ public class MaterialQcViewModel extends BaseDearViewModel {
     /**
      * 1 通过 2 不通过
      */
-    private MutableLiveData<Integer> reportResult = new MutableLiveData<>();
+    private MutableLiveData<Integer> reportResult = new MutableLiveData<>(1);
     private MutableLiveData<String> comments = new MutableLiveData<>();
     private MutableLiveData<Boolean> isNeedVerify = new MutableLiveData<>(false);
     private MutableLiveData<MaterialInfo> selectedMaterial = new MutableLiveData<>();
@@ -245,6 +245,7 @@ public class MaterialQcViewModel extends BaseDearViewModel {
             return;
         } else {
             body.setSubCodeId(material.getId());
+            body.setTotalNum(material.getQuantity());
         }
         if (isNeedVerify.getValue()) {
             body.setApproveFlag(1);
@@ -300,8 +301,13 @@ public class MaterialQcViewModel extends BaseDearViewModel {
         } else {
             body.setQualityRemark(comment);
         }
-
-        body.setQualityResult(getReportResult().getValue());
+        Integer result = getReportResult().getValue();
+        if(result==null){
+            showToast("请选择报告结果。");
+            return;
+        }else {
+            body.setQualityResult(result);
+        }
         BaseQcApproachBean approachBean = selectedQcApproach.getValue();
         if (approachBean == null) {
             showToast("请选择质检方式");
@@ -338,7 +344,7 @@ public class MaterialQcViewModel extends BaseDearViewModel {
         qcApproachList.postValue(new ArrayList<>());
         materialList.postValue(new ArrayList<>());
         sampleSize.postValue("0");
-        reportResult.postValue(null);
+        reportResult.postValue(1);
         comments.postValue("");
         selectedMaterial.postValue(null);
         selectedProject.postValue(null);

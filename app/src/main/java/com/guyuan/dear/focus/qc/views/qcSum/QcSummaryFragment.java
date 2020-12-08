@@ -127,7 +127,7 @@ public class QcSummaryFragment extends BaseMvvmFragment<FragmentQcSummaryBinding
                 System.currentTimeMillis(), dateTo, Type.YEAR_MONTH_DAY, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
-                        if (dateFrom > dateTo) {
+                        if (dateFrom > millseconds) {
                             showToastTip("结束时间不能小于开始时间。");
                         } else {
                             dateTo = millseconds;
