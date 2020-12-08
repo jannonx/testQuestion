@@ -6,8 +6,8 @@ import android.os.Bundle;
 
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
-import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.assess.data.WorkAssessViewModel;
 

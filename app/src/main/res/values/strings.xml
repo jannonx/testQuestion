@@ -481,6 +481,8 @@
     <string name="work_matter_apply_time">审核时间：%s</string>
     <string name="work_matter_apply_number">领用数量：%d</string>
 
+    <!--我的工作-货物签收-->
+    <string name="work_goods_sign_tip">重要提醒：请认真核对实际到货产品信息和数量是否一致，谢谢！</string>
 
     <!--掌上办公-审批-->
     <string name="office_approval_duty_unit">责任单位：%s</string>

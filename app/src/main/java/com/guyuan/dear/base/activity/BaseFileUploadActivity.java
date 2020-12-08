@@ -18,6 +18,8 @@ import com.guyuan.dear.utils.FileUtils;
 import com.guyuan.dear.utils.ImgCompressor;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -136,7 +138,7 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
         if (currentPhotoList != null) {
             FilePickerBuilder.getInstance().setMaxCount(maxSelectImageNumber)
                     .setSelectedFiles(currentPhotoList)
-                    .enableVideoPicker(true)
+                    .enableVideoPicker(false)
                     .setActivityTheme(R.style.LibAppTheme)
                     .pickPhoto(this);
         }
@@ -285,9 +287,13 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
     protected Map<String, RequestBody> richFilesToMaps(List<File> files) {
         Map<String, RequestBody> map = new HashMap<>();
         for (File file : files) {
-            RequestBody requestBody = RequestBody.create(MediaType.parse(
-                    MediaFileUtils.isImageFileType(file.getPath()) ? "image/png" : "multipart/form-data"), file);
-            map.put("file\"; filename=\"" + file.getName(), requestBody);
+            try {
+                RequestBody requestBody = RequestBody.create(MediaType.parse(
+                        MediaFileUtils.isImageFileType(file.getPath()) ? "image/png" : "multipart/form-data"), file);
+                map.put("file\"; filename=\"" + URLEncoder.encode(file.getName(), "UTF-8"), requestBody);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
         }
         return map;
     }

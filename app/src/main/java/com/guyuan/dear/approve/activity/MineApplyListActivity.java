@@ -4,17 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.approve.fragment.MineApplyListFragment;
-import com.guyuan.dear.utils.ActivityUtils;
 
-
-import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 

@@ -11,7 +11,7 @@ import com.guyuan.dear.net.resultBeans.NetProductInfo;
 public class ProductInfo {
     private String productId;
     private String productName;
-    private int quantity;
+    private long quantity;
     private String unit;
 
     public ProductInfo(NetProductInfo src) {
@@ -37,11 +37,11 @@ public class ProductInfo {
         this.productName = productName;
     }
 
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
 

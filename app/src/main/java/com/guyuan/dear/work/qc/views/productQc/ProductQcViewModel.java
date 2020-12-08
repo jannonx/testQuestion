@@ -15,6 +15,7 @@ import com.guyuan.dear.work.qc.repo.ProductQcRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.disposables.Disposable;
 
@@ -42,6 +43,10 @@ public class ProductQcViewModel extends BaseDearViewModel {
     public MutableLiveData<Integer> reportResult = new MutableLiveData<>();
     public MutableLiveData<String> comments = new MutableLiveData<>();
     public MutableLiveData<Boolean> isNeedVerify = new MutableLiveData<>(false);
+    /**
+     * 是否要忽略post数据为空时相关提示
+     */
+    public AtomicBoolean shouldShowToastNoData = new AtomicBoolean(false);
 
 
     /**
@@ -82,6 +87,7 @@ public class ProductQcViewModel extends BaseDearViewModel {
 
 
     public Disposable getProjectListFromNet() {
+        shouldShowToastNoData.set(true);
         return repo.getProductProjectListFromNet(new BaseNetCallback<List<BaseProjectBean>>() {
             @Override
             protected void handleResult(List<BaseProjectBean> result) {
@@ -93,6 +99,7 @@ public class ProductQcViewModel extends BaseDearViewModel {
     }
 
     public Disposable getQcApproachesFromNet() {
+        shouldShowToastNoData.set(true);
         return repo.getQcApproaches(new BaseNetCallback<List<BaseQcApproachBean>>() {
             @Override
             protected void handleResult(List<BaseQcApproachBean> result) {
@@ -179,10 +186,11 @@ public class ProductQcViewModel extends BaseDearViewModel {
         }
         BaseProductBatchInfo batchInfo = selectedProductBatch.getValue();
         if (batchInfo == null) {
-            showToast("请选择产品");
+            showToast("请选择出厂编号");
             return;
         } else {
             body.setSubCodeId(batchInfo.getSubmitId());
+            body.setTotalNum(batchInfo.getTotalNumber());
         }
         if (isNeedVerify.getValue()) {
             body.setApproveFlag(1);
@@ -225,7 +233,7 @@ public class ProductQcViewModel extends BaseDearViewModel {
 
         String sampleSize = this.sampleSize.getValue();
         if (TextUtils.isEmpty(sampleSize) || "0".equals(sampleSize)) {
-            showToast("请输入抽检数");
+            showToast("请输入质检数量");
             return;
         } else {
             body.setQualityNum(Integer.valueOf(sampleSize));
@@ -295,5 +303,6 @@ public class ProductQcViewModel extends BaseDearViewModel {
         selectedProject.postValue(null);
         selectedQcApproach.postValue(null);
         isCheckAllProducts.postValue(false);
+        shouldShowToastNoData.set(false);
     }
 }

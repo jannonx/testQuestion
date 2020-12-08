@@ -84,7 +84,7 @@ public class ClockInBindingAdapter {
                 break;
             case ATTENDANCE_STATE_OFF_WORK_OUT_SIDE_WORK_AREA:
             case ATTENDANCE_STATE_OFF_WORK_IN_WORK_AREA:
-                view.setText("已签退");
+                view.setText("下班打卡");
                 break;
             case ATTENDANCE_STATE_NOT_PUNCHED_OUT_SIDE_WORK_AREA:
             default:

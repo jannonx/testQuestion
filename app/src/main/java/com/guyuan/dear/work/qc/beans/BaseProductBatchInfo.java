@@ -50,4 +50,14 @@ public class BaseProductBatchInfo {
     public void setSubmitId(int submitId) {
         this.submitId = submitId;
     }
+
+    public long getTotalNumber(){
+        long count=0;
+        if(products!=null&&!products.isEmpty()){
+            for (ProductInfo info : products) {
+                count+=info.getQuantity();
+            }
+        }
+        return count;
+    }
 }

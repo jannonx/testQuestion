@@ -8,24 +8,16 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
-import androidx.appcompat.widget.Toolbar;
 
 import com.example.mvvmlibrary.base.activity.BaseNoToolbarActivity;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
-import com.example.mvvmlibrary.util.LogUtils;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.ActivityScanBinding;
 import com.guyuan.dear.scan.camera.CameraFragment;
-import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
-
-import org.greenrobot.eventbus.EventBus;
-import io.reactivex.disposables.Disposable;
 
 /**
  * 二维码扫描界面

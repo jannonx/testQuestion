@@ -10,7 +10,6 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.focus.purchase.data.FocusPurchaseViewModel;
 
 import com.guyuan.dear.focus.quality.fragment.QualityDetailFragment;
-import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
 import dagger.hilt.android.AndroidEntryPoint;

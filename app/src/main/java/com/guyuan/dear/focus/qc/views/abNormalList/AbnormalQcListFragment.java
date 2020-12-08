@@ -2,11 +2,15 @@ package com.guyuan.dear.focus.qc.views.abNormalList;
 
 import android.view.View;
 
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.google.gson.Gson;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
-import com.guyuan.dear.customizeview.itemDecorator.LinearVerticalPaddingDecorator;
+import com.guyuan.dear.customizeview.itemDecorator.LinearVerticalPaddingDecorator2P0;
 import com.guyuan.dear.databinding.FragmentAbnormalQcReportListBinding;
 import com.guyuan.dear.focus.qc.adapters.AllQcListAdapter;
 import com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport;
@@ -15,13 +19,15 @@ import com.guyuan.dear.focus.qc.beans.GenericQcReport;
 import com.guyuan.dear.focus.qc.views.materialQcDetail.MaterialQcReportDetailActivity;
 import com.guyuan.dear.focus.qc.views.productQcDetail.ProductQcReportDetailActivity;
 import com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity;
+import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
+import com.jzxiang.pickerview.TimePickerDialog;
+import com.jzxiang.pickerview.data.Type;
+import com.jzxiang.pickerview.listener.OnDateSetListener;
 
+import java.util.Calendar;
 import java.util.List;
 
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import tl.com.easy_recycleview_library.BaseRecyclerView;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
@@ -41,7 +47,7 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
     private BaseRecyclerViewAdapter wrapper;
     private List<GenericQcReport> list;
 
-    public static AbnormalQcListFragment getInstance(){
+    public static AbnormalQcListFragment getInstance() {
         return new AbnormalQcListFragment();
     }
 
@@ -52,7 +58,11 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
 
     @Override
     protected void initData() {
-        dateTo = System.currentTimeMillis();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        dateTo = calendar.getTimeInMillis();
         dateFrom = CalenderUtils.getInstance().getXMonthsAgoInYearMonthFormat(dateTo, 3);
         getViewModel().searchType.postValue(QcSearchListActivity.SEARCH_TYPE_ALL_REJECTED_REPORTS);
         resetAndSearchQcReportsByTimePeriod(dateFrom, dateTo);
@@ -83,7 +93,7 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
         wrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(wrapper);
-        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator(12, 16));
+        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0(12, 0, 12, 12, 16));
         recyclerView.setLoadMoreEnabled(true);
         recyclerView.setPullRefreshEnabled(false);
         recyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -117,7 +127,40 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
 
     @Override
     protected void initListeners() {
+        getViewModel().setOnClickSelectTimePeriod(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectStartTime();
+            }
+        });
 
+    }
+
+    private void selectStartTime() {
+        AlertDialogUtils.pickTime(getParentFragmentManager(), "请选择起始时间", 0,
+                System.currentTimeMillis(), dateFrom, Type.YEAR_MONTH_DAY, new OnDateSetListener() {
+                    @Override
+                    public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
+                        dateFrom = millseconds;
+                        selectEndTime();
+                    }
+                });
+    }
+
+    private void selectEndTime() {
+        AlertDialogUtils.pickTime(getParentFragmentManager(), "请选择结束时间", dateFrom,
+                System.currentTimeMillis(), dateTo, Type.YEAR_MONTH_DAY, new OnDateSetListener() {
+                    @Override
+                    public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
+                        if (dateFrom > millseconds) {
+                            showToastTip("结束时间不能小于开始时间。");
+                        } else {
+                            dateTo = millseconds;
+                            resetAndSearchQcReportsByTimePeriod(dateFrom, dateTo);
+                        }
+
+                    }
+                });
     }
 
     private Observer<List<GenericQcReport>> observerUpdateItem = new Observer<List<GenericQcReport>>() {
@@ -139,6 +182,6 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
 
     @Override
     protected int getLayoutID() {
-        return R.layout.fragment_abnormal__qc_report_list;
+        return R.layout.fragment_abnormal_qc_report_list;
     }
 }

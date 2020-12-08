@@ -24,6 +24,7 @@ import androidx.appcompat.widget.AppCompatEditText;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.mvvmlibrary.R;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.example.mvvmlibrary.util.AlertDialogUtils;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -47,6 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutID());
         fragmentManager = getSupportFragmentManager();
+        ActivityUtils.addActivity(this.getClass().getSimpleName(), this);
         init( savedInstanceState);
     }
 

@@ -16,6 +16,7 @@
         android:orientation="vertical">
 
         <com.guyuan.dear.customizeview.contractSearchBar.ContractSearchBar
+            android:id="@+id/fragment_contract_status_list_contract_search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

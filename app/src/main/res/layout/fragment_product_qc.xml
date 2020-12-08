@@ -336,7 +336,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:gravity="start|top"
-                        android:hint="请输入原因，最长不超过240个字符。"
+                        android:hint="请输入原因。"
                         android:padding="@dimen/dp_12"
                         android:text="@={fragment_product_qc_vm.comments}" />
                 </FrameLayout>

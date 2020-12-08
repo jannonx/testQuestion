@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
+import com.guyuan.dear.customizeview.contractSearchBar.ContractSearchBar;
 import com.guyuan.dear.databinding.FragmentContractStatusListBinding;
 import com.guyuan.dear.databinding.LayoutNoDataBinding;
 import com.guyuan.dear.focus.contract.adapter.ContractExceptionOrTotalAdapter;
@@ -22,7 +23,6 @@ import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
 import com.guyuan.dear.focus.contract.view.contractApplyDetail.ContractApplyDetailActivity;
 import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
-import com.sun.jna.platform.win32.Winspool;
 
 import java.util.List;
 
@@ -69,7 +69,9 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
 
     /**
      * @param statusType {@link ContractStatusListFragment#STATUS_TYPE_ON_PAUSE}
-     * {@link ContractStatusListFragment#STATUS_TYPE_RESTART}
+     *                   {@link ContractStatusListFragment#STATUS_TYPE_RESTART}
+     *                   {@link ContractStatusListFragment#STATUS_TYPE_EXCEPTION}
+     *                   {@link ContractStatusListFragment#STATUS_TYPE_TOTAL}
      * @return
      */
     public static ContractStatusListFragment getInstance(int statusType) {
@@ -95,6 +97,7 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
     @Override
     protected void initViews() {
         mNoDataSign = getViewDataBinding().fragmentContractStatusListLayoutNoData;
+        ContractSearchBar searchBar = getViewDataBinding().fragmentContractStatusListContractSearchBar;
         switch (statusType) {
             case STATUS_TYPE_ON_PAUSE:
                 initPauseList();
@@ -104,9 +107,11 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
                 break;
             case STATUS_TYPE_TOTAL:
                 initTotal();
+                searchBar.setSearchType(ContractStatusListFragment.STATUS_TYPE_TOTAL);
                 break;
             case STATUS_TYPE_EXCEPTION:
                 initException();
+                searchBar.setSearchType(ContractStatusListFragment.STATUS_TYPE_EXCEPTION);
                 break;
             default:
                 break;
@@ -145,7 +150,7 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
         getViewModel().getRestartContractList().observe(getViewLifecycleOwner(), new Observer<List<RestartedContractBean>>() {
             @Override
             public void onChanged(List<RestartedContractBean> beans) {
-                if(!beans.isEmpty()){
+                if (!beans.isEmpty()) {
                     shouldShowNoData.postValue(false);
                 }
                 wrapper.notifyDataSetChanged();
@@ -186,7 +191,7 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
         getViewModel().getPauseContractList().observe(getViewLifecycleOwner(), new Observer<List<BaseContractExcptBean>>() {
             @Override
             public void onChanged(List<BaseContractExcptBean> baseContractExcptBeans) {
-                if(!baseContractExcptBeans.isEmpty()){
+                if (!baseContractExcptBeans.isEmpty()) {
                     shouldShowNoData.postValue(false);
                 }
                 wrapper.notifyDataSetChanged();
@@ -209,7 +214,7 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
             @Override
             public void onItemClick(View view, int i) {
                 ContractBean.ContentBean bean = getViewModel().getExceptionContractList().getValue().get(i);
-                ContractDetailActivity.start(getActivity(),"合同异常详情",bean.getId());
+                ContractDetailActivity.start(getActivity(), "合同异常详情", bean.getId());
             }
         });
         view.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -227,7 +232,7 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
         getViewModel().getExceptionContractList().observe(getViewLifecycleOwner(), new Observer<List<ContractBean.ContentBean>>() {
             @Override
             public void onChanged(List<ContractBean.ContentBean> baseContractExcptBeans) {
-                if(!baseContractExcptBeans.isEmpty()){
+                if (!baseContractExcptBeans.isEmpty()) {
                     shouldShowNoData.postValue(false);
                 }
                 wrapper.notifyDataSetChanged();
@@ -250,7 +255,7 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
             @Override
             public void onItemClick(View view, int i) {
                 ContractBean.ContentBean bean = getViewModel().getTotalContractList().getValue().get(i);
-                ContractDetailActivity.start(getActivity(),"合同详情",bean.getId());
+                ContractDetailActivity.start(getActivity(), "合同详情", bean.getId());
             }
         });
         view.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -268,7 +273,7 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
         getViewModel().getTotalContractList().observe(getViewLifecycleOwner(), new Observer<List<ContractBean.ContentBean>>() {
             @Override
             public void onChanged(List<ContractBean.ContentBean> baseContractExcptBeans) {
-                if(!baseContractExcptBeans.isEmpty()){
+                if (!baseContractExcptBeans.isEmpty()) {
                     shouldShowNoData.postValue(false);
                 }
                 adapter.notifyDataSetChanged();

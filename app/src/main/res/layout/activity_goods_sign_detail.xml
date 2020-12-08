@@ -13,154 +13,174 @@
             type="com.guyuan.dear.work.goodssign.data.GoodsSignViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:elevation="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
-            <include
-                android:id="@+id/toolbar_container"
-                layout="@layout/toolbar" />
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:elevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        </com.google.android.material.appbar.AppBarLayout>
+                <include
+                    android:id="@+id/toolbar_container"
+                    layout="@layout/toolbar" />
 
-        <TextView
-            android:id="@+id/customer_name_tv"
-            style="@style/TextBigBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="16dp"
-            android:text="@{goodsSignViewModel.goodsSignDetailMLD.supplierName}"
-            android:textSize="@dimen/sp_14"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/app_bar"
-            tools:text="深圳固远" />
-
-        <View
-            android:id="@+id/view19"
-            style="@style/DivideLine"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/customer_name_tv" />
-
-        <TextView
-            android:id="@+id/contract_name_tv"
-            style="@style/TextNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{String.format(@string/work_goods_sign_contract,goodsSignViewModel.goodsSignDetailMLD.contractCode)}"
-            app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/view19"
-            tools:text="@string/work_goods_sign_contract" />
-
-        <TextView
-            android:id="@+id/follow_person_name_tv"
-            style="@style/TextNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{String.format(@string/work_goods_sign_person,goodsSignViewModel.goodsSignDetailMLD.followName)}"
-            app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/contract_name_tv"
-            tools:text="@string/work_goods_sign_person" />
-
-        <TextView
-            android:id="@+id/textView23"
-            style="@style/TextNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{String.format(@string/work_goods_sign_time,goodsSignViewModel.goodsSignDetailMLD.arrivalTime) }"
-            android:textColor="#1890FF"
-            app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/follow_person_name_tv"
-            tools:text="@string/work_goods_sign_time" />
-
-        <View
-            android:id="@+id/view20"
-            style="@style/DivideLine"
-            android:layout_height="@dimen/dp_8"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView23" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            android:padding="@dimen/dp_12"
-            app:layout_constraintBottom_toTopOf="@+id/goods_all_commit_tv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/view20">
+            </com.google.android.material.appbar.AppBarLayout>
 
             <TextView
-                android:id="@+id/textView25"
+                android:id="@+id/customer_name_tv"
                 style="@style/TextBigBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
-                android:text="产品列表"
-                android:textSize="@dimen/sp_14" />
+                android:text="@{goodsSignViewModel.goodsSignDetailMLD.supplierName}"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/app_bar"
+                tools:text="深圳固远" />
 
-            <tl.com.easy_recycleview_library.BaseRecyclerView
-                android:id="@+id/goods_product_rv"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+            <View
+                android:id="@+id/view19"
+                style="@style/DivideLine"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
-                android:layout_weight="1"
-                app:contractID="@{goodsSignViewModel.goodsSignDetailMLD.id}"
-                app:listData="@{goodsSignViewModel.goodsSignDetailMLD.equipmentList}"
-                app:viewModel="@{goodsSignViewModel}" />
-
-            <TextView
-                android:id="@+id/textView26"
-                style="@style/TextBigBold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_24"
-                android:text="原材料列表"
-                android:textSize="@dimen/sp_14" />
-
-            <tl.com.easy_recycleview_library.BaseRecyclerView
-                android:id="@+id/goods_material_rv"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="12dp"
-                android:layout_weight="1"
-                app:contractID="@{goodsSignViewModel.goodsSignDetailMLD.id}"
+                android:layout_marginEnd="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView26"
-                app:listData="@{goodsSignViewModel.goodsSignDetailMLD.materialList}"
-                app:viewModel="@{goodsSignViewModel}" />
-        </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/customer_name_tv" />
+
+            <TextView
+                android:id="@+id/contract_name_tv"
+                style="@style/TextNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@{String.format(@string/work_goods_sign_contract,goodsSignViewModel.goodsSignDetailMLD.contractCode)}"
+                app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
+                app:layout_constraintTop_toBottomOf="@+id/view19"
+                tools:text="@string/work_goods_sign_contract" />
+
+            <TextView
+                android:id="@+id/follow_person_name_tv"
+                style="@style/TextNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@{String.format(@string/work_goods_sign_person,goodsSignViewModel.goodsSignDetailMLD.followName)}"
+                app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
+                app:layout_constraintTop_toBottomOf="@+id/contract_name_tv"
+                tools:text="@string/work_goods_sign_person" />
+
+            <TextView
+                android:id="@+id/textView23"
+                style="@style/TextNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@{String.format(@string/work_goods_sign_time,goodsSignViewModel.goodsSignDetailMLD.arrivalTime) }"
+                android:textColor="#1890FF"
+                app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
+                app:layout_constraintTop_toBottomOf="@+id/follow_person_name_tv"
+                tools:text="@string/work_goods_sign_time" />
+
+            <View
+                android:id="@+id/view20"
+                style="@style/DivideLine"
+                android:layout_height="@dimen/dp_8"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_12"
+                app:layout_constraintBottom_toTopOf="@+id/goods_tip_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/customer_name_tv"
+                app:layout_constraintTop_toBottomOf="@+id/view20">
+
+                <TextView
+                    android:id="@+id/textView25"
+                    style="@style/TextBigBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="产品列表"
+                    android:textSize="@dimen/sp_14" />
+
+                <tl.com.easy_recycleview_library.BaseRecyclerView
+                    android:id="@+id/goods_product_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="1"
+                    app:contractID="@{goodsSignViewModel.goodsSignDetailMLD.id}"
+                    app:listData="@{goodsSignViewModel.goodsSignDetailMLD.equipmentList}"
+                    app:viewModel="@{goodsSignViewModel}" />
+
+                <TextView
+                    android:id="@+id/textView26"
+                    style="@style/TextBigBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_24"
+                    android:text="原材料列表"
+                    android:textSize="@dimen/sp_14" />
+
+                <tl.com.easy_recycleview_library.BaseRecyclerView
+                    android:id="@+id/goods_material_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="1"
+                    app:contractID="@{goodsSignViewModel.goodsSignDetailMLD.id}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView26"
+                    app:listData="@{goodsSignViewModel.goodsSignDetailMLD.materialList}"
+                    app:viewModel="@{goodsSignViewModel}" />
+            </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/goods_all_commit_tv"
-            style="@style/commit_btn"
-            android:layout_marginBottom="24dp"
-            android:text="全部到货"
-            android:visibility="gone"
-            app:equipmentList="@{goodsSignViewModel.goodsSignDetailMLD.equipmentList}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:materialList="@{goodsSignViewModel.goodsSignDetailMLD.materialList}"
-            tools:visibility="visible" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/goods_tip_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:text="@string/work_goods_sign_tip"
+                android:textColor="#F04864"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintBottom_toTopOf="@+id/goods_all_commit_tv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/goods_all_commit_tv"
+                style="@style/commit_btn"
+                android:layout_marginBottom="24dp"
+                android:text="全部到货"
+                android:visibility="gone"
+                app:equipmentList="@{goodsSignViewModel.goodsSignDetailMLD.equipmentList}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:materialList="@{goodsSignViewModel.goodsSignDetailMLD.materialList}"
+                tools:visibility="visible" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

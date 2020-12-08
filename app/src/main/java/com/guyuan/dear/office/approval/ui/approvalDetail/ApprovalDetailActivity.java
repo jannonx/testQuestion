@@ -8,13 +8,12 @@ import android.view.View;
 import androidx.fragment.app.Fragment;
 
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.busbean.ApprovalBusBean;
 import com.guyuan.dear.databinding.ActivityApprovalDetailBinding;
-import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.dialog.RemarkDialog;
 import com.guyuan.dear.dialog.TipDialogFragment;
-import com.guyuan.dear.focus.contract.adapter.ContractExceptionOrTotalAdapter;
 import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailFragment;
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
@@ -24,14 +23,11 @@ import com.guyuan.dear.office.approval.data.ApprovalViewModel;
 import com.guyuan.dear.office.approval.data.bean.ApprovalTypeBean;
 import com.guyuan.dear.office.approval.ui.ApprovalActivity;
 import com.guyuan.dear.office.approval.ui.ApprovalFragment;
-import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
 import org.greenrobot.eventbus.EventBus;
 
 import dagger.hilt.android.AndroidEntryPoint;
-
-import static com.guyuan.dear.office.approval.data.bean.ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_STOP_TYPE;
 
 /**
  * @author : 唐力

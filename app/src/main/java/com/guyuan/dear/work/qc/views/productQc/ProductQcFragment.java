@@ -15,6 +15,7 @@ import com.guyuan.dear.databinding.FragmentProductQcBinding;
 import com.guyuan.dear.dialog.SelectionDialog;
 import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
 import com.guyuan.dear.net.reqBean.SubmitQcReportBody;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.qc.beans.BaseProductBatchInfo;
@@ -25,6 +26,7 @@ import com.guyuan.dear.work.qc.views.home.QcHomeViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.disposables.Disposable;
 
@@ -80,6 +82,8 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
             public void onChanged(List<BaseProjectBean> baseProjectBeans) {
                 if (!baseProjectBeans.isEmpty()) {
                     showDialogSelectProjects();
+                } else if (getViewModel().shouldShowToastNoData.get()) {
+                    showToastTip("服务器找不到可选项目。");
                 }
             }
         });
@@ -103,6 +107,8 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
             public void onChanged(List<BaseProductBatchInfo> baseProductBatchInfos) {
                 if (!baseProductBatchInfos.isEmpty()) {
                     showDialogSelectBatch();
+                } else if (getViewModel().shouldShowToastNoData.get()) {
+                    showToastTip("当前合同下没有成品数据。");
                 }
             }
         });
@@ -119,6 +125,10 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
             @Override
             public void onChanged(List<BaseQcApproachBean> baseQcApproachBeans) {
                 if (!baseQcApproachBeans.isEmpty()) {
+                    if(getViewModel().selectedProductBatch.getValue()==null){
+                        showToastTip("请先选择出厂编号。");
+                        return;
+                    }
                     showDialogSelectQcApproach();
                 }
             }
@@ -194,12 +204,16 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
             public void onClick(View v) {
                 ArrayList<StaffBean> checkers = getViewModel().qcCheckers.getValue();
                 ArrayList<StaffBean> verifiers = getViewModel().verifiers.getValue();
+                ArrayList<StaffBean> hiddenStaffs = new ArrayList<>();
+                StaffBean me = new StaffBean();
+                me.setId(CommonUtils.getCurrentUserId());
+                hiddenStaffs.add(me);
                 PickStaffsActivity.startForResult(
                         ProductQcFragment.this,
                         REQUEST_CODE_PICK_VERIFIERS,
                         "请选择审核人员",
                         verifiers,
-                        null,
+                        hiddenStaffs,
                         checkers,
                         10
                 );

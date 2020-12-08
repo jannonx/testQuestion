@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -113,17 +114,20 @@ public class MatterApplyFragment extends BaseDataBindingFragment<FragmentWorkMat
                     number = Integer.valueOf(inputNumber);
                 }
                 AddSendListAdapter addSendListAdapter = (AddSendListAdapter) binding.matterApplyRv.getAdapter();
-                ArrayList<StaffBean> staffBeans = addSendListAdapter.getList();
-                if (staffBeans.size() > 0 && currentMaterialID != CLEAR_ID && number > 0
-                        && currentProductID != CLEAR_ID && currentProjectID != CLEAR_ID
-                        && currentTypeID != CLEAR_ID) {
-                    StaffBean staffBean = staffBeans.get(0);
-                    viewModel.applyMatter(staffBean.getId().intValue(), 0, currentMaterialID, number,
-                            currentProductID, currentProjectID, currentTypeID);
+                if (addSendListAdapter == null) {
+                    showToastTip("请填写完整数据", Gravity.CENTER);
                 } else {
-                    showToastTip("请填写完整数据");
+                    ArrayList<StaffBean> staffBeans = addSendListAdapter.getList();
+                    if (staffBeans.size() > 0 && currentMaterialID != CLEAR_ID && number > 0
+                            && currentProductID != CLEAR_ID && currentProjectID != CLEAR_ID
+                            && currentTypeID != CLEAR_ID) {
+                        StaffBean staffBean = staffBeans.get(0);
+                        viewModel.applyMatter(staffBean.getId().intValue(), 0, currentMaterialID, number,
+                                currentProductID, currentProjectID, currentTypeID);
+                    } else {
+                        showToastTip("请填写完整数据", Gravity.CENTER);
+                    }
                 }
-
             }
         });
 
@@ -142,7 +146,7 @@ public class MatterApplyFragment extends BaseDataBindingFragment<FragmentWorkMat
             public void afterTextChanged(Editable s) {
                 String text = s.toString();
                 int len = s.toString().length();
-                if (len >=1) {
+                if (len >= 1) {
                     if (text.startsWith("0")) {
                         s.replace(0, 1, "");//第一位不能为0
                     }

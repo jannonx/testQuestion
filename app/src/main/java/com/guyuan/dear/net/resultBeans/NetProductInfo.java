@@ -38,7 +38,7 @@ public class NetProductInfo {
     private int id;
     private String productCode;
     private String productName;
-    private int productNum;
+    private long productNum;
     private String productUnit;
     private String serialNumber;
 
@@ -66,11 +66,11 @@ public class NetProductInfo {
         this.productName = productName;
     }
 
-    public int getProductNum() {
+    public long getProductNum() {
         return productNum;
     }
 
-    public void setProductNum(int productNum) {
+    public void setProductNum(long productNum) {
         this.productNum = productNum;
     }
 

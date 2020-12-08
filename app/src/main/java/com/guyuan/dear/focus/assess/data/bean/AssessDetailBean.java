@@ -12,7 +12,7 @@ import java.util.List;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class    AssessDetailBean implements Parcelable {
+public class AssessDetailBean implements Parcelable {
 
     /**
      * auditContentList : [{"id":0,"name":"","sort":0}]
@@ -53,6 +53,8 @@ public class    AssessDetailBean implements Parcelable {
 
     private List<AuditFormResultBean> auditFormResultVOList;
 
+    private List<PartnerBean> auditStaffVOList;
+
     protected AssessDetailBean(Parcel in) {
         auditType = in.readInt();
         compereName = in.readString();
@@ -65,6 +67,7 @@ public class    AssessDetailBean implements Parcelable {
         status = in.readInt();
         auditContentList = in.createTypedArrayList(AuditContentBean.CREATOR);
         auditFormResultVOList = in.createTypedArrayList(AuditFormResultBean.CREATOR);
+        auditStaffVOList = in.createTypedArrayList(PartnerBean.CREATOR);
     }
 
     public static final Creator<AssessDetailBean> CREATOR = new Creator<AssessDetailBean>() {
@@ -167,6 +170,13 @@ public class    AssessDetailBean implements Parcelable {
         this.auditFormResultVOList = auditFormResultVOList;
     }
 
+    public List<PartnerBean> getAuditStaffVOList() {
+        return auditStaffVOList;
+    }
+
+    public void setAuditStaffVOList(List<PartnerBean> auditStaffVOList) {
+        this.auditStaffVOList = auditStaffVOList;
+    }
 
     @Override
     public int describeContents() {
@@ -186,5 +196,6 @@ public class    AssessDetailBean implements Parcelable {
         dest.writeInt(status);
         dest.writeTypedList(auditContentList);
         dest.writeTypedList(auditFormResultVOList);
+        dest.writeTypedList(auditStaffVOList);
     }
 }

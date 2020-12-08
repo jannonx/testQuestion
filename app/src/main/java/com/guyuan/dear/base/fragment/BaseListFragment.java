@@ -45,7 +45,7 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
     protected MaterialButton tv_refresh;
     protected AppCompatTextView tvTepRefresh;
     protected LinearLayoutCompat llEmptyView, llTepEmptyView;
-    private int emptyImgID = R.mipmap.ic_no_data;
+    private int emptyImgID = R.drawable.ic_svg_no_data;
     private String emptyTip = ConstantValue.TIP_NO_DATA;
 
     public final int LOAD_MORE = 0X0100;

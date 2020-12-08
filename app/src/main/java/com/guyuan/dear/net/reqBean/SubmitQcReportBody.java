@@ -74,6 +74,10 @@ public class SubmitQcReportBody {
      * {@link SubmitQcReportBody#JUDGE_CONDITION_BLUE_PRINT_SCHEME},{@link SubmitQcReportBody#JUDGE_CONDITION_NATIONAL_STANDARD}
      */
     private List<Integer> qualityCondition;
+    /**
+     * 该批次总数量
+     */
+    private long totalNum;
     public static final int JUDGE_CONDITION_BLUE_PRINT_SCHEME=1;
     public static final int JUDGE_CONDITION_NATIONAL_STANDARD=2;
 
@@ -164,5 +168,13 @@ public class SubmitQcReportBody {
 
     public void setQualityCondition(List<Integer> qualityCondition) {
         this.qualityCondition = qualityCondition;
+    }
+
+    public long getTotalNum() {
+        return totalNum;
+    }
+
+    public void setTotalNum(long totalNum) {
+        this.totalNum = totalNum;
     }
 }

@@ -4,23 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
+import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseFileUploadActivity;
 import com.guyuan.dear.base.api.UploadBean;
-import com.guyuan.dear.utils.ActivityUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.device.data.WorkDeviceViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import javax.inject.Inject;
-
-import okhttp3.RequestBody;
 
 /**
  * created by tl

@@ -94,6 +94,26 @@ public class AssessBindingAdapter {
 
     }
 
+
+    @BindingAdapter("assessTagStatus")
+    public static void setAssessTagStatus(ImageView iv, int result) {
+        switch (result) {
+            case PREPARED://未评审
+                iv.setImageResource(R.mipmap.not_pass);
+                break;
+
+            case PASSED://通过
+                iv.setImageResource(R.mipmap.pass);
+                break;
+
+            case NOT_PASSED://不通过
+                iv.setImageResource(R.mipmap.not_pass);
+                break;
+        }
+
+    }
+
+
     @BindingAdapter("assessResultStatus")
     public static void setAssessResultStatus(TextView tv, int result) {
         switch (result) {
