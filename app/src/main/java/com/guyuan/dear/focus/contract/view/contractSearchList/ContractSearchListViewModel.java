@@ -25,8 +25,8 @@ public class ContractSearchListViewModel extends BaseDearViewModel {
     public MutableLiveData<Boolean> shouldNotifyDateSetChange = new MutableLiveData<>(false);
     public MutableLiveData<Boolean> shouldShowNoData = new MutableLiveData<>(true);
 
-    public Disposable getContractListByComNameOrContractNo(String companyNameOrContractNo) {
-        return repo.getContractListFromNet(companyNameOrContractNo, currentIndex++, PAGE_SIZE, callback);
+    public Disposable getContractListByComNameOrContractNo(String companyNameOrContractNo,int searchType) {
+        return repo.getContractListFromNet(companyNameOrContractNo,searchType, currentIndex++, PAGE_SIZE, callback);
     }
 
     private BaseNetCallback<List<BaseContractBean>> callback = new BaseNetCallback<List<BaseContractBean>>() {
