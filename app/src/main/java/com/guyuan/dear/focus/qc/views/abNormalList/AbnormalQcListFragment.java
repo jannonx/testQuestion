@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.customizeview.itemDecorator.LinearVerticalPaddingDecorator;
+import com.guyuan.dear.customizeview.itemDecorator.LinearVerticalPaddingDecorator2P0;
 import com.guyuan.dear.databinding.FragmentAbnormalQcReportListBinding;
 import com.guyuan.dear.focus.qc.adapters.AllQcListAdapter;
 import com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport;
@@ -83,7 +84,7 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
         wrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(wrapper);
-        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator(12, 16));
+        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0(12, 0,12,12,16));
         recyclerView.setLoadMoreEnabled(true);
         recyclerView.setPullRefreshEnabled(false);
         recyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
