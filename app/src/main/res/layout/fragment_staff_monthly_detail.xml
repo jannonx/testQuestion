@@ -153,7 +153,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="在职状态"
+                        android:text="考勤状态"
                         android:textColor="@color/color_grey_999999"
                         android:textSize="10sp" />
 

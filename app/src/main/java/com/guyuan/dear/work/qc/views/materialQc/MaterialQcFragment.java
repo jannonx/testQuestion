@@ -26,6 +26,7 @@ import com.guyuan.dear.work.qc.views.productQc.ProductQcViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -103,7 +104,7 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
             @Override
             public void onClick(View v) {
                 BaseProjectBean projectBean = getViewModel().getSelectedProject().getValue();
-                if(projectBean ==null){
+                if (projectBean == null) {
                     showToastTip("请先选择项目。");
                     return;
                 }
@@ -114,8 +115,10 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
         viewModel.getMaterialList().observe(getViewLifecycleOwner(), new Observer<List<MaterialInfo>>() {
             @Override
             public void onChanged(List<MaterialInfo> materialInfos) {
-                if(!materialInfos.isEmpty()){
+                if (!materialInfos.isEmpty()) {
                     showDialogSelectMaterial();
+                } else if (getViewModel().shouldShowToastNoData.get()) {
+                    showToastTip("当前合同下没有原材料数据。");
                 }
             }
         });
@@ -132,14 +135,15 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
             @Override
             public void onClick(View v) {
                 addDisposable(getViewModel().getProjectListFromNet());
-
             }
         });
         getViewModel().getProjectList().observe(getViewLifecycleOwner(), new Observer<List<BaseProjectBean>>() {
             @Override
             public void onChanged(List<BaseProjectBean> baseProjectBeans) {
-                if(!baseProjectBeans.isEmpty()){
+                if (!baseProjectBeans.isEmpty()) {
                     showDialogSelectProjects();
+                } else if (getViewModel().shouldShowToastNoData.get()) {
+                    showToastTip("服务器找不到可选项目。");
                 }
             }
         });
@@ -147,6 +151,10 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
         viewModel.onClickSelectQcApproach.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(getViewModel().getSelectedMaterial().getValue()==null){
+                    showToastTip("请先选择原材料。");
+                    return;
+                }
                 addDisposable(getViewModel().getQcApproachesFromNet());
 
             }
@@ -154,7 +162,7 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
         viewModel.getQcApproachList().observe(getViewLifecycleOwner(), new Observer<List<BaseQcApproachBean>>() {
             @Override
             public void onChanged(List<BaseQcApproachBean> baseQcApproachBeans) {
-                if(!baseQcApproachBeans.isEmpty()){
+                if (!baseQcApproachBeans.isEmpty()) {
                     showDialogSelectQcApproach();
                 }
             }
@@ -192,11 +200,11 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 List<Integer> list = getViewModel().getJudgeConditions();
                 //2 表示国家标准
-                if(isChecked){
-                    if(!list.contains(SubmitQcReportBody.JUDGE_CONDITION_NATIONAL_STANDARD)){
+                if (isChecked) {
+                    if (!list.contains(SubmitQcReportBody.JUDGE_CONDITION_NATIONAL_STANDARD)) {
                         list.add(SubmitQcReportBody.JUDGE_CONDITION_NATIONAL_STANDARD);
                     }
-                }else {
+                } else {
                     list.remove(Integer.valueOf(SubmitQcReportBody.JUDGE_CONDITION_NATIONAL_STANDARD));
                 }
             }
@@ -207,11 +215,11 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 List<Integer> list = getViewModel().getJudgeConditions();
                 //1 表示设计图样
-                if(isChecked){
-                    if(!list.contains(SubmitQcReportBody.JUDGE_CONDITION_BLUE_PRINT_SCHEME)){
+                if (isChecked) {
+                    if (!list.contains(SubmitQcReportBody.JUDGE_CONDITION_BLUE_PRINT_SCHEME)) {
                         list.add(SubmitQcReportBody.JUDGE_CONDITION_BLUE_PRINT_SCHEME);
                     }
-                }else {
+                } else {
                     list.remove(Integer.valueOf(SubmitQcReportBody.JUDGE_CONDITION_BLUE_PRINT_SCHEME));
                 }
             }
@@ -219,6 +227,8 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
 
 
     }
+
+
 
 
     private void showDialogSelectMaterial() {

@@ -1,7 +1,9 @@
 package com.guyuan.dear.customizeview.searchview;
 
 import android.content.Context;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatCheckedTextView;
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.room.util.StringUtil;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity;
+import com.guyuan.dear.utils.StringUtils;
 
 import static com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity.SEARCH_TYPE_ALL;
 
@@ -50,6 +54,23 @@ public class QcReportsSearchView extends FrameLayout {
                     return;
                 }
                 QcSearchListActivity.start(getContext(),"质量报告搜索",keyWords,searchType);
+            }
+        });
+        edtSearchContent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                tvClickSearch.setSelected(!TextUtils.isEmpty(s.toString()));
+
             }
         });
         addView(inflate);

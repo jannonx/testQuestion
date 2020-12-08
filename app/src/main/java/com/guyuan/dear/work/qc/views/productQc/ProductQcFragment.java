@@ -25,6 +25,7 @@ import com.guyuan.dear.work.qc.views.home.QcHomeViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.disposables.Disposable;
 
@@ -80,6 +81,8 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
             public void onChanged(List<BaseProjectBean> baseProjectBeans) {
                 if (!baseProjectBeans.isEmpty()) {
                     showDialogSelectProjects();
+                } else if (getViewModel().shouldShowToastNoData.get()) {
+                    showToastTip("服务器找不到可选项目。");
                 }
             }
         });
@@ -103,6 +106,8 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
             public void onChanged(List<BaseProductBatchInfo> baseProductBatchInfos) {
                 if (!baseProductBatchInfos.isEmpty()) {
                     showDialogSelectBatch();
+                } else if (getViewModel().shouldShowToastNoData.get()) {
+                    showToastTip("当前合同下没有成品数据。");
                 }
             }
         });
@@ -119,6 +124,10 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
             @Override
             public void onChanged(List<BaseQcApproachBean> baseQcApproachBeans) {
                 if (!baseQcApproachBeans.isEmpty()) {
+                    if(getViewModel().selectedProductBatch.getValue()==null){
+                        showToastTip("请先选择出厂编号。");
+                        return;
+                    }
                     showDialogSelectQcApproach();
                 }
             }
