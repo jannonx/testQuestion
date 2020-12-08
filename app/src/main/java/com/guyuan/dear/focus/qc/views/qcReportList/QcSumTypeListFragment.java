@@ -112,16 +112,19 @@ public class QcSumTypeListFragment extends BaseMvvmFragment<FragmentProductQcPas
                 getViewModel().getIsAllProductReportLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean aBoolean) {
-                        recyclerView.setLoadMoreEnabled(!aBoolean);
+                        if(aBoolean){
+                            recyclerView.refreshComplete(0);
+                            recyclerView.setLoadMoreEnabled(false);
+                        }
                     }
                 });
                 getViewModel().getProductReports().observe(getViewLifecycleOwner(), new Observer<List<GenericQcReport>>() {
                     @Override
                     public void onChanged(List<GenericQcReport> genericQcReports) {
+                        recyclerView.refreshComplete(0);
                         if (genericQcReports.isEmpty()) {
                             shouldShowNoData.postValue(true);
                         } else {
-                            shouldShowNoData.postValue(false);
                             if (wrapper != null) {
                                 shouldShowNoData.postValue(false);
                                 wrapper.notifyDataSetChanged();
@@ -137,16 +140,19 @@ public class QcSumTypeListFragment extends BaseMvvmFragment<FragmentProductQcPas
                 getViewModel().getIsAllMaterialReportLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean aBoolean) {
-                        recyclerView.setLoadMoreEnabled(!aBoolean);
+                        if(aBoolean){
+                            recyclerView.refreshComplete(0);
+                            recyclerView.setLoadMoreEnabled(false);
+                        }
                     }
                 });
                 getViewModel().getMaterialReports().observe(getViewLifecycleOwner(), new Observer<List<GenericQcReport>>() {
                     @Override
                     public void onChanged(List<GenericQcReport> genericQcReports) {
+                        recyclerView.refreshComplete(0);
                         if (genericQcReports.isEmpty()) {
                             shouldShowNoData.postValue(true);
                         } else {
-                            shouldShowNoData.postValue(false);
                             if (wrapper != null) {
                                 shouldShowNoData.postValue(false);
                                 wrapper.notifyDataSetChanged();
@@ -179,10 +185,10 @@ public class QcSumTypeListFragment extends BaseMvvmFragment<FragmentProductQcPas
                         getViewModel().upDateProductPassList(start, end);
                         break;
                     case TYPE_MATERIAL_REJECT:
-                        getViewModel().upDateProductRejectList(start, end);
+                        getViewModel().upDateMaterialRejectList(start, end);
                         break;
                     case TYPE_PRODUCT_REJECT:
-                        getViewModel().upDateMaterialRejectList(start, end);
+                        getViewModel().upDateProductRejectList(start, end);
                         break;
                     case TYPE_MATERIAL_PASS:
                         getViewModel().upDateMaterialPassList(start, end);
@@ -190,7 +196,6 @@ public class QcSumTypeListFragment extends BaseMvvmFragment<FragmentProductQcPas
                     default:
                         break;
                 }
-                recyclerView.refreshComplete(0);
             }
         });
         wrapper.setOnItemClickListener(new OnItemClickListener() {
