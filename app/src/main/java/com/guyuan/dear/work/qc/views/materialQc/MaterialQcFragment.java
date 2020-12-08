@@ -15,6 +15,7 @@ import com.guyuan.dear.databinding.FragmentMaterialQcBinding;
 import com.guyuan.dear.dialog.SelectionDialog;
 import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
 import com.guyuan.dear.net.reqBean.SubmitQcReportBody;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.qc.beans.BaseProjectBean;
@@ -87,12 +88,16 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
             public void onClick(View v) {
                 ArrayList<StaffBean> checkers = getViewModel().getQcCheckers().getValue();
                 ArrayList<StaffBean> verifiers = getViewModel().getVerifiers().getValue();
+                ArrayList<StaffBean> hiddenStaffs = new ArrayList<>();
+                StaffBean me = new StaffBean();
+                me.setId(CommonUtils.getCurrentUserId());
+                hiddenStaffs.add(me);
                 PickStaffsActivity.startForResult(
                         MaterialQcFragment.this,
                         REQUEST_CODE_PICK_VERIFIERS,
                         "请选择审核人员",
                         verifiers,
-                        null,
+                        hiddenStaffs,
                         checkers,
                         10
                 );
