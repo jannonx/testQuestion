@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @company: 固远（深圳）信息技术有限公司
  */
 public enum SaleCheckType implements Serializable {
-//    验收状态 0.待验收 1.验收合格 2.验收不合格 3.验收中
+//    验收状态   0.待验收 1.验收中 2.验收合格  3.验收不合格
     /**
      * 未知状态
      */
@@ -53,9 +53,9 @@ public enum SaleCheckType implements Serializable {
     public static SaleCheckType toType(int index) {
         if (index == 0) {
             return TYPE_CHECK_WAIT;
-        } else if (index == 3) {
+        } else if (index == 1) {
             return TYPE_CHECK_ING;
-        } else if (index == 1 || index == 2) {
+        } else if (index == 2 || index == 3) {
             return TYPE_CHECK_COMPLETE;
         }
         return TYPE_CHECK_UNKNOWN;

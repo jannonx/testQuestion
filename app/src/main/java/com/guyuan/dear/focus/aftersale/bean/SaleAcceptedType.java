@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @company: 固远（深圳）信息技术有限公司
  */
 public enum SaleAcceptedType implements Serializable {
-//    验收状态 0.待验收 1.验收合格 2.验收不合格 3.验收中
+//    验收状态  0.待验收 1.验收中 2.验收合格  3.验收不合格
     /**
      * 未知状态
      */
@@ -23,20 +23,21 @@ public enum SaleAcceptedType implements Serializable {
     TYPE_ACCEPTED_WAIT(0, "待验收", R.color.color_blue_1677ff,
             R.drawable.bg_blue_e7f1ff_corner_2),
     /**
+     * 验收中
+     */
+    TYPE_ACCEPTED_ING(1, "验收中", R.color.color_blue_1677ff,
+            R.drawable.bg_blue_e7f1ff_corner_2),
+    /**
      * 验收合格
      */
-    TYPE_ACCEPTED_QUALIFIED(1, "验收合格", R.color.color_green_00B578,
+    TYPE_ACCEPTED_QUALIFIED(2, "验收合格", R.color.color_green_00B578,
             R.drawable.bg_green_d4fff1_corner_2),
     /**
      * 验收不合格
      */
-    TYPE_ACCEPTED_UNQUALIFIED(2, "验收不合格", R.color.color_orange_FF6010,
-            R.drawable.bg_orange_ffece3_corner_2),
-    /**
-     * 验收中
-     */
-    TYPE_ACCEPTED_ING(3, "验收中", R.color.color_blue_1677ff,
-                              R.drawable.bg_blue_e7f1ff_corner_2);
+    TYPE_ACCEPTED_UNQUALIFIED(3, "验收不合格", R.color.color_orange_FF6010,
+            R.drawable.bg_orange_ffece3_corner_2);
+
 
 
     private int code;

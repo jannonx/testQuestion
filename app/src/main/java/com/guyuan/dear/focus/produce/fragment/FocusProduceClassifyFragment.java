@@ -9,6 +9,7 @@ import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.produce.adapter.FocusProduceAdapter;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
+import com.guyuan.dear.focus.produce.bean.IntentBean;
 import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
@@ -27,7 +28,7 @@ public class FocusProduceClassifyFragment extends BaseProduceFragment {
     public static final String TAG = FocusProduceClassifyFragment.class.getSimpleName();
 
 
-    public static FocusProduceClassifyFragment newInstance(ProductStatusType data) {
+    public static FocusProduceClassifyFragment newInstance(IntentBean data) {
         Bundle bundle = new Bundle();
         FocusProduceClassifyFragment fragment = new FocusProduceClassifyFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
@@ -38,7 +39,7 @@ public class FocusProduceClassifyFragment extends BaseProduceFragment {
     @Override
     protected void init() {
         Bundle arguments = getArguments();
-        statusType = (ProductStatusType) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        intentBean = (IntentBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         FocusProduceAdapter listAdapter = new FocusProduceAdapter(getContext(), listData,
                 R.layout.item_focus_produce);
         etSearch.setHint("输入产品名称、产品代号");

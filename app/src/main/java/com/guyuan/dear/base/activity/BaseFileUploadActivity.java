@@ -14,6 +14,7 @@ import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.util.LogUtils;
 import com.example.mvvmlibrary.util.MediaFileUtils;
 import com.guyuan.dear.R;
+import com.guyuan.dear.utils.FileUtils;
 import com.guyuan.dear.utils.ImgCompressor;
 
 import java.io.File;
@@ -305,6 +306,8 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
             File file = new File(imageOutPath.getOutPath());
             photoAndVideoFileList.add(file);
         }
+
+
         upLoadPicAndVideo(currentPhotoType, richFilesToMaps(photoAndVideoFileList));
     }
 

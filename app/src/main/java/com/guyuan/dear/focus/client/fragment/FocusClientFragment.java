@@ -63,7 +63,7 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
      * 设置数据
      */
     private void initData() {
-        etSearch.setHint("输入客户名称、销售人员");
+        etSearch.setHint("输入客户名称、手机号");
         viewModel.getClientList(getListRequestBody(true));
         viewModel.getClientListEvent().observe(getActivity(), new Observer<RefreshBean<ClientCompanyBean>>() {
             @Override
@@ -118,12 +118,12 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
 
     @Override
     protected boolean isPullEnable() {
-        return true;
+        return false;
     }
 
     @Override
     protected boolean isLoadMoreEnable() {
-        return true;
+        return false;
     }
 
 

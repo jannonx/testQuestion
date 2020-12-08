@@ -103,8 +103,6 @@ public class InstallDebugBean implements Serializable {
         String debugEndTime = calenderUtils.toSmartFactoryDateFormatByFull(getDebugEndTime());
         String realStartTime = calenderUtils.toSmartFactoryDateFormatByFull(getRealityStartTime());
         String realEndTime = calenderUtils.toSmartFactoryDateFormatByFull(getRealityEndTime());
-//        LogUtils.showLog("debugStartTime=" + debugStartTime + "...debugEndTime=" + debugEndTime
-//                + "...realStartTime=" + realStartTime + "...realEndTime=" + realEndTime);
         return TextUtils.isEmpty(realStartTime) ? (debugStartTime + "~" + debugEndTime) : (realStartTime + "~" + realEndTime);
     }
 

@@ -22,13 +22,15 @@
 
                 <TextView
                     android:id="@+id/tv_project_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="@dimen/dp_24"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_12"
-                    tools:text="迪尔空分机项目"
+                    tools:text="迪尔空分机项目迪尔空分机项目迪尔空分机项目迪尔空分机项目"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_16"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_project_status"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,11 +45,11 @@
                     android:paddingTop="@dimen/dp_2"
                     android:paddingEnd="@dimen/dp_4"
                     android:paddingBottom="@dimen/dp_2"
+                    android:layout_marginEnd="@dimen/dp_12"
                     tools:text="不满足条件"
                     android:textColor="@color/color_orange_FF6010"
                     android:textSize="@dimen/sp_12"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_project_name"
-                    app:layout_constraintStart_toEndOf="@+id/tv_project_name"
+                   app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_project_name" />
 
                 <View

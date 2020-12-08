@@ -263,7 +263,7 @@ public class CalenderUtils {
         if (TextUtils.isEmpty(dateString)) return "";
         Date date = null;
         try {
-            date = simpleDateFormatByDay.parse(dateString);
+            date = simpleDateFormatFull.parse(dateString);
         } catch (Exception e) {
             e.printStackTrace();
             LogUtils.showLog(e.getMessage());

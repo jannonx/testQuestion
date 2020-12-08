@@ -67,6 +67,7 @@ public class FocusClientViewModel extends BaseViewModel {
     public void getClientList(RequestBody body) {
 
         Disposable disposable = RxJavaHelper.build(this, repository.getClientList(body))
+//                .showLoading(false)
                 .getHelper().flow(clientListEvent);
         addSubscription(disposable);
     }

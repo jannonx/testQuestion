@@ -117,13 +117,16 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
                 RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
                         "charset=utf-8"), installStr);
                 viewModel.postClientFollowUp(requestBody);
+
             }
         });
         viewModel.getFollowClientEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer dataRefreshBean) {
-                ToastUtils.showShort(getContext(), "评论成功!");
+//                ToastUtils.showShort(getContext(), "评论成功!");
                 followStatusFragment.refresh();
+                viewModel.getClientBasicInfo(ClientType.TYPE_CLIENT_ALL==clientData.getClientType()?
+                        clientData.getId():clientData.getCusId());
                 //刷新列表
             }
         });

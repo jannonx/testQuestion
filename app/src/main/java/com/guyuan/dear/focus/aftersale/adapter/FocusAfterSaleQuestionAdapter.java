@@ -1,7 +1,9 @@
 package com.guyuan.dear.focus.aftersale.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -29,10 +31,11 @@ public class FocusAfterSaleQuestionAdapter extends BaseRecyclerAdapter<AfterSale
 
     @Override
     protected void bindDataToView(BaseRecyclerViewHolder holder, AfterSaleQuestionBean item, int position) {
-        holder.setText(R.id.tv_des, "描述："+item.getDescribe());
+        TextView tvDes = holder.getView(R.id.tv_des);
+        tvDes.setVisibility(TextUtils.isEmpty(item.getDescribe()) ? View.GONE : View.VISIBLE);
+        holder.setText(R.id.tv_des, "描述：" + item.getDescribe());
 
-        holder.setText(R.id.tv_answer, "处理意见："+item.getAnswer());
-
+        holder.setText(R.id.tv_answer, "处理意见：" + item.getAnswer());
 
 
         View lineBottom = holder.getView(R.id.line_bottom);

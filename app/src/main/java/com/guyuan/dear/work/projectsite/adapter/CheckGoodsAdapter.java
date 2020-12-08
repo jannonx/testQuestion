@@ -10,6 +10,7 @@ import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
 import com.guyuan.dear.R;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.List;
 
@@ -56,14 +57,18 @@ public class CheckGoodsAdapter extends BaseRecyclerAdapter<CheckGoodsBean> {
         holder.setText(R.id.tv_goods_number, item.getAmount() + item.getUnit());
 
         //我的关注
-
+        LogUtils.showLog("CHECK_RIGHT=" + item.getStatus() + "..position=" + position);
+        LogUtils.showLog("name=" + item.getProjectName() + "..position=" + position);
         imageView.setImageResource(item.getStatus() == CHECK_RIGHT ? R.mipmap.right : R.mipmap.wrong);
 
         //我的工作
         AppCompatImageView ivRightBtn = holder.getView(R.id.iv_right_btn);
         AppCompatImageView ivWrongBtn = holder.getView(R.id.iv_wrong_btn);
 
-        item.setStatus(CHECK_RIGHT);
+        if (FunctionModuleType.TYPE_WORK == moduleType) {
+            item.setStatus(CHECK_RIGHT);
+        }
+
         ivRightBtn.setImageResource(R.mipmap.right);
         ivWrongBtn.setImageResource(R.mipmap.ic_wrong_gray_unselect);
 

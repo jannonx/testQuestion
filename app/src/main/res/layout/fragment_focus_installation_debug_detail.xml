@@ -22,10 +22,12 @@
 
                 <TextView
                     android:id="@+id/tv_project_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_12"
-                    android:text="迪尔空分机项目"
+                    android:layout_marginEnd="@dimen/dp_24"
+                    tools:text="迪尔空分机项目迪尔空分机项目迪尔空分机项目"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_produce_status"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_16"
                     android:textStyle="bold"
@@ -37,18 +39,30 @@
                     android:id="@+id/tv_produce_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_12"
                     android:background="@drawable/bg_orange_ffece3_corner_2"
                     android:paddingStart="@dimen/dp_4"
                     android:paddingTop="@dimen/dp_2"
                     android:paddingEnd="@dimen/dp_4"
                     android:paddingBottom="@dimen/dp_2"
                     android:text="异常"
+                    android:layout_marginEnd="@dimen/dp_12"
                     android:textColor="@color/color_orange_FF6010"
                     android:textSize="@dimen/sp_12"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_project_name"
-                    app:layout_constraintStart_toEndOf="@+id/tv_project_name"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_project_name" />
+
+                <TextView
+                    android:id="@+id/label_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_12"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    android:text="2020-08-17 15:00"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_14"
+                    app:layout_constraintStart_toStartOf="@+id/tv_project_name"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_project_name" />
 
                 <View
                     android:id="@+id/v_line_0"
@@ -59,7 +73,7 @@
                     android:background="@color/color_grey_e5e5e5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tv_project_name"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_project_name"
+                    app:layout_constraintTop_toBottomOf="@+id/label_time"
 
                     />
 
@@ -107,18 +121,6 @@
                     app:layout_constraintStart_toEndOf="@+id/label_duty_unit"
                     app:layout_constraintTop_toTopOf="@+id/label_duty_unit" />
 
-
-                <TextView
-                    android:id="@+id/label_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/dp_12"
-                    android:text="2020-08-17 15:00"
-                    android:textColor="@color/color_black_333333"
-                    android:textSize="@dimen/sp_14"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_project_name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tv_project_name" />
 
                 <View
                     android:id="@+id/view_2"
