@@ -43,6 +43,8 @@ public class ProjectSiteStatusAdapter extends BaseRecyclerAdapter<ProjectSiteSta
         holder.setText(R.id.tv_department, item.getDepartmentName());
 
         View lineBottom = holder.getView(R.id.line_bottom);
+        View viewBottom = holder.getView(R.id.view_bottom);
         lineBottom.setVisibility(listData.size() - 1 == position ? View.GONE : View.VISIBLE);
+        viewBottom.setVisibility(listData.size() - 1 == position ? View.VISIBLE : View.GONE);
     }
 }

@@ -96,7 +96,10 @@ public class QcSearchListFragment extends BaseMvvmFragment<FragmentQcSearchListB
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
                     recyclerView.setLoadMoreEnabled(false);
-                    showToastTip("已经全部加载完毕。");
+                    //一开始就没数据，就不用提示全部加载完毕了。
+                    if(!getViewModel().reportList.getValue().isEmpty()){
+                        showToastTip("已经全部加载完毕。");
+                    }
                 }
             }
         });

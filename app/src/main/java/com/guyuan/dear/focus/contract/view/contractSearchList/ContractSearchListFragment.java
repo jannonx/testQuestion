@@ -22,6 +22,8 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;
 
+import static com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment.STATUS_TYPE_TOTAL;
+
 /**
  * @author: 廖华凯
  * @description:
@@ -33,10 +35,17 @@ public class ContractSearchListFragment extends BaseMvvmFragment<FragmentContrac
     private BaseRecyclerView recyclerView;
     private BaseRecyclerViewAdapter wrapper;
     private String searchContent;
+    private int searchType;
 
-    public static ContractSearchListFragment getInstance(String companyNameOrContractNo) {
+    /**
+     * @param searchType 只有以下两种情况
+     * {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_EXCEPTION}
+     * {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_TOTAL}
+     */
+    public static ContractSearchListFragment getInstance(String companyNameOrContractNo,int searchType) {
         Bundle bundle = new Bundle();
         bundle.putString(ConstantValue.KEY_KEY_WORD, companyNameOrContractNo);
+        bundle.putInt(ConstantValue.KEY_SEARCH_TYPE,searchType);
         ContractSearchListFragment fragment = new ContractSearchListFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -51,7 +60,8 @@ public class ContractSearchListFragment extends BaseMvvmFragment<FragmentContrac
     protected void initData() {
         Bundle bundle = getArguments();
         searchContent = bundle.getString(ConstantValue.KEY_KEY_WORD);
-        getViewModel().getContractListByComNameOrContractNo(searchContent);
+        searchType = bundle.getInt(ConstantValue.KEY_SEARCH_TYPE,STATUS_TYPE_TOTAL);
+        getViewModel().getContractListByComNameOrContractNo(searchContent,searchType);
 
     }
 
@@ -69,7 +79,7 @@ public class ContractSearchListFragment extends BaseMvvmFragment<FragmentContrac
         recyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                getViewModel().getContractListByComNameOrContractNo(searchContent);
+                getViewModel().getContractListByComNameOrContractNo(searchContent,searchType);
             }
         });
     }

@@ -14,9 +14,8 @@ import io.reactivex.disposables.Disposable;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class ContractSearchListRepo {
-    public Disposable getContractListFromNet(String comNameOrContractNo, int pageIndex, int pageSize,
+    public Disposable getContractListFromNet(String comNameOrContractNo, int searchType, int pageIndex, int pageSize,
                                              DearNetHelper.NetCallback<List<BaseContractBean>> callback) {
-        return DearNetHelper.getInstance()
-                .getContractListByCompanyNameOrContractNo(comNameOrContractNo, pageIndex, pageSize, callback);
+        return DearNetHelper.getInstance().getContractListByCompanyNameOrContractNo(comNameOrContractNo, searchType,pageIndex, pageSize, callback);
     }
 }

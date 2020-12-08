@@ -19,6 +19,7 @@ import com.guyuan.dear.focus.contract.bean.ContractStatusFlowBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
+import com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment;
 import com.guyuan.dear.focus.hr.bean.HrStatusGroup;
 import com.guyuan.dear.focus.hr.bean.HrSummaryBean;
 import com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport;
@@ -140,8 +141,8 @@ public class DearNetHelper {
         SearchRqBody body = new SearchRqBody();
         body.setPageNum(0);
         body.setPageSize(-1);
-        HashMap<String,String> filters = new HashMap<>();
-        filters.put("type",String.valueOf(type));
+        HashMap<String, String> filters = new HashMap<>();
+        filters.put("type", String.valueOf(type));
         body.setFilters(filters);
 
         Observable<ResultBean<BasePageResultBean<NetClientInfo>>> observable = netApiService.getClientInfos(body);
@@ -261,13 +262,25 @@ public class DearNetHelper {
     /**
      * 根据客户名字或合同编号查找合同列表
      *
-     * @param callback
-     * @return
+     * @param searchType {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_EXCEPTION}
+     *                   {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_TOTAL}
      */
-    public Disposable getContractListByCompanyNameOrContractNo(String companyNameOrContractNo, int pageIndex, int pageSize, NetCallback<List<BaseContractBean>> callback) {
+    public Disposable getContractListByCompanyNameOrContractNo(String companyNameOrContractNo, int searchType, int pageIndex, int pageSize, NetCallback<List<BaseContractBean>> callback) {
         SearchRqBody body = new SearchRqBody();
         HashMap<String, String> filters = new HashMap<>(1);
         filters.put("name", companyNameOrContractNo);
+        int filterType = 0;
+        //name 客户名称或者合同编号,type 1上年交付，2今年新签，3已经完成，4正在执行，5执行异常,6异常列表， -1表示全部
+        switch (searchType) {
+            case ContractStatusListFragment.STATUS_TYPE_EXCEPTION:
+                filterType = 6;
+                break;
+            case ContractStatusListFragment.STATUS_TYPE_TOTAL:
+            default:
+                filterType = -1;
+                break;
+        }
+        filters.put("type", String.valueOf(filterType));
         body.setFilters(filters);
         body.setPageNum(pageIndex);
         body.setPageSize(pageSize);

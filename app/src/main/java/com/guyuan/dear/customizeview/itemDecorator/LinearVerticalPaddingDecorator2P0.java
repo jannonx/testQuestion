@@ -1,6 +1,5 @@
 package com.guyuan.dear.customizeview.itemDecorator;
 
-import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.view.View;
 
@@ -17,18 +16,27 @@ import com.guyuan.dear.utils.DimensionUtils;
  * @since: 2020/11/13 17:33
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class LinearVerticalPaddingDecorator extends RecyclerView.ItemDecoration {
-    private int outerPadding;
-    private int dividePadding;
+public class LinearVerticalPaddingDecorator2P0 extends RecyclerView.ItemDecoration {
+    private int outerLeft;
+    private int outerTop;
+    private int outerRight;
+    private int outerBottom;
+    private int gapBetween;
 
     /**
-     *
-     * @param outerPadding item和外框之间的空间
-     * @param dividePadding item 和 item之间的空间
+     * 2.0版本，设置外框以及内部item间的空间，以dp为单位。
+     * @param outerLeft 外框左边的空间
+     * @param outerTop 外框顶部的空间
+     * @param outerRight 外框右边的空间
+     * @param outerBottom 外框底部的空间
+     * @param gapBetween item之间的空间
      */
-    public LinearVerticalPaddingDecorator(int outerPadding, int dividePadding) {
-       this.outerPadding = (int) DimensionUtils.dp2px(outerPadding);
-       this.dividePadding = (int) DimensionUtils.dp2px(dividePadding);
+    public LinearVerticalPaddingDecorator2P0(int outerLeft, int outerTop, int outerRight, int outerBottom,int gapBetween) {
+        this.outerLeft = (int) DimensionUtils.dp2px(outerLeft);
+        this.outerTop = (int) DimensionUtils.dp2px(outerTop);
+        this.outerRight = (int) DimensionUtils.dp2px(outerRight);
+        this.outerBottom = (int) DimensionUtils.dp2px(outerBottom);
+        this.gapBetween = (int) DimensionUtils.dp2px(gapBetween);
     }
 
     @Override
@@ -37,17 +45,17 @@ public class LinearVerticalPaddingDecorator extends RecyclerView.ItemDecoration 
         if(layoutManager instanceof LinearLayoutManager && ((LinearLayoutManager) layoutManager).getOrientation()==RecyclerView.VERTICAL){
             int position = parent.getChildAdapterPosition(view);
             if(position==0){
-                //当前三方库默认第一个item是一个header，这里不做任何改变。
+                //当前本项目引用的三方库base recycler view默认第一个item是一个header，这里对header不做任何改变。
                 outRect.set(0,0,0,0);
             }else if(position==1){
                 //实际上的第一个item
-                outRect.set(outerPadding,outerPadding,outerPadding,0);
+                outRect.set(outerLeft,outerTop,outerRight,0);
             }else if (position == parent.getAdapter().getItemCount()-1){
                 //最后一个item
-                outRect.set(outerPadding,dividePadding,outerPadding,outerPadding);
+                outRect.set(outerLeft,gapBetween,outerRight,outerBottom);
             }else {
                 //中间的item
-                outRect.set(outerPadding,dividePadding,outerPadding,0);
+                outRect.set(outerLeft,gapBetween,outerRight,0);
             }
         }else {
             super.getItemOffsets(outRect, view, parent, state);

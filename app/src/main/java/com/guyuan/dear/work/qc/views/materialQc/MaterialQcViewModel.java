@@ -16,6 +16,7 @@ import com.guyuan.dear.work.qc.views.productQc.ProductQcViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.disposables.Disposable;
 
@@ -39,13 +40,17 @@ public class MaterialQcViewModel extends BaseDearViewModel {
     /**
      * 1 通过 2 不通过
      */
-    private MutableLiveData<Integer> reportResult = new MutableLiveData<>();
+    private MutableLiveData<Integer> reportResult = new MutableLiveData<>(1);
     private MutableLiveData<String> comments = new MutableLiveData<>();
     private MutableLiveData<Boolean> isNeedVerify = new MutableLiveData<>(false);
     private MutableLiveData<MaterialInfo> selectedMaterial = new MutableLiveData<>();
     private MutableLiveData<BaseProjectBean> selectedProject = new MutableLiveData<>();
     private MutableLiveData<BaseQcApproachBean> selectedQcApproach = new MutableLiveData<>();
     public MutableLiveData<Boolean> isCheckAllMaterials = new MutableLiveData<>(false);
+    /**
+     * 是否要忽略post数据为空时相关提示
+     */
+    public AtomicBoolean shouldShowToastNoData = new AtomicBoolean(false);
 
 
     /**
@@ -133,6 +138,7 @@ public class MaterialQcViewModel extends BaseDearViewModel {
     }
 
     public Disposable loadMaterialListFromNet(int projectId) {
+        shouldShowToastNoData.set(true);
         return repo.loadMaterialInfoFromNet(projectId, new BaseNetCallback<List<MaterialInfo>>() {
             @Override
             protected void handleResult(List<MaterialInfo> result) {
@@ -145,6 +151,7 @@ public class MaterialQcViewModel extends BaseDearViewModel {
 
 
     public Disposable getProjectListFromNet() {
+        shouldShowToastNoData.set(true);
         return repo.getMaterialProjectListFromNet(new BaseNetCallback<List<BaseProjectBean>>() {
             @Override
             protected void handleResult(List<BaseProjectBean> result) {
@@ -157,6 +164,7 @@ public class MaterialQcViewModel extends BaseDearViewModel {
 
 
     public Disposable getQcApproachesFromNet() {
+        shouldShowToastNoData.set(true);
         return repo.getQcApproaches(new BaseNetCallback<List<BaseQcApproachBean>>() {
             @Override
             protected void handleResult(List<BaseQcApproachBean> result) {
@@ -237,6 +245,7 @@ public class MaterialQcViewModel extends BaseDearViewModel {
             return;
         } else {
             body.setSubCodeId(material.getId());
+            body.setTotalNum(material.getQuantity());
         }
         if (isNeedVerify.getValue()) {
             body.setApproveFlag(1);
@@ -292,8 +301,13 @@ public class MaterialQcViewModel extends BaseDearViewModel {
         } else {
             body.setQualityRemark(comment);
         }
-
-        body.setQualityResult(getReportResult().getValue());
+        Integer result = getReportResult().getValue();
+        if(result==null){
+            showToast("请选择报告结果。");
+            return;
+        }else {
+            body.setQualityResult(result);
+        }
         BaseQcApproachBean approachBean = selectedQcApproach.getValue();
         if (approachBean == null) {
             showToast("请选择质检方式");
@@ -304,7 +318,7 @@ public class MaterialQcViewModel extends BaseDearViewModel {
                 int type = Integer.valueOf(approachId);
                 body.setQualityType(type);
             } catch (NumberFormatException e) {
-                showToast("服务器返回的质检方式的参数中的key不是一个数字，请联系开发人员。");
+                showToast("服务器返回的质检方式的参数中的key不是一个数字，请联系后台开发人员。");
                 return;
             }
         }
@@ -330,12 +344,13 @@ public class MaterialQcViewModel extends BaseDearViewModel {
         qcApproachList.postValue(new ArrayList<>());
         materialList.postValue(new ArrayList<>());
         sampleSize.postValue("0");
-        reportResult.postValue(null);
+        reportResult.postValue(1);
         comments.postValue("");
         selectedMaterial.postValue(null);
         selectedProject.postValue(null);
         selectedQcApproach.postValue(null);
         isNeedVerify.postValue(false);
         isCheckAllMaterials.postValue(false);
+        shouldShowToastNoData.set(false);
     }
 }

@@ -13,7 +13,7 @@ public class MaterialInfo {
     private String materialId;
     private String materialType;
     private String comment;
-    private int quantity;
+    private long quantity;
     private String unit;
     private int id;
     private String spec;
@@ -65,11 +65,11 @@ public class MaterialInfo {
         this.comment = comment;
     }
 
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
 

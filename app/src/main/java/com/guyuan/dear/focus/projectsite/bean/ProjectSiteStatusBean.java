@@ -4,6 +4,7 @@ import android.text.TextUtils;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.projectsite.type.InstallDebugStatusType;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.StringUtils;
 
 import java.io.Serializable;
@@ -100,6 +101,7 @@ public class ProjectSiteStatusBean implements Serializable {
      * 圆点的背景
      */
     public int getBallBg() {
+        LogUtils.showLog("getBallBg="+getStatusType().getMessage());
         return getStatusType().getBallBg();
     }
 
