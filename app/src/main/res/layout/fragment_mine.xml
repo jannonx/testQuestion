@@ -20,19 +20,27 @@
             android:background="@color/color_blue_0050B4"
             android:padding="@dimen/dp_12">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_avatar"
-                android:layout_width="@dimen/dp_60"
-                android:layout_height="@dimen/dp_60"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/ic_svg_staff_icon_default" />
+            <FrameLayout
+                android:id="@+id/fl_avatar"
+                android:layout_width="@dimen/dp_61"
+                android:background="@drawable/bg_white_round"
+                android:layout_height="@dimen/dp_61">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="@dimen/dp_60"
+                    android:layout_height="@dimen/dp_60"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/ic_svg_staff_icon_default" />
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dp_12"
-                android:layout_toEndOf="@+id/iv_avatar"
+                android:layout_toEndOf="@+id/fl_avatar"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView

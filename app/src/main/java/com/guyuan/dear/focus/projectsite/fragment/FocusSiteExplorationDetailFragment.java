@@ -444,7 +444,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     }
 
     /**
-     * 现场勘查报告
+     * 货物清单
      *
      * @param detailProjectData 数据
      */
@@ -465,7 +465,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     }
 
     /**
-     * 现场勘查报告
+     * 安全排查
      *
      * @param detailProjectData 数据
      */
@@ -487,7 +487,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     }
 
     /**
-     * 现场勘查报告
+     * 安装调试
      *
      * @param detailProjectData 数据
      */
@@ -502,7 +502,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
         binding.clCustomerPanel.setVisibility(View.GONE);
         binding.tvInstallTime.setVisibility(View.VISIBLE);
-        binding.tvInstallTime.setText(detailProjectData.getDebugStartTime());
+        binding.tvInstallTime.setText(detailProjectData.getDebugShowTime());
 
         String leftText = detailProjectData.getInstallDebugSatisfyType() == InstallDebugSatisfyType.TYPE_INSTALL_PAUSE ?
                 "继续" : "暂停";

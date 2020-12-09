@@ -227,7 +227,7 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="6dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_white_round"
+            android:background="@drawable/bg_white_round_stroke_f5f7fa"
             android:text="拒绝"
             android:textColor="@color/color_black" />
 

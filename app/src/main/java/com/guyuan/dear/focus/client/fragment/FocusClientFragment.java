@@ -115,7 +115,7 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
 
     @Override
     protected boolean isLoadMoreEnable() {
-        return false;
+        return true;
     }
 
 
