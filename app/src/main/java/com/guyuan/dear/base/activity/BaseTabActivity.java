@@ -60,6 +60,7 @@ public abstract class BaseTabActivity<V extends ViewDataBinding, VM extends Base
         titleList = getTitles();
         List<Fragment> fragmentList = getFragments();
         tabIconList = setTabIconList();
+        vpBase.setUserInputEnabled(false);
         init();
         new TabLayoutHelper(this, tlBase, vpBase, fragmentList, TabLayoutHelper.COMMON)
                 .setTab()

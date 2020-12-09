@@ -206,4 +206,8 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<com.guyuan.dear
     protected int getLayoutID() {
         return R.layout.fragment_staff_monthly_detail;
     }
+
+    public void updateTodayAttendRecord() {
+        getViewModel().updateTodayAttendRecord(staffId);
+    }
 }

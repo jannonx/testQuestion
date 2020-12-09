@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="fragment_staff_monthly_detail_vm"
             type="com.guyuan.dear.focus.hr.view.hrStaffMonthlyDetail.StaffMonthlyDetailViewModel" />
@@ -73,6 +75,7 @@
                 android:layout_width="@dimen/dp_36"
                 android:layout_height="@dimen/dp_28"
                 android:background="@drawable/shape_left_round_right_rec_green_2fc25b"
+                android:visibility="@{fragment_staff_monthly_detail_vm.isMe?View.GONE:View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="@id/fragment_staff_monthly_detail_iv_avatar"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@id/fragment_staff_monthly_detail_iv_avatar">
@@ -349,10 +352,10 @@
                 android:layout_width="8dp"
                 android:layout_height="8dp"
                 android:layout_marginLeft="@dimen/dp_12"
+                app:isAttendDay="@{fragment_staff_monthly_detail_vm.currentSelectRecord.attendDay}"
                 app:layout_constraintBottom_toBottomOf="@id/fragment_staff_monthly_detail_iv_anchor_view_1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/fragment_staff_monthly_detail_iv_anchor_view_1"
-                app:isAttendDay="@{fragment_staff_monthly_detail_vm.currentSelectRecord.attendDay}"
                 app:showAmAttendState="@{fragment_staff_monthly_detail_vm.currentSelectRecord.amStatus}"
                 app:srcCompat="@drawable/ic_svg_round_filled_blue_1890ff_24dp" />
 
@@ -375,11 +378,11 @@
                 android:layout_width="8dp"
                 android:layout_height="8dp"
                 android:layout_marginLeft="@dimen/dp_12"
+                app:isAttendDay="@{fragment_staff_monthly_detail_vm.currentSelectRecord.attendDay}"
                 app:layout_constraintBottom_toBottomOf="@id/fragment_staff_monthly_detail_iv_anchor_view_2"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/fragment_staff_monthly_detail_iv_anchor_view_2"
                 app:showPmAttendState="@{fragment_staff_monthly_detail_vm.currentSelectRecord.pmStatus}"
-                app:isAttendDay="@{fragment_staff_monthly_detail_vm.currentSelectRecord.attendDay}"
                 app:srcCompat="@drawable/ic_svg_round_filled_blue_1890ff_24dp" />
 
             <androidx.appcompat.widget.AppCompatTextView

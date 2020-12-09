@@ -7,21 +7,22 @@
     android:orientation="vertical">
 
     <FrameLayout
-        android:layout_width="wrap_content"
+        android:layout_width="40dp"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/item_deletable_tag_iv_icon"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
             app:srcCompat="@drawable/ic_svg_staff_icon_default" />
 
         <ImageView
             android:id="@+id/item_deletable_tag_iv_remove"
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:layout_marginTop="5dp"
             android:layout_gravity="right"
             app:srcCompat="@drawable/ic_cancel_red_ff0000_24dp" />
     </FrameLayout>

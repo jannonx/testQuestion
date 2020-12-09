@@ -147,8 +147,7 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/assess_result_vp"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/partner_ll"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/assess_content_tl" />
@@ -164,9 +163,9 @@
                 android:paddingEnd="@dimen/dp_12"
                 android:paddingBottom="10dp"
                 android:visibility="gone"
-                app:layout_constraintBottom_toTopOf="@+id/pic_ll"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/assess_result_vp"
                 tools:visibility="visible">
 
                 <TextView
@@ -194,9 +193,9 @@
                 android:paddingEnd="@dimen/dp_12"
                 android:paddingBottom="@dimen/dp_32"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/partner_ll"
                 tools:visibility="visible">
 
                 <TextView
