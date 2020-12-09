@@ -16,16 +16,19 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TableRow>
+            android:orientation="vertical"
+            android:shrinkColumns="1">
+            <TableRow
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/dp_16"
+                android:paddingBottom="@dimen/dp_16">
                 <androidx.appcompat.widget.AppCompatTextView
                     android:text="合同编号："
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
                     android:textStyle="bold"
                     android:paddingLeft="@dimen/dp_12"
-                    android:paddingTop="@dimen/dp_16"
-                    android:paddingBottom="@dimen/dp_16"
+
                    />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:textColor="@color/color_black_333333"
@@ -38,42 +41,44 @@
                android:layout_width="match_parent"
                android:layout_marginLeft="@dimen/dp_12"
                android:layout_marginRight="@dimen/dp_12"/>
-            <TableRow>
+            <TableRow
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/dp_12">
                 <androidx.appcompat.widget.AppCompatTextView
                     android:text="客户名称："
                     android:textSize="@dimen/sp_14"
                     android:textColor="@color/color_grey_999999"
-                    android:paddingLeft="@dimen/dp_12"
-                    android:paddingTop="@dimen/dp_12"/>
+                    android:paddingLeft="@dimen/dp_12"/>
                 <androidx.appcompat.widget.AppCompatTextView
                     android:textSize="@dimen/sp_14"
                     android:textColor="@color/color_grey_999999"
                     android:text="@{fragment_contract_detail_vm.contractBean.buyer,default=xxx}"/>
             </TableRow>
-            <TableRow>
+            <TableRow
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/dp_12">
                 <androidx.appcompat.widget.AppCompatTextView
                     android:text="签订时间："
                     android:textSize="@dimen/sp_14"
                     android:textColor="@color/color_grey_999999"
-                    android:paddingLeft="@dimen/dp_12"
-                    android:paddingTop="@dimen/dp_12"/>
+                    android:paddingLeft="@dimen/dp_12" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:textSize="@dimen/sp_14"
                     android:textColor="@color/color_grey_999999"
                     app:setContractDate="@{fragment_contract_detail_vm.contractBean.date}"/>
             </TableRow>
-            <TableRow>
+            <TableRow
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginBottom="@dimen/dp_12">
                 <androidx.appcompat.widget.AppCompatTextView
                     android:text="销售人员："
                     android:textSize="@dimen/sp_14"
                     android:textColor="@color/color_grey_999999"
-                    android:paddingLeft="@dimen/dp_12"
-                    android:paddingTop="@dimen/dp_12"
-                    android:paddingBottom="@dimen/dp_12"/>
+                    android:paddingLeft="@dimen/dp_12" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:textSize="@dimen/sp_14"
                     android:textColor="@color/color_grey_999999"
-                    android:paddingBottom="@dimen/dp_12"
                     android:text="@{fragment_contract_detail_vm.contractBean.salesPerson,default=xxx}"/>
             </TableRow>
         </TableLayout>
