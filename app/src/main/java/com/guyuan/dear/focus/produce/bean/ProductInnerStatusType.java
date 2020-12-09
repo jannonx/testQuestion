@@ -120,7 +120,7 @@ public enum ProductInnerStatusType implements Serializable {
                 if (bean.getBusinessId()!=0) {
                     return TYPE_ACTIVATE;
                 } else if (APPLY_ING == bean.getStatus()) {
-                    return TYPE_PAUSE_ING;
+                    return TYPE_ACTIVATE_ING;
                 }else if (APPLY_PASS == bean.getStatus()) {
                     return TYPE_ACTIVATE_PASS;
                 } else if (APPLY_REJECT == bean.getStatus()) {

@@ -15,7 +15,7 @@
             android:layout_marginStart="@dimen/dp_12"
             android:layout_marginTop="@dimen/dp_16"
             android:layout_marginEnd="@dimen/dp_12"
-            android:background="@color/color_grey_eeeeee"
+            android:background="@color/color_white_f5f7fa"
             android:padding="@dimen/dp_12"
             app:layout_scrollFlags="scroll|enterAlways">
 
