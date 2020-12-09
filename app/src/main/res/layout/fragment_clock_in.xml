@@ -126,6 +126,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/color_grey_757575"
                         app:showMyClockInDescription="@{fragment_clock_in_vm.myClockInTime}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -187,6 +188,7 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/color_grey_757575"
                         app:showMyCheckOutDescription="@{fragment_clock_in_vm.myPunchOffTime}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 

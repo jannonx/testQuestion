@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
+import com.guyuan.dear.focus.contract.view.abnormalContractList.AbnormalContractListFragment;
+import com.guyuan.dear.focus.contract.view.allContractList.AllContractListFragment;
 import com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment;
 import com.guyuan.dear.focus.contract.view.contractSum.ComContractsSumFragment;
 import com.guyuan.dear.utils.ConstantValue;
@@ -51,8 +53,10 @@ public class ContractHomeActivity extends BaseTabActivity<ActivityBaseTabBinding
                 add(ComContractsSumFragment.getInstance());
 //                add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_ON_PAUSE));
 //                add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_RESTART));
-                add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_EXCEPTION));
-                add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_TOTAL));
+//                add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_EXCEPTION));
+                add(AbnormalContractListFragment.getInstance());
+//                add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_TOTAL));
+                add(AllContractListFragment.getInstance());
             }
         };
     }
