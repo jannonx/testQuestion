@@ -66,7 +66,7 @@ public class ContractSearchBar extends FrameLayout {
 
             @Override
             public void afterTextChanged(Editable s) {
-                tvSubmit.setSelected(!TextUtils.isEmpty(s.toString()));
+                tvSubmit.setEnabled(!TextUtils.isEmpty(s.toString()));
             }
         });
         addView(inflate);
