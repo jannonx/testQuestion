@@ -159,6 +159,10 @@ public class ClockInViewModel extends BaseDearViewModel {
                     isHideRefreshLabel.postValue(false);
                     showToast(repo.getMapError(errorCode));
                     repo.stopPositioning();
+                    currentLocation.setValue("定位失败");
+                    isInClockInArea.setValue(false);
+                    updateCurrentState();
+                    myLoc = null;
                 }
             }
         }
