@@ -9,9 +9,8 @@
         android:background="@color/color_white_ffffff"
         android:orientation="vertical">
 
-        <include
-            android:id="@+id/search_bar"
-            layout="@layout/layout_search_bar"
+        <com.guyuan.dear.customizeview.SearchBar
+            android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_44"
             android:layout_marginLeft="@dimen/dp_12"

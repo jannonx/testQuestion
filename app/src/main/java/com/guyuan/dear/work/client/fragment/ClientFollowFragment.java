@@ -43,8 +43,7 @@ public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBe
 
     @Override
     protected void init() {
-        etSearch.setHint("输入客户名称、销售人员");
-
+        searchBar.setHint("输入客户名称、销售人员");
         ClientFollowAdapter listAdapter = new ClientFollowAdapter(getContext(), listData,
                 R.layout.item_work_follow_customer);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
@@ -71,15 +70,7 @@ public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBe
     }
 
 
-    @Override
-    protected void onSearch(String keyWord) {
-        viewModel.getMyClientList(getListRequestBody(true));
-    }
 
-    @Override
-    protected void editEmptyChange() {
-        viewModel.getMyClientList(getListRequestBody(true));
-    }
 
     @Override
     protected void refresh() {
@@ -96,7 +87,7 @@ public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBe
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListClientRequestBody body = new ListClientRequestBody();
         ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
-        filtersBean.setName(etSearch.getText().toString());
+        filtersBean.setName(searchContent);
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);

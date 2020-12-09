@@ -41,7 +41,7 @@ public class FocusOneProduceFragment extends BaseProduceFragment {
 
     @Override
     protected void init() {
-        etSearch.setHint("输入产品名称、产品代号");
+        searchBar.setHint("输入产品名称、产品代号");
         produceName = getArguments().getString(ConstantValue.KEY_CONTENT);
 
         FocusProduceAdapter listAdapter = new FocusProduceAdapter(getContext(), listData,
@@ -58,7 +58,7 @@ public class FocusOneProduceFragment extends BaseProduceFragment {
         });
 
 
-        etSearch.setText(produceName);
+        searchBar.setSearchContent(produceName);
 
         viewModel.getProduceList(getListRequestBody(produceName));
         viewModel.getProduceListEvent().observe(getActivity(), new Observer<RefreshBean<FocusProduceBean>>() {

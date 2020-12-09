@@ -39,7 +39,7 @@ public class FocusProduceExceptionFragment extends BaseProduceFragment {
 
     @Override
     protected void init() {
-        etSearch.setHint("输入产品名称、产品代号");
+        searchBar.setHint("输入产品名称、产品代号");
         FocusProduceAdapter listAdapter = new FocusProduceAdapter(getContext(), listData,
                 R.layout.item_focus_produce);
         adapter = new BaseRecyclerViewAdapter(listAdapter);

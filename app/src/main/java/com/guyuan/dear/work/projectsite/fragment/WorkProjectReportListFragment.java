@@ -62,7 +62,7 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
     protected void init() {
 
         reportType = (ProjectReportType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
-        etSearch.setHint(TYPE_CUSTOMER_ACCEPTANCE == reportType
+        searchBar.setHint(TYPE_CUSTOMER_ACCEPTANCE == reportType
                 ? "输入客户名称、项目名称" : "输入项目名称、编号、人员");
         LogUtils.showLog("siteExploreBean=" + reportType.getDes());
         ProjectReportAdapter checkGoodsAdapter = new ProjectReportAdapter(getContext(),

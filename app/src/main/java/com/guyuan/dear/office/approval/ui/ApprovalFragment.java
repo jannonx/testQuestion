@@ -48,7 +48,7 @@ public class ApprovalFragment extends BaseListSearchFragment<ApprovalListBean.Co
 
     @Override
     protected void init() {
-        etSearch.setHint("搜索提交人");
+        searchBar.setHint("搜索提交人");
         //binding.searchBar.rlSearchBar.setVisibility(View.GONE);
         ApprovalAdapter approvalAdapter = new ApprovalAdapter(listData, R.layout.item_approval);
         setDefaultAdapter(approvalAdapter);

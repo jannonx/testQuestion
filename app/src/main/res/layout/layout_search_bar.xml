@@ -74,6 +74,7 @@
                 android:paddingTop="@dimen/dp_3"
                 android:paddingRight="@dimen/dp_8"
                 android:paddingBottom="@dimen/dp_3"
+                android:enabled="false"
                 android:text="搜索"
                 android:textColor="@color/white"
                 android:textSize="@dimen/sp_12"
