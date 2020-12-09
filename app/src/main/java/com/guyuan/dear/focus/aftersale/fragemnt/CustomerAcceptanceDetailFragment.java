@@ -28,6 +28,8 @@ import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.StringUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,9 +37,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import org.greenrobot.eventbus.EventBus;
-
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
@@ -86,6 +85,8 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
         afterSaleBean = (AfterSaleBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
 
         binding.tvPauseBtn.setOnClickListener(this);
+
+
         binding.tvCompleteBtn.setOnClickListener(this);
         if (afterSaleBean.getModuleType() != null) {
             binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_WORK == afterSaleBean.getModuleType()
