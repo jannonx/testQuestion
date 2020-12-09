@@ -15,6 +15,7 @@ import androidx.lifecycle.Observer;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProduceOverviewBinding;
+import com.guyuan.dear.focus.produce.bean.IntentBean;
 import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
 import com.guyuan.dear.focus.produce.bean.ProduceRequestBody;
 import com.guyuan.dear.focus.produce.bean.ProductStatusType;
@@ -155,29 +156,32 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
 
     @Override
     public void onClick(View v) {
+        IntentBean intentBean = new IntentBean();
+        intentBean.setStartTime(calenderUtils.toSmartFactoryDateStringFormat(dates[0].getTime()));
+        intentBean.setEndTime(calenderUtils.toSmartFactoryDateStringFormat(dates[1].getTime()));
         switch (v.getId()) {
             case R.id.cl_produce_wait:
                 FocusProduceClassifyActivity.start(
-                        getContext(), ProductStatusType.TYPE_PRODUCE_WAIT);
+                        getContext(), intentBean.setStatusType(ProductStatusType.TYPE_PRODUCE_WAIT));
                 break;
             case R.id.cl_produce_complete:
                 FocusProduceClassifyActivity.start(
-                        getContext(), ProductStatusType.TYPE_PRODUCE_COMPLETE);
+                        getContext(), intentBean.setStatusType(ProductStatusType.TYPE_PRODUCE_COMPLETE));
 
                 break;
             case R.id.cl_produce_ing:
 
                 FocusProduceClassifyActivity.start(
-                        getContext(), ProductStatusType.TYPE_PRODUCE_ING);
+                        getContext(), intentBean.setStatusType(ProductStatusType.TYPE_PRODUCE_ING));
                 break;
             case R.id.cl_produce_exception:
                 FocusProduceClassifyActivity.start(
-                        getContext(), ProductStatusType.TYPE_PRODUCE_EXCEPTION);
+                        getContext(), intentBean.setStatusType(ProductStatusType.TYPE_PRODUCE_EXCEPTION));
 
                 break;
             case R.id.cl_produce_delay:
                 FocusProduceClassifyActivity.start(
-                        getContext(), ProductStatusType.TYPE_PRODUCE_DELAY_FINISH);
+                        getContext(), intentBean.setStatusType(ProductStatusType.TYPE_PRODUCE_DELAY_FINISH));
 
                 break;
             case R.id.tv_select_start_time:

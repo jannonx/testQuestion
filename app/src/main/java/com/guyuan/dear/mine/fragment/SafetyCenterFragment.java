@@ -1,20 +1,17 @@
 package com.guyuan.dear.mine.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.lifecycle.Observer;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentSafetyCenterBinding;
-import com.guyuan.dear.mine.activity.SafetyCenterActivity;
 import com.guyuan.dear.mine.data.MineViewModel;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ToastUtils;
@@ -89,7 +86,7 @@ public class SafetyCenterFragment extends BaseDataBindingFragment<FragmentSafety
         }
 
         if (newPw.equals(curPw)) {
-            showToastTip("新密码不能与原密码一致");
+            ToastUtils.showLong(getContext(), "新密码不能与原密码一致");
             return;
         }
 

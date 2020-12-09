@@ -76,6 +76,8 @@ public class FollowCommentDialog extends BottomSheetDialog {
         viewBinding.tvSearchBtn.setClickable(false);
         viewBinding.tvSearchBtn.setEnabled(false);
         viewBinding.tvSearchBtn.setChecked(false);
+        //记录字数上限
+        int wordLimitNum = 240;
         viewBinding.etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -93,6 +95,13 @@ public class FollowCommentDialog extends BottomSheetDialog {
                 viewBinding.tvSearchBtn.setClickable(!TextUtils.isEmpty(editable.toString()));
                 viewBinding.tvSearchBtn.setEnabled(!TextUtils.isEmpty(editable.toString()));
                 viewBinding.tvSearchBtn.setChecked(!TextUtils.isEmpty(editable.toString()));
+                if (editable.length() > wordLimitNum) {
+                    //删除多余输入的字（不会显示出来）
+                    editable.delete(wordLimitNum, editable.length());
+                    viewBinding.etSearch.setText(editable);
+                    //设置光标在最后
+                    viewBinding.etSearch.setSelection(viewBinding.etSearch.getText().toString().length());
+                }
             }
         });
         viewBinding.tvSearchBtn.setOnClickListener(new View.OnClickListener() {

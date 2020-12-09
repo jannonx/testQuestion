@@ -9,6 +9,7 @@ import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.client.fragment.FocusClientDetailFragment;
+import com.guyuan.dear.focus.produce.bean.IntentBean;
 import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.focus.produce.fragment.FocusProduceClassifyFragment;
@@ -26,7 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class FocusProduceClassifyActivity extends BaseToolbarActivity<ActivityWithToolbarBinding, FocusProduceViewModel> {
 
-    public static void start(Context context, ProductStatusType data) {
+    public static void start(Context context, IntentBean data) {
         Intent intent = new Intent(context, FocusProduceClassifyActivity.class);
         intent.putExtra(ConstantValue.KEY_CONTENT, data);
 
@@ -36,8 +37,8 @@ public class FocusProduceClassifyActivity extends BaseToolbarActivity<ActivityWi
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-        ProductStatusType bean = (ProductStatusType) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
-        binding.toolbarContainer.titleTv.setText(bean.getDes());
+        IntentBean bean = (IntentBean) getIntent().getSerializableExtra(ConstantValue.KEY_CONTENT);
+        binding.toolbarContainer.titleTv.setText(bean.getType().getDes());
         FocusProduceClassifyFragment mFragment = FocusProduceClassifyFragment.newInstance(bean);
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
                 FocusClientDetailFragment.TAG);

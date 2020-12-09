@@ -24,15 +24,17 @@
 
                 <TextView
                     android:id="@+id/tv_project_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_12"
-                    tools:text="迪尔空分机项目"
+                    android:layout_marginEnd="@dimen/dp_24"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_16"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_project_status"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="迪尔空分机项目迪尔空分机项目迪尔空分机项目迪尔空分机项目迪尔空分机项目" />
 
 
                 <TextView
@@ -40,17 +42,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_12"
+                    android:layout_marginEnd="@dimen/dp_12"
                     android:background="@drawable/bg_orange_ffece3_corner_2"
                     android:paddingStart="@dimen/dp_4"
                     android:paddingTop="@dimen/dp_2"
                     android:paddingEnd="@dimen/dp_4"
                     android:paddingBottom="@dimen/dp_2"
-                    tools:text="不满足条件"
                     android:textColor="@color/color_orange_FF6010"
                     android:textSize="@dimen/sp_12"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_project_name"
-                    app:layout_constraintStart_toEndOf="@+id/tv_project_name"
-                    app:layout_constraintTop_toTopOf="@+id/tv_project_name" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_project_name"
+                    tools:text="不满足条件" />
 
                 <View
                     android:id="@+id/v_line_0"
@@ -80,12 +82,12 @@
                     android:id="@+id/tv_project_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="XMBH6546487"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintBottom_toBottomOf="@+id/label_project_code"
                     app:layout_constraintStart_toEndOf="@+id/label_project_code"
-                    app:layout_constraintTop_toTopOf="@+id/label_project_code" />
+                    app:layout_constraintTop_toTopOf="@+id/label_project_code"
+                    tools:text="XMBH6546487" />
 
                 <TextView
                     android:id="@+id/label_check_name"
@@ -102,12 +104,12 @@
                     android:id="@+id/tv_check_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="小刘"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintBottom_toBottomOf="@+id/label_check_name"
                     app:layout_constraintStart_toEndOf="@+id/label_check_name"
-                    app:layout_constraintTop_toTopOf="@+id/label_check_name" />
+                    app:layout_constraintTop_toTopOf="@+id/label_check_name"
+                    tools:text="小刘" />
 
                 <View
                     android:id="@+id/v_line_1"
@@ -127,23 +129,23 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_12"
-                    tools:text="深圳客户有限公司"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/tv_project_name"
-                    app:layout_constraintTop_toBottomOf="@+id/v_line_1" />
+                    app:layout_constraintTop_toBottomOf="@+id/v_line_1"
+                    tools:text="深圳客户有限公司" />
 
                 <TextView
                     android:id="@+id/tv_company_location"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_12"
-                    tools:text="广东深圳"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintStart_toStartOf="@+id/tv_project_name"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_company_name" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_company_name"
+                    tools:text="广东深圳" />
 
 
                 <TextView
@@ -151,11 +153,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_12"
-                    tools:text="2020-08-17 15:00"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintStart_toStartOf="@+id/tv_project_name"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_company_location" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_company_location"
+                    tools:text="2020-08-17 15:00" />
 
                 <View
                     android:id="@+id/view_2"
@@ -195,11 +197,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp_12"
                         android:layout_marginTop="@dimen/dp_12"
-                        tools:text="共计货物：41件"
                         android:textColor="@color/color_black_333333"
                         android:textSize="@dimen/sp_14"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/label_goods_list" />
+                        app:layout_constraintTop_toBottomOf="@+id/label_goods_list"
+                        tools:text="共计货物：41件" />
 
                     <tl.com.easy_recycleview_library.BaseRecyclerView
                         android:id="@+id/base_recycleView"
