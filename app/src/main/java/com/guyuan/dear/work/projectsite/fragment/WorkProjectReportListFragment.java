@@ -233,12 +233,12 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
 
     @Override
     protected void refresh() {
-        getDataListByClassify(true);
+        getDataListByClassify(false);
     }
 
     @Override
     protected void loadMore() {
-        getDataListByClassify(false);
+        getDataListByClassify(true);
     }
 
     @Override

@@ -43,7 +43,7 @@ public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBe
 
     @Override
     protected void init() {
-        searchBar.setHint("输入客户名称、销售人员");
+        searchBar.setHint("输入客户名称、手机号");
         ClientFollowAdapter listAdapter = new ClientFollowAdapter(getContext(), listData,
                 R.layout.item_work_follow_customer);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
@@ -100,7 +100,7 @@ public class ClientFollowFragment extends BaseListSearchFragment<ClientCompanyBe
 
     @Override
     protected boolean isPullEnable() {
-        return true;
+        return false;
     }
 
     @Override

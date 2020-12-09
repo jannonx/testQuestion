@@ -96,7 +96,7 @@ public class MineViewModel extends BaseViewModel {
      */
     public void postUserAvatar(RequestBody body) {
 
-        Disposable disposable = RxJavaHelper.build(this, repository.postFeedBack(body))
+        Disposable disposable = RxJavaHelper.build(this, repository.postUserAvatar(body))
                 .getHelper().flow(userAvatarEvent);
         addSubscription(disposable);
     }
