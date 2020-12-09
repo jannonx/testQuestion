@@ -31,6 +31,8 @@ public class AbnormalQcListViewModel extends BaseDearViewModel {
     private MutableLiveData<List<GenericQcReport>> rejectedReportList = new MutableLiveData<>(new ArrayList<>());
     private MutableLiveData<Boolean> isAllRejectedReportLoaded = new MutableLiveData<>(false);
     private int rejectedReportPageIndex = 1;
+    public MutableLiveData<Boolean> shouldNotifyDataSetChange = new MutableLiveData<>(false);
+
 
 
     /**
@@ -101,32 +103,21 @@ public class AbnormalQcListViewModel extends BaseDearViewModel {
         isAllRejectedReportLoaded.postValue(false);
         rejectedReportPageIndex = 1;
         shouldShowNoData.postValue(true);
+        shouldNotifyDataSetChange.postValue(false);
     }
 
 
     public Disposable updateAllRejectedReports(long dateFrom, long dateTo) {
-        return repo.getAllRejectedQcList(dateFrom, dateTo, rejectedReportPageIndex++, PAGE_SIZE, new DearNetHelper.NetCallback<List<GenericQcReport>>() {
+        return repo.getAllRejectedQcList(dateFrom, dateTo, rejectedReportPageIndex++, PAGE_SIZE, new BaseNetCallback<List<GenericQcReport>>() {
             @Override
-            public void onStart(Disposable disposable) {
-                isShowLoading.postValue(true);
-            }
-
-            @Override
-            public void onGetResult(List<GenericQcReport> result) {
+            protected void handleResult(List<GenericQcReport> result) {
                 if (result.isEmpty()) {
                     isAllRejectedReportLoaded.postValue(true);
                 } else {
                     rejectedReportList.getValue().addAll(result);
-                    rejectedReportList.postValue(rejectedReportList.getValue());
+                    shouldNotifyDataSetChange.postValue(true);
                     shouldShowNoData.postValue(false);
                 }
-                isShowLoading.postValue(false);
-            }
-
-            @Override
-            public void onError(Throwable error) {
-                isShowLoading.postValue(false);
-                ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
             }
         });
     }
