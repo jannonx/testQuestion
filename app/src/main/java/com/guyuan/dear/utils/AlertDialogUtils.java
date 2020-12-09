@@ -70,7 +70,18 @@ public class AlertDialogUtils {
                                 long selectedDate, Type dialogType, OnDateSetListener callback) {
         if (!CommonUtils.isFastDoubleClick()) {
             TimePickerDialog dialog = new TimePickerDialog.Builder()
-                    .setCallBack(callback)
+                    .setCallBack(new OnDateSetListener() {
+                        @Override
+                        public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
+                            //这里修正一下日期，把时间定在该日期那天的23点59分59秒
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.setTimeInMillis(millseconds);
+                            calendar.set(Calendar.HOUR_OF_DAY,23);
+                            calendar.set(Calendar.MINUTE,59);
+                            calendar.set(Calendar.SECOND,59);
+                            callback.onDateSet(timePickerView,calendar.getTimeInMillis());
+                        }
+                    })
                     .setCancelStringId("取消")
                     .setSureStringId("确认")
                     .setTitleStringId(title)
