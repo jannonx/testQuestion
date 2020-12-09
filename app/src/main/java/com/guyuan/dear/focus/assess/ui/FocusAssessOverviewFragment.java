@@ -4,7 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -109,6 +111,27 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
 
     private void setSearch() {
         binding.include.etSearch.setHint("输入客户名称、合同编号");
+        binding.include.tvSearchBtn.setEnabled(false);
+        binding.include.etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (TextUtils.isEmpty(s)) {
+                    binding.include.tvSearchBtn.setEnabled(false);
+                } else {
+                    binding.include.tvSearchBtn.setEnabled(true);
+                }
+            }
+        });
         binding.include.tvSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
