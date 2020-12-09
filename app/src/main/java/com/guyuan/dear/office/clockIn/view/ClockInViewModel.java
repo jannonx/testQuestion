@@ -184,6 +184,13 @@ public class ClockInViewModel extends BaseDearViewModel {
             isInClockInArea.postValue(false);
         }
 
+//        if (true) {
+//            isInClockInArea.setValue(true);
+//        } else {
+//            isInClockInArea.setValue(false);
+//        }
+
+
         updateCurrentState();
 
     }

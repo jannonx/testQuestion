@@ -84,8 +84,6 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
         recyclerView = getViewDataBinding().fragmentAbnormalQcReportListRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         list = getViewModel().getRejectedReportList().getValue();
-        getViewModel().getRejectedReportList().observe(getViewLifecycleOwner(), observerUpdateItem);
-        getViewModel().getIsAllRejectedReportLoaded().observe(getViewLifecycleOwner(), observerEnableRefresh);
         if (list == null) {
             return;
         }
@@ -100,7 +98,6 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
             @Override
             public void onLoadMore() {
                 addDisposable(getViewModel().updateAllRejectedReports(dateFrom, dateTo));
-                recyclerView.refreshComplete(0);
             }
         });
         wrapper.setOnItemClickListener(new OnItemClickListener() {
@@ -134,6 +131,36 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
             }
         });
 
+        getViewModel().getRejectedReportList().observe(getViewLifecycleOwner(), new Observer<List<GenericQcReport>>() {
+            @Override
+            public void onChanged(List<GenericQcReport> genericQcReports) {
+                if (list != null) {
+                    list.clear();
+                    list.addAll(genericQcReports);
+                    wrapper.notifyDataSetChanged();
+                }
+            }
+        });
+        getViewModel().getIsAllRejectedReportLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+                    recyclerView.refreshComplete(0);
+                    recyclerView.setLoadMoreEnabled(false);
+                }
+            }
+        });
+
+        getViewModel().shouldNotifyDataSetChange.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if(aBoolean){
+                    wrapper.notifyDataSetChanged();
+                    recyclerView.refreshComplete(0);
+                }
+            }
+        });
+
     }
 
     private void selectStartTime() {
@@ -163,22 +190,7 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
                 });
     }
 
-    private Observer<List<GenericQcReport>> observerUpdateItem = new Observer<List<GenericQcReport>>() {
-        @Override
-        public void onChanged(List<GenericQcReport> genericQcReports) {
-            if (list != null) {
-                list.clear();
-                list.addAll(genericQcReports);
-                wrapper.notifyDataSetChanged();
-            }
-        }
-    };
-    private Observer<Boolean> observerEnableRefresh = new Observer<Boolean>() {
-        @Override
-        public void onChanged(Boolean aBoolean) {
-            recyclerView.setLoadMoreEnabled(!aBoolean);
-        }
-    };
+
 
     @Override
     protected int getLayoutID() {
