@@ -130,9 +130,9 @@ android {
             signingConfig signingConfigs.config
         }
 
-        dev{
+        check{
             initWith(buildTypes.commons)
-            buildConfigField "String", "SERVER_URL", properties.getProperty("DEV_SERVER_URL")
+            buildConfigField "String", "SERVER_URL", properties.getProperty("CHECK_SERVER_URL")
             buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_LOCAL_APP_KEY")
             buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_LOCAL_MSG_SECRET")
             buildConfigField "String", "XIAO_MI_APP_ID", properties.getProperty("XIAO_MI_LOCAL_APP_ID")

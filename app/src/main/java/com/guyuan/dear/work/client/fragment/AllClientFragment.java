@@ -43,7 +43,7 @@ public class AllClientFragment extends BaseListSearchFragment<ClientCompanyBean,
 
     @Override
     protected void init() {
-        etSearch.setHint("输入客户名称、手机号");
+        searchBar.setHint("输入客户名称、手机号");
         ClientAllAdapter listAdapter = new ClientAllAdapter(getContext(), listData,
                 R.layout.item_work_all_customer);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
@@ -73,17 +73,6 @@ public class AllClientFragment extends BaseListSearchFragment<ClientCompanyBean,
         });
     }
 
-
-    @Override
-    protected void onSearch(String keyWord) {
-        viewModel.getClientList(getListRequestBody(true));
-    }
-
-    @Override
-    protected void editEmptyChange() {
-        viewModel.getClientList(getListRequestBody(true));
-    }
-
     @Override
     protected void refresh() {
         viewModel.getClientList(getListRequestBody(true));
@@ -99,7 +88,7 @@ public class AllClientFragment extends BaseListSearchFragment<ClientCompanyBean,
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListClientRequestBody body = new ListClientRequestBody();
         ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
-        filtersBean.setName(etSearch.getText().toString());
+        filtersBean.setName(searchContent);
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);

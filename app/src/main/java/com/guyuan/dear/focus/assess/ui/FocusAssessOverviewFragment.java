@@ -4,13 +4,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
+import com.guyuan.dear.customizeview.SearchBar;
 import com.guyuan.dear.databinding.FragmentFocusAssessOverviewBinding;
 import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
 import com.guyuan.dear.focus.assess.data.bean.AssessOverviewBean;
@@ -108,16 +111,30 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
 
 
     private void setSearch() {
-        binding.include.etSearch.setHint("输入客户名称、合同编号");
-        binding.include.tvSearchBtn.setOnClickListener(new View.OnClickListener() {
+        binding.searchBar.setHint("输入客户名称、合同编号");
+        binding.searchBar.setSearchListener(new SearchBar.OnSearchListener() {
             @Override
-            public void onClick(View v) {
-                Editable editable = binding.include.etSearch.getText();
-                if (editable != null && !TextUtils.isEmpty(editable)) {
-                    FocusAssessListActivity.start(getContext(), editable.toString(), FocusAssessListFragment.TOTAL);
+            public void onSearch(String searchContent) {
+                if ( !TextUtils.isEmpty(searchContent)) {
+                    FocusAssessListActivity.start(getContext(), searchContent, FocusAssessListFragment.TOTAL);
                 } else {
                     showToastTip(ConstantValue.TIP_SEARCH);
                 }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
     }

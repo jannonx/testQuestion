@@ -45,7 +45,7 @@ public class MessageFragment extends BaseListSearchFragment<MessageBean, Fragmen
 
     @Override
     protected void init() {
-        etSearch.setHint("搜索内容");
+        searchBar.setHint("搜索内容");
         msgType = getArguments().getInt(ConstantValue.KEY_TYPE);
         MessageAdapter messageAdapter = new MessageAdapter(listData, R.layout.item_message);
         setDefaultAdapter(messageAdapter);

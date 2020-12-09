@@ -68,10 +68,7 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
     private LayoutNoDataBinding mNoDataSign;
 
     /**
-     * @param statusType {@link ContractStatusListFragment#STATUS_TYPE_ON_PAUSE}
-     *                   {@link ContractStatusListFragment#STATUS_TYPE_RESTART}
-     *                   {@link ContractStatusListFragment#STATUS_TYPE_EXCEPTION}
-     *                   {@link ContractStatusListFragment#STATUS_TYPE_TOTAL}
+     * @param statusType 只有{@link ContractStatusListFragment#STATUS_TYPE_EXCEPTION},{@link ContractStatusListFragment#STATUS_TYPE_TOTAL}
      * @return
      */
     public static ContractStatusListFragment getInstance(int statusType) {

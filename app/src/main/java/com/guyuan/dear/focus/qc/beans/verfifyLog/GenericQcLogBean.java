@@ -25,23 +25,21 @@ public class GenericQcLogBean implements Parcelable {
 
     public GenericQcLogBean(NetQcReportApproveFlow src) {
         int status = src.getStatus();
-        //0表示待审批以及申请详情
         if (status == 0) {
-            //数量大于1表示申请详情
-            if (src.getQualityNum() > 0) {
-                LogTypeSubmitDetail submitDetail = new LogTypeSubmitDetail(src);
-                setLogType(LOG_TYPE_SUBMIT_DETAIL);
-                setJsonString(new Gson().toJson(submitDetail));
-            } else {
-                //数量为0表示待审批
-                LogTypePendingForVerify pending = new LogTypePendingForVerify(src);
-                setLogType(LOG_TYPE_PENDING_FOR_VERIFY);
-                setJsonString(new Gson().toJson(pending));
-            }
+            //数量为0表示待审批
+            LogTypePendingForVerify pending = new LogTypePendingForVerify(src);
+            setLogType(LOG_TYPE_PENDING_FOR_VERIFY);
+            setJsonString(new Gson().toJson(pending));
         } else if (status == 1 || status == 2) {
+            //1表示同意，2表示拒绝
             LogTypeVerifyResult verifyResult = new LogTypeVerifyResult(src);
             setLogType(LOG_TYPE_VERIFY_RESULT);
             setJsonString(new Gson().toJson(verifyResult));
+        } else if (status == 3) {
+            //3表示首次创建
+            LogTypeSubmitDetail submitDetail = new LogTypeSubmitDetail(src);
+            setLogType(LOG_TYPE_SUBMIT_DETAIL);
+            setJsonString(new Gson().toJson(submitDetail));
         }
     }
 

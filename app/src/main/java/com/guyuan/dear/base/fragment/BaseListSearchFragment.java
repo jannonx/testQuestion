@@ -13,6 +13,7 @@ import androidx.databinding.ViewDataBinding;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.util.LogUtils;
 import com.guyuan.dear.R;
+import com.guyuan.dear.customizeview.SearchBar;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.ToastUtils;
@@ -31,9 +32,7 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
     protected Date[] dates = new Date[2];
     protected CalenderUtils calenderUtils;
 
-    protected TextView mTvSelectStartTime, mTvSelectEndTime;
-    protected AppCompatCheckedTextView tvSearchBtn;
-    protected AppCompatEditText etSearch;
+    protected SearchBar searchBar;
     protected String searchContent = "";
 
     @Override
@@ -44,58 +43,17 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
 
     @Override
     protected void initView() {
-        etSearch = rootView.findViewById(R.id.et_search);
-        tvSearchBtn = rootView.findViewById(R.id.tv_search_btn);
-        //    initDate();
-
+        searchBar = rootView.findViewById(R.id.searchBar);
         init();
         initListener();
     }
 
-    private void initDate() {
-        calenderUtils = CalenderUtils.getInstance();
-        //一年
-        dates[0] = calenderUtils.getSettingDate(CalenderUtils.getPassOneYear(), 0, 0, 0);
-        dates[1] = calenderUtils.getSettingDate(new Date(), 23, 59, 59);
-
-        mTvSelectStartTime.setText(calenderUtils.toSmartFactoryDateFormatByDay(dates[0].getTime()));
-        mTvSelectEndTime.setText(calenderUtils.toSmartFactoryDateFormatByDay(dates[1].getTime()));
-    }
-
 
     protected void initListener() {
-        tvSearchBtn.setClickable(false);
-        tvSearchBtn.setEnabled(false);
-        tvSearchBtn.setChecked(false);
-        etSearch.addTextChangedListener(new TextWatcher() {
+        searchBar.setSearchListener(new SearchBar.OnSearchListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                searchContent = editable.toString();
-//                ivClearBtn.setVisibility(TextUtils.isEmpty(editable.toString()) ? View.GONE : View.VISIBLE);
-                if (TextUtils.isEmpty(editable.toString())) {
-                    refresh();
-                    return;
-                }
-
-                LogUtils.showLog("editable=" + editable.toString());
-                tvSearchBtn.setClickable(!TextUtils.isEmpty(editable.toString()));
-                tvSearchBtn.setEnabled(!TextUtils.isEmpty(editable.toString()));
-                tvSearchBtn.setChecked(!TextUtils.isEmpty(editable.toString()));
-            }
-        });
-        tvSearchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String key = etSearch.getText().toString();
-                if (TextUtils.isEmpty(key)) {
+            public void onSearch(String searchContent) {
+                if (TextUtils.isEmpty(searchContent)) {
                     ToastUtils.showShort(getContext(), ConstantValue.TIP_SEARCH);
                 } else {
                     currentType = REFRESH;
@@ -103,35 +61,28 @@ public abstract class BaseListSearchFragment<T, VB extends ViewDataBinding, VM e
                 }
 
             }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                searchContent = s.toString();
+                if (TextUtils.isEmpty(searchContent)) {
+                    refresh();
+                }
+            }
         });
 
     }
 
     protected abstract void init();
-
-    /**
-     * 点击按钮搜索
-     *
-     * @param text 搜索内容
-     */
-    protected void onSearch(String text) {
-        refresh();
-    }
-
-    /**
-     * 清空editText,刷新列表
-     */
-    protected void editEmptyChange() {
-        refresh();
-    }
-
-    /**
-     * 实时搜索
-     *
-     * @param text 搜索内容
-     */
-    protected void editTextChanged(String text) {
-
-    }
 
 }

@@ -28,7 +28,7 @@ public class WorkAssessListFragment extends BaseListSearchFragment<WorkAssessIte
     public static final int TOTAL = 0;   //总的
     public static final int CREATE = 1;  //我的新建
     private int type;
-    private String currentContent = "";
+
 
     public static WorkAssessListFragment newInstance(int type) {
 
@@ -52,7 +52,7 @@ public class WorkAssessListFragment extends BaseListSearchFragment<WorkAssessIte
                 }
             });
             type = getArguments().getInt(ConstantValue.KEY_STATUS_TYPE);
-            viewModel.getAssessList(FIRST_PAGE, currentContent, type);
+            viewModel.getAssessList(FIRST_PAGE, searchContent, type);
         }
     }
 
@@ -60,12 +60,12 @@ public class WorkAssessListFragment extends BaseListSearchFragment<WorkAssessIte
     @Override
     protected void refresh() {
         currentPage = FIRST_PAGE;
-        viewModel.getAssessList(currentPage, currentContent, type);
+        viewModel.getAssessList(currentPage, searchContent, type);
     }
 
     @Override
     protected void loadMore() {
-        viewModel.getAssessList(++currentPage, currentContent, type);
+        viewModel.getAssessList(++currentPage, searchContent, type);
     }
 
     @Override
@@ -76,24 +76,6 @@ public class WorkAssessListFragment extends BaseListSearchFragment<WorkAssessIte
     @Override
     protected boolean isLoadMoreEnable() {
         return true;
-    }
-
-
-    @Override
-    protected void onSearch(String text) {
-        super.onSearch(text);
-        refresh();
-    }
-
-    @Override
-    protected void editTextChanged(String text) {
-        super.editTextChanged(text);
-        currentContent = text;
-    }
-
-    @Override
-    protected void editEmptyChange() {
-        super.editEmptyChange();
     }
 
     @Override

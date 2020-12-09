@@ -35,7 +35,7 @@ public class GoodsSignFragment extends BaseListSearchFragment<GoodsSignListBean.
 
     @Override
     protected void init() {
-        etSearch.setHint("输入客户名称、合同编号");
+        searchBar.setHint("输入客户名称、合同编号");
         GoodsSignAdapter goodsSignAdapter = new GoodsSignAdapter(listData, R.layout.item_work_goods_sign);
         setDefaultAdapter(goodsSignAdapter);
         adapter.setOnItemClickListener(new OnItemClickListener() {

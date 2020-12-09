@@ -63,7 +63,7 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
      * 设置数据
      */
     private void initData() {
-        etSearch.setHint("输入客户名称、手机号");
+        searchBar.setHint("输入客户名称、手机号");
         viewModel.getClientList(getListRequestBody(true));
         viewModel.getClientListEvent().observe(getActivity(), new Observer<RefreshBean<ClientCompanyBean>>() {
             @Override
@@ -86,7 +86,7 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListClientRequestBody body = new ListClientRequestBody();
         ListClientRequestBody.FiltersBean filtersBean = new ListClientRequestBody.FiltersBean();
-        filtersBean.setName(etSearch.getText().toString());
+        filtersBean.setName(searchContent);
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
         body.setPageSize(PAGE_SIZE);
@@ -96,15 +96,7 @@ public class FocusClientFragment extends BaseListSearchFragment<ClientCompanyBea
                 "charset=utf-8"), str);
     }
 
-    @Override
-    protected void onSearch(String keyWord) {
-        viewModel.getClientList(getListRequestBody(true));
-    }
 
-    @Override
-    protected void editEmptyChange() {
-        viewModel.getClientList(getListRequestBody(true));
-    }
 
     @Override
     protected void refresh() {

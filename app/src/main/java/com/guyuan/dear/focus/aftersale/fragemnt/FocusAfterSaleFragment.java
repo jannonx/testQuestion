@@ -52,7 +52,7 @@ public class FocusAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean
         if (arguments == null) {
             return;
         }
-        etSearch.setHint("输入项目名称、编号、人员");
+        searchBar.setHint("输入项目名称、编号、人员");
         qualifiedType = (SaleQualifiedType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
 
         FocusAfterSaleAdapter saleAdapter = new FocusAfterSaleAdapter(getContext(),

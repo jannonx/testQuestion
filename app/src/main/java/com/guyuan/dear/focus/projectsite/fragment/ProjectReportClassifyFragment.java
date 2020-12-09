@@ -55,7 +55,7 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
     @Override
     protected void init() {
         reportType = (ProjectReportType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
-        etSearch.setHint(ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == reportType
+        searchBar.setHint(ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == reportType
                 ? "输入客户名称、项目名称" : "输入项目名称、编号、人员");
         ProjectReportAdapter checkGoodsAdapter = new ProjectReportAdapter(getContext(),
                 listData, R.layout.item_focus_project_site);

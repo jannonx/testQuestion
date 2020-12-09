@@ -67,12 +67,6 @@ public class ContractDetailFragment extends BaseMvvmFragment<FragmentContractDet
                 }
         );
         mediator.attach();
-//        getViewModel().getContractBean().observe(getViewLifecycleOwner(), new Observer<DetailContractBean>() {
-//            @Override
-//            public void onChanged(DetailContractBean bean) {
-//                adapter.update(bean);
-//            }
-//        });
         getViewModel().loadContractDetail(mContractId);
 
 

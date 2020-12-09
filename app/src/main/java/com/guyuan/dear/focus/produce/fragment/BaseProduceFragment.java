@@ -32,7 +32,7 @@ public abstract class BaseProduceFragment extends BaseListSearchFragment<FocusPr
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
         ListProduceRequestBody body = new ListProduceRequestBody();
         ListProduceRequestBody.FiltersBean filtersBean = new ListProduceRequestBody.FiltersBean();
-        filtersBean.setName(etSearch.getText().toString());
+        filtersBean.setName(searchContent);
         if (intentBean!=null){
             filtersBean.setStartTime(intentBean.getStartTime());
             filtersBean.setEndTime(intentBean.getEndTime());

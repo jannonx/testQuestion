@@ -61,7 +61,7 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
         if (arguments == null) {
             return;
         }
-        etSearch.setHint("输入项目名称、编号、人员");
+        searchBar.setHint("输入项目名称、编号、人员");
         saleSectionType = (SaleSectionType) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
         EventBus.getDefault().register(this);
         FocusAfterSaleAdapter saleAdapter = new FocusAfterSaleAdapter(getContext(),

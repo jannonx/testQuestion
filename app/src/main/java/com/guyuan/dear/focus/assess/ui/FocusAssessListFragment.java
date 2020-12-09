@@ -63,11 +63,11 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
     @Override
     protected void init() {
         if (getArguments() != null) {
-            etSearch.setHint("输入客户名称、合同编号");
+            searchBar.setHint("输入客户名称、合同编号");
             type = getArguments().getInt(TYPE);
             entryType = getArguments().getInt(ENTRY_TYPE);
             String searchContent = getArguments().getString(ConstantValue.KEY_CONTENT);
-            etSearch.setText(searchContent);
+            searchBar.setSearchContent(searchContent);
             getListData(entryType, ConstantValue.FIRST_PAGE, ConstantValue.PAGE_SIZE, searchContent, type);
             AssessListAdapter listAdapter = new AssessListAdapter(listData,
                     R.layout.item_focus_assess_list);
@@ -91,14 +91,12 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
 
     @Override
     protected void refresh() {
-        String searchContent = etSearch.getText() == null ? "" : etSearch.getText().toString();
         currentPage = ConstantValue.FIRST_PAGE;
         getListData(entryType, currentPage, ConstantValue.PAGE_SIZE, searchContent, type);
     }
 
     @Override
     protected void loadMore() {
-        String searchContent = etSearch.getText() == null ? "" : etSearch.getText().toString();
         getListData(entryType, ++currentPage, ConstantValue.PAGE_SIZE, searchContent, type);
     }
 
@@ -116,13 +114,6 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
     protected int getVariableId() {
         return 0;
     }
-
-    @Override
-    protected void onSearch(String text) {
-        super.onSearch(text);
-        getListData(entryType, ++currentPage, ConstantValue.PAGE_SIZE, text, type);
-    }
-
 
 
     private void getListData(int entryType, int pageIndex, int pageSize, String content, int type) {
