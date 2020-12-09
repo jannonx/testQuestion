@@ -21,6 +21,7 @@ import com.guyuan.dear.focus.qc.views.productQcDetail.ProductQcReportDetailActiv
 import com.guyuan.dear.focus.qc.views.qcSearchList.QcSearchListActivity;
 import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
+import com.guyuan.dear.utils.LogUtils;
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
@@ -44,8 +45,8 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
     private long dateFrom;
     private long dateTo;
     private BaseRecyclerView recyclerView;
-    private BaseRecyclerViewAdapter wrapper;
     private List<GenericQcReport> list;
+    private AllQcListAdapter adapter;
 
     public static AbnormalQcListFragment getInstance() {
         return new AbnormalQcListFragment();
@@ -87,8 +88,8 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
         if (list == null) {
             return;
         }
-        AllQcListAdapter adapter = new AllQcListAdapter(list, getContext());
-        wrapper = new BaseRecyclerViewAdapter(adapter);
+        adapter = new AllQcListAdapter(list, getContext());
+        BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(wrapper);
         recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0(12, 0, 12, 12, 16));
@@ -131,16 +132,6 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
             }
         });
 
-        getViewModel().getRejectedReportList().observe(getViewLifecycleOwner(), new Observer<List<GenericQcReport>>() {
-            @Override
-            public void onChanged(List<GenericQcReport> genericQcReports) {
-                if (list != null) {
-                    list.clear();
-                    list.addAll(genericQcReports);
-                    wrapper.notifyDataSetChanged();
-                }
-            }
-        });
         getViewModel().getIsAllRejectedReportLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -155,8 +146,9 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
             @Override
             public void onChanged(Boolean aBoolean) {
                 if(aBoolean){
-                    wrapper.notifyDataSetChanged();
                     recyclerView.refreshComplete(0);
+                    LogUtils.showLog("size of list is "+list.size());
+                    adapter.notifyDataSetChanged();
                 }
             }
         });

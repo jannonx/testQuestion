@@ -90,6 +90,7 @@ public class HrTreeBindingAdapter {
                 break;
             case StaffWorkStatusInfo.WORK_STATUS_EARLY_LEAVE:
                 s="早退";
+                break;
             case StaffWorkStatusInfo.WORK_STATUS_LATE:
                 s="迟到";
                 break;

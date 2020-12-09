@@ -82,7 +82,7 @@ public class ClockInViewModel extends BaseDearViewModel {
             @Override
             protected void handleResult(NetClockInConfig result) {
                 comGpsConfig = result.getTclockGpsConfig();
-                if(comGpsConfig==null){
+                if (comGpsConfig == null) {
                     showToast("服务器返回的公司定位信息为null，请联系后台人员。");
                     return;
                 }
@@ -159,6 +159,10 @@ public class ClockInViewModel extends BaseDearViewModel {
                     isHideRefreshLabel.postValue(false);
                     showToast(repo.getMapError(errorCode));
                     repo.stopPositioning();
+                    currentLocation.setValue("定位失败");
+                    isInClockInArea.setValue(false);
+                    updateCurrentState();
+                    myLoc = null;
                 }
             }
         }
@@ -179,16 +183,10 @@ public class ClockInViewModel extends BaseDearViewModel {
         myLoc.setLongitude(loc.getLongitude());
         float distance = CoordinateConverter.calculateLineDistance(comLoc, myLoc);
         if (distance <= comGpsConfig.getDistance()) {
-            isInClockInArea.postValue(true);
+            isInClockInArea.setValue(true);
         } else {
-            isInClockInArea.postValue(false);
+            isInClockInArea.setValue(false);
         }
-
-//        if (true) {
-//            isInClockInArea.setValue(true);
-//        } else {
-//            isInClockInArea.setValue(false);
-//        }
 
 
         updateCurrentState();
