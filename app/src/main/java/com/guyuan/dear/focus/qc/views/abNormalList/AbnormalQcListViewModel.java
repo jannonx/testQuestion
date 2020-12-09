@@ -99,7 +99,7 @@ public class AbnormalQcListViewModel extends BaseDearViewModel {
 
 
     public void reset() {
-        rejectedReportList.postValue(new ArrayList<>());
+        rejectedReportList.getValue().clear();
         isAllRejectedReportLoaded.postValue(false);
         rejectedReportPageIndex = 1;
         shouldShowNoData.postValue(true);

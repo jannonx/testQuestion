@@ -353,6 +353,9 @@ public class CalenderUtils {
         month--;
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.HOUR_OF_DAY,0);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,1);
         return calendar.getTimeInMillis();
     }
 

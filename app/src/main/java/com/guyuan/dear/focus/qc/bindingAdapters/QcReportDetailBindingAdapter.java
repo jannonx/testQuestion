@@ -34,7 +34,6 @@ public class QcReportDetailBindingAdapter {
         if (data == null) {
             return;
         }
-//        Collections.reverse(data);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
         QcVerifyLogsAdapter adapter = new QcVerifyLogsAdapter(data, view.getContext());
         view.setLayoutManager(layoutManager);
