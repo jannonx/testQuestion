@@ -73,6 +73,13 @@ public class FocusPurchaseSearchActivity extends BaseToolbarActivity<ActivityWit
                     }
                 }
             });
+
+            viewModel.getPurchaseListMLD().observe(this, new Observer<PurchaseListBean>() {
+                @Override
+                public void onChanged(PurchaseListBean purchaseListBean) {
+                    listFragment.setListData(purchaseListBean.getContent());
+                }
+            });
         }
     }
 

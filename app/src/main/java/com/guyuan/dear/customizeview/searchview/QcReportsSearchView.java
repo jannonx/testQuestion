@@ -69,7 +69,7 @@ public class QcReportsSearchView extends FrameLayout {
 
             @Override
             public void afterTextChanged(Editable s) {
-                tvClickSearch.setSelected(!TextUtils.isEmpty(s.toString()));
+                tvClickSearch.setEnabled(!TextUtils.isEmpty(s.toString()));
 
             }
         });

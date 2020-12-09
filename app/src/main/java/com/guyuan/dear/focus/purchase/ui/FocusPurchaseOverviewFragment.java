@@ -9,6 +9,7 @@ import androidx.databinding.library.baseAdapters.BR;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
+import com.guyuan.dear.customizeview.SearchBar;
 import com.guyuan.dear.customizeview.editListView.EditListView;
 import com.guyuan.dear.databinding.FragmentFocusPurchaseOverviewBinding;
 import com.guyuan.dear.focus.assess.data.bean.OverviewBody;
@@ -66,7 +67,7 @@ public class FocusPurchaseOverviewFragment extends BaseDataBindingFragment<
 
     //设置时间
     private void setDate() {
-        binding.purchaseSearchRl.etSearch.setHint("输入产品名称、产品代号");
+        binding.searchBar.setHint("输入产品名称、产品代号");
         currentDate = CalenderUtils.getInstance().toLongYearAndMonth(System.currentTimeMillis());
         binding.focusPurchaseDateTv.setText(currentDate);
         binding.focusPurchaseDateTv.setOnClickListener(this);
@@ -77,7 +78,31 @@ public class FocusPurchaseOverviewFragment extends BaseDataBindingFragment<
         binding.purchaseProductReplaceRl.setOnClickListener(this);
         binding.purchaseMaterialReturnRl.setOnClickListener(this);
         binding.purchaseMaterialReplaceRl.setOnClickListener(this);
-        binding.purchaseSearchRl.tvSearchBtn.setOnClickListener(this);
+        binding.searchBar.setSearchListener(new SearchBar.OnSearchListener() {
+            @Override
+            public void onSearch(String searchContent) {
+                if (TextUtils.isEmpty(searchContent)) {
+                    showToastTip("请输入搜索内容");
+                } else {
+                    FocusPurchaseSearchActivity.start(getContext(), searchContent.toString(), TOTAL, searchContent.toString());
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override
@@ -98,13 +123,6 @@ public class FocusPurchaseOverviewFragment extends BaseDataBindingFragment<
         } else if (id == R.id.purchase_material_replace_rl) {
             if (Integer.valueOf(binding.purchaseMaterialReplaceTv.getText().toString()) > 0) {
                 FocusPurchaseSearchActivity.start(getContext(), "原材料-换货", currentDate, "", REPLACE, MATERIAL);
-            }
-        } else if (id == R.id.tv_search_btn) {
-            Editable searchContent = binding.purchaseSearchRl.etSearch.getText();
-            if (TextUtils.isEmpty(searchContent) || searchContent == null) {
-                showToastTip("请输入搜索内容");
-            } else {
-                FocusPurchaseSearchActivity.start(getContext(), searchContent.toString(), TOTAL, searchContent.toString());
             }
         } else if (id == R.id.focus_purchase_date_tv) {
             AlertDialogUtils.pickYearAndMouth(getContext(), "请选择查询年份", new AlertDialogUtils.YearStringListener() {

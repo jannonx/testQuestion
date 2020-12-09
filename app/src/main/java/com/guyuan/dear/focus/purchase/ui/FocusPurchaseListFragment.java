@@ -64,12 +64,14 @@ public class FocusPurchaseListFragment extends BaseListSearchFragment<PurchaseLi
     @Override
     protected void init() {
         if (getArguments() != null) {
-            searchBar.setHint("输入产品名称、产品代号");
             statusType = getArguments().getInt(STATUS_TYPE);
             searchContent = getArguments().getString(NAME);
             mouthDate = getArguments().getString(MOUTH_DATE);
             returnType = getArguments().getInt(RETURN_TYPE);
             productType = getArguments().getInt(PRODUCT_TYPE);
+
+            searchBar.setHint("输入产品名称、产品代号");
+            searchBar.setSearchContent(searchContent);
 
             FocusPurchaseAdapter purchaseAdapter = new FocusPurchaseAdapter(listData, R.layout.item_focus_purchase);
             setDefaultAdapter(purchaseAdapter);

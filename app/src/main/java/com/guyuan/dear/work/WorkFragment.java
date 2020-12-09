@@ -205,7 +205,7 @@ public class WorkFragment extends BaseListFragment<ChildrenBean, FragmentWorkBin
                 }
             });
             //定时获取消息
-//            viewModel.getLastUnReadMessage(MessageFragment.MESSAGE_COMMON);
+            viewModel.getLastUnReadMessage(MessageFragment.MESSAGE_COMMON);
         }
 
     }
