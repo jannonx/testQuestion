@@ -45,11 +45,18 @@ public class GoodsSignFragment extends BaseListSearchFragment<GoodsSignListBean.
                 GoodsSignDetailActivity.start(getContext(), contentBean.getSupplierName(), contentBean.getId());
             }
         });
-        viewModel.getGoodsSignList(ConstantValue.FIRST_PAGE, searchContent);
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        refresh();
     }
 
     @Override
     protected void refresh() {
+        currentType = REFRESH;
         currentPage = FIRST_PAGE;
         viewModel.getGoodsSignList(currentPage, searchContent);
     }
