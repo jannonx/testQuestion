@@ -100,4 +100,13 @@ public class ClockInActivity extends BaseActionBarActivity {
         return R.layout.activity_clock_in;
     }
 
+    /**
+     * 更新考勤日历表当天的考勤记录
+     */
+    public void updateAttendanceCalendar(){
+        if(adapter!=null){
+            adapter.updateCurrentAttendStatus();
+        }
+    }
+
 }

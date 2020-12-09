@@ -1,5 +1,8 @@
 package com.guyuan.dear.office.clockIn.view;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.Observer;
+
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentClockInBinding;
@@ -33,6 +36,16 @@ public class ClockInFragment extends BaseMvvmFragment<FragmentClockInBinding, Cl
 
     @Override
     protected void initListeners() {
+        getViewModel().currentAttendanceState.observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                //状态发生改变，通知其他fragment（如用户考勤日历）更新考勤信息
+                FragmentActivity activity = getActivity();
+                if(activity instanceof ClockInActivity){
+                    ((ClockInActivity) activity).updateAttendanceCalendar();
+                }
+            }
+        });
 
     }
 
