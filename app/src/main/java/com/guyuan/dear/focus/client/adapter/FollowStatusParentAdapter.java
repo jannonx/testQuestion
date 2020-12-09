@@ -68,6 +68,10 @@ public class FollowStatusParentAdapter extends BaseRecyclerAdapter<CommentsBean>
         baseRecycleView.setLoadMoreEnabled(false);
         baseRecycleView.setPullRefreshEnabled(false);
 
+        //最后一项，下划线不显示
+//        View lineBottom = holder.getView(R.id.line_bottom);
+//        lineBottom.setVisibility(position == listData.size() - 1 ? View.GONE : View.VISIBLE);
+
 
     }
 

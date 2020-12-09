@@ -77,24 +77,16 @@ public class FocusProduceStatusFragment extends BaseListFragment<ProduceStateBea
         List<ProduceStateBean> reverseList = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
             ProduceStateBean parentBean = data.get(i);
-            LogUtils.showLog("createTime00=" + parentBean.getCreateTime());
-            LogUtils.showLog("setArType00=" + parentBean.getArType());
             List<ProduceStateBean> texamineFlows = parentBean.getTexamineFlows();
             if (texamineFlows != null && texamineFlows.size() != 0) {
                 Collections.reverse(texamineFlows);
                 for (int ik = 0; ik < texamineFlows.size(); ik++) {
                     ProduceStateBean produceStateBean = texamineFlows.get(ik);
                     produceStateBean.setArType(parentBean.getArType());
-                    LogUtils.showLog("setArType11=" + parentBean.getArType());
                     reverseList.add(produceStateBean);
                 }
             }
             reverseList.add(parentBean);
-        }
-
-        for (int i = 0; i < reverseList.size(); i++) {
-            LogUtils.showLog("createTime00=" + reverseList.get(i).getCreateTime());
-            LogUtils.showLog("reverseList=" + reverseList.get(i).getArType());
         }
         setListData(reverseList);
     }

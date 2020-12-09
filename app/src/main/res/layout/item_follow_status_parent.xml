@@ -16,7 +16,7 @@
         android:paddingStart="@dimen/dp_12"
         android:paddingTop="@dimen/dp_12"
         android:paddingEnd="@dimen/dp_12"
-        tools:background="@color/color_grey_eeeeee">
+        tools:background="@color/color_green_D4FFF1">
 
         <com.guyuan.dear.customizeview.roundedimageview.RoundedImageView
             android:id="@+id/iv_avatar"
@@ -24,7 +24,7 @@
             android:layout_height="@dimen/dp_42"
             android:scaleType="fitXY"
             android:src="@mipmap/ic_launcher"
-            app:corner_radius="1000dp"
+            app:corner_radius="@dimen/dp_800"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_6"
-            android:text="葛蕊山"
+            tools:text="葛蕊山"
             android:textColor="@color/color_black_333333"
             android:textSize="@dimen/sp_14"
             app:layout_constraintStart_toEndOf="@+id/iv_avatar"
@@ -44,7 +44,7 @@
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2020-09-03 18:53"
+            tools:text="2020-09-03 18:53"
             android:textColor="@color/color_grey_999999"
             android:textSize="@dimen/sp_14"
             app:layout_constraintBottom_toBottomOf="@+id/tv_name"
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_6"
             android:layout_marginTop="@dimen/dp_8"
-            android:text="深圳市南山区西湖大道3046号香江金融中心大厦1708室"
+            tools:text="深圳市南山区西湖大道3046号香江金融中心大厦1708室"
             android:textColor="@color/color_black_333333"
             android:textSize="@dimen/sp_14"
             app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +80,7 @@
             android:id="@+id/tv_department"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="销售部"
+            tools:text="销售部"
             android:textColor="@color/color_grey_999999"
             android:textSize="@dimen/sp_14"
             app:layout_constraintBottom_toBottomOf="@+id/label_department"
@@ -109,13 +109,14 @@
             android:layout_marginTop="@dimen/dp_12"
             app:layout_constraintTop_toBottomOf="@+id/tv_department" />
 
-<!--        <View-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="@dimen/dp_0p5"-->
-<!--            android:background="@color/color_grey_eeeeee"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/base_recycleView" />-->
+        <View
+            android:id="@+id/line_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_0p5"
+            android:background="@color/color_grey_eeeeee"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/base_recycleView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
