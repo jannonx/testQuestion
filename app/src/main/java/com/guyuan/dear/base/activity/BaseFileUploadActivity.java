@@ -291,7 +291,7 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
                 RequestBody requestBody = RequestBody.create(MediaType.parse(
                         MediaFileUtils.isImageFileType(file.getPath()) ? "image/png" : "multipart/form-data"), file);
                 map.put("file\"; filename=\"" + URLEncoder.encode(file.getName(), "UTF-8"), requestBody);
-            } catch (UnsupportedEncodingException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
