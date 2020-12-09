@@ -57,8 +57,6 @@ public class CheckGoodsAdapter extends BaseRecyclerAdapter<CheckGoodsBean> {
         holder.setText(R.id.tv_goods_number, item.getAmount() + item.getUnit());
 
         //我的关注
-        LogUtils.showLog("CHECK_RIGHT=" + item.getStatus() + "..position=" + position);
-        LogUtils.showLog("name=" + item.getProjectName() + "..position=" + position);
         imageView.setImageResource(item.getStatus() == CHECK_RIGHT ? R.mipmap.right : R.mipmap.wrong);
 
         //我的工作
