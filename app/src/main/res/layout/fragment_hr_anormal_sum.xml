@@ -55,7 +55,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:showYearMonthDayByDate="@{fragment_hr_abnormal_sum_vm.currentSelectedData}" />
+                    app:showYearMonthByDate="@{fragment_hr_abnormal_sum_vm.currentSelectedData}" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
