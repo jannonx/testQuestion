@@ -76,21 +76,13 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
         no_data_iv = rootView.findViewById(R.id.no_data_iv);
         tv_empty = rootView.findViewById(R.id.tv_empty);
         tv_refresh = rootView.findViewById(R.id.tv_refresh);
-//        tvTepRefresh = rootView.findViewById(R.id.tem_tv_refresh);
         llEmptyView = rootView.findViewById(R.id.ll_empty_view);
-//        llTepEmptyView = rootView.findViewById(R.id.ll_tem_empty_view);
         tv_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 refresh();
             }
         });
-//        tvTepRefresh.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                refresh();
-//            }
-//        });
         recycleView.setEmptyView(empty_view);
         initView();
         setEmptyView();

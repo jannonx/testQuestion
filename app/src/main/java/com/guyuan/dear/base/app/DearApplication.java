@@ -8,8 +8,15 @@ import android.view.WindowManager;
 
 import com.example.mvvmlibrary.app.BaseApplication;
 import com.guyuan.dear.BuildConfig;
+import com.guyuan.dear.R;
+import com.guyuan.dear.home.MainActivity;
 import com.guyuan.dear.service.BackService;
+import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.SharedPreferencesUtils;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
+import com.tencent.bugly.beta.UpgradeInfo;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.List;
 import java.util.Map;
@@ -54,12 +61,39 @@ public class DearApplication extends BaseApplication {
         WindowManager winManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         winManager.getDefaultDisplay().getMetrics(displayMetrics);
 
+        initBugly();
+
 //        //初始化萤石云平台
 //        EZOpenSDK.showSDKLog(true);
 //        EZOpenSDK.enableP2P(false);
 //        EZOpenSDK.initLib(this, EzApiService.APP_KEY);
 //        //保证萤石云口令有效可用。
 //        EzNetManager.getInstance().makeSureAccessTokenValid();
+    }
+
+
+    //初始化bugly
+    private void initBugly() {
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(this);
+        strategy.setAppChannel(BuildConfig.BUILD_TYPE);  //设置渠道
+        strategy.setAppVersion(BuildConfig.VERSION_NAME);      //App的版本
+        strategy.setAppPackageName(BuildConfig.APPLICATION_ID);  //App的包名
+        //设置只在哪个activity弹窗
+        Beta.canShowUpgradeActs.add(MainActivity.class);
+        //    Beta.largeIconId = R.mipmap.ic_launcher;
+        //    Beta.smallIconId = R.mipmap.ic_launcher;
+        //    Beta.enableNotification = true;
+        //    Beta.canShowApkInfo = true;//设置是否显示apk信息
+        Beta.defaultBannerId = R.mipmap.updata_bg;
+        Beta.upgradeDialogLayoutId = R.layout.dialog_version_update;
+        Bugly.init(getApplicationContext(), BuildConfig.BUGLY_APP_ID, BuildConfig.DEBUG, strategy);
+        checkNewVersion();
+    }
+
+    //检查是否有新版本信息
+    private void checkNewVersion() {
+        UpgradeInfo upgradeInfo = Beta.getUpgradeInfo();
+        ConstantValue.hasNewVersion = upgradeInfo != null;
     }
 
     /**

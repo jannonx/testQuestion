@@ -28,11 +28,13 @@
             <TextView
                 android:id="@+id/goods_customer_name_tv"
                 style="@style/TextBigBold"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginEnd="12dp"
                 android:text="@{goodsSignListBean.supplierName}"
+                app:layout_constraintEnd_toStartOf="@+id/goods_status_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="深圳固远" />
@@ -42,10 +44,10 @@
                 style="@style/TextTagOrange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
                 app:goodsArriveStatus="@{goodsSignListBean.arriveStatus}"
                 app:layout_constraintBottom_toBottomOf="@+id/goods_customer_name_tv"
-                app:layout_constraintStart_toEndOf="@+id/goods_customer_name_tv"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/goods_customer_name_tv"
                 tools:text="待收货" />
 

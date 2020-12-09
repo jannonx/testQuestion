@@ -72,10 +72,59 @@
         android:roundIcon="@mipmap/icon_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".focus.qc.views.qcSearchList.QcSearchListActivity"
+
+
+        <!--bugly配置-->
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:theme="@android:style/Theme.Translucent" />
+        <provider
+            android:name=".utils.providers.BuglyFileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="name,authorities,exported,grantUriPermissions">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"
+                tools:replace="name,resource" />
+        </provider>
+
+        <!--相册库配置-->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.cameraalbumtest.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <!-- 配置高德地图app key -->
+        <service android:name=".service.BackService" />
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="41d535841fa89a7081869807905be90a" /> <!-- 配置高德地图定位服务 -->
+        <service android:name="com.amap.api.location.APSService" />
+
+
+        <!-- 今日头条屏幕适配 -->
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="675" />
+
+
+        <activity
+            android:name=".focus.qc.views.qcSearchList.QcSearchListActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".focus.contract.view.contractSearchList.ContractSearchListActivity"
+        <activity
+            android:name=".focus.contract.view.contractSearchList.ContractSearchListActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
@@ -160,13 +209,7 @@
         <activity
             android:name=".focus.hr.view.home.HrHomeActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" /> <!-- 今日头条屏幕适配 -->
-        <meta-data
-            android:name="design_width_in_dp"
-            android:value="360" />
-        <meta-data
-            android:name="design_height_in_dp"
-            android:value="675" />
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name=".home.MainActivity"
@@ -615,11 +658,6 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
 
-        <service android:name=".service.BackService" /> <!-- 配置高德地图app key -->
-        <meta-data
-            android:name="com.amap.api.v2.apikey"
-            android:value="41d535841fa89a7081869807905be90a" /> <!-- 配置高德地图定位服务 -->
-        <service android:name="com.amap.api.location.APSService" />
     </application>
 
 </manifest>

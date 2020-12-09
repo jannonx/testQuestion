@@ -93,6 +93,7 @@ android {
         //release
         release {
             initWith(buildTypes.commons)
+            buildConfigField "String", "BUGLY_APP_ID", properties.getProperty("BUGLY_APP_ID_RELEASE")
             buildConfigField "String", "SERVER_URL", properties.getProperty("RELEASE_SERVER_URL")
             buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_LOCAL_APP_KEY")
             buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_LOCAL_MSG_SECRET")
@@ -116,6 +117,7 @@ android {
         //debug
         debug {
             initWith(buildTypes.commons)
+            buildConfigField "String", "BUGLY_APP_ID", properties.getProperty("BUGLY_APP_ID_DEBUG")
             buildConfigField "String", "SERVER_URL", properties.getProperty("DEBUG_SERVER_URL")
             buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_LOCAL_APP_KEY")
             buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_LOCAL_MSG_SECRET")
@@ -132,6 +134,7 @@ android {
 
         check{
             initWith(buildTypes.commons)
+            buildConfigField "String", "BUGLY_APP_ID", properties.getProperty("BUGLY_APP_ID_CHECK")
             buildConfigField "String", "SERVER_URL", properties.getProperty("CHECK_SERVER_URL")
             buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_LOCAL_APP_KEY")
             buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_LOCAL_MSG_SECRET")
@@ -296,4 +299,6 @@ dependencies {
     //三方日历控件
     implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
 
+    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
 }
