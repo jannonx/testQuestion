@@ -91,6 +91,7 @@ public class FocusAssessListFragment extends BaseListSearchFragment<AssessListBe
 
     @Override
     protected void refresh() {
+        currentType = REFRESH;
         currentPage = ConstantValue.FIRST_PAGE;
         getListData(entryType, currentPage, ConstantValue.PAGE_SIZE, searchContent, type);
     }

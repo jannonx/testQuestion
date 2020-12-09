@@ -94,6 +94,7 @@ public class FocusPurchaseListFragment extends BaseListSearchFragment<PurchaseLi
 
     @Override
     protected void refresh() {
+        currentType = REFRESH;
         currentPage = FIRST_PAGE;
         getListData(currentPage);
     }

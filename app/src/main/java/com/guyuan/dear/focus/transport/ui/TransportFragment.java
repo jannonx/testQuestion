@@ -64,6 +64,7 @@ public class TransportFragment extends BaseListSearchFragment<TransportListBean.
 
     @Override
     protected void refresh() {
+        currentType = REFRESH;
         currentPage = ConstantValue.FIRST_PAGE;
         viewModel.getTransportList(type, currentPage, searchContent);
     }

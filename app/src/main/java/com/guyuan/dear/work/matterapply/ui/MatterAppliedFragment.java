@@ -60,6 +60,7 @@ public class MatterAppliedFragment extends BaseListFragment<MatterApplyBean, Ite
 
     @Override
     protected void refresh() {
+        currentType = REFRESH;
         currentPage = ConstantValue.FIRST_PAGE;
         viewModel.getMatterApplyList(currentPage);
     }

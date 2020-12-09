@@ -99,7 +99,8 @@ public class FocusFragment extends BaseListFragment<ChildrenBean, FragmentFocusB
                                 break;
 
                             case ConstantValue.FOCUS_DEVICE://设备
-                                FocusDeviceActivity.start(getContext(), title);
+                                showToastTip("正在研发中...");
+                            //    FocusDeviceActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.FOCUS_SELL://销售
