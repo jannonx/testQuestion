@@ -25,32 +25,32 @@ public class LogTypeSubmitDetail {
     }
 
     public LogTypeSubmitDetail(NetQcReportApproveFlow src) {
-       try {
-           this.date = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(src.getCreateTime()).getTime();
-       }catch (Exception e){
-           this.date = 0;
-       }
-       //质检判断结果：0.未质检，1.合格，2.不合格
+        try {
+            this.date = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(src.getCreateTime()).getTime();
+        } catch (Exception e) {
+            this.date = 0;
+        }
+        //质检判断结果：0.未质检，1.合格，2.不合格
         int qualityResult = src.getQualityResult();
-       switch (qualityResult){
-           case 1:
-               setQcResult("合同");
-               break;
-           case 2:
-               setQcResult("不合格");
-               break;
-           case 0:
-           default:
-               setQcResult("未开始");
-               break;
-       }
-       setJudgeCondition(src.getQualityCondition());
-       setSampleSize(src.getQualityNum());
-       setApplierName(src.getCreateName());
-       setApplierImgUrl(src.getImgUrl());
-       //质检方式：1.全检，2.抽检，3.按标准质检文件
+        switch (qualityResult) {
+            case 1:
+                setQcResult("合同");
+                break;
+            case 2:
+                setQcResult("不合格");
+                break;
+            case 0:
+            default:
+                setQcResult("未开始");
+                break;
+        }
+        setJudgeCondition(src.getQualityCondition());
+        setSampleSize(src.getQualityNum());
+        setApplierName(src.getCreateName());
+        setApplierImgUrl(src.getImgUrl());
+        //质检方式：1.全检，2.抽检，3.按标准质检文件
         int qualityType = src.getQualityType();
-        switch (qualityType){
+        switch (qualityType) {
             case 1:
                 setQcApproach("全检");
                 break;
@@ -140,7 +140,7 @@ public class LogTypeSubmitDetail {
         this.deptName = deptName;
     }
 
-    public GenericQcLogBean toGenericLogBean(){
+    public GenericQcLogBean toGenericLogBean() {
         GenericQcLogBean bean = new GenericQcLogBean();
         bean.setLogType(GenericQcLogBean.LOG_TYPE_SUBMIT_DETAIL);
         bean.setJsonString(new Gson().toJson(this));
