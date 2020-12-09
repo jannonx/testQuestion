@@ -35,7 +35,7 @@
         <View
             android:layout_width="0dp"
             android:layout_height="@dimen/dp_25"
-            android:background="@drawable/bg_white_round"
+            android:background="@drawable/bg_white_round_stroke_f5f7fa"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/ll_content"
             app:layout_constraintStart_toStartOf="@+id/ll_content"
