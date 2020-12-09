@@ -13,8 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/dp_12"
-        android:paddingBottom="@dimen/dp_8"
+        android:paddingStart="@dimen/dp_12"
+        android:paddingTop="@dimen/dp_12"
+        android:paddingEnd="@dimen/dp_12"
         tools:background="@color/color_grey_eeeeee">
 
         <com.guyuan.dear.customizeview.roundedimageview.RoundedImageView
@@ -107,7 +108,14 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/dp_12"
             app:layout_constraintTop_toBottomOf="@+id/tv_department" />
-        《
+
+<!--        <View-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="@dimen/dp_0p5"-->
+<!--            android:background="@color/color_grey_eeeeee"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/base_recycleView" />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

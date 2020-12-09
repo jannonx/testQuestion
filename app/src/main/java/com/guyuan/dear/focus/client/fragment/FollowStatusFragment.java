@@ -57,19 +57,14 @@ public class FollowStatusFragment extends BaseListFragment<CommentsBean, Fragmen
         viewModel.getFollowCommentList(getListRequestBody(true));
 
 
-        footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_client_all, null);
         FollowStatusParentAdapter listAdapter = new FollowStatusParentAdapter(getContext(), listData,
                 R.layout.item_follow_status_parent);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //添加footer_view，显示首页创建时间
+        footerView = LayoutInflater.from(getContext()).inflate(R.layout.footer_client_all, recycleView, false);
         adapter.addFooterView(footerView);
-        adapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-
-            }
-        });
 
         viewModel.getFollowListEvent().observe(getActivity(), new Observer<RefreshBean<CommentsBean>>() {
             @Override
@@ -97,7 +92,7 @@ public class FollowStatusFragment extends BaseListFragment<CommentsBean, Fragmen
 
     @Override
     protected boolean isPullEnable() {
-        return true;
+        return false;
     }
 
     @Override
