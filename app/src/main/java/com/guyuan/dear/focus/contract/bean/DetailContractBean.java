@@ -50,7 +50,7 @@ public class DetailContractBean extends BaseContractBean {
 
     public DetailContractBean(NetContractDetailInfo src) {
         setContractId(src.getId());
-        setContractNum(src.getContractNum());
+        setContractNum(src.getContractNum().trim());
         setBuyer(src.getCusName());
         String signTime = src.getSignTime();
         if(!TextUtils.isEmpty(signTime)){
@@ -61,7 +61,7 @@ public class DetailContractBean extends BaseContractBean {
             }
         }
         setReceivePerson(src.getConsignee());
-        setContactNumber(src.getContactInfo());
+        setContactNumber(src.getContactInfo().trim());
         setSalesPerson(src.getSalesman());
         setProductName(src.getEquipmentName());
         setProductModel(src.getEquipmentModel());

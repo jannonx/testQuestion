@@ -19,7 +19,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_svg_staff_icon_default"
-            setUserCircleNetImage="@{data.imgUrl}"
+            app:setUserCircleNetImage="@{data.imgUrl}"
             android:layout_margin="@dimen/dp_12" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -61,14 +61,26 @@
 
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/item_contract_comment_tv_dept"
+            android:id="@+id/item_contract_comment_anchor_dept"
             app:layout_constraintLeft_toLeftOf="@id/item_contract_comment_tv_comment"
             app:layout_constraintTop_toBottomOf="@id/item_contract_comment_tv_comment"
             android:layout_marginTop="@dimen/dp_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sp_14"
-            android:textColor="@color/color_black_333333"
+            android:textColor="@color/color_grey_999999"
+            android:text="来自部门:"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_contract_comment_tv_dept"
+            app:layout_constraintBaseline_toBaselineOf="@id/item_contract_comment_anchor_dept"
+            app:layout_constraintLeft_toRightOf="@id/item_contract_comment_anchor_dept"
+            android:layout_marginTop="@dimen/dp_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/color_grey_999999"
+            android:layout_marginLeft="@dimen/dp_12"
             android:text="@{data.commenterDept,default=xxxxxx}"/>
 
         <tl.com.easy_recycleview_library.BaseRecyclerView
@@ -76,9 +88,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintRight_toRightOf="@id/item_contract_comment_tv_comment"
-            app:layout_constraintTop_toBottomOf="@id/item_contract_comment_tv_dept"
+            app:layout_constraintTop_toBottomOf="@id/item_contract_comment_anchor_dept"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/item_contract_comment_tv_dept"
+            app:layout_constraintLeft_toLeftOf="@id/item_contract_comment_anchor_dept"
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginBottom="@dimen/dp_12"
             app:setSubContractComments="@{data.subComments}"/>

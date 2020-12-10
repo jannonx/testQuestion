@@ -41,52 +41,5 @@ public class ProductBaseInfoFragment extends BaseMvvmFragment<FragmentProductBas
     protected int getLayoutID() {
         return R.layout.fragment_product_base_info;
     }
-//    private AppCompatTextView tvName;
-//    private AppCompatTextView tvModel;
-//    private BaseRecyclerView mRecyclerView;
-//    private List<ProductComponent> mComponentList;
-//    private BaseRecyclerViewAdapter adapterWrapper;
-//
-//
-//    public static ProductBaseInfoFragment getInstance(){
-//        return new ProductBaseInfoFragment();
-//    }
-//
-//    @Override
-//    protected int getLayoutID() {
-//        return R.layout.fragment_product_base_info;
-//    }
-//
-//    @Override
-//    protected void initialization() {
-//        initView();
-//        initListener();
-//    }
-//
-//    private void initListener() {
-//
-//    }
-//
-//    private void initView() {
-//        tvName = rootView.findViewById(R.id.fragment_contract_base_info_tv_product_name);
-//        tvModel = rootView.findViewById(R.id.fragment_contract_base_info_tv_product_model);
-//        mRecyclerView = rootView.findViewById(R.id.fragment_contract_base_info_recycler_view);
-//
-//        mComponentList = new ArrayList<>();
-//        ComponentInfoAdapter adapter = new ComponentInfoAdapter(mComponentList);
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false));
-//        adapterWrapper = new BaseRecyclerViewAdapter(adapter);
-//        mRecyclerView.setAdapter(adapterWrapper);
-//        mRecyclerView.setPullRefreshEnabled(false);
-//        mRecyclerView.setLoadMoreEnabled(false);
-//
-//    }
-//
-//    public void updateViewByData(DetailContractBean data){
-//        tvName.setText(data.getProductName());
-//        tvModel.setText(data.getProductModel());
-//        mComponentList.clear();
-//        mComponentList.addAll(data.getProductComponents());
-//        adapterWrapper.notifyDataSetChanged();
-//    }
+
 }

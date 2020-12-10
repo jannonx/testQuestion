@@ -51,11 +51,7 @@ public class ContractHomeActivity extends BaseTabActivity<ActivityBaseTabBinding
         return new ArrayList<Fragment>() {
             {
                 add(ComContractsSumFragment.getInstance());
-//                add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_ON_PAUSE));
-//                add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_RESTART));
-//                add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_EXCEPTION));
                 add(AbnormalContractListFragment.getInstance());
-//                add(ContractStatusListFragment.getInstance(ContractStatusListFragment.STATUS_TYPE_TOTAL));
                 add(AllContractListFragment.getInstance());
             }
         };

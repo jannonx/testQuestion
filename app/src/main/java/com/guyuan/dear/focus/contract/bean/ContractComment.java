@@ -61,7 +61,7 @@ public class ContractComment implements Parcelable {
             }
         }
         setContent(src.getContent());
-        setCommenterDept(src.getDeptName());
+        setCommenterDept(src.getDeptName().replace(",","-"));
         subComments = new ArrayList<>();
         List<NetVerifyFlowBean.BusinessDetailsBean> list = src.getBusinessDetails();
         if(list!=null&&!list.isEmpty()){
