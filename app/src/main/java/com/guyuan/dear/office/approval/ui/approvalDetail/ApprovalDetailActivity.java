@@ -178,18 +178,6 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                                         tipDialogFragment.dismiss();
                                     }
                                 }).show(fragmentManager, TipDialogFragment.TAG);
-
-//                        if (bean != null) {
-//                            RemarkDialog.show(ApprovalDetailActivity.this, "请输入驳回备注", new RemarkDialog.OnDialogClickListener() {
-//                                @Override
-//                                public void onCommitInfo(ExecuteRequestBody data) {
-//                                    //businessType传2:子生产计划
-//                                    viewModel.produceApproval((int) bean.getPlanId(), 2, remarks, ApprovalActivity.ACCEPT, type);
-//                                }
-//                            });
-//                        } else {
-//                            showToastTip("获取数据失败,无法提交");
-//                        }
                     }
                 });
 

@@ -6,7 +6,8 @@ import com.example.httplibrary.bean.BasePageReqBean;
 import com.example.httplibrary.bean.BasePageResultBean;
 import com.example.httplibrary.bean.ErrorResultBean;
 import com.example.httplibrary.bean.ResultBean;
-import com.example.httplibrary.rx.SchedulersCompat;
+import com.example.httplibrary.rx.BaseSchedulersCompat;
+import com.guyuan.dear.base.api.SchedulersCompat;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.db.DearDbManager;
 import com.guyuan.dear.db.entities.StaffEntity;
@@ -1360,7 +1361,7 @@ public class DearNetHelper {
             Observable<Response> observable, @Nullable NetCallback<ResultClass> callback,
             @Nullable Mapper<ResponseData, ResultClass> mapper) {
 
-        return observable.compose(SchedulersCompat.applyIoSchedulers())
+        return observable.compose(SchedulersCompat.getInstance().applyIoSchedulers())
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
@@ -1407,7 +1408,7 @@ public class DearNetHelper {
             Observable<Response> observable, @Nullable NetCallback<ResultClass> callback,
             @Nullable Mapper<ResponseData, ResultClass> mapper) {
 
-        return observable.compose(SchedulersCompat.applyIoSchedulers())
+        return observable.compose(SchedulersCompat.getInstance().applyIoSchedulers())
                 .observeOn(Schedulers.io())
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override

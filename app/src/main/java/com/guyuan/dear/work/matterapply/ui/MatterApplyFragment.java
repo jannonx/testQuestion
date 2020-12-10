@@ -455,10 +455,10 @@ public class MatterApplyFragment extends BaseDataBindingFragment<FragmentWorkMat
         if (bean != null) {
             currentNumber = bean.getPurchaseNum();
             binding.matterApplyMaterialNameTv.setText(bean.getName());
-            binding.matterApplyMaterialNumberTv.setText(currentNumber + bean.getUnit());
-            binding.matterApplyMaterialCodeTv.setText(String.format(getString(R.string.code), bean.getCode()));
-            binding.matterApplyMaterialQualityTv.setText(String.format(getString(R.string.quality), bean.getModelCode()));
-            binding.matterApplyMaterialRemarkTv.setText(String.format(getString(R.string.remark), bean.getRemark()));
+            binding.matterApplyMaterialNumberTv.setText(currentNumber +(bean.getUnit()==null?"":bean.getUnit()));
+            binding.matterApplyMaterialCodeTv.setText(String.format(getString(R.string.code), bean.getCode()==null?"":bean.getCode()));
+            binding.matterApplyMaterialQualityTv.setText(String.format(getString(R.string.quality), bean.getModelCode()==null?"":bean.getModelCode()));
+            binding.matterApplyMaterialRemarkTv.setText(String.format(getString(R.string.remark), bean.getRemark()==null?"":bean.getRemark()));
         } else {
             currentNumber = 0;
             binding.matterApplyMaterialNameTv.setText("");
