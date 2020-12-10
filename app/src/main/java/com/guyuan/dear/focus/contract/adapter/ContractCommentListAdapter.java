@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.contract.adapter;
 
+import android.view.View;
+
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemContractCommentBinding;
@@ -21,6 +23,11 @@ public class ContractCommentListAdapter extends BaseDBRecycleAdapter<ContractCom
     @Override
     protected void bindDataToView(Holder holder, ContractComment item, int position) {
         holder.binding.setData(item);
+        if(item.getSubComments()==null||item.getSubComments().isEmpty()){
+            holder.binding.itemContractCommentRecyclerView.setVisibility(View.GONE);
+        }else {
+            holder.binding.itemContractCommentRecyclerView.setVisibility(View.VISIBLE);
+        }
     }
 
 }

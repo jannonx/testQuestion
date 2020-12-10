@@ -45,12 +45,11 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
     /**
      * 合同重启列表
      */
-    public static final int TYPE_MY_RESTART_APPLY_LIST=1;
+    public static final int TYPE_MY_RESTART_APPLY_LIST = 1;
     private int type;
-    private MutableLiveData<Boolean> shouldShowNoData=new MutableLiveData<>(true);
+    private MutableLiveData<Boolean> shouldShowNoData = new MutableLiveData<>(true);
 
     /**
-     *
      * @param type {@link MyApplyListFragment#TYPE_MY_PAUSE_APPLY_LIST} {@link MyApplyListFragment#TYPE_MY_RESTART_APPLY_LIST}
      * @return
      */
@@ -70,8 +69,8 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
     @Override
     protected void initData() {
         Bundle bundle = getArguments();
-        type = bundle.getInt(ConstantValue.KEY_APPLY_TYPE,TYPE_MY_PAUSE_APPLY_LIST);
-        switch (type){
+        type = bundle.getInt(ConstantValue.KEY_APPLY_TYPE, TYPE_MY_PAUSE_APPLY_LIST);
+        switch (type) {
             case TYPE_MY_PAUSE_APPLY_LIST:
                 initPauseList();
                 break;
@@ -86,7 +85,7 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
 
     private void initRestartList() {
         BaseRecyclerView recyclerView = getViewDataBinding().fragmentMyApplyListRecyclerView;
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         MyApplyListAdapter adapter = new MyApplyListAdapter(getViewModel().getRestartApplyList().getValue());
         BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
@@ -104,9 +103,9 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
             public void onChanged(List<MyApplyBean> myApplyBeans) {
                 wrapper.notifyDataSetChanged();
                 recyclerView.refreshComplete(0);
-                if(myApplyBeans.isEmpty()){
+                if (myApplyBeans.isEmpty()) {
                     shouldShowNoData.postValue(true);
-                }else {
+                } else {
                     shouldShowNoData.postValue(false);
                 }
             }
@@ -128,12 +127,12 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
 
         //监听view model，刷新列表
         FragmentActivity activity = getActivity();
-        if(activity instanceof ContractRestartHomeActivity){
+        if (activity instanceof ContractRestartHomeActivity) {
             ContractRestartHomeViewModel viewModel = new ViewModelProvider(activity).get(ContractRestartHomeViewModel.class);
             viewModel.refreshMyRestartApplyList.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
                 @Override
                 public void onChanged(Boolean aBoolean) {
-                    if(aBoolean){
+                    if (aBoolean) {
                         //刷新列表
                         getViewModel().clearRestartApplyList();
                         getViewModel().updateRestartApplyListFromNet();
@@ -147,7 +146,7 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
 
     private void initPauseList() {
         BaseRecyclerView recyclerView = getViewDataBinding().fragmentMyApplyListRecyclerView;
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL,false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         MyApplyListAdapter adapter = new MyApplyListAdapter(getViewModel().getPauseApplyList().getValue());
         BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
@@ -165,9 +164,9 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
             public void onChanged(List<MyApplyBean> myApplyBeans) {
                 wrapper.notifyDataSetChanged();
                 recyclerView.refreshComplete(0);
-                if(myApplyBeans.isEmpty()){
+                if (myApplyBeans.isEmpty()) {
                     shouldShowNoData.postValue(true);
-                }else {
+                } else {
                     shouldShowNoData.postValue(false);
                 }
             }
@@ -189,12 +188,12 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
 
         //监听view model，刷新列表
         FragmentActivity activity = getActivity();
-        if(activity instanceof ContractPauseHomeActivity){
-            ContractPauseHomeViewModel viewModel = new ViewModelProvider(activity).get(ContractPauseHomeViewModel.class);
+        if (activity instanceof ContractPauseHomeActivity) {
+            ContractPauseHomeViewModel viewModel = getDefaultViewModelProviderFactory().create(ContractPauseHomeViewModel.class);
             viewModel.refreshMyPauseApplyList.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
                 @Override
                 public void onChanged(Boolean aBoolean) {
-                    if(aBoolean){
+                    if (aBoolean) {
                         //刷新列表
                         getViewModel().clearPauseApplyList();
                         getViewModel().updatePauseApplyListFromNet();

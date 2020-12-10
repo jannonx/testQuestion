@@ -33,7 +33,7 @@
                 android:textSize="@dimen/sp_14"
                 android:layout_marginLeft="@dimen/dp_48"
                 android:layout_marginRight="@dimen/dp_12"
-                android:text="@{fragment_sales_delivery_vm.contractBean.buyer}"/>
+                android:text="@{fragment_sales_delivery_vm.contractBean.receiverCompany}"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <View

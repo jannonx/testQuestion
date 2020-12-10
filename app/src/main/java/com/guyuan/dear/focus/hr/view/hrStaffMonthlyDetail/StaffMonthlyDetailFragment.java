@@ -145,10 +145,11 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<com.guyuan.dear
     }
 
     private int colorAbsent = Color.parseColor("#F04864");
-    private int colorNormal = Color.TRANSPARENT;
+    private int colorNormal = Color.parseColor("#1890ff");
     private int colorLate = Color.parseColor("#FA8C16");
     private int colorEarlyLeave = Color.parseColor("#3436C7");
     private int colorBeforeArrangeTime = Color.TRANSPARENT;
+    private int colorHoliday = Color.TRANSPARENT;
 
     /**
      * 根据每日考勤状况生成每日事件，显示在日历上
@@ -176,7 +177,7 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<com.guyuan.dear
             eventList.add(new Event(color, time, record));
         } else {
             long time = CalenderUtils.getInstance().parseSmartFactoryDateFormatByDay(record.getTodayDate()).getTime();
-            eventList.add(new Event(colorNormal, time, record));
+            eventList.add(new Event(colorHoliday, time, record));
         }
 
         if (isAttendDay) {
@@ -196,7 +197,7 @@ public class StaffMonthlyDetailFragment extends BaseMvvmFragment<com.guyuan.dear
             eventList.add(new Event(color, time, record));
         } else {
             long time = CalenderUtils.getInstance().parseSmartFactoryDateFormatByDay(record.getTodayDate()).getTime();
-            eventList.add(new Event(colorNormal, time, record));
+            eventList.add(new Event(colorHoliday, time, record));
         }
 
         return eventList;

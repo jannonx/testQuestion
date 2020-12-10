@@ -69,6 +69,8 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/sp_14"
             android:textColor="@color/color_grey_999999"
+            app:layout_constraintBottom_toTopOf="@id/item_contract_comment_recycler_view"
+            android:layout_marginBottom="@dimen/dp_10"
             android:text="来自部门:"/>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -91,7 +93,6 @@
             app:layout_constraintTop_toBottomOf="@id/item_contract_comment_anchor_dept"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/item_contract_comment_anchor_dept"
-            android:layout_marginTop="@dimen/dp_10"
             android:layout_marginBottom="@dimen/dp_12"
             app:setSubContractComments="@{data.subComments}"/>
 

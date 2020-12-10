@@ -44,6 +44,10 @@ public class DetailContractBean extends BaseContractBean {
      * 客户首次建立联系时间
      */
     private long buyerFirstCreateDate;
+    /**
+     * 收货单位
+     */
+    private String receiverCompany;
 
     public DetailContractBean() {
     }
@@ -66,6 +70,7 @@ public class DetailContractBean extends BaseContractBean {
         setProductName(src.getEquipmentName());
         setProductModel(src.getEquipmentModel());
         setBuyerAddress(src.getDeliveryAddress());
+        setReceiverCompany(src.getReceivingUnit());
         productComponents = new ArrayList<>();
         List<NetContractDetailInfo.TcontractPartsBean> parts = src.getTcontractParts();
         for (NetContractDetailInfo.TcontractPartsBean part : parts) {
@@ -121,5 +126,13 @@ public class DetailContractBean extends BaseContractBean {
 
     public void setCommentList(List<ContractComment> commentList) {
         this.commentList = commentList;
+    }
+
+    public String getReceiverCompany() {
+        return receiverCompany;
+    }
+
+    public void setReceiverCompany(String receiverCompany) {
+        this.receiverCompany = receiverCompany;
     }
 }
