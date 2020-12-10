@@ -56,6 +56,82 @@ public class AlertDialogUtils {
     }
 
     /**
+     * 选择日期，获得的日期的时间为0时0分1秒
+     * @param manager
+     * @param title
+     * @param minDate
+     * @param maxDate
+     * @param selectedDate
+     * @param callback
+     */
+    public static void pickDayBeginning(FragmentManager manager, String title, long minDate, long maxDate,
+                                          long selectedDate, OnDateSetListener callback){
+       pickAlteredDay(manager,title,minDate,maxDate,selectedDate,callback,true);
+
+    }
+
+    /**
+     * 选择日期，获得的日期的时间为23时59分59秒
+     * @param manager
+     * @param title
+     * @param minDate
+     * @param maxDate
+     * @param selectedDate
+     * @param callback
+     */
+    public static void pickDayEnd(FragmentManager manager, String title, long minDate, long maxDate,
+                                          long selectedDate, OnDateSetListener callback){
+        pickAlteredDay(manager,title,minDate,maxDate,selectedDate,callback,false);
+
+    }
+
+    private static void pickAlteredDay(FragmentManager manager, String title, long minDate, long maxDate,
+                                       long selectedDate, OnDateSetListener callback, boolean isSetToBeginning){
+        if (!CommonUtils.isFastDoubleClick()) {
+            TimePickerDialog dialog = new TimePickerDialog.Builder()
+                    .setCallBack(new OnDateSetListener() {
+                        @Override
+                        public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.setTimeInMillis(millseconds);
+                            if(isSetToBeginning){
+                                calendar.set(Calendar.HOUR_OF_DAY,0);
+                                calendar.set(Calendar.MINUTE,0);
+                                calendar.set(Calendar.SECOND,1);
+                            }else {
+                                calendar.set(Calendar.HOUR_OF_DAY,23);
+                                calendar.set(Calendar.MINUTE,59);
+                                calendar.set(Calendar.SECOND,59);
+                            }
+
+                            callback.onDateSet(timePickerView,calendar.getTimeInMillis());
+                        }
+                    })
+                    .setCancelStringId("取消")
+                    .setSureStringId("确认")
+                    .setTitleStringId(title)
+                    .setYearText("年")
+                    .setMonthText("月")
+                    .setDayText("日")
+                    .setHourText("时")
+                    .setMinuteText("分")
+                    .setCyclic(true)
+                    .setMinMillseconds(minDate)
+                    .setMaxMillseconds(maxDate)
+                    .setCurrentMillseconds(selectedDate)
+                    .setThemeColor(DearApplication.getInstance().getBaseContext().getResources().getColor(R.color.color_actionbar))
+                    .setType(Type.YEAR_MONTH_DAY)
+                    .setWheelItemTextNormalColor(DearApplication.getInstance().getBaseContext().getResources().getColor(R.color.timetimepicker_default_text_color))
+                    .setWheelItemTextSelectorColor(DearApplication.getInstance().getBaseContext().getResources().getColor(R.color.color_black_000000))
+                    .setWheelItemTextSize(12)
+                    .build();
+            dialog.show(manager, title);
+        }
+
+    }
+
+
+    /**
      * 从页面下方弹出日期轮
      *
      * @param manager
@@ -70,18 +146,7 @@ public class AlertDialogUtils {
                                 long selectedDate, Type dialogType, OnDateSetListener callback) {
         if (!CommonUtils.isFastDoubleClick()) {
             TimePickerDialog dialog = new TimePickerDialog.Builder()
-                    .setCallBack(new OnDateSetListener() {
-                        @Override
-                        public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
-                            //这里修正一下日期，把时间定在该日期那天的23点59分59秒
-                            Calendar calendar = Calendar.getInstance();
-                            calendar.setTimeInMillis(millseconds);
-                            calendar.set(Calendar.HOUR_OF_DAY,23);
-                            calendar.set(Calendar.MINUTE,59);
-                            calendar.set(Calendar.SECOND,59);
-                            callback.onDateSet(timePickerView,calendar.getTimeInMillis());
-                        }
-                    })
+                    .setCallBack(callback)
                     .setCancelStringId("取消")
                     .setSureStringId("确认")
                     .setTitleStringId(title)

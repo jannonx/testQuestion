@@ -390,6 +390,74 @@ public class DearNetHelper {
         return getDisposalAsync(observable, callback, mapper);
     }
 
+    /**
+     * 获取合同异常列表
+     * @param pageIndex
+     * @param pageSize
+     * @param callback
+     * @return
+     */
+    public Disposable getAbnormalContractList(int pageIndex,int pageSize,NetCallback<List<BaseContractBean>> callback){
+        SearchRqBody body = new SearchRqBody();
+        body.setPageSize(pageSize);
+        body.setPageNum(pageIndex);
+        //name 客户名称或者合同编号,type 1上年交付，2今年新签，3已经完成，4正在执行，5执行异常,6异常列表， -1表示全部
+        HashMap<String, String> filters = new HashMap<>(1);
+        filters.put("type", String.valueOf(6));
+        body.setFilters(filters);
+        Observable<ResultBean<BasePageResultBean<NetSearchContactInfo>>> observable = netApiService.getContractListByTypeAndDate(body);
+        Mapper<BasePageResultBean<NetSearchContactInfo>,List<BaseContractBean>> mapper = new Mapper<BasePageResultBean<NetSearchContactInfo>, List<BaseContractBean>>() {
+            @Override
+            public List<BaseContractBean> map(BasePageResultBean<NetSearchContactInfo> src) {
+                List<NetSearchContactInfo> srcContent = src.getContent();
+                List<BaseContractBean> result = new ArrayList<>();
+                if(srcContent!=null&&!srcContent.isEmpty()){
+                    for (NetSearchContactInfo info : srcContent) {
+                        BaseContractBean bean = new BaseContractBean(info);
+                        result.add(bean);
+                    }
+                }
+                return result;
+            }
+        };
+
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
+    /**
+     * 获取所有合同列表
+     * @param pageIndex
+     * @param pageSize
+     * @param callback
+     * @return
+     */
+    public Disposable getAllContractList(int pageIndex,int pageSize,NetCallback<List<BaseContractBean>> callback){
+        SearchRqBody body = new SearchRqBody();
+        body.setPageSize(pageSize);
+        body.setPageNum(pageIndex);
+        //name 客户名称或者合同编号,type 1上年交付，2今年新签，3已经完成，4正在执行，5执行异常,6异常列表， -1表示全部
+        HashMap<String, String> filters = new HashMap<>(1);
+        filters.put("type", String.valueOf(-1));
+        body.setFilters(filters);
+        Observable<ResultBean<BasePageResultBean<NetSearchContactInfo>>> observable = netApiService.getContractListByTypeAndDate(body);
+        Mapper<BasePageResultBean<NetSearchContactInfo>,List<BaseContractBean>> mapper = new Mapper<BasePageResultBean<NetSearchContactInfo>, List<BaseContractBean>>() {
+            @Override
+            public List<BaseContractBean> map(BasePageResultBean<NetSearchContactInfo> src) {
+                List<NetSearchContactInfo> srcContent = src.getContent();
+                List<BaseContractBean> result = new ArrayList<>();
+                if(srcContent!=null&&!srcContent.isEmpty()){
+                    for (NetSearchContactInfo info : srcContent) {
+                        BaseContractBean bean = new BaseContractBean(info);
+                        result.add(bean);
+                    }
+                }
+                return result;
+            }
+        };
+
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
 
     /**
      * 获取合同暂停申请的详情

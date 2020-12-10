@@ -1,12 +1,14 @@
 package com.guyuan.dear.mine.fragment;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.BuildConfig;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentAboutUsBinding;
 import com.guyuan.dear.mine.data.MineViewModel;
+import com.tencent.bugly.beta.Beta;
 
 /**
  * @description: 我的--关于我们
@@ -33,6 +35,12 @@ public class AboutUsFragment extends BaseDataBindingFragment<FragmentAboutUsBind
     @Override
     protected void initialization() {
         binding.tvVersion.setText("版本号：" + BuildConfig.BUILD_TYPE + "-" + BuildConfig.VERSION_NAME);
+        binding.updateTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Beta.checkUpgrade();
+            }
+        });
     }
 
     @Override

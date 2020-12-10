@@ -9,7 +9,6 @@ import com.guyuan.dear.databinding.FragmentQcSummaryBinding;
 import com.guyuan.dear.focus.qc.views.qcReportList.QcSumTypeListActivity;
 import com.guyuan.dear.utils.AlertDialogUtils;
 import com.jzxiang.pickerview.TimePickerDialog;
-import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
 
 import java.util.Calendar;
@@ -36,13 +35,17 @@ public class QcSummaryFragment extends BaseMvvmFragment<FragmentQcSummaryBinding
 
     @Override
     protected void initData() {
-        dateTo = System.currentTimeMillis();
+        Calendar dateTo = Calendar.getInstance();
+        dateTo.set(Calendar.HOUR_OF_DAY,23);
+        dateTo.set(Calendar.MINUTE,59);
+        dateTo.set(Calendar.SECOND,59);
+        this.dateTo = dateTo.getTimeInMillis();
         Calendar dateFrom = Calendar.getInstance();
         dateFrom.set(Calendar.HOUR_OF_DAY, 0);
         dateFrom.set(Calendar.MINUTE, 0);
-        dateFrom.set(Calendar.SECOND, 0);
+        dateFrom.set(Calendar.SECOND, 1);
         this.dateFrom = dateFrom.getTimeInMillis();
-        addDisposable(getViewModel().updateQcSummaryByTimePeriod(this.dateFrom, dateTo));
+        addDisposable(getViewModel().updateQcSummaryByTimePeriod(this.dateFrom, this.dateTo));
 
     }
 
@@ -111,20 +114,19 @@ public class QcSummaryFragment extends BaseMvvmFragment<FragmentQcSummaryBinding
     }
 
     private void selectStartTime() {
-        AlertDialogUtils.pickTime(getParentFragmentManager(), "请选择起始时间", 0,
-                System.currentTimeMillis(), dateFrom, Type.YEAR_MONTH_DAY, new OnDateSetListener() {
+        AlertDialogUtils.pickDayBeginning(getParentFragmentManager(), "请选择起始时间", 0,
+                System.currentTimeMillis(), dateFrom, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
                         dateFrom = millseconds;
                         selectEndTime();
-
                     }
                 });
     }
 
     private void selectEndTime() {
-        AlertDialogUtils.pickTime(getParentFragmentManager(), "请选择结束时间", dateFrom,
-                System.currentTimeMillis(), dateTo, Type.YEAR_MONTH_DAY, new OnDateSetListener() {
+        AlertDialogUtils.pickDayEnd(getParentFragmentManager(), "请选择结束时间", dateFrom,
+                System.currentTimeMillis(), dateTo, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
                         if (dateFrom > millseconds) {

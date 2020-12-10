@@ -101,12 +101,13 @@
 
                 <TextView
                     android:id="@+id/tv_customer_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_height="wrap_content"
                     tools:text="固原深圳"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_customer_name"
                     app:layout_constraintStart_toEndOf="@+id/label_customer_name"
                     app:layout_constraintTop_toTopOf="@+id/label_customer_name" />
 
@@ -120,17 +121,18 @@
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
                     app:layout_constraintStart_toStartOf="@+id/tv_title"
-                    app:layout_constraintTop_toBottomOf="@+id/label_customer_name" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_customer_name" />
 
                 <TextView
                     android:id="@+id/tv_address"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="@dimen/dp_12"
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/label_address"
                     tools:text="广东省深圳市南山区"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_address"
+                   app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/label_address"
                     app:layout_constraintTop_toTopOf="@+id/label_address" />
 

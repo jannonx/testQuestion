@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -42,6 +43,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/update_tv"
+            style="@style/MaterialTextButton"
+            android:layout_width="152dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="12dp"
+            android:text="检查更新"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"
+            app:backgroundTint="#0050B4"
+            app:cornerRadius="@dimen/dp_4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_version" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

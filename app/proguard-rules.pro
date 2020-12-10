@@ -85,6 +85,12 @@
 -keep class com.idea.fifaalarmclock.entity.***
 -keep class com.google.gson.stream.** { *; }
 
+# bugly
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
+-keep class android.support.**{*;}
+
+
 # OkHttp
 # JSR 305 annotations are for embedding nullability information.
 -dontwarn javax.annotation.**
