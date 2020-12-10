@@ -5,8 +5,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
@@ -14,6 +12,7 @@ import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
@@ -34,7 +33,6 @@ public class FocusProduceAdapter extends BaseRecyclerAdapter<FocusProduceBean> {
         holder.setText(R.id.tv_product_name, item.getName());
         //设置生产状态
         TextView tvStatus = holder.getView(R.id.tv_produce_status);
-        TextView tvSubStatus = holder.getView(R.id.tv_sub_status);
 
         holder.setText(R.id.tv_produce_status, item.getStatusText());
 

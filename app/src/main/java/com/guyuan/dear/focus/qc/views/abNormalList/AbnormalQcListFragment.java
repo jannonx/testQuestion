@@ -23,7 +23,6 @@ import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.LogUtils;
 import com.jzxiang.pickerview.TimePickerDialog;
-import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
 
 import java.util.Calendar;
@@ -135,7 +134,7 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
         getViewModel().getIsAllRejectedReportLoaded().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if(aBoolean){
+                if (aBoolean) {
                     recyclerView.refreshComplete(0);
                     recyclerView.setLoadMoreEnabled(false);
                 }
@@ -145,9 +144,9 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
         getViewModel().shouldNotifyDataSetChange.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if(aBoolean){
+                if (aBoolean) {
                     recyclerView.refreshComplete(0);
-                    LogUtils.showLog("size of list is "+list.size());
+                    LogUtils.showLog("size of list is " + list.size());
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -156,8 +155,8 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
     }
 
     private void selectStartTime() {
-        AlertDialogUtils.pickTime(getParentFragmentManager(), "请选择起始时间", 0,
-                System.currentTimeMillis(), dateFrom, Type.YEAR_MONTH_DAY, new OnDateSetListener() {
+        AlertDialogUtils.pickDayBeginning(getParentFragmentManager(), "请选择起始时间", 0,
+                System.currentTimeMillis(), dateFrom, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
                         dateFrom = millseconds;
@@ -167,8 +166,8 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
     }
 
     private void selectEndTime() {
-        AlertDialogUtils.pickTime(getParentFragmentManager(), "请选择结束时间", dateFrom,
-                System.currentTimeMillis(), dateTo, Type.YEAR_MONTH_DAY, new OnDateSetListener() {
+        AlertDialogUtils.pickDayEnd(getParentFragmentManager(), "请选择结束时间", dateFrom,
+                System.currentTimeMillis(), dateTo, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
                         if (dateFrom > millseconds) {
@@ -181,7 +180,6 @@ public class AbnormalQcListFragment extends BaseMvvmFragment<FragmentAbnormalQcR
                     }
                 });
     }
-
 
 
     @Override

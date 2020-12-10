@@ -26,7 +26,6 @@ import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.qc.views.home.QcHomeActivity;
 import com.jzxiang.pickerview.TimePickerDialog;
-import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
 
 import java.util.Calendar;
@@ -136,8 +135,8 @@ public class ReportListFragment extends BaseMvvmFragment<FragmentAllQcReportList
     }
 
     private void selectStartTime() {
-        AlertDialogUtils.pickTime(getParentFragmentManager(), "请选择起始时间", 0,
-                System.currentTimeMillis(), dateFrom, Type.YEAR_MONTH_DAY, new OnDateSetListener() {
+        AlertDialogUtils.pickDayBeginning(getParentFragmentManager(), "请选择起始时间", 0,
+                System.currentTimeMillis(), dateFrom, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
                         dateFrom = millseconds;
@@ -147,8 +146,8 @@ public class ReportListFragment extends BaseMvvmFragment<FragmentAllQcReportList
     }
 
     private void selectEndTime() {
-        AlertDialogUtils.pickTime(getParentFragmentManager(), "请选择结束时间", dateFrom,
-                System.currentTimeMillis(), dateTo, Type.YEAR_MONTH_DAY, new OnDateSetListener() {
+        AlertDialogUtils.pickDayEnd(getParentFragmentManager(), "请选择结束时间", dateFrom,
+                System.currentTimeMillis(), dateTo, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
                         if (dateFrom > millseconds) {
