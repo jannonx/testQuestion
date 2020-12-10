@@ -22,6 +22,10 @@ public class AfterSaleQuestionBean implements Serializable {
      */
     private int type;
     /**
+     * 类型
+     */
+    private String problemType;
+    /**
      * 问题描述
      */
     private String describe;
@@ -76,6 +80,14 @@ public class AfterSaleQuestionBean implements Serializable {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public String getProblemType() {
+        return problemType;
+    }
+
+    public void setProblemType(String problemType) {
+        this.problemType = problemType;
     }
 
     public String getDescribe() {

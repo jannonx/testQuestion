@@ -31,7 +31,7 @@ public enum SaleCheckType implements Serializable {
     /**
      * 排查中
      */
-    TYPE_CHECK_ING(3, "排查中", R.color.color_blue_1677ff,
+    TYPE_CHECK_ING(1, "排查中", R.color.color_blue_1677ff,
             R.drawable.bg_blue_e7f1ff_corner_2);
 
 

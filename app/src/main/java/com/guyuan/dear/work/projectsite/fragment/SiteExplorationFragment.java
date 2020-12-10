@@ -183,19 +183,32 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
             public void afterTextChanged(Editable editable) {
 //                viewBinding.tvOk.setClickable(!TextUtils.isEmpty(editable.toString()));
 //                viewBinding.tvOk.setEnabled(!TextUtils.isEmpty(editable.toString()));
+//                //已输入字数
+//                int enteredWords = wordLimitNum - editable.length();
+//                //TextView显示剩余字数
+//                binding.tvNumber.setText(wordLimitNum - enteredWords + "/240");
+//                int selectionStart = binding.etSearch.getSelectionStart();
+//                int selectionEnd = binding.etSearch.getSelectionEnd();
+//                if (enterWords.length() > wordLimitNum) {
+//                    //删除多余输入的字（不会显示出来）
+//                    editable.delete(selectionStart - 1, selectionEnd);//
+//                    binding.etSearch.setText(editable);
+//                    //设置光标在最后
+//                    binding.etSearch.setSelection(selectionEnd);
+//                }
+
+                if (editable.length() > wordLimitNum) {
+                    //删除多余输入的字（不会显示出来）
+                    editable.delete(wordLimitNum, editable.length());
+                    binding.etSearch.setText(editable);
+                    //设置光标在最后
+                    binding.etSearch.setSelection(binding.etSearch.getText().toString().length());
+                }
+
                 //已输入字数
                 int enteredWords = wordLimitNum - editable.length();
                 //TextView显示剩余字数
-                binding.tvNumber.setText(wordLimitNum - enteredWords + "/240");
-                int selectionStart = binding.etSearch.getSelectionStart();
-                int selectionEnd = binding.etSearch.getSelectionEnd();
-                if (enterWords.length() > wordLimitNum) {
-                    //删除多余输入的字（不会显示出来）
-                    editable.delete(selectionStart - 1, selectionEnd);//
-                    binding.etSearch.setText(editable);
-                    //设置光标在最后
-                    binding.etSearch.setSelection(selectionEnd);
-                }
+                binding.tvNumber.setText((wordLimitNum - enteredWords) + "/240");
             }
         });
 

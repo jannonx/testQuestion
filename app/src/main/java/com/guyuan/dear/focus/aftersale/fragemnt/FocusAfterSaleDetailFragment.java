@@ -111,10 +111,10 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
         });
 
 
-        if (afterSaleBean.getModuleType() != null) {
-            binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_WORK
-                    == afterSaleBean.getModuleType() ? View.VISIBLE : View.GONE);
-        }
+//        if (afterSaleBean.getModuleType() != null) {
+//            binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_WORK
+//                    == afterSaleBean.getModuleType() ? View.VISIBLE : View.GONE);
+//        }
 
         viewModel.getUploadImageEvent().observe(this, new Observer<List<UploadBean>>() {
             @Override
@@ -177,7 +177,7 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
         binding.tvProjectName.setText(data.getProjectName());
         binding.tvCustomerName.setText(data.getConsumerName());
         binding.tvAddress.setText(data.getConstructionLocaltion());
-        binding.tvCheckName.setText(data.getExamineManName());
+        binding.tvCheckName.setText(data.getCheckManName());
         binding.tvTime.setText(data.getCreateTime());
     }
 
@@ -222,6 +222,7 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
             public void onDismiss(DialogInterface dialog) {
                 LogUtils.showLog("rightDialog....dismiss");
                 rightDialog = null;
+                photoList.clear();
             }
         });
     }

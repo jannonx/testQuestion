@@ -12,25 +12,17 @@ import java.io.Serializable;
  */
 public enum SaleQualifiedType implements Serializable {
     /**
-     *  验收状态 0.待验收 1.验收合格 2.验收不合格 3.验收中
+     *  验收状态  0.待验收 1.验收中 2.验收合格  3.验收不合格
      */
     /**
      * 验收合格
      */
-    TYPE_QUALIFIED_WAIT(0, "验收合格"),
-    /**
-     * 验收合格
-     */
-    TYPE_QUALIFIED(1, "验收合格"),
+    TYPE_QUALIFIED(2, "验收合格"),
 
     /**
      * 验收不合格
      */
-    TYPE_UNQUALIFIED(2, "验收不合格"),
-    /**
-     * 验收中
-     */
-    TYPE_QUALIFIED_ING(3, "验收不合格");
+    TYPE_UNQUALIFIED(3, "验收不合格");
 
 
     private int code;

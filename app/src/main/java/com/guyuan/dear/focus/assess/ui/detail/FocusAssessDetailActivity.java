@@ -19,7 +19,7 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
- * @author : tl
+ * @author : 许建宁
  * @description :我的关注-评审详情页
  * @since: 2020/11/2 10:38
  * @company : 固远（深圳）信息技术有限公司

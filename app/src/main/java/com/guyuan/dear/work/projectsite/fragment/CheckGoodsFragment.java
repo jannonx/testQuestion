@@ -1,6 +1,7 @@
 package com.guyuan.dear.work.projectsite.fragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -78,7 +79,6 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
     @Override
     protected void initialization() {
         detailData = (SiteExploreBean) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
-
 
         binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         CheckGoodsAdapter checkContentAdapter = new CheckGoodsAdapter(getContext(),
@@ -173,6 +173,13 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
             }
         });
         customerDialog.show();
+        customerDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                customerDialog = null;
+                photoList.clear();
+            }
+        });
 
     }
 

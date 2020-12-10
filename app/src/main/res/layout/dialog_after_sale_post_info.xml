@@ -3,170 +3,173 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_search_bar"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_white_corner_top_8"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/dp_16p5"
-
-        android:windowSoftInputMode="adjustPan">
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_12"
-            android:layout_marginTop="@dimen/dp_12"
-            android:gravity="center_horizontal"
-            android:text="记录问题"
-            android:textColor="@color/color_black_333333"
-            android:textSize="@dimen/sp_16"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/ll_et_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_12"
-            android:background="@drawable/bg_stroke_gray_eeeeee_rectangle"
-            android:minHeight="@dimen/dp_120"
-            android:orientation="vertical"
-            android:padding="@dimen/dp_12"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title">
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/et_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:gravity="start|top"
-                android:hint="请输入问题能容"
-                android:minHeight="@dimen/dp_64"
-                android:textColor="@color/color_black_333333"
-                android:textSize="@dimen/sp_17" />
-
-
-            <TextView
-                android:id="@+id/tv_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_8"
-                android:gravity="end"
-                android:text="0/240"
-                android:textColor="@color/color_grey_999999"
-                android:textSize="@dimen/sp_17" />
-        </LinearLayout>
-
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cl_pick_pic"
+            android:id="@+id/cl_search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_12"
-            android:layout_marginTop="@dimen/dp_24p5"
-            android:layout_marginEnd="@dimen/dp_12"
-            android:background="@drawable/bg_stroke_gray_eeeeee_rectangle"
+            android:background="@drawable/bg_white_corner_top_8"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:orientation="vertical"
-            android:padding="@dimen/dp_12"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll_et_content">
+            android:paddingBottom="@dimen/dp_16p5"
+
+            android:windowSoftInputMode="adjustPan">
 
             <TextView
-                android:id="@+id/label_document"
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="拍照电子档"
+                android:layout_marginStart="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_12"
+                android:gravity="center_horizontal"
+                android:text="记录问题"
                 android:textColor="@color/color_black_333333"
                 android:textSize="@dimen/sp_16"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_tip"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/ll_et_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_8"
-                android:layout_marginEnd="@dimen/dp_12"
-                android:text="点击此框上传资料拍照照片"
-                android:textColor="@color/color_black_333333"
-                android:textSize="@dimen/sp_14"
+                android:layout_margin="@dimen/dp_12"
+                android:background="@drawable/bg_stroke_gray_eeeeee_rectangle"
+                android:minHeight="@dimen/dp_120"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_12"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/label_document" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_pick_image"
-                android:layout_width="@dimen/dp_32"
-                android:layout_height="@dimen/dp_32"
-                android:src="@mipmap/camera_open"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="start|top"
+                    android:hint="请输入问题能容"
+                    android:minHeight="@dimen/dp_64"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_17" />
+
+
+                <TextView
+                    android:id="@+id/tv_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:gravity="end"
+                    android:text="0/240"
+                    android:textColor="@color/color_grey_999999"
+                    android:textSize="@dimen/sp_17" />
+            </LinearLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_pick_pic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_24p5"
+                android:layout_marginEnd="@dimen/dp_12"
+                android:background="@drawable/bg_stroke_gray_eeeeee_rectangle"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll_et_content">
+
+                <TextView
+                    android:id="@+id/label_document"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="拍照电子档"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_16"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:layout_marginEnd="@dimen/dp_12"
+                    android:text="点击此框上传资料拍照照片"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_14"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/label_document" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_pick_image"
+                    android:layout_width="@dimen/dp_32"
+                    android:layout_height="@dimen/dp_32"
+                    android:src="@mipmap/camera_open"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <tl.com.easy_recycleview_library.BaseRecyclerView
+                android:id="@+id/image_recycleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_window"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_pick_pic"
+                tools:background="@color/color_green_D4FFF1"
+                tools:layout_height="@dimen/dp_150" />
+            <!--        <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout-->
+            <!--            android:id="@+id/tfl_picture"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="12dp"-->
+            <!--            android:layout_marginTop="12dp"-->
+            <!--            android:layout_marginEnd="12dp"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/cl_pick_pic"-->
+            <!--            tools:background="@color/color_green_D4FFF1"-->
+            <!--            tools:layout_height="@dimen/dp_100" />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_12"
+                android:layout_marginTop="@dimen/dp_16p5"
+                android:layout_marginEnd="@dimen/dp_12"
+
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/image_recycleView">
+
+                <TextView
+                    android:id="@+id/tv_cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_36"
+                    android:layout_marginEnd="@dimen/dp_6"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_stroke_gray_f5f5f5_round"
+                    android:gravity="center"
+                    android:text="取消"
+                    android:textColor="@color/color_black_333333"
+                    android:textSize="@dimen/sp_16" />
+
+                <TextView
+                    android:id="@+id/tv_ok"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_36"
+                    android:layout_marginStart="@dimen/dp_6"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_blue_1677ff_round"
+                    android:gravity="center"
+                    android:text="提交"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_16" />
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <tl.com.easy_recycleview_library.BaseRecyclerView
-            android:id="@+id/image_recycleView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/bg_window"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cl_pick_pic"
-            tools:background="@color/color_green_D4FFF1"
-            tools:layout_height="@dimen/dp_150" />
-        <!--        <com.guyuan.dear.customizeview.flowlayout.TagFlowLayout-->
-        <!--            android:id="@+id/tfl_picture"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="12dp"-->
-        <!--            android:layout_marginTop="12dp"-->
-        <!--            android:layout_marginEnd="12dp"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/cl_pick_pic"-->
-        <!--            tools:background="@color/color_green_D4FFF1"-->
-        <!--            tools:layout_height="@dimen/dp_100" />-->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_12"
-            android:layout_marginTop="@dimen/dp_16p5"
-            android:layout_marginEnd="@dimen/dp_12"
-
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/image_recycleView">
-
-            <TextView
-                android:id="@+id/tv_cancel"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_36"
-                android:layout_marginEnd="@dimen/dp_6"
-                android:layout_weight="1"
-                android:background="@drawable/bg_stroke_gray_f5f5f5_round"
-                android:gravity="center"
-                android:text="取消"
-                android:textColor="@color/color_black_333333"
-                android:textSize="@dimen/sp_16" />
-
-            <TextView
-                android:id="@+id/tv_ok"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_36"
-                android:layout_marginStart="@dimen/dp_6"
-                android:layout_weight="1"
-                android:background="@drawable/bg_blue_1677ff_round"
-                android:gravity="center"
-                android:text="提交"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp_16" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </androidx.core.widget.NestedScrollView>
 </layout>

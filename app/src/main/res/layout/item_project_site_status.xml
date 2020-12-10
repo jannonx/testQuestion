@@ -79,12 +79,13 @@
 
         <TextView
             android:id="@+id/tv_department"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="销售部"
+            tools:text="销售部销售部销售部销售部销售部销售部销售部销售部销售部销售部销售部销售部销售部销售部销售部"
+
+            app:layout_constraintEnd_toEndOf="parent"
             android:textColor="@color/color_grey_999999"
             android:textSize="@dimen/sp_14"
-            app:layout_constraintBottom_toBottomOf="@+id/label_department"
             app:layout_constraintStart_toEndOf="@+id/label_department"
             app:layout_constraintTop_toTopOf="@+id/label_department" />
 

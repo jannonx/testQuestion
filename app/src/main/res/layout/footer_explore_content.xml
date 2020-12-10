@@ -120,12 +120,11 @@
             android:layout_height="match_parent"
             android:visibility="gone">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/dp_50"
-                android:text="视频面板，未开发" />
+            <View
+                android:id="@+id/v_video_continue"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_202p5"
+                android:background="@mipmap/bg_video_continue" />
         </RelativeLayout>
     </FrameLayout>
 

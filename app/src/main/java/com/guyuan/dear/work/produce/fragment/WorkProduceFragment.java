@@ -111,7 +111,7 @@ public class WorkProduceFragment extends BaseListSearchFragment<FocusProduceBean
     }
     @Override
     protected boolean isPullEnable() {
-        return true;
+        return false;
     }
 
     @Override

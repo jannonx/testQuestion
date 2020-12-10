@@ -217,7 +217,7 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
      * 选择起始日期
      */
     private void selectStartDate() {
-        AlertDialogUtils.pickTime(getFragmentManager(), "请选择起始日期", dates[0].getTime(),
+        AlertDialogUtils.pickDearTime(getFragmentManager(), "请选择起始日期", dates[0].getTime(),
                 Type.YEAR_MONTH_DAY, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millSeconds) {
@@ -238,7 +238,7 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
      * 选择截止日期
      */
     private void selectEndDate() {
-        AlertDialogUtils.pickTime(getFragmentManager(), "请选择截止日期", dates[1].getTime(),
+        AlertDialogUtils.pickDearTime(getFragmentManager(), "请选择截止日期", dates[1].getTime(),
                 Type.YEAR_MONTH_DAY, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millSeconds) {

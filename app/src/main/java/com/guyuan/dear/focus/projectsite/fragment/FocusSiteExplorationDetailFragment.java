@@ -357,6 +357,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
             public void onDismiss(DialogInterface dialog) {
                 LogUtils.showLog("leftDialog....dismiss");
                 leftDialog = null;
+                photoList.clear();
             }
         });
     }
@@ -396,6 +397,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
             public void onDismiss(DialogInterface dialog) {
                 LogUtils.showLog("rightDialog....dismiss");
                 rightDialog = null;
+                photoList.clear();
             }
         });
     }

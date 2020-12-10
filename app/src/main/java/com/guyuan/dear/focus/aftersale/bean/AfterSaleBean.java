@@ -66,9 +66,17 @@ public class AfterSaleBean implements Serializable {
      */
     private long checkMan;
     /**
+     * 排查人员名字
+     */
+    private String checkManName;
+    /**
      * 创建人
      */
-    private String createBy;
+    private long createBy;
+    /**
+     * 创建人/记录人员
+     */
+    private String createByName;
     /**
      * 创建时间
      */
@@ -148,6 +156,14 @@ public class AfterSaleBean implements Serializable {
 
     public void setAcceptedType(SaleAcceptedType acceptedType) {
         this.acceptedType = acceptedType;
+    }
+
+    public String getCheckManName() {
+        return checkManName;
+    }
+
+    public void setCheckManName(String checkManName) {
+        this.checkManName = checkManName;
     }
 
     /**
@@ -320,12 +336,17 @@ public class AfterSaleBean implements Serializable {
         this.checkMan = checkMan;
     }
 
-    public String getCreateBy() {
-        return createBy;
+
+    public void setCreateBy(long createBy) {
+        this.createBy = createBy;
     }
 
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
+    public String getCreateByName() {
+        return createByName;
+    }
+
+    public void setCreateByName(String createByName) {
+        this.createByName = createByName;
     }
 
     public String getCreateTime() {
