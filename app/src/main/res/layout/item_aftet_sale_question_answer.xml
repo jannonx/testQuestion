@@ -29,19 +29,29 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/label_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_12"
             android:layout_marginTop="@dimen/dp_2"
-            android:text="问题类型：自制设备"
+            android:text="问题类型："
             android:textColor="@color/color_black_333333"
             android:textSize="@dimen/sp_14"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_serial_number"
             app:layout_constraintStart_toEndOf="@+id/tv_serial_number"
             app:layout_constraintTop_toTopOf="@+id/tv_serial_number" />
-
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="自制设备自制设备自制设备自制设备自制设备自制设备"
+            android:textColor="@color/color_black_333333"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/label_title"
+           app:layout_constraintTop_toTopOf="@+id/label_title" />
         <TextView
             android:id="@+id/tv_des"
             android:layout_width="0dp"
@@ -51,7 +61,7 @@
             android:textColor="@color/color_grey_999999"
             android:textSize="@dimen/sp_14"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintStart_toStartOf="@+id/label_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
         <TextView
@@ -63,7 +73,7 @@
             android:textColor="@color/color_blue_1890ff"
             android:textSize="@dimen/sp_14"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintStart_toStartOf="@+id/label_title"
             app:layout_constraintTop_toBottomOf="@+id/tv_des" />
 
 

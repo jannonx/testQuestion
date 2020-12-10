@@ -33,6 +33,7 @@ public class FocusAfterSaleQuestionAdapter extends BaseRecyclerAdapter<AfterSale
     protected void bindDataToView(BaseRecyclerViewHolder holder, AfterSaleQuestionBean item, int position) {
         TextView tvDes = holder.getView(R.id.tv_des);
         tvDes.setVisibility(TextUtils.isEmpty(item.getDescribe()) ? View.GONE : View.VISIBLE);
+        holder.setText(R.id.tv_title, item.getProblemType());
         holder.setText(R.id.tv_des, "描述：" + item.getDescribe());
 
         holder.setText(R.id.tv_answer, "处理意见：" + item.getAnswer());

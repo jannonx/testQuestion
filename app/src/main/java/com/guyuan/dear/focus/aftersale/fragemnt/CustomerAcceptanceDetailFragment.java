@@ -185,7 +185,7 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
         binding.tvProjectName.setText(data.getProjectName());
         binding.tvCustomerName.setText(data.getConsumerName());
         binding.tvAddress.setText(data.getConstructionLocaltion());
-        binding.tvCheckName.setText(data.getExamineManName());
+        binding.tvCheckName.setText(data.getCheckManName());
         binding.tvTime.setText(data.getCreateTime());
 
 
@@ -199,7 +199,7 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
 
 
         binding.tvRemark.setText(data.getTitle());
-        binding.tvRecorder.setText(data.getExamineManName());
+        binding.tvRecorder.setText(data.getCreateByName());
 
 
     }
@@ -250,6 +250,7 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
             public void onDismiss(DialogInterface dialog) {
                 LogUtils.showLog("dialog....dismiss");
                 dialog = null;
+                photoList.clear();
             }
         });
     }

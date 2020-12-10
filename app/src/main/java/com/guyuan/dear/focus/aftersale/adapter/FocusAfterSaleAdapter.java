@@ -41,7 +41,7 @@ public class FocusAfterSaleAdapter extends BaseRecyclerAdapter<AfterSaleBean> {
         holder.setText(R.id.tv_engineering_name, item.getProjectName());
         holder.setText(R.id.tv_customer_name, item.getConsumerName());
         holder.setText(R.id.tv_engineering_location, item.getConstructionLocaltion());
-        holder.setText(R.id.tv_operator, item.getExamineManName());
+        holder.setText(R.id.tv_operator, item.getCheckManName());
         holder.setText(R.id.tv_time, item.getUpdateTime());
 
 

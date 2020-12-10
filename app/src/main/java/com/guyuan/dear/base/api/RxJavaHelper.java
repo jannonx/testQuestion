@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.httplibrary.bean.ErrorResultBean;
 import com.example.httplibrary.bean.ResultBean;
-import com.example.httplibrary.rx.SchedulersCompat;
+import com.example.httplibrary.rx.BaseSchedulersCompat;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 
 import io.reactivex.Observable;
@@ -78,7 +78,7 @@ public class RxJavaHelper<T, VM extends BaseViewModel> {
 
     //默认的接口回调处理
     public Disposable flow(MutableLiveData<T> data) {
-        return observable.compose(SchedulersCompat.applyIoSchedulers())  //以第一个订阅的线程为准
+        return observable.compose(SchedulersCompat.getInstance().applyIoSchedulers())  //以第一个订阅的线程为准
                 .doOnSubscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {
@@ -106,7 +106,7 @@ public class RxJavaHelper<T, VM extends BaseViewModel> {
 
     //不需要监听接口回调数据或者使用自定义的回调监听
     public Disposable flow() {
-        return observable.compose(SchedulersCompat.applyIoSchedulers())  //以第一个订阅的线程为准
+        return observable.compose(SchedulersCompat.getInstance().applyIoSchedulers())  //以第一个订阅的线程为准
                 .doOnSubscribe(new Consumer<Object>() {
                     @Override
                     public void accept(Object o) throws Exception {

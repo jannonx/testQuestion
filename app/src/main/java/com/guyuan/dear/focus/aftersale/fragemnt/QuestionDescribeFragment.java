@@ -107,7 +107,7 @@ public class QuestionDescribeFragment extends BaseDataBindingFragment<FragmentAf
         llDocument = footerView.findViewById(R.id.ll_document);
         imageRecyclerView = footerView.findViewById(R.id.image_recycleView);
         tvRemark.setText(simpleData.getTitle());
-        tvRecorder.setText(simpleData.getExamineManName());
+        tvRecorder.setText(simpleData.getCreateByName());
         setImageList(imageData);
     }
 

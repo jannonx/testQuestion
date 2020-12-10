@@ -229,7 +229,7 @@ public class OperateFragment extends BaseDataBindingFragment<FragmentAnalyseOper
     }
 
     private void selectStartDate() {
-        AlertDialogUtils.pickTime(getFragmentManager(), "请选择查询年份", dates.getTime(),
+        AlertDialogUtils.pickDearTime(getFragmentManager(), "请选择查询年份", dates.getTime(),
                 Type.YEAR, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millSeconds) {

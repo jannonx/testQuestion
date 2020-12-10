@@ -15,7 +15,6 @@
             android:layout_marginStart="@dimen/dp_12"
             android:layout_marginTop="@dimen/dp_16"
             android:layout_marginEnd="@dimen/dp_12"
-            android:background="@color/color_grey_eeeeee"
             app:layout_scrollFlags="scroll|enterAlways">
 
 
@@ -23,7 +22,6 @@
                 android:id="@+id/cl_sum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 app:cardCornerRadius="@dimen/dp_4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -66,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp_12"
                         android:layout_marginTop="@dimen/dp_12"
-                        android:text="人力成本（月）"
+                        android:text="人力成本按项目核算（按月统计汇总）"
                         android:textColor="@color/color_grey_999999"
                         android:textSize="@dimen/sp_14"
                         app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +88,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp_12"
                         android:layout_marginTop="@dimen/dp_16"
-                        android:text="制造费用（实际发生）"
+                        android:text="制造费用按项目核算（按单位实际发生汇总）"
                         android:textColor="@color/color_grey_999999"
                         android:textSize="@dimen/sp_14"
                         app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp_12"
                         android:layout_marginTop="@dimen/dp_16"
-                        android:text="安装成本（当月发票）"
+                        android:text="安装成本按项目核算（按当月发票发生汇总）"
                         android:textColor="@color/color_grey_999999"
                         android:textSize="@dimen/sp_14"
                         app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +136,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp_12"
                         android:layout_marginTop="@dimen/dp_16"
-                        android:text="材料成本（实际发生）"
+                        android:text="材料成本按项目核算（按单位实际发生汇总）"
                         android:textColor="@color/color_grey_999999"
                         android:textSize="@dimen/sp_14"
                         app:layout_constraintStart_toStartOf="parent"

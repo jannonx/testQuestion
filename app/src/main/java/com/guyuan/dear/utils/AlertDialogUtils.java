@@ -57,6 +57,7 @@ public class AlertDialogUtils {
 
     /**
      * 选择日期，获得的日期的时间为0时0分1秒
+     *
      * @param manager
      * @param title
      * @param minDate
@@ -65,13 +66,14 @@ public class AlertDialogUtils {
      * @param callback
      */
     public static void pickDayBeginning(FragmentManager manager, String title, long minDate, long maxDate,
-                                          long selectedDate, OnDateSetListener callback){
-       pickAlteredDay(manager,title,minDate,maxDate,selectedDate,callback,true);
+                                        long selectedDate, OnDateSetListener callback) {
+        pickAlteredDay(manager, title, minDate, maxDate, selectedDate, callback, true);
 
     }
 
     /**
      * 选择日期，获得的日期的时间为23时59分59秒
+     *
      * @param manager
      * @param title
      * @param minDate
@@ -80,13 +82,13 @@ public class AlertDialogUtils {
      * @param callback
      */
     public static void pickDayEnd(FragmentManager manager, String title, long minDate, long maxDate,
-                                          long selectedDate, OnDateSetListener callback){
-        pickAlteredDay(manager,title,minDate,maxDate,selectedDate,callback,false);
+                                  long selectedDate, OnDateSetListener callback) {
+        pickAlteredDay(manager, title, minDate, maxDate, selectedDate, callback, false);
 
     }
 
     private static void pickAlteredDay(FragmentManager manager, String title, long minDate, long maxDate,
-                                       long selectedDate, OnDateSetListener callback, boolean isSetToBeginning){
+                                       long selectedDate, OnDateSetListener callback, boolean isSetToBeginning) {
         if (!CommonUtils.isFastDoubleClick()) {
             TimePickerDialog dialog = new TimePickerDialog.Builder()
                     .setCallBack(new OnDateSetListener() {
@@ -94,17 +96,17 @@ public class AlertDialogUtils {
                         public void onDateSet(TimePickerDialog timePickerView, long millseconds) {
                             Calendar calendar = Calendar.getInstance();
                             calendar.setTimeInMillis(millseconds);
-                            if(isSetToBeginning){
-                                calendar.set(Calendar.HOUR_OF_DAY,0);
-                                calendar.set(Calendar.MINUTE,0);
-                                calendar.set(Calendar.SECOND,1);
-                            }else {
-                                calendar.set(Calendar.HOUR_OF_DAY,23);
-                                calendar.set(Calendar.MINUTE,59);
-                                calendar.set(Calendar.SECOND,59);
+                            if (isSetToBeginning) {
+                                calendar.set(Calendar.HOUR_OF_DAY, 0);
+                                calendar.set(Calendar.MINUTE, 0);
+                                calendar.set(Calendar.SECOND, 1);
+                            } else {
+                                calendar.set(Calendar.HOUR_OF_DAY, 23);
+                                calendar.set(Calendar.MINUTE, 59);
+                                calendar.set(Calendar.SECOND, 59);
                             }
 
-                            callback.onDateSet(timePickerView,calendar.getTimeInMillis());
+                            callback.onDateSet(timePickerView, calendar.getTimeInMillis());
                         }
                     })
                     .setCancelStringId("取消")
@@ -195,6 +197,16 @@ public class AlertDialogUtils {
         long selectDate = System.currentTimeMillis();
         long minDate = selectDate - 365L * 24 * 60 * 60 * 1000 * 10;
         long maxDate = selectDate + 365L * 24 * 60 * 60 * 1000 * 10;
+        pickTime(manager, title, minDate, maxDate, newSelectTime, dialogType, callback);
+    }
+
+    public static void pickDearTime(FragmentManager manager, String title, long newSelectTime, Type dialogType,
+                                    OnDateSetListener callback) {
+        //前后十年
+        long selectDate = System.currentTimeMillis();
+        //yyyy-MM-dd HH:mm:ss
+        long minDate = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat("2014-1-1 0:0:0").getTime();
+        long maxDate = selectDate + 365L * 24 * 60 * 60 * 1000 * 50;
         pickTime(manager, title, minDate, maxDate, newSelectTime, dialogType, callback);
     }
 

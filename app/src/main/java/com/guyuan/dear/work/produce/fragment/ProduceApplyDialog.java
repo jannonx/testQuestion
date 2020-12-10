@@ -27,6 +27,7 @@ import com.guyuan.dear.customizeview.itemDecorator.AddSendListItemDecorator;
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
 import com.guyuan.dear.focus.produce.bean.OperateProduceType;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.utils.ScreenUtils;
 import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
 import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
@@ -90,6 +91,25 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
         BottomSheetBehavior mDialogBehavior = BottomSheetBehavior.from((View) viewBinding.getRoot().getParent());
         mDialogBehavior.setPeekHeight(getWindowHeight());
 
+        boolean navigationBarShow = ScreenUtils.isNavigationBarShow(getWindow().getWindowManager());
+        LogUtils.showLog("navigationBarShow=" + navigationBarShow);
+
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+        getWindow().getDecorView().setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                int uiOptions = View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                        //布局位于状态栏下方
+                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                        //全屏
+                        View.SYSTEM_UI_FLAG_FULLSCREEN |
+                        //隐藏导航栏
+                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+                uiOptions |= 0x00001000;
+                getWindow().getDecorView().setSystemUiVisibility(uiOptions);
+            }
+        });
         initView();
         initListener();
     }
@@ -163,7 +183,7 @@ public class ProduceApplyDialog extends BottomSheetDialog implements View.OnClic
             ToastUtils.showLong(getContext(), "请选择抄送人");
             return;
         }
-        
+
         body.setType(operateProduceType.getCode());
         body.setReason(viewBinding.etSearch.getText().toString());
         //审批人

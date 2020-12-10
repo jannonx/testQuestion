@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import com.guyuan.dear.analyse.operate.bean.OperateAnalyseBean;
 import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.R;
+import com.guyuan.dear.utils.CalenderUtils;
+
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
@@ -20,6 +22,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 public class OperateDetailAdapter extends BaseRecyclerAdapter<OperateAnalyseBean> {
 
+    CalenderUtils calenderUtils = CalenderUtils.getInstance();
 
     public OperateDetailAdapter(Context context, @NonNull List<OperateAnalyseBean> listData, int layoutID) {
         super(context, listData, layoutID);
@@ -27,8 +30,9 @@ public class OperateDetailAdapter extends BaseRecyclerAdapter<OperateAnalyseBean
 
     @Override
     protected void bindDataToView(BaseRecyclerViewHolder holder, OperateAnalyseBean item, int position) {
-        holder.setText(R.id.tv_total, item.getTotalCost()+"元");
-        holder.setText(R.id.tv_month, item.getMonthTime());
+        holder.setText(R.id.tv_total, item.getTotalCost() + "元");
+        long time = calenderUtils.parseSmartFactoryDateStringFormat(item.getMonthTime()).getTime();
+        holder.setText(R.id.tv_month,  calenderUtils.toChineseYearMonth(time));
         holder.setText(R.id.tv_manpower, item.getLaborCost());
         holder.setText(R.id.tv_fabricating_cast, item.getManufacturingCosts());
         holder.setText(R.id.tv_install_cast, item.getInstallationCost());

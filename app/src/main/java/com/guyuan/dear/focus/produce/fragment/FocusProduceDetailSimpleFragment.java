@@ -182,8 +182,8 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
     private void setProduceData(FocusProduceBean data) {
         planFragment.setProduceData(data);
 
-        binding.tvProductName.setText(data.getProjectName());
-        binding.tvProductCode.setText(data.getProjectCode());
+        binding.tvProductName.setText(data.getName());
+        binding.tvProductCode.setText(data.getCode());
         binding.tvDutyUnit.setText(data.getPrincipalDept());
 
         //设置生产状态
@@ -199,6 +199,7 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
 //        }
 
         binding.tvProjectName.setText(data.getProjectName());
+        binding.tvProjectCode.setText(data.getProjectCode());
 
         binding.tvActualStart.setText(data.getActualStartTime());
         binding.tvPlanStart.setText(data.getPlanStartTime());
