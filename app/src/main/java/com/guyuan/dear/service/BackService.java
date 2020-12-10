@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.example.httplibrary.bean.ErrorResultBean;
-import com.example.httplibrary.rx.SchedulersCompat;
+import com.example.httplibrary.rx.BaseSchedulersCompat;
 import com.google.gson.Gson;
+import com.guyuan.dear.base.api.SchedulersCompat;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.busbean.LoginBusBean;
 import com.guyuan.dear.login.api.LoginApiService;
@@ -61,7 +62,7 @@ public class BackService extends IntentService {
                     RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; " +
                             "charset=utf-8"), str);
                     Disposable disposable = loginApiService.getLoginInfo(body)
-                            .compose(SchedulersCompat.applyIoNoMainSchedulers())
+                            .compose(SchedulersCompat.getInstance().applyIoSchedulers())
                             .subscribe(new Consumer<Object>() {
                                 @Override
                                 public void accept(Object o) throws Exception {
