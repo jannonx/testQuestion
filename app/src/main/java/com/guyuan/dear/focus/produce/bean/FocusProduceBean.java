@@ -320,7 +320,7 @@ public class FocusProduceBean implements Serializable {
     }
 
     public String getTimeTypeStr() {
-        LogUtils.showLog("getTimeTypeStr="+getDisPlayTimeType().getCode());
+//        LogUtils.showLog("getTimeTypeStr="+getDisPlayTimeType().getCode());
         return getDisPlayTimeType().getMessage();
     }
 

@@ -27,6 +27,7 @@ import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.utils.ToastUtils;
 import com.jzxiang.pickerview.TimePickerDialog;
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
@@ -220,11 +221,11 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
                 Type.YEAR_MONTH_DAY, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millSeconds) {
-                        if (dates[1].getTime() <= new Date(millSeconds).getTime()) {
-                            showToastTip("起始日期不能晚于起始日期！");
+                        String yearMonthDay = calenderUtils.getDateByDate(millSeconds);
+                        dates[0] = calenderUtils.parseSmartFactoryDateFormatByDay(yearMonthDay);
+                        if (dates[1].getTime() <= dates[0].getTime()) {
+                            ToastUtils.showLong(getContext(), "起始日期不能晚于起始日期！");
                         } else {
-                            dates[0] = new Date(millSeconds);
-                            String yearMonthDay = calenderUtils.getDateByDate(millSeconds);
                             dataArr[0] = yearMonthDay;
                             mTvSelectStartTime.setText(yearMonthDay);
                             viewModel.getProduceOverView(getRequestBody());
@@ -241,12 +242,13 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
                 Type.YEAR_MONTH_DAY, new OnDateSetListener() {
                     @Override
                     public void onDateSet(TimePickerDialog timePickerView, long millSeconds) {
-
-                        if (new Date(millSeconds + 86399000).getTime() <= dates[0].getTime()) {
-                            showToastTip("截至日期不能早于起始日期！");
+                        //86,399,000,一天时间戳
+                        String yearMonthDay = calenderUtils.getDateByDate(millSeconds);
+                        dates[1] = new Date(calenderUtils.parseSmartFactoryDateFormatByDay(yearMonthDay).getTime() + 86399000);
+                        LogUtils.showLog("selectEndDate=" + dates[1].getTime());
+                        if (dates[1].getTime() <= dates[0].getTime()) {
+                            ToastUtils.showLong(getContext(), "截至日期不能早于起始日期！");
                         } else {
-                            dates[1] = new Date(millSeconds + 86399000);
-                            String yearMonthDay = calenderUtils.getDateByDate(millSeconds + 86399000);
                             dataArr[1] = yearMonthDay;
                             mTvSelectEndTime.setText(yearMonthDay);
                             viewModel.getProduceOverView(getRequestBody());
