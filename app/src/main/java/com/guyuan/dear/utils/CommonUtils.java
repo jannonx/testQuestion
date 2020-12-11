@@ -232,7 +232,7 @@ public class CommonUtils {
         if (BuildConfig.BUILD_TYPE.equals("debug")) {
             return 1000;
         } else {
-            return 1000;
+            return 1;
         }
     }
 
