@@ -12,12 +12,13 @@ public class RestartedContractBean extends BaseContractBean{
     private String restartCause;
     private String restartStateTag;
     private int examineId;
+    private String approveComments;
 
     public RestartedContractBean() {
     }
 
     public RestartedContractBean(NetContractInfo info) {
-        setRestartCause(info.getRemarks());
+        setRestartCause(info.getListJudgeCondition());
         //状态标签 10002：表示暂停 10003：表示激活
         String tag = null;
         switch (info.getChangeType()){
@@ -36,6 +37,7 @@ public class RestartedContractBean extends BaseContractBean{
         setContractNum(info.getContractNum());
         setBuyer(info.getCusName());
         setExamineId(info.getExamineId());
+        setApproveComments(info.getApproveComment());
     }
 
     public String getRestartCause() {
@@ -60,5 +62,13 @@ public class RestartedContractBean extends BaseContractBean{
 
     public void setExamineId(int examineId) {
         this.examineId = examineId;
+    }
+
+    public String getApproveComments() {
+        return approveComments;
+    }
+
+    public void setApproveComments(String approveComments) {
+        this.approveComments = approveComments;
     }
 }
