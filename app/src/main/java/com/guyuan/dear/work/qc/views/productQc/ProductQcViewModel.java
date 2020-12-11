@@ -47,6 +47,7 @@ public class ProductQcViewModel extends BaseDearViewModel {
      * 是否要忽略post数据为空时相关提示
      */
     public AtomicBoolean shouldShowToastNoData = new AtomicBoolean(false);
+    private static final int MAX_COMMENT_LENGTH = 240;
 
 
     /**
@@ -242,6 +243,9 @@ public class ProductQcViewModel extends BaseDearViewModel {
         String comment = comments.getValue();
         if (TextUtils.isEmpty(comment)) {
             showToast("请输入原因描述");
+            return;
+        } else if (comment.length() >= MAX_COMMENT_LENGTH) {
+            showToast("原因描述超过最大字数");
             return;
         } else {
             body.setQualityRemark(comment);
