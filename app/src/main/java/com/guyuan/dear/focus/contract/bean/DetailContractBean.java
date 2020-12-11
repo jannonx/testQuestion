@@ -71,6 +71,7 @@ public class DetailContractBean extends BaseContractBean {
         setProductModel(src.getEquipmentModel());
         setBuyerAddress(src.getDeliveryAddress());
         setReceiverCompany(src.getReceivingUnit());
+        setExecutingState(src.getExecutingState());
         productComponents = new ArrayList<>();
         List<NetContractDetailInfo.TcontractPartsBean> parts = src.getTcontractParts();
         for (NetContractDetailInfo.TcontractPartsBean part : parts) {

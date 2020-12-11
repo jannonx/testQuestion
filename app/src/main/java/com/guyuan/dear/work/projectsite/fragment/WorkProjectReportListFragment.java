@@ -192,13 +192,13 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
      * @param dataList 数据
      */
     public void dealDataByAddReportType(List<SiteExploreBean> dataList, ProjectReportType reportType) {
-        LogUtils.showLog("size=" + dataList.size());
+//        LogUtils.showLog("size=" + dataList.size());
         List<SiteExploreBean> tempList = new ArrayList<>();
         for (int i = 0; i < dataList.size(); i++) {
             SiteExploreBean siteExploreBean = dataList.get(i);
             siteExploreBean.setModuleType(FunctionModuleType.TYPE_WORK);
             siteExploreBean.setProjectReportType(reportType);
-            LogUtils.showLog("dealDataByAddReportType=" + reportType.getDes());
+//            LogUtils.showLog("dealDataByAddReportType=" + reportType.getDes());
             tempList.add(siteExploreBean);
         }
         setListData(tempList);
@@ -206,12 +206,13 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
 
 
     private RequestBody getListRequestBody(boolean isRefresh) {
+        LogUtils.showLog("isRefresh0="+isRefresh+"...currentPage0="+currentPage);
         currentType = isRefresh ? REFRESH : LOAD_MORE;
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
+        LogUtils.showLog("isRefresh1="+isRefresh+"...currentPage1="+currentPage);
         ListProjectRequestBody body = new ListProjectRequestBody();
         ListProjectRequestBody.FiltersBean filtersBean = new ListProjectRequestBody.FiltersBean();
         filtersBean.setQueryParams(searchContent);
-        filtersBean.setMyWork(null);
         filtersBean.setMyWork(FunctionModuleType.TYPE_WORK.getCode());
         body.setFilters(filtersBean);
         body.setPageNum(currentPage);
@@ -233,12 +234,12 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
 
     @Override
     protected void refresh() {
-        getDataListByClassify(false);
+        getDataListByClassify(true);
     }
 
     @Override
     protected void loadMore() {
-        getDataListByClassify(true);
+        getDataListByClassify(false);
     }
 
     @Override

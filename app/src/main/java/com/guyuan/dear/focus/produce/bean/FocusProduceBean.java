@@ -201,7 +201,7 @@ public class FocusProduceBean implements Serializable {
      */
 
     public String getReasonTypeStr() {
-        return ProduceReasonType.toText(reasonType);
+        return ProduceReasonType.toType(reasonType).getDes();
     }
 
     public void setReasonType(int reasonType) {
@@ -269,8 +269,9 @@ public class FocusProduceBean implements Serializable {
         return getStatusType().getTextColor();
 
     }
+
     public int getStatusTextBg() {
-       return getStatusType().getTextBgColor();
+        return getStatusType().getTextBgColor();
 
     }
 
@@ -308,12 +309,19 @@ public class FocusProduceBean implements Serializable {
         if (ProductStatusType.TYPE_PRODUCE_ING == statusType) {
             if (ApprovalStatusType.TYPE_APPROVAL_NOT_APPLY == approvalStatusType
                     || ApprovalStatusType.TYPE_APPROVAL_PAUSE_PASS == approvalStatusType) {
-                return "操作员：" + (updateName==null?"":updateName);
+                return "操作员：" + (updateName == null ? "" : updateName);
             }
         } else if (ProductStatusType.TYPE_PRODUCE_COMPLETE == statusType
                 || ProductStatusType.TYPE_PRODUCE_DELAY_FINISH == statusType
                 || ProductStatusType.TYPE_PRODUCE_DELAY_NOT_FINISH == statusType) {
-            return "操作员：" + (updateName==null?"":updateName);
+            return "操作员：" + (updateName == null ? "" : updateName);
+        } else if (ProductStatusType.TYPE_PRODUCE_EXCEPTION == statusType) {
+            if (ApprovalStatusType.TYPE_APPROVAL_NOT_APPLY == approvalStatusType
+                    || ApprovalStatusType.TYPE_APPROVAL_PAUSE_REJECT == approvalStatusType
+                    || ApprovalStatusType.TYPE_APPROVAL_PAUSE_PASS == approvalStatusType) {
+                return "操作员：" + (updateName == null ? "" : updateName);
+            }
+
         }
 
         return getApprovalStatusType().getDes();

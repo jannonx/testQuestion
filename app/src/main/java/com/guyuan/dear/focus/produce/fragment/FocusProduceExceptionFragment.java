@@ -41,7 +41,7 @@ public class FocusProduceExceptionFragment extends BaseProduceFragment {
     protected void init() {
         searchBar.setHint("输入产品名称、产品代号");
         FocusProduceAdapter listAdapter = new FocusProduceAdapter(getContext(), listData,
-                R.layout.item_focus_produce);
+                R.layout.item_focus_produce,FocusProduceAdapter.FROM_EXCEPTION);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);

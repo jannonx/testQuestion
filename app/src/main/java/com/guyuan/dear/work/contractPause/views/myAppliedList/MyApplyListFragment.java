@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
+import com.guyuan.dear.customizeview.itemDecorator.LinearVerticalPaddingDecorator2P0;
 import com.guyuan.dear.databinding.FragmentMyApplyListBinding;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.adapters.MyApplyListAdapter;
@@ -89,6 +90,7 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
         MyApplyListAdapter adapter = new MyApplyListAdapter(getViewModel().getRestartApplyList().getValue());
         BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0(12,12,12,12,16));
         recyclerView.setAdapter(wrapper);
         recyclerView.setLoadMoreEnabled(true);
         recyclerView.setPullRefreshEnabled(false);
@@ -150,6 +152,7 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
         MyApplyListAdapter adapter = new MyApplyListAdapter(getViewModel().getPauseApplyList().getValue());
         BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0(12,12,12,12,16));
         recyclerView.setAdapter(wrapper);
         recyclerView.setLoadMoreEnabled(true);
         recyclerView.setPullRefreshEnabled(false);

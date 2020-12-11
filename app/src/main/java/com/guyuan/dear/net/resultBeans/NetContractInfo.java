@@ -31,10 +31,15 @@ public class NetContractInfo extends NetBaseContractInfo {
     private String examineBy;
 
     /**
-     * 判定维度
+     * 判定维度(申请详情界面显示的判定维度)
      */
     @SerializedName("remark1")
     private String judgeCondition;
+    /**
+     * 判定维度(返回列表时，在列表界面展示的判定维度)
+     */
+    @SerializedName("judgeCondition")
+    private String listJudgeCondition;
     /**
      * 原因
      */
@@ -61,6 +66,7 @@ public class NetContractInfo extends NetBaseContractInfo {
      * 申请批复的状态 0 审批中 1 通过 2 拒绝
      */
     private int approveStatus;
+    private String approveComment;
 
     public String getSignTime() {
         return signTime;
@@ -132,5 +138,21 @@ public class NetContractInfo extends NetBaseContractInfo {
 
     public void setApproveStatus(int approveStatus) {
         this.approveStatus = approveStatus;
+    }
+
+    public String getListJudgeCondition() {
+        return listJudgeCondition;
+    }
+
+    public void setListJudgeCondition(String listJudgeCondition) {
+        this.listJudgeCondition = listJudgeCondition;
+    }
+
+    public String getApproveComment() {
+        return approveComment;
+    }
+
+    public void setApproveComment(String approveComment) {
+        this.approveComment = approveComment;
     }
 }

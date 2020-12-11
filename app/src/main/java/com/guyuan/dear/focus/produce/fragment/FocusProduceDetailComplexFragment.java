@@ -26,6 +26,7 @@ import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.office.approval.ui.ApprovalActivity;
+import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
@@ -40,6 +41,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -214,7 +216,7 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
         binding.tvProduceStatus.setText(data.getStatusText());
         binding.tvProduceStatus.setBackgroundResource(data.getStatusTextBg());
         int color_blue_ff1b97fc = data.getStatusTextColor();
-        binding.tvProduceStatus.setTextColor(getActivity().getResources().getColor(color_blue_ff1b97fc));
+        binding.tvProduceStatus.setTextColor(getActivity().getResources().getColor(color_blue_ff1b97fc, null));
 
         binding.tvProjectName.setText(data.getProjectName());
         binding.tvProjectCode.setText(data.getProjectCode());
@@ -222,11 +224,17 @@ public class FocusProduceDetailComplexFragment extends BaseDataBindingFragment<F
         //暂停--其他
         binding.labelActualStart.setText(isProducePause ? "实际暂停生产时间：" : "实际开始生产时间：");
         binding.labelPlanStart.setText(isProducePause ? "实际开始生产时间：" : "计划生产开始时间：");
-        binding.tvActualStart.setText(isProducePause ? data.getPauseTime() : data.getActualStartTime());
+        CalenderUtils calenderUtils = CalenderUtils.getInstance();
+        Date pauseDate = calenderUtils.parseSmartFactoryDateStringFormat(data.getPauseTime());
+        String pauseTime = calenderUtils.getDateByDate(pauseDate.getTime());
+        binding.tvActualStart.setText(isProducePause ? pauseTime : data.getActualStartTime());
         binding.tvPlanStart.setText(isProducePause ? data.getActualStartTime() : data.getPlanStartTime());
 
 
-        binding.tvActualComplete.setText(isProducePause ? "暂停中" : data.getActualEndTime());
+        binding.tvActualComplete.setText(isProducePause ? "暂停中" :
+                (ProductStatusType.TYPE_PRODUCE_COMPLETE == data.getStatusType()
+                        || ProductStatusType.TYPE_PRODUCE_DELAY_NOT_FINISH == data.getStatusType())
+                        ? data.getActualEndTime() : "生产中");
         binding.tvPlanComplete.setText(data.getPlanEndTime());
 
 

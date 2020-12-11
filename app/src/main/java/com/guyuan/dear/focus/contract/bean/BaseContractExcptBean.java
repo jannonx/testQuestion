@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.contract.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
 
@@ -35,24 +36,28 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
     public BaseContractExcptBean() {
     }
 
-    public BaseContractExcptBean(NetContractInfo info){
+    public BaseContractExcptBean(NetContractInfo info) {
         this.state = info.getChangeType();
         String tag = null;
-        switch (state){
+        switch (state) {
             case 10002:
-                tag="暂停";
+                tag = "暂停";
                 break;
             case 10003:
-                tag="激活";
+                tag = "激活";
                 break;
             default:
                 break;
         }
-        if(tag!=null){
+        if (tag != null) {
             setExceptionTag(tag);
         }
-        setJudgement(info.getJudgeCondition());
-        setCause(info.getRemarks());
+        if (!TextUtils.isEmpty(info.getJudgeCondition())) {
+            setJudgement(info.getListJudgeCondition());
+        } else if (!TextUtils.isEmpty(info.getListJudgeCondition())) {
+            setJudgement(info.getListJudgeCondition());
+        }
+        setCause(info.getApproveComment());
         setExamineId(info.getExamineId());
         setContractNum(info.getContractNum());
         setBuyer(info.getCusName());
@@ -66,7 +71,7 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
         judgement = in.readString();
         judgementKey = in.readString();
         examineId = in.readInt();
-        state=in.readInt();
+        state = in.readInt();
     }
 
     public static final Creator<BaseContractExcptBean> CREATOR = new Creator<BaseContractExcptBean>() {
@@ -136,7 +141,7 @@ public class BaseContractExcptBean extends BaseContractBean implements Parcelabl
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        super.writeToParcel(dest,flags);
+        super.writeToParcel(dest, flags);
         dest.writeString(exceptionTag);
         dest.writeString(cause);
         dest.writeString(judgement);

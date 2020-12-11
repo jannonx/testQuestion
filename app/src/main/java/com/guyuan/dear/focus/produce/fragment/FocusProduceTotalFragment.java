@@ -38,7 +38,7 @@ public class FocusProduceTotalFragment extends BaseProduceFragment {
     protected void init() {
         searchBar.setHint("输入产品名称、产品代号");
         FocusProduceAdapter listAdapter = new FocusProduceAdapter(getContext(), listData,
-                R.layout.item_focus_produce);
+                R.layout.item_focus_produce, FocusProduceAdapter.FROM_TOTAL);
         adapter = new BaseRecyclerViewAdapter(listAdapter);
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(adapter);
@@ -46,7 +46,7 @@ public class FocusProduceTotalFragment extends BaseProduceFragment {
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                FocusProduceDetailActivity.start(getContext(), listData.get(position),false);
+                FocusProduceDetailActivity.start(getContext(), listData.get(position), false);
             }
         });
         viewModel.getProduceList(getListRequestBody(true));
@@ -65,6 +65,7 @@ public class FocusProduceTotalFragment extends BaseProduceFragment {
     protected void loadMore() {
         viewModel.getProduceList(getListRequestBody(false));
     }
+
     @Override
     protected void refresh() {
         viewModel.getProduceList(getListRequestBody(true));

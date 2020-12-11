@@ -39,9 +39,11 @@ public class ContractSearchListFragment extends BaseMvvmFragment<FragmentContrac
     private int searchType;
 
     /**
-     * @param searchType 只有以下两种情况
-     * {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_EXCEPTION}
-     * {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_TOTAL}
+     * @param searchType 只有以下情况
+     * {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_EXCEPTION},
+     * {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_TOTAL},
+     * {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_ON_PAUSE},
+     * {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_RESTART}
      */
     public static ContractSearchListFragment getInstance(String companyNameOrContractNo,int searchType) {
         Bundle bundle = new Bundle();

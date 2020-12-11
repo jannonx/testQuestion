@@ -36,7 +36,8 @@ public class NetContractDetailInfo extends NetContractInfo {
     private String receivingUnit;
     private String deliveryAddress;
     private String consignee;
-    private int stopStatus;
+    @SerializedName("implState")
+    private int executingState;
     private String contactInfo;
     private String createTime;
     private String salesman;
@@ -83,12 +84,12 @@ public class NetContractDetailInfo extends NetContractInfo {
         this.consignee = consignee;
     }
 
-    public int getStopStatus() {
-        return stopStatus;
+    public int getExecutingState() {
+        return executingState;
     }
 
-    public void setStopStatus(int stopStatus) {
-        this.stopStatus = stopStatus;
+    public void setExecutingState(int executingState) {
+        this.executingState = executingState;
     }
 
     public String getContactInfo() {

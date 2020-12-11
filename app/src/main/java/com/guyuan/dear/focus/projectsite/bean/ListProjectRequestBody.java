@@ -48,7 +48,7 @@ public class ListProjectRequestBody {
         /**
          * 标识id
          */
-        private long id;
+        private Long id;
          /**
          * 来自模块类型
          */
@@ -60,11 +60,11 @@ public class ListProjectRequestBody {
          */
         private String queryParams;
 
-        public long getId() {
+        public Long getId() {
             return id;
         }
 
-        public void setId(long id) {
+        public void setId(Long id) {
             this.id = id;
         }
 

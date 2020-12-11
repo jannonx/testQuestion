@@ -30,6 +30,8 @@ public class ContractSearchListActivity extends BaseActionBarActivity {
      * @param title
      * @param clientNameOrContractNumber
      * @param type
+     * {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_ON_PAUSE}
+     * {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_RESTART}
      * {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_EXCEPTION}
      * {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_TOTAL}
      */

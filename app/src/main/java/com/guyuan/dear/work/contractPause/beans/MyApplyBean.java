@@ -2,6 +2,7 @@ package com.guyuan.dear.work.contractPause.beans;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
@@ -41,7 +42,11 @@ public class MyApplyBean extends BaseContractExcptBean implements Parcelable {
         setBuyer(src.getCusName());
         setContractNum(src.getContractNum());
         setExamineId(src.getExamineId());
-        setJudgement(src.getJudgeCondition());
+        if(!TextUtils.isEmpty(src.getJudgeCondition())){
+            setJudgement(src.getJudgeCondition());
+        }else if(!TextUtils.isEmpty(src.getListJudgeCondition())){
+            setJudgement(src.getListJudgeCondition());
+        }
         String signTime = src.getSignTime();
         long time = 0L;
         if (signTime != null) {

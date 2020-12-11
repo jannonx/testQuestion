@@ -124,27 +124,4 @@ public class MyApplyListViewModel extends BaseViewModel {
     }
 
 
-//    /**
-//     * 生成模拟数据，显示在主界面UI
-//     *
-//     * @param uid
-//     */
-//    public void getListFromNet(String uid) {
-//        List<MyApplyBean> list = new ArrayList<>();
-//        int states[] = new int[]{MyApplyBean.APPLY_PENDING_FOR_START,
-//                MyApplyBean.APPLY_PROCESSING, MyApplyBean.APPLY_APPROVED, MyApplyBean.APPLY_REJECTED};
-//        String judements[] = new String[]{
-//                "国际政策维度", "项目成本维度", "维护成本维度"
-//        };
-//        for (int i = 0; i < 25; i++) {
-//            MyApplyBean bean = new MyApplyBean();
-//            bean.setState(states[i % states.length]);
-//            bean.setBuyer("北京天行健科技有限公司");
-//            bean.setJudgement(judements[i % judements.length]);
-//            bean.setDate(System.currentTimeMillis());
-//            bean.setContractNum(System.currentTimeMillis() + "");
-//            list.add(bean);
-//        }
-//        pauseApplyList.postValue(list);
-//    }
 }

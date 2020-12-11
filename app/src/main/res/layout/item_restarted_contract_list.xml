@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/sp_14"
                 android:textColor="@color/color_grey_999999"
-                android:text="@{data.restartCause}"/>
+                android:text="@{data.approveComments}"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>

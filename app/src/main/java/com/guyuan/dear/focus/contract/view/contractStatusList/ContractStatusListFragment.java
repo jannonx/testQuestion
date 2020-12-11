@@ -69,6 +69,8 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
 
     /**
      * @param statusType 只有{@link ContractStatusListFragment#STATUS_TYPE_EXCEPTION},{@link ContractStatusListFragment#STATUS_TYPE_TOTAL}
+     * {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_ON_PAUSE},
+     * {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_RESTART}
      * @return
      */
     public static ContractStatusListFragment getInstance(int statusType) {
@@ -98,9 +100,11 @@ public class ContractStatusListFragment extends BaseMvvmFragment<FragmentContrac
         switch (statusType) {
             case STATUS_TYPE_ON_PAUSE:
                 initPauseList();
+                searchBar.setSearchType(ContractStatusListFragment.STATUS_TYPE_ON_PAUSE);
                 break;
             case STATUS_TYPE_RESTART:
                 initRestartList();
+                searchBar.setSearchType(ContractStatusListFragment.STATUS_TYPE_RESTART);
                 break;
             case STATUS_TYPE_TOTAL:
                 initTotal();

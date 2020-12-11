@@ -100,7 +100,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/label_project_code"
                     app:layout_constraintTop_toTopOf="@+id/label_project_code"
-                    tools:text="XMBH6546487" />
+                    tools:text="XMBH6546487XMBH6546487XMBH6546487XMBH6546487" />
 
                 <TextView
                     android:id="@+id/label_check_name"
@@ -123,7 +123,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/label_check_name"
                     app:layout_constraintTop_toTopOf="@+id/label_check_name"
-                    tools:text="小刘小刘小刘小刘小刘小刘" />
+                    tools:text="小刘小刘小刘小刘小刘小刘小刘小刘小刘小刘小刘小刘小刘小刘小刘小刘小刘小刘" />
 
                 <RelativeLayout
                     android:id="@+id/rl_address"
