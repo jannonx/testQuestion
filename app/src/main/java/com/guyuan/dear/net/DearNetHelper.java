@@ -6,7 +6,6 @@ import com.example.httplibrary.bean.BasePageReqBean;
 import com.example.httplibrary.bean.BasePageResultBean;
 import com.example.httplibrary.bean.ErrorResultBean;
 import com.example.httplibrary.bean.ResultBean;
-import com.example.httplibrary.rx.BaseSchedulersCompat;
 import com.guyuan.dear.base.api.SchedulersCompat;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.db.DearDbManager;
@@ -263,18 +262,26 @@ public class DearNetHelper {
     /**
      * 根据客户名字或合同编号查找合同列表
      *
-     * @param searchType {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_EXCEPTION}
-     *                   {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_TOTAL}
+     * @param searchType {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_EXCEPTION},
+     *                   {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_TOTAL},
+     *                   {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_ON_PAUSE},
+     *                   {@link com.guyuan.dear.focus.contract.view.contractStatusList.ContractStatusListFragment#STATUS_TYPE_RESTART}
      */
     public Disposable getContractListByCompanyNameOrContractNo(String companyNameOrContractNo, int searchType, int pageIndex, int pageSize, NetCallback<List<BaseContractBean>> callback) {
         SearchRqBody body = new SearchRqBody();
         HashMap<String, String> filters = new HashMap<>(1);
         filters.put("name", companyNameOrContractNo);
         int filterType = 0;
-        //name 客户名称或者合同编号,type 1上年交付，2今年新签，3已经完成，4正在执行，5执行异常,6异常列表， -1表示全部
+        //name 客户名称或者合同编号,type 1上年交付，2今年新签，3已经完成，4正在执行，5暂停,6异常列表， -1表示全部
         switch (searchType) {
             case ContractStatusListFragment.STATUS_TYPE_EXCEPTION:
                 filterType = 6;
+                break;
+            case ContractStatusListFragment.STATUS_TYPE_ON_PAUSE:
+                filterType = 5;
+                break;
+            case ContractStatusListFragment.STATUS_TYPE_RESTART:
+                filterType = 4;
                 break;
             case ContractStatusListFragment.STATUS_TYPE_TOTAL:
             default:
@@ -393,12 +400,13 @@ public class DearNetHelper {
 
     /**
      * 获取合同异常列表
+     *
      * @param pageIndex
      * @param pageSize
      * @param callback
      * @return
      */
-    public Disposable getAbnormalContractList(int pageIndex,int pageSize,NetCallback<List<BaseContractBean>> callback){
+    public Disposable getAbnormalContractList(int pageIndex, int pageSize, NetCallback<List<BaseContractBean>> callback) {
         SearchRqBody body = new SearchRqBody();
         body.setPageSize(pageSize);
         body.setPageNum(pageIndex);
@@ -407,12 +415,12 @@ public class DearNetHelper {
         filters.put("type", String.valueOf(6));
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetSearchContactInfo>>> observable = netApiService.getContractListByTypeAndDate(body);
-        Mapper<BasePageResultBean<NetSearchContactInfo>,List<BaseContractBean>> mapper = new Mapper<BasePageResultBean<NetSearchContactInfo>, List<BaseContractBean>>() {
+        Mapper<BasePageResultBean<NetSearchContactInfo>, List<BaseContractBean>> mapper = new Mapper<BasePageResultBean<NetSearchContactInfo>, List<BaseContractBean>>() {
             @Override
             public List<BaseContractBean> map(BasePageResultBean<NetSearchContactInfo> src) {
                 List<NetSearchContactInfo> srcContent = src.getContent();
                 List<BaseContractBean> result = new ArrayList<>();
-                if(srcContent!=null&&!srcContent.isEmpty()){
+                if (srcContent != null && !srcContent.isEmpty()) {
                     for (NetSearchContactInfo info : srcContent) {
                         BaseContractBean bean = new BaseContractBean(info);
                         result.add(bean);
@@ -427,12 +435,13 @@ public class DearNetHelper {
 
     /**
      * 获取所有合同列表
+     *
      * @param pageIndex
      * @param pageSize
      * @param callback
      * @return
      */
-    public Disposable getAllContractList(int pageIndex,int pageSize,NetCallback<List<BaseContractBean>> callback){
+    public Disposable getAllContractList(int pageIndex, int pageSize, NetCallback<List<BaseContractBean>> callback) {
         SearchRqBody body = new SearchRqBody();
         body.setPageSize(pageSize);
         body.setPageNum(pageIndex);
@@ -441,12 +450,12 @@ public class DearNetHelper {
         filters.put("type", String.valueOf(-1));
         body.setFilters(filters);
         Observable<ResultBean<BasePageResultBean<NetSearchContactInfo>>> observable = netApiService.getContractListByTypeAndDate(body);
-        Mapper<BasePageResultBean<NetSearchContactInfo>,List<BaseContractBean>> mapper = new Mapper<BasePageResultBean<NetSearchContactInfo>, List<BaseContractBean>>() {
+        Mapper<BasePageResultBean<NetSearchContactInfo>, List<BaseContractBean>> mapper = new Mapper<BasePageResultBean<NetSearchContactInfo>, List<BaseContractBean>>() {
             @Override
             public List<BaseContractBean> map(BasePageResultBean<NetSearchContactInfo> src) {
                 List<NetSearchContactInfo> srcContent = src.getContent();
                 List<BaseContractBean> result = new ArrayList<>();
-                if(srcContent!=null&&!srcContent.isEmpty()){
+                if (srcContent != null && !srcContent.isEmpty()) {
                     for (NetSearchContactInfo info : srcContent) {
                         BaseContractBean bean = new BaseContractBean(info);
                         result.add(bean);
