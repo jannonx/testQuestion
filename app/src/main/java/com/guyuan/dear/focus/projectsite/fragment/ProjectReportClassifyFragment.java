@@ -20,6 +20,7 @@ import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.projectsite.activity.WorkCheckGoodsActivity;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugActivity;
 
@@ -183,8 +184,10 @@ public class ProjectReportClassifyFragment extends BaseListSearchFragment<SiteEx
 
 
     private RequestBody getListRequestBody(boolean isRefresh) {
+        LogUtils.showLog("isRefresh0="+isRefresh+"...currentPage0="+currentPage);
         currentType = isRefresh ? REFRESH : LOAD_MORE;
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
+        LogUtils.showLog("isRefresh1="+isRefresh+"...currentPage1="+currentPage);
         ListProjectRequestBody body = new ListProjectRequestBody();
         ListProjectRequestBody.FiltersBean filtersBean = new ListProjectRequestBody.FiltersBean();
         filtersBean.setQueryParams(searchContent);

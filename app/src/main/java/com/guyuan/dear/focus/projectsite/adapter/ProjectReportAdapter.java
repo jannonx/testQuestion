@@ -49,7 +49,7 @@ public class ProjectReportAdapter extends BaseRecyclerAdapter<SiteExploreBean> {
 
         TextView labelDestination = holder.getView(R.id.label_operator);
         holder.setText(R.id.tv_time, item.getCreateTime());
-        LogUtils.showLog("getProjectReportType=" + item.getProjectReportType().getDes());
+//        LogUtils.showLog("getProjectReportType=" + item.getProjectReportType().getDes());
 
         switch (item.getProjectReportType()) {
             ///现场勘查报告

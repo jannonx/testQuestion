@@ -114,7 +114,7 @@ public enum SiteProjectSatisfyType implements Serializable {
      * @return
      */
     public boolean isJudgingCondition() {
-        LogUtils.showLog("isJudgingCondition=" + this.getDes());
+//        LogUtils.showLog("isJudgingCondition=" + this.getDes());
         return this != SiteProjectSatisfyType.TYPE_UNKNOWN;
     }
 

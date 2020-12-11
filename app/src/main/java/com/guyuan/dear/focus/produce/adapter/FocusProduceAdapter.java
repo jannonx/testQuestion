@@ -13,6 +13,7 @@ import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+
 import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
@@ -22,8 +23,18 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
  * @company: 固远（深圳）信息技术有限公司
  */
 public class FocusProduceAdapter extends BaseRecyclerAdapter<FocusProduceBean> {
+    public static final int FROM_EXCEPTION = 640;
+    public static final int FROM_TOTAL = 650;
+    //    private boolean isException = false;
+    private int fromSection = 0;
+
     public FocusProduceAdapter(Context context, @NonNull List<FocusProduceBean> listData, int layoutID) {
         super(context, listData, layoutID);
+    }
+
+    public FocusProduceAdapter(Context context, @NonNull List<FocusProduceBean> listData, int layoutID, int fromSection) {
+        super(context, listData, layoutID);
+        this.fromSection = fromSection;
     }
 
     @Override
@@ -39,12 +50,6 @@ public class FocusProduceAdapter extends BaseRecyclerAdapter<FocusProduceBean> {
         tvStatus.setBackgroundResource(item.getStatusTextBg());
         int color_blue_ff1b97fc = item.getStatusTextColor();
         tvStatus.setTextColor(context.getResources().getColor(color_blue_ff1b97fc));
-//        if (item.getStatusType() == ProductStatusType.TYPE_PRODUCE_DELAY_FINISH ||
-//                item.getStatusType() == ProductStatusType.TYPE_PRODUCE_DELAY_NOT_FINISH) {
-//            tvSubStatus.setVisibility(View.VISIBLE);
-//        } else {
-//            tvSubStatus.setVisibility(View.GONE);
-//        }
 
         holder.setText(R.id.tv_product_code, item.getCode());
         holder.getView(R.id.tv_produce_company).setVisibility(
@@ -58,13 +63,15 @@ public class FocusProduceAdapter extends BaseRecyclerAdapter<FocusProduceBean> {
         holder.getView(R.id.cl_footer_content).setVisibility(
                 TextUtils.isEmpty(item.getDisplayReason()) ? View.GONE : View.VISIBLE);
 
-        holder.setText(R.id.tv_operator, item.getOperatorStr());
+        holder.setText(R.id.tv_operator, fromSection == FROM_EXCEPTION || fromSection == FROM_TOTAL
+                ? "操作员：" + item.getUpdateName() : item.getOperatorStr());
         holder.setText(R.id.label_activate_time, item.getTimeTypeStr());
         holder.setText(R.id.tv_activate_time, item.getActualEndTime());
 
 
         holder.setText(R.id.tv_activate_time, item.getDisplayTime());
-        holder.setText(R.id.label_reason, item.getReasonTypeStr());
+//        TextView labelReason = holder.getView(R.id.label_reason);
+        holder.setText(R.id.label_reason, fromSection == FROM_EXCEPTION ? "暂停原因：" : item.getReasonTypeStr());
         holder.setText(R.id.tv_reason, item.getDisplayReason());
 
     }

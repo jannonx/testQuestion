@@ -105,7 +105,7 @@ public class AllClientFragment extends BaseListSearchFragment<ClientCompanyBean,
 
     @Override
     protected boolean isLoadMoreEnable() {
-        return false;
+        return true;
     }
 
 

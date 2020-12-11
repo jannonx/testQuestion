@@ -302,7 +302,7 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
     @Override
     public void onCompressSuccess(List<ImgCompressor.CompressResult> compressResultList) {
         hideLoading();
-        LogUtils.showLog("onCompressSuccess..11111");
+        LogUtils.showLog("onCompressSuccess..compressResultList.size="+compressResultList.size());
         for (int i = 0; i < compressResultList.size(); i++) {
             ImgCompressor.CompressResult imageOutPath = compressResultList.get(i);
             if (imageOutPath.getStatus() == ImgCompressor.CompressResult.RESULT_ERROR)//压缩失败
@@ -313,7 +313,7 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
             photoAndVideoFileList.add(file);
         }
 
-
+        LogUtils.showLog("onCompressSuccess..photoAndVideoFileList.size="+photoAndVideoFileList.size());
         upLoadPicAndVideo(currentPhotoType, richFilesToMaps(photoAndVideoFileList));
     }
 
