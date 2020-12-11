@@ -22,6 +22,7 @@ public class ProductQcReportDetail extends BaseProductQcReport {
     private String judgeCondition;
     private int sampleSize;
     private List<GenericQcLogBean> verifyLogs;
+    private String qcRemark;
 
     public ProductQcReportDetail() {
     }
@@ -45,6 +46,7 @@ public class ProductQcReportDetail extends BaseProductQcReport {
         setProductName(src.getProductName());
         setProductId(src.getProductCode());
         setSampleSize(src.getQualityNum());
+        setQcRemark(src.getQualityRemark());
         //判定条件  1,设计图样 2 国家标准
         List<Integer> qualityCondition = src.getQualityCondition();
         StringBuilder sb = new StringBuilder();
@@ -157,5 +159,13 @@ public class ProductQcReportDetail extends BaseProductQcReport {
 
     public void setVerifyLogs(List<GenericQcLogBean> verifyLogs) {
         this.verifyLogs = verifyLogs;
+    }
+
+    public String getQcRemark() {
+        return qcRemark;
+    }
+
+    public void setQcRemark(String qcRemark) {
+        this.qcRemark = qcRemark;
     }
 }

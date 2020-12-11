@@ -20,18 +20,19 @@ import static com.guyuan.dear.focus.qc.beans.BaseProductQcReport.TAG_TYPE_REJECT
  **/
 public class MaterialQcReportDetail extends BaseMaterialQcReport {
     private int batchSize;
-    private String comment;
-    private String  projectName;
+    private String materialRemarks;
+    private String projectName;
     private String projectId;
     private String qcApproach;
     private String judgeCondition;
     private int sampleSize;
+    private String qcRemark;
     private List<GenericQcLogBean> verifyLogs;
 
     public MaterialQcReportDetail() {
     }
 
-    public MaterialQcReportDetail(BaseMaterialQcReport base){
+    public MaterialQcReportDetail(BaseMaterialQcReport base) {
         setDate(base.getDate());
         setMaterialId(base.getMaterialId());
         setMaterialName(base.getMaterialName());
@@ -46,32 +47,33 @@ public class MaterialQcReportDetail extends BaseMaterialQcReport {
         setReportId(src.getId());
         setSpec(src.getModel());
         setMaterialType(src.getMaterial());
-        setComment(src.getMaterialRemark());
+        setMaterialRemarks(src.getMaterialRemark());
         setBatchSize(src.getProductNum());
         setProjectId(src.getProjectCode());
         setProjectName(src.getProjectName());
         setMaterialName(src.getProductName());
         setMaterialId(src.getProductCode());
         setSampleSize(src.getQualityNum());
+        setQcRemark(src.getQualityRemark());
         //判定条件  1,设计图样 2 国家标准
         List<Integer> qualityCondition = src.getQualityCondition();
         StringBuilder sb = new StringBuilder();
         Iterator<Integer> iterator = qualityCondition.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Integer next = iterator.next();
-            if(next==1){
+            if (next == 1) {
                 sb.append("设计图样");
-            }else if(next==2){
+            } else if (next == 2) {
                 sb.append("国家标准");
             }
-            if(iterator.hasNext()){
+            if (iterator.hasNext()) {
                 sb.append(",");
             }
         }
         setJudgeCondition(sb.toString());
         //质检方式      * 质检方式：1.全检，2.抽检，3.按标准质检文件
         int qualityType = src.getQualityType();
-        switch (qualityType){
+        switch (qualityType) {
             case 1:
                 setQcApproach("全检");
                 break;
@@ -118,12 +120,12 @@ public class MaterialQcReportDetail extends BaseMaterialQcReport {
         this.batchSize = batchSize;
     }
 
-    public String getComment() {
-        return comment;
+    public String getMaterialRemarks() {
+        return materialRemarks;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setMaterialRemarks(String materialRemarks) {
+        this.materialRemarks = materialRemarks;
     }
 
     public String getProjectName() {
@@ -172,5 +174,13 @@ public class MaterialQcReportDetail extends BaseMaterialQcReport {
 
     public void setVerifyLogs(List<GenericQcLogBean> verifyLogs) {
         this.verifyLogs = verifyLogs;
+    }
+
+    public String getQcRemark() {
+        return qcRemark;
+    }
+
+    public void setQcRemark(String qcRemark) {
+        this.qcRemark = qcRemark;
     }
 }
