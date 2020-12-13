@@ -135,14 +135,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
             imageDataList.addAll(simpleData.getImgUrlList());
         }
 
-//        if (FunctionModuleType.TYPE_FOCUS == simpleData.getModuleType()) {
-//            labelDocument.setText("电子文件档");
-//            tvTip.setText("点击图片，放大查看");
             llDocument.setVisibility(imageDataList.size() == 0 ? View.GONE : View.VISIBLE);
-//        } else {
-//            labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
-//            tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
-//        }
 
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
                 imageDataList, R.layout.item_explorate_image);
