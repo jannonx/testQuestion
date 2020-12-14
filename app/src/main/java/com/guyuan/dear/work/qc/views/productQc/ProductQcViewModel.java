@@ -244,7 +244,7 @@ public class ProductQcViewModel extends BaseDearViewModel {
         if (TextUtils.isEmpty(comment)) {
             showToast("请输入原因描述");
             return;
-        } else if (comment.length() >= MAX_COMMENT_LENGTH) {
+        } else if (comment.length() > MAX_COMMENT_LENGTH) {
             showToast("原因描述超过最大字数");
             return;
         } else {

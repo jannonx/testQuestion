@@ -81,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/dp_8"
                 android:paddingBottom="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_12"
                 android:text="@{data.buyer}"
                 android:textColor="@color/color_black_333333"
                 android:textSize="@dimen/sp_14"
