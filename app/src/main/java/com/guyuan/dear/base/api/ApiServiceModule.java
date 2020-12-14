@@ -43,6 +43,8 @@ public class ApiServiceModule extends BaseApiServiceModule implements HttpSettin
 
     public ApiServiceModule() {
         mBaseUrl = BuildConfig.SERVER_URL;
+        mReleaseCer = "cer/3935312_www.chinaguyuan.com.cer";
+        mDebugCer = "cer/3935312_www.chinaguyuan.com.cer";
     }
 
     @Override
