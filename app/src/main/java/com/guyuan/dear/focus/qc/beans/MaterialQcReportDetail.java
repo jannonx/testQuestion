@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.qc.beans;
 
+import android.text.TextUtils;
+
 import com.guyuan.dear.focus.qc.beans.verfifyLog.GenericQcLogBean;
 import com.guyuan.dear.net.resultBeans.NetQcReportDetailBean;
 import com.guyuan.dear.utils.CalenderUtils;
@@ -47,7 +49,11 @@ public class MaterialQcReportDetail extends BaseMaterialQcReport {
         setReportId(src.getId());
         setSpec(src.getModel());
         setMaterialType(src.getMaterial());
-        setMaterialRemarks(src.getMaterialRemark());
+        String materialRemark = src.getMaterialRemark();
+        if(TextUtils.isEmpty(materialRemark)){
+            materialRemark="无";
+        }
+        setMaterialRemarks(materialRemark);
         setBatchSize(src.getProductNum());
         setProjectId(src.getProjectCode());
         setProjectName(src.getProjectName());
