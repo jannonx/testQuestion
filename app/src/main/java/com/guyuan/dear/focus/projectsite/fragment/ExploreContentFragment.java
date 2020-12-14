@@ -15,11 +15,13 @@ import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectInstallAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
+import com.guyuan.dear.focus.projectsite.type.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
+import com.guyuan.dear.focus.projectsite.type.SiteProjectSatisfyType;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.projectsite.adapter.CheckGoodsAdapter;
@@ -60,6 +62,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
     List<String> imageDataList = new ArrayList<>();
     private SiteExploreBean simpleData;
     private View footerView;
+    private LinearLayoutCompat llContent;
     private TextView tvRemark, tvStatus;
 
     public static ExploreContentFragment newInstance(SiteExploreBean detailProjectData) {
@@ -121,7 +124,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
         tvRemark = footerView.findViewById(R.id.tv_remark);
         tvStatus = footerView.findViewById(R.id.tv_status);
         RelativeLayout videoPanel = footerView.findViewById(R.id.video_panel);
-        LinearLayoutCompat llContent = footerView.findViewById(R.id.llc_content);
+        llContent = footerView.findViewById(R.id.llc_content);
         LinearLayoutCompat llRemark = footerView.findViewById(R.id.ll_remark);
 
         LinearLayoutCompat llDocument = footerView.findViewById(R.id.ll_document);
@@ -135,7 +138,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
             imageDataList.addAll(simpleData.getImgUrlList());
         }
 
-            llDocument.setVisibility(imageDataList.size() == 0 ? View.GONE : View.VISIBLE);
+        llDocument.setVisibility(imageDataList.size() == 0 ? View.GONE : View.VISIBLE);
 
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
                 imageDataList, R.layout.item_explorate_image);
@@ -195,20 +198,27 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
     }
 
     private void setCheckGoodsData(SiteExploreBean detailProjectData) {
-
+        CheckGoodsSatisfyType checkGoodsSatisfyType = detailProjectData.getCheckGoodsSatisfyType();
         tvRemark.setText(detailProjectData.getCheckRemark());
         tvStatus.setTextColor(getActivity().getResources().getColor(
                 detailProjectData.getIsException() == CHECK_RIGHT ? R.color.color_green_2fc25b : R.color.color_red_F04864));
         tvStatus.setText("货物异常：" + (detailProjectData.getIsException() == CHECK_RIGHT ? "否" : "是"));
+
+        llContent.setVisibility((checkGoodsSatisfyType == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
+                || checkGoodsSatisfyType == CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING) ? View.GONE : View.VISIBLE);
     }
 
     private void setSiteExplorationData(SiteExploreBean detailProjectData) {
+        SiteProjectSatisfyType siteProjectSatisfyType = detailProjectData.getSiteProjectSatisfyType();
         //清点货物 #2FC25B  #F04864 红色
         tvRemark.setText(detailProjectData.getAuditItemExplain());
         //是否满足条件、是否安全(1:是，2:否)
         tvStatus.setTextColor(getActivity().getResources().getColor(
                 detailProjectData.getSatisfyFlag() == 1 ? R.color.color_green_2fc25b : R.color.color_red_F04864));
         tvStatus.setText("满足条件：" + (detailProjectData.getSatisfyFlag() == 1 ? "是" : "否"));
+
+        llContent.setVisibility((SiteProjectSatisfyType.TYPE_EXPLORE_WAIT == siteProjectSatisfyType
+                || SiteProjectSatisfyType.TYPE_EXPLORE_ING == siteProjectSatisfyType) ? View.GONE : View.VISIBLE);
     }
 
     /**

@@ -78,27 +78,7 @@ public enum ProductStatusType {
         return TYPE_UNKNOWN;
     }
 
-    public static CustomerAcceptanceSatisfyType toType(SiteExploreBean bean) {
-        if (bean == null) return CustomerAcceptanceSatisfyType.TYPE_UNKNOWN;
-        //安装状态
-        if (bean.getStatus() == 10) {
-            return CustomerAcceptanceSatisfyType.TYPE_INSTALL_WAIT;
-        } else if (bean.getStatus() == 20) {
-            return CustomerAcceptanceSatisfyType.TYPE_INSTALL_ING;
-            //安装完成，验收状态
-        } else if (bean.getStatus() == 30) {
-            if (bean.getCheckStatus() == 0) {
-                return CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_WAIT;
-            } else if (bean.getCheckStatus() == 10) {
-                return CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_OK;
-            } else if (bean.getCheckStatus() == 20) {
-                return CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_EXCEPTION;
-            }
-        } else if (bean.getStatus() == 40) {
-            return CustomerAcceptanceSatisfyType.TYPE_INSTALL_PAUSE;
-        }
-        return CustomerAcceptanceSatisfyType.TYPE_UNKNOWN;
-    }
+
 
     /**
      * 有没有判定满足条件

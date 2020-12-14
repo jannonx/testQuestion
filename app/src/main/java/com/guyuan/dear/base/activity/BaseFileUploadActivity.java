@@ -266,7 +266,7 @@ public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM exten
             return;
         }
 
-        LogUtils.showLog("checkPhotoAndFileUpLoad..11111");
+        LogUtils.showLog("checkPhotoAndFileUpLoad..pathList="+pathList.size());
         compressPhoto(imageArr);
     }
 

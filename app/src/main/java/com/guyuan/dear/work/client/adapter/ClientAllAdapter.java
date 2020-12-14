@@ -28,7 +28,7 @@ public class ClientAllAdapter extends BaseRecyclerAdapter<ClientCompanyBean> {
                                   int position) {
         holder.setText(R.id.tv_client_name, item.getCusName());
         holder.setText(R.id.label_salesman, "销售人员：");
-        holder.setText(R.id.tv_salesman, item.getFollowUp());
+        holder.setText(R.id.tv_salesman, item.getSalesman());
         holder.setText(R.id.tv_time, item.getFollowUpTime());
 
 

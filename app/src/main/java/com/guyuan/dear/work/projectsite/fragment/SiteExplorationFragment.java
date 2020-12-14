@@ -6,13 +6,19 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Layout;
+import android.text.Selection;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatRadioButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,7 +38,9 @@ import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.utils.ScreenUtils;
 import com.guyuan.dear.utils.ToastUtils;
+import com.guyuan.dear.utils.keyboardlayout.OnKeyboardStateListener;
 import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.bean.EventWorkSiteListRefresh;
 import com.guyuan.dear.work.projectsite.bean.PostSiteExploreInfo;
@@ -54,7 +62,7 @@ import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
  * @company: 固远（深圳）信息技术有限公司
  */
 public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWorkSiteExplorationIngBinding, WorkProjectSiteViewModel>
-        implements BaseFileUploadActivity.PhotoSelectListener {
+        implements BaseFileUploadActivity.PhotoSelectListener, OnKeyboardStateListener {
 
     public static final String TAG = SiteExplorationFragment.class.getSimpleName();
     protected ArrayList<Uri> photoList = new ArrayList<>();
@@ -140,6 +148,7 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
     }
 
     private void initListener() {
+        binding.flRoot.setOnKeyboardStateListener(this);
         switchRadioButton(binding.rbRight, true);
         switchRadioButton(binding.rbWrong, false);
         //默认正常
@@ -181,26 +190,16 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
 
             @Override
             public void afterTextChanged(Editable editable) {
-//                viewBinding.tvOk.setClickable(!TextUtils.isEmpty(editable.toString()));
-//                viewBinding.tvOk.setEnabled(!TextUtils.isEmpty(editable.toString()));
-//                //已输入字数
-//                int enteredWords = wordLimitNum - editable.length();
-//                //TextView显示剩余字数
-//                binding.tvNumber.setText(wordLimitNum - enteredWords + "/240");
-//                int selectionStart = binding.etSearch.getSelectionStart();
-//                int selectionEnd = binding.etSearch.getSelectionEnd();
-//                if (enterWords.length() > wordLimitNum) {
-//                    //删除多余输入的字（不会显示出来）
-//                    editable.delete(selectionStart - 1, selectionEnd);//
-//                    binding.etSearch.setText(editable);
-//                    //设置光标在最后
-//                    binding.etSearch.setSelection(selectionEnd);
-//                }
-
+//                setBottomViewHeight();
                 if (editable.length() > wordLimitNum) {
                     //删除多余输入的字（不会显示出来）
                     editable.delete(wordLimitNum, editable.length());
                     binding.etSearch.setText(editable);
+
+                    binding.etSearch.setCursorVisible(true);
+                    binding.etSearch.requestFocus();
+                    binding.etSearch.setFocusable(true);//获得焦点
+                    binding.etSearch.setFocusableInTouchMode(true);//获得焦点
                     //设置光标在最后
                     binding.etSearch.setSelection(binding.etSearch.getText().toString().length());
                 }
@@ -209,6 +208,7 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
                 int enteredWords = wordLimitNum - editable.length();
                 //TextView显示剩余字数
                 binding.tvNumber.setText((wordLimitNum - enteredWords) + "/240");
+
             }
         });
 
@@ -276,6 +276,7 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
             }
         });
     }
+
 
     private void setDetailDataByType(SiteExploreBean data) {
         switch (detailProjectData.getProjectReportType()) {
@@ -420,5 +421,63 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
         if (getActivity() != null) {
             activity = (WorkSiteExploresActivity) getActivity();
         }
+    }
+
+    @Override
+    public void onKeyboardOpened(int height) {
+//        LogUtils.showLog("keyboardHeight=" + height);
+//        binding.viewEmptyBottom.setVisibility(View.GONE);
+//        keyboardHeight = height- ScreenUtils.dip2px(getContext(), 150);
+//        setGuideBottomHeight(height);
+//        binding.nsvContent.fullScroll(NestedScrollView.FOCUS_DOWN);
+
+//        binding.etSearch.setCursorVisible(true);
+//        binding.etSearch.requestFocus();
+//        binding.etSearch.setFocusable(true);//获得焦点
+//        binding.etSearch.setFocusableInTouchMode(true);//获得焦点
+    }
+
+    @Override
+    public void onKeyboardClosed() {
+//        LogUtils.showLog("onKeyboardClosed");
+//        binding.viewEmptyBottom.setVisibility(View.VISIBLE);
+//        setGuideBottomHeight(0);
+//        binding.nsvContent.fullScroll(NestedScrollView.FOCUS_DOWN);
+    }
+
+    private int keyboardHeight;
+
+//    private void setBottomViewHeight() {
+//        int perHeight = ScreenUtils.dip2px(getContext(), 20);
+//        setGuideBottomHeight(keyboardHeight + getCurrentCursorLine(binding.etSearch) * perHeight);
+//        LogUtils.showLog("setBottomViewHeight=" + getCurrentCursorLine(binding.etSearch) * perHeight);
+//        LogUtils.showLog("setBottomViewHeight11=" + (keyboardHeight + getCurrentCursorLine(binding.etSearch) * perHeight));
+//        binding.nsvContent.fullScroll(NestedScrollView.FOCUS_DOWN);
+//    }
+
+    /**
+     * 设置属性高度
+     */
+//    public void setGuideBottomHeight(int height) {
+//        binding.vGuideBottom.setVisibility(height == 0 ? View.GONE : View.VISIBLE);
+//        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) binding.vGuideBottom.getLayoutParams();
+//        layoutParams.height = height;
+//        LogUtils.showLog("getVisibility=" + (binding.vGuideBottom.getVisibility() == View.VISIBLE));
+//        LogUtils.showLog("getHeight00=" + (binding.vGuideBottom.getHeight()));
+//        binding.vGuideBottom.setLayoutParams(layoutParams);
+//        LogUtils.showLog("getHeight11=" + (binding.vGuideBottom.getHeight()));
+//    }
+
+    /**
+     * 获取editView光标所在行数
+     */
+    private int getCurrentCursorLine(EditText editText) {
+        int selectionStart = Selection.getSelectionStart(editText.getText());
+        Layout layout = editText.getLayout();
+
+        if (selectionStart != -1) {
+            return layout.getLineForOffset(selectionStart) + 1;
+        }
+        return -1;
     }
 }

@@ -40,6 +40,10 @@ public class ClientCompanyBean implements Serializable {
      */
     private String followUp;
     /**
+     * 创建时间
+     */
+    private String createTime;
+    /**
      * 最后跟进时间
      */
     private String followUpTime;
@@ -84,6 +88,14 @@ public class ClientCompanyBean implements Serializable {
 
     public ClientType getClientType() {
         return clientType;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
     public void setClientType(ClientType clientType) {
