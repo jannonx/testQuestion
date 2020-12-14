@@ -64,7 +64,7 @@ public class LoginFragment extends BaseDataBindingFragment<FragmentLoginBinding,
         if (viewModel != null) {
             binding.etAccount.setText(viewModel.getUserName());
         }
-        binding.tvVersion.setText("迪尔空分 " + BuildConfig.BUILD_TYPE + "-v" + BuildConfig.VERSION_NAME);
+        binding.tvVersion.setText(BuildConfig.BUILD_TYPE + "-v" + BuildConfig.VERSION_NAME);
         setListener();
     }
 
