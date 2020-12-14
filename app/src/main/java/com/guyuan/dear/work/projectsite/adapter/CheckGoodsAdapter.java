@@ -46,7 +46,8 @@ public class CheckGoodsAdapter extends BaseRecyclerAdapter<CheckGoodsBean> {
     protected void bindDataToView(BaseRecyclerViewHolder holder, CheckGoodsBean item,
                                   int position) {
         AppCompatImageView imageView = holder.getView(R.id.image_view);
-        imageView.setVisibility(FunctionModuleType.TYPE_FOCUS == moduleType ? View.VISIBLE : View.GONE);
+        //status=-1,没有清点
+        imageView.setVisibility(FunctionModuleType.TYPE_FOCUS == moduleType && item.getStatus() != -1 ? View.VISIBLE : View.GONE);
         RelativeLayout rlConfirm = holder.getView(R.id.rl_confirm);
         rlConfirm.setVisibility(FunctionModuleType.TYPE_WORK == moduleType ? View.VISIBLE : View.GONE);
 

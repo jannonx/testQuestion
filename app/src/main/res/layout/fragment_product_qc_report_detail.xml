@@ -197,20 +197,23 @@
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:shrinkColumns="1"
                 android:visibility="@{fragment_product_qc_report_detail_vm.report.needVerify?View.GONE:View.VISIBLE}">
 
                 <TableRow
-                    android:paddingLeft="@dimen/dp_12"
                     android:paddingTop="@dimen/dp_12"
+
                     android:paddingBottom="@dimen/dp_8">
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:paddingLeft="@dimen/dp_12"
                         android:text="质检方式"
                         android:textColor="@color/color_black_333333"
                         android:textSize="@dimen/sp_14" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_marginLeft="@dimen/dp_48"
+                        android:paddingLeft="@dimen/dp_48"
+                        android:paddingRight="@dimen/dp_12"
                         android:text="@{fragment_product_qc_report_detail_vm.report.qcApproach}"
                         android:textColor="#757575"
                         android:textSize="@dimen/sp_14" />
@@ -224,17 +227,19 @@
                     android:background="@color/color_grey_e5e5e5" />
 
                 <TableRow
-                    android:paddingLeft="@dimen/dp_12"
+
                     android:paddingTop="@dimen/dp_8"
                     android:paddingBottom="@dimen/dp_8">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:text="判定条件"
+                        android:paddingLeft="@dimen/dp_12"
                         android:textColor="@color/color_black_333333"
                         android:textSize="@dimen/sp_14" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_marginLeft="@dimen/dp_48"
+                        android:paddingLeft="@dimen/dp_48"
+                        android:paddingRight="@dimen/dp_12"
                         android:text="@{fragment_product_qc_report_detail_vm.report.judgeCondition}"
                         android:textColor="#757575"
                         android:textSize="@dimen/sp_14" />
@@ -248,17 +253,19 @@
                     android:background="@color/color_grey_e5e5e5" />
 
                 <TableRow
-                    android:paddingLeft="@dimen/dp_12"
+
                     android:paddingTop="@dimen/dp_8"
                     android:paddingBottom="@dimen/dp_8">
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:paddingLeft="@dimen/dp_12"
                         android:text="质检数量"
                         android:textColor="@color/color_black_333333"
                         android:textSize="@dimen/sp_14" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_marginLeft="@dimen/dp_48"
+                        android:paddingLeft="@dimen/dp_48"
+                        android:paddingRight="@dimen/dp_12"
                         android:text="@{String.valueOf(fragment_product_qc_report_detail_vm.report.sampleSize)}"
                         android:textColor="#757575"
                         android:textSize="@dimen/sp_14" />
@@ -272,17 +279,19 @@
                     android:background="@color/color_grey_e5e5e5" />
 
                 <TableRow
-                    android:paddingLeft="@dimen/dp_12"
+
                     android:paddingTop="@dimen/dp_8"
                     android:paddingBottom="@dimen/dp_8">
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:paddingLeft="@dimen/dp_12"
                         android:text="质检人员"
                         android:textColor="@color/color_black_333333"
                         android:textSize="@dimen/sp_14" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_marginLeft="@dimen/dp_48"
+                        android:paddingLeft="@dimen/dp_48"
+                        android:paddingRight="@dimen/dp_12"
                         android:text="@{fragment_product_qc_report_detail_vm.report.qualityChecker}"
                         android:textColor="#757575"
                         android:textSize="@dimen/sp_14" />
@@ -296,18 +305,18 @@
                     android:background="@color/color_grey_e5e5e5" />
 
                 <TableRow
-                    android:paddingLeft="@dimen/dp_12"
                     android:paddingTop="@dimen/dp_8"
                     android:paddingBottom="@dimen/dp_8">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:text="质检时间"
+                        android:paddingLeft="@dimen/dp_12"
                         android:textColor="@color/color_black_333333"
                         android:textSize="@dimen/sp_14" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_marginLeft="@dimen/dp_48"
-                        android:text="xxx"
+                        android:paddingLeft="@dimen/dp_48"
+                        android:paddingRight="@dimen/dp_12"
                         android:textColor="#757575"
                         android:textSize="@dimen/sp_14"
                         app:setContractDate="@{fragment_product_qc_report_detail_vm.report.date}" />
@@ -321,17 +330,18 @@
                     android:background="@color/color_grey_e5e5e5" />
 
                 <TableRow
-                    android:paddingLeft="@dimen/dp_12"
                     android:paddingTop="@dimen/dp_8"
                     android:paddingBottom="@dimen/dp_8">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:text="原         因"
+                        android:paddingLeft="@dimen/dp_12"
                         android:textColor="@color/color_black_333333"
                         android:textSize="@dimen/sp_14" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_marginLeft="@dimen/dp_48"
+                        android:paddingLeft="@dimen/dp_48"
+                        android:paddingRight="@dimen/dp_12"
                         android:text="@{fragment_product_qc_report_detail_vm.report.qcRemark}"
                         android:textColor="#757575"
                         android:textSize="@dimen/sp_14" />

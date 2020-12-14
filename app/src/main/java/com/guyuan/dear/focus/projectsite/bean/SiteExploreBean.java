@@ -353,11 +353,7 @@ public class SiteExploreBean implements Serializable {
     public String getShowDebugTime() {
         CalenderUtils calenderUtils = CalenderUtils.getInstance();
         String debugStartTime = calenderUtils.toSmartFactoryDateFormatByFull(getDebugStartTime());
-        LogUtils.showLog("getDebugStartTime=" + getDebugStartTime());
-        LogUtils.showLog("getDebugStartTime11=" + debugStartTime);
         String debugEndTime = calenderUtils.toSmartFactoryDateFormatByFull(getDebugEndTime());
-        LogUtils.showLog("getDebugEndTime=" + getDebugEndTime());
-        LogUtils.showLog("getDebugEndTime11=" + debugEndTime);
         return debugStartTime + "~" + debugEndTime;
     }
 

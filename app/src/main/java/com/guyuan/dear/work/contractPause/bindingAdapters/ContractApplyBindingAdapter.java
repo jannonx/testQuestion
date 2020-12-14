@@ -55,12 +55,12 @@ public class ContractApplyBindingAdapter {
     @BindingAdapter("showInputCount")
     public static void showInputCount(AppCompatTextView view, String content) {
         if (TextUtils.isEmpty(content)) {
-            view.setText("0/240");
+            view.setText("0/"+MAX_LEN);
             return;
         }
         String format = String.format(Locale.CHINA, "%d/%d", content.length(), MAX_LEN);
         view.setText(format);
-        if (content.length() >= MAX_LEN) {
+        if (content.length() > MAX_LEN) {
             view.setTextColor(Color.RED);
         } else {
             view.setTextColor(Color.parseColor("#999999"));

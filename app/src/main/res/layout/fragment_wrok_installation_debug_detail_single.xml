@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <com.guyuan.dear.utils.keyboardlayout.KeyboardFrameLayout
+        android:id="@+id/kfl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -252,14 +254,23 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cl_pick_pic"
                     tools:background="@color/color_green_D4FFF1"
-                    tools:layout_height="@dimen/dp_150" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_75"
-                    app:layout_constraintTop_toBottomOf="@+id/image_recycleView"
-                    android:background="@color/transparent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    tools:layout_height="@dimen/dp_50" />
 
+                <View
+                    android:id="@+id/view_empty_bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp_75"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_recycleView" />
+
+<!--                <View-->
+<!--                    android:id="@+id/v_guide_bottom"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/view_empty_bottom"-->
+<!--                    tools:background="@color/colorPrimaryDark" />-->
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.core.widget.NestedScrollView>
@@ -271,7 +282,7 @@
             android:layout_marginBottom="@dimen/dp_20"
             android:text="开始安装"
             android:visibility="visible" />
-    </FrameLayout>
+    </com.guyuan.dear.utils.keyboardlayout.KeyboardFrameLayout>
 
 
 </layout>

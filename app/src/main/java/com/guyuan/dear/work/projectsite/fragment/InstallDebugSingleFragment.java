@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -13,6 +14,8 @@ import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatRadioButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,7 +38,9 @@ import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.utils.ScreenUtils;
 import com.guyuan.dear.utils.ToastUtils;
+import com.guyuan.dear.utils.keyboardlayout.OnKeyboardStateListener;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugSingleActivity;
 import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
@@ -62,7 +67,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  * @company: 固远（深圳）信息技术有限公司
  */
 public class InstallDebugSingleFragment extends BaseDataBindingFragment<FragmentWrokInstallationDebugDetailSingleBinding, WorkProjectSiteViewModel>
-        implements BaseFileUploadActivity.PhotoSelectListener {
+        implements BaseFileUploadActivity.PhotoSelectListener, OnKeyboardStateListener {
 
     public static final String TAG = InstallDebugSingleFragment.class.getSimpleName();
     protected ArrayList<Uri> photoList = new ArrayList<>();
@@ -72,6 +77,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
     private BaseRecyclerViewAdapter imageAdapter;
     private SiteExploreBean singleDetailData;
     private WorkInstallDebugSingleActivity activity;
+    private Handler handler = new Handler();
 
     public static InstallDebugSingleFragment newInstance(InstallDebugBean data) {
         Bundle bundle = new Bundle();
@@ -158,6 +164,8 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
     }
 
     private void initListener() {
+        binding.kflContent.setOnKeyboardStateListener(this);
+
         //记录字数上限
         int wordLimitNum = 240;
         binding.etSearch.addTextChangedListener(new TextWatcher() {
@@ -204,6 +212,15 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
                     return;
                 }
                 activity.checkPhotoAndFileUpLoad(imageDataList);
+
+//                handler.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        setGuideBottomHeight(0);
+//                        //设置ScrollView滚动到顶部
+//                        binding.nsvContent.fullScroll(NestedScrollView.FOCUS_DOWN);
+//                    }
+//                });
             }
         });
 
@@ -221,6 +238,17 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
                 photoList.clear();
                 EventBus.getDefault().post(new EventAnswerListRefresh());
                 EventBus.getDefault().post(new EventWorkSiteListRefresh());
+            }
+        });
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                //设置ScrollView滚动到顶部
+                int perHeight = ScreenUtils.dip2px(getContext(), 200);
+                LogUtils.showLog("perHeight="+perHeight);
+                setGuideBottomHeight(perHeight);
+                binding.nsvContent.fullScroll(NestedScrollView.FOCUS_DOWN);
             }
         });
     }
@@ -278,5 +306,55 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
 
         binding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
         binding.tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
+    }
+
+    @Override
+    public void onKeyboardOpened(int height) {
+        LogUtils.showLog("keyboardHeight=" + height);
+//        binding.viewEmptyBottom.setVisibility(View.GONE);
+//        keyboardHeight = height- ScreenUtils.dip2px(getContext(), 150);
+//        setGuideBottomHeight(height);
+//        binding.nsvContent.fullScroll(NestedScrollView.FOCUS_DOWN);
+
+//        binding.etSearch.setCursorVisible(true);
+//        binding.etSearch.requestFocus();
+//        binding.etSearch.setFocusable(true);//获得焦点
+//        binding.etSearch.setFocusableInTouchMode(true);//获得焦点
+    }
+
+    @Override
+    public void onKeyboardClosed() {
+        LogUtils.showLog("onKeyboardClosed");
+//        binding.viewEmptyBottom.setVisibility(View.VISIBLE);
+//        setGuideBottomHeight(0);
+//        binding.nsvContent.fullScroll(NestedScrollView.FOCUS_DOWN);
+    }
+
+
+//
+//    private int keyboardHeight;
+//
+//    private void setBottomViewHeight() {
+//        int perHeight = ScreenUtils.dip2px(getContext(), 20);
+//        setGuideBottomHeight(keyboardHeight + getCurrentCursorLine(binding.etSearch) * perHeight);
+//        LogUtils.showLog("setBottomViewHeight=" + getCurrentCursorLine(binding.etSearch) * perHeight);
+//        LogUtils.showLog("setBottomViewHeight11=" + (keyboardHeight + getCurrentCursorLine(binding.etSearch) * perHeight));
+//        binding.nsvContent.fullScroll(NestedScrollView.FOCUS_DOWN);
+//    }
+
+    /**
+     * 设置属性高度
+     */
+    public void setGuideBottomHeight(int height) {
+//        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) binding.vGuideBottom.getLayoutParams();
+//        layoutParams.width = ConstraintLayout.LayoutParams.MATCH_PARENT;
+//        int topMargin = ScreenUtils.dip2px(getContext(), height);
+//        layoutParams.height = topMargin;
+//        LogUtils.showLog("topMargin=" + topMargin);
+//        LogUtils.showLog("getVisibility=" + (binding.vGuideBottom.getVisibility() == View.VISIBLE));
+//        LogUtils.showLog("getHeight00=" + (binding.vGuideBottom.getHeight()));
+//        binding.vGuideBottom.setLayoutParams(layoutParams);
+//        LogUtils.showLog("getHeight11=" + (binding.vGuideBottom.getHeight()));
+//        binding.vGuideBottom.setVisibility(height == 0 ? View.GONE : View.VISIBLE);
     }
 }

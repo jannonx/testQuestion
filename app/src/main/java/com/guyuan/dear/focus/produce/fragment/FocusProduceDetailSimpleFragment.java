@@ -17,11 +17,13 @@ import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.office.approval.ui.ApprovalActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
+import com.guyuan.dear.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
+
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
@@ -136,8 +138,7 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
 
 
     private void initDataAndListener() {
-        binding.tvCommitBtn.setVisibility(isFooterBtnShow
-                &&ProductStatusType.TYPE_PRODUCE_ING!=produceBean.getStatusType()? View.VISIBLE : View.GONE);
+
         viewModel.getBasicInfoById(produceBean.getPlanId());
         viewModel.getBasicInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
             @Override
@@ -189,12 +190,6 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
         binding.tvProduceStatus.setBackgroundResource(data.getStatusTextBg());
         int color_blue_ff1b97fc = data.getStatusTextColor();
         binding.tvProduceStatus.setTextColor(getActivity().getResources().getColor(color_blue_ff1b97fc));
-//        if (data.getStatusType() == ProductStatusType.TYPE_PRODUCE_DELAY_NOT_FINISH
-//                || data.getStatusType() == ProductStatusType.TYPE_PRODUCE_DELAY_FINISH) {
-//            binding.tvSubStatus.setVisibility(View.VISIBLE);
-//        } else {
-//            binding.tvSubStatus.setVisibility(View.GONE);
-//        }
 
         binding.tvProjectName.setText(data.getProjectName());
         binding.tvProjectCode.setText(data.getProjectCode());
@@ -204,7 +199,9 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
         binding.tvActualComplete.setText(data.getActualEndTime());
         binding.tvPlanComplete.setText(data.getPlanEndTime());
 
-
+        LogUtils.showLog("isFooterBtnShow=" + isFooterBtnShow + "...getStatusType=" + (ProductStatusType.TYPE_PRODUCE_WAIT == data.getStatusType()));
+        binding.tvCommitBtn.setVisibility((isFooterBtnShow
+                && ProductStatusType.TYPE_PRODUCE_WAIT == data.getStatusType()) ? View.VISIBLE : View.GONE);
     }
 
 

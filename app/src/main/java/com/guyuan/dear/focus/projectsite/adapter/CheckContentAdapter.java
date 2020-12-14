@@ -51,7 +51,7 @@ public class CheckContentAdapter extends BaseRecyclerAdapter<ProjectSiteOpinionB
 
         ImageView imageView = holder.getView(R.id.image_view);
         GlideUtils.getInstance().loadLocalImage(imageView, item.getResultType().getImageView());
-        LogUtils.showLog("getResultType=" + item.getResultType().getDes());
+//        LogUtils.showLog("getResultType=" + item.getResultType().getDes());
         View lineBottom = holder.getView(R.id.line_bottom);
         lineBottom.setVisibility(listData.size() - 1 == position ? View.GONE : View.VISIBLE);
 
@@ -67,16 +67,16 @@ public class CheckContentAdapter extends BaseRecyclerAdapter<ProjectSiteOpinionB
         LinearLayout clConfirm = holder.getView(R.id.rl_confirm);
         //我的关注
         if (moduleType == FunctionModuleType.TYPE_FOCUS) {
-            LogUtils.showLog("11111");
+//            LogUtils.showLog("11111");
             imageView.setVisibility(View.VISIBLE);
             clConfirm.setVisibility(View.GONE);
             //我的工作--勘查中/排查中
         } else if (isSiteExplore || isCheckSafe) {
-            LogUtils.showLog("22222");
+//            LogUtils.showLog("22222");
             clConfirm.setVisibility(View.VISIBLE);
             imageView.setVisibility(View.GONE);
         } else {
-            LogUtils.showLog("33333");
+//            LogUtils.showLog("33333");
             imageView.setVisibility(View.VISIBLE);
             clConfirm.setVisibility(View.GONE);
         }
