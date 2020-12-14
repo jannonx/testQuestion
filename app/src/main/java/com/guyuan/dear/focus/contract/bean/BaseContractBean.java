@@ -62,9 +62,9 @@ public class BaseContractBean implements Parcelable {
     @Transient
     public static final int CONTRACT_TYPE_EXECUTING_CONTRACTS = 4;
     @Transient
-    public static final int CONTRACT_TYPE_UNFINISHED_CONTRACTS = 6;
+    public static final int CONTRACT_TYPE_UNFINISHED_CONTRACTS = 5;
     @Transient
-    public static final int CONTRACT_TYPE_EXCEPTION_CONTRACTS = 5;
+    public static final int CONTRACT_TYPE_EXCEPTION_CONTRACTS = 6;
 
     private int executingState;
 
