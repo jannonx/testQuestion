@@ -3,19 +3,14 @@ package com.guyuan.dear.focus.produce.fragment;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.bean.SimpleTabBean;
-import com.guyuan.dear.base.fragment.BaseListSearchFragment;
-import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.produce.adapter.FocusProduceAdapter;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
-import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
 
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
@@ -65,7 +60,7 @@ public class FocusProduceExceptionFragment extends BaseProduceFragment {
 
     @Override
     protected void refresh() {
-        viewModel.getProduceList(getListRequestBody(true));
+        viewModel.getProduceExceptionList(getListRequestBody(true));
     }
 
 

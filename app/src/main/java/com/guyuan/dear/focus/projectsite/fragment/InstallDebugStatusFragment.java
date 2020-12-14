@@ -4,21 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentExploreContentBinding;
-import com.guyuan.dear.databinding.FragmentListBinding;
-import com.guyuan.dear.focus.projectsite.adapter.ProjectSiteStatusAdapter;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteStatusBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.projectsite.adapter.InstallDebugStatusAdapter;
 import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
 
@@ -29,6 +21,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
 /**
@@ -52,7 +47,10 @@ public class InstallDebugStatusFragment extends BaseDataBindingFragment<Fragment
         fragment.setArguments(bundle);
         return fragment;
     }
-
+    @Override
+    protected int getLayoutID() {
+        return R.layout.fragment_explore_content;
+    }
     @Override
     protected void initialization() {
         Bundle arguments = getArguments();
@@ -128,10 +126,7 @@ public class InstallDebugStatusFragment extends BaseDataBindingFragment<Fragment
         EventBus.getDefault().unregister(this);
     }
 
-    @Override
-    protected int getLayoutID() {
-        return R.layout.fragment_explore_content;
-    }
+
 
 
 }

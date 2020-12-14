@@ -146,7 +146,7 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@+id/purchase_item_name_tv"
                 app:layout_constraintTop_toBottomOf="@+id/view18"
-                app:rightContentWithTitle="@{String.format(@string/focus_purchase_seal_person,purchaseListContentBean.createName)}"
+                app:rightContentWithTitle="@{String.format(@string/focus_purchase_person,purchaseListContentBean.createName)}"
                 tools:text="@string/focus_purchase_person" />
 
             <TextView

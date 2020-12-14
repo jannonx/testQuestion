@@ -3,15 +3,11 @@ package com.guyuan.dear.focus.produce.fragment;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
-
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailSimpleBinding;
 import com.guyuan.dear.dialog.RemarkDialog;
 import com.guyuan.dear.dialog.SimpleConfirmViewDialog;
-
 import com.guyuan.dear.focus.produce.bean.EventProduceListRefresh;
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
@@ -21,10 +17,11 @@ import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.office.approval.ui.ApprovalActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
-import com.guyuan.dear.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
@@ -139,7 +136,8 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
 
 
     private void initDataAndListener() {
-        binding.tvCommitBtn.setVisibility(isFooterBtnShow ? View.VISIBLE : View.GONE);
+        binding.tvCommitBtn.setVisibility(isFooterBtnShow
+                &&ProductStatusType.TYPE_PRODUCE_ING!=produceBean.getStatusType()? View.VISIBLE : View.GONE);
         viewModel.getBasicInfoById(produceBean.getPlanId());
         viewModel.getBasicInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
             @Override
