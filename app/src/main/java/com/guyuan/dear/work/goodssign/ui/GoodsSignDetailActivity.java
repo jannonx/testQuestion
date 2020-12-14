@@ -41,14 +41,18 @@ public class GoodsSignDetailActivity extends BaseToolbarActivity<ActivityGoodsSi
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         contractID = getIntent().getIntExtra(ConstantValue.KEY_ID, 0);
         setTitleCenter(title);
-        viewModel.getGoodsSignDetail(contractID);
-
         binding.goodsAllCommitTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewModel.signAll(contractID);
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        viewModel.getGoodsSignDetail(contractID);
     }
 
     @Override
