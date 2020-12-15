@@ -83,7 +83,7 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
             public void onClick(View v) {
                 int total = viewModel.assessOverviewBean.getValue().getSellOrderSumNumber();
                 if (total > 0) {
-                    FocusAssessListActivity.start(getContext(), "", FocusAssessListFragment.TOTAL);
+                    FocusAssessListActivity.start(getContext(), "评审总次数列表", "", FocusAssessListFragment.TOTAL);
                 }
             }
         });
@@ -93,7 +93,7 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
             public void onClick(View v) {
                 int notPass = viewModel.assessOverviewBean.getValue().getNoPassSumNumber();
                 if (notPass > 0) {
-                    FocusAssessListActivity.start(getContext(), "", FocusAssessListFragment.NOT_PASS);
+                    FocusAssessListActivity.start(getContext(), "评审不通过列表", "", FocusAssessListFragment.NOT_PASS);
                 }
             }
         });
@@ -103,7 +103,7 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
             public void onClick(View v) {
                 int pass = viewModel.assessOverviewBean.getValue().getPassSumNumber();
                 if (pass > 0) {
-                    FocusAssessListActivity.start(getContext(), "", FocusAssessListFragment.PASS);
+                    FocusAssessListActivity.start(getContext(), "评审通过列表", "", FocusAssessListFragment.PASS);
                 }
             }
         });
@@ -115,8 +115,8 @@ public class FocusAssessOverviewFragment extends BaseDataBindingFragment<Fragmen
         binding.searchBar.setSearchListener(new SearchBar.OnSearchListener() {
             @Override
             public void onSearch(String searchContent) {
-                if ( !TextUtils.isEmpty(searchContent)) {
-                    FocusAssessListActivity.start(getContext(), searchContent, FocusAssessListFragment.TOTAL);
+                if (!TextUtils.isEmpty(searchContent)) {
+                    FocusAssessListActivity.start(getContext(), "评审列表", searchContent, FocusAssessListFragment.TOTAL);
                 } else {
                     showToastTip(ConstantValue.TIP_SEARCH);
                 }

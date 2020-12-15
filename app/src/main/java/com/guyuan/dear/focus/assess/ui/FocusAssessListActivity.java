@@ -27,9 +27,10 @@ public class FocusAssessListActivity extends BaseToolbarActivity<ActivityWithout
 
     private FocusAssessListFragment listFragment;
 
-    public static void start(Context context, String content, int type) {
+    public static void start(Context context, String title, String content, int type) {
         Intent starter = new Intent(context, FocusAssessListActivity.class);
         starter.putExtra(ConstantValue.KEY_CONTENT, content);
+        starter.putExtra(ConstantValue.KEY_TITLE, title);
         starter.putExtra(FocusAssessListFragment.TYPE, type);
         context.startActivity(starter);
     }
@@ -37,6 +38,8 @@ public class FocusAssessListActivity extends BaseToolbarActivity<ActivityWithout
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         String searchContent = getIntent().getStringExtra(ConstantValue.KEY_CONTENT);
+        String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
+        setTitleCenter(title);
         int type = getIntent().getIntExtra(FocusAssessListFragment.TYPE, 0);
         listFragment = FocusAssessListFragment.newInstance(type, searchContent, FocusAssessListFragment.FROM_OVERVIEW);
         ActivityUtils.addFragmentToActivity(fragmentManager, listFragment, R.id.fragment_container,
