@@ -3,7 +3,7 @@ package com.guyuan.dear.base.adapter;
 import android.content.Context;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.login.data.ChildrenBean;
+import com.guyuan.dear.login.data.bean.ChildrenBean;
 
 import java.util.List;
 

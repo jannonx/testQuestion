@@ -23,7 +23,7 @@ import com.guyuan.dear.approve.activity.MineApplyListActivity;
 import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.databinding.FragmentApproveBinding;
-import com.guyuan.dear.login.data.ChildrenBean;
+import com.guyuan.dear.login.data.bean.ChildrenBean;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;

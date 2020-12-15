@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.example.httplibrary.bean.ErrorResultBean;
-import com.example.httplibrary.rx.BaseSchedulersCompat;
 import com.google.gson.Gson;
 import com.guyuan.dear.base.api.SchedulersCompat;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.busbean.LoginBusBean;
 import com.guyuan.dear.login.api.LoginApiService;
-import com.guyuan.dear.login.data.LoginBean;
-import com.guyuan.dear.login.data.LoginBody;
+import com.guyuan.dear.login.data.bean.LoginBean;
+import com.guyuan.dear.login.data.bean.LoginBody;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
 

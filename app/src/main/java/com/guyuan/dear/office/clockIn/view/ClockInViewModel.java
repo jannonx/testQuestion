@@ -10,7 +10,7 @@ import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.CoordinateConverter;
 import com.amap.api.location.DPoint;
 import com.guyuan.dear.base.fragment.BaseDearViewModel;
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.net.reqBean.ClockInRqBody;
 import com.guyuan.dear.net.resultBeans.NetClockInConfig;
 import com.guyuan.dear.office.clockIn.repo.ClockInRepo;

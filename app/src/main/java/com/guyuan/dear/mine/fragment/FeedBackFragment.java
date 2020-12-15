@@ -10,14 +10,10 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 
-import com.example.httplibrary.bean.ResultBean;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFeedBackBinding;
-import com.guyuan.dear.focus.client.activity.FocusClientActivity;
-import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.focus.client.bean.ListClientRequestBody;
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.mine.activity.FeedBackActivity;
 import com.guyuan.dear.mine.bean.MineRequestBody;
 import com.guyuan.dear.mine.data.MineViewModel;
@@ -27,9 +23,6 @@ import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
 
 import okhttp3.RequestBody;
-
-import static com.guyuan.dear.utils.ConstantValue.FIRST_PAGE;
-import static com.guyuan.dear.utils.ConstantValue.PAGE_SIZE;
 
 /**
  * @description: 我的--意见反馈

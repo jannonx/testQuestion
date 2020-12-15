@@ -1,30 +1,16 @@
 package com.guyuan.dear.approve.data;
 
-import android.os.Bundle;
-
 import androidx.hilt.lifecycle.ViewModelInject;
-import androidx.lifecycle.Observer;
 
 import com.example.httplibrary.bean.ErrorResultBean;
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.data.SingleLiveEvent;
-import com.google.gson.Gson;
 import com.guyuan.dear.approve.bean.ApprovalData;
 import com.guyuan.dear.base.api.RxJavaHelper;
-import com.guyuan.dear.base.app.DearApplication;
-import com.guyuan.dear.home.MainActivity;
-import com.guyuan.dear.login.data.LoginBean;
-import com.guyuan.dear.login.data.LoginBody;
-import com.guyuan.dear.login.data.LoginRepository;
-import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.SharedPreferencesUtils;
+import com.guyuan.dear.login.data.bean.LoginBean;
 
-import java.util.List;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import okhttp3.RequestBody;
 

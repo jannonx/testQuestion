@@ -15,7 +15,6 @@ import com.guyuan.dear.focus.aftersale.activity.FocusAfterSaleActivity;
 import com.guyuan.dear.focus.assess.ui.FocusAssessActivity;
 import com.guyuan.dear.focus.client.activity.FocusClientActivity;
 import com.guyuan.dear.focus.contract.view.home.ContractHomeActivity;
-import com.guyuan.dear.focus.device.ui.FocusDeviceActivity;
 import com.guyuan.dear.focus.hr.view.home.HrHomeActivity;
 import com.guyuan.dear.focus.produce.ui.FocusProduceActivity;
 import com.guyuan.dear.focus.projectsite.activity.FocusProjectSiteActivity;
@@ -24,7 +23,7 @@ import com.guyuan.dear.focus.qc.views.home.QcHomeActivity;
 import com.guyuan.dear.focus.security.ui.FocusSecurityActivity;
 import com.guyuan.dear.focus.stock.ui.FocusStockActivity;
 import com.guyuan.dear.focus.transport.ui.TransportActivity;
-import com.guyuan.dear.login.data.ChildrenBean;
+import com.guyuan.dear.login.data.bean.ChildrenBean;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
 

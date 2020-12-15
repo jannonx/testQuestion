@@ -1,4 +1,4 @@
-package com.guyuan.dear.login.data;
+package com.guyuan.dear.login.data.bean;
 
 public class LoginBody {
     String account;

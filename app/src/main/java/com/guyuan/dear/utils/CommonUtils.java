@@ -1,22 +1,16 @@
 package com.guyuan.dear.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
 import com.example.mvvmlibrary.util.ActivityUtils;
@@ -27,14 +21,11 @@ import com.guyuan.dear.BuildConfig;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.dialog.TipDialogFragment;
 import com.guyuan.dear.focus.device.data.beans.FactoryBean;
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.login.ui.LoginActivity;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,9 +35,6 @@ import java.util.regex.Pattern;
 
 import droidninja.filepicker.utils.ContentUriUtils;
 import okhttp3.RequestBody;
-import retrofit2.http.PUT;
-
-import static java.security.AccessController.getContext;
 
 /**
  * Created by admin

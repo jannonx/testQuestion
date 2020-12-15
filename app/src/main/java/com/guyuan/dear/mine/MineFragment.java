@@ -6,7 +6,7 @@ import android.view.View;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentMineBinding;
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.mine.activity.AboutUsActivity;
 import com.guyuan.dear.mine.activity.FeedBackActivity;
 import com.guyuan.dear.mine.activity.PrivacyPolicyActivity;

@@ -14,7 +14,6 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentPauseContractBinding;
 import com.guyuan.dear.dialog.SelectionDialog;
 import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
-import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.net.DearNetHelper;
 import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
 import com.guyuan.dear.net.resultBeans.NetClientInfo;

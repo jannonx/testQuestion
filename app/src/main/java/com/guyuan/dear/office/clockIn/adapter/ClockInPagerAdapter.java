@@ -7,7 +7,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.guyuan.dear.focus.hr.view.hrStaffMonthlyDetail.StaffMonthlyDetailFragment;
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.office.clockIn.repo.ClockInRepo;
 import com.guyuan.dear.office.clockIn.view.ClockInFragment;
 
