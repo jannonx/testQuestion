@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
+        android:id="@+id/rl_root_simple"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,7 +16,7 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_order_detail"
+                android:id="@+id/cl_order_detail_simple"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="@dimen/dp_16"
@@ -23,7 +24,7 @@
 
 
                 <TextView
-                    android:id="@+id/tv_product_name"
+                    android:id="@+id/tv_product_name_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_12"
@@ -33,29 +34,8 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-
-                <!--                <TextView-->
-                <!--                    android:id="@+id/tv_sub_status"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginStart="@dimen/dp_12"-->
-                <!--                    android:background="@drawable/bg_green_d4fff1_corner_2"-->
-                <!--                    android:paddingStart="@dimen/dp_4"-->
-                <!--                    android:paddingTop="@dimen/dp_2"-->
-                <!--                    android:paddingEnd="@dimen/dp_4"-->
-                <!--                    android:paddingBottom="@dimen/dp_2"-->
-                <!--                    android:text="完成"-->
-                <!--                    android:textColor="@color/color_green_00B578"-->
-                <!--                    android:textSize="@dimen/sp_12"-->
-                <!--                    android:visibility="gone"-->
-                <!--                    app:layout_constraintBottom_toBottomOf="@+id/tv_product_name"-->
-                <!--                    app:layout_constraintStart_toEndOf="@+id/tv_product_name"-->
-                <!--                    app:layout_constraintTop_toTopOf="@+id/tv_product_name"-->
-                <!--                    tools:visibility="visible" />-->
-
                 <TextView
-                    android:id="@+id/tv_produce_status"
+                    android:id="@+id/tv_produce_status_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_12"
@@ -67,82 +47,82 @@
                     android:text="暂停"
                     android:textColor="@color/color_orange_FF6010"
                     android:textSize="@dimen/sp_12"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_product_name"
-                    app:layout_constraintStart_toEndOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toTopOf="@+id/tv_product_name" />
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_product_name_simple"
+                    app:layout_constraintStart_toEndOf="@+id/tv_product_name_simple"
+                    app:layout_constraintTop_toTopOf="@+id/tv_product_name_simple" />
 
                 <View
-                    android:id="@+id/v_line_0"
+                    android:id="@+id/v_line_0_simple"
                     android:layout_width="0dp"
                     android:layout_height="0.5dp"
                     android:layout_marginTop="@dimen/dp_12"
                     android:layout_marginEnd="@dimen/dp_12"
                     android:background="@color/color_grey_e5e5e5"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_product_name"
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_name_simple"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_name_simple"
 
                     />
 
                 <TextView
-                    android:id="@+id/label_product_code"
+                    android:id="@+id/label_product_code_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_12"
                     android:text="产品代号："
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toBottomOf="@+id/v_line_0" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_name_simple"
+                    app:layout_constraintTop_toBottomOf="@+id/v_line_0_simple" />
 
                 <TextView
-                    android:id="@+id/tv_product_code"
+                    android:id="@+id/tv_product_code_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CPDH153531"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_product_code"
-                    app:layout_constraintStart_toEndOf="@+id/label_product_code"
-                    app:layout_constraintTop_toTopOf="@+id/label_product_code" />
+                    app:layout_constraintBottom_toBottomOf="@+id/label_product_code_simple"
+                    app:layout_constraintStart_toEndOf="@+id/label_product_code_simple"
+                    app:layout_constraintTop_toTopOf="@+id/label_product_code_simple" />
 
                 <TextView
-                    android:id="@+id/label_duty_unit"
+                    android:id="@+id/label_duty_unit_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_12"
                     android:text="责任单位："
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_product_code" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_name_simple"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_product_code_simple" />
 
                 <TextView
-                    android:id="@+id/tv_duty_unit"
+                    android:id="@+id/tv_duty_unit_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="深圳固远空气设备制造二厂"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_duty_unit"
-                    app:layout_constraintStart_toEndOf="@+id/label_duty_unit"
-                    app:layout_constraintTop_toTopOf="@+id/label_duty_unit" />
+                    app:layout_constraintBottom_toBottomOf="@+id/label_duty_unit_simple"
+                    app:layout_constraintStart_toEndOf="@+id/label_duty_unit_simple"
+                    app:layout_constraintTop_toTopOf="@+id/label_duty_unit_simple" />
 
                 <View
-                    android:id="@+id/v_line_1"
+                    android:id="@+id/v_line_1_simple"
                     android:layout_width="0dp"
                     android:layout_height="0.5dp"
                     android:layout_marginTop="@dimen/dp_12"
                     android:layout_marginEnd="@dimen/dp_12"
                     android:background="@color/color_grey_e5e5e5"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toBottomOf="@+id/label_duty_unit"
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_name_simple"
+                    app:layout_constraintTop_toBottomOf="@+id/label_duty_unit_simple"
 
                     />
 
                 <TextView
-                    android:id="@+id/label_project_name"
+                    android:id="@+id/label_project_name_simple"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_12"
@@ -150,11 +130,11 @@
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toBottomOf="@+id/v_line_1" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_name_simple"
+                    app:layout_constraintTop_toBottomOf="@+id/v_line_1_simple" />
 
                 <TextView
-                    android:id="@+id/tv_project_name"
+                    android:id="@+id/tv_project_name_simple"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/dp_12"
@@ -162,162 +142,162 @@
                     android:textSize="@dimen/sp_14"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/label_project_name"
-                    app:layout_constraintTop_toTopOf="@+id/label_project_name"
+                    app:layout_constraintStart_toEndOf="@+id/label_project_name_simple"
+                    app:layout_constraintTop_toTopOf="@+id/label_project_name_simple"
                     tools:text="GCSJ468746GCSJ468746GCSJ468746GCSJ468746GCSJ468746GCSJ468746GCSJ468746GCSJ468746" />
 
                 <TextView
-                    android:id="@+id/label_project_code"
+                    android:id="@+id/label_project_code_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_12"
                     android:text="项目编号："
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_project_name" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_name_simple"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_project_name_simple" />
 
                 <TextView
-                    android:id="@+id/tv_project_code"
+                    android:id="@+id/tv_project_code_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="GCSJ468746"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_project_code"
-                    app:layout_constraintStart_toEndOf="@+id/label_project_code"
-                    app:layout_constraintTop_toTopOf="@+id/label_project_code" />
+                    app:layout_constraintBottom_toBottomOf="@+id/label_project_code_simple"
+                    app:layout_constraintStart_toEndOf="@+id/label_project_code_simple"
+                    app:layout_constraintTop_toTopOf="@+id/label_project_code_simple" />
 
 
                 <View
-                    android:id="@+id/view_1"
+                    android:id="@+id/view_1_simple"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_8"
                     android:layout_marginTop="@dimen/dp_12"
                     android:background="@color/color_grey_EDEDED"
-                    app:layout_constraintTop_toBottomOf="@+id/label_project_code" />
+                    app:layout_constraintTop_toBottomOf="@+id/label_project_code_simple" />
 
 
                 <TextView
-                    android:id="@+id/label_actual_start"
+                    android:id="@+id/label_actual_start_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_12"
                     android:text="实际开始生产时间："
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toBottomOf="@+id/view_1" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_name_simple"
+                    app:layout_constraintTop_toBottomOf="@+id/view_1_simple" />
 
                 <TextView
-                    android:id="@+id/tv_actual_start"
+                    android:id="@+id/tv_actual_start_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2020-10-10"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_actual_start"
-                    app:layout_constraintStart_toEndOf="@+id/label_actual_start"
-                    app:layout_constraintTop_toTopOf="@+id/label_actual_start" />
+                    app:layout_constraintBottom_toBottomOf="@+id/label_actual_start_simple"
+                    app:layout_constraintStart_toEndOf="@+id/label_actual_start_simple"
+                    app:layout_constraintTop_toTopOf="@+id/label_actual_start_simple" />
 
                 <TextView
-                    android:id="@+id/label_plan_start"
+                    android:id="@+id/label_plan_start_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
                     android:text="计划生产开始时间："
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_12"
-                    app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toBottomOf="@+id/label_actual_start" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_name_simple"
+                    app:layout_constraintTop_toBottomOf="@+id/label_actual_start_simple" />
 
                 <TextView
-                    android:id="@+id/tv_plan_start"
+                    android:id="@+id/tv_plan_start_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2020-10-10"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_12"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_plan_start"
-                    app:layout_constraintStart_toEndOf="@+id/label_plan_start"
-                    app:layout_constraintTop_toTopOf="@+id/label_plan_start" />
+                    app:layout_constraintBottom_toBottomOf="@+id/label_plan_start_simple"
+                    app:layout_constraintStart_toEndOf="@+id/label_plan_start_simple"
+                    app:layout_constraintTop_toTopOf="@+id/label_plan_start_simple" />
 
                 <View
-                    android:id="@+id/v_line_2"
+                    android:id="@+id/v_line_2_simple"
                     android:layout_width="0dp"
                     android:layout_height="0.5dp"
                     android:layout_marginTop="@dimen/dp_8"
                     android:layout_marginEnd="@dimen/dp_12"
                     android:background="@color/color_grey_e5e5e5"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toBottomOf="@+id/label_plan_start"
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_name_simple"
+                    app:layout_constraintTop_toBottomOf="@+id/label_plan_start_simple"
 
                     />
 
                 <TextView
-                    android:id="@+id/label_actual_complete"
+                    android:id="@+id/label_actual_complete_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
                     android:text="实际完成生产时间："
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toBottomOf="@+id/v_line_2" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_name_simple"
+                    app:layout_constraintTop_toBottomOf="@+id/v_line_2_simple" />
 
                 <TextView
-                    android:id="@+id/tv_actual_complete"
+                    android:id="@+id/tv_actual_complete_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2020-10-10"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_actual_complete"
-                    app:layout_constraintStart_toEndOf="@+id/label_actual_complete"
-                    app:layout_constraintTop_toTopOf="@+id/label_actual_complete" />
+                    app:layout_constraintBottom_toBottomOf="@+id/label_actual_complete_simple"
+                    app:layout_constraintStart_toEndOf="@+id/label_actual_complete_simple"
+                    app:layout_constraintTop_toTopOf="@+id/label_actual_complete_simple" />
 
                 <TextView
-                    android:id="@+id/label_plan_complete"
+                    android:id="@+id/label_plan_complete_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_8"
                     android:text="计划生产完成时间："
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_12"
-                    app:layout_constraintStart_toStartOf="@+id/tv_product_name"
-                    app:layout_constraintTop_toBottomOf="@+id/label_actual_complete" />
+                    app:layout_constraintStart_toStartOf="@+id/tv_product_name_simple"
+                    app:layout_constraintTop_toBottomOf="@+id/label_actual_complete_simple" />
 
                 <TextView
-                    android:id="@+id/tv_plan_complete"
+                    android:id="@+id/tv_plan_complete_simple"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2020-10-10"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_12"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_plan_complete"
-                    app:layout_constraintStart_toEndOf="@+id/label_plan_complete"
-                    app:layout_constraintTop_toTopOf="@+id/label_plan_complete" />
+                    app:layout_constraintBottom_toBottomOf="@+id/label_plan_complete_simple"
+                    app:layout_constraintStart_toEndOf="@+id/label_plan_complete_simple"
+                    app:layout_constraintTop_toTopOf="@+id/label_plan_complete_simple" />
 
                 <View
-                    android:id="@+id/view_2"
+                    android:id="@+id/view_2_simple"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_8"
                     android:layout_marginTop="@dimen/dp_12"
                     android:background="@color/color_grey_EDEDED"
-                    app:layout_constraintTop_toBottomOf="@+id/label_plan_complete" />
+                    app:layout_constraintTop_toBottomOf="@+id/label_plan_complete_simple" />
 
 
                 <FrameLayout
-                    android:id="@+id/fragment_container"
+                    android:id="@+id/fragment_container_simple"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view_2">
+                    app:layout_constraintTop_toBottomOf="@+id/view_2_simple">
 
                     <fragment
-                        android:id="@+id/factory_view"
+                        android:id="@+id/factory_view_simple"
                         android:name="com.guyuan.dear.focus.produce.fragment.FollowProducePlanFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -334,20 +314,20 @@
             android:layout_alignParentBottom="true">
 
             <LinearLayout
-                android:id="@+id/produce_approval_ll"
+                android:id="@+id/produce_approval_ll_simple"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/produce_reject_tv"
+                    android:id="@+id/produce_reject_tv_simple"
                     style="@style/btn_style_white_round_corner_black_text"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:text="驳回" />
 
                 <TextView
-                    android:id="@+id/produce_accept_tv"
+                    android:id="@+id/produce_accept_tv_simple"
                     style="@style/commit_btn"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -355,7 +335,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_commit_btn"
+                android:id="@+id/tv_commit_btn_simple"
                 style="@style/commit_btn"
                 android:layout_marginBottom="@dimen/dp_20"
                 android:text="开始生产"
