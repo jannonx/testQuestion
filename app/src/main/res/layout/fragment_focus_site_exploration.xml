@@ -30,9 +30,9 @@
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_16"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_project_status"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_project_status"
                     tools:text="迪尔空分机项目迪尔空分机项目迪尔空分机项目迪尔空分机项目迪尔空分机项目" />
 
 
@@ -94,9 +94,9 @@
                     android:id="@+id/tv_project_code"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_12"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
-                    android:layout_marginEnd="@dimen/dp_12"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/label_project_code"
                     app:layout_constraintTop_toTopOf="@+id/label_project_code"
@@ -117,9 +117,9 @@
                     android:id="@+id/tv_check_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_12"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14"
-                    android:layout_marginEnd="@dimen/dp_12"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/label_check_name"
                     app:layout_constraintTop_toTopOf="@+id/label_check_name"
@@ -130,8 +130,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_12"
-                    android:visibility="gone"
                     android:layout_marginEnd="@dimen/dp_12"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tv_project_name"
                     app:layout_constraintTop_toBottomOf="@+id/tv_check_name"
@@ -212,6 +212,49 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_company_location"
                         tools:text="2020-08-17 15:00" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_contract_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_12"
+                        android:layout_marginEnd="@dimen/dp_12"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_time"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/label_contract"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="联系人："
+                            android:textColor="@color/color_black_333333"
+                            android:textSize="@dimen/sp_14"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_contract_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color_black_333333"
+                            android:textSize="@dimen/sp_14"
+                            app:layout_constraintStart_toEndOf="@+id/label_contract"
+                            app:layout_constraintTop_toTopOf="@+id/label_contract"
+                            tools:text="名字" />
+
+                        <TextView
+                            android:id="@+id/tv_contract_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color_black_333333"
+                            android:textSize="@dimen/sp_14"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/label_contract"
+                            tools:text="18123568745" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

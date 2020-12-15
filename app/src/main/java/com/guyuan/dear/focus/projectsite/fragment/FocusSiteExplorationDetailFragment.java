@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.databinding.FragmentFocusSiteExplorationBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
+import com.guyuan.dear.focus.projectsite.type.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.CustomerAcceptanceSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.InstallDebugSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
@@ -460,6 +462,12 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
         binding.tvCompanyName.setText(detailProjectData.getCustomerName());
         binding.tvTime.setText(detailProjectData.getCheckTime());
+        binding.tvTime.setVisibility(TextUtils.isEmpty(detailProjectData.getCheckTime()) ? View.GONE : View.VISIBLE);
+        //联系人信息在运输中才显示
+        binding.clContractInfo.setVisibility(TextUtils.isEmpty(detailProjectData.getContactsName()) ? View.GONE :
+                CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING == detailProjectData.getCheckGoodsSatisfyType() ? View.VISIBLE : View.GONE);
+        binding.tvContractName.setText(detailProjectData.getContactsName());
+        binding.tvContractPhone.setText(detailProjectData.getContactsPhone());
         binding.tvCompanyLocation.setText(detailProjectData.getAcceptAddress());
 
         binding.tvActivateBtn.setText("反馈问题");

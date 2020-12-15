@@ -104,6 +104,14 @@ public class SiteExploreBean implements Serializable {
      */
     private String checkTime;
     /**
+     * 联系人名称
+     */
+    private String contactsName;
+    /**
+     * 联系人电话
+     */
+    private String contactsPhone;
+    /**
      * 最新回复意见
      */
     private String sendGoodsNumber;
@@ -216,6 +224,22 @@ public class SiteExploreBean implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getContactsName() {
+        return contactsName;
+    }
+
+    public void setContactsName(String contactsName) {
+        this.contactsName = contactsName;
+    }
+
+    public String getContactsPhone() {
+        return contactsPhone;
+    }
+
+    public void setContactsPhone(String contactsPhone) {
+        this.contactsPhone = contactsPhone;
     }
 
     public String getCheckRemark() {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -204,9 +205,14 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
 
 
         binding.tvCompanyName.setText(data.getCustomerName());
-        binding.tvTime.setText(data.getCreateTime());
+        binding.tvTime.setText(data.getCheckTime());
         binding.tvCompanyLocation.setText(data.getAcceptAddress());
-
+        binding.tvTime.setVisibility(TextUtils.isEmpty(data.getCheckTime()) ? View.GONE : View.VISIBLE);
+        //联系人信息在运输中才显示
+        binding.clContractInfo.setVisibility(TextUtils.isEmpty(data.getContactsName()) ? View.GONE :
+                CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING == data.getCheckGoodsSatisfyType() ? View.VISIBLE : View.GONE);
+        binding.tvContractName.setText(data.getContactsName());
+        binding.tvContractPhone.setText(data.getContactsPhone());
         binding.clGoodsList.setVisibility(detailData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
                 ? View.GONE : View.VISIBLE);
 
