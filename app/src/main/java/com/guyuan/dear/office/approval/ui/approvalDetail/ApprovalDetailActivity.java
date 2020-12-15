@@ -160,7 +160,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
             case ApprovalTypeBean.ACTIVATE_PLAN:
                 FocusProduceBean data = new FocusProduceBean();
                 data.setPlanId(id);
-                fragment = FocusProduceDetailComplexFragment.newInstance(data, false);
+                fragment = FocusProduceDetailFragment.newInstance(data, false);
                 binding.approvalAcceptTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
