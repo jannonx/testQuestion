@@ -69,6 +69,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     private static final int REQUEST_COPY_SELECT_PERSON = 0x002;
     private FocusProduceStatusFragment statusFragment;
     private FollowProducePlanFragment planFragment;
+    private FollowProducePlanFragment simplePlanFragment;
 
     private int startPosition = 0;//起始选中位置
     private String[] titleList;
@@ -123,6 +124,8 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
         if (arguments == null) {
             return;
         }
+
+
         produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         isFooterBtnShow = arguments.getBoolean(ConstantValue.KEY_BOOLEAN, false);
 //        LogUtils.showLog("listData=" + (produceBean == null));
@@ -157,7 +160,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
             binding.clRootEmpty.setVisibility(View.GONE);
             binding.rlRootSimple.setVisibility(View.VISIBLE);
             FragmentManager fragmentManager = getChildFragmentManager();
-            planFragment = (FollowProducePlanFragment) fragmentManager.findFragmentById(R.id.factory_view);
+            simplePlanFragment = (FollowProducePlanFragment) fragmentManager.findFragmentById(R.id.factory_view_simple);
             initProductSimple();
             setProduceDataSimple(data);
         } else if (ProductStatusType.TYPE_UNKNOWN == produceBean.getStatusType()) {
@@ -241,7 +244,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
 
     private void setProduceDataSimple(FocusProduceBean data) {
         produceBean = data;
-        planFragment.setProduceData(data);
+        simplePlanFragment.setProduceData(data);
 
         binding.tvProductNameSimple.setText(data.getName());
         binding.tvProductCodeSimple.setText(data.getCode());
