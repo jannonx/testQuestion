@@ -12,7 +12,7 @@ import com.example.mvvmlibrary.base.activity.BaseActivity;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.home.MainActivity;
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.login.ui.LoginActivity;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;

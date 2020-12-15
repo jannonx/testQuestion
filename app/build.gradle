@@ -13,9 +13,9 @@ def verCode = properties.getProperty("mainVersionCode")
 def appVersionName = properties.getProperty("mainVersionName")
 def appversionCode = verCode.toInteger()
 def runTasks = gradle.startParameter.taskNames
-def bugly_app_id = properties.getProperty("BUGLY_APP_ID")
-def bugly_app_key = properties.getProperty("BUGLY_APP_KEY")
-
+def gaode_map_release_key = properties.getProperty("GAODE_MAP_RELEASE_KEY")
+def gaode_map_check_key = properties.getProperty("GAODE_MAP_CHECK_KEY")
+def gaode_map_debug_key = properties.getProperty("GAODE_MAP_DEBUG_KEY")
 
 android {
     compileSdkVersion BuildConfig.compileSdkVersion
@@ -103,6 +103,10 @@ android {
             buildConfigField "Integer", "MORNING_BRIEFING_START_MINUTE", properties.getProperty("MORNING_BRIEFING_START_MINUTE")
             buildConfigField "Integer", "MORNING_BRIEFING_STOP_HOUR", properties.getProperty("MORNING_BRIEFING_STOP_HOUR")
             buildConfigField "Integer", "MORNING_BRIEFING_STOP_MINUTE", properties.getProperty("MORNING_BRIEFING_STOP_MINUTE")
+            manifestPlaceholders = [
+                    CHANNEL_VALUE: name,
+                    gaodemapkey  : gaode_map_release_key
+            ]
             applicationIdSuffix ".release" //正式包APPID后缀,在手机上正式包和测试包就能共存了
             signingConfig signingConfigs.config
             debuggable true
@@ -127,12 +131,16 @@ android {
             buildConfigField "Integer", "MORNING_BRIEFING_START_MINUTE", properties.getProperty("MORNING_BRIEFING_START_MINUTE")
             buildConfigField "Integer", "MORNING_BRIEFING_STOP_HOUR", properties.getProperty("MORNING_BRIEFING_STOP_HOUR")
             buildConfigField "Integer", "MORNING_BRIEFING_STOP_MINUTE", properties.getProperty("MORNING_BRIEFING_STOP_MINUTE")
+            manifestPlaceholders = [
+                    CHANNEL_VALUE: name,
+                    gaodemapkey  : gaode_map_debug_key
+            ]
             applicationIdSuffix ".debug"//测试包APPID后缀
             debuggable true
             signingConfig signingConfigs.config
         }
 
-        check{
+        check {
             initWith(buildTypes.commons)
             buildConfigField "String", "BUGLY_APP_ID", properties.getProperty("BUGLY_APP_ID_CHECK")
             buildConfigField "String", "SERVER_URL", properties.getProperty("CHECK_SERVER_URL")
@@ -144,13 +152,15 @@ android {
             buildConfigField "Integer", "MORNING_BRIEFING_START_MINUTE", properties.getProperty("MORNING_BRIEFING_START_MINUTE")
             buildConfigField "Integer", "MORNING_BRIEFING_STOP_HOUR", properties.getProperty("MORNING_BRIEFING_STOP_HOUR")
             buildConfigField "Integer", "MORNING_BRIEFING_STOP_MINUTE", properties.getProperty("MORNING_BRIEFING_STOP_MINUTE")
+            manifestPlaceholders = [
+                    CHANNEL_VALUE: name,
+                    gaodemapkey  : gaode_map_check_key
+            ]
             applicationIdSuffix ".debug"//测试包APPID后缀
             debuggable true
             signingConfig signingConfigs.config
         }
     }
-
-
 
 
     //lint检测设置
@@ -185,10 +195,6 @@ android {
     }
 }
 
-bugly {
-    appId = bugly_app_id // 注册时分配的App ID
-    appKey = bugly_app_key // 注册时分配的App Key
-}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')

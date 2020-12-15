@@ -13,7 +13,7 @@ import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.databinding.FragmentUserInfoBinding;
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.mine.activity.UserInfoActivity;
 import com.guyuan.dear.mine.bean.MineRequestBody;
 import com.guyuan.dear.mine.data.EventRefreshUserData;

@@ -3,18 +3,14 @@ package com.guyuan.dear.work.device.data;
 import androidx.hilt.lifecycle.ViewModelInject;
 
 import com.example.mvvmlibrary.base.data.BaseViewModel;
-import com.google.gson.Gson;
 import com.guyuan.dear.base.api.RxJavaHelper;
-import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.base.bean.ListRequestBody;
-import com.guyuan.dear.customizeview.editListView.EditListView;
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.StringUtils;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.guyuan.dear.work.device.api.WorkDeviceApiService;
-import com.guyuan.dear.work.device.data.WorkDeviceRepository;
 import com.guyuan.dear.work.device.data.bean.MaintainCommitBody;
 import com.guyuan.dear.work.device.data.bean.RepairCommitBody;
 import com.guyuan.dear.work.device.data.bean.RepairFinishBody;
@@ -25,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 
 import okhttp3.RequestBody;
-import retrofit2.http.PUT;
 
 /**
  * @author : 唐力

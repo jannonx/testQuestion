@@ -9,7 +9,7 @@ import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.customizeview.MessageBar;
 import com.guyuan.dear.databinding.FragmentOfficeBinding;
-import com.guyuan.dear.login.data.ChildrenBean;
+import com.guyuan.dear.login.data.bean.ChildrenBean;
 import com.guyuan.dear.office.approval.ui.ApprovalActivity;
 import com.guyuan.dear.office.clockIn.view.ClockInActivity;
 import com.guyuan.dear.utils.ConstantValue;

@@ -2,7 +2,7 @@ package com.guyuan.dear.base.api.interceptor;
 
 import androidx.annotation.NonNull;
 
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.utils.CommonUtils;
 
 import java.io.IOException;

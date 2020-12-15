@@ -2,6 +2,7 @@ package com.guyuan.dear.login.data;
 
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.login.api.LoginApiService;
+import com.guyuan.dear.login.data.bean.LoginBean;
 
 
 import io.reactivex.Observable;

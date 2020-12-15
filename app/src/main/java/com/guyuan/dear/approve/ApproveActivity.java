@@ -10,7 +10,7 @@ import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.approve.data.ApproveViewModel;
-import com.guyuan.dear.login.data.ChildrenBean;
+import com.guyuan.dear.login.data.bean.ChildrenBean;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;

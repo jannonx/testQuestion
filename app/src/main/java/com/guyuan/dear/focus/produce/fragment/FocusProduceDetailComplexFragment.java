@@ -13,7 +13,6 @@ import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailComplexBinding;
-import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.dialog.RemarkDialog;
 import com.guyuan.dear.dialog.SimpleConfirmViewDialog;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
@@ -24,7 +23,6 @@ import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.OperateProduceType;
 import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
-import com.guyuan.dear.login.data.LoginBean;
 import com.guyuan.dear.office.approval.ui.ApprovalActivity;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.CommonUtils;
@@ -46,7 +44,6 @@ import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
-import retrofit2.http.PUT;
 
 import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.BUSINESS_ID;
 import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.BUSINESS_TYPE;

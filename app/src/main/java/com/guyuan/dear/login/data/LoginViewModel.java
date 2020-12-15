@@ -1,18 +1,12 @@
 package com.guyuan.dear.login.data;
 
-import android.content.Context;
-import android.os.Bundle;
-
-import com.example.httplibrary.bean.ErrorResultBean;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.google.gson.Gson;
 import com.guyuan.dear.base.api.RxJavaHelper;
 import com.guyuan.dear.base.app.DearApplication;
-import com.guyuan.dear.home.MainActivity;
+import com.guyuan.dear.login.data.bean.LoginBean;
+import com.guyuan.dear.login.data.bean.LoginBody;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.SharedPreferencesUtils;
-
-import java.util.List;
 
 import androidx.hilt.lifecycle.ViewModelInject;
 import io.reactivex.disposables.Disposable;

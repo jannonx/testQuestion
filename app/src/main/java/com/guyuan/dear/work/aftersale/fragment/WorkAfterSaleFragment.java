@@ -15,7 +15,7 @@ import com.guyuan.dear.focus.aftersale.bean.ListSaleRequestBody;
 import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
 import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;

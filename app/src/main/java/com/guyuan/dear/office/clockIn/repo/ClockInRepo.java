@@ -10,7 +10,7 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.google.gson.Gson;
 import com.guyuan.dear.base.app.DearApplication;
-import com.guyuan.dear.login.data.LoginBean;
+import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.net.DearNetHelper;
 import com.guyuan.dear.net.resultBeans.NetClockInConfig;
 import com.guyuan.dear.utils.ConstantValue;

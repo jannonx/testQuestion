@@ -1,4 +1,4 @@
-package com.guyuan.dear.login.data;
+package com.guyuan.dear.login.data.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @description: 自己菜单
+ * @description: 顶级菜单
  * @author: 许建宁
- * @since: 2020/11/25 00:00
+ * @since: 2020/11/24 23:56
  * @company: 固远（深圳）信息技术有限公司
  */
-public class ChildrenBean implements Parcelable {
+public class AppMenusBean implements Parcelable {
     private int id;
     private String name;
     private int parentId;
@@ -61,10 +61,10 @@ public class ChildrenBean implements Parcelable {
         dest.writeList(this.children);
     }
 
-    public ChildrenBean() {
+    public AppMenusBean() {
     }
 
-    protected ChildrenBean(Parcel in) {
+    protected AppMenusBean(Parcel in) {
         this.id = in.readInt();
         this.name = in.readString();
         this.parentId = in.readInt();
@@ -87,15 +87,15 @@ public class ChildrenBean implements Parcelable {
         in.readList(this.children, ChildrenBean.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<ChildrenBean> CREATOR = new Parcelable.Creator<ChildrenBean>() {
+    public static final Parcelable.Creator<AppMenusBean> CREATOR = new Parcelable.Creator<AppMenusBean>() {
         @Override
-        public ChildrenBean createFromParcel(Parcel source) {
-            return new ChildrenBean(source);
+        public AppMenusBean createFromParcel(Parcel source) {
+            return new AppMenusBean(source);
         }
 
         @Override
-        public ChildrenBean[] newArray(int size) {
-            return new ChildrenBean[size];
+        public AppMenusBean[] newArray(int size) {
+            return new AppMenusBean[size];
         }
     };
 
@@ -249,9 +249,5 @@ public class ChildrenBean implements Parcelable {
 
     public void setChildren(List<ChildrenBean> children) {
         this.children = children;
-    }
-
-    public static Creator<ChildrenBean> getCREATOR() {
-        return CREATOR;
     }
 }

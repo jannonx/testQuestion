@@ -20,6 +20,49 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+
+
+#混淆基本配置
+-dontwarn
+#指定代码的压缩级别
+-optimizationpasses 5
+#包明不混合大小写
+-dontusemixedcaseclassnames
+#不去忽略非公共的库类
+-dontskipnonpubliclibraryclasses
+#预校验
+-dontpreverify
+#优化  不优化输入的类文件
+-verbose
+# 混淆时所采用的算法
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
+#保护注解
+-keepattributes *Annotation*
+# 抑制警告
+-ignorewarnings
+
+#不混淆系统文件
+-keep public class * extends android.support.v4.app.Fragment
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.app.IntentService
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.preference.Preference
+-keep public class * extends android.support.v4.**
+-keep public class * extends android.support.v7.**
+-keep public class * extends com.guyuan.dear.base.api.bean.** { *; }
+-keep public class **.bean.**{ *; }
+-keep public class **.beans.**{ *; }
+#-keep public class **.data.bean.**Bean { *; }
+#-keep public class **.data.bean.**Body { *; }
+#-keep public class **.data.bean.**Bean$**Entity { *; }
+-keep public class **.extra.** { *; }
+-dontwarn android.support.**
+-keep class android.support.** { *; }
+#apk 包内所有 class 的内部结构
+-dump class_files.txt
+
 #=====================================萤石云混淆 start=================================#
 #========SDK对外接口=======#
 -keep class com.ezviz.opensdk.** { *;}
@@ -89,6 +132,18 @@
 -dontwarn com.tencent.bugly.**
 -keep public class com.tencent.bugly.**{*;}
 -keep class android.support.**{*;}
+
+# ---------------- eventbus避免混淆 start------------
+-keepclassmembers class ** {
+    @org.greenrobot.eventbus.Subscribe <methods>;
+}
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
+# Only required if you use AsyncExecutor
+-keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
+    <init>(Java.lang.Throwable);
+}
+# ---------------- eventbus避免混淆 end------------
+
 
 
 # OkHttp
