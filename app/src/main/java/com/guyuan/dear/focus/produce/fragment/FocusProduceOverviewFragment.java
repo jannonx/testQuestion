@@ -8,10 +8,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.widget.AppCompatCheckedTextView;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.lifecycle.Observer;
-
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProduceOverviewBinding;
@@ -34,6 +30,9 @@ import com.jzxiang.pickerview.listener.OnDateSetListener;
 
 import java.util.Date;
 
+import androidx.appcompat.widget.AppCompatCheckedTextView;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.lifecycle.Observer;
 import okhttp3.RequestBody;
 
 /**
@@ -192,7 +191,6 @@ public class FocusProduceOverviewFragment extends BaseDataBindingFragment<Fragme
                 selectEndDate();
                 break;
             case R.id.tv_search_btn:
-//                viewModel.getProduceOverView(getRequestBody());
                 FocusOneProduceActivity.start(getContext(), etSearch.getText().toString());
                 break;
         }

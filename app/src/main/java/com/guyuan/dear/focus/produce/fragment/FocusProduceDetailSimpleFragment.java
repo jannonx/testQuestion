@@ -91,14 +91,14 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
         Bundle arguments = getArguments();
         produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         isFooterBtnShow = arguments.getBoolean(ConstantValue.KEY_BOOLEAN, false);
-        setApproval();
+        setApprovalSimple();
 
         initDataAndListener();
 
     }
 
     //设置审批
-    private void setApproval() {
+    private void setApprovalSimple() {
         businessId = getArguments().getInt(BUSINESS_ID);
         businessType = getArguments().getInt(BUSINESS_TYPE);
         status = getArguments().getInt(STATUS);
@@ -106,8 +106,8 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
         isApproved = getArguments().getBoolean(IS_APPROVED);
         if (isApproved) {
             setRemarkDialogListener();
-            binding.produceApprovalLl.setVisibility(View.VISIBLE);
-            binding.produceRejectTv.setOnClickListener(new View.OnClickListener() {
+            binding.produceApprovalLlSimple.setVisibility(View.VISIBLE);
+            binding.produceRejectTvSimple.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     status = ApprovalActivity.REJECT;
@@ -115,7 +115,7 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
                 }
             });
 
-            binding.produceAcceptTv.setOnClickListener(new View.OnClickListener() {
+            binding.produceAcceptTvSimple.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     status = ApprovalActivity.ACCEPT;
@@ -143,7 +143,7 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
         viewModel.getBasicInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
             @Override
             public void onChanged(FocusProduceBean data) {
-                setProduceData(data);
+                setProduceDataSimple(data);
             }
         });
         SimpleConfirmViewDialog.OnClickListener listener = new SimpleConfirmViewDialog.OnClickListener() {
@@ -160,7 +160,7 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
             }
         };
 
-        binding.tvCommitBtn.setOnClickListener(new View.OnClickListener() {
+        binding.tvCommitBtnSimple.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SimpleConfirmViewDialog.showTitle(getContext(), "确认提交生产开始吗？", listener);
@@ -178,29 +178,29 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
     }
 
 
-    private void setProduceData(FocusProduceBean data) {
+    private void setProduceDataSimple(FocusProduceBean data) {
         planFragment.setProduceData(data);
 
-        binding.tvProductName.setText(data.getName());
-        binding.tvProductCode.setText(data.getCode());
-        binding.tvDutyUnit.setText(data.getPrincipalDept());
+        binding.tvProductNameSimple.setText(data.getName());
+        binding.tvProductCodeSimple.setText(data.getCode());
+        binding.tvDutyUnitSimple.setText(data.getPrincipalDept());
 
         //设置生产状态
-        binding.tvProduceStatus.setText(data.getStatusText());
-        binding.tvProduceStatus.setBackgroundResource(data.getStatusTextBg());
+        binding.tvProduceStatusSimple.setText(data.getStatusText());
+        binding.tvProduceStatusSimple.setBackgroundResource(data.getStatusTextBg());
         int color_blue_ff1b97fc = data.getStatusTextColor();
-        binding.tvProduceStatus.setTextColor(getActivity().getResources().getColor(color_blue_ff1b97fc));
+        binding.tvProduceStatusSimple.setTextColor(getActivity().getResources().getColor(color_blue_ff1b97fc));
 
-        binding.tvProjectName.setText(data.getProjectName());
-        binding.tvProjectCode.setText(data.getProjectCode());
+        binding.tvProjectNameSimple.setText(data.getProjectName());
+        binding.tvProjectCodeSimple.setText(data.getProjectCode());
 
-        binding.tvActualStart.setText(data.getActualStartTime());
-        binding.tvPlanStart.setText(data.getPlanStartTime());
-        binding.tvActualComplete.setText(data.getActualEndTime());
-        binding.tvPlanComplete.setText(data.getPlanEndTime());
+        binding.tvActualStartSimple.setText(data.getActualStartTime());
+        binding.tvPlanStartSimple.setText(data.getPlanStartTime());
+        binding.tvActualCompleteSimple.setText(data.getActualEndTime());
+        binding.tvPlanCompleteSimple.setText(data.getPlanEndTime());
 
         LogUtils.showLog("isFooterBtnShow=" + isFooterBtnShow + "...getStatusType=" + (ProductStatusType.TYPE_PRODUCE_WAIT == data.getStatusType()));
-        binding.tvCommitBtn.setVisibility((isFooterBtnShow
+        binding.tvCommitBtnSimple.setVisibility((isFooterBtnShow
                 && ProductStatusType.TYPE_PRODUCE_WAIT == data.getStatusType()) ? View.VISIBLE : View.GONE);
     }
 

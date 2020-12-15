@@ -20,6 +20,7 @@ import java.util.List;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import tl.com.easy_recycleview_library.BaseRecyclerView;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
@@ -36,8 +37,9 @@ public class AcceptanceRecordFragment extends BaseDataBindingFragment<FragmentEx
     private List<InstallDebugBean> installDebugContentList = new ArrayList<>();
     private BaseRecyclerViewAdapter adapter;
     private View footerView;
-    private TextView tvRecorder ,tvRemark;
+    private TextView tvRecorder, tvRemark;
     private SiteExploreBean acceptanceData;
+
     public static AcceptanceRecordFragment newInstance() {
         Bundle bundle = new Bundle();
         AcceptanceRecordFragment fragment = new AcceptanceRecordFragment();
@@ -58,10 +60,11 @@ public class AcceptanceRecordFragment extends BaseDataBindingFragment<FragmentEx
 
     /**
      * 填充数据
+     *
      * @param data
      */
     public void setRecordData(SiteExploreBean data) {
-        acceptanceData=data;
+        acceptanceData = data;
 
         binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         ProjectInstallAdapter installDebugAdapter = new ProjectInstallAdapter(getContext(),
@@ -77,18 +80,19 @@ public class AcceptanceRecordFragment extends BaseDataBindingFragment<FragmentEx
 
     private void addContentFooterView() {
         footerView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_acceptance_record, binding.baseRecycleView, false);
-        tvRecorder= footerView.findViewById(R.id.tv_recorder);
+        tvRecorder = footerView.findViewById(R.id.tv_recorder);
         tvRemark = footerView.findViewById(R.id.tv_remark);
         LinearLayoutCompat llDocument = footerView.findViewById(R.id.ll_document);
         BaseRecyclerView imageRecyclerView = footerView.findViewById(R.id.image_recycleView);
 
         tvRecorder.setText(acceptanceData.getPersonLiableName());
         tvRemark.setText(acceptanceData.getCheckRemark());
-        llDocument.setVisibility( acceptanceData.getImgUrlList().size() == 0 ? View.GONE : View.VISIBLE);
+        llDocument.setVisibility((acceptanceData.getImgUrlList() == null
+                || acceptanceData.getImgUrlList().size() == 0) ? View.GONE : View.VISIBLE);
 
         ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
                 acceptanceData.getImgUrlList(), R.layout.item_explorate_image);
-        BaseRecyclerViewAdapter  imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
+        BaseRecyclerViewAdapter imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
         imageRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         imageRecyclerView.setAdapter(imageAdapter);
         imageRecyclerView.setPullRefreshEnabled(false);

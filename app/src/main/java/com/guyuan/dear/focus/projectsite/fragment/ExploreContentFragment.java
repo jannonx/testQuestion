@@ -16,6 +16,7 @@ import com.guyuan.dear.focus.projectsite.adapter.ProjectInstallAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
 import com.guyuan.dear.focus.projectsite.type.CheckGoodsSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.CheckSafeSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
@@ -188,6 +189,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
     }
 
     private void setCheckSafeData(SiteExploreBean detailProjectData) {
+        CheckSafeSatisfyType checkSafeSatisfyType = detailProjectData.getCheckSafeSatisfyType();
 
         //清点货物 #2FC25B  #F04864 红色
         tvRemark.setText(detailProjectData.getAuditItemExplain());
@@ -195,6 +197,9 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
         tvStatus.setTextColor(getActivity().getResources().getColor(
                 detailProjectData.getSatisfyFlag() == 1 ? R.color.color_green_2fc25b : R.color.color_red_F04864));
         tvStatus.setText("存在安全隐患：" + (detailProjectData.getSatisfyFlag() == 1 ? "否" : "是"));
+
+        llContent.setVisibility((CheckSafeSatisfyType.TYPE_CHECK_WAIT == checkSafeSatisfyType
+                || CheckSafeSatisfyType.TYPE_CHECK_ING == checkSafeSatisfyType) ? View.GONE : View.VISIBLE);
     }
 
     private void setCheckGoodsData(SiteExploreBean detailProjectData) {
