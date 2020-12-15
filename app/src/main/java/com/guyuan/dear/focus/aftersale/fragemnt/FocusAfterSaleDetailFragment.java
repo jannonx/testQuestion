@@ -132,8 +132,8 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
         viewModel.getpostAfterSaleInfoEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer data) {
-//                setAfterSaleBean(data);
-//                ToastUtils.showLong(getContext(), "提交成功");
+                //提交成功，刷新状态
+                viewModel.getAfterSaleDetail(afterSaleBean.getId());
                 EventBus.getDefault().post(new EventAnswerListRefresh());
             }
         });

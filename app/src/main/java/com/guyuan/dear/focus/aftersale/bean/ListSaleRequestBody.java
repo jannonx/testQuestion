@@ -50,7 +50,7 @@ public class ListSaleRequestBody implements Serializable {
         /**
          * 审核状态
          */
-        private int status;
+        private Integer status;
         /**
          * 用户Id
          */
@@ -61,11 +61,11 @@ public class ListSaleRequestBody implements Serializable {
         private String name;
 
 
-        public int getStatus() {
+        public Integer getStatus() {
             return status;
         }
 
-        public void setStatus(int status) {
+        public void setStatus(Integer status) {
             this.status = status;
         }
 
