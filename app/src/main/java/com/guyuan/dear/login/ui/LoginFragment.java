@@ -87,7 +87,6 @@ public class LoginFragment extends BaseDataBindingFragment<FragmentLoginBinding,
                     @Override
                     public void accept(Object o) throws Exception {
                         LoginBean loginBean = (LoginBean) o;
-                        showToastTip("登录成功");
                         saveLoginData(loginBean);
                     }
                 });
