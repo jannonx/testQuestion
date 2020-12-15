@@ -34,6 +34,8 @@ import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
+import static com.guyuan.dear.focus.projectsite.type.ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE;
+
 /**
  * @author : 唐力
  * @description :
@@ -46,6 +48,7 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
     public static final String TAG = WorkAfterSaleFragment.class.getSimpleName();
     //合格状态
     private SaleSectionType saleSectionType;
+    private boolean isFirstLoad=true;
 
     public static WorkAfterSaleFragment newInstance(SaleSectionType saleSectionType) {
         Bundle args = new Bundle();
@@ -106,7 +109,15 @@ public class WorkAfterSaleFragment extends BaseListSearchFragment<AfterSaleBean,
         adapter.refreshData();
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        //第一次加载不刷新，再次进入页面刷新数据
+        if (!isFirstLoad ) {
+            getListDataByClassify(true);
+        }
+        isFirstLoad = false;
+    }
     /**
      * 请求参数配置
      *

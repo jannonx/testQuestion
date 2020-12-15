@@ -13,6 +13,7 @@ import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailComplexFragment;
+import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailFragment;
 import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
@@ -64,25 +65,33 @@ public class FocusProduceDetailActivity extends BaseToolbarActivity<ActivityWith
         int type = getIntent().getIntExtra(APPROVAL_TYPE, -1);
         binding.toolbarContainer.titleTv.setText("生产详情");
         BaseFragment mFragment;
-        if (ProductStatusType.TYPE_PRODUCE_WAIT == bean.getStatusType()) {
-            if (isApproval) {
-                mFragment = FocusProduceDetailSimpleFragment.newInstance(bean, businessId,
-                        businessType, type,isApproval);
-            } else {
-                mFragment = FocusProduceDetailSimpleFragment.newInstance(bean, isFooterBtnShow);
-            }
 
+        LogUtils.showLog("listData=" + (bean == null));
+        if (isApproval) {
+            mFragment = FocusProduceDetailFragment.newInstance(bean, businessId,
+                    businessType, type, isApproval);
         } else {
-            LogUtils.showLog("listData=" + (bean == null));
-            if (isApproval) {
-                mFragment = FocusProduceDetailComplexFragment.newInstance(bean, businessId,
-                        businessType, type,isApproval);
-            } else {
-                mFragment = FocusProduceDetailComplexFragment.newInstance(bean, isFooterBtnShow);
-            }
+            mFragment = FocusProduceDetailFragment.newInstance(bean, isFooterBtnShow);
         }
+//        if (ProductStatusType.TYPE_PRODUCE_WAIT == bean.getStatusType()) {
+//            if (isApproval) {
+//                mFragment = FocusProduceDetailSimpleFragment.newInstance(bean, businessId,
+//                        businessType, type,isApproval);
+//            } else {
+//                mFragment = FocusProduceDetailSimpleFragment.newInstance(bean, isFooterBtnShow);
+//            }
+//
+//        } else {
+//            LogUtils.showLog("listData=" + (bean == null));
+//            if (isApproval) {
+//                mFragment = FocusProduceDetailComplexFragment.newInstance(bean, businessId,
+//                        businessType, type,isApproval);
+//            } else {
+//                mFragment = FocusProduceDetailComplexFragment.newInstance(bean, isFooterBtnShow);
+//            }
+//        }
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
-                FocusProduceDetailComplexFragment.TAG);
+                FocusProduceDetailFragment.TAG);
     }
 
     @Override

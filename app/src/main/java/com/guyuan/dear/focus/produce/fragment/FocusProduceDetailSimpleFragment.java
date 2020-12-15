@@ -52,7 +52,7 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
     private int status;
     private int type;
     private boolean isApproved = false;
-    private RemarkDialog.OnDialogClickListener remarkListener;
+    private RemarkDialog.OnDialogClickListener remarkSimpleListener;
 
     public static FocusProduceDetailSimpleFragment newInstance(FocusProduceBean data, boolean isFooterBtnShow) {
         Bundle bundle = new Bundle();
@@ -91,10 +91,11 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
         Bundle arguments = getArguments();
         produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         isFooterBtnShow = arguments.getBoolean(ConstantValue.KEY_BOOLEAN, false);
-        setApprovalSimple();
 
-        initDataAndListener();
 
+
+
+        initProductSimple();
     }
 
     //设置审批
@@ -105,13 +106,13 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
         type = getArguments().getInt(TYPE);
         isApproved = getArguments().getBoolean(IS_APPROVED);
         if (isApproved) {
-            setRemarkDialogListener();
+            setRemarkDialogSimpleListener();
             binding.produceApprovalLlSimple.setVisibility(View.VISIBLE);
             binding.produceRejectTvSimple.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     status = ApprovalActivity.REJECT;
-                    RemarkDialog.show(getActivity(), "请输入驳回备注", remarkListener);
+                    RemarkDialog.show(getActivity(), "请输入驳回备注", remarkSimpleListener);
                 }
             });
 
@@ -119,15 +120,16 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
                 @Override
                 public void onClick(View v) {
                     status = ApprovalActivity.ACCEPT;
-                    RemarkDialog.show(getActivity(), "请输入通过备注", remarkListener);
+                    RemarkDialog.show(getActivity(), "请输入通过备注", remarkSimpleListener);
                 }
             });
         }
+
     }
 
 
-    private void setRemarkDialogListener() {
-        remarkListener = new RemarkDialog.OnDialogClickListener() {
+    private void setRemarkDialogSimpleListener() {
+        remarkSimpleListener = new RemarkDialog.OnDialogClickListener() {
             @Override
             public void onCommitInfo(ExecuteRequestBody data) {
                 String remark = data.getReason();
@@ -137,7 +139,7 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
     }
 
 
-    private void initDataAndListener() {
+    private void initProductSimple() {
 
         viewModel.getBasicInfoById(produceBean.getPlanId());
         viewModel.getBasicInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
@@ -175,6 +177,9 @@ public class FocusProduceDetailSimpleFragment extends BaseDataBindingFragment<Fr
                 getActivity().finish();
             }
         });
+
+
+        setApprovalSimple();
     }
 
 

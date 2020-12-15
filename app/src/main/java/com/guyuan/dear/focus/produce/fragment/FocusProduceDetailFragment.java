@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
+import com.guyuan.dear.databinding.FragmentFocusProduceDetailBinding;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailComplexBinding;
 import com.guyuan.dear.dialog.RemarkDialog;
 import com.guyuan.dear.dialog.SimpleConfirmViewDialog;
@@ -40,7 +41,9 @@ import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
+
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
@@ -52,12 +55,12 @@ import static com.guyuan.dear.office.approval.ui.ApprovalActivity.IS_APPROVED;
 
 /**
  * @description: 我的关注--生产详情
- *               待生产的详情页||生产中到生产完成的详情页面
+ * 待生产的详情页||生产中到生产完成的详情页面
  * @author: 许建宁
  * @since: 2020/11/11 11:20
  * @company: 固远（深圳）信息技术有限公司
  */
-public class FocusProduceDetailFragment extends BaseDataBindingFragment<FragmentFocusProduceDetailComplexBinding, FocusProduceViewModel>
+public class FocusProduceDetailFragment extends BaseDataBindingFragment<FragmentFocusProduceDetailBinding, FocusProduceViewModel>
         implements View.OnClickListener {
 
     public static final String TAG = FocusProduceDetailFragment.class.getSimpleName();
@@ -80,7 +83,8 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     private boolean isApproved = false;
     //自己隐藏
     private ArrayList<StaffBean> hiddenStaffList = new ArrayList<>();
-    private RemarkDialog.OnDialogClickListener remarkListener;
+    private RemarkDialog.OnDialogClickListener remarkComplexListener;
+    private RemarkDialog.OnDialogClickListener remarkSimpleListener;
 
     public static FocusProduceDetailFragment newInstance(FocusProduceBean data, boolean isFooterBtnShow) {
         Bundle bundle = new Bundle();
@@ -110,7 +114,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
 
     @Override
     protected int getLayoutID() {
-        return R.layout.fragment_focus_produce_detail_complex;
+        return R.layout.fragment_focus_produce_detail;
     }
 
     @Override
@@ -121,32 +125,159 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
         }
         produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         isFooterBtnShow = arguments.getBoolean(ConstantValue.KEY_BOOLEAN, false);
-        LogUtils.showLog("listData=" + (produceBean == null));
-        initProductComplex();
-    }
+//        LogUtils.showLog("listData=" + (produceBean == null));
 
-    private void initProductComplex() {
-        binding.tvActivateBtn.setOnClickListener(this);
-        binding.tvPauseBtn.setOnClickListener(this);
-        binding.tvCompleteBtn.setOnClickListener(this);
+        LogUtils.showLog("initialization=" + produceBean.getStatusType().getDes());
+        //现请求数据
         viewModel.getBasicInfoById(produceBean.getPlanId());
-
-
         viewModel.getBasicInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
             @Override
             public void onChanged(FocusProduceBean data) {
-                setProduceDataComplex(data);
+                jumpToPage(data);
             }
         });
+
         //操作
         viewModel.getExecuteEvent().observe(getActivity(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer dataRefreshBean) {
-//                ToastUtils.showLong(getContext(), "提交成功!");
                 EventBus.getDefault().post(new EventProduceListRefresh());
                 getActivity().finish();
             }
         });
+    }
+
+    /**
+     * 根据状态不同显示不同页面
+     */
+    private void jumpToPage(FocusProduceBean data) {
+        LogUtils.showLog("jumpToPage=" + produceBean.getStatusType().getDes());
+        if (ProductStatusType.TYPE_PRODUCE_WAIT == produceBean.getStatusType()) {
+            binding.clRootComplex.setVisibility(View.GONE);
+            binding.clRootEmpty.setVisibility(View.GONE);
+            binding.rlRootSimple.setVisibility(View.VISIBLE);
+            FragmentManager fragmentManager = getChildFragmentManager();
+            planFragment = (FollowProducePlanFragment) fragmentManager.findFragmentById(R.id.factory_view);
+            initProductSimple();
+            setProduceDataSimple(data);
+        } else if (ProductStatusType.TYPE_UNKNOWN == produceBean.getStatusType()) {
+            binding.clRootComplex.setVisibility(View.GONE);
+            binding.rlRootSimple.setVisibility(View.GONE);
+            binding.clRootEmpty.setVisibility(View.VISIBLE);
+        } else {
+            initProductComplex();
+            setProduceDataComplex(data);
+        }
+
+    }
+
+    //++++++++++++++++++++++++待生产状态++++++++++++++++++++++++//
+
+    private void initProductSimple() {
+        SimpleConfirmViewDialog.OnClickListener listener = new SimpleConfirmViewDialog.OnClickListener() {
+            @Override
+            public void onConfirm() {
+                ExecuteRequestBody body = new ExecuteRequestBody();
+                body.setEquipmentId(produceBean.getEquipmentId());
+                body.setId(produceBean.getPlanId());
+                body.setType(OperateProduceType.TYPE_EXECUTE_START.getCode());
+                String str = GsonUtil.objectToString(body);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
+                        "charset=utf-8"), str);
+                viewModel.postExecuteProduceInfo(requestBody);
+            }
+        };
+
+        binding.tvCommitBtnSimple.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SimpleConfirmViewDialog.showTitle(getContext(), "确认提交生产开始吗？", listener);
+            }
+        });
+
+
+        setApprovalSimple();
+    }
+
+    //设置审批
+    private void setApprovalSimple() {
+        businessId = getArguments().getInt(BUSINESS_ID);
+        businessType = getArguments().getInt(BUSINESS_TYPE);
+        status = getArguments().getInt(STATUS);
+        type = getArguments().getInt(TYPE);
+        isApproved = getArguments().getBoolean(IS_APPROVED);
+        if (isApproved) {
+            setRemarkDialogSimpleListener();
+            binding.produceApprovalLlSimple.setVisibility(View.VISIBLE);
+            binding.produceRejectTvSimple.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    status = ApprovalActivity.REJECT;
+                    RemarkDialog.show(getActivity(), "请输入驳回备注", remarkSimpleListener);
+                }
+            });
+
+            binding.produceAcceptTvSimple.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    status = ApprovalActivity.ACCEPT;
+                    RemarkDialog.show(getActivity(), "请输入通过备注", remarkSimpleListener);
+                }
+            });
+        }
+
+    }
+
+
+    private void setRemarkDialogSimpleListener() {
+        remarkSimpleListener = new RemarkDialog.OnDialogClickListener() {
+            @Override
+            public void onCommitInfo(ExecuteRequestBody data) {
+                String remark = data.getReason();
+                viewModel.approval(businessId, businessType, remark, status, type);
+            }
+        };
+    }
+
+    private void setProduceDataSimple(FocusProduceBean data) {
+        produceBean = data;
+        planFragment.setProduceData(data);
+
+        binding.tvProductNameSimple.setText(data.getName());
+        binding.tvProductCodeSimple.setText(data.getCode());
+        binding.tvDutyUnitSimple.setText(data.getPrincipalDept());
+
+        //设置生产状态
+        binding.tvProduceStatusSimple.setText(data.getStatusText());
+        binding.tvProduceStatusSimple.setBackgroundResource(data.getStatusTextBg());
+        int color_blue_ff1b97fc = data.getStatusTextColor();
+        binding.tvProduceStatusSimple.setTextColor(getActivity().getResources().getColor(color_blue_ff1b97fc));
+
+        binding.tvProjectNameSimple.setText(data.getProjectName());
+        binding.tvProjectCodeSimple.setText(data.getProjectCode());
+
+        binding.tvActualStartSimple.setText(data.getActualStartTime());
+        binding.tvPlanStartSimple.setText(data.getPlanStartTime());
+        binding.tvActualCompleteSimple.setText(data.getActualEndTime());
+        binding.tvPlanCompleteSimple.setText(data.getPlanEndTime());
+
+        LogUtils.showLog("isFooterBtnShow=" + isFooterBtnShow + "...getStatusType=" + (ProductStatusType.TYPE_PRODUCE_WAIT == data.getStatusType()));
+        binding.tvCommitBtnSimple.setVisibility((isFooterBtnShow
+                && ProductStatusType.TYPE_PRODUCE_WAIT == data.getStatusType()) ? View.VISIBLE : View.GONE);
+    }
+
+    //++++++++++++++++++++++++待生产状态++++++++++++++++++++++++//
+    //============================================================//
+    //++++++++++++++++++++++++待生产后生产状态++++++++++++++++++++++++//
+    private void initProductComplex() {
+        //设置视图
+        binding.clRootEmpty.setVisibility(View.GONE);
+        binding.rlRootSimple.setVisibility(View.GONE);
+        binding.clRootComplex.setVisibility(View.VISIBLE);
+
+        binding.tvActivateBtn.setOnClickListener(this);
+        binding.tvPauseBtn.setOnClickListener(this);
+        binding.tvCompleteBtn.setOnClickListener(this);
 
         setApprovalComplex();
     }
@@ -160,7 +291,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
         type = getArguments().getInt(TYPE);
         isApproved = getArguments().getBoolean(IS_APPROVED);
         if (isApproved) {
-            setRemarkDialogListener();
+            setRemarkDialogComplexListener();
             binding.produceApprovalLl.setVisibility(View.VISIBLE);
 
 
@@ -168,7 +299,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
                 @Override
                 public void onClick(View v) {
                     status = ApprovalActivity.REJECT;
-                    RemarkDialog.show(getActivity(), "请输入驳回备注", remarkListener);
+                    RemarkDialog.show(getActivity(), "请输入驳回备注", remarkComplexListener);
                 }
             });
 
@@ -176,14 +307,14 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
                 @Override
                 public void onClick(View v) {
                     status = ApprovalActivity.ACCEPT;
-                    RemarkDialog.show(getActivity(), "请输入通过备注", remarkListener);
+                    RemarkDialog.show(getActivity(), "请输入通过备注", remarkComplexListener);
                 }
             });
         }
     }
 
-    private void setRemarkDialogListener() {
-        remarkListener = new RemarkDialog.OnDialogClickListener() {
+    private void setRemarkDialogComplexListener() {
+        remarkComplexListener = new RemarkDialog.OnDialogClickListener() {
             @Override
             public void onCommitInfo(ExecuteRequestBody data) {
                 String remark = data.getReason();

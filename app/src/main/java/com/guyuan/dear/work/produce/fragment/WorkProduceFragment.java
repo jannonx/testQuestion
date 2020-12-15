@@ -37,6 +37,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 public class WorkProduceFragment extends BaseListSearchFragment<FocusProduceBean, FragmentListBinding, WorkProduceViewModel> {
 
     public static final String TAG = WorkProduceFragment.class.getSimpleName();
+    public boolean isFirstLoad;
 
     public static WorkProduceFragment newInstance() {
         Bundle args = new Bundle();
@@ -58,8 +59,8 @@ public class WorkProduceFragment extends BaseListSearchFragment<FocusProduceBean
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                LogUtils.showLog("listData="+(listData.get(position)==null));
-                FocusProduceDetailActivity.start(getContext(),listData.get(position),true);
+                LogUtils.showLog("listData=" + (listData.get(position) == null));
+                FocusProduceDetailActivity.start(getContext(), listData.get(position), true);
             }
         });
         viewModel.getProduceList(getListRequestBody(true));
@@ -84,6 +85,16 @@ public class WorkProduceFragment extends BaseListSearchFragment<FocusProduceBean
         viewModel.getProduceList(getListRequestBody(false));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        //第一次加载不刷新，再次进入页面刷新数据
+        if (!isFirstLoad) {
+            refresh();
+        }
+        isFirstLoad = false;
+    }
+
     /**
      * 生产列表请求参数配置
      *
@@ -105,10 +116,12 @@ public class WorkProduceFragment extends BaseListSearchFragment<FocusProduceBean
         return RequestBody.create(okhttp3.MediaType.parse("application/json; " +
                 "charset=utf-8"), str);
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onRefreshListMessage(EventProduceListRefresh event) {
         viewModel.getProduceList(getListRequestBody(true));
     }
+
     @Override
     protected boolean isPullEnable() {
         return false;

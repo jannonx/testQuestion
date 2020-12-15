@@ -19,6 +19,7 @@ import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailFragment
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailComplexFragment;
+import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailFragment;
 import com.guyuan.dear.office.approval.data.ApprovalViewModel;
 import com.guyuan.dear.office.approval.data.bean.ApprovalTypeBean;
 import com.guyuan.dear.office.approval.ui.ApprovalActivity;
@@ -163,7 +164,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                 binding.approvalAcceptTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        FocusProduceBean focusProduceBean = ((FocusProduceDetailComplexFragment) fragment).getProduceBean();
+                        FocusProduceBean focusProduceBean = ((FocusProduceDetailFragment) fragment).getProduceBean();
                         TipDialogFragment tipDialogFragment = TipDialogFragment.newInstance("", "确定通过吗?");
                         tipDialogFragment.setOnSureListener(new TipDialogFragment.OnSure() {
                             @Override
@@ -185,7 +186,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                 binding.approvalRejectTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        FocusProduceBean bean = ((FocusProduceDetailComplexFragment) fragment).getProduceBean();
+                        FocusProduceBean bean = ((FocusProduceDetailFragment) fragment).getProduceBean();
                         if (bean != null) {
                             RemarkDialog.show(ApprovalDetailActivity.this, "请输入驳回备注", new RemarkDialog.OnDialogClickListener() {
                                 @Override
