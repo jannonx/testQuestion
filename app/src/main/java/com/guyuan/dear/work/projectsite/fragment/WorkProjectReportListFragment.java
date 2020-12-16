@@ -192,24 +192,24 @@ public class WorkProjectReportListFragment extends BaseListSearchFragment<SiteEx
      * @param dataList 数据
      */
     public void dealDataByAddReportType(List<SiteExploreBean> dataList, ProjectReportType reportType) {
-//        LogUtils.showLog("size=" + dataList.size());
         List<SiteExploreBean> tempList = new ArrayList<>();
         for (int i = 0; i < dataList.size(); i++) {
             SiteExploreBean siteExploreBean = dataList.get(i);
             siteExploreBean.setModuleType(FunctionModuleType.TYPE_WORK);
             siteExploreBean.setProjectReportType(reportType);
-//            LogUtils.showLog("dealDataByAddReportType=" + reportType.getDes());
             tempList.add(siteExploreBean);
         }
         setListData(tempList);
+
+
     }
 
 
     private RequestBody getListRequestBody(boolean isRefresh) {
-        LogUtils.showLog("isRefresh0="+isRefresh+"...currentPage0="+currentPage);
+//        LogUtils.showLog("isRefresh0=" + isRefresh + "...currentPage0=" + currentPage);
         currentType = isRefresh ? REFRESH : LOAD_MORE;
         currentPage = isRefresh ? FIRST_PAGE : currentPage + 1;
-        LogUtils.showLog("isRefresh1="+isRefresh+"...currentPage1="+currentPage);
+//        LogUtils.showLog("isRefresh1=" + isRefresh + "...currentPage1=" + currentPage);
         ListProjectRequestBody body = new ListProjectRequestBody();
         ListProjectRequestBody.FiltersBean filtersBean = new ListProjectRequestBody.FiltersBean();
         filtersBean.setQueryParams(searchContent);
