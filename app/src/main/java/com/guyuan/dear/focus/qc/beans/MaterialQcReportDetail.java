@@ -30,6 +30,7 @@ public class MaterialQcReportDetail extends BaseMaterialQcReport {
     private int sampleSize;
     private String qcRemark;
     private List<GenericQcLogBean> verifyLogs;
+    private String unit;
 
     public MaterialQcReportDetail() {
     }
@@ -55,6 +56,7 @@ public class MaterialQcReportDetail extends BaseMaterialQcReport {
         }
         setMaterialRemarks(materialRemark);
         setBatchSize(src.getProductNum());
+        setUnit(src.getProductUnit());
         setProjectId(src.getProjectCode());
         setProjectName(src.getProjectName());
         setMaterialName(src.getProductName());
@@ -120,6 +122,14 @@ public class MaterialQcReportDetail extends BaseMaterialQcReport {
 
     public int getBatchSize() {
         return batchSize;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     public void setBatchSize(int batchSize) {

@@ -1,5 +1,7 @@
 package com.guyuan.dear.focus.qc.bindingAdapters;
 
+import android.text.TextUtils;
+
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.Vote;
 import com.guyuan.dear.focus.qc.adapters.QcVerifyLogsAdapter;
+import com.guyuan.dear.focus.qc.beans.MaterialQcReportDetail;
+import com.guyuan.dear.focus.qc.beans.ProductQcReportDetail;
 import com.guyuan.dear.focus.qc.beans.verfifyLog.GenericQcLogBean;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -38,5 +41,35 @@ public class QcReportDetailBindingAdapter {
         QcVerifyLogsAdapter adapter = new QcVerifyLogsAdapter(data, view.getContext());
         view.setLayoutManager(layoutManager);
         view.setAdapter(adapter);
+    }
+
+    @BindingAdapter("setMaterialReportQuantityAndUnit")
+    public static void setMaterialReportQuantityAndUnit(AppCompatTextView view, MaterialQcReportDetail data) {
+        String showContent = "";
+        if (data != null) {
+            int batchSize = data.getBatchSize();
+            showContent = String.valueOf(batchSize);
+            String unit = data.getUnit();
+            if (!TextUtils.isEmpty(unit)) {
+                showContent = showContent + unit;
+            }
+        }
+        view.setText(showContent.trim());
+
+    }
+
+    @BindingAdapter("setProductReportQuantityAndUnit")
+    public static void setProductReportQuantityAndUnit(AppCompatTextView view, ProductQcReportDetail data) {
+        String showContent = "";
+        if (data != null) {
+            int batchSize = data.getBatchSize();
+            showContent = String.valueOf(batchSize);
+            String unit = data.getUnit();
+            if (!TextUtils.isEmpty(unit)) {
+                showContent = showContent + unit;
+            }
+        }
+        view.setText(showContent.trim());
+
     }
 }

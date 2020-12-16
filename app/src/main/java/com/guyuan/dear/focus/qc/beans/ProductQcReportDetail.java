@@ -23,6 +23,7 @@ public class ProductQcReportDetail extends BaseProductQcReport {
     private int sampleSize;
     private List<GenericQcLogBean> verifyLogs;
     private String qcRemark;
+    private String unit;
 
     public ProductQcReportDetail() {
     }
@@ -41,6 +42,7 @@ public class ProductQcReportDetail extends BaseProductQcReport {
         setReportId(src.getId());
         setBatchId(src.getSerialNumber());
         setBatchSize(src.getProductNum());
+        setUnit(src.getProductUnit());
         setProjectId(src.getProjectCode());
         setProjectName(src.getProjectName());
         setProductName(src.getProductName());
@@ -167,5 +169,13 @@ public class ProductQcReportDetail extends BaseProductQcReport {
 
     public void setQcRemark(String qcRemark) {
         this.qcRemark = qcRemark;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }
