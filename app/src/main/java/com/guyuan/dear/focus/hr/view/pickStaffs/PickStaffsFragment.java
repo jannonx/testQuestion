@@ -36,10 +36,9 @@ import java.util.List;
 public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBinding, PickStaffsViewModel> {
 
     /**
-     *
-     * @param preSelected 已选的人。这部分默认显示选中，用户可以取消或重新选中。
-     * @param hidden 隐藏的人。这部分不显示出来，不能操作。
-     * @param disabled 不能操作的打人。这部分用户能看到，但不能操作。可以和已选的人重叠。
+     * @param preSelected    已选的人。这部分默认显示选中，用户可以取消或重新选中。
+     * @param hidden         隐藏的人。这部分不显示出来，不能操作。
+     * @param disabled       不能操作的打人。这部分用户能看到，但不能操作。可以和已选的人重叠。
      * @param maxSelectCount 最大选择人数
      * @return
      */
@@ -48,16 +47,16 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
                                                  @Nullable ArrayList<StaffBean> disabled,
                                                  int maxSelectCount) {
         Bundle bundle = new Bundle();
-        if(preSelected!=null){
-            bundle.putParcelableArrayList(ConstantValue.KEY_PRE_SELECTED_STAFFS,preSelected);
+        if (preSelected != null) {
+            bundle.putParcelableArrayList(ConstantValue.KEY_PRE_SELECTED_STAFFS, preSelected);
         }
-        if(hidden!=null){
-            bundle.putParcelableArrayList(ConstantValue.KEY_HIDDEN_STAFFS,hidden);
+        if (hidden != null) {
+            bundle.putParcelableArrayList(ConstantValue.KEY_HIDDEN_STAFFS, hidden);
         }
-        if(disabled!=null){
-            bundle.putParcelableArrayList(ConstantValue.KEY_DISABLE_STAFFS,disabled);
+        if (disabled != null) {
+            bundle.putParcelableArrayList(ConstantValue.KEY_DISABLE_STAFFS, disabled);
         }
-        bundle.putInt(ConstantValue.KEY_MAX_SELECT_COUNT,maxSelectCount);
+        bundle.putInt(ConstantValue.KEY_MAX_SELECT_COUNT, maxSelectCount);
         PickStaffsFragment fragment = new PickStaffsFragment();
         fragment.setArguments(bundle);
         return fragment;
@@ -75,9 +74,9 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
         ArrayList<StaffBean> hiddenStaffs = bundle.getParcelableArrayList(ConstantValue.KEY_HIDDEN_STAFFS);
         ArrayList<StaffBean> disabled = bundle.getParcelableArrayList(ConstantValue.KEY_DISABLE_STAFFS);
         int maxSelect = bundle.getInt(ConstantValue.KEY_MAX_SELECT_COUNT);
-        getViewModel().init(preSelected,hiddenStaffs,disabled,maxSelect);
+        getViewModel().init(preSelected, hiddenStaffs, disabled, maxSelect);
         //如果有需要隐藏起来的人员，设置成在搜索栏里也搜索不到。
-        if(hiddenStaffs!=null){
+        if (hiddenStaffs != null) {
             getViewDataBinding().fragmentPickStaffsHrSearchView.searchBarForStaffSearchView.addHiddenStaffs(hiddenStaffs);
         }
 
@@ -94,8 +93,8 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
         getViewModel().setOnClickHistoryStaff(new PickStaffsHistoryStaffsAdapter.PickStaffsHistoryItemClickListener() {
             @Override
             public void onItemClick(PickStaffBean bean, int pos) {
-                if(bean.isPick()){
-                    if(getViewModel().checkIsExceedMaxSelectCount()){
+                if (bean.isPick()) {
+                    if (getViewModel().checkIsExceedMaxSelectCount()) {
                         bean.setPick(false);
                         bean.setPickTime(0);
                         showToastTip("已经超出最大选择人数。");
@@ -112,13 +111,13 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
                     //遍历二级菜单
                     for (int i1 = 0; i1 < staffs.size(); i1++) {
                         PickStaffBean staffBean = staffs.get(i1);
-                        if(staffBean.getId().equals(bean.getId())){
+                        if (staffBean.getId().equals(bean.getId())) {
                             //如果找到了被点选/反选的人，更新adapter，刷新UI
                             ExpandableListView expListView = getViewDataBinding().fragmentPickStaffsExpListView;
                             PickStaffsExpListAdapter adapter = (PickStaffsExpListAdapter) expListView.getExpandableListAdapter();
                             adapter.notifyDataSetChanged();
                             //expListView 更新UI时需要重新收起/展开，否则子菜单不会刷新
-                            if(expListView.isGroupExpanded(i)){
+                            if (expListView.isGroupExpanded(i)) {
                                 expListView.collapseGroup(i);
                                 expListView.expandGroup(i);
                             }
@@ -135,8 +134,8 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
             @Override
             public void onTogglePickStaff(int grpPos, int childPos, PickStaffBean item) {
 
-                if(item.isPick()){
-                    if(getViewModel().checkIsExceedMaxSelectCount()){
+                if (item.isPick()) {
+                    if (getViewModel().checkIsExceedMaxSelectCount()) {
                         item.setPick(false);
                         item.setPickTime(0);
                         showToastTip("已经超出最大选择人数。");
@@ -149,7 +148,7 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
                 List<PickStaffBean> list = adapter.getList();
                 for (int i = 0; i < list.size(); i++) {
                     PickStaffBean bean = list.get(i);
-                    if(item.getId().equals(bean.getId())){
+                    if (item.getId().equals(bean.getId())) {
                         adapter.notifyItemChanged(i);
                         break;
                     }
@@ -161,22 +160,22 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
         //点击历史选人列表中的"选择全部"，则同时更新历史选人列表UI和二级选人列表UI
         getViewDataBinding().fragmentPickStaffsCbxSelectAllHistoryStaffs.setOnCheckedChangeListener(
                 new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //更改数据源点选状态
-                getViewModel().selectAllHistoryStaffs(isChecked);
-                //更新最新点选人数UI
-                getViewModel().updateSelectCount();
-                //更新历史选人列表UI
-                ExpandableListView expListView = getViewDataBinding().fragmentPickStaffsExpListView;
-                PickStaffsExpListAdapter adapter = (PickStaffsExpListAdapter) expListView.getExpandableListAdapter();
-                adapter.notifyDataSetChanged();
-                //更新二级选人列表UI
-                RecyclerView view = getViewDataBinding().fragmentPickStaffsRecyclerViewHistoryStaffs;
-                PickStaffsHistoryStaffsAdapter adapter2 = (PickStaffsHistoryStaffsAdapter) view.getAdapter();
-                adapter2.notifyDataSetChanged();
-            }
-        });
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        //更改数据源点选状态
+                        getViewModel().selectAllHistoryStaffs(isChecked);
+                        //更新最新点选人数UI
+                        getViewModel().updateSelectCount();
+                        //更新历史选人列表UI
+                        ExpandableListView expListView = getViewDataBinding().fragmentPickStaffsExpListView;
+                        PickStaffsExpListAdapter adapter = (PickStaffsExpListAdapter) expListView.getExpandableListAdapter();
+                        adapter.notifyDataSetChanged();
+                        //更新二级选人列表UI
+                        RecyclerView view = getViewDataBinding().fragmentPickStaffsRecyclerViewHistoryStaffs;
+                        PickStaffsHistoryStaffsAdapter adapter2 = (PickStaffsHistoryStaffsAdapter) view.getAdapter();
+                        adapter2.notifyDataSetChanged();
+                    }
+                });
 
         //点击确认，把所选清单返回给上一个activity
         getViewModel().setOnClickSubmit(new View.OnClickListener() {
@@ -187,8 +186,8 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
                 getViewModel().saveStaffSelectHistoryToLocal(staffs);
                 FragmentActivity activity = getActivity();
                 Intent intent = new Intent();
-                intent.putParcelableArrayListExtra(ConstantValue.KEY_SELECTED_STAFFS,staffs);
-                activity.setResult(Activity.RESULT_OK,intent);
+                intent.putParcelableArrayListExtra(ConstantValue.KEY_SELECTED_STAFFS, staffs);
+                activity.setResult(Activity.RESULT_OK, intent);
                 activity.finish();
             }
         });
@@ -198,16 +197,16 @@ public class PickStaffsFragment extends BaseMvvmFragment<FragmentPickStaffsBindi
             @Override
             public void onStaffSelected(StaffBean staff) {
                 MutableLiveData<List<PickStaffBean>> allStaffs = getViewModel().getAllStaffs();
-                if(allStaffs.getValue()==null){
+                if (allStaffs.getValue() == null) {
                     return;
                 }
                 //改变公共数据源中员工的点选状态
-                if(!getViewModel().checkStaffSelectable(staff.getId())){
+                if (!getViewModel().checkStaffSelectable(staff.getId())) {
                     showToastTip("无法选择该员工");
                     return;
                 }
                 for (PickStaffBean bean : allStaffs.getValue()) {
-                    if(bean.getId().equals(staff.getId())){
+                    if (bean.getId().equals(staff.getId())) {
                         bean.setPickTime(System.currentTimeMillis());
                         bean.setPick(true);
                         break;

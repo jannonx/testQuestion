@@ -124,7 +124,17 @@ public class PickStaffsBindingAdapter {
         if (depts == null || depts.isEmpty()) {
             return;
         }
-        view.setText(depts.get(0).getDeptName());
+        String deptName = depts.get(0).getDeptName();
+        if (TextUtils.isEmpty(deptName)) {
+            deptName = "未知部门";
+        } else {
+            //部门名称超出4个字节就把后面的截掉。
+            if (deptName.length() > 4) {
+                deptName = deptName.substring(0, 4);
+                deptName = deptName+"...";
+            }
+        }
+        view.setText(deptName);
     }
 
 
