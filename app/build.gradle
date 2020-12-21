@@ -283,6 +283,8 @@ dependencies {
     //解决piechart数字重叠的补丁：https://github.com/huzipiaopiao/MPAndroidChartFix
     implementation AndroidChart.mpAndroidChartUtils
 
+    //转圈
+    implementation SpinKit.runtime
 
     //bugly
     implementation Bugly.upgrade
@@ -306,7 +308,4 @@ dependencies {
     //三方日历控件
     implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
 
-    //bugly
-    implementation Bugly.upgrade
-    implementation Bugly.nativecrashreport
 }
