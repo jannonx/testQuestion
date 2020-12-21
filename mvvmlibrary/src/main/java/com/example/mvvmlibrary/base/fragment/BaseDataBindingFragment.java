@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -32,10 +34,11 @@ public abstract class BaseDataBindingFragment<VB extends ViewDataBinding, VM ext
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        BaseDataBindingActivity activity = (BaseDataBindingActivity) getActivity();
-        if (activity != null) {
+        FragmentActivity fragmentActivity = (FragmentActivity) getActivity();
+        if (fragmentActivity != null && fragmentActivity instanceof BaseDataBindingActivity) {
+            BaseDataBindingActivity activity = (BaseDataBindingActivity) fragmentActivity;
             if (activity.isSetViewModelToFragment()) {
-                viewModel = (VM) activity.getViewModel();
+                viewModel = (VM) activity.getViewModel();//使用activity的viewModel
             } else {
                 try {
                     Type genericSuperclass = getClass().getGenericSuperclass();
@@ -47,7 +50,7 @@ public abstract class BaseDataBindingFragment<VB extends ViewDataBinding, VM ext
                             cls = (Class<VM>) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[1];
                         }
 
-                        viewModel = new ViewModelProvider(getActivity()).get(cls);
+                        viewModel = new ViewModelProvider(getActivity()).get(cls);//使用自身的viewModel
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -76,6 +79,7 @@ public abstract class BaseDataBindingFragment<VB extends ViewDataBinding, VM ext
         binding.unbind();
     }
 
+    //绑定viewModel
     protected abstract int getVariableId();
 
 }
