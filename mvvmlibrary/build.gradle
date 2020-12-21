@@ -1,7 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.hughsheng'
 
@@ -41,21 +38,24 @@ dependencies {
     androidTestCompileOnly Depend.espressoCore
 
     //hilt
-    implementation Hilt.daggerRuntime
-    kapt Hilt.daggerCompiler
-    implementation Hilt.viewModule
-    kapt Hilt.compiler
+//    implementation Hilt.daggerRuntime
+//    kapt Hilt.daggerCompiler
+//    implementation Hilt.viewModule
+//    kapt Hilt.compiler
 
 
     implementation AndroidX.lifeCycleExtension
     implementation AndroidX.lifecycleRuntime
 
-    implementation SpinKit.runtime
-
+    compileOnly SpinKit.runtime
 
     //retrofit
-    implementation Retrofit.runtime
-    implementation Retrofit.gson
-    implementation Retrofit.adapter
-    implementation Retrofit.logging
+    compileOnly Retrofit.runtime
+    compileOnly Retrofit.gson
+    compileOnly Retrofit.adapter
+    compileOnly Retrofit.logging
+
+    //bugly
+    compileOnly Bugly.upgrade
+    compileOnly Bugly.nativecrashreport
 }

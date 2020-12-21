@@ -114,7 +114,7 @@ public class ApiServiceModule extends BaseApiServiceModule implements HttpSettin
     @Override
     @Singleton
     @Provides
-    @Named(BuildConfig.BUILD_TYPE)
+    @Named(WITHOUT_CERTIFICATE)
     public SSLSocketFactory getDebugSSLSocketFactory(TrustManagerFactory trustManagerFactory) {
         return providesDebugSSLSocketFactory(trustManagerFactory);
     }
@@ -160,8 +160,8 @@ public class ApiServiceModule extends BaseApiServiceModule implements HttpSettin
 
     @Singleton
     @Provides
-    @Named(BuildConfig.BUILD_TYPE)
-    public OkHttpClient.Builder getDebugOkHttpClientBuilder(@Named(BuildConfig.BUILD_TYPE) SSLSocketFactory sslSocketFactory,
+    @Named(WITHOUT_CERTIFICATE)
+    public OkHttpClient.Builder getDebugOkHttpClientBuilder(@Named(WITHOUT_CERTIFICATE) SSLSocketFactory sslSocketFactory,
                                                             X509TrustManager x509TrustManager,
                                                             HttpLoggingInterceptor loggingInterceptor,
                                                             HeadInterceptor headInterceptor,
@@ -186,8 +186,8 @@ public class ApiServiceModule extends BaseApiServiceModule implements HttpSettin
     @Override
     @Singleton
     @Provides
-    @Named(BuildConfig.BUILD_TYPE)
-    public Retrofit getDebugRetrofit(@Named(BuildConfig.BUILD_TYPE) OkHttpClient.Builder okHttpClient) {
+    @Named(WITHOUT_CERTIFICATE)
+    public Retrofit getDebugRetrofit(@Named(WITHOUT_CERTIFICATE) OkHttpClient.Builder okHttpClient) {
         return providesDebugRetrofit(okHttpClient);
     }
 }

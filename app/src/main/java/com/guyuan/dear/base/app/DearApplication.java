@@ -6,22 +6,21 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
+import com.example.httplibrary.BaseApiServiceModule;
 import com.example.mvvmlibrary.app.BaseApplication;
+import com.example.mvvmlibrary.util.BuglyUtil;
 import com.guyuan.dear.BuildConfig;
 import com.guyuan.dear.R;
 import com.guyuan.dear.home.MainActivity;
 import com.guyuan.dear.service.BackService;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.SharedPreferencesUtils;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 import com.tencent.bugly.beta.UpgradeInfo;
 import com.tencent.bugly.crashreport.CrashReport;
 
-import java.util.List;
-import java.util.Map;
-
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import dagger.hilt.android.HiltAndroidApp;
 import retrofit2.Retrofit;
@@ -38,14 +37,15 @@ public class DearApplication extends BaseApplication {
     @Inject
     Retrofit retrofit;
     @Inject
+    @Named(BaseApiServiceModule.WITHOUT_CERTIFICATE)
     Retrofit debugRetrofit;
 
     private static DearApplication application;
     //标识测试环境
-    public static final String DEUBG = "debug";
+    public static final String DEBUG = "debug";
     //标识正式环境
     public static final String RELEASE = "release";
-    private SharedPreferencesUtils sharedPreferencesUtils;
+
     private DisplayMetrics displayMetrics = new DisplayMetrics();
 
     public static DearApplication getInstance() {
@@ -57,11 +57,12 @@ public class DearApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         application = this;
-        sharedPreferencesUtils = SharedPreferencesUtils.getInstance(this);
         WindowManager winManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         winManager.getDefaultDisplay().getMetrics(displayMetrics);
 
-        initBugly();
+        BuglyUtil.initBugly(this,BuildConfig.BUILD_TYPE,BuildConfig.VERSION_NAME,
+                BuildConfig.APPLICATION_ID,BuildConfig.BUGLY_APP_ID,R.mipmap.updata_bg,
+                R.layout.dialog_version_update,MainActivity.class);
 
 //        //初始化萤石云平台
 //        EZOpenSDK.showSDKLog(true);
@@ -71,38 +72,13 @@ public class DearApplication extends BaseApplication {
 //        EzNetManager.getInstance().makeSureAccessTokenValid();
     }
 
-
-    //初始化bugly
-    private void initBugly() {
-        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(this);
-        strategy.setAppChannel(BuildConfig.BUILD_TYPE);  //设置渠道
-        strategy.setAppVersion(BuildConfig.VERSION_NAME);      //App的版本
-        strategy.setAppPackageName(BuildConfig.APPLICATION_ID);  //App的包名
-        //设置只在哪个activity弹窗
-        Beta.canShowUpgradeActs.add(MainActivity.class);
-        //    Beta.largeIconId = R.mipmap.ic_launcher;
-        //    Beta.smallIconId = R.mipmap.ic_launcher;
-        //    Beta.enableNotification = true;
-        //    Beta.canShowApkInfo = true;//设置是否显示apk信息
-        Beta.defaultBannerId = R.mipmap.updata_bg;
-        Beta.upgradeDialogLayoutId = R.layout.dialog_version_update;
-        Bugly.init(getApplicationContext(), BuildConfig.BUGLY_APP_ID, BuildConfig.DEBUG, strategy);
-        checkNewVersion();
-    }
-
-    //检查是否有新版本信息
-    private void checkNewVersion() {
-        UpgradeInfo upgradeInfo = Beta.getUpgradeInfo();
-        ConstantValue.hasNewVersion = upgradeInfo != null;
-    }
-
     /**
      * @return Retrofit
      * @author : tl
      * @description :  根据开发环境获取retrofit
      */
     public Retrofit getRetrofit() {
-        if (DEUBG.equals(BuildConfig.BUILD_TYPE)) {
+        if (DEBUG.equals(BuildConfig.BUILD_TYPE)) {
             return debugRetrofit;
         } else {
             return retrofit;
@@ -126,81 +102,6 @@ public class DearApplication extends BaseApplication {
             backService.putExtras(bundle);
         }
         startService(backService);
-    }
-
-
-    /**
-     * 采用andriod本身数据格式缓存数据
-     * 后期可以更改成其他缓存
-     */
-    public void saveCacheData(String key, Object data) {
-        saveCacheData(SharedPreferencesUtils.SP_NAME, key, data);
-    }
-
-    private void saveCacheData(final String fileName, final String key, final Object defaultObject) {
-        sharedPreferencesUtils.saveData(fileName, key, defaultObject);
-    }
-
-
-    public Map<String, Integer> getBuriedPointData(String userId) {
-        return sharedPreferencesUtils.getBuriedPointData(SharedPreferencesUtils.SP_NAME, userId);
-    }
-
-    public void clearBuriedPointData(String userId) {
-        sharedPreferencesUtils.clearBuriedPointData(SharedPreferencesUtils.SP_NAME, userId);
-    }
-
-    public Object getCacheData(String key, Object defaultObject) {
-        return getCacheData(SharedPreferencesUtils.SP_NAME, key, defaultObject);
-    }
-
-    private Object getCacheData(final String fileName, final String key, final Object defaultObject) {
-        return sharedPreferencesUtils.getData(fileName, key, defaultObject);
-    }
-
-    public void saveCacheListData(String key, final List<Map<String, String>> dataList) {
-        saveCacheListData(SharedPreferencesUtils.SP_NAME, key, dataList);
-    }
-
-    private void saveCacheListData(final String fileName, final String key, final List<Map<String,
-            String>> dataList) {
-        sharedPreferencesUtils.saveListData(fileName, key, dataList);
-    }
-
-    public List<Map<String, String>> getCacheListData(final String key) {
-        return getCacheListData(SharedPreferencesUtils.SP_NAME, key);
-    }
-
-    private List<Map<String, String>> getCacheListData(final String fileName, final String key) {
-        return sharedPreferencesUtils.getListData(fileName, key);
-    }
-
-    public void removeListData(final String key) {
-        sharedPreferencesUtils.removeListData(SharedPreferencesUtils.SP_NAME, key);
-    }
-
-    public void saveCacheStringListData(String key, final List<String> dataList) {
-        sharedPreferencesUtils.saveStringListData(SharedPreferencesUtils.SP_NAME, key, dataList);
-    }
-
-    public List<String> getCacheStringListData(final String key) {
-        return sharedPreferencesUtils.getStringListData(SharedPreferencesUtils.SP_NAME, key);
-    }
-
-    public void saveMapData(String key, Map<String, String> mapData) {
-        sharedPreferencesUtils.saveMapData(SharedPreferencesUtils.SP_NAME, key, mapData);
-    }
-
-    public Map<String, String> getMapData(String key) {
-        return sharedPreferencesUtils.getMapData(SharedPreferencesUtils.SP_NAME, key);
-    }
-
-    public void saveTreeMapData(String key, Map<String, String> mapData) {
-        sharedPreferencesUtils.saveTreeMapData(SharedPreferencesUtils.SP_NAME, key, mapData);
-    }
-
-    public Map<String, String> getTreeMapData(String key) {
-        return sharedPreferencesUtils.getTreeMapData(SharedPreferencesUtils.SP_NAME, key);
     }
 
 }

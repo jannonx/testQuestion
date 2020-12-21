@@ -10,6 +10,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
+import com.example.mvvmlibrary.util.SharedPreferencesUtils;
 import com.google.gson.Gson;
 import com.guyuan.dear.BuildConfig;
 import com.guyuan.dear.R;
@@ -20,7 +21,6 @@ import com.guyuan.dear.login.data.bean.AppMenusBean;
 import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.login.data.LoginViewModel;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.SharedPreferencesUtils;
 
 import java.util.List;
 

@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.example.mvvmlibrary.util.ActivityUtils;
 import com.example.mvvmlibrary.util.LogUtils;
 import com.example.mvvmlibrary.util.MediaFileUtils;
+import com.example.mvvmlibrary.util.SharedPreferencesUtils;
 import com.google.gson.Gson;
 import com.guyuan.dear.BuildConfig;
 import com.guyuan.dear.base.app.DearApplication;

@@ -1,4 +1,4 @@
-package com.guyuan.dear.utils;
+package com.example.mvvmlibrary.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -244,6 +244,7 @@ dependencies {
     implementation EventBus.eventBus
     //annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.0.1'
 
+    implementation SpinKit.runtime
 
     //leakcanary内存泄漏检测
     debugImplementation Leakcanary.open
@@ -305,6 +306,7 @@ dependencies {
     //三方日历控件
     implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
 
-    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
-    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
+    //bugly
+    implementation Bugly.upgrade
+    implementation Bugly.nativecrashreport
 }

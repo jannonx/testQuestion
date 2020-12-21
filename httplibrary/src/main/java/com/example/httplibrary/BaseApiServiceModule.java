@@ -52,19 +52,20 @@ public class BaseApiServiceModule {
     /**
      * okhttp的一些参数设置常量(秒级单位)
      */
-    protected  int CACHE_TIME = 24 * 60 * 60;                 //设置缓存时间
-    protected  int READ_TIME = 180;                           //设置读取时间
-    protected  int WRITE_TIME = 180;                          //设置写时间
-    protected  int CONNECT_TIME = 5;                          //设置连接时间
-    protected  int CACHE_SIZE = 1024 * 1024 * 50;               //设置缓存大小
-    protected  String mBaseUrl = "https://183.62.99.102:8088/"; //设置baseUrl("http://81.71.9.129:8010/")
-    protected  String mCacheName = "mCache";                   //缓存文件名
-    protected  String mReleaseCer = "cer/certificate.cer";  //正式环境证书地址
-    protected  String mDebugCer = "cer/certificate.cer";      //测试环境证书地址
+    protected int CACHE_TIME = 24 * 60 * 60;                 //设置缓存时间
+    protected int READ_TIME = 180;                           //设置读取时间
+    protected int WRITE_TIME = 180;                          //设置写时间
+    protected int CONNECT_TIME = 5;                          //设置连接时间
+    protected int CACHE_SIZE = 1024 * 1024 * 50;             //设置缓存大小
+    public static final String WITHOUT_CERTIFICATE = "without_certificate";            //无证书标识
+    protected String mBaseUrl = "https://183.62.99.102:8088/"; //设置baseUrl("http://81.71.9.129:8010/")
+    protected String mCacheName = "mCache";                   //缓存文件名
+    protected String mReleaseCer = "cer/certificate.cer";  //正式环境证书地址
+    protected String mDebugCer = "cer/certificate.cer";      //测试环境证书地址
 
 
     //    @Provides  //dragger2提供实例注解
-//    @Singleton //注解实现单例
+    //    @Singleton //注解实现单例
     protected Cache providesCache(Context mContext) {
         //添加缓存
         File cacheFile = new File(mContext.getExternalCacheDir(), mCacheName);
@@ -161,7 +162,7 @@ public class BaseApiServiceModule {
     //测试环境去掉证书认证
 //    @Provides
 //    @Singleton
-//    @Named(BuildConfig.BUILD_TYPE)
+//    @Named(WITHOUT_CERTIFICATE)
     protected SSLSocketFactory providesDebugSSLSocketFactory(TrustManagerFactory trustManagerFactory) {
         //Create an SSLContext that uses our TrustManager
         try {
@@ -265,9 +266,9 @@ public class BaseApiServiceModule {
 
     //    @Provides
 //    @Singleton
-//    @Named(BuildConfig.BUILD_TYPE)
+//    @Named(WITHOUT_CERTIFICATE)
     protected OkHttpClient.Builder providesDebugOkHttpClientBuilder(
-            @Named(BuildConfig.BUILD_TYPE) SSLSocketFactory sslSocketFactory,
+            @Named(WITHOUT_CERTIFICATE) SSLSocketFactory sslSocketFactory,
             X509TrustManager x509TrustManager,
             HttpLoggingInterceptor loggingInterceptor,
             HostnameVerifier homeNameVerifier,
@@ -299,8 +300,8 @@ public class BaseApiServiceModule {
 
     //    @Provides
 //    @Singleton
-//    @Named(BuildConfig.BUILD_TYPE)
-    protected Retrofit providesDebugRetrofit(@Named(BuildConfig.BUILD_TYPE) OkHttpClient.Builder okHttpClientBuilder) {
+//    @Named(WITHOUT_CERTIFICATE)
+    protected Retrofit providesDebugRetrofit(@Named(WITHOUT_CERTIFICATE) OkHttpClient.Builder okHttpClientBuilder) {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())        //配置Gson
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //配置rxjava
