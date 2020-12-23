@@ -24,7 +24,7 @@ import java.util.List;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
  * @description: 我的关注--安装调试

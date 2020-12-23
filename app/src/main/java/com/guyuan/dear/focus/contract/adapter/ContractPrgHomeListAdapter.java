@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.customizeview.flowlayout.FlowLayout;
 import com.guyuan.dear.customizeview.flowlayout.TagAdapter;
 import com.guyuan.dear.customizeview.flowlayout.TagFlowLayout;
@@ -17,7 +17,7 @@ import com.guyuan.dear.utils.CalenderUtils;
 
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
  * @author: 廖华凯

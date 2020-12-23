@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
  * RecyclerView设置Header/Footer所用到的工具类

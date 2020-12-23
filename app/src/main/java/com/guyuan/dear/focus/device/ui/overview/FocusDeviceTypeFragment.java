@@ -1,9 +1,7 @@
 package com.guyuan.dear.focus.device.ui.overview;
 
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
@@ -17,7 +15,7 @@ import com.guyuan.dear.utils.ConstantValue;
 import java.util.ArrayList;
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
  * @author : tl

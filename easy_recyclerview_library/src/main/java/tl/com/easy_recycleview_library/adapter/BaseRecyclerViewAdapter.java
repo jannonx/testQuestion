@@ -1,4 +1,4 @@
-package tl.com.easy_recycleview_library;
+package tl.com.easy_recycleview_library.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;

@@ -25,8 +25,7 @@ import com.guyuan.dear.utils.LogUtils;
 import java.util.List;
 
 import okhttp3.RequestBody;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
-import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 
 /**

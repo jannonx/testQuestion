@@ -7,12 +7,10 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.base.adapter.ScanPicAdapter;
 import com.guyuan.dear.base.adapter.TagStaffAdapter;
 import com.guyuan.dear.base.bean.PicBean;
@@ -25,15 +23,13 @@ import com.guyuan.dear.focus.assess.data.bean.AuditContentBean;
 import com.guyuan.dear.focus.assess.data.bean.AuditFormResultBean;
 import com.guyuan.dear.focus.assess.data.bean.PartnerBean;
 import com.guyuan.dear.utils.CommonUtils;
-import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.StringUtils;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
-import com.sun.jna.platform.win32.OaIdl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**

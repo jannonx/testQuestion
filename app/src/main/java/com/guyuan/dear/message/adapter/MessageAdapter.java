@@ -1,7 +1,7 @@
 package com.guyuan.dear.message.adapter;
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.BR;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
 import com.guyuan.dear.databinding.ItemMessageBinding;
 

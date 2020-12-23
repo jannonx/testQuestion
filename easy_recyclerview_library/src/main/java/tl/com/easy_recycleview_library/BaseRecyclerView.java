@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.ILoadMoreFooter;
 import tl.com.easy_recycleview_library.interfaces.IRefreshHeader;
 import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;

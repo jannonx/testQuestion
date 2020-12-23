@@ -2,8 +2,6 @@ package com.guyuan.dear.focus.produce.fragment;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,14 +14,12 @@ import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.LogUtils;
-import com.guyuan.dear.utils.ScreenUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
  * @description: 我的关注--生产详情

@@ -1,11 +1,9 @@
 package com.guyuan.dear.focus.device.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -20,13 +18,10 @@ import com.guyuan.dear.focus.device.data.beans.EquipmentBean;
 import com.guyuan.dear.focus.device.data.beans.FactoryBean;
 import com.guyuan.dear.focus.device.data.beans.FactoryRealTimeBean;
 import com.guyuan.dear.focus.device.ui.detail.FocusDeviceDetailActivity;
-import com.guyuan.dear.utils.CommonUtils;
-import com.guyuan.dear.utils.ConstantValue;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
  * @author : tl

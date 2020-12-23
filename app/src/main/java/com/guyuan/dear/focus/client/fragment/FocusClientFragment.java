@@ -20,7 +20,7 @@ import com.guyuan.dear.utils.LogUtils;
 
 
 import okhttp3.RequestBody;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**

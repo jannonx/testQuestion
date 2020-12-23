@@ -1,7 +1,7 @@
 package com.guyuan.dear.ezCloud.adapters;
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemEzPlaybackListBinding;
 import com.videogo.openapi.bean.EZDeviceRecordFile;
 

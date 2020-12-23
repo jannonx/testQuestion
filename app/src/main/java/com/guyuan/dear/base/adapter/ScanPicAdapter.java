@@ -1,5 +1,8 @@
 package com.guyuan.dear.base.adapter;
 
+import androidx.annotation.NonNull;
+
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.base.bean.PicBean;
 import com.guyuan.dear.databinding.ItemPicScanBinding;
@@ -22,4 +25,5 @@ public class ScanPicAdapter extends BaseDBRecycleAdapter<PicBean, ItemPicScanBin
     protected void bindDataToView(Holder holder, PicBean item, int position) {
         holder.binding.setVariable(BR.picBean, item);
     }
+
 }

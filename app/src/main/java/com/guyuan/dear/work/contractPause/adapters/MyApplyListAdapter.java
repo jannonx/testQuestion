@@ -1,7 +1,7 @@
 package com.guyuan.dear.work.contractPause.adapters;
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemMyApplyListBinding;
 import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
 

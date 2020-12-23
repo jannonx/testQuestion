@@ -9,7 +9,8 @@ import com.guyuan.dear.R;
 
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 
 /**

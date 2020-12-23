@@ -5,15 +5,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.focus.device.data.beans.EquipmentBean;
 import com.guyuan.dear.focus.device.data.beans.FactoryRealTimeBean;
 
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerView;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
  * created by tl

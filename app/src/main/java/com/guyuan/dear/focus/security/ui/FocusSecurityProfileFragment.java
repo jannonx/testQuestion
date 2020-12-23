@@ -13,7 +13,6 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.customizeview.TabLayoutHelper;
 import com.guyuan.dear.databinding.FragmentFocusSecurityProfileBinding;
-import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.device.data.beans.FactoryBean;
 import com.guyuan.dear.focus.security.adapter.SecurityProfileAdapter;
 import com.guyuan.dear.focus.security.data.FocusSecurityViewModel;
@@ -21,12 +20,11 @@ import com.guyuan.dear.focus.security.data.beans.DangerProfileBean;
 import com.guyuan.dear.focus.security.data.beans.SecurityBaseBean;
 import com.guyuan.dear.focus.security.data.beans.SecurityContentBean;
 import com.guyuan.dear.focus.security.ui.detail.FocusSecurityDetailActivity;
-import com.guyuan.dear.utils.CommonUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
  * @author : tl

@@ -1,16 +1,14 @@
 package com.guyuan.dear.focus.hr.adapter;
 
 import android.view.View;
-import android.view.ViewGroup;
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemHrTreeTopBinding;
 import com.guyuan.dear.work.contractPause.beans.DeptBean;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 
 /**

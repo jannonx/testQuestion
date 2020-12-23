@@ -13,11 +13,11 @@ import com.guyuan.dear.approve.bean.ApplyBean;
 import com.guyuan.dear.approve.bean.ApplyType;
 import com.guyuan.dear.approve.bean.ApproveUserBean;
 import com.guyuan.dear.approve.constant.ApplyConstant;
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.R;
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 
 /**

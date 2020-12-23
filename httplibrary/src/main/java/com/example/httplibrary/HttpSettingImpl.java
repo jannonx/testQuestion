@@ -46,7 +46,7 @@ public interface HttpSettingImpl {
 
     SSLSocketFactory getSSLSocketFactory(TrustManagerFactory trustManagerFactory);
 
-    SSLSocketFactory getDebugSSLSocketFactory(TrustManagerFactory trustManagerFactory);
+    SSLSocketFactory getDebugSSLSocketFactory();
 
     TrustManagerFactory getTrustManagerFactory(KeyStore keyStore);
 

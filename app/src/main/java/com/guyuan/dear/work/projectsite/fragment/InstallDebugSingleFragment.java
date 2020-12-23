@@ -1,8 +1,6 @@
 package com.guyuan.dear.work.projectsite.fragment;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,22 +8,17 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatRadioButton;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseFileUploadActivity;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.base.api.UploadBean;
-import com.guyuan.dear.databinding.FragmentWorkInstallationDebugIngBinding;
 import com.guyuan.dear.databinding.FragmentWrokInstallationDebugDetailSingleBinding;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 
@@ -42,11 +35,8 @@ import com.guyuan.dear.utils.ScreenUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.utils.keyboardlayout.OnKeyboardStateListener;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugSingleActivity;
-import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
-import com.guyuan.dear.work.projectsite.bean.EventInstallDebugRefresh;
 import com.guyuan.dear.work.projectsite.bean.EventWorkSiteListRefresh;
-import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 
@@ -57,8 +47,7 @@ import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
-import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
  * @description: 我的工作--工程现场--安装调试

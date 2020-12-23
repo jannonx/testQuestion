@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.bean.ListRequestBody;
 import com.guyuan.dear.base.fragment.BaseListFragment;
-import com.guyuan.dear.databinding.FragmentFocusSecurityNumberBinding;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.security.adapter.SecurityReportAdapter;
 import com.guyuan.dear.focus.security.data.FocusSecurityViewModel;
@@ -18,7 +17,7 @@ import com.guyuan.dear.focus.security.data.beans.SecurityContentBean;
 import com.guyuan.dear.utils.GsonUtil;
 
 import okhttp3.RequestBody;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**

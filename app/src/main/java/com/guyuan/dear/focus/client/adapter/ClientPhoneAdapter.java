@@ -1,17 +1,16 @@
 package com.guyuan.dear.focus.client.adapter;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.focus.client.bean.ClientContactBean;
 import com.guyuan.dear.R;
 
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
  * @description: 我的关注-客户详情--基础信息:手机列表适配器

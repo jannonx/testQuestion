@@ -1,11 +1,5 @@
 package com.guyuan.dear.focus.contract.bindingadpaters;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.view.View;
-
-import androidx.annotation.NonNull;
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +11,7 @@ import com.guyuan.dear.focus.contract.bean.ContractComment;
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerView;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
  * @author: 廖华凯

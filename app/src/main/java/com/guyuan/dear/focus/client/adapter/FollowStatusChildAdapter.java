@@ -6,13 +6,13 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.utils.GlideUtils;
 
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
  * @description: 我的关注-客户详情--跟进动态：评价列表子列表适配器

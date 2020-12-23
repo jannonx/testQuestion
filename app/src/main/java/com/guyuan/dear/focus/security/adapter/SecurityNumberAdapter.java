@@ -1,19 +1,18 @@
 package com.guyuan.dear.focus.security.adapter;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.focus.security.data.beans.DangerNumberBean;
 
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
  * @author : tl

@@ -12,17 +12,15 @@ import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.customizeview.itemDecorator.LinearVerticalPaddingDecorator2P0;
 import com.guyuan.dear.databinding.FragmentContractListBinding;
-import com.guyuan.dear.focus.contract.adapter.ContractListAdapter;
 import com.guyuan.dear.focus.contract.adapter.ContractListDataBindingAdapter;
 import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerView;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;
 

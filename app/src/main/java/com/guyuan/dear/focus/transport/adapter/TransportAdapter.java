@@ -1,7 +1,7 @@
 package com.guyuan.dear.focus.transport.adapter;
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.BR;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemFocusTransportBinding;
 import com.guyuan.dear.focus.transport.data.bean.TransportListBean;
 

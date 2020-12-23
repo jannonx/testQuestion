@@ -1,4 +1,4 @@
-package com.guyuan.dear.base.adapter;
+package tl.com.easy_recycleview_library.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,8 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRecyclerViewHolder> {

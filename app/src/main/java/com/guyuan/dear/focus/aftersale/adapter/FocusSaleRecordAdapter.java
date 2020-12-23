@@ -1,6 +1,6 @@
 package com.guyuan.dear.focus.aftersale.adapter;
 
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemFocusSaleRecordBinding;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.guyuan.dear.focus.qc.adapters;
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemMaterialQcListBinding;
 import com.guyuan.dear.focus.qc.beans.BaseMaterialQcReport;
 

@@ -19,7 +19,7 @@ import com.guyuan.dear.work.client.adapter.ClientAllAdapter;
 import com.guyuan.dear.work.client.data.WorkClientViewModel;
 
 import okhttp3.RequestBody;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**

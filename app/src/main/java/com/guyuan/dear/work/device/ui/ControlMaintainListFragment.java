@@ -9,7 +9,7 @@ import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.work.device.adapter.MaintainListAdapter;
 import com.guyuan.dear.work.device.data.WorkDeviceViewModel;
 import com.guyuan.dear.work.device.data.bean.MaintainListBean;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
  * Created by TL

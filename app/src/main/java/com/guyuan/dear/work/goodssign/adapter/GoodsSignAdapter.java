@@ -1,8 +1,7 @@
 package com.guyuan.dear.work.goodssign.adapter;
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.BR;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.databinding.ItemWorkGoodsSignBinding;
 import com.guyuan.dear.work.goodssign.data.bean.GoodsSignListBean;
 

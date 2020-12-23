@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
@@ -14,10 +13,9 @@ import com.guyuan.dear.focus.transport.adapter.TransportDocumentAdapter;
 import com.guyuan.dear.focus.transport.data.TransportViewModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**

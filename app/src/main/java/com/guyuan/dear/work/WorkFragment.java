@@ -30,7 +30,7 @@ import com.guyuan.dear.work.qc.views.home.QcHomeActivity;
 
 import java.util.ArrayList;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**

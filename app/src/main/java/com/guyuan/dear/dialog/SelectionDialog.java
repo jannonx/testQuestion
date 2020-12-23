@@ -12,23 +12,19 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.SelectionDialogAdapter;
-import com.guyuan.dear.base.adapter.SimpleRecyclerViewAdapter;
 import com.guyuan.dear.databinding.DialogSimpleRecyclerViewBinding;
 import com.guyuan.dear.utils.ScreenUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**

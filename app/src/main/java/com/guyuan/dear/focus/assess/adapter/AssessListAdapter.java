@@ -1,19 +1,11 @@
 package com.guyuan.dear.focus.assess.adapter;
 
-import android.content.Context;
-
-import androidx.annotation.NonNull;
-
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.BR;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.databinding.ItemFocusAssessListBinding;
 import com.guyuan.dear.focus.assess.data.bean.AssessListBean;
-import com.guyuan.dear.focus.assess.ui.FocusAssessListFragment;
 
 import java.util.List;
-
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
  * @author : tl

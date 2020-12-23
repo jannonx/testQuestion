@@ -1,16 +1,13 @@
 package com.guyuan.dear.approve.fragment;
 
-import android.content.Context;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.mvvmlibrary.util.LogUtils;
 import com.google.gson.Gson;
-import com.guyuan.dear.approve.activity.ApprovalsEntranceActivity;
 import com.guyuan.dear.approve.adapter.ApprovedListAdapter;
 import com.guyuan.dear.approve.bean.ApplyBean;
 import com.guyuan.dear.approve.bean.ApprovalData;
@@ -18,7 +15,6 @@ import com.guyuan.dear.approve.bean.ApproveListBody;
 import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
-import com.guyuan.dear.login.ui.LoginActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.R;
 
@@ -27,7 +23,7 @@ import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 

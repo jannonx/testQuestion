@@ -1,18 +1,21 @@
 package com.example.httplibrary;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.example.httplibrary.interceptor.CacheInterceptor;
 import com.example.httplibrary.interceptor.HeadInterceptor;
 import com.example.httplibrary.interceptor.ParamsInterceptor;
 import com.example.httplibrary.interceptor.ResponseInterceptor;
 import com.example.httplibrary.interceptor.VerificationInterceptor;
+import com.google.gson.internal.GsonBuildConfig;
 
 import java.io.File;
 import java.io.InputStream;
 import java.security.KeyStore;
 import java.security.SecureRandom;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.util.Arrays;
 import java.util.Collection;
@@ -57,11 +60,11 @@ public class BaseApiServiceModule {
     protected int WRITE_TIME = 180;                          //设置写时间
     protected int CONNECT_TIME = 5;                          //设置连接时间
     protected int CACHE_SIZE = 1024 * 1024 * 50;             //设置缓存大小
-    public static final String WITHOUT_CERTIFICATE = "without_certificate";            //无证书标识
-    protected String mBaseUrl = "https://183.62.99.102:8088/"; //设置baseUrl("http://81.71.9.129:8010/")
+    public static final String WITHOUT_CERTIFICATE = "without_certificate";//无证书标识
+    protected String mBaseUrl = ""; //设置baseUrl
     protected String mCacheName = "mCache";                   //缓存文件名
-    protected String mReleaseCer = "cer/certificate.cer";  //正式环境证书地址
-    protected String mDebugCer = "cer/certificate.cer";      //测试环境证书地址
+    protected String mReleaseCer = "";  //正式环境证书地址
+    protected String mDebugCer = "";      //测试环境证书地址
 
 
     //    @Provides  //dragger2提供实例注解
@@ -163,11 +166,31 @@ public class BaseApiServiceModule {
 //    @Provides
 //    @Singleton
 //    @Named(WITHOUT_CERTIFICATE)
-    protected SSLSocketFactory providesDebugSSLSocketFactory(TrustManagerFactory trustManagerFactory) {
+    protected SSLSocketFactory providesDebugSSLSocketFactory() {
         //Create an SSLContext that uses our TrustManager
         try {
+            // Create a trust manager that does not validate certificate chains
+            final TrustManager[] trustAllCerts = new TrustManager[]{
+                    new X509TrustManager() {
+                        @Override
+                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain,
+                                                       String authType) throws CertificateException {
+                        }
+
+                        @Override
+                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain,
+                                                       String authType) throws CertificateException {
+                        }
+
+                        @Override
+                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                            return new java.security.cert.X509Certificate[]{};
+                        }
+                    }
+            };
+
             SSLContext sslContext = SSLContext.getInstance("TLS");
-            sslContext.init(null, trustManagerFactory.getTrustManagers(), new SecureRandom());
+            sslContext.init(null, trustAllCerts, new SecureRandom());
             return sslContext.getSocketFactory();
         } catch (Exception e) {
             e.printStackTrace();
@@ -191,36 +214,43 @@ public class BaseApiServiceModule {
     }
 
     //    @Provides
-//    @Singleton
+    //    @Singleton
     protected KeyStore providesNewEmptyKeyStore(Context context) {
+
         try {
-            InputStream inputStream;
+            InputStream inputStream = null;
+
             if (BuildConfig.DEBUG) {
-                inputStream = context.getAssets().open(mDebugCer);   //测试服务器证书
+                if (!TextUtils.isEmpty(mDebugCer)) {
+                    inputStream = context.getAssets().open(mDebugCer);   //测试服务器证书
+                }
             } else {
-                inputStream = context.getAssets().open(mReleaseCer);      //正式环境证书
+                if (!TextUtils.isEmpty(mReleaseCer)) {
+                    inputStream = context.getAssets().open(mReleaseCer);      //正式环境证书
+                }
             }
 
-            CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
-            Collection<? extends Certificate> certificates = certificateFactory.generateCertificates
-                    (inputStream);
-            if (certificates.isEmpty()) {
-                throw new IllegalArgumentException("expected non-empty set of trusted certificates");
-            }
-
-            if (inputStream != null) {
-                inputStream.close();
-            }
             String password = "password";
             KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType()); // 这里添加自定义的密码，默认
             InputStream in = null; // By convention, 'null' creates an empty key store.
             keyStore.load(in, null);
 
-            // Put the certificates a key store.
-            int index = 0;
-            for (Certificate certificate : certificates) {
-                String certificateAlias = Integer.toString(index++);
-                keyStore.setCertificateEntry(certificateAlias, certificate);
+            if (inputStream != null) {
+                CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
+                Collection<? extends Certificate> certificates = certificateFactory.generateCertificates
+                        (inputStream);
+                if (certificates.isEmpty()) {
+                    throw new IllegalArgumentException("expected non-empty set of trusted certificates");
+                }
+
+                inputStream.close();
+
+                // Put the certificates a key store.
+                int index = 0;
+                for (Certificate certificate : certificates) {
+                    String certificateAlias = Integer.toString(index++);
+                    keyStore.setCertificateEntry(certificateAlias, certificate);
+                }
             }
             return keyStore;
         } catch (Exception e) {

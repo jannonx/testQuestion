@@ -29,26 +29,27 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation AndroidX.appcompat
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    compileOnly AndroidX.appcompat
 
-    implementation Hilt.daggerRuntime
+    testCompileOnly Depend.junit
+    androidTestCompileOnly Depend.androidTestJunit
+    androidTestCompileOnly Depend.espressoCore
+
+    compileOnly Hilt.daggerRuntime
     kapt Hilt.daggerCompiler
-    implementation Hilt.viewModule
+    compileOnly Hilt.viewModule
     kapt Hilt.compiler
 
-    implementation Retrofit.runtime
-    implementation Retrofit.gson
-    implementation Retrofit.adapter
-    implementation Retrofit.logging
+    compileOnly Retrofit.runtime
+    compileOnly Retrofit.gson
+    compileOnly Retrofit.adapter
+    compileOnly Retrofit.logging
 
-    implementation Glide.runtime
-    implementation Glide.okhttp3Integration
-    implementation Glide.annotations
+    compileOnly Glide.runtime
+    compileOnly Glide.okhttp3Integration
+    compileOnly Glide.annotations
     annotationProcessor Glide.compiler
 
-    implementation Rxandroid.rxjava2
-    implementation Rxandroid.rxandroid
+    compileOnly Rxandroid.rxjava2
+    compileOnly Rxandroid.rxandroid
 }

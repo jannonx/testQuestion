@@ -1,23 +1,19 @@
 package com.guyuan.dear.approve.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.httplibrary.bean.RefreshBean;
 import com.guyuan.dear.R;
-import com.guyuan.dear.approve.activity.ApplyCopyActivity;
-import com.guyuan.dear.approve.activity.MineApplyListActivity;
 import com.guyuan.dear.approve.adapter.ApprovedListAdapter;
 import com.guyuan.dear.approve.bean.ApplyBean;
 import com.guyuan.dear.approve.data.ApproveViewModel;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 

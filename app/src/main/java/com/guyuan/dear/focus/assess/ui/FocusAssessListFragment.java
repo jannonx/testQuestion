@@ -1,17 +1,8 @@
 package com.guyuan.dear.focus.assess.ui;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
-import androidx.databinding.library.baseAdapters.BR;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
@@ -23,7 +14,7 @@ import com.guyuan.dear.focus.assess.data.bean.AssessListBean;
 import com.guyuan.dear.focus.assess.ui.detail.FocusAssessDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**

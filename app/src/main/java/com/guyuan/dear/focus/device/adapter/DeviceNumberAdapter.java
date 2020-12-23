@@ -1,23 +1,15 @@
 package com.guyuan.dear.focus.device.adapter;
 
-import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
-
-import androidx.annotation.NonNull;
 
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.BR;
-import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.databinding.ItemFocusDeviceNumberBinding;
 import com.guyuan.dear.focus.device.data.beans.DeviceNumberBean;
 import com.guyuan.dear.focus.device.ui.overview.FocusDeviceTypeFragment;
 
 import java.util.List;
-
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 public class DeviceNumberAdapter extends BaseDBRecycleAdapter<DeviceNumberBean.EquipmentsBean, ItemFocusDeviceNumberBinding> {
 

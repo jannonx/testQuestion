@@ -18,14 +18,12 @@ import com.guyuan.dear.analyse.operate.bean.OperateType;
 import com.guyuan.dear.analyse.operate.data.OperateViewModel;
 import com.guyuan.dear.databinding.FragmentAnalyseOperateOverviewBinding;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.DateUtil;
 import com.guyuan.dear.utils.StringUtils;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**

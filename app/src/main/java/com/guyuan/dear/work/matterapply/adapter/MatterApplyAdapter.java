@@ -1,7 +1,7 @@
 package com.guyuan.dear.work.matterapply.adapter;
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.BR;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemWorkMatterApplyBinding;
 import com.guyuan.dear.work.matterapply.data.bean.MatterApplyBean;
 

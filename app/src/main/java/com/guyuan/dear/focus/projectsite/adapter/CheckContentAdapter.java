@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.focus.projectsite.type.CheckSafeSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
@@ -18,11 +18,10 @@ import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.projectsite.type.SiteProjectSatisfyType;
 import com.guyuan.dear.utils.GlideUtils;
-import com.guyuan.dear.utils.LogUtils;
 
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
  * @description: 现场勘察点/安全排查点适配器

@@ -1,7 +1,7 @@
 package com.guyuan.dear.work.qc.adapers;
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemProductionInfoBinding;
 import com.guyuan.dear.work.qc.beans.ProductInfo;
 

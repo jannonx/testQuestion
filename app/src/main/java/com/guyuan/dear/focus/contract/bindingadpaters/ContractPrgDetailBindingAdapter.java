@@ -14,7 +14,7 @@ import com.guyuan.dear.focus.contract.bean.ContractPrgKnot;
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerView;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
  * @author: 廖华凯

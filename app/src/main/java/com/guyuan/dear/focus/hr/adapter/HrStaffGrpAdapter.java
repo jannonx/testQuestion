@@ -1,7 +1,7 @@
 package com.guyuan.dear.focus.hr.adapter;
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemHrGroupByAttendanceBinding;
 import com.guyuan.dear.focus.hr.bean.HrStaffsByDept;
 

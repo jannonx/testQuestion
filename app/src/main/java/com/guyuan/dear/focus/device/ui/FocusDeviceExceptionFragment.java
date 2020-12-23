@@ -1,16 +1,9 @@
 package com.guyuan.dear.focus.device.ui;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.mvvmlibrary.util.LogUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
@@ -19,7 +12,7 @@ import com.guyuan.dear.focus.device.data.FocusDeviceViewModel;
 import com.guyuan.dear.focus.device.data.beans.DeviceExceptionBean;
 import com.guyuan.dear.utils.ConstantValue;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
  * @author : tl

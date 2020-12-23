@@ -115,8 +115,8 @@ public class ApiServiceModule extends BaseApiServiceModule implements HttpSettin
     @Singleton
     @Provides
     @Named(WITHOUT_CERTIFICATE)
-    public SSLSocketFactory getDebugSSLSocketFactory(TrustManagerFactory trustManagerFactory) {
-        return providesDebugSSLSocketFactory(trustManagerFactory);
+    public SSLSocketFactory getDebugSSLSocketFactory() {
+        return providesDebugSSLSocketFactory();
     }
 
     @Override

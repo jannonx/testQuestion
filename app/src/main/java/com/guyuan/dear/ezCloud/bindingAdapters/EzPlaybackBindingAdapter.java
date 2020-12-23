@@ -1,8 +1,5 @@
 package com.guyuan.dear.ezCloud.bindingAdapters;
 
-import android.view.TextureView;
-import android.view.View;
-
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,7 +10,7 @@ import com.videogo.openapi.bean.EZDeviceRecordFile;
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerView;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**

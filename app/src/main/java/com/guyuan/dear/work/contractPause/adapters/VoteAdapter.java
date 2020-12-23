@@ -12,7 +12,7 @@ import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.databinding.ItemVoteAdpaterBinding;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.Vote;
 

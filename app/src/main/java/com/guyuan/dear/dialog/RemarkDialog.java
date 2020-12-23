@@ -14,28 +14,13 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
 import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.guyuan.dear.R;
-import com.guyuan.dear.customizeview.itemDecorator.AddCopyListItemDecorator;
-import com.guyuan.dear.customizeview.itemDecorator.AddSendListItemDecorator;
 import com.guyuan.dear.databinding.DialogRemarkBinding;
-import com.guyuan.dear.databinding.DialogWorkProduceBinding;
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
-import com.guyuan.dear.focus.produce.bean.OperateProduceType;
 import com.guyuan.dear.utils.ToastUtils;
-import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
-import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
-import com.guyuan.dear.work.contractPause.beans.StaffBean;
-import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
 /**
  * @author : 唐力

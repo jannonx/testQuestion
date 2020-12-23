@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.customizeview.fullScreenShowFile.FullScreenShowActivity;
 import com.guyuan.dear.utils.GlideUtils;
 import com.guyuan.dear.utils.LogUtils;
@@ -15,7 +15,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
  * @description: 工程现场--图片浏览

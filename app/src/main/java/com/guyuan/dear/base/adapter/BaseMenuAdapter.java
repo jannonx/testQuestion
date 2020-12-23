@@ -8,7 +8,9 @@ import com.guyuan.dear.login.data.bean.ChildrenBean;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
+
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
  * Created by TL

@@ -1,7 +1,7 @@
 package com.guyuan.dear.focus.purchase.adapter;
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.BR;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemFocusPurchaseRecordBinding;
 import com.guyuan.dear.focus.purchase.data.bean.PurchaseRecordBean;
 

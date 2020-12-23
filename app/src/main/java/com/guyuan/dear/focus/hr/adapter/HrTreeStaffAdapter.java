@@ -2,8 +2,8 @@ package com.guyuan.dear.focus.hr.adapter;
 
 import android.view.View;
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemHrTreeStaffBinding;
 import com.guyuan.dear.focus.hr.bean.StaffWorkStatusInfo;
 

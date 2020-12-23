@@ -2,20 +2,15 @@ package com.guyuan.dear.focus.assess.ui.detail.content;
 
 import android.os.Bundle;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.focus.assess.adapter.AssessDetailPointAdapter;
-import com.guyuan.dear.focus.assess.adapter.AssessListAdapter;
 import com.guyuan.dear.focus.assess.data.FocusAssessViewModel;
 import com.guyuan.dear.focus.assess.data.bean.AuditContentBean;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
 
 /**
  * @author : tl

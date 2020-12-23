@@ -1,4 +1,4 @@
-package tl.com.easy_recycleview_library;
+package tl.com.easy_recycleview_library.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;

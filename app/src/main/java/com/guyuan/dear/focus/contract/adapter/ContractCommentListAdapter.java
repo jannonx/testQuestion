@@ -2,8 +2,8 @@ package com.guyuan.dear.focus.contract.adapter;
 
 import android.view.View;
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemContractCommentBinding;
 import com.guyuan.dear.focus.contract.bean.ContractComment;
 

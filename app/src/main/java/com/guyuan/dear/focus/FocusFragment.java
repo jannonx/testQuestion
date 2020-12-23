@@ -29,7 +29,7 @@ import com.guyuan.dear.utils.NetworkUtils;
 
 import java.util.ArrayList;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**

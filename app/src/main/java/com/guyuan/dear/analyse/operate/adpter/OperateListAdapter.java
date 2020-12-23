@@ -1,9 +1,7 @@
 package com.guyuan.dear.analyse.operate.adpter;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -11,13 +9,12 @@ import androidx.appcompat.widget.AppCompatImageView;
 import com.guyuan.dear.R;
 import com.guyuan.dear.analyse.operate.bean.OperateAnalyseBean;
 import com.guyuan.dear.analyse.operate.bean.OperateType;
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
-import com.guyuan.dear.focus.aftersale.bean.AfterSaleBean;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.utils.LogUtils;
 
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
  * @author : 许建宁

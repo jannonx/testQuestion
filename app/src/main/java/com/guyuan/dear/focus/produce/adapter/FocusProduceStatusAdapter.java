@@ -8,15 +8,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
 import com.guyuan.dear.utils.GlideUtils;
-import com.guyuan.dear.utils.LogUtils;
 
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
  * @description: 生产详情--生产动态适配器

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerView;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;
 

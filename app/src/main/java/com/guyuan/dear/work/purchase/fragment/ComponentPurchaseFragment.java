@@ -12,7 +12,7 @@ import com.guyuan.dear.databinding.FragmentListBinding;
 import com.guyuan.dear.work.purchase.adapter.ComponentPurchaseAdapter;
 import com.guyuan.dear.work.purchase.data.WorkPurchaseViewModel;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**

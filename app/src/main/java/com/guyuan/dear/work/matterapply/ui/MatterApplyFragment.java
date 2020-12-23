@@ -11,13 +11,9 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
-import com.guyuan.dear.customizeview.itemDecorator.AddSendListItemDecorator;
 import com.guyuan.dear.databinding.FragmentWorkMatterApplyBinding;
 import com.guyuan.dear.dialog.SelectionDialog;
 import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
@@ -31,12 +27,11 @@ import com.guyuan.dear.work.matterapply.data.bean.MatterMaterialBean;
 import com.guyuan.dear.work.matterapply.data.bean.MatterProductBean;
 import com.guyuan.dear.work.matterapply.data.bean.MatterProjectBean;
 import com.guyuan.dear.work.matterapply.data.bean.MatterTypeBean;
-import com.sun.jna.platform.win32.Winspool;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 import static android.app.Activity.RESULT_OK;
 

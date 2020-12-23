@@ -1,7 +1,6 @@
-package com.guyuan.dear.base.adapter;
+package com.example.mvvmlibrary.base.adapter;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -10,8 +9,6 @@ import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
 
 /**
  * @author : tl
@@ -38,6 +35,7 @@ public abstract class BaseDBRecycleAdapter<T, VDB extends ViewDataBinding> exten
         return new Holder(binding);
     }
 
+    @NonNull
     @Override
     public void onBindViewHolder(@NonNull BaseDBRecycleAdapter.Holder holder, int position) {
         T item = listData.get(position);
@@ -57,7 +55,7 @@ public abstract class BaseDBRecycleAdapter<T, VDB extends ViewDataBinding> exten
     }
 
 
-     protected class Holder extends RecyclerView.ViewHolder {
+     public class Holder extends RecyclerView.ViewHolder {
         public VDB binding;
 
         public Holder(@NonNull VDB binding) {

@@ -1,7 +1,6 @@
 package com.guyuan.dear.focus.produce.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 
 import androidx.lifecycle.Observer;
@@ -15,7 +14,7 @@ import com.guyuan.dear.focus.produce.ui.FocusProduceDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 
 /**

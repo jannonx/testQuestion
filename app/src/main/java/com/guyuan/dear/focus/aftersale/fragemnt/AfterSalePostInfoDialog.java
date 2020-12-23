@@ -26,14 +26,11 @@ import com.guyuan.dear.focus.aftersale.bean.PostInfoBean;
 import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.utils.CommonUtils;
-import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
-import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
  * @description: 售后服务--提交信息弹框

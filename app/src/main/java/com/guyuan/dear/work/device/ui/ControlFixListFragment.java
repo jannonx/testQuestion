@@ -5,20 +5,16 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.google.gson.Gson;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.databinding.FragmentListBinding;
-import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.work.device.adapter.Fixadapter;
 import com.guyuan.dear.work.device.data.WorkDeviceViewModel;
 import com.guyuan.dear.work.device.data.bean.ControlRepairBean;
-import com.guyuan.dear.work.device.data.bean.StartBody;
 import com.guyuan.dear.work.device.ui.detail.WorkDeviceDetailActivity;
 import com.guyuan.dear.work.device.ui.detail.WorkDeviceDetailFragment;
 
-import okhttp3.RequestBody;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 public class ControlFixListFragment extends BaseListFragment<ControlRepairBean.RepairEntity, FragmentListBinding, WorkDeviceViewModel> {
 

@@ -6,17 +6,16 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
 import com.guyuan.dear.R;
-import com.guyuan.dear.utils.LogUtils;
 
 import java.util.List;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
  * @description:

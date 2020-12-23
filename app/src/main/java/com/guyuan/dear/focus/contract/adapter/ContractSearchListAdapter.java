@@ -1,7 +1,7 @@
 package com.guyuan.dear.focus.contract.adapter;
 
+import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseDBRecycleAdapter;
 import com.guyuan.dear.databinding.ItemContractSearchListBinding;
 import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 

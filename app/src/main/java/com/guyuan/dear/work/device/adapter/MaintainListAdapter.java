@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.BaseRecyclerAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.customizeview.fullScreenShowFile.FullScreenShowActivity;
 import com.guyuan.dear.utils.GlideUtils;
 import com.guyuan.dear.utils.StringUtils;
@@ -16,7 +16,7 @@ import com.guyuan.dear.work.device.data.bean.MaintainListBean;
 
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewHolder;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
  * Created by TL

@@ -2,7 +2,6 @@ package com.guyuan.dear.work.produce.fragment;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Editable;
@@ -21,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.guyuan.dear.R;
-import com.guyuan.dear.base.adapter.TagStaffAdapter;
 import com.guyuan.dear.customizeview.itemDecorator.AddCopyListItemDecorator;
 import com.guyuan.dear.customizeview.itemDecorator.AddSendListItemDecorator;
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
@@ -37,7 +35,7 @@ import com.guyuan.dear.utils.ToastUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
  * @description:

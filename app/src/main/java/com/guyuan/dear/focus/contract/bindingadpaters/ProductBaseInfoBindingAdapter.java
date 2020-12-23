@@ -1,6 +1,5 @@
 package com.guyuan.dear.focus.contract.bindingadpaters;
 
-import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,7 +10,7 @@ import com.guyuan.dear.focus.contract.bean.ProductComponent;
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerView;
-import tl.com.easy_recycleview_library.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
  * @author: 廖华凯
