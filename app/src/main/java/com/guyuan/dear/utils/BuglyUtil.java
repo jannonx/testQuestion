@@ -1,6 +1,5 @@
-package com.example.mvvmlibrary.util;
+package com.guyuan.dear.utils;
 
-import android.app.Activity;
 import android.content.Context;
 
 import com.example.mvvmlibrary.BuildConfig;

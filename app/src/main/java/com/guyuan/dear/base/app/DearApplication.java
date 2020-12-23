@@ -8,16 +8,11 @@ import android.view.WindowManager;
 
 import com.example.httplibrary.BaseApiServiceModule;
 import com.example.mvvmlibrary.app.BaseApplication;
-import com.example.mvvmlibrary.util.BuglyUtil;
 import com.guyuan.dear.BuildConfig;
 import com.guyuan.dear.R;
 import com.guyuan.dear.home.MainActivity;
 import com.guyuan.dear.service.BackService;
-import com.guyuan.dear.utils.ConstantValue;
-import com.tencent.bugly.Bugly;
-import com.tencent.bugly.beta.Beta;
-import com.tencent.bugly.beta.UpgradeInfo;
-import com.tencent.bugly.crashreport.CrashReport;
+import com.guyuan.dear.utils.BuglyUtil;
 
 import javax.inject.Inject;
 import javax.inject.Named;

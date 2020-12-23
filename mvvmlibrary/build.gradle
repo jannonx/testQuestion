@@ -58,7 +58,4 @@ dependencies {
     compileOnly Retrofit.adapter
     compileOnly Retrofit.logging
 
-    //bugly
-    compileOnly Bugly.upgrade
-    compileOnly Bugly.nativecrashreport
 }
