@@ -47,12 +47,17 @@ public enum ProductStatusType {
      */
     TYPE_PRODUCE_DELAY_NOT_FINISH(6, "拖期已完成", R.color.color_green_00B578,
             R.drawable.bg_green_d4fff1_corner_2),
+
+    /**
+     * 合同状态：1.合同正常，2.合同暂停
+     */
+    TYPE_CONTRACT_PAUSE(7, "合同暂停", R.color.color_orange_FF6010,
+            R.drawable.bg_orange_ffece3_corner_2),
     /**
      * 未知类型
      */
-    TYPE_UNKNOWN(7, "未知类型", R.color.color_orange_FF6010,
+    TYPE_UNKNOWN(8, "未知类型", R.color.color_orange_FF6010,
             R.drawable.bg_orange_ffece3_corner_2);
-
 
     private int code;
     private String des;
@@ -67,17 +72,23 @@ public enum ProductStatusType {
     }
 
     /**
-     * 根据枚举code获取实例，用于switch
+     * 根据枚举code获取实例，用于switchR
      */
-    public static ProductStatusType toType(int index) {
-        for (ProductStatusType type : ProductStatusType.values()) {
-            if (type.getCode() == index) {
-                return type;
+    public static ProductStatusType toType(FocusProduceBean produceBean) {
+        if (produceBean == null || produceBean.getContractStatus() == null) return TYPE_UNKNOWN;
+        //合同状态：1.合同正常，2.合同暂停
+        if (produceBean.getContractStatus() == 0) {
+            //合同正常，正常生产状态
+            for (ProductStatusType type : ProductStatusType.values()) {
+                if (type.getCode() == produceBean.getStatus()) {
+                    return type;
+                }
             }
+        } else if (produceBean.getContractStatus() == 1) {
+            return TYPE_CONTRACT_PAUSE;
         }
         return TYPE_UNKNOWN;
     }
-
 
 
     /**
