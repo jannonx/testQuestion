@@ -156,7 +156,7 @@ android {
                     CHANNEL_VALUE: name,
                     gaodemapkey  : gaode_map_check_key
             ]
-            applicationIdSuffix ".debug"//测试包APPID后缀
+            applicationIdSuffix ".check"//测试包APPID后缀
             debuggable true
             signingConfig signingConfigs.config
         }
