@@ -23,7 +23,10 @@ public class FocusProduceBean implements Serializable {
      */
     private int approvalStatus;
     private ApprovalStatusType approvalStatusType;
-
+    /**
+     * 合同状态：1.合同正常，2.合同暂停"
+     */
+    private Integer contractStatus;
     /**
      * 产品代号
      */
@@ -204,6 +207,14 @@ public class FocusProduceBean implements Serializable {
         return ProduceReasonType.toType(reasonType).getDes();
     }
 
+    public Integer getContractStatus() {
+        return contractStatus;
+    }
+
+    public void setContractStatus(Integer contractStatus) {
+        this.contractStatus = contractStatus;
+    }
+
     public void setReasonType(int reasonType) {
         this.reasonType = reasonType;
     }
@@ -280,11 +291,11 @@ public class FocusProduceBean implements Serializable {
     }
 
     public ProductStatusType getStatusType() {
-        return ProductStatusType.toType(status);
+        return ProductStatusType.toType(this);
     }
 
     public void setStatusType(int status) {
-        this.statusType = ProductStatusType.toType(status);
+        this.statusType = ProductStatusType.toType(this);
     }
 
     public void setStatus(int status) {
@@ -304,7 +315,7 @@ public class FocusProduceBean implements Serializable {
     }
 
     public String getOperatorStr() {
-        statusType = ProductStatusType.toType(status);
+        statusType = ProductStatusType.toType(this);
         approvalStatusType = ApprovalStatusType.toType(approvalStatus);
         if (ProductStatusType.TYPE_PRODUCE_ING == statusType) {
             if (ApprovalStatusType.TYPE_APPROVAL_NOT_APPLY == approvalStatusType
