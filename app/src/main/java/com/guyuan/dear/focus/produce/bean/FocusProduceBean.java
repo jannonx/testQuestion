@@ -1,8 +1,5 @@
 package com.guyuan.dear.focus.produce.bean;
 
-import com.guyuan.dear.R;
-import com.guyuan.dear.utils.LogUtils;
-
 import java.io.Serializable;
 
 /**
@@ -24,9 +21,10 @@ public class FocusProduceBean implements Serializable {
     private int approvalStatus;
     private ApprovalStatusType approvalStatusType;
     /**
-     * 合同状态：1.合同正常，2.合同暂停"
+     * 销售合同状态：0.正常 1.暂停 2.被激活 3审批中"
      */
-    private Integer contractStatus;
+    private Integer stopStatus;
+    private ContractStatusType contractStatusType;
     /**
      * 产品代号
      */
@@ -40,6 +38,10 @@ public class FocusProduceBean implements Serializable {
      * 显示原因
      */
     private String displayReason;
+    /**
+     * 项目id
+     */
+    private long projectId;
 
     /**
      * 显示时间
@@ -163,6 +165,20 @@ public class FocusProduceBean implements Serializable {
      * 单位
      */
     private String unit;
+    //===============================
+    /**
+     * 合同编号
+     */
+    private String contractNum;
+    /**
+     * 合同id
+     */
+    private String contractId;
+    /**
+     * 如果存在暂停情况的，当前VO不为空，并会set对应字段值
+     */
+    private ReviewerDataBean contractStopCauseVO;
+    //===============================
 
 
     public int getId() {
@@ -207,12 +223,12 @@ public class FocusProduceBean implements Serializable {
         return ProduceReasonType.toType(reasonType).getDes();
     }
 
-    public Integer getContractStatus() {
-        return contractStatus;
+    public Integer getStopStatus() {
+        return stopStatus;
     }
 
-    public void setContractStatus(Integer contractStatus) {
-        this.contractStatus = contractStatus;
+    public void setStopStatus(Integer stopStatus) {
+        this.stopStatus = stopStatus;
     }
 
     public void setReasonType(int reasonType) {
@@ -251,6 +267,30 @@ public class FocusProduceBean implements Serializable {
         this.name = name;
     }
 
+    public String getContractNum() {
+        return contractNum;
+    }
+
+    public void setContractNum(String contractNum) {
+        this.contractNum = contractNum;
+    }
+
+    public String getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(String contractId) {
+        this.contractId = contractId;
+    }
+
+    public ReviewerDataBean getContractStopCauseVO() {
+        return contractStopCauseVO;
+    }
+
+    public void setContractStopCauseVO(ReviewerDataBean contractStopCauseVO) {
+        this.contractStopCauseVO = contractStopCauseVO;
+    }
+
     public long getPlanId() {
         return planId;
     }
@@ -265,6 +305,14 @@ public class FocusProduceBean implements Serializable {
 
     public void setPrincipalDept(String principalDept) {
         this.principalDept = principalDept;
+    }
+
+    public ContractStatusType getContractStatusType() {
+        return ContractStatusType.toType(stopStatus);
+    }
+
+    public void setContractStatusType(ContractStatusType contractStatusType) {
+        this.contractStatusType = contractStatusType;
     }
 
     /**
@@ -393,6 +441,14 @@ public class FocusProduceBean implements Serializable {
 
     public String getMaterialIssuedTime() {
         return materialIssuedTime;
+    }
+
+    public long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(long projectId) {
+        this.projectId = projectId;
     }
 
     public void setMaterialIssuedTime(String materialIssuedTime) {

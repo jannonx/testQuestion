@@ -3,7 +3,6 @@ package com.guyuan.dear.focus.produce.api;
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.BaseApiService;
-import com.guyuan.dear.focus.client.bean.CommentsBean;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
 import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
@@ -71,6 +70,15 @@ public interface FocusProduceApiService extends BaseApiService {
      */
     @POST("base/projectplan/findReportList")
     Observable<ResultBean<RefreshBean<FocusProduceBean>>> getProduceList(@Body RequestBody body);
+
+    /**
+     * 生产详情--先判断合同状态
+     *
+     * @param projectId 项目id
+     * @return
+     */
+    @GET("base/checkContract/checkStatus")
+    Observable<ResultBean<FocusProduceBean>> getContractStatus(@Query("projectId") long projectId);
 
     /**
      * 生产详情--生产动态

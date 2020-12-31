@@ -3,7 +3,6 @@ package com.guyuan.dear.focus.produce.bean;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.projectsite.type.CustomerAcceptanceSatisfyType;
-import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
 /**
  * @description: 子生产状态
@@ -75,19 +74,20 @@ public enum ProductStatusType {
      * 根据枚举code获取实例，用于switchR
      */
     public static ProductStatusType toType(FocusProduceBean produceBean) {
-        if (produceBean == null || produceBean.getContractStatus() == null) return TYPE_UNKNOWN;
-        //合同状态：1.合同正常，2.合同暂停
-        if (produceBean.getContractStatus() == 0) {
-            //合同正常，正常生产状态
+        if (produceBean == null || produceBean.getStopStatus() == null) return TYPE_UNKNOWN;
+        //合同状态：1.合同正常，2.合同暂停，显示合同暂停状态
+        if (produceBean.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
+            return TYPE_CONTRACT_PAUSE;
+        } else {
+            //除了合同暂停，显示正常生产状态
             for (ProductStatusType type : ProductStatusType.values()) {
                 if (type.getCode() == produceBean.getStatus()) {
                     return type;
                 }
             }
-        } else if (produceBean.getContractStatus() == 1) {
-            return TYPE_CONTRACT_PAUSE;
+            return TYPE_UNKNOWN;
         }
-        return TYPE_UNKNOWN;
+
     }
 
 

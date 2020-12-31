@@ -10,18 +10,16 @@ import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
-import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 import com.guyuan.dear.focus.produce.data.FocusProduceViewModel;
-import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailComplexFragment;
 import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailFragment;
-import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
-import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.BUSINESS_ID;
-import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.BUSINESS_TYPE;
+
+import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailFragment.BUSINESS_ID;
+import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailFragment.BUSINESS_TYPE;
 import static com.guyuan.dear.office.approval.ui.ApprovalActivity.APPROVAL_TYPE;
 import static com.guyuan.dear.office.approval.ui.ApprovalActivity.IS_APPROVED;
 

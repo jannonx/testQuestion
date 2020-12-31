@@ -18,7 +18,6 @@ import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailFragment;
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
-import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailComplexFragment;
 import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailFragment;
 import com.guyuan.dear.office.approval.data.ApprovalViewModel;
 import com.guyuan.dear.office.approval.data.bean.ApprovalTypeBean;

@@ -2,7 +2,6 @@ package com.guyuan.dear.focus.produce.data;
 
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
-import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.produce.api.FocusProduceApiService;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
@@ -12,7 +11,6 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
-import retrofit2.http.Query;
 
 /**
  * @description:
@@ -51,7 +49,9 @@ public class FocusProduceRepository {
     Observable<ResultBean<FocusProduceBean>> getBasicInfoById(long playId) {
         return apiService.getBasicInfoById(playId);
     }
-
+    Observable<ResultBean<FocusProduceBean>> getContractStatus(long projectId) {
+        return apiService.getContractStatus(projectId);
+    }
     Observable<ResultBean<List<ProduceStateBean>>> getProduceStateList(long playId) {
         return apiService.getProduceStateList(playId);
     }

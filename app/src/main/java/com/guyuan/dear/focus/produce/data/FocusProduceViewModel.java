@@ -7,9 +7,6 @@ import com.example.httplibrary.bean.RefreshBean;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.api.RxJavaHelper;
 import com.guyuan.dear.busbean.ApprovalBusBean;
-import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
-import com.guyuan.dear.focus.client.data.FocusClientRepository;
-import com.guyuan.dear.focus.produce.api.FocusProduceApiService;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
 import com.guyuan.dear.focus.produce.bean.ProduceStateBean;
@@ -36,6 +33,7 @@ public class FocusProduceViewModel extends BaseViewModel {
     private MutableLiveData<RefreshBean<FocusProduceBean>> produceListEvent = new MutableLiveData<>();
     private MutableLiveData<List<ProduceStateBean>> statusListEvent = new MutableLiveData<>();
     private MutableLiveData<FocusProduceBean> basicInfoEvent = new MutableLiveData<>();
+    private MutableLiveData<FocusProduceBean> contractInfoEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> executeEvent = new MutableLiveData<>();
 
 
@@ -70,6 +68,10 @@ public class FocusProduceViewModel extends BaseViewModel {
 
     public MutableLiveData<Integer> getExecuteEvent() {
         return executeEvent;
+    }
+
+    public MutableLiveData<FocusProduceBean> getContractInfoEvent() {
+        return contractInfoEvent;
     }
 
     /**
@@ -124,6 +126,18 @@ public class FocusProduceViewModel extends BaseViewModel {
     public void getBasicInfoById(long equipmentId) {
         Disposable disposable = RxJavaHelper.build(this, repository.getBasicInfoById(equipmentId))
                 .getHelper().flow(basicInfoEvent);
+        addSubscription(disposable);
+    }
+
+    /**
+     * 生产详情--先判断合同状态
+     *
+     * @param projectId 项目id
+     */
+    public void getContractStatus(long projectId) {
+        Disposable disposable = RxJavaHelper.build(this, repository.getContractStatus(projectId))
+                .showLoading(false)
+                .getHelper().flow(contractInfoEvent);
         addSubscription(disposable);
     }
 

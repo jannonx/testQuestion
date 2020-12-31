@@ -5,15 +5,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Observer;
+
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailBinding;
-import com.guyuan.dear.databinding.FragmentFocusProduceDetailComplexBinding;
 import com.guyuan.dear.dialog.RemarkDialog;
 import com.guyuan.dear.dialog.SimpleConfirmViewDialog;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.hr.view.pickStaffs.PickStaffsActivity;
+import com.guyuan.dear.focus.produce.bean.ContractStatusType;
 import com.guyuan.dear.focus.produce.bean.EventProduceListRefresh;
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
@@ -30,6 +35,7 @@ import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
 import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
+import com.guyuan.dear.work.produce.fragment.ContractPauseDialog;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
 
 import org.greenrobot.eventbus.EventBus;
@@ -39,18 +45,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
-
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
-import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.BUSINESS_ID;
-import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.BUSINESS_TYPE;
-import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.STATUS;
-import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailSimpleFragment.TYPE;
 import static com.guyuan.dear.office.approval.ui.ApprovalActivity.IS_APPROVED;
 
 /**
@@ -64,6 +61,11 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
         implements View.OnClickListener {
 
     public static final String TAG = FocusProduceDetailFragment.class.getSimpleName();
+    public static final String BUSINESS_ID = "businessId";
+    public static final String BUSINESS_TYPE = "businessType";
+    public static final String REMARKS = "remarks";
+    public static final String STATUS = "status";
+    public static final String TYPE = "type";
 
     private static final int REQUEST_SEND_SELECT_PERSON = 0x001;
     private static final int REQUEST_COPY_SELECT_PERSON = 0x002;
@@ -74,7 +76,9 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     private int startPosition = 0;//起始选中位置
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
-    private FocusProduceBean produceBean;
+    //生产信息
+    private FocusProduceBean produceBean,initBean;
+
     private boolean isFooterBtnShow, isProducePause, isProduceIng;
     private ProduceApplyDialog dialog;
     private int businessId = -1;
@@ -98,10 +102,10 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
 
 
     //审批入口
-    public static FocusProduceDetailSimpleFragment newInstance(FocusProduceBean data, int businessId,
-                                                               int businessType, int type, boolean isApproved) {
+    public static FocusProduceDetailFragment newInstance(FocusProduceBean data, int businessId,
+                                                         int businessType, int type, boolean isApproved) {
         Bundle bundle = new Bundle();
-        FocusProduceDetailSimpleFragment fragment = new FocusProduceDetailSimpleFragment();
+        FocusProduceDetailFragment fragment = new FocusProduceDetailFragment();
         bundle.putSerializable(ConstantValue.KEY_CONTENT, data);
         bundle.putSerializable(ConstantValue.KEY_BOOLEAN, false);
         bundle.putInt(BUSINESS_ID, businessId);
@@ -126,17 +130,20 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
         }
 
 
-        produceBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        initBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         isFooterBtnShow = arguments.getBoolean(ConstantValue.KEY_BOOLEAN, false);
 //        LogUtils.showLog("listData=" + (produceBean == null));
 
-        LogUtils.showLog("initialization=" + produceBean.getStatusType().getDes());
+        LogUtils.showLog("initialization=" + initBean.getStatusType().getDes());
         //现请求数据
-        viewModel.getBasicInfoById(produceBean.getPlanId());
+        viewModel.getBasicInfoById(initBean.getPlanId());
         viewModel.getBasicInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
             @Override
             public void onChanged(FocusProduceBean data) {
                 jumpToPage(data);
+                if (data.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
+                    getContractInfo(data.getProjectId());
+                }
             }
         });
 
@@ -151,11 +158,26 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     }
 
     /**
+     * 获取合同状态信息
+     */
+    private void getContractInfo(long projectId) {
+        viewModel.getContractStatus(projectId);
+        viewModel.getContractInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
+            @Override
+            public void onChanged(FocusProduceBean data) {
+                ContractPauseDialog.show(getActivity(), data);
+            }
+        });
+
+    }
+
+    /**
      * 根据状态不同显示不同页面
      */
     private void jumpToPage(FocusProduceBean data) {
-        LogUtils.showLog("jumpToPage=" + produceBean.getStatusType().getDes());
-        if (ProductStatusType.TYPE_PRODUCE_WAIT == produceBean.getStatusType()) {
+        LogUtils.showLog("jumpToPage=" + initBean.getStatusType().getDes());
+        data.setStopStatus(initBean.getStopStatus());
+        if (ProductStatusType.TYPE_PRODUCE_WAIT == initBean.getStatusType()) {
             binding.clRootComplex.setVisibility(View.GONE);
             binding.clRootEmpty.setVisibility(View.GONE);
             binding.rlRootSimple.setVisibility(View.VISIBLE);
@@ -163,7 +185,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
             simplePlanFragment = (FollowProducePlanFragment) fragmentManager.findFragmentById(R.id.factory_view_simple);
             initProductSimple();
             setProduceDataSimple(data);
-        } else if (ProductStatusType.TYPE_UNKNOWN == produceBean.getStatusType()) {
+        } else if (ProductStatusType.TYPE_UNKNOWN == initBean.getStatusType()) {
             binding.clRootComplex.setVisibility(View.GONE);
             binding.rlRootSimple.setVisibility(View.GONE);
             binding.clRootEmpty.setVisibility(View.VISIBLE);
