@@ -4,6 +4,7 @@ package com.guyuan.dear.mine.data;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.mine.api.MineApiService;
+import com.guyuan.dear.mine.bean.PrivacyPolicyDataBean;
 
 import java.util.List;
 import java.util.Map;
@@ -39,5 +40,8 @@ public class MineRepository {
 
     Observable<ResultBean<Integer>> postUserAvatar(RequestBody body) {
         return apiService.postUserAvatar(body);
+    }
+    Observable<ResultBean<PrivacyPolicyDataBean>> getPrivacyPolicyData() {
+        return apiService.getPrivacyPolicyData();
     }
 }

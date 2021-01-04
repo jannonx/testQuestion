@@ -3,6 +3,7 @@ package com.guyuan.dear.mine.api;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.base.api.UploadBean;
+import com.guyuan.dear.mine.bean.PrivacyPolicyDataBean;
 
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,12 @@ public interface MineApiService extends BaseApiService {
     Observable<ResultBean<Integer>> editUserPassWord(@Query("password") String password,
                                                      @Query("newPassword") String newPassword
     );
+
+    /**
+     * 获取隐私内容富文本
+     */
+    @GET("base/config/agreement")
+    Observable<ResultBean<PrivacyPolicyDataBean>> getPrivacyPolicyData();
 
 
     /**

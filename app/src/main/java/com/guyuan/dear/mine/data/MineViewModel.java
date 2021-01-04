@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.api.RxJavaHelper;
 import com.guyuan.dear.base.api.UploadBean;
+import com.guyuan.dear.mine.bean.PrivacyPolicyDataBean;
 
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ public class MineViewModel extends BaseViewModel {
     private MutableLiveData<List<UploadBean>> uploadImageEvent = new MutableLiveData<>();//上传图片
     private MutableLiveData<Integer> feedBackEvent = new MutableLiveData<>();//上传留言
     private MutableLiveData<Integer> userAvatarEvent = new MutableLiveData<>();//提交头像url
+    private MutableLiveData<PrivacyPolicyDataBean> privacyDataEvent = new MutableLiveData<>();//隐私内容
 
     @ViewModelInject
     public MineViewModel(MineRepository mineRepository) {
@@ -52,6 +54,10 @@ public class MineViewModel extends BaseViewModel {
 
     }
 
+    public MutableLiveData<PrivacyPolicyDataBean> getPrivacyDataEvent() {
+        return privacyDataEvent;
+    }
+
     /**
      * 修改密码
      *
@@ -62,6 +68,16 @@ public class MineViewModel extends BaseViewModel {
 
         Disposable disposable = RxJavaHelper.build(this, repository.editUserPassWord(password, newPassword))
                 .getHelper().flow(editUserPwEvent);
+        addSubscription(disposable);
+    }
+
+    /**
+     * 获取隐私内容富文本
+     */
+    public void getPrivacyPolicyData() {
+
+        Disposable disposable = RxJavaHelper.build(this, repository.getPrivacyPolicyData())
+                .getHelper().flow(privacyDataEvent);
         addSubscription(disposable);
     }
 
