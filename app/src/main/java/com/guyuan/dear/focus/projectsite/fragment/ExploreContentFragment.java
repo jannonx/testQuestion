@@ -252,7 +252,8 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
             case TYPE_INSTALLATION_DEBUG:
             case TYPE_CUSTOMER_ACCEPTANCE:
                 ProjectInstallAdapter installDebugAdapter = new ProjectInstallAdapter(getContext(),
-                        installDebugContentList, R.layout.item_install_project);
+                        installDebugContentList, ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == simpleData.getProjectReportType()?
+                        R.layout.item_install_project_customer: R.layout.item_install_project);
                 adapter = new BaseRecyclerViewAdapter(installDebugAdapter);
                 break;
 
