@@ -5,9 +5,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
 
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
+import com.baidu.location.BDAbstractLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.google.gson.Gson;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.login.data.bean.LoginBean;
@@ -33,21 +33,35 @@ import io.reactivex.schedulers.Schedulers;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class ClockInRepo {
-    private AMapLocationClient locationClient;
+    private LocationClient bdLocClient;
 
     public ClockInRepo() {
-        initMapApi();
+        initBdMapApi();
     }
 
-    private void initMapApi() {
-        //初始化高德地图
-        locationClient = new AMapLocationClient(DearApplication.getInstance());
-        AMapLocationClientOption option = new AMapLocationClientOption();
-        option.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.SignIn);
-        option.setNeedAddress(true);
-        //允许在模拟器上生成模拟位置
-        option.setMockEnable(true);
-        locationClient.setLocationOption(option);
+    private void initBdMapApi() {
+
+        bdLocClient = new LocationClient(DearApplication.getInstance());
+        LocationClientOption option = new LocationClientOption();
+        option.setIsNeedLocationDescribe(true);
+        option.setIsNeedAddress(true);
+        option.setNeedNewVersionRgc(true);
+        option.setEnableSimulateGps(true);
+        bdLocClient.setLocOption(option);
+    }
+
+    public void startBdPositioning(BDAbstractLocationListener listener) {
+        if (bdLocClient != null) {
+            bdLocClient.registerLocationListener(listener);
+            bdLocClient.start();
+        }
+    }
+
+    public void stopBdPositioning(BDAbstractLocationListener listener) {
+        if (bdLocClient != null) {
+            bdLocClient.unRegisterLocationListener(listener);
+            bdLocClient.stop();
+        }
     }
 
     public LoginBean getMyInfo() {
@@ -58,33 +72,10 @@ public class ClockInRepo {
         return null;
     }
 
-    public Disposable getClockInConfig(DearNetHelper.NetCallback<NetClockInConfig> callback){
+    public Disposable getClockInConfig(DearNetHelper.NetCallback<NetClockInConfig> callback) {
         return DearNetHelper.getInstance().getClockInConfig(callback);
     }
 
-    /**
-     * 启动高德地图位置更新
-     *
-     * @param listener
-     */
-    public void startPositioning(AMapLocationListener listener) {
-        if (locationClient == null) {
-            initMapApi();
-        }
-        locationClient.setLocationListener(listener);
-        locationClient.startLocation();
-    }
-
-    /**
-     * 关闭高德地图位置更新
-     */
-    public void stopPositioning() {
-        if(locationClient!=null){
-            locationClient.stopLocation();
-            locationClient.onDestroy();
-            locationClient = null;
-        }
-    }
 
     public Disposable startTimer(TimerInterface callback) {
         return Observable.interval(1000, TimeUnit.MILLISECONDS)
@@ -98,82 +89,17 @@ public class ClockInRepo {
                 });
     }
 
-    public String getMapError(int errorCode) {
-        String error = "未知原因";
-        switch (errorCode) {
-            case 0:
-                error = "定位成功。";
-                break;
-            case 1:
-                error = "一些重要参数为空，如context";
-                break;
-            case 2:
-                error = "定位失败，由于仅扫描到单个wifi，且没有基站信息。";
-                break;
-            case 3:
-                error = "获取到的请求参数为空，可能获取过程中出现异常。";
-                break;
-            case 4:
-                error = "请求服务器过程中的异常，多为网络情况差，链路不通导致";
-                break;
-            case 5:
-                error = "请求被恶意劫持，定位结果解析失败。";
-                break;
-            case 6:
-                error = "定位服务返回定位失败。";
-                break;
-            case 7:
-                error = "KEY鉴权失败。";
-                break;
-            case 8:
-                error = "Android exception常规错误";
-                break;
-            case 9:
-                error = "定位初始化时出现异常。";
-                break;
-            case 10:
-                error = "定位客户端启动失败。";
-                break;
-            case 11:
-                error = "定位时的基站信息错误。";
-                break;
-            case 12:
-                error = "缺少定位权限。";
-                break;
-            case 13:
-                error = "定位失败，由于未获得WIFI列表和基站信息，且GPS当前不可用。";
-                break;
-            case 14:
-                error = "GPS 定位失败，由于设备当前 GPS 状态差。";
-                break;
-            case 15:
-                error = "定位结果被模拟导致定位失败";
-                break;
-            case 16:
-                error = "当前POI检索条件、行政区划检索条件下，无可用地理围栏";
-                break;
-            case 18:
-                error = "定位失败，由于手机WIFI功能被关闭同时设置为飞行模式";
-                break;
-            case 19:
-                error = "定位失败，由于手机没插sim卡且WIFI功能被关闭";
-                break;
-            default:
-                break;
-        }
-        return error;
-    }
-
     public interface TimerInterface {
         void onTimeUpdate(long currentMills);
     }
 
     /**
      * 显示当前APP的SHA1码，检验定位SDK时用
+     *
      * @param context
      * @return
      */
-    public  String showAppSHA1(Context context){
+    public String showAppSHA1(Context context) {
         try {
             PackageInfo info = context.getPackageManager().getPackageInfo(
                     context.getPackageName(), PackageManager.GET_SIGNATURES);
@@ -184,13 +110,14 @@ public class ClockInRepo {
             for (int i = 0; i < publicKey.length; i++) {
                 String appendString = Integer.toHexString(0xFF & publicKey[i])
                         .toUpperCase(Locale.US);
-                if (appendString.length() == 1)
+                if (appendString.length() == 1) {
                     hexString.append("0");
+                }
                 hexString.append(appendString);
                 hexString.append(":");
             }
             String result = hexString.toString();
-            return result.substring(0, result.length()-1);
+            return result.substring(0, result.length() - 1);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
@@ -200,7 +127,7 @@ public class ClockInRepo {
     }
 
 
-    public Disposable clockIn(int type, double lat,double lng,DearNetHelper.NetCallback<Boolean> callback){
-        return DearNetHelper.getInstance().clockIn(type,lat,lng,callback);
+    public Disposable clockIn(int type, double lat, double lng, DearNetHelper.NetCallback<Boolean> callback) {
+        return DearNetHelper.getInstance().clockIn(type, lat, lng, callback);
     }
 }

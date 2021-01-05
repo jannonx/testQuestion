@@ -58,6 +58,10 @@ public class CalenderUtils {
         stdHourMinSecFormat = new SimpleDateFormat("HH:mm:ss", Locale.CHINA);
     }
 
+    public String toYearMonthDayHourMinute(long timeMills){
+        return simpleDateFormatByHour.format(new Date(timeMills));
+    }
+
     /**
      * 时：分：秒 如 “12:30:45”
      *

@@ -11,7 +11,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentContractPrgDetailLogsBinding;
 import com.guyuan.dear.focus.contract.adapter.contractPrgLog.LogTailAdapter;
 import com.guyuan.dear.focus.contract.adapter.contractPrgLog.SalesReviewAdapter;
-import com.guyuan.dear.focus.contract.bean.ContractStatusFlowBean;
+import com.guyuan.dear.focus.contract.bean.ContractStatusFlow;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.FirstCreateDate;
 import com.guyuan.dear.focus.contract.bean.contractPrgLog.SalesReviewMeeting;
 
@@ -64,7 +64,7 @@ public class ContractPrgLogsFragment extends BaseMvvmFragment<FragmentContractPr
         recyclerView.setAdapter(concatAdapter);
 
 
-        ContractStatusFlowBean detailBean = getViewModel().getDetailBean().getValue();
+        ContractStatusFlow detailBean = getViewModel().getDetailBean().getValue();
         if (detailBean != null) {
             upDateViewByDate(detailBean);
         }
@@ -72,17 +72,17 @@ public class ContractPrgLogsFragment extends BaseMvvmFragment<FragmentContractPr
 
     @Override
     protected void initListeners() {
-        getViewModel().getDetailBean().observe(getViewLifecycleOwner(), new Observer<ContractStatusFlowBean>() {
+        getViewModel().getDetailBean().observe(getViewLifecycleOwner(), new Observer<ContractStatusFlow>() {
             @Override
-            public void onChanged(ContractStatusFlowBean contractStatusFlowBean) {
+            public void onChanged(ContractStatusFlow contractStatusFlow) {
                 mFirstCreateDate.clear();
                 mSalesReviews.clear();
-                upDateViewByDate(contractStatusFlowBean);
+                upDateViewByDate(contractStatusFlow);
             }
         });
     }
 
-    private void upDateViewByDate(ContractStatusFlowBean contractStatusFlowBean) {
+    private void upDateViewByDate(ContractStatusFlow contractStatusFlow) {
 //        List<ContractLogBean> logs = contractStatusFlowBean.getLogs();
 //        for (ContractLogBean log : logs) {
 //            int logType = log.getLogType();

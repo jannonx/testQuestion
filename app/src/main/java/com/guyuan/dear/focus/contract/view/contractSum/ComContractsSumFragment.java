@@ -8,6 +8,11 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FragmentCompanyContractsSummaryBinding;
 import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 import com.guyuan.dear.focus.contract.view.contractList.ContractListActivity;
+import com.guyuan.dear.focus.contract.view.exceptionList.ExceptionContractListActivity;
+import com.guyuan.dear.focus.contract.view.executingList.ExecutingListActivity;
+import com.guyuan.dear.focus.contract.view.finishedList.FinishedListActivity;
+import com.guyuan.dear.focus.contract.view.lastYearList.LastYearDeliverActivity;
+import com.guyuan.dear.focus.contract.view.newContractList.NewContractListActivity;
 import com.guyuan.dear.utils.AlertDialogUtils;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.jzxiang.pickerview.TimePickerDialog;
@@ -74,34 +79,38 @@ public class ComContractsSumFragment extends BaseMvvmFragment<FragmentCompanyCon
         viewModel.setOnClickShowPreAnnualDelivers(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(), "上年交付",
-                        BaseContractBean.CONTRACT_TYPE_PRE_ANNUAL_DELIVERS,
-                        getViewModel().getSelectDate().getValue());
+//                ContractListActivity.start(getActivity(), "上年交付",
+//                        BaseContractBean.CONTRACT_TYPE_PRE_ANNUAL_DELIVERS,
+//                        getViewModel().getSelectDate().getValue());
+                LastYearDeliverActivity.start(getActivity(), getViewModel().getSelectDate().getValue());
             }
         });
 
         viewModel.setOnClickShowNewContracts(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(), "今年新签",
-                        BaseContractBean.CONTRACT_TYPE_NEW_CONTRACTS,
-                        getViewModel().getSelectDate().getValue());
+//                ContractListActivity.start(getActivity(), "今年新签",
+//                        BaseContractBean.CONTRACT_TYPE_NEW_CONTRACTS,
+//                        getViewModel().getSelectDate().getValue());
+                NewContractListActivity.start(getActivity(), getViewModel().getSelectDate().getValue());
             }
         });
         viewModel.setOnClickShowFinished(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(), "已经完成",
-                        BaseContractBean.CONTRACT_TYPE_FINISHED_CONTRACTS,
-                        getViewModel().getSelectDate().getValue());
+//                ContractListActivity.start(getActivity(), "已经完成",
+//                        BaseContractBean.CONTRACT_TYPE_FINISHED_CONTRACTS,
+//                        getViewModel().getSelectDate().getValue());
+                FinishedListActivity.start(getActivity(), getViewModel().getSelectDate().getValue());
             }
         });
         viewModel.setOnClickShowExecuting(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(), "正在执行",
-                        BaseContractBean.CONTRACT_TYPE_EXECUTING_CONTRACTS,
-                        getViewModel().getSelectDate().getValue());
+//                ContractListActivity.start(getActivity(), "正在执行",
+//                        BaseContractBean.CONTRACT_TYPE_EXECUTING_CONTRACTS,
+//                        getViewModel().getSelectDate().getValue());
+                ExecutingListActivity.start(getActivity(), getViewModel().getSelectDate().getValue());
             }
         });
 
@@ -117,9 +126,10 @@ public class ComContractsSumFragment extends BaseMvvmFragment<FragmentCompanyCon
         viewModel.setOnClickShowExceptions(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContractListActivity.start(getActivity(), "执行异常",
-                        BaseContractBean.CONTRACT_TYPE_EXCEPTION_CONTRACTS,
-                        getViewModel().getSelectDate().getValue());
+//                ContractListActivity.start(getActivity(), "执行异常",
+//                        BaseContractBean.CONTRACT_TYPE_EXCEPTION_CONTRACTS,
+//                        getViewModel().getSelectDate().getValue());
+                ExceptionContractListActivity.start(getActivity(), getViewModel().getSelectDate().getValue());
             }
         });
 

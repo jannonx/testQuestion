@@ -5,16 +5,18 @@ import android.view.View;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationListener;
-import com.amap.api.location.CoordinateConverter;
-import com.amap.api.location.DPoint;
+import com.baidu.location.BDAbstractLocationListener;
+import com.baidu.location.BDLocation;
+import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.utils.DistanceUtil;
+import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.base.fragment.BaseDearViewModel;
 import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.net.reqBean.ClockInRqBody;
 import com.guyuan.dear.net.resultBeans.NetClockInConfig;
 import com.guyuan.dear.office.clockIn.repo.ClockInRepo;
 import com.guyuan.dear.utils.CalenderUtils;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.Date;
 
@@ -62,12 +64,15 @@ public class ClockInViewModel extends BaseDearViewModel {
             startPositioning();
         }
     });
-    private DPoint myLoc;
+    //    private DPoint myLoc;
+    private BDLocation mBdLoc;
 
 
     public void initViews() {
 
-//        LogUtils.showLog(sHA1(DearApplication.getInstance()));
+        String packageName = DearApplication.getInstance().getPackageName();
+        LogUtils.showLog("pkName=" + packageName);
+        LogUtils.showLog(repo.showAppSHA1(DearApplication.getInstance()));
 
         //显示用户基础信息
         LoginBean me = repo.getMyInfo();
@@ -142,56 +147,116 @@ public class ClockInViewModel extends BaseDearViewModel {
     private void startPositioning() {
         isHideRefreshLabel.postValue(true);
         isShowLoading.postValue(true);
-        repo.startPositioning(mapLocationListener);
+//        repo.startGaodePositioning(mapLocationListener);
+        repo.startBdPositioning(bdLocListener);
     }
 
-    private AMapLocationListener mapLocationListener = new AMapLocationListener() {
+    private BDAbstractLocationListener bdLocListener = new BDAbstractLocationListener() {
         @Override
-        public void onLocationChanged(AMapLocation loc) {
-            if (loc != null) {
+        public void onReceiveLocation(BDLocation bdLocation) {
+            if (bdLocation != null) {
                 isShowLoading.postValue(false);
-                int errorCode = loc.getErrorCode();
-                //错误码为0时表示获取定位成功
-                if (errorCode == 0) {
+                int locType = bdLocation.getLocType();
+                //locType为61时表示GPS获取定位成功,161表示网络定位成功
+                //参考 http://lbsyun.baidu.com/index.php?title=android-locsdk/guide/addition-func/error-code
+                if (locType == 61 || locType == 161) {
+                    mBdLoc = bdLocation;
                     isHideRefreshLabel.postValue(true);
-                    updateUiByCurrentLoc(loc);
+                    updateUiByBdLoc(bdLocation);
                 } else {
                     isHideRefreshLabel.postValue(false);
-                    showToast(repo.getMapError(errorCode));
-                    repo.stopPositioning();
+                    showToast(bdLocation.getLocTypeDescription() + " error code = " + locType);
+                    repo.stopBdPositioning(this);
                     currentLocation.setValue("定位失败");
                     isInClockInArea.setValue(false);
                     updateCurrentState();
-                    myLoc = null;
+                    mBdLoc = null;
                 }
             }
         }
+
+        @Override
+        public void onLocDiagnosticMessage(int i, int i1, String s) {
+            super.onLocDiagnosticMessage(i, i1, s);
+            LogUtils.showLog("" + i + ":" + i1 + ":" + s);
+
+        }
     };
 
-    /**
-     * 根据当前位置判定打卡界面的打卡类型
-     *
-     * @param loc
-     */
-    private void updateUiByCurrentLoc(AMapLocation loc) {
-        currentLocation.postValue(loc.getAddress());
-        DPoint comLoc = new DPoint();
-        comLoc.setLatitude(comGpsConfig.getGpsLatitude());
-        comLoc.setLongitude(comGpsConfig.getGpsLongitude());
-        myLoc = new DPoint();
-        myLoc.setLatitude(loc.getLatitude());
-        myLoc.setLongitude(loc.getLongitude());
-        float distance = CoordinateConverter.calculateLineDistance(comLoc, myLoc);
+    private void updateUiByBdLoc(BDLocation bdLocation) {
+        StringBuilder sb  = new StringBuilder();
+        if(bdLocation.getAddress()!=null){
+            if(!TextUtils.isEmpty(bdLocation.getAddress().address)){
+                sb.append(bdLocation.getAddress().address);
+            }
+        }
+        String describe = bdLocation.getLocationDescribe();
+        if(!TextUtils.isEmpty(describe)){
+            sb.append(",").append(describe);
+        }
+        String loc = sb.toString();
+        if(TextUtils.isEmpty(loc)){
+            loc="无名地";
+        }
+        currentLocation.postValue(loc);
+        LatLng comLoc = new LatLng(comGpsConfig.getGpsLatitude(), comGpsConfig.getGpsLongitude());
+        LatLng myLoc = new LatLng(bdLocation.getLatitude(), bdLocation.getLongitude());
+//        float distance = CoordinateConverter.calculateLineDistance(comLoc, myLoc);
+        double distance = DistanceUtil.getDistance(comLoc, myLoc);
         if (distance <= comGpsConfig.getDistance()) {
             isInClockInArea.setValue(true);
         } else {
             isInClockInArea.setValue(false);
         }
 
-
         updateCurrentState();
-
     }
+
+//    private AMapLocationListener mapLocationListener = new AMapLocationListener() {
+//        @Override
+//        public void onLocationChanged(AMapLocation loc) {
+//            if (loc != null) {
+//                isShowLoading.postValue(false);
+//                int errorCode = loc.getErrorCode();
+//                //错误码为0时表示获取定位成功
+//                if (errorCode == 0) {
+//                    isHideRefreshLabel.postValue(true);
+//                    updateUiByGaodeLoc(loc);
+//                } else {
+//                    isHideRefreshLabel.postValue(false);
+//                    showToast(repo.getGaodeMapError(errorCode));
+//                    repo.stopGaodePositioning();
+//                    currentLocation.setValue("定位失败");
+//                    isInClockInArea.setValue(false);
+//                    updateCurrentState();
+//                    myLoc = null;
+//                }
+//            }
+//        }
+//    };
+
+//    /**
+//     * 根据当前位置判定打卡界面的打卡类型
+//     *
+//     * @param loc
+//     */
+//    private void updateUiByGaodeLoc(AMapLocation loc) {
+//        currentLocation.postValue(loc.getAddress());
+//        DPoint comLoc = new DPoint();
+//        comLoc.setLatitude(comGpsConfig.getGpsLatitude());
+//        comLoc.setLongitude(comGpsConfig.getGpsLongitude());
+//        myLoc = new DPoint();
+//        myLoc.setLatitude(loc.getLatitude());
+//        myLoc.setLongitude(loc.getLongitude());
+//        float distance = CoordinateConverter.calculateLineDistance(comLoc, myLoc);
+//        if (distance <= comGpsConfig.getDistance()) {
+//            isInClockInArea.setValue(true);
+//        } else {
+//            isInClockInArea.setValue(false);
+//        }
+//
+//        updateCurrentState();
+//    }
 
     private void updateCurrentState() {
 
@@ -241,7 +306,7 @@ public class ClockInViewModel extends BaseDearViewModel {
     }
 
     public Disposable clockIn() {
-        if (myLoc == null) {
+        if (mBdLoc == null) {
             showToast("定位未成功，还不能打卡。");
             return null;
         }
@@ -249,8 +314,8 @@ public class ClockInViewModel extends BaseDearViewModel {
         switch (value) {
             case ATTENDANCE_STATE_NOT_PUNCHED_IN_WORK_AREA:
                 return repo.clockIn(ClockInRqBody.CLOCK_IN_TYPE_CLOCK_IN_INSIDE_COMPANY_AREA,
-                        myLoc.getLatitude(),
-                        myLoc.getLongitude(),
+                        mBdLoc.getLatitude(),
+                        mBdLoc.getLongitude(),
                         new BaseNetCallback<Boolean>() {
                             @Override
                             protected void handleResult(Boolean result) {
@@ -261,8 +326,8 @@ public class ClockInViewModel extends BaseDearViewModel {
                         });
             case ATTENDANCE_STATE_NOT_PUNCHED_OUT_SIDE_WORK_AREA:
                 return repo.clockIn(ClockInRqBody.CLOCK_IN_TYPE_CLOCK_IN_OUTSIDE_COMPANY_AREA,
-                        myLoc.getLatitude(),
-                        myLoc.getLongitude(),
+                        mBdLoc.getLatitude(),
+                        mBdLoc.getLongitude(),
                         new BaseNetCallback<Boolean>() {
                             @Override
                             protected void handleResult(Boolean result) {
@@ -273,8 +338,8 @@ public class ClockInViewModel extends BaseDearViewModel {
             case ATTENDANCE_STATE_CLOCKED_IN_IN_WORK_AREA:
             case ATTENDANCE_STATE_OFF_WORK_IN_WORK_AREA:
                 return repo.clockIn(ClockInRqBody.CLOCK_IN_TYPE_CHECK_OUT_INSIDE_COMPANY_AREA,
-                        myLoc.getLatitude(),
-                        myLoc.getLongitude(),
+                        mBdLoc.getLatitude(),
+                        mBdLoc.getLongitude(),
                         new BaseNetCallback<Boolean>() {
                             @Override
                             protected void handleResult(Boolean result) {
@@ -285,8 +350,8 @@ public class ClockInViewModel extends BaseDearViewModel {
             case ATTENDANCE_STATE_CLOCKED_IN_OUT_SIDE_WORK_AREA:
             case ATTENDANCE_STATE_OFF_WORK_OUT_SIDE_WORK_AREA:
                 return repo.clockIn(ClockInRqBody.CLOCK_IN_TYPE_CHECK_OUT_OUTSIDE_COMPANY_AREA,
-                        myLoc.getLatitude(),
-                        myLoc.getLongitude(),
+                        mBdLoc.getLatitude(),
+                        mBdLoc.getLongitude(),
                         new BaseNetCallback<Boolean>() {
                             @Override
                             protected void handleResult(Boolean result) {
@@ -315,7 +380,8 @@ public class ClockInViewModel extends BaseDearViewModel {
     public void onDestroy() {
         super.onDestroy();
         //停止定位，释放资源
-        repo.stopPositioning();
+//        repo.stopGaodePositioning();
+        repo.stopBdPositioning(bdLocListener);
     }
 
 

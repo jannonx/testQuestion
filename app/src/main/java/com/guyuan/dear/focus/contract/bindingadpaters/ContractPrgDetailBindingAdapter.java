@@ -51,6 +51,5 @@ public class ContractPrgDetailBindingAdapter {
         view.setAdapter(wrapper);
         view.setLoadMoreEnabled(false);
         view.setPullRefreshEnabled(false);
-
     }
 }

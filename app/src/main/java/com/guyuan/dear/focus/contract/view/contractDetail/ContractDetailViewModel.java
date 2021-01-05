@@ -53,9 +53,11 @@ public class ContractDetailViewModel extends BaseViewModel {
 
         @Override
         public void onGetResult(DetailContractBean result) {
-            //进一步获取评论列表
-            temp = result;
-            repo.getVerifyFlowByContractId((int) result.getContractId(), callbackGetComments);
+//            进一步获取评论列表
+//            temp = result;
+//            repo.getVerifyFlowByContractId((int) result.getContractId(), callbackGetComments);
+            contractBean.postValue(result);
+            isShowLoading.postValue(false);
 
         }
 

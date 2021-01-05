@@ -11,7 +11,8 @@ import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.customizeview.itemDecorator.LinearVerticalPaddingDecorator2P0;
 import com.guyuan.dear.databinding.FragmentAbnormalContractListBinding;
-import com.guyuan.dear.focus.contract.adapter.ContractListDataBindingAdapter;
+import com.guyuan.dear.focus.contract.adapter.ContractListAdapter;
+import com.guyuan.dear.focus.contract.adapter.ExceptionContractListAdapter;
 import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailActivity;
 
@@ -50,11 +51,12 @@ public class AbnormalContractListFragment extends BaseMvvmFragment<FragmentAbnor
     protected void initViews() {
         recyclerView = getViewDataBinding().fragmentAbnormalContractListRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        ContractListDataBindingAdapter adapter = new ContractListDataBindingAdapter(getViewModel().contractList.getValue());
+//        ContractListAdapter adapter = new ContractListAdapter(getViewModel().contractList.getValue());
+        ExceptionContractListAdapter adapter = new ExceptionContractListAdapter(getViewModel().contractList.getValue());
         wrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(wrapper);
-        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0(12,12,12,12,16));
+        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0());
         recyclerView.setPullRefreshEnabled(false);
         recyclerView.setLoadMoreEnabled(true);
         recyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -98,13 +100,13 @@ public class AbnormalContractListFragment extends BaseMvvmFragment<FragmentAbnor
             }
         });
 
-        wrapper.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                BaseContractBean bean = getViewModel().contractList.getValue().get(position);
-                ContractDetailActivity.start(getActivity(), "合同详情", (int) bean.getContractId());
-            }
-        });
+//        wrapper.setOnItemClickListener(new OnItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int position) {
+//                BaseContractBean bean = getViewModel().contractList.getValue().get(position);
+//                ContractDetailActivity.start(getActivity(), "合同详情", (int) bean.getContractId());
+//            }
+//        });
 
 
     }

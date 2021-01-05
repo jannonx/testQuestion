@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
         <variable
             name="fragment_contract_detail_vm"
             type="com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailViewModel" />
@@ -104,13 +106,11 @@
             </TableRow>
         </TableLayout>
 
-        <!--服务器接口没功能，暂时隐藏-->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_40"
             android:gravity="center_vertical"
-            android:background="#F5F7FA"
-            android:visibility="gone">
+            android:background="#F5F7FA">
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -122,10 +122,24 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_10"
                     android:textSize="@dimen/sp_12"
                     android:textColor="#1890FF"
                     android:text="查看合同订单进度"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp_12"
+                    android:textColor="#FF6010"
+                    android:paddingLeft="2dp"
+                    android:paddingRight="2dp"
+                    android:text="@{fragment_contract_detail_vm.contractBean.abnormalDesc}"
+                    android:background="@drawable/bg_pink_ffece3_round_corner_2dp"
+                    android:visibility="@{TextUtils.isEmpty(fragment_contract_detail_vm.contractBean.abnormalDesc)?View.GONE:View.VISIBLE}"
                     />
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"

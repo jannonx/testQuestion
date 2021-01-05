@@ -67,6 +67,7 @@ public class BaseContractBean implements Parcelable {
     public static final int CONTRACT_TYPE_EXCEPTION_CONTRACTS = 6;
 
     private int executingState;
+    private String abnormalDesc = "";
 
 
     public BaseContractBean() {
@@ -90,11 +91,26 @@ public class BaseContractBean implements Parcelable {
             tag = "质保金异常";
         } else if (executingState == 2) {
             tag = "验收合格";
-        }else if (executingState == 3) {
+        } else if (executingState == 3) {
             tag = "合同暂停";
         }
         if (tag != null) {
             getTags().add(tag);
+        }
+        int abnormalCode = info.getAbnormalCode();
+        /**
+         * 1合同暂停,2质保金回不来
+         */
+        switch (abnormalCode) {
+            case 1:
+                abnormalDesc = "暂停中";
+                break;
+            case 2:
+                abnormalDesc = "质保金无法回款";
+                break;
+            default:
+                abnormalDesc = "";
+                break;
         }
     }
 
@@ -109,6 +125,7 @@ public class BaseContractBean implements Parcelable {
         productModel = in.readString();
         tags = in.createStringArrayList();
         executingState = in.readInt();
+        abnormalDesc = in.readString();
     }
 
     public static final Creator<BaseContractBean> CREATOR = new Creator<BaseContractBean>() {
@@ -203,6 +220,14 @@ public class BaseContractBean implements Parcelable {
         this.executingState = executingState;
     }
 
+    public String getAbnormalDesc() {
+        return abnormalDesc;
+    }
+
+    public void setAbnormalDesc(String abnormalDesc) {
+        this.abnormalDesc = abnormalDesc;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -220,5 +245,6 @@ public class BaseContractBean implements Parcelable {
         dest.writeString(productModel);
         dest.writeStringList(tags);
         dest.writeInt(executingState);
+        dest.writeString(abnormalDesc);
     }
 }

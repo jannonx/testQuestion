@@ -6,6 +6,7 @@ buildscript {
         maven { url 'https://jitpack.io' }
         //解决piechart数字重叠的补丁：https://github.com/huzipiaopiao/MPAndroidChartFix
         maven { url "https://dl.bintray.com/teadoglibrary/MPAndroidChartFix" }
+        maven { url 'https://dl.bintray.com/umsdk/release' }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.1"
@@ -23,6 +24,7 @@ allprojects {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
+        maven { url 'https://dl.bintray.com/umsdk/release' }
     }
 }
 

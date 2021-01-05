@@ -1,5 +1,6 @@
 package com.guyuan.dear.focus.contract.bean;
 
+import com.guyuan.dear.net.resultBeans.NetContractHistory;
 import com.guyuan.dear.net.resultBeans.NetContractStatusFlow;
 import com.guyuan.dear.utils.CalenderUtils;
 
@@ -23,17 +24,15 @@ public class NoDepositPrgLog {
      */
     private String cause;
 
-    public NoDepositPrgLog(NetContractStatusFlow.ContractAbnormalQualityVOBean src) {
+
+    public NoDepositPrgLog(NetContractHistory.QualityAbnormaVOBean src) {
         try {
-            date = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(src.getCreateTime()).getTime();
+            date = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(src.getQualityAbnormalTime()).getTime();
         }catch (Exception e){
             e.printStackTrace();
         }
-        approveBy = src.getApprovedBy();
-        cause = src.getRemark();
-    }
-
-    public NoDepositPrgLog() {
+        approveBy = src.getQualityAbnormalBy();
+        cause = src.getQualityAbnormalCauses();
     }
 
     public long getDate() {

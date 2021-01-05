@@ -23,6 +23,14 @@ public class LinearVerticalPaddingDecorator2P0 extends RecyclerView.ItemDecorati
     private int outerBottom;
     private int gapBetween;
 
+    public LinearVerticalPaddingDecorator2P0() {
+        this.outerLeft = (int) DimensionUtils.dp2px(12);
+        this.outerTop = (int) DimensionUtils.dp2px(12);
+        this.outerRight = (int) DimensionUtils.dp2px(12);
+        this.outerBottom = (int) DimensionUtils.dp2px(12);
+        this.gapBetween = (int) DimensionUtils.dp2px(16);
+    }
+
     /**
      * 2.0版本，设置外框以及内部item间的空间，以dp为单位。
      * @param outerLeft 外框左边的空间

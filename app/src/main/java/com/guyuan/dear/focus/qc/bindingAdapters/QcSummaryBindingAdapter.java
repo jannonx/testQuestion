@@ -27,6 +27,12 @@ public class QcSummaryBindingAdapter {
         view.setText(yearAndMonth);
     }
 
+    @BindingAdapter("showYearMonthDayHourMinuteByDate")
+    public static void showYearMonthDayHourMinuteByDate(AppCompatTextView view, long date) {
+        String yearAndMonth = CalenderUtils.getInstance().toYearMonthDayHourMinute(date);
+        view.setText(yearAndMonth);
+    }
+
     @BindingAdapter(value = {"setQcPassCount", "setQcSampleSize"}, requireAll = true)
     public static void calculateQcSummaryPassRate(AppCompatTextView view, int passCount, int sampleSize) {
         if (sampleSize == 0) {

@@ -15,7 +15,6 @@ import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 import com.guyuan.dear.focus.contract.bean.ComContractsBean;
 import com.guyuan.dear.focus.contract.bean.ContractBean;
 import com.guyuan.dear.focus.contract.bean.ContractComment;
-import com.guyuan.dear.focus.contract.bean.ContractStatusFlowBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.bean.RestartedContractBean;
@@ -42,6 +41,7 @@ import com.guyuan.dear.net.resultBeans.NetBaseQcBean;
 import com.guyuan.dear.net.resultBeans.NetClientInfo;
 import com.guyuan.dear.net.resultBeans.NetClockInConfig;
 import com.guyuan.dear.net.resultBeans.NetContractDetailInfo;
+import com.guyuan.dear.net.resultBeans.NetContractHistory;
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
 import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.net.resultBeans.NetContractStatusFlow;
@@ -1055,15 +1055,20 @@ public class DearNetHelper {
      * @param callback
      * @return
      */
-    public Disposable getContractStatusFlow(int contractId, NetCallback<ContractStatusFlowBean> callback) {
+    public Disposable getContractStatusFlow(int contractId, NetCallback<NetContractStatusFlow> callback) {
         Observable<ResultBean<NetContractStatusFlow>> observable = netApiService.getContractStatusFlowById(contractId);
-        Mapper<NetContractStatusFlow, ContractStatusFlowBean> mapper = new Mapper<NetContractStatusFlow, ContractStatusFlowBean>() {
-            @Override
-            public ContractStatusFlowBean map(NetContractStatusFlow src) {
-                return new ContractStatusFlowBean(src);
-            }
-        };
-        return getDisposalAsync(observable, callback, mapper);
+        return getDisposalAsync(observable, callback, null);
+    }
+
+    /**
+     * 根据合同id获取合同历史进程
+     * @param contractId
+     * @param callback
+     * @return
+     */
+    public Disposable getContractHistoryById(int contractId, NetCallback<NetContractHistory> callback){
+        Observable<ResultBean<NetContractHistory>> observable = netApiService.getContractHistoryById(contractId);
+        return getDisposalAsync(observable,callback,null);
     }
 
     /**

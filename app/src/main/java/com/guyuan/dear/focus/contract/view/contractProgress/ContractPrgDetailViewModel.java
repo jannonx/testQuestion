@@ -1,11 +1,27 @@
 package com.guyuan.dear.focus.contract.view.contractProgress;
 
-import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.gson.Gson;
 import com.guyuan.dear.base.fragment.BaseDearViewModel;
-import com.guyuan.dear.focus.contract.bean.ContractStatusFlowBean;
+import com.guyuan.dear.focus.contract.adapter.ContractHistoryTypeWrapper;
+import com.guyuan.dear.focus.contract.bean.ClientAcceptanceHistory;
+import com.guyuan.dear.focus.contract.bean.ClientPaymentHistory;
+import com.guyuan.dear.focus.contract.bean.ContractPauseHistory;
+import com.guyuan.dear.focus.contract.bean.ContractRestartHistory;
+import com.guyuan.dear.focus.contract.bean.ContractStatusFlow;
+import com.guyuan.dear.focus.contract.bean.DepositSubmitHistory;
+import com.guyuan.dear.focus.contract.bean.NoDepositPrgLog;
 import com.guyuan.dear.focus.contract.repos.ContractPrgDetailRepo;
+import com.guyuan.dear.net.resultBeans.NetContractHistory;
+import com.guyuan.dear.net.resultBeans.NetContractStatusFlow;
+import com.tencent.bugly.proguard.C;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import io.reactivex.disposables.Disposable;
 
@@ -17,134 +33,117 @@ import io.reactivex.disposables.Disposable;
  **/
 public class ContractPrgDetailViewModel extends BaseDearViewModel {
     private ContractPrgDetailRepo repo = new ContractPrgDetailRepo();
-    private MutableLiveData<ContractStatusFlowBean> detailBean = new MutableLiveData<>();
-    public MutableLiveData<Boolean> isShowSuspendIssue=new MutableLiveData<>(false);
-    public MutableLiveData<Boolean> isShowDepositIssue=new MutableLiveData<>(false);
-
-    public MutableLiveData<ContractStatusFlowBean> getDetailBean() {
+    private NetContractStatusFlow temp;
+    private MutableLiveData<ContractStatusFlow> detailBean = new MutableLiveData<>();
+    public MutableLiveData<ContractStatusFlow> getDetailBean() {
         return detailBean;
     }
+    public MutableLiveData<List<ContractHistoryTypeWrapper>> contractHistories = new MutableLiveData<>();
 
-    public Disposable loadDataFromNet(int contractId) {
-        return repo.getContractStatusFlowById(contractId, new BaseNetCallback<ContractStatusFlowBean>() {
+
+    public void loadStatusFlowFromNet(int contractId) {
+        Disposable disposable = repo.getContractStatusFlowById(contractId, new BaseNetCallback<NetContractStatusFlow>() {
             @Override
-            protected void handleResult(ContractStatusFlowBean result) {
-                isShowSuspendIssue.postValue(result.getSuspendPrgLog()!=null);
-                isShowDepositIssue.postValue(result.getNoDepositPrgLog()!=null);
-                detailBean.postValue(result);
+            protected void handleResult(NetContractStatusFlow result) {
+                if (result != null) {
+                    temp = result;
+                    loadHistoryFromNet(contractId);
+                } else {
+                    showToast("服务器无节点数据，请联系后台人员。");
+                }
             }
         });
+        addSubscription(disposable);
     }
 
-//    public void loadDateFromNet(String contractId) {
-//        ContractStatusFlowBean bean = new ContractStatusFlowBean();
-//        bean.setBuyer("深圳固远智能机器人公司");
-//        bean.setDate(System.currentTimeMillis());
-//        bean.setContractNum(contractId);
-//        bean.setProductName("空气分离设备");
-//        bean.setSalesPerson("马冬梅");
-//        bean.setProductModel("DEAR-001");
-//        bean.setTags(new ArrayList<String>() {
-//            {
-//                add("生产中");
-//            }
-//        });
-//        //部件
-//        bean.setComponentStates(new ArrayList<ComponentStateBean>() {
-//            {
-//                for (int i = 0; i < 4; i++) {
-//                    ComponentStateBean stateBean = new ComponentStateBean();
-//                    stateBean.setComponentName("部件一");
-//                    stateBean.setModelName("DEAR-000");
-//                    stateBean.setProductionState("生产中");
-//                    add(stateBean);
-//                }
-//            }
-//        });
-//        //合同执行节点
-//        bean.setKnotList(new ArrayList<ContractPrgKnot>() {
-//            {
-//                for (int i = 0; i < 13; i++) {
-//                    ContractPrgKnot knot = new ContractPrgKnot();
-//                    knot.setKnotId(i);
-//                    knot.setTag("节点" + i);
-//                    add(knot);
-//                }
-//            }
-//        });
-//        //历史记录
-//        bean.setLogs(new ArrayList<ContractLogBean>() {
-//            {
-//                //销售会议
-//                for (int i = 0; i < 3; i++) {
-//                    SalesReviewMeeting meeting = new SalesReviewMeeting();
-//                    meeting.setDept("销售部");
-//                    meeting.setMeetingDate(System.currentTimeMillis());
-//                    meeting.setMeetingResult(SalesReviewMeeting.MEETING_RESULT_APPROVED);
-//                    meeting.setVotes(new ArrayList<Vote>() {
-//                        {
-//                            for (int i1 = 0; i1 < 12; i1++) {
-//                                Vote vote = new Vote();
-//                                vote.setName("安娜" + i1);
-//                                vote.setResult(i1 % 4 == 0 ? Vote.VOTE_RESULT_REJECT : Vote.VOTE_RESULT_PASS);
-//                                vote.setStaffId(i1);
-//                                add(vote);
-//                            }
-//                        }
-//                    });
-//                    meeting.setMeetingIndex(i + 1);
-//                    meeting.setComments(new ArrayList<MeetingComment>() {
-//                        {
-//                            Random random = new Random(System.currentTimeMillis());
-//                            int i1 = random.nextInt(5);
-//                            for (int i2 = 0; i2 < i1; i2++) {
-//                                MeetingComment comment = new MeetingComment();
-//                                comment.setName("安娜" + i2);
-//                                comment.setDept("销售部");
-//                                comment.setContent("客户提的要求第5条对设备老化更换的通用性零部件，需要和客户明确具体需求");
-//                                add(comment);
-//                            }
-//                        }
-//                    });
-//
-//                    String json = new Gson().toJson(meeting);
-//                    ContractLogBean log = new ContractLogBean();
-//                    log.setLogType(ContractLogBean.LOG_TYPE_SALES_REVIEW_MEETING);
-//                    log.setJsonString(json);
-//                    add(log);
-//                }
-//
-//                //首次创建日期
-//                FirstCreateDate firstCreateDate = new FirstCreateDate();
-//                firstCreateDate.setDate(0);
-//                ContractLogBean log = new ContractLogBean();
-//                log.setLogType(ContractLogBean.LOG_TYPE_FIRST_CREATE_DATE);
-//                log.setJsonString(new Gson().toJson(firstCreateDate));
-//                add(log);
-//            }
-//        });
-//
-//        //客户签收单据
-//        bean.setClientReceipts(new ArrayList<ClientReceipt>(){
-//            {
-//                add(new ClientReceipt(){
-//                    {
-//                        setSrc(R.mipmap.client_receipt_1);
-//                    }
-//                });
-//                add(new ClientReceipt(){
-//                    {
-//                        setSrc(R.mipmap.client_receipt_2);
-//                    }
-//                });
-//                add(new ClientReceipt(){
-//                    {
-//                        setSrc(R.mipmap.client_receipt_3);
-//                    }
-//                });
-//            }
-//        });
-//
-//        detailBean.postValue(bean);
-//    }
+    private void loadHistoryFromNet(int contractId) {
+        Disposable disposable = repo.getContractHistoryById(contractId, new BaseNetCallback<NetContractHistory>() {
+            @Override
+            protected void handleResult(NetContractHistory result) {
+                if(result!=null){
+                    ContractStatusFlow flow = new ContractStatusFlow(temp,result);
+                    detailBean.postValue(flow);
+                    updateContractHistories(flow);
+                }else {
+                    showToast("服务器无历史数据，请联系后台人员。");
+                }
+            }
+        });
+        addSubscription(disposable);
+    }
+
+    private void updateContractHistories(ContractStatusFlow flow) {
+        List<ContractHistoryTypeWrapper> result = new ArrayList<>();
+
+        NoDepositPrgLog noDepositPrgLog = flow.getNoDepositPrgLog();
+        if(noDepositPrgLog!=null){
+            ContractHistoryTypeWrapper wrapper = new ContractHistoryTypeWrapper();
+            wrapper.setDate(noDepositPrgLog.getDate());
+            wrapper.setType(ContractHistoryTypeWrapper.TYPE_DEPOSIT_NOT_RECEIVED);
+            wrapper.setJsonString(new Gson().toJson(noDepositPrgLog));
+            result.add(wrapper);
+        }
+
+        DepositSubmitHistory depositSubmitHistory = flow.getDepositSubmitHistory();
+        if(depositSubmitHistory!=null){
+            ContractHistoryTypeWrapper wrapper = new ContractHistoryTypeWrapper();
+            wrapper.setDate(depositSubmitHistory.getDate());
+            wrapper.setType(ContractHistoryTypeWrapper.TYPE_DEPOSIT_RECEIVED);
+            wrapper.setJsonString(new Gson().toJson(depositSubmitHistory));
+            result.add(wrapper);
+        }
+
+        ClientPaymentHistory clientPaymentHistory = flow.getClientPaymentHistory();
+        if(clientPaymentHistory!=null){
+            ContractHistoryTypeWrapper wrapper = new ContractHistoryTypeWrapper();
+            wrapper.setDate(clientPaymentHistory.getDate());
+            wrapper.setType(ContractHistoryTypeWrapper.TYPE_CLIENT_PAYMENT_RECEIVED);
+            wrapper.setJsonString(new Gson().toJson(clientPaymentHistory));
+            result.add(wrapper);
+        }
+
+        List<ContractPauseHistory> contractPauseHistories = flow.getContractPauseHistories();
+        if(contractPauseHistories!=null&&!contractPauseHistories.isEmpty()){
+            for (ContractPauseHistory temp : contractPauseHistories) {
+                ContractHistoryTypeWrapper wrapper = new ContractHistoryTypeWrapper();
+                wrapper.setDate(temp.getDate());
+                wrapper.setType(ContractHistoryTypeWrapper.TYPE_CONTRACT_PAUSE);
+                wrapper.setJsonString(new Gson().toJson(temp));
+                result.add(wrapper);
+            }
+        }
+
+        List<ContractRestartHistory> restartHistoryList = flow.getContractRestartHistories();
+        if(restartHistoryList!=null&&!restartHistoryList.isEmpty()){
+            for (ContractRestartHistory temp : restartHistoryList) {
+                ContractHistoryTypeWrapper wrapper = new ContractHistoryTypeWrapper();
+                wrapper.setDate(temp.getDate());
+                wrapper.setType(ContractHistoryTypeWrapper.TYPE_CONTRACT_RESTART);
+                wrapper.setJsonString(new Gson().toJson(temp));
+                result.add(wrapper);
+            }
+        }
+
+        List<ClientAcceptanceHistory> acceptanceHistoryList = flow.getClientAcceptanceHistories();
+        if(acceptanceHistoryList!=null&&!acceptanceHistoryList.isEmpty()){
+            for (ClientAcceptanceHistory temp : acceptanceHistoryList) {
+                ContractHistoryTypeWrapper wrapper = new ContractHistoryTypeWrapper();
+                wrapper.setDate(temp.getDate());
+                wrapper.setType(ContractHistoryTypeWrapper.TYPE_CLIENT_TAKE_DELIVERY);
+                wrapper.setJsonString(new Gson().toJson(temp));
+                result.add(wrapper);
+            }
+        }
+
+        Collections.sort(result, new Comparator<ContractHistoryTypeWrapper>() {
+            @Override
+            public int compare(ContractHistoryTypeWrapper o1, ContractHistoryTypeWrapper o2) {
+                return (int) (o2.getDate()-o1.getDate());
+            }
+        });
+
+        contractHistories.postValue(result);
+    }
+
+
 }

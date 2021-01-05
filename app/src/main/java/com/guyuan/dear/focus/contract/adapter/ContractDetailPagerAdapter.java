@@ -19,7 +19,8 @@ import com.guyuan.dear.focus.contract.view.contractDetail.SalesDeliveryFragment;
  **/
 public class ContractDetailPagerAdapter extends FragmentStateAdapter {
 
-    private String[] mTitles = new String[]{"跟进动态", "销售产品", "收货信息"};
+//    private String[] mTitles = new String[]{"跟进动态", "销售产品", "收货信息"};
+    private String[] mTitles = new String[]{"销售产品", "收货信息"};
     private ProductBaseInfoFragment baseInfoFragment;
     private SalesDeliveryFragment salesDeliveryFragment;
     private ContractCommentsFragment commentsFragment;
@@ -34,24 +35,18 @@ public class ContractDetailPagerAdapter extends FragmentStateAdapter {
         Fragment result = null;
         switch (position) {
             case 0:
-                if (commentsFragment == null) {
-                    commentsFragment = ContractCommentsFragment.getInstance();
-                }
-                result = commentsFragment;
-
-                break;
-            case 1:
                 if (baseInfoFragment == null) {
                     baseInfoFragment = ProductBaseInfoFragment.getInstance();
                 }
                 result = baseInfoFragment;
 
                 break;
-            case 2:
+            case 1:
                 if (salesDeliveryFragment == null) {
                     salesDeliveryFragment = SalesDeliveryFragment.getInstance();
                 }
                 result = salesDeliveryFragment;
+
                 break;
             default:
                 break;
@@ -59,9 +54,40 @@ public class ContractDetailPagerAdapter extends FragmentStateAdapter {
         return result;
     }
 
+    @NonNull
+//    @Override
+//    public Fragment createFragment(int position) {
+//        Fragment result = null;
+//        switch (position) {
+//            case 0:
+//                if (commentsFragment == null) {
+//                    commentsFragment = ContractCommentsFragment.getInstance();
+//                }
+//                result = commentsFragment;
+//
+//                break;
+//            case 1:
+//                if (baseInfoFragment == null) {
+//                    baseInfoFragment = ProductBaseInfoFragment.getInstance();
+//                }
+//                result = baseInfoFragment;
+//
+//                break;
+//            case 2:
+//                if (salesDeliveryFragment == null) {
+//                    salesDeliveryFragment = SalesDeliveryFragment.getInstance();
+//                }
+//                result = salesDeliveryFragment;
+//                break;
+//            default:
+//                break;
+//        }
+//        return result;
+//    }
+
     @Override
     public int getItemCount() {
-        return 3;
+        return 2;
     }
 
     public String getTitle(int pos) {

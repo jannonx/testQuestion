@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.text.TextUtils"/>
+        <import type="android.view.View"/>
         <variable
             name="data"
             type="com.guyuan.dear.focus.contract.bean.ContractPrgKnot" />
@@ -12,10 +14,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:padding="5dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_11"
+            android:textColor="#FF6010"
+            android:background="@drawable/bg_orange_ffece3_corner_2"
+            android:text="@{data.warning}"
+            android:gravity="center"
+            android:visibility="@{TextUtils.isEmpty(data.warning)?View.INVISIBLE:View.VISIBLE}"/>
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_marginTop="@dimen/dp_12"
             android:id="@+id/item_contract_prg_detail_round_knot_iv_sphere"
             android:layout_width="@dimen/dp_36"
             android:layout_height="@dimen/dp_36"
@@ -23,14 +35,12 @@
             app:updateBgByKnotStatus="@{data.status}"/>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_marginTop="@dimen/dp_8"
-            android:layout_marginBottom="@dimen/dp_4"
             android:id="@+id/item_contract_prg_detail_round_knot_tv_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textColor="@color/color_black_333333"
-            android:text="@{data.tag,default=xxx}" />
+            android:text="@{data.name,default=xxx}" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

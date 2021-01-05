@@ -1,5 +1,6 @@
 package com.example.mvvmlibrary.base.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -21,6 +22,7 @@ public abstract class BaseDBRecycleAdapter<T, VDB extends ViewDataBinding> exten
 
     protected List<T> listData;
     private int layoutID = 0;
+    private Context context;
 
     public BaseDBRecycleAdapter(List<T> listData, int layoutID) {
         this.listData = listData;
@@ -30,7 +32,8 @@ public abstract class BaseDBRecycleAdapter<T, VDB extends ViewDataBinding> exten
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        VDB binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), layoutID,
+        context = parent.getContext();
+        VDB binding = DataBindingUtil.inflate(LayoutInflater.from(context), layoutID,
                 parent, false);
         return new Holder(binding);
     }
@@ -70,5 +73,9 @@ public abstract class BaseDBRecycleAdapter<T, VDB extends ViewDataBinding> exten
 
     public void setListData(List<T> listData) {
         this.listData = listData;
+    }
+
+    public Context getContext(){
+        return context;
     }
 }

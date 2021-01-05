@@ -78,6 +78,21 @@ public class DetailContractBean extends BaseContractBean {
             ProductComponent component = new ProductComponent(part);
             productComponents.add(component);
         }
+        int abnormalCode = src.getAbnormalCode();
+        /**
+         * 1合同暂停,2质保金回不来
+         */
+        switch (abnormalCode) {
+            case 1:
+                setAbnormalDesc("暂停中");
+                break;
+            case 2:
+                setAbnormalDesc("质保金无法回款");
+                break;
+            default:
+                setAbnormalDesc("");
+                break;
+        }
     }
 
 
@@ -136,4 +151,6 @@ public class DetailContractBean extends BaseContractBean {
     public void setReceiverCompany(String receiverCompany) {
         this.receiverCompany = receiverCompany;
     }
+
+
 }

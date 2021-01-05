@@ -43,6 +43,7 @@ public class NetContractDetailInfo extends NetContractInfo {
     private String salesman;
     private String fileUrl;
     private List<TcontractPartsBean> tcontractParts;
+    private int abnormalCode;
 
     public long getTotalAmount() {
         return totalAmount;
@@ -126,6 +127,13 @@ public class NetContractDetailInfo extends NetContractInfo {
         this.fileUrl = fileUrl;
     }
 
+    public int getAbnormalCode() {
+        return abnormalCode;
+    }
+
+    public void setAbnormalCode(int abnormalCode) {
+        this.abnormalCode = abnormalCode;
+    }
 
     public List<TcontractPartsBean> getTcontractParts() {
         return tcontractParts;

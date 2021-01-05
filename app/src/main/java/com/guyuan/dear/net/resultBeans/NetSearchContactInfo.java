@@ -22,6 +22,10 @@ public class NetSearchContactInfo extends NetBaseContractInfo {
      * 0 正常执行 1 质保金异常 2 验收合格 3 暂停
      */
     private int state;
+    /**
+     * 1合同暂停,2质保金回不来
+     */
+    private int abnormalCode;
 
     public String getCusName() {
         return cusName;
@@ -55,5 +59,11 @@ public class NetSearchContactInfo extends NetBaseContractInfo {
         this.state = state;
     }
 
+    public int getAbnormalCode() {
+        return abnormalCode;
+    }
 
+    public void setAbnormalCode(int abnormalCode) {
+        this.abnormalCode = abnormalCode;
+    }
 }

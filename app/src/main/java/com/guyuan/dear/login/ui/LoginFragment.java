@@ -20,6 +20,8 @@ import com.guyuan.dear.home.MainActivity;
 import com.guyuan.dear.login.data.bean.AppMenusBean;
 import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.login.data.LoginViewModel;
+import com.guyuan.dear.umeng.UmengAliasManager;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.List;
@@ -87,6 +89,9 @@ public class LoginFragment extends BaseDataBindingFragment<FragmentLoginBinding,
                     @Override
                     public void accept(Object o) throws Exception {
                         LoginBean loginBean = (LoginBean) o;
+                        //更换友盟推送的绑定ID
+                        long preUserId = CommonUtils.getCurrentUserId();
+                        UmengAliasManager.getInstance().updatePushAlias(preUserId,loginBean.getUserInfo().getId());
                         saveLoginData(loginBean);
                     }
                 });

@@ -7,9 +7,10 @@ package com.guyuan.dear.focus.contract.bean;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class ContractPrgKnot {
-    private String tag;
+    private String name;
     private long knotId;
     private int status;
+    private String warning;
     public static final int KNOT_STATUS_DEFAULT=0;
     public static final int KNOT_STATUS_PROCESSING=1;
     public static final int KNOT_STATUS_FINISHED=2;
@@ -17,17 +18,25 @@ public class ContractPrgKnot {
     public ContractPrgKnot() {
     }
 
-    public ContractPrgKnot(String tag, int status) {
-        this.tag = tag;
+    public ContractPrgKnot(String name, int status) {
+        this.name = name;
         this.status = status;
     }
 
-    public String getTag() {
-        return tag;
+    public String getWarning() {
+        return warning;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setWarning(String warning) {
+        this.warning = warning;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public long getKnotId() {

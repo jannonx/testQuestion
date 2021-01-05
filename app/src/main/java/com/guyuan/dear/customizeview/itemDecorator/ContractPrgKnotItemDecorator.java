@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.guyuan.dear.R;
+
 /**
  * @author: 廖华凯
  * @description:
@@ -49,8 +51,11 @@ public class ContractPrgKnotItemDecorator extends RecyclerView.ItemDecoration {
                 }
                 ViewGroup startChild = (ViewGroup) parent.getChildAt(i);
                 ViewGroup endChild = (ViewGroup) parent.getChildAt(i + 1);
-                View sphereStart = startChild.getChildAt(0);
-                int horizontalPos = parent.getChildAdapterPosition(startChild) / spanCount;
+                View sphereStart = startChild.findViewById(R.id.item_contract_prg_detail_round_knot_iv_sphere);
+                if(sphereStart==null){
+                    continue;
+                }
+                int horizontalPos = parent.getChildAdapterPosition(startChild) % spanCount;
                 if (horizontalPos != spanCount - 1) {
                     float startX = startChild.getLeft() + startChild.getWidth() * 1.0f / 2;
                     float startY = startChild.getTop() + sphereStart.getTop() + sphereStart.getHeight() * 1.0f / 2;

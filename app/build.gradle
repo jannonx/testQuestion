@@ -13,9 +13,9 @@ def verCode = properties.getProperty("mainVersionCode")
 def appVersionName = properties.getProperty("mainVersionName")
 def appversionCode = verCode.toInteger()
 def runTasks = gradle.startParameter.taskNames
-def gaode_map_release_key = properties.getProperty("GAODE_MAP_RELEASE_KEY")
-def gaode_map_check_key = properties.getProperty("GAODE_MAP_CHECK_KEY")
-def gaode_map_debug_key = properties.getProperty("GAODE_MAP_DEBUG_KEY")
+def baidu_map_debug_key = properties.getProperty("BAIDU_MAP_AK_DEBUG")
+def baidu_map_check_key =properties.getProperty("BAIDU_MAP_AK_CHECK")
+def baidu_map_release_key =properties.getProperty("BAIDU_MAP_AK_RELEASE")
 
 android {
     compileSdkVersion BuildConfig.compileSdkVersion
@@ -42,7 +42,8 @@ android {
 
         //设置支持的so库架构类型
         ndk {
-            abiFilters 'armeabi', "armeabi-v7a", "x86"
+//            abiFilters 'armeabi', "armeabi-v7a", "x86"
+            abiFilters "armeabi-v7a", "x86","armeabi"
         }
     }
 
@@ -57,7 +58,8 @@ android {
         abi {
             enable true
             reset()
-            include 'x86', 'armeabi-v7a', 'x86_64'
+//            include 'x86', 'armeabi-v7a', 'x86_64'
+            include 'x86', 'armeabi-v7a','armeabi'
             universalApk true
         }
     }
@@ -77,15 +79,6 @@ android {
         //通用配置
         commons {
             buildConfigField "String", "SPEECH_APP_ID", properties.getProperty("SPEECH_APP_ID")
-            buildConfigField "String", "EZOpenKEY", properties.getProperty("EZOpenKEY")
-
-            buildConfigField "String", "MEIZU_APP_ID", properties.getProperty("MEIZU_APP_ID")
-            buildConfigField "String", "MEIZU_APP_KEY", properties.getProperty("MEIZU_APP_KEY")
-
-            buildConfigField "String", "OPPO_APP_KEY", properties.getProperty("OPPO_APP_KEY")
-            buildConfigField "String", "OPPO_APP_SECRET", properties.getProperty("OPPO_APP_SECRET")
-
-            buildConfigField "String", "AGORA_APP_ID", properties.getProperty("AGORA_APP_ID")
 
             matchingFallbacks = ['debug', 'release'] //依赖库没有指定的buildtype采用这里指定的buildtype
         }
@@ -95,17 +88,11 @@ android {
             initWith(buildTypes.commons)
             buildConfigField "String", "BUGLY_APP_ID", properties.getProperty("BUGLY_APP_ID_RELEASE")
             buildConfigField "String", "SERVER_URL", properties.getProperty("RELEASE_SERVER_URL")
-            buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_LOCAL_APP_KEY")
-            buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_LOCAL_MSG_SECRET")
-            buildConfigField "String", "XIAO_MI_APP_ID", properties.getProperty("XIAO_MI_LOCAL_APP_ID")
-            buildConfigField "String", "XIAO_MI_APP_KEY", properties.getProperty("XIAO_MI_LOCAL_APP_KEY")
-            buildConfigField "Integer", "MORNING_BRIEFING_START_HOUR", properties.getProperty("MORNING_BRIEFING_START_HOUR")
-            buildConfigField "Integer", "MORNING_BRIEFING_START_MINUTE", properties.getProperty("MORNING_BRIEFING_START_MINUTE")
-            buildConfigField "Integer", "MORNING_BRIEFING_STOP_HOUR", properties.getProperty("MORNING_BRIEFING_STOP_HOUR")
-            buildConfigField "Integer", "MORNING_BRIEFING_STOP_MINUTE", properties.getProperty("MORNING_BRIEFING_STOP_MINUTE")
+            buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_APP_KEY_RELEASE")
+            buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_MSG_SECRET_RELEASE")
             manifestPlaceholders = [
                     CHANNEL_VALUE: name,
-                    gaodemapkey  : gaode_map_release_key
+                    baidumapkey : baidu_map_release_key
             ]
             applicationIdSuffix ".release" //正式包APPID后缀,在手机上正式包和测试包就能共存了
             signingConfig signingConfigs.config
@@ -123,17 +110,11 @@ android {
             initWith(buildTypes.commons)
             buildConfigField "String", "BUGLY_APP_ID", properties.getProperty("BUGLY_APP_ID_DEBUG")
             buildConfigField "String", "SERVER_URL", properties.getProperty("DEBUG_SERVER_URL")
-            buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_LOCAL_APP_KEY")
-            buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_LOCAL_MSG_SECRET")
-            buildConfigField "String", "XIAO_MI_APP_ID", properties.getProperty("XIAO_MI_LOCAL_APP_ID")
-            buildConfigField "String", "XIAO_MI_APP_KEY", properties.getProperty("XIAO_MI_LOCAL_APP_KEY")
-            buildConfigField "Integer", "MORNING_BRIEFING_START_HOUR", properties.getProperty("MORNING_BRIEFING_START_HOUR")
-            buildConfigField "Integer", "MORNING_BRIEFING_START_MINUTE", properties.getProperty("MORNING_BRIEFING_START_MINUTE")
-            buildConfigField "Integer", "MORNING_BRIEFING_STOP_HOUR", properties.getProperty("MORNING_BRIEFING_STOP_HOUR")
-            buildConfigField "Integer", "MORNING_BRIEFING_STOP_MINUTE", properties.getProperty("MORNING_BRIEFING_STOP_MINUTE")
+            buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_APP_KEY_DEBUG")
+            buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_MSG_SECRET_DEBUG")
             manifestPlaceholders = [
                     CHANNEL_VALUE: name,
-                    gaodemapkey  : gaode_map_debug_key
+                    baidumapkey : baidu_map_debug_key
             ]
             applicationIdSuffix ".debug"//测试包APPID后缀
             debuggable true
@@ -144,17 +125,11 @@ android {
             initWith(buildTypes.commons)
             buildConfigField "String", "BUGLY_APP_ID", properties.getProperty("BUGLY_APP_ID_CHECK")
             buildConfigField "String", "SERVER_URL", properties.getProperty("CHECK_SERVER_URL")
-            buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_LOCAL_APP_KEY")
-            buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_LOCAL_MSG_SECRET")
-            buildConfigField "String", "XIAO_MI_APP_ID", properties.getProperty("XIAO_MI_LOCAL_APP_ID")
-            buildConfigField "String", "XIAO_MI_APP_KEY", properties.getProperty("XIAO_MI_LOCAL_APP_KEY")
-            buildConfigField "Integer", "MORNING_BRIEFING_START_HOUR", properties.getProperty("MORNING_BRIEFING_START_HOUR")
-            buildConfigField "Integer", "MORNING_BRIEFING_START_MINUTE", properties.getProperty("MORNING_BRIEFING_START_MINUTE")
-            buildConfigField "Integer", "MORNING_BRIEFING_STOP_HOUR", properties.getProperty("MORNING_BRIEFING_STOP_HOUR")
-            buildConfigField "Integer", "MORNING_BRIEFING_STOP_MINUTE", properties.getProperty("MORNING_BRIEFING_STOP_MINUTE")
+            buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_APP_KEY_CHECK")
+            buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_MSG_SECRET_CHECK")
             manifestPlaceholders = [
                     CHANNEL_VALUE: name,
-                    gaodemapkey  : gaode_map_check_key
+                    baidumapkey : baidu_map_check_key
             ]
             applicationIdSuffix ".check"//测试包APPID后缀
             debuggable true
@@ -184,6 +159,7 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
+            jni.srcDirs = []    //disable automatic ndk-build
         }
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
@@ -197,17 +173,18 @@ android {
 
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(path: ':mvvmlibrary')
     implementation project(path: ':httplibrary')
     implementation project(path: ':easy_recyclerview_library')
-    //implementation fileTree(dir: 'libs', include: ['LibEasyRecyclerView.aar'])
     implementation AndroidX.appcompat
     implementation AndroidX.constraintlayout
     implementation Android.meteria
     implementation AndroidX.lifeCycleExtension
     implementation AndroidX.lifecycleRuntime
     implementation AndroidX.lifeCycleKT
+    implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     annotationProcessor Room.compiler
     implementation Room.runtime
     kapt Room.persistence
@@ -301,11 +278,22 @@ dependencies {
     /*萤石云视频通话模块，按需使用*/
     implementation 'com.ezviz.sdk:videotalk:1.0.0'
 
-    //高德地图
-    implementation 'com.amap.api:location:3.7.0'
-    implementation 'com.amap.api:search:5.0.0'
-
     //三方日历控件
     implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
+
+    //基础组件库依赖(必须) Push 6.2.0版本必须升级新版本Common SDK
+    implementation 'com.umeng.umsdk:common:9.3.0'
+    implementation 'com.umeng.umsdk:utdid:1.5.2'
+    implementation  'com.umeng.umsdk:asms:1.1.3'
+
+    //友盟push相关依赖(必须)
+    implementation 'com.umeng.umsdk:push:6.2.0'
+    implementation 'com.umeng.umsdk:alicloud-httpdns:1.2.5'
+    implementation 'com.umeng.umsdk:alicloud-utils:1.1.5'
+    implementation 'com.umeng.umsdk:alicloud_beacon:1.0.1'
+    implementation 'com.umeng.umsdk:agoo-accs:3.3.9.7-open'
+    implementation 'com.umeng.umsdk:agoo_networksdk:3.5.5'
+    implementation 'com.umeng.umsdk:agoo_tlog:3.0.0.17'
+    implementation 'com.umeng.umsdk:agoo_tnet4android:3.1.14.9'
 
 }

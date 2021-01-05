@@ -10,10 +10,11 @@
             type="com.guyuan.dear.focus.contract.view.contractProgress.ContractPrgDetailViewModel" />
     </data>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        android:background="@color/white">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -85,6 +86,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <include layout="@layout/view_divider_horizontal_grey_e5e5e5"/>
+
             <tl.com.easy_recycleview_library.BaseRecyclerView
                 android:id="@+id/fragment_contract_prg_detail_recycler_view_prg_knots"
                 android:layout_width="match_parent"
@@ -92,186 +94,14 @@
                 app:setContractPrgKnots="@{fragment_contract_prg_detail_vm.detailBean.knotList}" />
 
             <include layout="@layout/view_divider_horizontal_grey_e5e5e5"/>
-            <androidx.appcompat.widget.LinearLayoutCompat
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="@dimen/dp_16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/dp_12"
-                android:visibility="@{fragment_contract_prg_detail_vm.isShowSuspendIssue?View.VISIBLE:View.GONE}">
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/sp_16"
-                        android:textColor="@color/color_black_333333"
-                        android:textStyle="bold"
-                        android:text="合同暂停"/>
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="end"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/sp_16"
-                        android:textColor="@color/color_black_333333"
-                        android:textStyle="bold"
-                        showYearMonthDayByDate="@{fragment_contract_prg_detail_vm.detailBean.suspendPrgLog.date}"/>
-                </androidx.appcompat.widget.LinearLayoutCompat>
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_marginTop="@dimen/dp_12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_12"
-                    android:orientation="vertical"
-                    android:background="@drawable/shape_rect_grey_eeeeee_round_corner_5dp">
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/color_black_333333"
-                            android:textSize="@dimen/sp_14"
-                            android:text="判定维度："/>
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:textColor="@color/color_black_333333"
-                            android:textSize="@dimen/sp_14"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="国家政策"/>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_marginTop="@dimen/dp_12"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/sp_14"
-                            android:textColor="@color/color_grey_757575"
-                            android:text="审批人："/>
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/sp_14"
-                            android:textColor="@color/color_grey_757575"
-                            android:text="@{fragment_contract_prg_detail_vm.detailBean.suspendPrgLog.approveBy}"/>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+                app:setContractHistoryList="@{fragment_contract_prg_detail_vm.contractHistories}"/>
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_marginTop="@dimen/dp_12"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/color_grey_757575"
-                            android:textSize="@dimen/sp_12"
-                            android:text="暂停原因："/>
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/color_grey_757575"
-                            android:textSize="@dimen/sp_12"
-                            android:text="@{fragment_contract_prg_detail_vm.detailBean.suspendPrgLog.cause}"/>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_marginTop="@dimen/dp_12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/sp_10"
-                        android:textColor="#1890FF"
-                        android:text="该项目已经进入暂停状态，请等待项目重新启动。"/>
-                </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/dp_12"
-                android:paddingRight="@dimen/dp_12"
-                android:paddingTop="@dimen/dp_6"
-                android:paddingBottom="@dimen/dp_12"
-                android:visibility="@{fragment_contract_prg_detail_vm.isShowDepositIssue?View.VISIBLE:View.GONE}">
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/sp_16"
-                        android:textColor="@color/color_black_333333"
-                        android:textStyle="bold"
-                        android:text="质保金"/>
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="end"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/sp_16"
-                        android:textColor="@color/color_black_333333"
-                        android:textStyle="bold"
-                        showYearMonthDayByDate="@{fragment_contract_prg_detail_vm.detailBean.noDepositPrgLog.date}"/>
-                </androidx.appcompat.widget.LinearLayoutCompat>
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_marginTop="@dimen/dp_12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_12"
-                    android:orientation="vertical"
-                    android:background="@drawable/shape_rect_grey_eeeeee_round_corner_5dp">
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/color_black_333333"
-                            android:textSize="@dimen/sp_14"
-                            android:text="无法回款"/>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_marginTop="@dimen/dp_12"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/sp_14"
-                            android:textColor="@color/color_grey_757575"
-                            android:text="审批人："/>
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/sp_14"
-                            android:textColor="@color/color_grey_757575"
-                            android:text="@{fragment_contract_prg_detail_vm.detailBean.noDepositPrgLog.approveBy}"/>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_marginTop="@dimen/dp_12"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/color_grey_757575"
-                            android:textSize="@dimen/sp_12"
-                            android:text="原因："/>
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/color_grey_757575"
-                            android:textSize="@dimen/sp_12"
-                            android:text="@{fragment_contract_prg_detail_vm.detailBean.noDepositPrgLog.cause}"/>
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </layout>

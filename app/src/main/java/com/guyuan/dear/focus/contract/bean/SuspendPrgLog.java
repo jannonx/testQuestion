@@ -18,17 +18,17 @@ public class SuspendPrgLog {
     public SuspendPrgLog() {
     }
 
-    public SuspendPrgLog(NetContractStatusFlow.ContractAbnormalSuspendVOBean src) {
-        try {
-            this.date = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(src.getCreateTime()).getTime();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        judgeCondition = src.getRemark1();
-        approveBy =src.getApprovedBy();
-        cause = src.getRemark();
-
-    }
+//    public SuspendPrgLog(NetContractStatusFlow.ContractAbnormalSuspendVOBean src) {
+//        try {
+//            this.date = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(src.getCreateTime()).getTime();
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        judgeCondition = src.getRemark1();
+//        approveBy =src.getApprovedBy();
+//        cause = src.getRemark();
+//
+//    }
 
     public long getDate() {
         return date;

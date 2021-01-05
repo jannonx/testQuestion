@@ -35,7 +35,7 @@ public class ContractPrgDetailFragment extends BaseMvvmFragment<FragmentContract
     protected void initData() {
         Bundle bundle = getArguments();
         mContractId = bundle.getInt(ConstantValue.KEY_CONTRACT_ID);
-        addDisposable(getViewModel().loadDataFromNet(mContractId));
+        getViewModel().loadStatusFlowFromNet(mContractId);
     }
 
     @Override

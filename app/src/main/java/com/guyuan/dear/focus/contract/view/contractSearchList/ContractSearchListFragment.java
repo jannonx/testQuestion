@@ -12,7 +12,7 @@ import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
 import com.guyuan.dear.customizeview.itemDecorator.LinearVerticalPaddingDecorator;
 import com.guyuan.dear.databinding.FragmentContractSearchListBinding;
-import com.guyuan.dear.focus.contract.adapter.ContractListDataBindingAdapter;
+import com.guyuan.dear.focus.contract.adapter.ContractListAdapter;
 import com.guyuan.dear.focus.contract.bean.BaseContractBean;
 import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
@@ -71,7 +71,7 @@ public class ContractSearchListFragment extends BaseMvvmFragment<FragmentContrac
     protected void initViews() {
         recyclerView = getViewDataBinding().fragmentContractSearchListRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        ContractListDataBindingAdapter adapter = new ContractListDataBindingAdapter(getViewModel().contractList.getValue());
+        ContractListAdapter adapter = new ContractListAdapter(getViewModel().contractList.getValue());
         wrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator(12, 16));

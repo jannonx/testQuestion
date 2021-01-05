@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="fragment_new_contract_list_vm"
+            type="com.guyuan.dear.focus.contract.view.newContractList.NewContractListViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F5F7FA">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.guyuan.dear.customizeview.contractSearchBar.ContractSearchBar
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:searchType="@{fragment_new_contract_list_vm.searchType}" />
+
+            <tl.com.easy_recycleview_library.BaseRecyclerView
+                android:id="@+id/fragment_new_contract_list_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bg_no_data_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{fragment_new_contract_list_vm.shouldShowNoData?View.VISIBLE:View.GONE}">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/bg_no_data_iv_warning"
+                android:layout_width="@dimen/dp_160"
+                android:layout_height="154dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.4"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:srcCompat="@drawable/ic_svg_no_data" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/bg_no_data_tv_warning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:text="暂无数据"
+                android:textColor="@color/color_black_333333"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintLeft_toLeftOf="@id/bg_no_data_iv_warning"
+                app:layout_constraintRight_toRightOf="@id/bg_no_data_iv_warning"
+                app:layout_constraintTop_toBottomOf="@id/bg_no_data_iv_warning" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

@@ -15,6 +15,7 @@ import com.guyuan.dear.net.resultBeans.NetBaseQcBean;
 import com.guyuan.dear.net.resultBeans.NetClientInfo;
 import com.guyuan.dear.net.resultBeans.NetClockInConfig;
 import com.guyuan.dear.net.resultBeans.NetContractDetailInfo;
+import com.guyuan.dear.net.resultBeans.NetContractHistory;
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
 import com.guyuan.dear.net.resultBeans.NetContractStatusDetail;
 import com.guyuan.dear.net.resultBeans.NetContractStatusFlow;
@@ -156,14 +157,32 @@ public interface DearNetApiService extends BaseApiService {
     @GET("base/tContractInfo/findById")
     Observable<ResultBean<NetContractDetailInfo>> getContractDetailById(@Query("id") int contractId);
 
+//    /**
+//     * 根据合同id获取合同状态流程图
+//     *
+//     * @param contractId
+//     * @return
+//     */
+//    @GET("base/tContractInfo/findContractExecutionStatus")
+//    @Deprecated
+//    Observable<ResultBean<NetContractStatusFlow>> getContractStatusFlowById(@Query("id") int contractId);
+
     /**
      * 根据合同id获取合同状态流程图
      *
      * @param contractId
      * @return
      */
-    @GET("base/tContractInfo/findContractExecutionStatus")
+    @GET("base/tContractInfo/findContractExecution")
     Observable<ResultBean<NetContractStatusFlow>> getContractStatusFlowById(@Query("id") int contractId);
+
+    /**
+     * 根据合同id获取合同历史异常事件清单
+     * @param contractId
+     * @return
+     */
+    @GET("base/tContractInfo/findContractHistory")
+    Observable<ResultBean<NetContractHistory>> getContractHistoryById(@Query("id") int contractId);
 
     /**
      * 根据合同id查询跟进

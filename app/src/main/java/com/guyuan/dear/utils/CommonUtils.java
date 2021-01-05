@@ -24,7 +24,9 @@ import com.guyuan.dear.dialog.TipDialogFragment;
 import com.guyuan.dear.focus.device.data.beans.FactoryBean;
 import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.login.ui.LoginActivity;
+import com.guyuan.dear.umeng.UmengAliasManager;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
+import com.umeng.commonsdk.debug.E;
 
 
 import java.text.DecimalFormat;
@@ -74,13 +76,21 @@ public class CommonUtils {
 
     //获取本地缓存登录信息
     public static LoginBean getLoginInfo() {
-        String loginStr =
-                (String) DearApplication.getInstance().getCacheData(ConstantValue.USER_JSON_STRING, "");
-        return new Gson().fromJson(loginStr, LoginBean.class);
+        try {
+            String loginStr =
+                    (String) DearApplication.getInstance().getCacheData(ConstantValue.USER_JSON_STRING, "");
+            return new Gson().fromJson(loginStr, LoginBean.class);
+        }catch (Exception e){
+            return null;
+        }
     }
 
     public static long getCurrentUserId() {
-        return getLoginInfo().getUserInfo().getId();
+        try {
+            return getLoginInfo().getUserInfo().getId();
+        }catch (Exception e){
+            return 0;
+        }
     }
 
     public static FactoryBean getFactoryListFromCache() {
@@ -134,7 +144,7 @@ public class CommonUtils {
     public static void logout(Context context) {
         LoginBean loginInfo = CommonUtils.getLoginInfo();
         if (loginInfo != null) {
-            //    UmengUtils.unregisterAlias(loginInfo.getUserId());
+            UmengAliasManager.getInstance().unregisterAlias(CommonUtils.getCurrentUserId());
         }
         SharedPreferencesUtils.removeData(context, ConstantValue.KEY_USER_PW);
         SharedPreferencesUtils.removeData(context, ConstantValue.USER_JSON_STRING);
