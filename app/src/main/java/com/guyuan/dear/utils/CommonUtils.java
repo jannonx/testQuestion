@@ -149,9 +149,9 @@ public class CommonUtils {
         SharedPreferencesUtils.removeData(context, ConstantValue.KEY_USER_PW);
         SharedPreferencesUtils.removeData(context, ConstantValue.USER_JSON_STRING);
         ActivityUtils.removeAllActivity();
-        String loginStr =
-                (String) DearApplication.getInstance().getCacheData(ConstantValue.USER_JSON_STRING, "");
-        LogUtils.showLog(loginStr);
+//        String loginStr =
+//                (String) DearApplication.getInstance().getCacheData(ConstantValue.USER_JSON_STRING, "");
+//        LogUtils.showLog(loginStr);
         LoginActivity.start(context);
     }
 

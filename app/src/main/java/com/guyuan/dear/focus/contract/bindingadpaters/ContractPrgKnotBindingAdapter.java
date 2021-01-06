@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.customizeview.itemDecorator.ClientAcceptanceBillsDecorator;
 import com.guyuan.dear.focus.contract.adapter.ClientAcceptanceBillAdapter;
 import com.guyuan.dear.focus.contract.adapter.ContractHistoryAdapter;
 import com.guyuan.dear.focus.contract.adapter.ContractHistoryTypeWrapper;
@@ -75,6 +76,7 @@ public class ContractPrgKnotBindingAdapter {
         ClientAcceptanceBillAdapter adapter = new ClientAcceptanceBillAdapter(imgUrls);
         BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
         view.setLayoutManager(layoutManager);
+        view.addItemDecoration(new ClientAcceptanceBillsDecorator());
         view.setAdapter(wrapper);
         view.setPullRefreshEnabled(false);
         view.setLoadMoreEnabled(false);

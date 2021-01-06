@@ -53,7 +53,7 @@ public class LinearVerticalPaddingDecorator2P0 extends RecyclerView.ItemDecorati
         if(layoutManager instanceof LinearLayoutManager && ((LinearLayoutManager) layoutManager).getOrientation()==RecyclerView.VERTICAL){
             int position = parent.getChildAdapterPosition(view);
             if(position==0){
-                //当前本项目引用的三方库base recycler view默认第一个item是一个header，这里对header不做任何改变。
+                //当前项目引用的三方库base recycler view默认第一个item是一个header，这里对header不做任何改变。
                 outRect.set(0,0,0,0);
             }else if(position==1){
                 //实际上的第一个item

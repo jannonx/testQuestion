@@ -4,7 +4,8 @@
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
+
         <variable
             name="fragment_contract_prg_detail_vm"
             type="com.guyuan.dear.focus.contract.view.contractProgress.ContractPrgDetailViewModel" />
@@ -13,93 +14,32 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:scrollbars="none">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_42"
-                android:gravity="center_vertical"
-                android:padding="@dimen/dp_12">
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        app:srcCompat="@drawable/ic_svg_round_filled_grey_cccccc_24dp"
-                        />
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_4"
-                        android:textColor="@color/color_grey_999999"
-                        android:textSize="@dimen/sp_10"
-                        android:text="未开始状态"
-                        />
-                </androidx.appcompat.widget.LinearLayoutCompat>
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_marginLeft="@dimen/dp_12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        app:srcCompat="@drawable/ic_svg_round_filled_blue_1890ff_24dp"
-                        />
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_4"
-                        android:textColor="@color/color_grey_999999"
-                        android:textSize="@dimen/sp_10"
-                        android:text="进行状态"
-                        />
-                </androidx.appcompat.widget.LinearLayoutCompat>
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_marginLeft="@dimen/dp_12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        app:srcCompat="@drawable/ic_svg_round_filled_green_2fc25b_24dp"
-                        />
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/dp_4"
-                        android:textColor="@color/color_grey_999999"
-                        android:textSize="@dimen/sp_10"
-                        android:text="完成状态"
-                        />
-                </androidx.appcompat.widget.LinearLayoutCompat>
+            <include layout="@layout/content_contract_prg_detail_top" />
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <include layout="@layout/view_divider_horizontal_grey_e5e5e5"/>
+            <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />
 
             <tl.com.easy_recycleview_library.BaseRecyclerView
                 android:id="@+id/fragment_contract_prg_detail_recycler_view_prg_knots"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:setContractPrgKnots="@{fragment_contract_prg_detail_vm.detailBean.knotList}" />
+                app:setContractPrgKnots="@{fragment_contract_prg_detail_vm.detailBean.knotList}"
+                android:layout_marginBottom="@dimen/dp_12"/>
 
-            <include layout="@layout/view_divider_horizontal_grey_e5e5e5"/>
+            <include layout="@layout/view_divider_horizontal_grey_e5e5e5" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="@dimen/dp_16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:setContractHistoryList="@{fragment_contract_prg_detail_vm.contractHistories}"/>
+                android:layout_marginTop="@dimen/dp_4"
+                app:setContractHistoryList="@{fragment_contract_prg_detail_vm.contractHistories}" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>

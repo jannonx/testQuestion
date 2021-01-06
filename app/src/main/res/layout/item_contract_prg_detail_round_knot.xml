@@ -18,12 +18,14 @@
         android:padding="5dp">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/sp_11"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
             android:textColor="#FF6010"
             android:background="@drawable/bg_orange_ffece3_corner_2"
-            android:text="@{data.warning}"
+            android:text="@{data.warning,default=xxx}"
             android:gravity="center"
             android:visibility="@{TextUtils.isEmpty(data.warning)?View.INVISIBLE:View.VISIBLE}"/>
 

@@ -9,7 +9,8 @@ package com.guyuan.dear.umeng.beans;
 public class UmengMessageWrapper {
     private int msgType;
     private String json;
-    public static final int MSG_TYPE_PUSH_LOG_OUT=1;
+    public static final int MSG_TYPE_PUSH_MSG_CENTER=10;
+    public static final int MSG_TYPE_PUSH_LOG_OUT = 11;
 
     public int getMsgType() {
         return msgType;

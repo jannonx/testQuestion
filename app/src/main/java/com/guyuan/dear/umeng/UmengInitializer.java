@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.guyuan.dear.BuildConfig;
 import com.guyuan.dear.utils.CommonUtils;
+import com.guyuan.dear.utils.LogUtils;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
@@ -63,14 +64,14 @@ public class UmengInitializer {
             @Override
             public void onSuccess(String deviceToken) {
                 //注册成功会返回deviceToken deviceToken是推送消息的唯一标志
-                Log.i(TAG, "注册成功：deviceToken：-------->  " + deviceToken);
+                LogUtils.showLog("注册成功：deviceToken：-------->  " + deviceToken);
                 UmengInitializer.deviceToken = deviceToken;
                 dealWithCustomMsg(callback);
             }
 
             @Override
             public void onFailure(String s, String s1) {
-                Log.e(TAG, "注册失败：-------->  " + "s:" + s + ",s1:" + s1);
+                LogUtils.showLog("注册失败：-------->  " + "s:" + s + ",s1:" + s1);
             }
         });
     }
@@ -80,7 +81,7 @@ public class UmengInitializer {
             @Override
             public void dealWithCustomMessage(Context context, UMessage uMessage) {
                 super.dealWithCustomMessage(context, uMessage);
-                Log.e(TAG, uMessage.custom);
+                LogUtils.showLog(uMessage.custom);
                 callback.onGetCustomMsg(uMessage.custom);
             }
         });

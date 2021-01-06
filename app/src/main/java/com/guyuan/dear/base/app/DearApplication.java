@@ -80,7 +80,7 @@ public class DearApplication extends BaseApplication {
                 new UmengInitializer.CustomMessageCallback() {
                     @Override
                     public void onGetCustomMsg(String jsong) {
-                        UmengMsgDecoder.getInstance().handleMsg(jsong);
+                        UmengMsgDecoder.getInstance().decodeMsg(jsong);
                     }
                 });
     }
