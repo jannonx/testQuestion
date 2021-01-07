@@ -76,22 +76,30 @@ public class MessageBar extends LinearLayout {
 
     //处理推送消息
     public void handlePush(MessageBean messageBean) {
-        toolbar_message_title_tv.setText(messageBean.getMsgTitle());
-        toolbar_message_content_tv.setText(messageBean.getMsgContent());
-        unread_dot.setVisibility(VISIBLE);
-        int number = 0;
-        try {
-            number = Integer.parseInt(unread_dot.getText().toString());
-        } catch (Exception e) {
-            number = 0;
+        if (messageBean != null) {
+            String title = messageBean.getMsgTitle();
+            String content = messageBean.getMsgContent();
+            toolbar_message_title_tv.setVisibility(VISIBLE);
+            toolbar_message_content_tv.setVisibility(VISIBLE);
+            unread_dot.setVisibility(VISIBLE);
+            toolbar_message_title_tv.setText(messageBean.getMsgTitle());
+            toolbar_message_content_tv.setText(messageBean.getMsgContent());
+            int number = 0;
+            try {
+                number = Integer.parseInt(unread_dot.getText().toString());
+            } catch (Exception e) {
+                number = 0;
+            }
+
+            unread_dot.setText(++number + "");
         }
 
-        unread_dot.setText(++number + "");
     }
 
     private void clearMessage() {
         toolbar_message_title_tv.setText(getResources().getString(R.string.message_no_data_tip));
         toolbar_message_content_tv.setVisibility(GONE);
+        unread_dot.setText("");
         unread_dot.setVisibility(View.GONE);
     }
 
