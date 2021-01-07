@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.example.httplibrary.bean.ErrorResultBean;
+import com.example.httplibrary.bean.ResultBean;
 import com.google.gson.Gson;
+import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.base.api.SchedulersCompat;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.base.bean.ContractStatusBean;
 import com.guyuan.dear.busbean.LoginBusBean;
 import com.guyuan.dear.busbean.MessageBusBean;
 import com.guyuan.dear.busbean.MessageUnreadBusBean;
@@ -25,9 +28,12 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import okhttp3.RequestBody;
+
+import static java.lang.annotation.ElementType.PARAMETER;
 
 /**
  * .
@@ -40,6 +46,9 @@ public class BackService extends IntentService {
     public static final String UNREAD_OFFICE = "service_unread_message_office";
     public static final String UNREAD_CONTROL_MESSAGE = "service_control_message";
     public static final String NOT_HANDLE_CONTROL_MESSAGE = "service_not_handle_message";
+    public static final String CONTRACT_STATUS = "service_contract_status";
+    public static final String CONTRACT_PARAMETER = "contractParameter";
+    public static final String CONTRACT_PARAMETER_TYPE = "contract_parameter_type";
     private DearApplication mApplication;
 
     public BackService() {
@@ -171,6 +180,57 @@ public class BackService extends IntentService {
 
                                     }
                                 });
+            } else if (CONTRACT_STATUS.equals(action)) {
+                Observable<ResultBean<ContractStatusBean>> observable = null;
+                if (bundle != null) {
+                    String contractParameterType = bundle.getString(CONTRACT_PARAMETER_TYPE);
+                    String contractParameter = bundle.getString(CONTRACT_PARAMETER);
+                    switch (contractParameterType) {
+                        case BaseApiService.ID:
+                            observable = mApplication.getRetrofit().create(BaseApiService.class)
+                                    .getContractStatusByID(Integer.valueOf(contractParameter));
+                            break;
+
+                        case BaseApiService.CONTRACT_ID:
+                            observable = mApplication.getRetrofit().create(BaseApiService.class)
+                                    .getContractStatusByContractID(Integer.valueOf(contractParameter));
+                            break;
+                        case BaseApiService.CONTRACT_NUMBER:
+                            observable = mApplication.getRetrofit().create(BaseApiService.class)
+                                    .getContractStatusByContractNumber(contractParameter);
+                            break;
+                        case BaseApiService.FLAG:
+                            observable = mApplication.getRetrofit().create(BaseApiService.class)
+                                    .getContractStatusByFlag(Integer.valueOf(contractParameter));
+                            break;
+                        case BaseApiService.PROJECT_ID:
+                            observable = mApplication.getRetrofit().create(BaseApiService.class)
+                                    .getContractStatusByProjectID(Integer.valueOf(contractParameter));
+                            break;
+                    }
+
+                    if (observable != null) {
+                        Disposable disposable = observable.compose(SchedulersCompat.getInstance().applyIoNoMainSchedulers())
+                                .subscribe(new Consumer<Object>() {
+                                    @Override
+                                    public void accept(Object o) throws Exception {
+                                        ContractStatusBean contractStatusBean = (ContractStatusBean) o;
+                                        int stopStatus = contractStatusBean.getStopStatus();
+                                        //0.正常 1.暂停 2.被激活 3审批中
+                                        if (stopStatus == 1) {
+                                            EventBus.getDefault().post(contractStatusBean);
+                                        }
+                                    }
+                                }, new ErrorResultBean() {
+                                    @Override
+                                    protected void onError(ErrorResultBean.ErrorBean errorBean) {
+
+                                    }
+                                });
+                    }
+
+                }
+
             }
         }
     }

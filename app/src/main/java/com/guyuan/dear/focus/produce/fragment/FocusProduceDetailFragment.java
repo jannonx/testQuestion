@@ -13,6 +13,9 @@ import androidx.lifecycle.Observer;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.api.BaseApiService;
+import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.base.bean.ContractStatusBean;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailBinding;
 import com.guyuan.dear.dialog.RemarkDialog;
 import com.guyuan.dear.dialog.SimpleConfirmViewDialog;
@@ -35,6 +38,7 @@ import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
 import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
+import com.guyuan.dear.work.produce.fragment.ContractPauseDialog;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
 
 import org.greenrobot.eventbus.EventBus;
@@ -76,7 +80,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
     //生产信息
-    private FocusProduceBean produceBean,initBean;
+    private FocusProduceBean produceBean, initBean;
 
     private boolean isFooterBtnShow, isProducePause, isProduceIng;
     private ProduceApplyDialog dialog;
@@ -160,7 +164,14 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
      * 获取合同状态信息
      */
     private void getContractInfo(long projectId) {
-
+        CommonUtils.getContractStatus(BaseApiService.PROJECT_ID, String.valueOf(projectId));
+//        viewModel.getContractStatus(projectId);
+//        viewModel.getContractInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
+//            @Override
+//            public void onChanged(FocusProduceBean data) {
+//                   ContractPauseDialog.show(getActivity(), data);
+//            }
+//        });
 
     }
 

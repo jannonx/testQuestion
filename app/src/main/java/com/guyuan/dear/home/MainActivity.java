@@ -13,6 +13,7 @@ import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.analyse.AnalyseFragment;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.base.bean.ContractStatusBean;
 import com.guyuan.dear.busbean.LoginBusBean;
 import com.guyuan.dear.busbean.MessageBusBean;
 import com.guyuan.dear.busbean.MessagePushBusBean;
@@ -32,6 +33,7 @@ import com.guyuan.dear.service.BackService;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.WorkFragment;
+import com.guyuan.dear.work.produce.fragment.ContractPauseDialog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -281,10 +283,13 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Mai
                     break;
 
                 case MessageBusBean.WORK://我的工作
-                //    workFragment.handlePushMessageBar(messageBean);
+                    //    workFragment.handlePushMessageBar(messageBean);
                     break;
 
             }
+        } else if (o instanceof ContractStatusBean) {//合同暂停弹窗
+            ContractStatusBean contractStatusBean = (ContractStatusBean) o;
+            ContractPauseDialog.show(ActivityUtils.getTopActivity(), contractStatusBean);
         }
 
     }

@@ -5,33 +5,32 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.Observer;
 
 import com.bumptech.glide.Glide;
-import com.example.httplibrary.bean.ResultBean;
-import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.util.ActivityUtils;
+import com.example.mvvmlibrary.util.LogUtils;
 import com.example.mvvmlibrary.util.MediaFileUtils;
 import com.example.mvvmlibrary.util.SharedPreferencesUtils;
 import com.google.gson.Gson;
 import com.guyuan.dear.BuildConfig;
+import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.base.app.DearApplication;
-import com.guyuan.dear.base.bean.ContractQueryType;
-import com.guyuan.dear.base.bean.ContractStatusBean;
 import com.guyuan.dear.dialog.TipDialogFragment;
 import com.guyuan.dear.focus.device.data.beans.FactoryBean;
-import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.login.ui.LoginActivity;
+import com.guyuan.dear.service.BackService;
 import com.guyuan.dear.umeng.UmengAliasManager;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
-import com.guyuan.dear.work.produce.fragment.ContractPauseDialog;
+import com.umeng.commonsdk.debug.E;
+
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -41,10 +40,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import droidninja.filepicker.utils.ContentUriUtils;
-import io.reactivex.Observable;
 import okhttp3.RequestBody;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 /**
  * Created by admin
@@ -266,7 +262,11 @@ public class CommonUtils {
         return filePathList;
     }
 
-
-
-
+    //获取合同状态
+    public static void getContractStatus(String contractParameterType, String contractParameter) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BackService.CONTRACT_PARAMETER_TYPE, contractParameterType);
+        bundle.putString(BackService.CONTRACT_PARAMETER, contractParameter);
+        DearApplication.getInstance().startBackService(BackService.CONTRACT_STATUS, bundle);
+    }
 }

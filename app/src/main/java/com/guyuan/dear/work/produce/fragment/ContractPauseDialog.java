@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.bean.ContractStatusBean;
 import com.guyuan.dear.databinding.DialogContractPauseBinding;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ReviewerDataBean;
@@ -30,14 +31,16 @@ import com.guyuan.dear.focus.produce.bean.ReviewerDataBean;
 public class ContractPauseDialog extends Dialog {
 
     private Context context;//上下文
-    private FocusProduceBean contractBean;
+    private ContractStatusBean contractBean;
     private DialogContractPauseBinding viewBinding;
-    private ContractPauseDialog(@NonNull Context context, FocusProduceBean bean) {
+
+    private ContractPauseDialog(@NonNull Context context, ContractStatusBean bean) {
         super(context);
+        this.context = context;
         this.contractBean = bean;
     }
 
-    public static void show(@NonNull Context context, FocusProduceBean bean) {
+    public static void show(@NonNull Context context, ContractStatusBean bean) {
         ContractPauseDialog dialog = new ContractPauseDialog(context, bean);
         dialog.show();
     }
@@ -63,19 +66,21 @@ public class ContractPauseDialog extends Dialog {
         params.width = WindowManager.LayoutParams.MATCH_PARENT;
         getWindow().setAttributes(params);
         setCanceledOnTouchOutside(true);//点击外部Dialog消失
+        if (contractBean != null) {
+            ContractStatusBean.ContractStopCauseVOBean reviewerDataBean = contractBean.getContractStopCauseVO();
+            if (reviewerDataBean != null) {
+                viewBinding.tvDimensionality.setText(reviewerDataBean.getDimensionality());
+                viewBinding.tvTime.setText(reviewerDataBean.getStopTime());
+                viewBinding.tvPerson.setText(reviewerDataBean.getAuditName());
+                viewBinding.tvStopCause.setText("暂停原因：" + reviewerDataBean.getStopCause());
+            }
 
-        ReviewerDataBean reviewerDataBean = contractBean.getContractStopCauseVO();
-        if (reviewerDataBean!=null){
-            viewBinding.tvDimensionality.setText(reviewerDataBean.getDimensionality());
-            viewBinding.tvTime.setText(reviewerDataBean.getStopTime());
-            viewBinding.tvPerson.setText(reviewerDataBean.getAuditName());
-            viewBinding.tvStopCause.setText("暂停原因："+reviewerDataBean.getStopCause());
         }
 
         viewBinding.tvClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               dismiss();
+                dismiss();
             }
         });
 
