@@ -22,6 +22,8 @@ import com.guyuan.dear.utils.NetworkUtils;
 import com.guyuan.dear.work.aftersale.activity.WorkAfterSaleActivity;
 import com.guyuan.dear.work.assess.ui.WorkAssessActivity;
 import com.guyuan.dear.work.client.activity.WorkClientActivity;
+import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeActivity;
+import com.guyuan.dear.work.contractRestart.view.home.ContractRestartHomeActivity;
 import com.guyuan.dear.work.goodssign.ui.GoodsSignActivity;
 import com.guyuan.dear.work.matterapply.ui.MatterApplyActivity;
 import com.guyuan.dear.work.produce.activity.WorkProduceActivity;
@@ -134,13 +136,13 @@ public class WorkFragment extends BaseListFragment<ChildrenBean, FragmentWorkBin
                                 break;
 
                             case ConstantValue.CONTRACT_PAUSE://合同暂停
-                                showToastTip("正在研发中...");
-                                //ContractPauseHomeActivity.start(getContext(), title);
+//                                showToastTip("正在研发中...");
+                                ContractPauseHomeActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.CONTRACT_RESTART://合同重启
-                                showToastTip("正在研发中...");
-                                //ContractRestartHomeActivity.start(getContext(), title);
+//                                showToastTip("正在研发中...");
+                                ContractRestartHomeActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.WORK_CONTRACT_ASSESS://合同评审
