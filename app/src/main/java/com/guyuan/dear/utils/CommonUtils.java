@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -19,11 +20,13 @@ import com.example.mvvmlibrary.util.MediaFileUtils;
 import com.example.mvvmlibrary.util.SharedPreferencesUtils;
 import com.google.gson.Gson;
 import com.guyuan.dear.BuildConfig;
+import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.dialog.TipDialogFragment;
 import com.guyuan.dear.focus.device.data.beans.FactoryBean;
 import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.login.ui.LoginActivity;
+import com.guyuan.dear.service.BackService;
 import com.guyuan.dear.umeng.UmengAliasManager;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
 import com.umeng.commonsdk.debug.E;
@@ -259,5 +262,11 @@ public class CommonUtils {
         return filePathList;
     }
 
-
+    //获取合同状态
+    public static void getContractStatus(String contractParameterType, String contractParameter) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BackService.CONTRACT_PARAMETER_TYPE, contractParameterType);
+        bundle.putString(BackService.CONTRACT_PARAMETER, contractParameter);
+        DearApplication.getInstance().startBackService(BackService.CONTRACT_STATUS, bundle);
+    }
 }

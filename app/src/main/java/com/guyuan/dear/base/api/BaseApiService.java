@@ -39,16 +39,16 @@ public interface BaseApiService {
     String PAGE_INDEX = "pageNum";  //页码
     String PAGE_SIZE = "pageSize";  //每页数量
     String ID = "id";
-    String CONTRACT_ID = "contractId";            //合同ID
-    String CONTRACT_NUMBER = "contractNumber";    //合同编号
-    String FLAG = "flag";                         //flag标识
-    String PROJECT_ID = "projectId";              //项目ID
+    public static String CONTRACT_ID = "contractId";            //合同ID
+    public static String CONTRACT_NUMBER = "contractNumber";    //合同编号
+    public static String FLAG = "flag";                         //flag标识
+    public static String PROJECT_ID = "projectId";              //项目ID
 
     String WORKSHOP = BASE + "tWorkshop/findPage";
     String FACTORY = BASE + "tFactory/findPage";
     String UPLOAD = FILE + "file/uploadApp";
     String MEETING_ROOM = BASE + "tMeetingRoom/findPage";
-    String CONTRACT_STATUS = BASE + "/checkContract/checkStatus";
+    String CONTRACT_STATUS = BASE + "checkContract/checkStatus";
 
 
     //查询厂房
