@@ -72,7 +72,7 @@ public interface BaseApiService {
     Observable<ResultBean<ContractStatusBean>> getContractStatusByID(@Query(ID) int id);
 
     @GET(CONTRACT_STATUS)
-    Observable<ResultBean<ContractStatusBean>> getContractStatusByContractNumber(@Query(CONTRACT_NUMBER) int contractNumber);
+    Observable<ResultBean<ContractStatusBean>> getContractStatusByContractNumber(@Query(CONTRACT_NUMBER) String contractNumber);
 
     @GET(CONTRACT_STATUS)
     Observable<ResultBean<ContractStatusBean>> getContractStatusByFlag(@Query(FLAG) int flag);
