@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.projectsite.bean;
 import android.text.TextUtils;
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.focus.produce.bean.ContractStatusType;
 import com.guyuan.dear.focus.projectsite.type.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.CheckSafeSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.CustomerAcceptanceSatisfyType;
@@ -46,6 +47,10 @@ public class SiteExploreBean implements Serializable {
      */
     private String cusName;
     /**
+     * 项目id
+     */
+    private long projectId;
+    /**
      * 目的地
      */
     private String destination;
@@ -55,6 +60,10 @@ public class SiteExploreBean implements Serializable {
      * -------------------
      */
     private int status;
+    /**
+     * 销售合同状态：0.正常 1.暂停 2.被激活 3审批中"
+     */
+    private Integer stopStatus;
     /**
      * 评审时间
      */
@@ -218,6 +227,14 @@ public class SiteExploreBean implements Serializable {
         this.debugStartTime = debugStartTime;
     }
 
+    public long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(long projectId) {
+        this.projectId = projectId;
+    }
+
     public long getId() {
         return id;
     }
@@ -262,6 +279,18 @@ public class SiteExploreBean implements Serializable {
         this.moduleType = moduleType;
     }
 
+    public Integer getStopStatus() {
+        return stopStatus;
+    }
+
+    public void setStopStatus(Integer stopStatus) {
+        this.stopStatus = stopStatus;
+    }
+
+    public ContractStatusType getContractStatusType() {
+        return ContractStatusType.toType(stopStatus);
+    }
+
     public SiteProjectSatisfyType getSiteProjectSatisfyType() {
         return SiteProjectSatisfyType.toType(this);
     }
@@ -272,7 +301,7 @@ public class SiteExploreBean implements Serializable {
 
     public InstallDebugSatisfyType getInstallDebugSatisfyType() {
         LogUtils.showLog("status=" + status);
-        return InstallDebugSatisfyType.toType(status);
+        return InstallDebugSatisfyType.toType(this);
     }
 
     public CheckGoodsSatisfyType getCheckGoodsSatisfyType() {

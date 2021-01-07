@@ -35,7 +35,6 @@ import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
 import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
-import com.guyuan.dear.work.produce.fragment.ContractPauseDialog;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
 
 import org.greenrobot.eventbus.EventBus;
@@ -161,13 +160,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
      * 获取合同状态信息
      */
     private void getContractInfo(long projectId) {
-        viewModel.getContractStatus(projectId);
-        viewModel.getContractInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
-            @Override
-            public void onChanged(FocusProduceBean data) {
-                ContractPauseDialog.show(getActivity(), data);
-            }
-        });
+
 
     }
 

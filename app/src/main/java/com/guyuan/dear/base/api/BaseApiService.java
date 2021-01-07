@@ -3,7 +3,6 @@ package com.guyuan.dear.base.api;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.bean.ContractStatusBean;
 import com.guyuan.dear.focus.device.data.beans.FactoryBean;
-import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.work.assess.data.bean.MeetingRoomBean;
 
 import java.util.List;
@@ -12,8 +11,6 @@ import java.util.Map;
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -72,7 +69,7 @@ public interface BaseApiService {
     Observable<ResultBean<ContractStatusBean>> getContractStatusByID(@Query(ID) int id);
 
     @GET(CONTRACT_STATUS)
-    Observable<ResultBean<ContractStatusBean>> getContractStatusByContractNumber(@Query(CONTRACT_NUMBER) int contractNumber);
+    Observable<ResultBean<ContractStatusBean>> getContractStatusByContractNumber(@Query(CONTRACT_NUMBER) String contractNumber);
 
     @GET(CONTRACT_STATUS)
     Observable<ResultBean<ContractStatusBean>> getContractStatusByFlag(@Query(FLAG) int flag);

@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.projectsite.type;
 
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.focus.produce.bean.ContractStatusType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
 import java.io.Serializable;
@@ -45,6 +46,11 @@ public enum CustomerAcceptanceSatisfyType implements Serializable {
     TYPE_ACCEPTANCE_EXCEPTION(60, "验收不合格", R.color.color_orange_FF6010,
             R.drawable.bg_orange_ffece3_corner_2),
     /**
+     * 合同状态：1.合同正常，2.合同暂停
+     */
+    TYPE_CONTRACT_PAUSE(7, "合同暂停", R.color.color_orange_FF6010,
+            R.drawable.bg_orange_ffece3_corner_2),
+    /**
      * 未知状态
      */
     TYPE_UNKNOWN(70, "未知状态", R.color.color_orange_FF6010,
@@ -76,25 +82,30 @@ public enum CustomerAcceptanceSatisfyType implements Serializable {
     }
 
     public static CustomerAcceptanceSatisfyType toType(SiteExploreBean bean) {
-        if (bean == null) return CustomerAcceptanceSatisfyType.TYPE_UNKNOWN;
-        //安装状态
-        if (bean.getStatus() == 10) {
-            return CustomerAcceptanceSatisfyType.TYPE_INSTALL_WAIT;
-        } else if (bean.getStatus() == 20) {
-            return CustomerAcceptanceSatisfyType.TYPE_INSTALL_ING;
-            //安装完成，验收状态
-        } else if (bean.getStatus() == 30) {
-            if (bean.getCheckStatus() == 0) {
-                return CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_WAIT;
-            } else if (bean.getCheckStatus() == 10) {
-                return CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_OK;
-            } else if (bean.getCheckStatus() == 20) {
-                return CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_EXCEPTION;
+        if (bean == null || bean.getStopStatus() == null) return TYPE_UNKNOWN;
+        //合同状态：1.合同正常，2.合同暂停，显示合同暂停状态
+        if (bean.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
+            return TYPE_CONTRACT_PAUSE;
+        } else {
+            //安装状态
+            if (bean.getStatus() == 10) {
+                return CustomerAcceptanceSatisfyType.TYPE_INSTALL_WAIT;
+            } else if (bean.getStatus() == 20) {
+                return CustomerAcceptanceSatisfyType.TYPE_INSTALL_ING;
+                //安装完成，验收状态
+            } else if (bean.getStatus() == 30) {
+                if (bean.getCheckStatus() == 0) {
+                    return CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_WAIT;
+                } else if (bean.getCheckStatus() == 10) {
+                    return CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_OK;
+                } else if (bean.getCheckStatus() == 20) {
+                    return CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_EXCEPTION;
+                }
+            } else if (bean.getStatus() == 40) {
+                return CustomerAcceptanceSatisfyType.TYPE_INSTALL_PAUSE;
             }
-        } else if (bean.getStatus() == 40) {
-            return CustomerAcceptanceSatisfyType.TYPE_INSTALL_PAUSE;
+            return CustomerAcceptanceSatisfyType.TYPE_UNKNOWN;
         }
-        return CustomerAcceptanceSatisfyType.TYPE_UNKNOWN;
     }
 
     /**

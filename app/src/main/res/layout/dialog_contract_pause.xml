@@ -11,7 +11,7 @@
         android:layout_marginEnd="@dimen/dp_20"
         android:background="@drawable/bg_white_corner_6"
         android:orientation="vertical"
-        android:paddingTop="@dimen/dp_32">
+        android:paddingTop="@dimen/dp_12">
 
 
         <androidx.appcompat.widget.AppCompatTextView

@@ -72,15 +72,6 @@ public interface FocusProduceApiService extends BaseApiService {
     Observable<ResultBean<RefreshBean<FocusProduceBean>>> getProduceList(@Body RequestBody body);
 
     /**
-     * 生产详情--先判断合同状态
-     *
-     * @param projectId 项目id
-     * @return
-     */
-    @GET("base/checkContract/checkStatus")
-    Observable<ResultBean<FocusProduceBean>> getContractStatus(@Query("projectId") long projectId);
-
-    /**
      * 生产详情--生产动态
      *
      * @param subPlanId 主生产计划id

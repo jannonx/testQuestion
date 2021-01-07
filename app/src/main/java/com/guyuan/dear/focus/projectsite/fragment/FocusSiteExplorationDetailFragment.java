@@ -76,7 +76,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     private int startPosition = 0;//起始选中位置
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
-    private SiteExploreBean detailProjectData;
+    private SiteExploreBean iniProjectData, detailProjectData;
     protected ArrayList<Uri> photoList = new ArrayList<>();
     private ProduceApplyDialog dialog;
     private PostInstallationDebugInfo postInstallationDebugInfo;
@@ -102,7 +102,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         if (arguments == null) {
             return;
         }
-        detailProjectData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        iniProjectData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         binding.tvPauseBtn.setOnClickListener(this);
         binding.tvCompleteBtn.setOnClickListener(this);
         binding.tvActivateBtn.setOnClickListener(this);
@@ -114,7 +114,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     }
 
     private void getDataFromNet() {
-        LogUtils.showLog("getDataFromNet=" + detailProjectData.getModuleType().getDes());
+        LogUtils.showLog("getDataFromNet=" + iniProjectData.getModuleType().getDes());
 
         //评论
         viewModel.getPostAnswerInfoEvent().observe(getActivity(), new Observer<Integer>() {
@@ -129,9 +129,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         viewModel.getSiteExploreDetailEvent().observe(getActivity(), new Observer<SiteExploreBean>() {
             @Override
             public void onChanged(SiteExploreBean data) {
-                LogUtils.showLog("getDataFromNet000=" + detailProjectData.getModuleType().getDes());
                 setProduceData(data);
-                LogUtils.showLog("getDataFromNet111=" + detailProjectData.getModuleType().getDes());
             }
         });
         viewModel.getCheckGoodDetailEvent().observe(getActivity(), new Observer<SiteExploreBean>() {
@@ -241,8 +239,11 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      */
     private void setProduceData(SiteExploreBean data) {
         if (getActivity() == null) return;
-        data.setProjectReportType(detailProjectData.getProjectReportType());
-        data.setModuleType(detailProjectData.getModuleType());
+        //考虑合同暂停
+        data.setStopStatus(iniProjectData.getStopStatus());
+        data.setProjectReportType(iniProjectData.getProjectReportType());
+        data.setModuleType(iniProjectData.getModuleType());
+
         detailProjectData = data;
         //设置审核数据
         planFragment.setCheckContentData(detailProjectData);
