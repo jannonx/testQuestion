@@ -10,6 +10,7 @@ import com.example.mvvmlibrary.util.LogUtils;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
 import com.guyuan.dear.base.fragment.BaseListFragment;
+import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
 import com.guyuan.dear.databinding.FragmentFocusBinding;
 import com.guyuan.dear.focus.aftersale.activity.FocusAfterSaleActivity;
 import com.guyuan.dear.focus.assess.ui.FocusAssessActivity;
@@ -28,6 +29,7 @@ import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
@@ -172,6 +174,14 @@ public class FocusFragment extends BaseListFragment<ChildrenBean, FragmentFocusB
 
         }
 
+    }
+
+    public void setControlBar(List<MessageBean> messageBeans) {
+        binding.smartControlBar.setControl_bar(messageBeans);
+    }
+
+    public void handleControlBar(MessageBean messageBean){
+        binding.smartControlBar.handlePush(messageBean);
     }
 
     @Override

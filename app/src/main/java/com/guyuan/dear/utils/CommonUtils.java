@@ -80,7 +80,7 @@ public class CommonUtils {
             String loginStr =
                     (String) DearApplication.getInstance().getCacheData(ConstantValue.USER_JSON_STRING, "");
             return new Gson().fromJson(loginStr, LoginBean.class);
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -88,7 +88,7 @@ public class CommonUtils {
     public static long getCurrentUserId() {
         try {
             return getLoginInfo().getUserInfo().getId();
-        }catch (Exception e){
+        } catch (Exception e) {
             return 0;
         }
     }
@@ -258,4 +258,6 @@ public class CommonUtils {
         }
         return filePathList;
     }
+
+
 }

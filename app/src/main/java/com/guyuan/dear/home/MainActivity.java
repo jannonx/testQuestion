@@ -14,7 +14,11 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.analyse.AnalyseFragment;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.busbean.LoginBusBean;
+import com.guyuan.dear.busbean.MessageBusBean;
+import com.guyuan.dear.busbean.MessagePushBusBean;
+import com.guyuan.dear.busbean.MessageUnreadBusBean;
 import com.guyuan.dear.busbean.TokenBusBean;
+import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
 import com.guyuan.dear.databinding.ActivityMainBinding;
 import com.guyuan.dear.db.DearDbManager;
 import com.guyuan.dear.focus.FocusFragment;
@@ -85,6 +89,16 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Mai
         //在子线程更新人员最新清单 by leo
         DearDbManager.getInstance().initiateStaffUpdate();
     }
+
+    //回到首页拉去一次消息数据
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DearApplication.getInstance().startBackService(BackService.NOT_HANDLE_CONTROL_MESSAGE, null);
+        DearApplication.getInstance().startBackService(BackService.UNREAD_OFFICE, null);
+        DearApplication.getInstance().startBackService(BackService.UNREAD_CONTROL_MESSAGE, null);
+    }
+
 
     private void initFragments() {
         //根据菜单加载对应的fragment
@@ -230,6 +244,46 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Mai
                 initFragments();
             } else {
                 CommonUtils.logout(this);
+            }
+        } else if (o instanceof MessageUnreadBusBean) {  //查询未读或未处理消息
+            MessageUnreadBusBean messageUnreadBusBean = (MessageUnreadBusBean) o;
+            int messageType = messageUnreadBusBean.getMessageType();
+            int unreadNumber = messageUnreadBusBean.getUnreadNumber();
+            List<MessageBean> messageBeanList = messageUnreadBusBean.getMessageBeanList();
+            switch (messageType) {
+                case MessageBusBean.OFFICE:
+                    officeFragment.setMessageBar(unreadNumber, messageBeanList);
+                    break;
+
+                case MessageBusBean.SMART_CONTROL_NOT_HANDLE:
+                    focusFragment.setControlBar(messageBeanList);
+                    break;
+
+                case MessageBusBean.SMART_CONTROL_UNREAD:
+                    workFragment.setMessageBar(unreadNumber, messageBeanList);
+                    break;
+
+            }
+
+        } else if (o instanceof MessagePushBusBean) {  //消息推送
+            MessagePushBusBean pushBusBean = (MessagePushBusBean) o;
+            int messageType = pushBusBean.getMessageType();
+            MessageBean messageBean = pushBusBean.getMessageBean();
+            switch (messageType) {
+                case MessageBusBean.OFFICE://掌上办公
+                    officeFragment.handleMessageBar(messageBean);
+                    break;
+
+                case MessageBusBean.SMART_CONTROL_WARNING://智能管控
+                case MessageBusBean.SMART_CONTROL_SERIOUS:
+                    focusFragment.handleControlBar(messageBean);
+                    workFragment.handlePushMessageBar(messageBean);
+                    break;
+
+                case MessageBusBean.WORK://我的工作
+                //    workFragment.handlePushMessageBar(messageBean);
+                    break;
+
             }
         }
 

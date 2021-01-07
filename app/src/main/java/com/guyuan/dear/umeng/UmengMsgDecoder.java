@@ -6,13 +6,17 @@ import android.os.Looper;
 
 import com.example.mvvmlibrary.util.ToastUtils;
 import com.google.gson.Gson;
+import com.google.gson.JsonParseException;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.busbean.MessagePushBusBean;
 import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
 import com.guyuan.dear.umeng.beans.PushLogout;
 import com.guyuan.dear.umeng.beans.UmengMessageWrapper;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.LogUtils;
 import com.umeng.commonsdk.debug.E;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * @author: 廖华凯
@@ -71,10 +75,15 @@ public class UmengMsgDecoder {
     }
 
     private void handleMsgCenter(String json) {
+        MessageBean msg = null;
         try {
-            MessageBean messageBean = new Gson().fromJson(json, MessageBean.class);
-            //todo
-        }catch (Exception e){
+            msg = new Gson().fromJson(json, MessageBean.class);
+            int label = msg.getLabel();
+            MessagePushBusBean pushBusBean = new MessagePushBusBean();
+            pushBusBean.setMessageType(label);
+            pushBusBean.setMessageBean(msg);
+            EventBus.getDefault().post(pushBusBean);
+        } catch (JsonParseException e) {
             LogUtils.showLog(e.getMessage());
         }
     }
