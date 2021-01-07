@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
+import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.customizeview.MessageBar;
+import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
 import com.guyuan.dear.databinding.FragmentWorkBinding;
 import com.guyuan.dear.home.data.MainViewModel;
 import com.guyuan.dear.login.data.bean.ChildrenBean;
@@ -17,6 +19,7 @@ import com.guyuan.dear.message.data.bean.MessageUnreadBean;
 import com.guyuan.dear.message.ui.MessageActivity;
 import com.guyuan.dear.message.ui.MessageFragment;
 import com.guyuan.dear.scan.ScanActivity;
+import com.guyuan.dear.service.BackService;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
 import com.guyuan.dear.work.aftersale.activity.WorkAfterSaleActivity;
@@ -29,6 +32,7 @@ import com.guyuan.dear.work.projectsite.activity.WorkProjectSiteActivity;
 import com.guyuan.dear.work.qc.views.home.QcHomeActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
@@ -190,10 +194,19 @@ public class WorkFragment extends BaseListFragment<ChildrenBean, FragmentWorkBin
             }
         });
 
-        setMessage();
+        DearApplication.getInstance().startBackService(BackService.UNREAD_CONTROL_MESSAGE, null);
     }
 
 
+    public void setMessageBar(int unreadNumber, List<MessageBean> messageBeanList) {
+        binding.workMessageBar.setMessageBar(unreadNumber, messageBeanList);
+    }
+
+    public void handlePushMessageBar(MessageBean messageBean) {
+        binding.workMessageBar.handlePush(messageBean);
+    }
+
+    //不断轮询查询消息
     public void setMessage() {
         if (viewModel != null) {
             viewModel.getMessageListMLD().observe(this, new Observer<MessageUnreadBean>() {

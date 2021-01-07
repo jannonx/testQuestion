@@ -6,16 +6,22 @@ import android.view.View;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.BaseMenuAdapter;
+import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.base.fragment.BaseListFragment;
 import com.guyuan.dear.customizeview.MessageBar;
+import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
 import com.guyuan.dear.databinding.FragmentOfficeBinding;
 import com.guyuan.dear.login.data.bean.ChildrenBean;
+import com.guyuan.dear.message.ui.MessageActivity;
+import com.guyuan.dear.message.ui.MessageFragment;
 import com.guyuan.dear.office.approval.ui.ApprovalActivity;
 import com.guyuan.dear.office.clockIn.view.ClockInActivity;
+import com.guyuan.dear.service.BackService;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.NetworkUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -105,13 +111,31 @@ public class OfficeFragment extends BaseListFragment<ChildrenBean, FragmentOffic
             binding.baseRecycleView.setAdapter(adapter);
         }
 
+        binding.officeMessageBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MessageActivity.start(getContext(), "消息", MessageFragment.MESSAGE_COMMON);
+            }
+        });
+
         binding.homeBarLl.homeQrIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //    QRActivity.start("", getContext());
             }
         });
+
+        DearApplication.getInstance().startBackService(BackService.UNREAD_OFFICE, null);
     }
+
+    public void setMessageBar(int unreadNumber, List<MessageBean> messageBeanList) {
+        binding.officeMessageBar.setMessageBar(unreadNumber, messageBeanList);
+    }
+
+    public void handleMessageBar(MessageBean messageBean) {
+        binding.officeMessageBar.handlePush(messageBean);
+    }
+
 
     @Override
     protected void refresh() {

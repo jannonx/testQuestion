@@ -10,13 +10,20 @@ import com.google.gson.Gson;
 import com.guyuan.dear.base.api.SchedulersCompat;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.busbean.LoginBusBean;
+import com.guyuan.dear.busbean.MessageBusBean;
+import com.guyuan.dear.busbean.MessageUnreadBusBean;
+import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
 import com.guyuan.dear.login.api.LoginApiService;
 import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.login.data.bean.LoginBody;
+import com.guyuan.dear.message.api.MessageApiService;
+import com.guyuan.dear.message.data.bean.MessageUnreadBean;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.List;
 
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -29,6 +36,9 @@ import okhttp3.RequestBody;
 public class BackService extends IntentService {
 
     public static final String LOGIN = "service_action_login";
+    public static final String UNREAD_WORK = "service_unread_message_work";
+    public static final String UNREAD_OFFICE = "service_unread_message_office";
+    public static final String UNREAD_CONTROL_MESSAGE = "service_control_message";
     public static final String NOT_HANDLE_CONTROL_MESSAGE = "service_not_handle_message";
     private DearApplication mApplication;
 
@@ -47,7 +57,7 @@ public class BackService extends IntentService {
         if (intent != null) {
             final String action = intent.getAction();
             final Bundle bundle = intent.getExtras();
-            if (LOGIN.equals(action)) {
+            if (LOGIN.equals(action)) {//自动登录
                 LoginApiService loginApiService =
                         mApplication.getRetrofit().create(LoginApiService.class);
                 String name = (String) mApplication.getCacheData(ConstantValue.KEY_USER_NAME, "");
@@ -66,7 +76,7 @@ public class BackService extends IntentService {
                                 @Override
                                 public void accept(Object o) throws Exception {
                                     LoginBean loginBean = (LoginBean) o;
-                                    LogUtils.showLog("loginBean="+loginBean.getUserInfo().getName());
+                                    LogUtils.showLog("loginBean=" + loginBean.getUserInfo().getName());
                                     mApplication.saveCacheData(ConstantValue.USER_JSON_STRING,
                                             new Gson().toJson(loginBean));
                                     LoginBusBean busBean = new LoginBusBean();
@@ -82,6 +92,85 @@ public class BackService extends IntentService {
                                 }
                             });
                 }
+            } else if (UNREAD_WORK.equals(action)) {//我的工作未读消息
+                Disposable disposable = mApplication
+                        .getRetrofit().create(MessageApiService.class).getUnReadMessageNumber(3)
+                        .compose(SchedulersCompat.getInstance().applyIoNoMainSchedulers())
+                        .subscribe(new Consumer<Object>() {
+                            @Override
+                            public void accept(Object o) throws Exception {
+                                MessageUnreadBean unreadBusBean = (MessageUnreadBean) o;
+                                MessageUnreadBusBean messageUnreadBusBean = new MessageUnreadBusBean();
+                                messageUnreadBusBean.setMessageType(MessageBusBean.WORK);
+                                messageUnreadBusBean.setUnreadNumber(unreadBusBean.getNumber());
+                                messageUnreadBusBean.setMessageBeanList(unreadBusBean.getNewMessage());
+                                EventBus.getDefault().post(messageUnreadBusBean);
+                            }
+                        }, new ErrorResultBean() {
+                            @Override
+                            protected void onError(ErrorResultBean.ErrorBean errorBean) {
+
+                            }
+                        });
+            } else if (UNREAD_OFFICE.equals(action)) {//掌上办公未读消息
+                Disposable disposable =
+                        mApplication.getRetrofit().create(MessageApiService.class).getUnReadMessageNumber(2)
+                                .compose(SchedulersCompat.getInstance().applyIoNoMainSchedulers())
+                                .subscribe(new Consumer<Object>() {
+                                    @Override
+                                    public void accept(Object o) throws Exception {
+                                        MessageUnreadBean unreadBusBean = (MessageUnreadBean) o;
+                                        MessageUnreadBusBean messageUnreadBusBean = new MessageUnreadBusBean();
+                                        messageUnreadBusBean.setMessageType(MessageBusBean.OFFICE);
+                                        messageUnreadBusBean.setUnreadNumber(unreadBusBean.getNumber());
+                                        messageUnreadBusBean.setMessageBeanList(unreadBusBean.getNewMessage());
+                                        EventBus.getDefault().post(messageUnreadBusBean);
+                                    }
+                                }, new ErrorResultBean() {
+                                    @Override
+                                    protected void onError(ErrorResultBean.ErrorBean errorBean) {
+
+                                    }
+                                });
+            } else if (NOT_HANDLE_CONTROL_MESSAGE.equals(action)) {//智能管控未处理消息
+                Disposable disposable = mApplication
+                        .getRetrofit().create(MessageApiService.class).getUnreadControlMessage(1, 30)
+                        .compose(SchedulersCompat.getInstance().applyIoNoMainSchedulers())
+                        .subscribe(new Consumer<Object>() {
+                            @Override
+                            public void accept(Object o) throws Exception {
+                                List<MessageBean> messageBeans = (List<MessageBean>) o;
+                                MessageUnreadBusBean messageUnreadBusBean = new MessageUnreadBusBean();
+                                messageUnreadBusBean.setMessageType(MessageBusBean.SMART_CONTROL_NOT_HANDLE);
+                                messageUnreadBusBean.setMessageBeanList(messageBeans);
+                                EventBus.getDefault().post(messageUnreadBusBean);
+                            }
+                        }, new ErrorResultBean() {
+                            @Override
+                            protected void onError(ErrorResultBean.ErrorBean errorBean) {
+
+                            }
+                        });
+            } else if (UNREAD_CONTROL_MESSAGE.equals(action)) {//智能管控未读消息
+                Disposable disposable =
+                        mApplication.getRetrofit().create(MessageApiService.class).getUnReadMessageNumber(1)
+                                .compose(SchedulersCompat.getInstance().applyIoNoMainSchedulers())
+                                .subscribe(new Consumer<Object>() {
+                                    @Override
+                                    public void accept(Object o) throws Exception {
+                                        MessageUnreadBean unreadBusBean = (MessageUnreadBean) o;
+                                        MessageUnreadBusBean messageUnreadBusBean = new MessageUnreadBusBean();
+                                        messageUnreadBusBean.setMessageType(MessageBusBean.SMART_CONTROL_UNREAD);
+                                        messageUnreadBusBean.setUnreadNumber(unreadBusBean.getNumber());
+                                        messageUnreadBusBean.setMessageBeanList(unreadBusBean.getNewMessage());
+                                        EventBus.getDefault().post(messageUnreadBusBean);
+                                    }
+                                }, new ErrorResultBean() {
+                                    @Override
+                                    protected void onError(ErrorResultBean.ErrorBean errorBean) {
+
+                                    }
+                                });
             }
         }
     }
