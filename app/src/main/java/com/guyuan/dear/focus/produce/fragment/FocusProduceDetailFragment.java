@@ -14,8 +14,6 @@ import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.api.BaseApiService;
-import com.guyuan.dear.base.app.DearApplication;
-import com.guyuan.dear.base.bean.ContractStatusBean;
 import com.guyuan.dear.databinding.FragmentFocusProduceDetailBinding;
 import com.guyuan.dear.dialog.RemarkDialog;
 import com.guyuan.dear.dialog.SimpleConfirmViewDialog;
@@ -38,7 +36,6 @@ import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
 import com.guyuan.dear.work.contractPause.adapters.AddSendListAdapter;
 import com.guyuan.dear.work.contractPause.beans.StaffBean;
-import com.guyuan.dear.work.produce.fragment.ContractPauseDialog;
 import com.guyuan.dear.work.produce.fragment.ProduceApplyDialog;
 
 import org.greenrobot.eventbus.EventBus;
@@ -145,7 +142,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
             public void onChanged(FocusProduceBean data) {
                 jumpToPage(data);
                 if (data.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
-                    getContractInfo(data.getProjectId());
+                    CommonUtils.getContractStatus(BaseApiService.PROJECT_ID, String.valueOf(data.getProjectId()));
                 }
             }
         });
@@ -160,20 +157,6 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
         });
     }
 
-    /**
-     * 获取合同状态信息
-     */
-    private void getContractInfo(long projectId) {
-        CommonUtils.getContractStatus(BaseApiService.PROJECT_ID, String.valueOf(projectId));
-//        viewModel.getContractStatus(projectId);
-//        viewModel.getContractInfoEvent().observe(getActivity(), new Observer<FocusProduceBean>() {
-//            @Override
-//            public void onChanged(FocusProduceBean data) {
-//                   ContractPauseDialog.show(getActivity(), data);
-//            }
-//        });
-
-    }
 
     /**
      * 根据状态不同显示不同页面
@@ -323,7 +306,6 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
             setRemarkDialogComplexListener();
             binding.produceApprovalLl.setVisibility(View.VISIBLE);
 
-
             binding.produceRejectTv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -392,6 +374,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
                 (ProductStatusType.TYPE_PRODUCE_COMPLETE == data.getStatusType()
                         || ProductStatusType.TYPE_PRODUCE_DELAY_NOT_FINISH == data.getStatusType())
                         ? data.getActualEndTime() : "生产中");
+        binding.tvActualComplete.setVisibility(ProductStatusType.TYPE_CONTRACT_PAUSE == data.getStatusType() ? View.GONE : View.VISIBLE);
         binding.tvPlanComplete.setText(data.getPlanEndTime());
 
 

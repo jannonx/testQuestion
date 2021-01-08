@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.FooterExploreContentBinding;
@@ -15,13 +19,13 @@ import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.focus.projectsite.adapter.ProjectInstallAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
+import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
+import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
+import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.focus.projectsite.type.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.CheckSafeSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
 import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
-import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
-import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
-import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
 import com.guyuan.dear.focus.projectsite.type.SiteProjectSatisfyType;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
@@ -29,10 +33,6 @@ import com.guyuan.dear.work.projectsite.adapter.CheckGoodsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import tl.com.easy_recycleview_library.BaseRecyclerView;
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
@@ -108,7 +108,11 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
         }
         if (detailProjectData.getAppInstallDebugItemVOList() != null) {
             installDebugContentList.clear();
-            installDebugContentList.addAll(detailProjectData.getAppInstallDebugItemVOList());
+            List<InstallDebugBean> appInstallDebugItemVOList = detailProjectData.getAppInstallDebugItemVOList();
+            for (InstallDebugBean bean:appInstallDebugItemVOList){
+                bean.setStopStatus(detailProjectData.getStopStatus());
+            }
+            installDebugContentList.addAll(appInstallDebugItemVOList);
         }
 
         addContentFooterView();

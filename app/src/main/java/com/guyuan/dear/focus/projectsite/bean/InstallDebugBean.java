@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.projectsite.bean;
 
 import android.text.TextUtils;
 
+import com.guyuan.dear.focus.produce.bean.ContractStatusType;
 import com.guyuan.dear.focus.projectsite.type.InstallDebugSatisfyType;
 import com.guyuan.dear.utils.CalenderUtils;
 import com.guyuan.dear.utils.LogUtils;
@@ -35,6 +36,10 @@ public class InstallDebugBean implements Serializable {
      * 计划施工调试开始时间
      */
     private String debugStartTime;
+    /**
+     * 销售合同状态：0.正常 1.暂停 2.被激活 3审批中"
+     */
+    private Integer stopStatus;
 
     /**
      * 最新意见
@@ -69,9 +74,17 @@ public class InstallDebugBean implements Serializable {
      */
     private int status;
 
+    public Integer getStopStatus() {
+        return stopStatus;
+    }
+
+    public void setStopStatus(Integer stopStatus) {
+        this.stopStatus = stopStatus;
+    }
+
     public InstallDebugSatisfyType getInstallDebugSatisfyType() {
         LogUtils.showLog("status=" + status);
-        return InstallDebugSatisfyType.toType(status);
+        return InstallDebugSatisfyType.toType(this);
     }
 
     public boolean getStatusTextVisible() {
@@ -93,6 +106,10 @@ public class InstallDebugBean implements Serializable {
         return getInstallDebugSatisfyType().getDes();
 
     }
+    public ContractStatusType getContractStatusType() {
+        return ContractStatusType.toType(stopStatus);
+    }
+
 
     /**
      * 没有实际开始，显示预计开始和预计完工

@@ -5,15 +5,15 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.guyuan.dear.R;
-import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProductStatusType;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
-
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
@@ -59,6 +59,7 @@ public class FocusProduceAdapter extends BaseRecyclerAdapter<FocusProduceBean> {
         //生产状态:待生产，只显示上部分内容
         holder.getView(R.id.cl_middle_content).setVisibility(
                 ProductStatusType.TYPE_PRODUCE_WAIT == item.getStatusType()
+                        || ProductStatusType.TYPE_CONTRACT_PAUSE == item.getStatusType()
                         ? View.GONE : View.VISIBLE);
         holder.getView(R.id.cl_footer_content).setVisibility(
                 TextUtils.isEmpty(item.getDisplayReason()) ? View.GONE : View.VISIBLE);

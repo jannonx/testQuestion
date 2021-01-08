@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.projectsite.type;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.produce.bean.ContractStatusType;
+import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
 import java.io.Serializable;
@@ -75,7 +76,20 @@ public enum InstallDebugSatisfyType implements Serializable {
         return TYPE_UNKNOWN;
 
     }
-
+    public static InstallDebugSatisfyType toType(InstallDebugBean bean) {
+        if (bean == null || bean.getStopStatus() == null) return TYPE_UNKNOWN;
+        //合同状态：1.合同正常，2.合同暂停，显示合同暂停状态
+        if (bean.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
+            return TYPE_CONTRACT_PAUSE;
+        } else {
+            for (InstallDebugSatisfyType type : InstallDebugSatisfyType.values()) {
+                if (type.getCode() == bean.getStatus()) {
+                    return type;
+                }
+            }
+            return TYPE_UNKNOWN;
+        }
+    }
     public static InstallDebugSatisfyType toType(SiteExploreBean bean) {
         if (bean == null || bean.getStopStatus() == null) return TYPE_UNKNOWN;
         //合同状态：1.合同正常，2.合同暂停，显示合同暂停状态

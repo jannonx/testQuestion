@@ -148,7 +148,7 @@
                 android:layout_marginEnd="12dp"
                 android:textColor="@color/color_grey_999999"
                 android:textSize="@dimen/sp_10"
-                tools:text="您目前的操作权限是：只能查阅该项目相关信息，不可修改内容或提交新的内容，谢谢！" />
+                android:text="您目前的操作权限是：只能查阅该项目相关信息，不可修改内容或提交新的内容，谢谢！" />
 
             <TextView
                 android:id="@+id/tv_close"

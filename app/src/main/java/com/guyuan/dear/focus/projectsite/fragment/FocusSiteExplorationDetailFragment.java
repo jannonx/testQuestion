@@ -17,17 +17,22 @@ import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseFileUploadActivity;
 import com.guyuan.dear.base.activity.BaseTabActivity;
+import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.databinding.FragmentFocusSiteExplorationBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
+import com.guyuan.dear.focus.produce.bean.ContractStatusType;
 import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
-import com.guyuan.dear.focus.projectsite.type.CheckGoodsSatisfyType;
-import com.guyuan.dear.focus.projectsite.type.CustomerAcceptanceSatisfyType;
-import com.guyuan.dear.focus.projectsite.type.InstallDebugSatisfyType;
-import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
-import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
+import com.guyuan.dear.focus.projectsite.type.CheckGoodsSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.CheckSafeSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.CustomerAcceptanceSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
+import com.guyuan.dear.focus.projectsite.type.InstallDebugSatisfyType;
+import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
+import com.guyuan.dear.focus.projectsite.type.SiteProjectSatisfyType;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
@@ -76,7 +81,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     private int startPosition = 0;//起始选中位置
     private String[] titleList;
     private int selectedTextColor, unSelectedTextColor;
-    private SiteExploreBean iniProjectData, detailProjectData;
+    private Integer stopStatus;
+    private SiteExploreBean detailProjectData;
     protected ArrayList<Uri> photoList = new ArrayList<>();
     private ProduceApplyDialog dialog;
     private PostInstallationDebugInfo postInstallationDebugInfo;
@@ -102,7 +108,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         if (arguments == null) {
             return;
         }
-        iniProjectData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        detailProjectData = (SiteExploreBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+        stopStatus = detailProjectData.getStopStatus();
         binding.tvPauseBtn.setOnClickListener(this);
         binding.tvCompleteBtn.setOnClickListener(this);
         binding.tvActivateBtn.setOnClickListener(this);
@@ -114,7 +121,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     }
 
     private void getDataFromNet() {
-        LogUtils.showLog("getDataFromNet=" + iniProjectData.getModuleType().getDes());
+        LogUtils.showLog("getDataFromNet=" + detailProjectData.getModuleType().getDes());
 
         //评论
         viewModel.getPostAnswerInfoEvent().observe(getActivity(), new Observer<Integer>() {
@@ -240,9 +247,13 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
     private void setProduceData(SiteExploreBean data) {
         if (getActivity() == null) return;
         //考虑合同暂停
-        data.setStopStatus(iniProjectData.getStopStatus());
-        data.setProjectReportType(iniProjectData.getProjectReportType());
-        data.setModuleType(iniProjectData.getModuleType());
+        data.setStopStatus(stopStatus);
+        data.setProjectReportType(detailProjectData.getProjectReportType());
+        data.setModuleType(detailProjectData.getModuleType());
+
+        if (data.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
+            CommonUtils.getContractStatus(BaseApiService.PROJECT_ID, String.valueOf(data.getProjectId()));
+        }
 
         detailProjectData = data;
         //设置审核数据
@@ -445,7 +456,9 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         //我的关注不显示
         LogUtils.showLog("ProjectModuleType=" + detailProjectData.getModuleType().getDes());
         binding.tvActivateBtn.setText("反馈问题");
-        binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType() ? View.GONE : View.VISIBLE);
+        binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
+                || detailProjectData.getSiteProjectSatisfyType() == SiteProjectSatisfyType.TYPE_CONTRACT_PAUSE
+                ? View.GONE : View.VISIBLE);
     }
 
     /**
@@ -472,7 +485,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvCompanyLocation.setText(detailProjectData.getAcceptAddress());
 
         binding.tvActivateBtn.setText("反馈问题");
-        binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType() ? View.GONE : View.VISIBLE);
+        binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
+                || detailProjectData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_CONTRACT_PAUSE ? View.GONE : View.VISIBLE);
     }
 
     /**
@@ -494,7 +508,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvCompanyLocation.setText(detailProjectData.getDestination());
 
         binding.tvActivateBtn.setText("反馈问题");
-        binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType() ? View.GONE : View.VISIBLE);
+        binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
+                || detailProjectData.getCheckSafeSatisfyType() == CheckSafeSatisfyType.TYPE_CONTRACT_PAUSE ? View.GONE : View.VISIBLE);
     }
 
     /**
@@ -521,11 +536,13 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvCompleteBtn.setText("完工");
         //我的关注，我的工作(暂停，完成)不显示
         binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
+                || detailProjectData.getInstallDebugSatisfyType() == InstallDebugSatisfyType.TYPE_CONTRACT_PAUSE
                 ? View.GONE : InstallDebugSatisfyType.TYPE_INSTALL_COMPLETE == detailProjectData.getInstallDebugSatisfyType()
                 || InstallDebugSatisfyType.TYPE_INSTALL_PAUSE == detailProjectData.getInstallDebugSatisfyType() ? View.GONE : View.VISIBLE);
         //暂停，隐藏--llApplyPanel，显示--tvActivateBtn
         binding.tvActivateBtn.setText("继续安装");
         binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
+                || detailProjectData.getInstallDebugSatisfyType() == InstallDebugSatisfyType.TYPE_CONTRACT_PAUSE
                 ? View.GONE : InstallDebugSatisfyType.TYPE_INSTALL_PAUSE == detailProjectData.getInstallDebugSatisfyType()
                 ? View.VISIBLE : View.GONE);
     }
@@ -554,7 +571,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvPauseBtn.setText("验收不合格");
         binding.tvCompleteBtn.setText("验收合格");
         LogUtils.showLog("TYPE_WORK=" + detailProjectData.getModuleType().getDes());
-        binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType() ? View.GONE :
+        binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
+                || detailProjectData.getCustomerAcceptanceSatisfyType() == CustomerAcceptanceSatisfyType.TYPE_CONTRACT_PAUSE? View.GONE :
                 CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_OK == detailProjectData.getCustomerAcceptanceSatisfyType()
                         || CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_EXCEPTION == detailProjectData.getCustomerAcceptanceSatisfyType() ?
                         View.GONE : View.VISIBLE);
