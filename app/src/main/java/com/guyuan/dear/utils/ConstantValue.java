@@ -227,6 +227,7 @@ public class ConstantValue {
     public static final String KEY_TYPE_QUALITY = "KEY_TYPE_QUALITY";
     public static final String KEY_TITLE = "KEY_TITLE";
     public static final String KEY_ID = "KEY_ID";
+    public static final String PROJECT_ID = "PROJECT_ID";
     public static final String KEY_EXCEPTION = "KEY_EXCEPTION";    //异常列表标识
     public static final int STATE_EXCEPTION = 0x001;  //异常状态
     public static final String KEY_STAFF_LIST = "KEY_STAFF_LIST";

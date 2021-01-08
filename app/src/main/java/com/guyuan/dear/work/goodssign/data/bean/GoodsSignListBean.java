@@ -101,6 +101,7 @@ public class GoodsSignListBean {
         private String signTime;           //签订时间
         private String supplierName;       //供应商名称
         private String updateName;         //操作人员名称
+        private int projectId;             //项目ID
 
         public int getApprovalStatus() {
             return approvalStatus;
@@ -148,6 +149,14 @@ public class GoodsSignListBean {
 
         public void setId(int id) {
             this.id = id;
+        }
+
+        public int getProjectId() {
+            return projectId;
+        }
+
+        public void setProjectId(int projectId) {
+            this.projectId = projectId;
         }
 
         public String getRemark() {

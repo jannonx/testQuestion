@@ -9,6 +9,7 @@ import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.example.mvvmlibrary.databinding.ToolbarBinding;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.databinding.ActivityMatterApplyDetailBinding;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
@@ -26,10 +27,11 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class MatterApplyDetailActivity extends BaseToolbarActivity<ActivityMatterApplyDetailBinding, MatterApplyViewModel> {
 
 
-    public static void start(Context context, String title, int requestID) {
+    public static void start(Context context, String title, int requestID, int projectID) {
         Intent starter = new Intent(context, MatterApplyDetailActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE, title);
         starter.putExtra(ConstantValue.KEY_ID, requestID);
+        starter.putExtra(ConstantValue.PROJECT_ID, projectID);
         context.startActivity(starter);
     }
 
@@ -37,9 +39,11 @@ public class MatterApplyDetailActivity extends BaseToolbarActivity<ActivityMatte
     protected void initFragment(Bundle savedInstanceState) {
         String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
         int id = getIntent().getIntExtra(ConstantValue.KEY_ID, 0);
+        int projectID = getIntent().getIntExtra(ConstantValue.PROJECT_ID, 0);
         setTitleCenter(title);
         if (viewModel != null) {
             viewModel.getMatterDetail(id);
+            CommonUtils.getContractStatus(BaseApiService.ID, String.valueOf(projectID));
         }
     }
 

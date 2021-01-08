@@ -5,7 +5,10 @@ import android.os.Bundle;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
+import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.databinding.FragmentWorkAssessDetailBinding;
+import com.guyuan.dear.service.BackService;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.assess.data.WorkAssessViewModel;
 
@@ -46,7 +49,7 @@ public class WorkAssessDetailFragment extends BaseDataBindingFragment<FragmentWo
             if (viewModel != null) {
                 viewModel.getAssessDetail(id);
             }
-
+            CommonUtils.getContractStatus(BaseApiService.ID, String.valueOf(id));
         }
     }
 }

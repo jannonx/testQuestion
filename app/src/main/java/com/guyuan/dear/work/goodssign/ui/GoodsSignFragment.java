@@ -42,7 +42,7 @@ public class GoodsSignFragment extends BaseListSearchFragment<GoodsSignListBean.
             @Override
             public void onItemClick(View view, int i) {
                 GoodsSignListBean.ContentBean contentBean = listData.get(i);
-                GoodsSignDetailActivity.start(getContext(), contentBean.getSupplierName(), contentBean.getId());
+                GoodsSignDetailActivity.start(getContext(), contentBean.getSupplierName(), contentBean.getId(), contentBean.getProjectId());
             }
         });
     }
