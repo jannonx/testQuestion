@@ -44,7 +44,7 @@ public class MatterAppliedFragment extends BaseListFragment<MatterApplyBean, Ite
             @Override
             public void onItemClick(View view, int i) {
                 MatterApplyBean bean = listData.get(i);
-                MatterApplyDetailActivity.start(getContext(), bean.getProductName(), bean.getId());
+                MatterApplyDetailActivity.start(getContext(), bean.getProductName(), bean.getId(),bean.getProjectId());
             }
         });
 //        if (viewModel != null) {
