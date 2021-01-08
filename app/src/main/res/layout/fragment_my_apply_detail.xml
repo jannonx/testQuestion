@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="fragment_my_apply_detail_vm"
             type="com.guyuan.dear.work.contractPause.views.applyDetail.MyApplyDetailViewModel" />
@@ -84,6 +84,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:visibility="@{fragment_my_apply_detail_vm.isShowDetailPauseInfo?View.GONE:View.VISIBLE}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_12"
@@ -105,6 +106,11 @@
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14" />
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <include
+                app:setData="@{fragment_my_apply_detail_vm.contractPauseInfo}"
+                android:visibility="@{fragment_my_apply_detail_vm.isShowDetailPauseInfo?View.VISIBLE:View.GONE}"
+                layout="@layout/content_contract_pause_reason"/>
 
             <View
                 android:layout_width="match_parent"

@@ -10,9 +10,8 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseTabBinding;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
-import com.guyuan.dear.work.contractPause.views.applyWindow.ContractApplyFragment;
 import com.guyuan.dear.work.contractPause.views.myAppliedList.MyApplyListFragment;
+import com.guyuan.dear.work.contractRestart.view.apply.ContractRestartFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +39,8 @@ public class ContractRestartHomeActivity extends BaseTabActivity<ActivityBaseTab
     protected List<Fragment> getFragments() {
         return new ArrayList<Fragment>() {
             {
-                add(ContractApplyFragment.getInstance(ContractApplyBean.APPLY_TYPE_RESUME));
+//                add(ContractApplyFragment.getInstance(ContractApplyBean.APPLY_TYPE_RESUME));
+                add(ContractRestartFragment.getInstance());
                 add(MyApplyListFragment.getInstance(MyApplyListFragment.TYPE_MY_RESTART_APPLY_LIST));
             }
         };

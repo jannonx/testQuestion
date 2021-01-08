@@ -11,7 +11,7 @@ import com.guyuan.dear.utils.ConstantValue;
 
 /**
  * 合同暂停/重启的合同详情界面
- *
+ * @deprecated
  * @author 廖华凯
  */
 public class MyApplyDetailActivity extends BaseToolbarActivity<ActivityMyApplyDetailBinding, MyApplyDetailViewModel> {

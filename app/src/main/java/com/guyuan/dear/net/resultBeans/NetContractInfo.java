@@ -67,6 +67,10 @@ public class NetContractInfo extends NetBaseContractInfo {
      */
     private int approveStatus;
     private String approveComment;
+    /**
+     * 合同暂停/重启的申请时间
+     */
+    private String statusExamineTime;
 
     public String getSignTime() {
         return signTime;
@@ -154,5 +158,13 @@ public class NetContractInfo extends NetBaseContractInfo {
 
     public void setApproveComment(String approveComment) {
         this.approveComment = approveComment;
+    }
+
+    public String getStatusExamineTime() {
+        return statusExamineTime;
+    }
+
+    public void setStatusExamineTime(String statusExamineTime) {
+        this.statusExamineTime = statusExamineTime;
     }
 }

@@ -62,7 +62,12 @@ public class NetContractStatusDetail {
         private String createName;
         private String createDept;
         private String createTime;
+        private String lastApprovedBy;
         private String imgUrl;
+        /**
+         * 合同暂停日期
+         */
+        private String stopTime;
         /**
          * 详细原因
          */
@@ -72,6 +77,14 @@ public class NetContractStatusDetail {
          */
         private String remark1;
         private String remark2;
+        /**
+         * 审批人员清单
+         */
+        private List<Integer> sendList;
+        /**
+         * 抄送人员清单
+         */
+        private List<Integer> copyList;
         private List<TexamineFlowsBean> texamineFlows;
 
         public int getId() {
@@ -168,6 +181,38 @@ public class NetContractStatusDetail {
 
         public void setRemark2(String remark2) {
             this.remark2 = remark2;
+        }
+
+        public String getLastApprovedBy() {
+            return lastApprovedBy;
+        }
+
+        public void setLastApprovedBy(String lastApprovedBy) {
+            this.lastApprovedBy = lastApprovedBy;
+        }
+
+        public String getStopTime() {
+            return stopTime;
+        }
+
+        public void setStopTime(String stopTime) {
+            this.stopTime = stopTime;
+        }
+
+        public List<Integer> getSendList() {
+            return sendList;
+        }
+
+        public void setSendList(List<Integer> sendList) {
+            this.sendList = sendList;
+        }
+
+        public List<Integer> getCopyList() {
+            return copyList;
+        }
+
+        public void setCopyList(List<Integer> copyList) {
+            this.copyList = copyList;
         }
 
         public List<TexamineFlowsBean> getTexamineFlows() {
