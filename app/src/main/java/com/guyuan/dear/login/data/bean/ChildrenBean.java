@@ -17,7 +17,7 @@ public class ChildrenBean implements Parcelable {
     private String name;
     private int parentId;
     private String url;
-    private String perms;
+    private String perms;          //按钮状态
     private int type;
     private String icon;
     private int orderNum;

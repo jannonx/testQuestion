@@ -24,6 +24,7 @@ import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.dialog.TipDialogFragment;
 import com.guyuan.dear.focus.device.data.beans.FactoryBean;
+import com.guyuan.dear.login.data.bean.ChildrenBean;
 import com.guyuan.dear.login.data.bean.LoginBean;
 import com.guyuan.dear.login.ui.LoginActivity;
 import com.guyuan.dear.service.BackService;
@@ -269,4 +270,23 @@ public class CommonUtils {
         bundle.putString(BackService.CONTRACT_PARAMETER, contractParameter);
         DearApplication.getInstance().startBackService(BackService.CONTRACT_STATUS, bundle);
     }
+
+    //保存各模块权限按钮
+    public static void saveButton(ArrayList<ChildrenBean> buttonBeanList) {
+        if (buttonBeanList != null && buttonBeanList.size() > 0) {
+            for (ChildrenBean bean : buttonBeanList) {
+                if (bean.getChildren() != null && bean.getChildren().size() > 0) {
+                    for (ChildrenBean buttonBean : bean.getChildren()) {
+                        ConstantValue.buttonList.add(buttonBean.getPerms());
+                    }
+                }
+            }
+        }
+    }
+
+    //检查当前按钮是否有权限
+    public static boolean isShowButton(String buttonUrl) {
+        return buttonUrl.contains(buttonUrl);
+    }
+
 }
