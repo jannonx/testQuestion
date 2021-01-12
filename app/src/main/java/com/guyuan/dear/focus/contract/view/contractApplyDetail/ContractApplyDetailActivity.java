@@ -13,7 +13,7 @@ import com.guyuan.dear.utils.ConstantValue;
  * @author 廖华凯
  * 我的关注-合同-合同异常列表-合同异常详情
  */
-public class ContractApplyDetailActivity extends BaseToolbarActivity<ActivityContractApplyDetailBinding, ContractApplyDetailViewModel> {
+public class ContractApplyDetailActivity extends BaseToolbarActivity<ActivityContractApplyDetailBinding, ContractRestartApplyDetailViewModel> {
 
     public static void start(Context context, String title, long examineId) {
         Intent starter = new Intent(context, ContractApplyDetailActivity.class);

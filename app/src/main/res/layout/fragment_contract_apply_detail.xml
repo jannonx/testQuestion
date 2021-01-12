@@ -8,7 +8,7 @@
             alias="bean"/>
         <variable
             name="fragment_contract_apply_detail_vm"
-            type="com.guyuan.dear.focus.contract.view.contractApplyDetail.ContractApplyDetailViewModel"/>
+            type="com.guyuan.dear.focus.contract.view.contractApplyDetail.ContractRestartApplyDetailViewModel"/>
     </data>
 
     <androidx.core.widget.NestedScrollView

@@ -16,10 +16,17 @@ import com.guyuan.dear.utils.LogUtils;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class ContractPauseInfo implements Parcelable {
+    /**
+     * 暂停维度
+     */
     private String pauseCauseType;
     private String approveBy;
     private long applyDate;
     private String detailPauseReason;
+    /**
+     * 暂停维度（提交申请时用）
+     */
+    private int applyCauseType;
 
     public ContractPauseInfo(NetBaseContractInfo src) {
         pauseCauseType = src.getStopCause();
@@ -40,6 +47,7 @@ public class ContractPauseInfo implements Parcelable {
         }catch (Exception e){
             LogUtils.showLog(e.getMessage());
         }
+        applyCauseType = src.getApplyCauseType();
     }
 
 
@@ -48,6 +56,7 @@ public class ContractPauseInfo implements Parcelable {
         approveBy = in.readString();
         applyDate = in.readLong();
         detailPauseReason = in.readString();
+        applyCauseType = in.readInt();
     }
 
     public static final Creator<ContractPauseInfo> CREATOR = new Creator<ContractPauseInfo>() {
@@ -94,6 +103,14 @@ public class ContractPauseInfo implements Parcelable {
         this.detailPauseReason = detailPauseReason;
     }
 
+    public int getApplyCauseType() {
+        return applyCauseType;
+    }
+
+    public void setApplyCauseType(int applyCauseType) {
+        this.applyCauseType = applyCauseType;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -105,5 +122,6 @@ public class ContractPauseInfo implements Parcelable {
         dest.writeString(approveBy);
         dest.writeLong(applyDate);
         dest.writeString(detailPauseReason);
+        dest.writeInt(applyCauseType);
     }
 }

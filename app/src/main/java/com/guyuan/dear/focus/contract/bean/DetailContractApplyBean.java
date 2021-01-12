@@ -20,6 +20,8 @@ import java.util.List;
  **/
 public class DetailContractApplyBean extends BaseContractExcptBean {
     private String detailCause;
+    private String pauseRemark;
+    private String restartRemark;
     private List<ContractApproveLog> comments;
     /**
      * 合同申请人，不一定是销售人员
@@ -56,14 +58,18 @@ public class DetailContractApplyBean extends BaseContractExcptBean {
         NetContractStatusDetail.TexamineVoBean flow = src.getTexamineVo();
         if (contract != null) {
             setBuyer(contract.getCusName());
+            setBuyerId(contract.getCusId());
             setContractNum(contract.getContractNum());
             setApplyType(contract.getStopStatus());
+            setContractId(contract.getId());
         }
         comments = new ArrayList<>();
         if (flow != null) {
             pauseInfo = new ContractPauseInfo(flow);
             setApproveResult(flow.getStatus());
-            setDetailCause(flow.getRemark());
+            setDetailCause(flow.getRestartRemark());
+            setRestartRemark(flow.getRestartRemark());
+            setPauseRemark(flow.getRemark());
             setJudgement(flow.getRemark1());
             setApplier(flow.getCreateName());
             String createTime = flow.getCreateTime();
@@ -153,5 +159,37 @@ public class DetailContractApplyBean extends BaseContractExcptBean {
 
     public void setApplyDate(long applyDate) {
         this.applyDate = applyDate;
+    }
+
+    public ArrayList<StaffBean> getSendList() {
+        return sendList;
+    }
+
+    public void setSendList(ArrayList<StaffBean> sendList) {
+        this.sendList = sendList;
+    }
+
+    public ArrayList<StaffBean> getCopyList() {
+        return copyList;
+    }
+
+    public void setCopyList(ArrayList<StaffBean> copyList) {
+        this.copyList = copyList;
+    }
+
+    public String getPauseRemark() {
+        return pauseRemark;
+    }
+
+    public void setPauseRemark(String pauseRemark) {
+        this.pauseRemark = pauseRemark;
+    }
+
+    public String getRestartRemark() {
+        return restartRemark;
+    }
+
+    public void setRestartRemark(String restartRemark) {
+        this.restartRemark = restartRemark;
     }
 }

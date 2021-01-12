@@ -1,21 +1,17 @@
-package com.guyuan.dear.work.contractRestart.bean;
+package com.guyuan.dear.work.contractPause.beans;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.guyuan.dear.work.contractPause.beans.ContractPauseInfo;
-import com.guyuan.dear.work.contractPause.beans.StaffBean;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author: 廖华凯
  * @description:
- * @since: 2021/1/8 17:49
+ * @since: 2020/10/30 14:53
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ContractRestartBean implements Parcelable {
+public class ContractPauseBean implements Parcelable {
     private int clientId;
     private String clientName;
     private String contractId;
@@ -25,10 +21,10 @@ public class ContractRestartBean implements Parcelable {
     private ArrayList<StaffBean> sendList;
     private ArrayList<StaffBean> copyList;
 
-    public ContractRestartBean() {
+    public ContractPauseBean() {
     }
 
-    protected ContractRestartBean(Parcel in) {
+    protected ContractPauseBean(Parcel in) {
         clientId = in.readInt();
         clientName = in.readString();
         contractId = in.readString();
@@ -39,15 +35,15 @@ public class ContractRestartBean implements Parcelable {
         copyList = in.createTypedArrayList(StaffBean.CREATOR);
     }
 
-    public static final Creator<ContractRestartBean> CREATOR = new Creator<ContractRestartBean>() {
+    public static final Creator<ContractPauseBean> CREATOR = new Creator<ContractPauseBean>() {
         @Override
-        public ContractRestartBean createFromParcel(Parcel in) {
-            return new ContractRestartBean(in);
+        public ContractPauseBean createFromParcel(Parcel in) {
+            return new ContractPauseBean(in);
         }
 
         @Override
-        public ContractRestartBean[] newArray(int size) {
-            return new ContractRestartBean[size];
+        public ContractPauseBean[] newArray(int size) {
+            return new ContractPauseBean[size];
         }
     };
 
@@ -73,14 +69,6 @@ public class ContractRestartBean implements Parcelable {
 
     public void setContractId(String contractId) {
         this.contractId = contractId;
-    }
-
-    public String getContractNum() {
-        return contractNum;
-    }
-
-    public void setContractNum(String contractNum) {
-        this.contractNum = contractNum;
     }
 
     public ContractPauseInfo getPauseInfo() {
@@ -115,6 +103,13 @@ public class ContractRestartBean implements Parcelable {
         this.copyList = copyList;
     }
 
+    public String getContractNum() {
+        return contractNum;
+    }
+
+    public void setContractNum(String contractNum) {
+        this.contractNum = contractNum;
+    }
 
     @Override
     public int describeContents() {

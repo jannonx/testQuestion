@@ -6,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="fragment_my_apply_detail_vm"
-            type="com.guyuan.dear.work.contractPause.views.applyDetail.MyApplyDetailViewModel" />
+            type="com.guyuan.dear.work.contractPause.views.applyDetail.ContractPauseApplyDetailViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -23,6 +23,36 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <FrameLayout
+                app:displayPauseApplyHeader="@{fragment_my_apply_detail_vm.detailBean.approveResult}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFECE3"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/dp_12"
+                    android:paddingRight="@dimen/dp_12"
+                    android:paddingTop="@dimen/dp_8"
+                    android:paddingBottom="@dimen/dp_8">
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/dp_16"
+                        android:layout_height="@dimen/dp_16"
+                        app:srcCompat="@drawable/ic_svg_exclaimation_mark_orange"
+                        android:layout_marginRight="@dimen/dp_3"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="该项目已暂停，请等待项目重启任务，谢谢。"
+                        android:textColor="#FF6010"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </FrameLayout>
+
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,7 +65,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{fragment_my_apply_detail_vm.applyBean.buyer}"
+                    android:text="@{fragment_my_apply_detail_vm.detailBean.buyer}"
                     android:textColor="@color/color_black_333333"
                     android:textSize="@dimen/sp_14"
                     android:textStyle="bold" />
@@ -50,7 +80,7 @@
                     android:paddingBottom="@dimen/dp_2"
                     android:textSize="@dimen/sp_12"
                     android:textStyle="bold"
-                    app:setMyApplyListTagTextProperty="@{fragment_my_apply_detail_vm.applyBean.applyState}" />
+                    app:setMyApplyDetailTagTextProperty="@{fragment_my_apply_detail_vm.detailBean.approveResult}" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
@@ -78,13 +108,12 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{fragment_my_apply_detail_vm.applyBean.contractNum}"
+                    android:text="@{fragment_my_apply_detail_vm.detailBean.contractNum}"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:visibility="@{fragment_my_apply_detail_vm.isShowDetailPauseInfo?View.GONE:View.VISIBLE}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_12"
@@ -102,15 +131,10 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{fragment_my_apply_detail_vm.applyBean.judgement}"
+                    android:text="@{fragment_my_apply_detail_vm.detailBean.judgement}"
                     android:textColor="@color/color_grey_999999"
                     android:textSize="@dimen/sp_14" />
             </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <include
-                app:setData="@{fragment_my_apply_detail_vm.contractPauseInfo}"
-                android:visibility="@{fragment_my_apply_detail_vm.isShowDetailPauseInfo?View.VISIBLE:View.GONE}"
-                layout="@layout/content_contract_pause_reason"/>
 
             <View
                 android:layout_width="match_parent"
@@ -131,7 +155,7 @@
                 android:paddingLeft="@dimen/dp_12"
                 android:paddingRight="@dimen/dp_12"
                 android:paddingBottom="@dimen/dp_12"
-                android:text="@{fragment_my_apply_detail_vm.applyBean.detailCause}"
+                android:text="@{fragment_my_apply_detail_vm.detailBean.pauseRemark}"
                 android:textColor="@color/color_grey_999999"
                 android:textSize="@dimen/sp_14" />
 
@@ -152,9 +176,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="@dimen/dp_12"
-                app:setContractExcptDetailApplier="@{fragment_my_apply_detail_vm.applyBean.applier}"
-                app:setContractExcptDetailCommentList="@{fragment_my_apply_detail_vm.applyBean.logs}"
-                app:setContractExcptDetailCreateDate="@{fragment_my_apply_detail_vm.applyBean.date}" />
+                app:setContractExcptDetailApplier="@{fragment_my_apply_detail_vm.detailBean.applier}"
+                app:setContractExcptDetailCommentList="@{fragment_my_apply_detail_vm.detailBean.comments}"
+                app:setContractExcptDetailCreateDate="@{fragment_my_apply_detail_vm.detailBean.date}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                app:displayRestartApplySubmitButton="@{fragment_my_apply_detail_vm.detailBean.approveResult}"
+                android:paddingTop="@dimen/dp_12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp_12"
+                android:paddingRight="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_12"
+                android:textSize="@dimen/sp_14"
+                android:textColor="#F04864"
+                android:text="重启：申请一旦通过系统审核，系统会终止所有进行中的任务，项目状态将显示暂停中标识，请谨慎操作。"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                app:displayRestartApplySubmitButton="@{fragment_my_apply_detail_vm.detailBean.approveResult}"
+                android:onClick="@{fragment_my_apply_detail_vm.onClickResubmit}"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:layout_marginRight="@dimen/dp_12"
+                android:layout_height="49dp"
+                android:textSize="@dimen/dp_18"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/ic_bg_svg_button_blue_004fbb"
+                android:text="修改暂停申请"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginBottom="@dimen/dp_24"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
 

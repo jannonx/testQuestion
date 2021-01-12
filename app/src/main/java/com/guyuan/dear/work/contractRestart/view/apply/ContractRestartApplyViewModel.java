@@ -190,11 +190,13 @@ public class ContractRestartApplyViewModel extends BaseViewModel {
     public ContractApplyBean genApplyBean() {
         ContractApplyBean bean = new ContractApplyBean();
         bean.setBuyerId(getClientId());
-        bean.setContractNum(String.valueOf(contractId));
+        bean.setContractId(contractId);
+        bean.setContractNum(contractNum.getValue());
         bean.setDetailReason(description.getValue());
         bean.setSendList(sendList.getValue());
         bean.setCopyList(copyList.getValue());
         bean.setApplyType(applyType.getValue());
+        bean.setJudgementKey(contractPauseInfo.getValue().getApplyCauseType()+"");
         return bean;
     }
 

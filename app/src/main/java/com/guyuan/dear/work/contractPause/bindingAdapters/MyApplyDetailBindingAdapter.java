@@ -119,6 +119,16 @@ public class MyApplyDetailBindingAdapter {
         }
     }
 
+    @BindingAdapter("displayPauseApplyHeader")
+    public static void displayPauseApplyHeader(View headerContainer, int approveResult) {
+        //状态 0.审批中 1.已同意 2.已拒绝
+        if (approveResult == 1) {
+            headerContainer.setVisibility(View.VISIBLE);
+        } else {
+            headerContainer.setVisibility(View.GONE);
+        }
+    }
+
     @BindingAdapter("displayRestartApplySubmitButton")
     public static void displayRestartApplySubmitButton(View view, int approveResult) {
         //状态 0.审批中 1.已同意 2.已拒绝

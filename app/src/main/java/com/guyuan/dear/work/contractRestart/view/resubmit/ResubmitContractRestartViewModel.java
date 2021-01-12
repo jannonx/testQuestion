@@ -122,22 +122,25 @@ public class ResubmitContractRestartViewModel extends BaseDearViewModel {
     public ContractApplyBean genApplyBean() {
         ContractApplyBean bean = new ContractApplyBean();
         bean.setBuyerId(clientId);
-        bean.setContractNum(String.valueOf(contractId));
+        bean.setContractNum(contractNum.getValue());
+        bean.setContractId(contractId);
         bean.setDetailReason(description.getValue());
         bean.setSendList(sendList.getValue());
         bean.setCopyList(copyList.getValue());
         bean.setApplyType(applyType.getValue());
+        bean.setJudgementKey(contractPauseInfo.getValue().getApplyCauseType()+"");
         return bean;
     }
 
-    public void showApplyInfo(ContractRestartBean apply) {
+    public void showPreviousApply(ContractRestartBean apply) {
         clientName.postValue(apply.getClientName());
         clientId = apply.getClientId();
         copyList.postValue(apply.getCopyList());
         sendList.postValue(apply.getSendList());
         description.postValue(apply.getRemark());
         contractPauseInfo.postValue(apply.getPauseInfo());
-        contractId = apply.getClientId();
+        contractId = Integer.valueOf(apply.getContractId());
+        contractNum.postValue(apply.getContractNum());
 
     }
 }

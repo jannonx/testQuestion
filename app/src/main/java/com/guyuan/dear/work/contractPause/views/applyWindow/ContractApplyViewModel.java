@@ -209,7 +209,8 @@ public class ContractApplyViewModel extends BaseViewModel {
     public ContractApplyBean genApplyBean() {
         ContractApplyBean bean = new ContractApplyBean();
         bean.setBuyerId(getClientId());
-        bean.setContractNum(String.valueOf(contractId));
+        bean.setContractNum(contractNum.getValue());
+        bean.setContractId(contractId);
         bean.setJudgementKey(judgeConditionKey);
         bean.setDetailReason(description.getValue());
         bean.setSendList(sendList.getValue());

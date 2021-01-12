@@ -76,6 +76,11 @@ public class NetContractStatusDetail {
          * 判定维度
          */
         private String remark1;
+        private String restartRemark;
+        /**
+         * 判定维度(标识位，提交申请时用)
+         */
+        private int applyCauseType;
         private String remark2;
         /**
          * 审批人员清单
@@ -121,6 +126,14 @@ public class NetContractStatusDetail {
 
         public int getCreateBy() {
             return createBy;
+        }
+
+        public String getRestartRemark() {
+            return restartRemark;
+        }
+
+        public void setRestartRemark(String restartRemark) {
+            this.restartRemark = restartRemark;
         }
 
         public void setCreateBy(int createBy) {
@@ -213,6 +226,14 @@ public class NetContractStatusDetail {
 
         public void setCopyList(List<Integer> copyList) {
             this.copyList = copyList;
+        }
+
+        public int getApplyCauseType() {
+            return applyCauseType;
+        }
+
+        public void setApplyCauseType(int applyCauseType) {
+            this.applyCauseType = applyCauseType;
         }
 
         public List<TexamineFlowsBean> getTexamineFlows() {
@@ -357,6 +378,7 @@ public class NetContractStatusDetail {
 
         private int id;
         private String cusName;
+        private int cusId;
         private String equipmentName;
         private String equipmentModel;
         private String contractNum;
@@ -529,6 +551,14 @@ public class NetContractStatusDetail {
 
         public void setExaminationTime(String examinationTime) {
             this.examinationTime = examinationTime;
+        }
+
+        public int getCusId() {
+            return cusId;
+        }
+
+        public void setCusId(int cusId) {
+            this.cusId = cusId;
         }
 
         public List<TcontractPartsBean> getTcontractParts() {

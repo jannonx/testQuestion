@@ -10,6 +10,7 @@ import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
 import com.guyuan.dear.net.DearNetHelper;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.contractPause.beans.ContractPauseInfo;
+import com.guyuan.dear.work.contractRestart.bean.ContractRestartBean;
 
 import io.reactivex.disposables.Disposable;
 
@@ -19,7 +20,7 @@ import io.reactivex.disposables.Disposable;
  * @since: 2020/10/27 18:14
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ContractApplyDetailViewModel extends BaseViewModel {
+public class ContractRestartApplyDetailViewModel extends BaseViewModel {
     private MutableLiveData<DetailContractApplyBean> detailBean = new MutableLiveData<>();
     public MutableLiveData<ContractPauseInfo> contractPauseInfo = new MutableLiveData<>();
     public MutableLiveData<View.OnClickListener> onClickReSubmit = new MutableLiveData<>();
@@ -56,4 +57,20 @@ public class ContractApplyDetailViewModel extends BaseViewModel {
             ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
         }
     };
+
+    public ContractRestartBean genApplyBean() {
+        ContractRestartBean bean = new ContractRestartBean();
+        DetailContractApplyBean value = detailBean.getValue();
+        if(value!=null){
+            bean.setClientId(value.getBuyerId());
+            bean.setClientName(value.getBuyer());
+            bean.setContractId(value.getContractId()+"");
+            bean.setContractNum(value.getContractNum());
+            bean.setPauseInfo(value.getPauseInfo());
+            bean.setSendList(value.getSendList());
+            bean.setCopyList(value.getCopyList());
+            bean.setRemark(value.getRestartRemark());
+        }
+        return bean;
+    }
 }

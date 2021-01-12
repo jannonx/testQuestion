@@ -18,7 +18,7 @@ import com.guyuan.dear.databinding.FragmentMyApplyListBinding;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.adapters.MyApplyListAdapter;
 import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
-import com.guyuan.dear.work.contractPause.views.applyDetail.MyApplyDetailActivity;
+import com.guyuan.dear.work.contractPause.views.applyDetail.ContractPauseApplyDetailActivity;
 import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeActivity;
 import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeViewModel;
 import com.guyuan.dear.work.contractRestart.view.detail.MyRestartApplyDetailActivity;
@@ -123,7 +123,6 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
             @Override
             public void onItemClick(View view, int i) {
                 MyApplyBean bean = getViewModel().getRestartApplyList().getValue().get(i);
-//                MyApplyDetailActivity.start(getContext(), "申请详情", bean.getExamineId());
                 MyRestartApplyDetailActivity.start(getContext(),bean.getExamineId());
             }
         });
@@ -186,7 +185,7 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
             @Override
             public void onItemClick(View view, int i) {
                 MyApplyBean bean = getViewModel().getPauseApplyList().getValue().get(i);
-                MyApplyDetailActivity.start(getContext(), "申请详情", bean.getExamineId());
+                ContractPauseApplyDetailActivity.start(getContext(), "申请详情", bean.getExamineId());
             }
         });
         getViewModel().updatePauseApplyListFromNet();
