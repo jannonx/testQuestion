@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
+        <import type="com.guyuan.dear.utils.CommonUtils"/>
+        <import type="com.guyuan.dear.utils.ConstantValue"/>
         <variable
             name="goodsSignBean"
             type="com.guyuan.dear.work.goodssign.data.bean.GoodsSignBean" />
@@ -78,6 +80,7 @@
                 android:paddingRight="@dimen/dp_12"
                 android:paddingBottom="4dp"
                 android:textColor="@color/white"
+                android:visibility="@{CommonUtils.isShowButton(ConstantValue.GOODS_SIGN_RECEIVE)?View.VISIBLE:View.INVISIBLE,default=invisible}"
                 app:goodsReceiveStatus="@{goodsSignBean.receiveStatus}"
                 app:layout_constraintBottom_toBottomOf="@+id/goods_contract_number_tv"
                 app:layout_constraintEnd_toEndOf="parent"

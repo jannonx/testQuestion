@@ -126,6 +126,7 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Mai
                         binding.homeWorkRb.setText(title);
                         workFragment = WorkFragment.newInstance(title, menuList);
                         fragmentList.add(workFragment);
+                        CommonUtils.saveButton(menuList);
                         break;
 
                     case ConstantValue.OFFICE://掌上办公
@@ -133,6 +134,7 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Mai
                         binding.homeOfficeRb.setText(title);
                         officeFragment = OfficeFragment.newInstance(title, menuList);
                         fragmentList.add(officeFragment);
+                        CommonUtils.saveButton(menuList);
                         break;
 
                     case ConstantValue.SMART_MANAGEMENT://智慧管理

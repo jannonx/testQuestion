@@ -1,5 +1,10 @@
 package com.guyuan.dear.utils;
 
+import com.tencent.bugly.proguard.A;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author : tl
  * @description :常量池
@@ -177,6 +182,42 @@ public class ConstantValue {
     //===============app菜单字段和版本跳转协议==========================end
 
 
+    //=======================各模块按钮菜单start======================
+
+    //客户跟进
+    public static final String CUSTOMER_ADD_FOLLOW = "customer_add_follow";//填写客户跟进
+    public static final String CUSTOMER_DISCUSS = "customer_discuss";//客户跟进动态评论
+
+    //生产计划
+    public static final String PRODUCE_APPROVE_PAUSE = "produce_approve_pause";//生产计划暂停
+    public static final String PRODUCE_FINISH = "produce_finish";//生产计划完成
+
+    //货物签收
+    public static final String GOODS_SIGN_ALL = "goods_sign_all";//全部货物签收
+    public static final String GOODS_SIGN_RECEIVE = "goods_sign_receive";//单批货物签收
+
+    //工程现场
+    public static final String PROJECT_SITE_SURVEY_FINISH = "project_site_survey_finish";//完成勘察
+    public static final String PROJECT_SITE_SURVEY_FEEDBACK = "project_site_survey_feedback";//反馈勘察
+    public static final String PROJECT_SITE_GOODS_SIGN = "project_site_goods_sign";//确认到货
+    public static final String PROJECT_SITE_GOODS_FEEDBACK = "project_site_goods_feedback";//货物反馈
+    public static final String PROJECT_SITE_SAFE_INVESTIGATE_FINISH = "project_site_safe_investigate_finish";//完成排查
+    public static final String PROJECT_SITE_SAFE_FEEDBACK = "project_site_safe_feedback";//安全排查反馈
+    public static final String PROJECT_SITE_INSTALL_START = "project_site_install_start";//开始安装
+    public static final String PROJECT_SITE_INSTALL_END = "project_site_install_end";//安装完工
+    public static final String PROJECT_SITE_INSTALL_PAUSE = "project_site_install_pause";//暂停安装
+    public static final String PROJECT_SITE_CHECK = "project_site_check";//验收按钮
+
+    //售后问题
+    public static final String AFTER_SALE_FEEDBACK = "after_sale_feedback";//售后服务反馈
+    public static final String AFTER_SALE_CHECK = "after_sale_check";//售后服务验收
+
+    //掌上办公—审批
+    public static final String APPROVAL_CONTRACT = "approval_contract";//合同审批
+    public static final String APPROVAL_PRODUCE = "approval_produce";//生产审批
+
+    //=======================各模块按钮菜单end======================
+
     //产品
     public static final String CONTROL_STOCK_FINISH_PRODUCT = "成品";  //2
     public static final String CONTROL_STOCK_PART = "部件";            //1
@@ -272,4 +313,7 @@ public class ConstantValue {
     public static final String TIP_SEARCH = "请填写搜索内容";
     public static final String TIP_NO_DATA = "暂无数据";
 
+
+    //存放当前账号各模块按钮状态
+    public static List<String> buttonList = new ArrayList<>();
 }
