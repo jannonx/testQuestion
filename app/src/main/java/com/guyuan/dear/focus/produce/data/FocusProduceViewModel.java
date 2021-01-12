@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.api.RxJavaHelper;
+import com.guyuan.dear.base.bean.ContractStatusBean;
 import com.guyuan.dear.busbean.ApprovalBusBean;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
@@ -33,7 +34,7 @@ public class FocusProduceViewModel extends BaseViewModel {
     private MutableLiveData<RefreshBean<FocusProduceBean>> produceListEvent = new MutableLiveData<>();
     private MutableLiveData<List<ProduceStateBean>> statusListEvent = new MutableLiveData<>();
     private MutableLiveData<FocusProduceBean> basicInfoEvent = new MutableLiveData<>();
-    private MutableLiveData<FocusProduceBean> contractInfoEvent = new MutableLiveData<>();
+    private MutableLiveData<ContractStatusBean> contractInfoEvent = new MutableLiveData<>();
     private MutableLiveData<Integer> executeEvent = new MutableLiveData<>();
 
 
@@ -70,7 +71,7 @@ public class FocusProduceViewModel extends BaseViewModel {
         return executeEvent;
     }
 
-    public MutableLiveData<FocusProduceBean> getContractInfoEvent() {
+    public MutableLiveData<ContractStatusBean> getContractInfoEvent() {
         return contractInfoEvent;
     }
 

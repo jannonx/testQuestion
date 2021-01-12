@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.projectsite.type;
 
 
 import com.guyuan.dear.R;
+import com.guyuan.dear.focus.produce.bean.ContractStatusType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 
 import java.io.Serializable;
@@ -37,6 +38,11 @@ public enum CheckGoodsSatisfyType implements Serializable {
     TYPE_GOODS_CHECK_EXCEPTION(4, "清点异常", R.color.color_orange_FF6010,
             R.drawable.bg_orange_ffece3_corner_2),
     /**
+     * 合同状态：1.合同正常，2.合同暂停
+     */
+    TYPE_CONTRACT_PAUSE(7, "合同暂停", R.color.color_orange_FF6010,
+            R.drawable.bg_orange_ffece3_corner_2),
+    /**
      * 未知状态
      */
     TYPE_GOODS_CHECK_UNKNOWN(5, "未知状态", R.color.color_orange_FF6010,
@@ -68,24 +74,29 @@ public enum CheckGoodsSatisfyType implements Serializable {
     }
 
     public static CheckGoodsSatisfyType toType(SiteExploreBean bean) {
-        if (bean == null) return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_UNKNOWN;
-        //运输状态
-        if (bean.getTransportStatus() == 10) {
-            return CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING;
-        } else if (bean.getTransportStatus() == 20) {
-            //完成检测，检测结果
-            if (bean.getCheckStatus() == 30) {
-                if (bean.getIsException() == 0) {
-                    return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_OK;
-                } else if (bean.getIsException() == 1) {
-                    return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_EXCEPTION;
+        if (bean == null || bean.getStopStatus() == null) return TYPE_GOODS_CHECK_UNKNOWN;
+        //合同状态：1.合同正常，2.合同暂停，显示合同暂停状态
+        if (bean.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
+            return TYPE_CONTRACT_PAUSE;
+        } else {
+            //运输状态
+            if (bean.getTransportStatus() == 10) {
+                return CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING;
+            } else if (bean.getTransportStatus() == 20) {
+                //完成检测，检测结果
+                if (bean.getCheckStatus() == 30) {
+                    if (bean.getIsException() == 0) {
+                        return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_OK;
+                    } else if (bean.getIsException() == 1) {
+                        return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_EXCEPTION;
+                    }
+                } else {
+                    //运输到达，检测状态
+                    return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING;
                 }
-            } else {
-                //运输到达，检测状态
-                return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING;
             }
+            return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_UNKNOWN;
         }
-        return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_UNKNOWN;
     }
 
     /**

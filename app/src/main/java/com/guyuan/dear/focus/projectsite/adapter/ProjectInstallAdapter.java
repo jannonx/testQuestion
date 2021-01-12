@@ -5,13 +5,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
-import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
 import com.guyuan.dear.R;
+import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
 import com.guyuan.dear.focus.projectsite.type.InstallDebugSatisfyInnerType;
 
 import java.util.List;
 
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
@@ -33,12 +33,12 @@ public class ProjectInstallAdapter extends BaseRecyclerAdapter<InstallDebugBean>
 
         holder.setText(R.id.tv_time, item.getShowTime());
         //状态属性设置
-        holder.setText(R.id.tv_project_status, InstallDebugSatisfyInnerType.toType(item.getStatus()).getDes());
+        holder.setText(R.id.tv_project_status, InstallDebugSatisfyInnerType.toType(item).getDes());
         TextView tvStatus = holder.getView(R.id.tv_project_status);
         //可见
 //        tvStatus.setVisibility(InstallDebugSatisfyInnerType.toType(item.getStatus()).getStatusTextVisible() ? View.VISIBLE : View.GONE);
-        tvStatus.setBackgroundResource(InstallDebugSatisfyInnerType.toType(item.getStatus()).getTextBgColor());
-        int statusTextColor = InstallDebugSatisfyInnerType.toType(item.getStatus()).getTextColor();
+        tvStatus.setBackgroundResource(InstallDebugSatisfyInnerType.toType(item).getTextBgColor());
+        int statusTextColor = InstallDebugSatisfyInnerType.toType(item).getTextColor();
         tvStatus.setTextColor(context.getResources().getColor(statusTextColor));
 
     }

@@ -81,6 +81,7 @@ public class InstallDebugFragment extends BaseDataBindingFragment<FragmentWorkIn
                     SiteExploreBean siteExploreBean = new SiteExploreBean();
                     siteExploreBean.setId(installDebugBean.getId());
                     siteExploreBean.setStatus(installDebugBean.getStatus());
+                    siteExploreBean.setStopStatus(installDebugBean.getStopStatus());
                     siteExploreBean.setModuleType(detailData.getModuleType());
                     siteExploreBean.setProjectReportType(ProjectReportType.TYPE_INSTALLATION_DEBUG);
                     FocusSiteExplorationDetailActivity.start(getContext(), siteExploreBean);
@@ -126,6 +127,9 @@ public class InstallDebugFragment extends BaseDataBindingFragment<FragmentWorkIn
         binding.tvCompanyLocation.setText(data.getAddress());
 
         List<InstallDebugBean> checkGoodsListData = data.getAppInstallDebugItemVOList();
+        for (InstallDebugBean bean : checkGoodsListData) {
+            bean.setStopStatus(data.getStopStatus());
+        }
         LogUtils.showLog("checkGoodsListData.size=" + checkGoodsListData.size());
         listData.clear();
         listData.addAll(checkGoodsListData);

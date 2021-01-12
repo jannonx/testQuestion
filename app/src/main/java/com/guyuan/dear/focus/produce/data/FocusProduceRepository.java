@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.produce.data;
 
 import com.example.httplibrary.bean.RefreshBean;
 import com.example.httplibrary.bean.ResultBean;
+import com.guyuan.dear.base.bean.ContractStatusBean;
 import com.guyuan.dear.focus.produce.api.FocusProduceApiService;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.bean.ProduceOverViewBean;
@@ -49,8 +50,9 @@ public class FocusProduceRepository {
     Observable<ResultBean<FocusProduceBean>> getBasicInfoById(long playId) {
         return apiService.getBasicInfoById(playId);
     }
-    Observable<ResultBean<FocusProduceBean>> getContractStatus(long projectId) {
-        return apiService.getContractStatus(projectId);
+
+    Observable<ResultBean<ContractStatusBean>> getContractStatus(long projectId) {
+        return apiService.getContractStatusByProjectID((int)projectId);
     }
     Observable<ResultBean<List<ProduceStateBean>>> getProduceStateList(long playId) {
         return apiService.getProduceStateList(playId);
