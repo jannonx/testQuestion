@@ -48,7 +48,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
     private int approvalType;
     private View.OnClickListener commitListener;
     private View.OnClickListener rejectListener;
-    private String remarks = "";
+
 
     public static void start(Context context, String title, int type, int approvalType, int id) {
         Intent starter = new Intent(context, ApprovalDetailActivity.class);
@@ -90,7 +90,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                         tipDialogFragment.setOnSureListener(new TipDialogFragment.OnSure() {
                             @Override
                             public void sure() {
-                                viewModel.contractApproval(type, (int) detailContractBean.getContractId(), remarks, ApprovalActivity.ACCEPT);
+                                viewModel.contractApproval(type, (int) detailContractBean.getContractId(), "", ApprovalActivity.ACCEPT);
                                 tipDialogFragment.dismiss();
                             }
                         })
@@ -123,7 +123,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                             RemarkDialog.show(ApprovalDetailActivity.this, "请输入驳回备注", new RemarkDialog.OnDialogClickListener() {
                                 @Override
                                 public void onCommitInfo(ExecuteRequestBody data) {
-                                    viewModel.contractApproval(type, (int) bean.getContractId(), remarks, ApprovalActivity.REJECT);
+                                    viewModel.contractApproval(type, (int) bean.getContractId(), data.getReason(), ApprovalActivity.REJECT);
                                 }
                             });
                         } else {
@@ -168,7 +168,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                         tipDialogFragment.setOnSureListener(new TipDialogFragment.OnSure() {
                             @Override
                             public void sure() {
-                                viewModel.produceApproval((int) focusProduceBean.getPlanId(), 2, remarks, ApprovalActivity.ACCEPT, getProduceApprovalType(type));
+                                viewModel.produceApproval((int) focusProduceBean.getPlanId(), 2, "", ApprovalActivity.ACCEPT, getProduceApprovalType(type));
                                 tipDialogFragment.dismiss();
                             }
                         })
@@ -191,7 +191,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                                 @Override
                                 public void onCommitInfo(ExecuteRequestBody data) {
                                     //businessType传2:子生产计划
-                                    viewModel.produceApproval((int) bean.getPlanId(), 2, remarks, ApprovalActivity.REJECT, getProduceApprovalType(type));
+                                    viewModel.produceApproval((int) bean.getPlanId(), 2, data.getReason(), ApprovalActivity.REJECT, getProduceApprovalType(type));
                                 }
                             });
                         } else {
