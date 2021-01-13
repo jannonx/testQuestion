@@ -101,7 +101,7 @@ public class FocusFragment extends BaseListFragment<ChildrenBean, FragmentFocusB
 
                             case ConstantValue.FOCUS_DEVICE://设备
                                 showToastTip("正在研发中...");
-                            //    FocusDeviceActivity.start(getContext(), title);
+                                //    FocusDeviceActivity.start(getContext(), title);
                                 break;
 
                             case ConstantValue.FOCUS_SELL://销售
@@ -177,11 +177,15 @@ public class FocusFragment extends BaseListFragment<ChildrenBean, FragmentFocusB
     }
 
     public void setControlBar(List<MessageBean> messageBeans) {
-        binding.smartControlBar.setControl_bar(messageBeans);
+        if (binding != null) {
+            binding.smartControlBar.setControl_bar(messageBeans);
+        }
     }
 
-    public void handleControlBar(MessageBean messageBean){
-        binding.smartControlBar.handlePush(messageBean);
+    public void handleControlBar(MessageBean messageBean) {
+        if (binding != null) {
+            binding.smartControlBar.handlePush(messageBean);
+        }
     }
 
     @Override

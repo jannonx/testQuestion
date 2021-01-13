@@ -154,8 +154,8 @@ public class ApiServiceModule extends BaseApiServiceModule implements HttpSettin
         return providesOkHttpClientBuilder(sslSocketFactory, x509TrustManager,
                 loggingInterceptor, homeNameVerifier, cache)
                 .addInterceptor(headInterceptor)
-                .addInterceptor(responseInterceptor)
-                .addNetworkInterceptor(cacheInterceptor);
+                //.addInterceptor(responseInterceptor)
+                .addNetworkInterceptor(loggingInterceptor);
     }
 
     @Singleton
@@ -172,8 +172,8 @@ public class ApiServiceModule extends BaseApiServiceModule implements HttpSettin
         return providesDebugOkHttpClientBuilder(sslSocketFactory, x509TrustManager,
                 loggingInterceptor, homeNameVerifier, cache)
                 .addInterceptor(headInterceptor)
-                .addInterceptor(responseInterceptor)
-                .addNetworkInterceptor(cacheInterceptor);
+                //.addInterceptor(responseInterceptor)
+                .addNetworkInterceptor(loggingInterceptor);
     }
 
     @Override
