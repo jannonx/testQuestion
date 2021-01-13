@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.utils.CommonUtils;
+import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.goodssign.data.GoodsSignViewModel;
 import com.guyuan.dear.work.goodssign.data.bean.GoodsSignBean;
 import com.guyuan.dear.work.goodssign.ui.GoodsSignItemDetailActivity;
@@ -109,6 +111,8 @@ public class GoodsSignBindingAdapter {
             }
         }
 
-        tv.setVisibility(status ? View.VISIBLE : View.GONE);
+        if (CommonUtils.isShowButton(ConstantValue.GOODS_SIGN_ALL)) {
+            tv.setVisibility(status ? View.VISIBLE : View.GONE);
+        }
     }
 }
