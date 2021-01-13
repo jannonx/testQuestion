@@ -2,8 +2,8 @@ package com.guyuan.dear.work.contractPause.views.myAppliedList;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.app.DearApplication;
+import com.guyuan.dear.base.fragment.BaseDearViewModel;
 import com.guyuan.dear.net.DearNetHelper;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
@@ -22,7 +22,7 @@ import io.reactivex.disposables.Disposable;
  * @since: 2020/11/2 12:01
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class MyApplyListViewModel extends BaseViewModel {
+public class MyApplyListViewModel extends BaseDearViewModel {
     private MyApplyListRepo repo = new MyApplyListRepo();
     private MutableLiveData<List<MyApplyBean>> pauseApplyList = new MutableLiveData<>(new ArrayList<>());
     private MutableLiveData<List<MyApplyBean>> restartApplyList = new MutableLiveData<>(new ArrayList<>());
@@ -84,7 +84,7 @@ public class MyApplyListViewModel extends BaseViewModel {
     private Comparator<MyApplyBean> comparator = new Comparator<MyApplyBean>() {
         @Override
         public int compare(MyApplyBean o1, MyApplyBean o2) {
-            return (int) (o2.getApplyDate()-o1.getApplyDate());
+            return (int) (o2.getApplyDate() - o1.getApplyDate());
         }
     };
 
@@ -137,33 +137,46 @@ public class MyApplyListViewModel extends BaseViewModel {
 
     /**
      * 更新列表中的特定item
-     * @param applyBean
      */
-    public void updatePauseApplyState(MyApplyBean applyBean) {
-        if(pauseApplyList.getValue()!=null){
-            List<MyApplyBean> value = pauseApplyList.getValue();
-            for (int i = 0; i < value.size(); i++) {
-                MyApplyBean bean = value.get(i);
-                if(bean.getExamineId()==applyBean.getExamineId()){
-                    bean.setApplyState(applyBean.getApplyState());
-                    pauseApplyList.postValue(value);
-                    break;
-                }
-            }
-        }
+    public void updatePauseApply(int examineId) {
+        addSubscription(repo.getMyPauseApplyByExamineId(examineId, updatePauseApplyCallback));
     }
 
-    public void updateRestartApplyState(MyApplyBean applyBean) {
-        if(restartApplyList.getValue()!=null){
-            List<MyApplyBean> value = restartApplyList.getValue();
-            for (int i = 0; i < value.size(); i++) {
-                MyApplyBean bean = value.get(i);
-                if(bean.getExamineId()==applyBean.getExamineId()){
-                    bean.setApplyState(applyBean.getApplyState());
-                    restartApplyList.postValue(value);
-                    break;
+    private BaseNetCallback<MyApplyBean> updatePauseApplyCallback = new BaseNetCallback<MyApplyBean>() {
+        @Override
+        protected void handleResult(MyApplyBean result) {
+            List<MyApplyBean> value = pauseApplyList.getValue();
+            if (result != null && value != null) {
+                for (int i = 0; i < value.size(); i++) {
+                    MyApplyBean bean = value.get(i);
+                    if (bean.getExamineId() == result.getExamineId()) {
+                        value.set(i, result);
+                        pauseApplyList.postValue(value);
+                        break;
+                    }
                 }
             }
         }
+    };
+
+    public void updateRestartApply(int examineId) {
+        addSubscription(repo.getMyRestartApplyByExamineId(examineId, updateRestartApplyCallback));
     }
+
+    private BaseNetCallback<MyApplyBean> updateRestartApplyCallback = new BaseNetCallback<MyApplyBean>() {
+        @Override
+        protected void handleResult(MyApplyBean result) {
+            List<MyApplyBean> value = restartApplyList.getValue();
+            if (result != null && value != null) {
+                for (int i = 0; i < value.size(); i++) {
+                    MyApplyBean bean = value.get(i);
+                    if (bean.getExamineId() == result.getExamineId()) {
+                        value.set(i, result);
+                        restartApplyList.postValue(value);
+                        break;
+                    }
+                }
+            }
+        }
+    };
 }

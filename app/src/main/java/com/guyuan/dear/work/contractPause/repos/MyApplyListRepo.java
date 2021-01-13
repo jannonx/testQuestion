@@ -22,4 +22,12 @@ public class MyApplyListRepo {
         return DearNetHelper.getInstance().getMyRestartApplyList(pageIndex,pageSize,callback);
     }
 
+    public Disposable getMyPauseApplyByExamineId(int examineId,DearNetHelper.NetCallback<MyApplyBean> callback){
+        return DearNetHelper.getInstance().getMyPauseContractApplyByExamineId(examineId,callback);
+    }
+
+    public Disposable getMyRestartApplyByExamineId(int examineId,DearNetHelper.NetCallback<MyApplyBean> callback){
+        return DearNetHelper.getInstance().getMyRestartContractApplyByExamineId(examineId,callback);
+    }
+
 }

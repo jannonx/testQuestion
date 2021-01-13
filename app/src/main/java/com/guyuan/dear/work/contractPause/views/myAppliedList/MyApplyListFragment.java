@@ -100,12 +100,13 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
     @Subscribe
     public void onEvent(Object event) {
         if(event instanceof UpdatePauseApplyListEvent && type == TYPE_MY_PAUSE_APPLY_LIST ){
-            MyApplyBean applyBean = ((UpdatePauseApplyListEvent) event).getBean();
-            LogUtils.showLog("UpdatePauseApplyListEvent="+applyBean.toString());
-            getViewModel().updatePauseApplyState(applyBean);
+            MyApplyBean bean = ((UpdatePauseApplyListEvent) event).getBean();
+            LogUtils.showLog("UpdatePauseApplyListEvent="+bean.toString());
+            getViewModel().updatePauseApply(bean.getExamineId());
         }else if(event instanceof UpdateRestartApplyListEvent && type == TYPE_MY_RESTART_APPLY_LIST){
             MyApplyBean bean = ((UpdateRestartApplyListEvent) event).getBean();
-            getViewModel().updateRestartApplyState(bean);
+            LogUtils.showLog("UpdateRestartApplyListEvent="+bean.toString());
+            getViewModel().updateRestartApply(bean.getExamineId());
         }
     }
 
