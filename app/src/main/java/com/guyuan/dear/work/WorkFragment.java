@@ -201,11 +201,15 @@ public class WorkFragment extends BaseListFragment<ChildrenBean, FragmentWorkBin
 
 
     public void setMessageBar(int unreadNumber, List<MessageBean> messageBeanList) {
-        binding.workMessageBar.setMessageBar(unreadNumber, messageBeanList);
+        if (binding != null) {
+            binding.workMessageBar.setMessageBar(unreadNumber, messageBeanList);
+        }
     }
 
     public void handlePushMessageBar(MessageBean messageBean) {
-        binding.workMessageBar.handlePush(messageBean);
+        if (binding != null) {
+            binding.workMessageBar.handlePush(messageBean);
+        }
     }
 
     //不断轮询查询消息

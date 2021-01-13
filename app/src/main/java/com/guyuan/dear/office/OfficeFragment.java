@@ -97,7 +97,7 @@ public class OfficeFragment extends BaseListFragment<ChildrenBean, FragmentOffic
                                 break;
 
                             case ConstantValue.OFFICE_SIGN://考勤打卡
-                                ClockInActivity.start(getContext(),title);
+                                ClockInActivity.start(getContext(), title);
                                 break;
                             default:
                                 break;
@@ -129,11 +129,15 @@ public class OfficeFragment extends BaseListFragment<ChildrenBean, FragmentOffic
     }
 
     public void setMessageBar(int unreadNumber, List<MessageBean> messageBeanList) {
-        binding.officeMessageBar.setMessageBar(unreadNumber, messageBeanList);
+        if (binding != null) {
+            binding.officeMessageBar.setMessageBar(unreadNumber, messageBeanList);
+        }
     }
 
     public void handleMessageBar(MessageBean messageBean) {
-        binding.officeMessageBar.handlePush(messageBean);
+        if (binding != null) {
+            binding.officeMessageBar.handlePush(messageBean);
+        }
     }
 
 
