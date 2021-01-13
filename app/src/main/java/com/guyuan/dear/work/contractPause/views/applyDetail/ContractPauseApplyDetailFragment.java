@@ -5,13 +5,19 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
+import com.guyuan.dear.busbean.UpdatePauseApplyListEvent;
 import com.guyuan.dear.databinding.FragmentContractPauseApplyDetailBinding;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.LogUtils;
+import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
 import com.guyuan.dear.work.contractPause.views.resubmit.ResubmitContractPauseActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -58,7 +64,8 @@ public class ContractPauseApplyDetailFragment extends BaseMvvmFragment<FragmentC
         getViewModel().onClickResubmit.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ResubmitContractPauseActivity.startForResult(ContractPauseApplyDetailFragment.this,
+                ResubmitContractPauseActivity.startForResult(
+                        ContractPauseApplyDetailFragment.this,
                         getViewModel().genContractPauseBean(),
                         REQ_CODE_RESUBMIT_PAUSE_APPLY);
             }
@@ -69,8 +76,19 @@ public class ContractPauseApplyDetailFragment extends BaseMvvmFragment<FragmentC
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        LogUtils.showLog("req="+requestCode+" rsl="+resultCode);
         if (requestCode == REQ_CODE_RESUBMIT_PAUSE_APPLY && resultCode == RESULT_OK) {
-            addDisposable(getViewModel().getMyApplyDetailFromNet(examineId));
+            LogUtils.showLog("onActivityResult");
+//            addDisposable(getViewModel().getMyApplyDetailFromNet(examineId));
+            //合同重新申请暂停成功后，退出本界面，并通过事件总线更新合同列表的合同最新状态。
+            UpdatePauseApplyListEvent event = new UpdatePauseApplyListEvent();
+            MyApplyBean bean = new MyApplyBean();
+            bean.setExamineId(examineId);
+            bean.setApplyState(MyApplyBean.APPLY_PROCESSING);
+            event.setBean(bean);
+            EventBus.getDefault().post(event);
+            FragmentActivity activity = getActivity();
+            activity.onBackPressed();
         }
     }
 

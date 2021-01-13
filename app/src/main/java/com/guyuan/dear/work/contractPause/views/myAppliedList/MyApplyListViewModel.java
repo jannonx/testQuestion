@@ -10,6 +10,8 @@ import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
 import com.guyuan.dear.work.contractPause.repos.MyApplyListRepo;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import io.reactivex.disposables.Disposable;
@@ -64,6 +66,7 @@ public class MyApplyListViewModel extends BaseViewModel {
                     ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
                 } else {
                     pauseApplyList.getValue().addAll(result);
+                    Collections.sort(pauseApplyList.getValue(), comparator);
                     pauseApplyList.postValue(pauseApplyList.getValue());
                 }
             }
@@ -75,6 +78,13 @@ public class MyApplyListViewModel extends BaseViewModel {
         public void onError(Throwable error) {
             isShowLoading.postValue(false);
             ToastUtils.showShort(DearApplication.getInstance(), error.getMessage());
+        }
+    };
+
+    private Comparator<MyApplyBean> comparator = new Comparator<MyApplyBean>() {
+        @Override
+        public int compare(MyApplyBean o1, MyApplyBean o2) {
+            return (int) (o2.getApplyDate()-o1.getApplyDate());
         }
     };
 
@@ -97,6 +107,7 @@ public class MyApplyListViewModel extends BaseViewModel {
                     ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
                 } else {
                     restartApplyList.getValue().addAll(result);
+                    Collections.sort(restartApplyList.getValue(), comparator);
                     restartApplyList.postValue(restartApplyList.getValue());
                 }
             }
@@ -124,4 +135,35 @@ public class MyApplyListViewModel extends BaseViewModel {
     }
 
 
+    /**
+     * 更新列表中的特定item
+     * @param applyBean
+     */
+    public void updatePauseApplyState(MyApplyBean applyBean) {
+        if(pauseApplyList.getValue()!=null){
+            List<MyApplyBean> value = pauseApplyList.getValue();
+            for (int i = 0; i < value.size(); i++) {
+                MyApplyBean bean = value.get(i);
+                if(bean.getExamineId()==applyBean.getExamineId()){
+                    bean.setApplyState(applyBean.getApplyState());
+                    pauseApplyList.postValue(value);
+                    break;
+                }
+            }
+        }
+    }
+
+    public void updateRestartApplyState(MyApplyBean applyBean) {
+        if(restartApplyList.getValue()!=null){
+            List<MyApplyBean> value = restartApplyList.getValue();
+            for (int i = 0; i < value.size(); i++) {
+                MyApplyBean bean = value.get(i);
+                if(bean.getExamineId()==applyBean.getExamineId()){
+                    bean.setApplyState(applyBean.getApplyState());
+                    restartApplyList.postValue(value);
+                    break;
+                }
+            }
+        }
+    }
 }
