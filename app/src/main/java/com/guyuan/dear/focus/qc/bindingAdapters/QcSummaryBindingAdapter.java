@@ -29,6 +29,10 @@ public class QcSummaryBindingAdapter {
 
     @BindingAdapter("showYearMonthDayHourMinuteByDate")
     public static void showYearMonthDayHourMinuteByDate(AppCompatTextView view, long date) {
+        if(date == 0){
+            view.setText("");
+            return;
+        }
         String yearAndMonth = CalenderUtils.getInstance().toYearMonthDayHourMinute(date);
         view.setText(yearAndMonth);
     }

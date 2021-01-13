@@ -7,7 +7,7 @@
         <import type="com.guyuan.dear.focus.contract.bean.DetailContractApplyBean"
             alias="bean"/>
         <variable
-            name="fragment_contract_apply_detail_vm"
+            name="fragment_contract_restart_apply_detail_vm"
             type="com.guyuan.dear.focus.contract.view.contractApplyDetail.ContractRestartApplyDetailViewModel"/>
     </data>
 
@@ -22,35 +22,11 @@
             android:orientation="vertical">
 
             <FrameLayout
+                app:displayRestartApplyHeader="@{fragment_contract_restart_apply_detail_vm.detailBean.approveResult}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:visibility="@{fragment_contract_apply_detail_vm.detailBean.applyType == bean.APPLY_TYPE_PAUSE?View.VISIBLE:View.GONE}"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#FFECE3"
-                    android:gravity="center"
-                    android:paddingLeft="@dimen/dp_12"
-                    android:paddingRight="@dimen/dp_12"
-                    android:paddingTop="@dimen/dp_8"
-                    android:paddingBottom="@dimen/dp_8">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="@dimen/dp_16"
-                        android:layout_height="@dimen/dp_16"
-                        app:srcCompat="@drawable/ic_svg_exclaimation_mark_orange"
-                        android:layout_marginRight="@dimen/dp_3"/>
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="该项目已暂停，请等待项目重启任务，谢谢！"
-                        android:textColor="#FF6010"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        />
-                </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:visibility="@{fragment_contract_apply_detail_vm.detailBean.applyType == bean.APPLY_TYPE_RESTART?View.VISIBLE:View.GONE}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#D4FFF1"
@@ -84,21 +60,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <androidx.appcompat.widget.AppCompatTextView
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@{fragment_contract_apply_detail_vm.detailBean.buyer,default=xxxx}"
-                        android:textColor="#333333"
-                        android:textSize="@dimen/sp_14"
-                        android:padding="@dimen/dp_12"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/color_grey_e5e5e5"
-                        android:layout_marginLeft="@dimen/dp_12"
-                        android:layout_marginRight="@dimen/dp_12"/>
+                        android:layout_height="wrap_content">
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{fragment_contract_restart_apply_detail_vm.detailBean.buyer,default=xxxx}"
+                            android:textColor="#333333"
+                            android:textSize="@dimen/sp_14"
+                            android:padding="@dimen/dp_12"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="xxx"
+                            android:textSize="@dimen/sp_12"
+                            android:paddingLeft="4dp"
+                            android:paddingRight="4dp"
+                            android:paddingTop="2dp"
+                            android:paddingBottom="2dp"
+                            app:setMyApplyDetailTagTextProperty="@{fragment_contract_restart_apply_detail_vm.detailBean.approveResult}"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <TableLayout
                         android:layout_width="match_parent"
@@ -112,53 +95,31 @@
                                 android:textColor="#999999"
                                 android:textSize="@dimen/sp_14"
                                 android:paddingLeft="@dimen/dp_12"
-                                android:paddingTop="@dimen/dp_12"
                                 android:paddingBottom="@dimen/dp_6"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"/>
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@{fragment_contract_apply_detail_vm.detailBean.contractNum,default=xxxx}"
+                                android:text="@{fragment_contract_restart_apply_detail_vm.detailBean.contractNum,default=xxxx}"
                                 android:textColor="#999999"
                                 android:textSize="@dimen/sp_14"
                                 app:layout_constraintLeft_toLeftOf="parent"
-                                android:paddingTop="@dimen/dp_12"
                                 android:paddingBottom="@dimen/dp_6"
-                                app:layout_constraintTop_toTopOf="parent"/>
-                        </TableRow>
-                        <TableRow>
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="判定维度："
-                                android:textColor="#999999"
-                                android:textSize="@dimen/sp_14"
-                                android:paddingTop="@dimen/dp_6"
-                                android:paddingLeft="@dimen/dp_12"
-                                android:paddingBottom="@dimen/dp_12"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"/>
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@{fragment_contract_apply_detail_vm.detailBean.judgement,default=xxxx}"
-                                android:textColor="#999999"
-                                android:textSize="@dimen/sp_14"
-                                android:paddingTop="@dimen/dp_6"
-                                android:paddingBottom="@dimen/dp_12"
-                                app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"/>
                         </TableRow>
                     </TableLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/color_grey_e5e5e5"/>
+
+                    <include
+                        app:setData="@{fragment_contract_restart_apply_detail_vm.contractPauseInfo}"
+                        layout="@layout/content_contract_pause_reason"/>
+
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="117dp"
-                    android:layout_height="117dp"
-                    android:layout_gravity="center_vertical|end"
-                    android:layout_marginRight="@dimen/dp_12"
-                    app:showContractApplyDetailTypeMark="@{fragment_contract_apply_detail_vm.detailBean.applyType}"/>
             </FrameLayout>
 
             <View
@@ -169,7 +130,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="详细原因"
+                android:text="激活原因"
                 android:textColor="#333333"
                 android:textSize="@dimen/sp_16"
                 android:textStyle="bold"
@@ -183,7 +144,7 @@
                 android:paddingBottom="@dimen/dp_12"
                 android:textColor="#999999"
                 android:textSize="@dimen/sp_14"
-                android:text="@{fragment_contract_apply_detail_vm.detailBean.detailCause}"/>
+                android:text="@{fragment_contract_restart_apply_detail_vm.detailBean.detailCause}"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_8"
@@ -199,9 +160,37 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:setContractExcptDetailApplier="@{fragment_contract_apply_detail_vm.detailBean.applier}"
-                app:setContractExcptDetailCommentList="@{fragment_contract_apply_detail_vm.detailBean.comments}"
-                app:setContractExcptDetailCreateDate="@{fragment_contract_apply_detail_vm.detailBean.date}"/>
+                app:setContractExcptDetailApplier="@{fragment_contract_restart_apply_detail_vm.detailBean.applier}"
+                app:setContractExcptDetailCommentList="@{fragment_contract_restart_apply_detail_vm.detailBean.comments}"
+                app:setContractExcptDetailCreateDate="@{fragment_contract_restart_apply_detail_vm.detailBean.applyDate}"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                app:displayRestartApplySubmitButton="@{fragment_contract_restart_apply_detail_vm.detailBean.approveResult}"
+                android:paddingTop="@dimen/dp_12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp_12"
+                android:paddingRight="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_12"
+                android:textSize="@dimen/sp_14"
+                android:textColor="#F04864"
+                android:text="重启：申请一旦通过系统审核，系统会终止所有暂停的任务，该项目将恢复正常状态，请确认好信息无误的情况下提交重启申请。"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                app:displayRestartApplySubmitButton="@{fragment_contract_restart_apply_detail_vm.detailBean.approveResult}"
+                android:onClick="@{fragment_contract_restart_apply_detail_vm.onClickReSubmit}"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:layout_marginRight="@dimen/dp_12"
+                android:layout_height="49dp"
+                android:textSize="@dimen/dp_18"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/ic_bg_svg_button_blue_004fbb"
+                android:text="重新提交"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_marginBottom="@dimen/dp_24"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
 

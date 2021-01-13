@@ -40,13 +40,7 @@ public class ContractApplyBody {
     }
 
     public ContractApplyBody(ContractApplyBean bean) {
-        int id = 0;
-        try {
-            id = Integer.valueOf(bean.getContractNum());
-        }catch (NumberFormatException e){
-            e.printStackTrace();
-        }
-        this.id =id;
+        this.id =(int) bean.getContractId();
         List<Integer> ccBy = new ArrayList<>();
         ArrayList<StaffBean> beanCopyList = bean.getCopyList();
         for (StaffBean staffBean : beanCopyList) {

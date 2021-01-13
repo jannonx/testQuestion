@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import com.guyuan.dear.focus.contract.bean.BaseContractExcptBean;
 import com.guyuan.dear.net.resultBeans.NetContractInfo;
 import com.guyuan.dear.utils.CalenderUtils;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,15 +34,25 @@ public class MyApplyBean extends BaseContractExcptBean implements Parcelable {
 
     private int applyState;
     private String applier;
+    private long applyDate;
 
     public MyApplyBean() {
     }
 
     public MyApplyBean(NetContractInfo src) {
+        String statusExamineTime = src.getStatusExamineTime();
+        if(!TextUtils.isEmpty(statusExamineTime)){
+            try {
+                applyDate = CalenderUtils.getInstance().parseSmartFactoryDateStringFormat(statusExamineTime).getTime();
+            }catch (Exception e){
+                LogUtils.showLog(e.getMessage());
+            }
+        }
         setContractId(src.getId());
         setBuyer(src.getCusName());
         setContractNum(src.getContractNum());
         setExamineId(src.getExamineId());
+        setCause(src.getApproveComment());
         if(!TextUtils.isEmpty(src.getJudgeCondition())){
             setJudgement(src.getJudgeCondition());
         }else if(!TextUtils.isEmpty(src.getListJudgeCondition())){
@@ -88,6 +99,7 @@ public class MyApplyBean extends BaseContractExcptBean implements Parcelable {
         super(in);
         applyState = in.readInt();
         applier = in.readString();
+        applyDate = in.readLong();
     }
 
     public static final Creator<MyApplyBean> CREATOR = new Creator<MyApplyBean>() {
@@ -118,6 +130,14 @@ public class MyApplyBean extends BaseContractExcptBean implements Parcelable {
         this.applier = applier;
     }
 
+    public long getApplyDate() {
+        return applyDate;
+    }
+
+    public void setApplyDate(long applyDate) {
+        this.applyDate = applyDate;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -128,5 +148,6 @@ public class MyApplyBean extends BaseContractExcptBean implements Parcelable {
         super.writeToParcel(dest, flags);
         dest.writeInt(applyState);
         dest.writeString(applier);
+        dest.writeLong(applyDate);
     }
 }

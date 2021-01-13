@@ -18,9 +18,10 @@ import com.guyuan.dear.databinding.FragmentMyApplyListBinding;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.adapters.MyApplyListAdapter;
 import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
-import com.guyuan.dear.work.contractPause.views.applyDetail.MyApplyDetailActivity;
+import com.guyuan.dear.work.contractPause.views.applyDetail.ContractPauseApplyDetailActivity;
 import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeActivity;
 import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeViewModel;
+import com.guyuan.dear.work.contractRestart.view.detail.MyRestartApplyDetailActivity;
 import com.guyuan.dear.work.contractRestart.view.home.ContractRestartHomeActivity;
 import com.guyuan.dear.work.contractRestart.view.home.ContractRestartHomeViewModel;
 
@@ -87,10 +88,10 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
     private void initRestartList() {
         BaseRecyclerView recyclerView = getViewDataBinding().fragmentMyApplyListRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        MyApplyListAdapter adapter = new MyApplyListAdapter(getViewModel().getRestartApplyList().getValue());
+        MyApplyListAdapter adapter = new MyApplyListAdapter(getViewModel().getRestartApplyList().getValue(),false);
         BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0(12,12,12,12,16));
+        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0());
         recyclerView.setAdapter(wrapper);
         recyclerView.setLoadMoreEnabled(true);
         recyclerView.setPullRefreshEnabled(false);
@@ -122,7 +123,7 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
             @Override
             public void onItemClick(View view, int i) {
                 MyApplyBean bean = getViewModel().getRestartApplyList().getValue().get(i);
-                MyApplyDetailActivity.start(getContext(), "申请详情", bean.getExamineId());
+                MyRestartApplyDetailActivity.start(getContext(),bean.getExamineId());
             }
         });
         getViewModel().updateRestartApplyListFromNet();
@@ -149,10 +150,10 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
     private void initPauseList() {
         BaseRecyclerView recyclerView = getViewDataBinding().fragmentMyApplyListRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        MyApplyListAdapter adapter = new MyApplyListAdapter(getViewModel().getPauseApplyList().getValue());
+        MyApplyListAdapter adapter = new MyApplyListAdapter(getViewModel().getPauseApplyList().getValue(),true);
         BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0(12,12,12,12,16));
+        recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0());
         recyclerView.setAdapter(wrapper);
         recyclerView.setLoadMoreEnabled(true);
         recyclerView.setPullRefreshEnabled(false);
@@ -184,7 +185,7 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
             @Override
             public void onItemClick(View view, int i) {
                 MyApplyBean bean = getViewModel().getPauseApplyList().getValue().get(i);
-                MyApplyDetailActivity.start(getContext(), "申请详情", bean.getExamineId());
+                ContractPauseApplyDetailActivity.start(getContext(), "申请详情", bean.getExamineId());
             }
         });
         getViewModel().updatePauseApplyListFromNet();

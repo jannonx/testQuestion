@@ -1,18 +1,24 @@
 package com.guyuan.dear.umeng;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 
+import com.example.mvvmlibrary.util.ActivityUtils;
+import com.example.mvvmlibrary.util.SharedPreferencesUtils;
 import com.example.mvvmlibrary.util.ToastUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.busbean.MessagePushBusBean;
 import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
+import com.guyuan.dear.login.data.bean.LoginBean;
+import com.guyuan.dear.login.ui.LoginActivity;
 import com.guyuan.dear.umeng.beans.PushLogout;
 import com.guyuan.dear.umeng.beans.UmengMessageWrapper;
 import com.guyuan.dear.utils.CommonUtils;
+import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
 import com.umeng.commonsdk.debug.E;
 
@@ -96,7 +102,18 @@ public class UmengMsgDecoder {
             if (CommonUtils.getCurrentUserId() == userId) {
                 if (!CommonUtils.getLoginInfo().getToken().equals(accessToken)) {
                     ToastUtils.showToast(DearApplication.getInstance(), "您已在别的手机登录。");
-                    CommonUtils.logout(DearApplication.getInstance());
+//                    CommonUtils.logout(DearApplication.getInstance());
+                    //要加上FLAG_ACTIVITY_NEW_TASK才能正常启动activity
+                    LoginBean loginInfo = CommonUtils.getLoginInfo();
+                    if (loginInfo != null) {
+                        UmengAliasManager.getInstance().unregisterAlias(CommonUtils.getCurrentUserId());
+                    }
+                    SharedPreferencesUtils.removeData(DearApplication.getInstance(), ConstantValue.KEY_USER_PW);
+                    SharedPreferencesUtils.removeData(DearApplication.getInstance(), ConstantValue.USER_JSON_STRING);
+                    ActivityUtils.removeAllActivity();
+                    Intent starter = new Intent(DearApplication.getInstance(), LoginActivity.class);
+                    starter.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    DearApplication.getInstance().startActivity(starter);
                 }
             }
         } catch (Exception e) {

@@ -14,56 +14,16 @@ import java.util.List;
  * @company: 固远（深圳）信息技术有限公司
  **/
 public class MyApplyListAdapter extends BaseDBRecycleAdapter<MyApplyBean, ItemMyApplyListBinding> {
-    public MyApplyListAdapter(List<MyApplyBean> listData) {
+    private boolean isShowCauseType;
+    public MyApplyListAdapter(List<MyApplyBean> listData,boolean isShowCauseType) {
         super(listData, R.layout.item_my_apply_list);
+        this.isShowCauseType = isShowCauseType;
     }
 
     @Override
     protected void bindDataToView(Holder holder, MyApplyBean item, int position) {
         holder.binding.setData(item);
+        holder.binding.setIsShowCauseType(isShowCauseType);
     }
-
-//    private List<MyApplyBean> list;
-//    private Context context;
-//
-//    public MyApplyListAdapter(List<MyApplyBean> list, Context context) {
-//        this.list = list;
-//        this.context = context;
-//    }
-//
-//    @NonNull
-//    @Override
-//    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        ViewDataBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_my_apply_list, parent, false);
-//        return new ViewHolder(binding.getRoot());
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        ItemMyPauseApplyListBinding binding = DataBindingUtil.getBinding(holder.itemView);
-//        final MyApplyBean bean = list.get(position);
-//        binding.setData(bean);
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(myPauseListItemClickListener!=null){
-//                    myPauseListItemClickListener.onClickMyPauseApply(bean,position);
-//                }
-//            }
-//        });
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        return list.size();
-//    }
-//
-//    class ViewHolder extends RecyclerView.ViewHolder{
-//
-//        public ViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//        }
-//    }
-
 
 }

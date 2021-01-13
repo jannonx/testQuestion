@@ -62,6 +62,7 @@ public class ConstantValue {
     public static final String KEY_DATE = "KEY_DATE";
     public static final String KEY_EXAMINE_ID = "KEY_EXAMINE_ID";
     public static final String KEY_SEARCH_TYPE = "KEY_SEARCH_TYPE";
+    public static final String KEY_RESTART_APPLY = "KEY_RESTART_APPLY";
 
     public static int isForground;   //app是否在前台
     public static boolean hasNewVersion = false;//是否有新版本

@@ -1,5 +1,9 @@
 package com.guyuan.dear.work.contractPause.bindingAdapters;
 
+import android.graphics.Color;
+import android.text.TextUtils;
+import android.view.View;
+
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.BindingAdapter;
@@ -93,5 +97,69 @@ public class MyApplyDetailBindingAdapter {
         MyApplyHistoryLogsAdapter adapter = new MyApplyHistoryLogsAdapter(data, view.getContext());
         view.setLayoutManager(manager);
         view.setAdapter(adapter);
+    }
+
+    @BindingAdapter("showContractPauseReason")
+    public static void showContractPauseReason(AppCompatTextView view, String reason) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("暂停原因：");
+        if (!TextUtils.isEmpty(reason)) {
+            sb.append(reason);
+        }
+        view.setText(sb.toString());
+    }
+
+    @BindingAdapter("displayRestartApplyHeader")
+    public static void displayRestartApplyHeader(View headerContainer, int approveResult) {
+        //状态 0.审批中 1.已同意 2.已拒绝
+        if (approveResult == 1) {
+            headerContainer.setVisibility(View.VISIBLE);
+        } else {
+            headerContainer.setVisibility(View.GONE);
+        }
+    }
+
+    @BindingAdapter("displayPauseApplyHeader")
+    public static void displayPauseApplyHeader(View headerContainer, int approveResult) {
+        //状态 0.审批中 1.已同意 2.已拒绝
+        if (approveResult == 1) {
+            headerContainer.setVisibility(View.VISIBLE);
+        } else {
+            headerContainer.setVisibility(View.GONE);
+        }
+    }
+
+    @BindingAdapter("displayRestartApplySubmitButton")
+    public static void displayRestartApplySubmitButton(View view, int approveResult) {
+        //状态 0.审批中 1.已同意 2.已拒绝
+        if (approveResult == 2) {
+            view.setVisibility(View.VISIBLE);
+        } else {
+            view.setVisibility(View.GONE);
+        }
+    }
+
+    @BindingAdapter("setMyApplyDetailTagTextProperty")
+    public static void setMyApplyDetailTagTextProperty(AppCompatTextView view, int state) {
+        //状态 0.审批中 1.已同意 2.已拒绝
+        switch (state) {
+            case 1:
+                view.setText("已通过");
+                view.setTextColor(Color.parseColor("#00B578"));
+                view.setBackgroundResource(R.drawable.bg_green_d4fff1_round_corner_2dp);
+                break;
+            case 0:
+                view.setText("待审批");
+                view.setTextColor(Color.parseColor("#1677FF"));
+                view.setBackgroundResource(R.drawable.bg_light_blue_e7f1ff_round_corner_2dp);
+                break;
+            case 2:
+                view.setText("驳回");
+                view.setTextColor(Color.parseColor("#FF6010"));
+                view.setBackgroundResource(R.drawable.bg_pink_ffece3_round_corner_2dp);
+                break;
+            default:
+                break;
+        }
     }
 }

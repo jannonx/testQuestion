@@ -80,6 +80,9 @@
         android:roundIcon="@mipmap/icon_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".work.contractPause.views.resubmit.ResubmitContractPauseActivity"></activity>
+        <activity android:name=".work.contractRestart.view.resubmit.ResubmitContractRestartActivity" />
+        <activity android:name=".work.contractRestart.view.detail.MyRestartApplyDetailActivity" />
         <activity
             android:name=".focus.contract.view.exceptionList.ExceptionContractListActivity"
             android:screenOrientation="portrait"
@@ -188,7 +191,7 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".work.contractPause.views.applyDetail.MyApplyDetailActivity"
+            android:name=".work.contractPause.views.applyDetail.ContractPauseApplyDetailActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
@@ -782,7 +785,6 @@
             android:exported="false">
             <grant-uri-permission android:pathPattern=".*" />
         </provider>
-        <!-- 以下为友盟基本配置信息，需要自行添加至您的AndroidManifest文件中 end -->
     </application>
 
 </manifest>

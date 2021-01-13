@@ -584,24 +584,24 @@ public class DearNetHelper {
         return getDisposalAsync(observable, callback, mapper);
     }
 
-    /**
-     * 获取我的合同重启/暂停申请详情信息
-     *
-     * @param id
-     * @param callback
-     * @return
-     */
-    public Disposable getMyApplyDetailFromNet(int id, NetCallback<MyApplyDetailBean> callback) {
-        Observable<ResultBean<NetContractStatusDetail>> observable = netApiService.getContractStatusDetail(id);
-        Mapper<NetContractStatusDetail, MyApplyDetailBean> mapper = new Mapper<NetContractStatusDetail, MyApplyDetailBean>() {
-            @Override
-            public MyApplyDetailBean map(NetContractStatusDetail src) {
-                MyApplyDetailBean bean = new MyApplyDetailBean(src);
-                return bean;
-            }
-        };
-        return getDisposalAsync(observable, callback, mapper);
-    }
+//    /**
+//     * 获取我的合同重启/暂停申请详情信息
+//     *
+//     * @param id
+//     * @param callback
+//     * @return
+//     */
+//    public Disposable getMyApplyDetailFromNet(int id, NetCallback<MyApplyDetailBean> callback) {
+//        Observable<ResultBean<NetContractStatusDetail>> observable = netApiService.getContractStatusDetail(id);
+//        Mapper<NetContractStatusDetail, MyApplyDetailBean> mapper = new Mapper<NetContractStatusDetail, MyApplyDetailBean>() {
+//            @Override
+//            public MyApplyDetailBean map(NetContractStatusDetail src) {
+//                MyApplyDetailBean bean = new MyApplyDetailBean(src);
+//                return bean;
+//            }
+//        };
+//        return getDisposalAsync(observable, callback, mapper);
+//    }
 
 
     /**

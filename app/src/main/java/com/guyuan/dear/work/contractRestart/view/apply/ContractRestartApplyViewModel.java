@@ -1,4 +1,4 @@
-package com.guyuan.dear.work.contractPause.views.applyWindow;
+package com.guyuan.dear.work.contractRestart.view.apply;
 
 import android.text.TextUtils;
 import android.view.View;
@@ -9,7 +9,6 @@ import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
 import com.guyuan.dear.net.resultBeans.NetClientInfo;
-import com.guyuan.dear.net.resultBeans.NetServerParam;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.work.contractPause.beans.ContractApplyBean;
 import com.guyuan.dear.work.contractPause.beans.ContractPauseInfo;
@@ -24,13 +23,12 @@ import java.util.List;
  * @since: 2020/10/30 12:00
  * @company: 固远（深圳）信息技术有限公司
  **/
-public class ContractApplyViewModel extends BaseViewModel {
+public class ContractRestartApplyViewModel extends BaseViewModel {
     /**
      * 数据源
      */
     private MutableLiveData<String> clientName =new MutableLiveData<>();
     private MutableLiveData<String> contractNum = new MutableLiveData<>();
-    private MutableLiveData<String> judgeCondition = new MutableLiveData<>();
     public MutableLiveData<String> description = new MutableLiveData<>();
     public MutableLiveData<ArrayList<StaffBean>> sendList = new MutableLiveData<>(new ArrayList<>());
     public MutableLiveData<ArrayList<StaffBean>> copyList = new MutableLiveData<>(new ArrayList<>());
@@ -38,11 +36,7 @@ public class ContractApplyViewModel extends BaseViewModel {
     public MutableLiveData<ContractPauseInfo> contractPauseInfo = new MutableLiveData<>();
     private int clientId;
     private int contractId;
-    private String judgeConditionKey;
-    /**
-     * {@link ContractApplyBean#APPLY_TYPE_PAUSE} {@link ContractApplyBean#APPLY_TYPE_RESUME}
-     */
-    public MutableLiveData<Integer> applyType = new MutableLiveData<>(ContractApplyBean.APPLY_TYPE_PAUSE);
+    public MutableLiveData<Integer> applyType = new MutableLiveData<>(ContractApplyBean.APPLY_TYPE_RESUME);
 
 
     /**
@@ -87,9 +81,6 @@ public class ContractApplyViewModel extends BaseViewModel {
 
 
 
-    public MutableLiveData<String> getJudgeCondition() {
-        return judgeCondition;
-    }
 
 
     private static final int MAX_LEN=240;
@@ -107,10 +98,6 @@ public class ContractApplyViewModel extends BaseViewModel {
                     ToastUtils.showShort(DearApplication.getInstance(),"合同编号不能为空。");
                     return;
                 }
-                if(TextUtils.isEmpty(judgeCondition.getValue())){
-                    ToastUtils.showShort(DearApplication.getInstance(),"判定维度不能为空。");
-                    return;
-                }
                 if(TextUtils.isEmpty(description.getValue())){
                     ToastUtils.showShort(DearApplication.getInstance(),"暂停原因需要说明。");
                     return;
@@ -120,7 +107,7 @@ public class ContractApplyViewModel extends BaseViewModel {
                         return;
                     }
                 }
-                List<StaffBean> sendList = ContractApplyViewModel.this.sendList.getValue();
+                List<StaffBean> sendList = ContractRestartApplyViewModel.this.sendList.getValue();
                 if(sendList == null ||sendList.isEmpty()){
                     ToastUtils.showShort(DearApplication.getInstance(),"审批人不能为空。");
                     return;
@@ -200,22 +187,16 @@ public class ContractApplyViewModel extends BaseViewModel {
         this.contractId = contractInfo.getId();
     }
 
-    public void updateJudgeCondition(NetServerParam.JudgeCondition con){
-        this.judgeCondition.postValue(con.getValue());
-        this.judgeConditionKey = con.getKey();
-    }
-
-
     public ContractApplyBean genApplyBean() {
         ContractApplyBean bean = new ContractApplyBean();
         bean.setBuyerId(getClientId());
-        bean.setContractNum(contractNum.getValue());
         bean.setContractId(contractId);
-        bean.setJudgementKey(judgeConditionKey);
+        bean.setContractNum(contractNum.getValue());
         bean.setDetailReason(description.getValue());
         bean.setSendList(sendList.getValue());
         bean.setCopyList(copyList.getValue());
         bean.setApplyType(applyType.getValue());
+        bean.setJudgementKey(contractPauseInfo.getValue().getApplyCauseType()+"");
         return bean;
     }
 
@@ -223,7 +204,7 @@ public class ContractApplyViewModel extends BaseViewModel {
     public void resetAllViews() {
         clientName.postValue("");
         contractNum.postValue("");
-        judgeCondition.postValue("");
+        contractPauseInfo.postValue(null);
         description.postValue("");
         sendList.postValue(new ArrayList<>());
         copyList.postValue(new ArrayList<>());

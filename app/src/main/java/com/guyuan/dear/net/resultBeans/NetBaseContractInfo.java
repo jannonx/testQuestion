@@ -19,6 +19,11 @@ public class NetBaseContractInfo {
     private String equipmentName;
     private String equipmentModel;
     private String contractNum;
+    private String stopCause;
+    private String stopDate;
+    private String stopCauseDetails;
+    private String lastApprovedBy;
+
 
     public int getId() {
         return id;
@@ -50,5 +55,37 @@ public class NetBaseContractInfo {
 
     public void setContractNum(String contractNum) {
         this.contractNum = contractNum;
+    }
+
+    public String getStopCause() {
+        return stopCause;
+    }
+
+    public void setStopCause(String stopCause) {
+        this.stopCause = stopCause;
+    }
+
+    public String getStopDate() {
+        return stopDate;
+    }
+
+    public void setStopDate(String stopDate) {
+        this.stopDate = stopDate;
+    }
+
+    public String getStopCauseDetails() {
+        return stopCauseDetails;
+    }
+
+    public void setStopCauseDetails(String stopCauseDetails) {
+        this.stopCauseDetails = stopCauseDetails;
+    }
+
+    public String getLastApprovedBy() {
+        return lastApprovedBy;
+    }
+
+    public void setLastApprovedBy(String lastApprovedBy) {
+        this.lastApprovedBy = lastApprovedBy;
     }
 }
