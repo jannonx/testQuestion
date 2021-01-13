@@ -8,6 +8,10 @@
 
         <import type="android.view.View" />
 
+        <import type="com.guyuan.dear.utils.CommonUtils" />
+
+        <import type="com.guyuan.dear.utils.ConstantValue" />
+
         <variable
             name="goodsSignViewModel"
             type="com.guyuan.dear.work.goodssign.data.GoodsSignViewModel" />

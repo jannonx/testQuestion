@@ -6,7 +6,9 @@
 
     <data>
 
-        <import type="android.view.View" />
+        <import type="android.view.View"/>
+        <import type="com.guyuan.dear.utils.CommonUtils"/>
+        <import type="com.guyuan.dear.utils.ConstantValue"/>
 
         <import type="android.text.TextUtils" />
 
@@ -272,7 +274,7 @@
                 style="@style/commit_btn"
                 android:layout_marginBottom="20dp"
                 android:text="确认到货"
-                android:visibility='@{goodsSignViewModel.goodsDetailMLD.receiveStatus==1?View.VISIBLE:View.INVISIBLE,default="invisible"}'
+                android:visibility='@{CommonUtils.isShowButton(ConstantValue.GOODS_SIGN_RECEIVE)&amp;&amp;goodsSignViewModel.goodsDetailMLD.receiveStatus==1?View.VISIBLE:View.INVISIBLE,default="invisible"}'
                 tools:visibility="visible" />
         </LinearLayout>
 

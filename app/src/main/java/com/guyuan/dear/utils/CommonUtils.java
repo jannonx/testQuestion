@@ -286,7 +286,7 @@ public class CommonUtils {
 
     //检查当前按钮是否有权限
     public static boolean isShowButton(String buttonUrl) {
-        return buttonUrl.contains(buttonUrl);
+        return ConstantValue.buttonList.contains(buttonUrl);
     }
 
 }
