@@ -13,9 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
+import com.guyuan.dear.busbean.UpdatePauseApplyListEvent;
+import com.guyuan.dear.busbean.UpdateRestartApplyListEvent;
 import com.guyuan.dear.customizeview.itemDecorator.LinearVerticalPaddingDecorator2P0;
 import com.guyuan.dear.databinding.FragmentMyApplyListBinding;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.contractPause.adapters.MyApplyListAdapter;
 import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
 import com.guyuan.dear.work.contractPause.views.applyDetail.ContractPauseApplyDetailActivity;
@@ -24,6 +27,9 @@ import com.guyuan.dear.work.contractPause.views.home.ContractPauseHomeViewModel;
 import com.guyuan.dear.work.contractRestart.view.detail.MyRestartApplyDetailActivity;
 import com.guyuan.dear.work.contractRestart.view.home.ContractRestartHomeActivity;
 import com.guyuan.dear.work.contractRestart.view.home.ContractRestartHomeViewModel;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -82,13 +88,31 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
             default:
                 break;
         }
+        EventBus.getDefault().register(this);
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onEvent(Object event) {
+        if(event instanceof UpdatePauseApplyListEvent && type == TYPE_MY_PAUSE_APPLY_LIST ){
+            MyApplyBean applyBean = ((UpdatePauseApplyListEvent) event).getBean();
+            LogUtils.showLog("UpdatePauseApplyListEvent="+applyBean.toString());
+            getViewModel().updatePauseApplyState(applyBean);
+        }else if(event instanceof UpdateRestartApplyListEvent && type == TYPE_MY_RESTART_APPLY_LIST){
+            MyApplyBean bean = ((UpdateRestartApplyListEvent) event).getBean();
+            getViewModel().updateRestartApplyState(bean);
+        }
     }
 
     private void initRestartList() {
         BaseRecyclerView recyclerView = getViewDataBinding().fragmentMyApplyListRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        MyApplyListAdapter adapter = new MyApplyListAdapter(getViewModel().getRestartApplyList().getValue(),false);
+        MyApplyListAdapter adapter = new MyApplyListAdapter(getViewModel().getRestartApplyList().getValue(), false);
         BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0());
@@ -123,7 +147,7 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
             @Override
             public void onItemClick(View view, int i) {
                 MyApplyBean bean = getViewModel().getRestartApplyList().getValue().get(i);
-                MyRestartApplyDetailActivity.start(getContext(),bean.getExamineId());
+                MyRestartApplyDetailActivity.start(getContext(), bean.getExamineId());
             }
         });
         getViewModel().updateRestartApplyListFromNet();
@@ -150,7 +174,7 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
     private void initPauseList() {
         BaseRecyclerView recyclerView = getViewDataBinding().fragmentMyApplyListRecyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
-        MyApplyListAdapter adapter = new MyApplyListAdapter(getViewModel().getPauseApplyList().getValue(),true);
+        MyApplyListAdapter adapter = new MyApplyListAdapter(getViewModel().getPauseApplyList().getValue(), true);
         BaseRecyclerViewAdapter wrapper = new BaseRecyclerViewAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(new LinearVerticalPaddingDecorator2P0());

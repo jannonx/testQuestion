@@ -150,4 +150,14 @@ public class MyApplyBean extends BaseContractExcptBean implements Parcelable {
         dest.writeString(applier);
         dest.writeLong(applyDate);
     }
+
+    @Override
+    public String toString() {
+        return "MyApplyBean{" +
+                "applyState=" + applyState +
+                "applyId=" + getExamineId() +
+                ", applier='" + applier + '\'' +
+                ", applyDate=" + applyDate +
+                '}';
+    }
 }

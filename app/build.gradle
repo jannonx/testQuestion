@@ -219,7 +219,7 @@ dependencies {
 
     //evenbus
     implementation EventBus.eventBus
-    //annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.0.1'
+    annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.0.1'
 
     implementation SpinKit.runtime
 
