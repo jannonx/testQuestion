@@ -1,11 +1,9 @@
 package com.guyuan.dear.work.client.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 
@@ -17,10 +15,9 @@ import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.client.bean.ClientCompanyBean;
 import com.guyuan.dear.focus.client.bean.ClientType;
 import com.guyuan.dear.focus.client.bean.PostClientInfo;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
-import com.guyuan.dear.utils.ToastUtils;
-import com.guyuan.dear.work.client.activity.WorkClientDetailActivity;
 import com.guyuan.dear.work.client.data.WorkClientViewModel;
 
 import java.util.ArrayList;
@@ -74,8 +71,8 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
      * 发起请求数据
      */
     private void initData() {
-        viewModel.getClientBasicInfo(ClientType.TYPE_CLIENT_ALL==clientData.getClientType()?
-                clientData.getId():clientData.getCusId());
+        viewModel.getClientBasicInfo(ClientType.TYPE_CLIENT_ALL == clientData.getClientType() ?
+                clientData.getId() : clientData.getCusId());
         viewModel.getClientBasicEvent().observe(getActivity(), new Observer<ClientCompanyBean>() {
             @Override
             public void onChanged(ClientCompanyBean dataRefreshBean) {
@@ -109,9 +106,9 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
         FollowCommentDialog.show(getActivity(), new FollowCommentDialog.OnFollowClickListener() {
             @Override
             public void onClick(String content) {
-                PostClientInfo postInfoBean=new PostClientInfo();
-                postInfoBean.setId(ClientType.TYPE_CLIENT_ALL==clientData.getClientType()?
-                        clientData.getId():clientData.getCusId());
+                PostClientInfo postInfoBean = new PostClientInfo();
+                postInfoBean.setId(ClientType.TYPE_CLIENT_ALL == clientData.getClientType() ?
+                        clientData.getId() : clientData.getCusId());
                 postInfoBean.setContent(content);
                 String installStr = GsonUtil.objectToString(postInfoBean);
                 RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
@@ -125,8 +122,8 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
             public void onChanged(Integer dataRefreshBean) {
 //                ToastUtils.showShort(getContext(), "评论成功!");
                 followStatusFragment.refresh();
-                viewModel.getClientBasicInfo(ClientType.TYPE_CLIENT_ALL==clientData.getClientType()?
-                        clientData.getId():clientData.getCusId());
+                viewModel.getClientBasicInfo(ClientType.TYPE_CLIENT_ALL == clientData.getClientType() ?
+                        clientData.getId() : clientData.getCusId());
                 //刷新列表
             }
         });
@@ -137,6 +134,8 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
      * 初始化视图view
      */
     private void initView() {
+        //按钮权限
+        binding.tvEditFollow.setVisibility(CommonUtils.isShowButton(ConstantValue.CUSTOMER_ADD_FOLLOW) ? View.VISIBLE : View.GONE);
         Bundle arguments = getArguments();
         clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
 

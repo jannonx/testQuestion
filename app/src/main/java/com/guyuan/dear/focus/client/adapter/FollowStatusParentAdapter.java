@@ -1,7 +1,6 @@
 package com.guyuan.dear.focus.client.adapter;
 
 import android.content.Context;
-
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,14 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.guyuan.dear.R;
-import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
-
 import com.guyuan.dear.focus.client.bean.CommentsBean;
+import com.guyuan.dear.utils.CommonUtils;
+import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GlideUtils;
 
 import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerView;
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
@@ -46,7 +46,7 @@ public class FollowStatusParentAdapter extends BaseRecyclerAdapter<CommentsBean>
         holder.setText(R.id.tv_comment, item.getContent());
 
         TextView tvRemarkBtn = holder.getView(R.id.tv_remark_on);
-        tvRemarkBtn.setVisibility(isCommentBtnVisible ? View.VISIBLE : View.GONE);
+        tvRemarkBtn.setVisibility(isCommentBtnVisible && CommonUtils.isShowButton(ConstantValue.CUSTOMER_DISCUSS) ? View.VISIBLE : View.GONE);
         tvRemarkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
