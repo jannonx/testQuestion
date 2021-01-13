@@ -41,6 +41,7 @@ public class MessageBean {
     private String url;                                //消息跳转的地址
     private String urlWarnContent;                     //出现预警警告，智能管控模块菜单提示语
     private String urlName;                            //页面标题
+    private int businessStatus=-100;                   //合同暂停/重启对应的最新状态
 
     private List<MessageInfosBean> messageInfos;
 
@@ -204,6 +205,13 @@ public class MessageBean {
         this.url = url;
     }
 
+    public int getBusinessStatus() {
+        return businessStatus;
+    }
+
+    public void setBusinessStatus(int businessStatus) {
+        this.businessStatus = businessStatus;
+    }
 
     @Override
     public String toString() {

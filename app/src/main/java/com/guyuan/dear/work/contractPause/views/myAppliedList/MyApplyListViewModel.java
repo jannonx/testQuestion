@@ -1,5 +1,7 @@
 package com.guyuan.dear.work.contractPause.views.myAppliedList;
 
+import android.animation.ValueAnimator;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.guyuan.dear.base.app.DearApplication;
@@ -123,13 +125,21 @@ public class MyApplyListViewModel extends BaseDearViewModel {
     };
 
     public void clearPauseApplyList() {
-        pauseApplyList.postValue(new ArrayList<>());
+        List<MyApplyBean> value = pauseApplyList.getValue();
+        if(value!=null){
+            value.clear();
+        }
+        pauseApplyList.postValue(value);
         isLoadAllPauseList.postValue(false);
         pauseApplyPageIndex = 1;
     }
 
     public void clearRestartApplyList() {
-        restartApplyList.postValue(new ArrayList<>());
+        List<MyApplyBean> value = restartApplyList.getValue();
+        if(value!=null){
+            value.clear();
+        }
+        restartApplyList.postValue(value);
         isLoadAllRestartList.postValue(false);
         restartApplyPageIndex = 1;
     }
