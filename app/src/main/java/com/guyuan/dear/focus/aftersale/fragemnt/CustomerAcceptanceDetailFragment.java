@@ -6,6 +6,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseFileUploadActivity;
@@ -23,6 +28,7 @@ import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
@@ -33,10 +39,6 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
@@ -89,10 +91,12 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
 
         binding.tvCompleteBtn.setOnClickListener(this);
         if (afterSaleBean.getModuleType() != null) {
+            //我的工作 and 待验收 and 权限 --显示
             binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_WORK == afterSaleBean.getModuleType()
-                    ? SaleAcceptedType.TYPE_ACCEPTED_QUALIFIED == afterSaleBean.getAcceptedType()
-                    || SaleAcceptedType.TYPE_ACCEPTED_UNQUALIFIED == afterSaleBean.getAcceptedType() ? View.GONE : View.VISIBLE
-                    : View.GONE);
+                    && !(SaleAcceptedType.TYPE_ACCEPTED_QUALIFIED == afterSaleBean.getAcceptedType()
+                    || SaleAcceptedType.TYPE_ACCEPTED_UNQUALIFIED == afterSaleBean.getAcceptedType())
+                    && CommonUtils.isShowButton(ConstantValue.AFTER_SALE_CHECK)
+                    ? View.VISIBLE : View.GONE);
         }
         viewModel.getAfterSaleDetail(afterSaleBean.getId());
         viewModel.getAfterSaleDetailEvent().observe(getActivity(), new Observer<AfterSaleBean>() {
@@ -170,11 +174,12 @@ public class CustomerAcceptanceDetailFragment extends BaseDataBindingFragment<Fr
 //        questionFragment.setQuestionDescribe(data);
         data.setSectionType(SaleSectionType.TYPE_SECTION_ACCEPT);
         binding.tvTitle.setText(data.getTitle());
-        //我的工作(待验收)--显示
+        //我的工作 and 待验收 and 权限 --显示
         binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_WORK == afterSaleBean.getModuleType()
-                ? SaleAcceptedType.TYPE_ACCEPTED_QUALIFIED == data.getAcceptedType()
-                || SaleAcceptedType.TYPE_ACCEPTED_UNQUALIFIED == data.getAcceptedType() ? View.GONE : View.VISIBLE
-                : View.GONE);
+                && !(SaleAcceptedType.TYPE_ACCEPTED_QUALIFIED == data.getAcceptedType()
+                || SaleAcceptedType.TYPE_ACCEPTED_UNQUALIFIED == data.getAcceptedType())
+                && CommonUtils.isShowButton(ConstantValue.AFTER_SALE_CHECK)
+                ? View.VISIBLE : View.GONE);
 
         //状态属性设置
         binding.tvProjectStatus.setText(data.getStatusText());

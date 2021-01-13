@@ -150,6 +150,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
 
         binding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
         binding.tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
+        binding.tvActivateBtn.setVisibility(CommonUtils.isShowButton(ConstantValue.PROJECT_SITE_INSTALL_START) ? View.VISIBLE : View.GONE);
     }
 
     private void initListener() {
@@ -235,7 +236,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
             public void run() {
                 //设置ScrollView滚动到顶部
                 int perHeight = ScreenUtils.dip2px(getContext(), 200);
-                LogUtils.showLog("perHeight="+perHeight);
+                LogUtils.showLog("perHeight=" + perHeight);
                 setGuideBottomHeight(perHeight);
                 binding.nsvContent.fullScroll(NestedScrollView.FOCUS_DOWN);
             }

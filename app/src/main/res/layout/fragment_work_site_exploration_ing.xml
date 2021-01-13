@@ -387,6 +387,8 @@
             style="@style/commit_btn"
             android:layout_gravity="bottom"
             android:layout_marginBottom="@dimen/dp_20"
+            android:visibility="gone"
+            tools:visibility="visible"
             android:text="完成勘查" />
 
         <LinearLayout

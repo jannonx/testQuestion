@@ -113,6 +113,9 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
 
         binding.tvActivateBtn.setText(detailProjectData.getProjectReportType() == ProjectReportType.TYPE_SITE_EXPLORATION
                 ? "完成勘查" : "完成排查");
+        binding.tvActivateBtn.setVisibility(detailProjectData.getProjectReportType() == ProjectReportType.TYPE_SITE_EXPLORATION ?
+                CommonUtils.isShowButton(ConstantValue.PROJECT_SITE_SURVEY_FINISH) ? View.VISIBLE : View.GONE :
+                CommonUtils.isShowButton(ConstantValue.PROJECT_SITE_SAFE_INVESTIGATE_FINISH) ? View.VISIBLE : View.GONE);
         imageViewAdapter.setAdapterListener(new ContentImageViewAdapter.OnListAdapterListener() {
             @Override
             public void onDeleteCLick(int position) {

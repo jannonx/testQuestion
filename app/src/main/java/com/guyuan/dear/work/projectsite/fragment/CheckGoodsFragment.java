@@ -59,6 +59,8 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
     private List<CheckGoodsBean> listData = new ArrayList<>();
     private BaseRecyclerViewAdapter adapter;
     private WorkCheckGoodsActivity activity;
+    //合同状态
+    private Integer contractStatus;
 
     private ProjectCheckConfirmDialog customerDialog;
     private PostCheckInfo postData;
@@ -80,6 +82,7 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
     @Override
     protected void initialization() {
         detailData = (SiteExploreBean) getArguments().getSerializable(ConstantValue.KEY_CONTENT);
+        contractStatus = detailData.getStopStatus();
 
         binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         CheckGoodsAdapter checkContentAdapter = new CheckGoodsAdapter(getContext(),
@@ -106,9 +109,9 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
             @Override
             public void onChanged(Integer data) {
                 photoList.clear();
-                if (detailData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING){
+                if (detailData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING) {
                     viewModel.getCheckGoodDetailData(detailData.getId());
-                }else{
+                } else {
                     getActivity().finish();
                 }
                 EventBus.getDefault().post(new EventWorkSiteListRefresh());
@@ -186,6 +189,7 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
 
     private void setDetailData(SiteExploreBean data) {
         data.setProjectReportType(detailData.getProjectReportType());
+        data.setStopStatus(contractStatus);
         detailData = data;
 
         binding.tvProjectName.setText(data.getSendGoodsNumber());
@@ -225,8 +229,14 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
 
         binding.tvActivateBtn.setText(data.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
                 ? "确认到货" : data.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING ? "完成清点" : "");
-        binding.tvActivateBtn.setVisibility(data.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
-                || data.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING ? View.VISIBLE : View.GONE);
+        LogUtils.showLog("getCheckGoodsSatisfyType=" + data.getCheckGoodsSatisfyType().getDes());
+        //(确认到货 and 权限) or (完成清点 and 权限)
+        binding.tvActivateBtn.setVisibility(
+                (data.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
+                        && CommonUtils.isShowButton(ConstantValue.PROJECT_SITE_GOODS_SIGN))
+                        || (data.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING
+                        && CommonUtils.isShowButton(ConstantValue.PROJECT_SITE_GOODS_CHECK)
+                ) ? View.VISIBLE : View.GONE);
     }
 
     @Override

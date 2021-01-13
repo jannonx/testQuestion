@@ -100,6 +100,7 @@
                     android:text="填写跟进"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp_15"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/label_latest_time"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/label_latest_time" />

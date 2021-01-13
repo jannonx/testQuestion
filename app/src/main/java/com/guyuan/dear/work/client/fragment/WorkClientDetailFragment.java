@@ -136,6 +136,7 @@ public class WorkClientDetailFragment extends BaseDataBindingFragment<FragmentWo
     private void initView() {
         //按钮权限
         binding.tvEditFollow.setVisibility(CommonUtils.isShowButton(ConstantValue.CUSTOMER_ADD_FOLLOW) ? View.VISIBLE : View.GONE);
+
         Bundle arguments = getArguments();
         clientData = (ClientCompanyBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
 

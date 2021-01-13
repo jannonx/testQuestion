@@ -1,7 +1,5 @@
 package com.guyuan.dear.utils;
 
-import com.tencent.bugly.proguard.A;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -190,8 +188,9 @@ public class ConstantValue {
     public static final String CUSTOMER_DISCUSS = "customer_discuss";//客户跟进动态评论
 
     //生产计划
-    public static final String PRODUCE_APPROVE_PAUSE = "produce_approve_pause";//生产计划暂停
-    public static final String PRODUCE_FINISH = "produce_finish";//生产计划完成
+    public static final String PRODUCE_APPROVE_START = "produce_approve_start";//生产计划--开始生产
+    public static final String PRODUCE_PAUSE_AND_FINISH = "produce_pause_and_finish";//生产计划暂停和完成
+    public static final String PRODUCE_APPROVE_ACTIVATE = "produce_approve_activate";//生产计划激活
 
     //货物签收
     public static final String GOODS_SIGN_ALL = "goods_sign_all";//全部货物签收
@@ -200,14 +199,19 @@ public class ConstantValue {
     //工程现场
     public static final String PROJECT_SITE_SURVEY_FINISH = "project_site_survey_finish";//完成勘察
     public static final String PROJECT_SITE_SURVEY_FEEDBACK = "project_site_survey_feedback";//反馈勘察
+
     public static final String PROJECT_SITE_GOODS_SIGN = "project_site_goods_sign";//确认到货
-    public static final String PROJECT_SITE_GOODS_FEEDBACK = "project_site_goods_feedback";//货物反馈
+    public static final String PROJECT_SITE_GOODS_CHECK = "project_site_goods_check";//完成清点
+    public static final String PROJECT_SITE_GOODS_FEEDBACK = "project_site_goods_feedback";//反馈问题
+
     public static final String PROJECT_SITE_SAFE_INVESTIGATE_FINISH = "project_site_safe_investigate_finish";//完成排查
     public static final String PROJECT_SITE_SAFE_FEEDBACK = "project_site_safe_feedback";//安全排查反馈
+
     public static final String PROJECT_SITE_INSTALL_START = "project_site_install_start";//开始安装
-    public static final String PROJECT_SITE_INSTALL_END = "project_site_install_end";//安装完工
-    public static final String PROJECT_SITE_INSTALL_PAUSE = "project_site_install_pause";//暂停安装
-    public static final String PROJECT_SITE_CHECK = "project_site_check";//验收按钮
+    public static final String PROJECT_SITE_INSTALL_PAUSE_FINISH = "project_site_install_pause_finish";//安装暂停完工
+    public static final String PROJECT_SITE_INSTALL_ACTIVATE = "project_site_install_activate";//继续安装
+
+    public static final String PROJECT_SITE_CUSTOMER_ACCEPTANCE = "project_site_customer_acceptance";//客户验收按钮
 
     //售后问题
     public static final String AFTER_SALE_FEEDBACK = "after_sale_feedback";//售后服务反馈

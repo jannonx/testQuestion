@@ -458,7 +458,7 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvActivateBtn.setText("反馈问题");
         binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
                 || detailProjectData.getSiteProjectSatisfyType() == SiteProjectSatisfyType.TYPE_CONTRACT_PAUSE
-                ? View.GONE : View.VISIBLE);
+                || !CommonUtils.isShowButton(ConstantValue.PROJECT_SITE_SURVEY_FEEDBACK) ? View.GONE : View.VISIBLE);
     }
 
     /**
@@ -486,7 +486,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
         binding.tvActivateBtn.setText("反馈问题");
         binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
-                || detailProjectData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_CONTRACT_PAUSE ? View.GONE : View.VISIBLE);
+                || detailProjectData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_CONTRACT_PAUSE
+                || !CommonUtils.isShowButton(ConstantValue.PROJECT_SITE_GOODS_FEEDBACK) ? View.GONE : View.VISIBLE);
     }
 
     /**
@@ -509,7 +510,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
 
         binding.tvActivateBtn.setText("反馈问题");
         binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
-                || detailProjectData.getCheckSafeSatisfyType() == CheckSafeSatisfyType.TYPE_CONTRACT_PAUSE ? View.GONE : View.VISIBLE);
+                || detailProjectData.getCheckSafeSatisfyType() == CheckSafeSatisfyType.TYPE_CONTRACT_PAUSE
+                || !CommonUtils.isShowButton(ConstantValue.PROJECT_SITE_SAFE_FEEDBACK) ? View.GONE : View.VISIBLE);
     }
 
     /**
@@ -537,12 +539,14 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         //我的关注，我的工作(暂停，完成)不显示
         binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
                 || detailProjectData.getInstallDebugSatisfyType() == InstallDebugSatisfyType.TYPE_CONTRACT_PAUSE
+                || !CommonUtils.isShowButton(ConstantValue.PROJECT_SITE_INSTALL_PAUSE_FINISH)
                 ? View.GONE : InstallDebugSatisfyType.TYPE_INSTALL_COMPLETE == detailProjectData.getInstallDebugSatisfyType()
                 || InstallDebugSatisfyType.TYPE_INSTALL_PAUSE == detailProjectData.getInstallDebugSatisfyType() ? View.GONE : View.VISIBLE);
         //暂停，隐藏--llApplyPanel，显示--tvActivateBtn
         binding.tvActivateBtn.setText("继续安装");
         binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
                 || detailProjectData.getInstallDebugSatisfyType() == InstallDebugSatisfyType.TYPE_CONTRACT_PAUSE
+                || !CommonUtils.isShowButton(ConstantValue.PROJECT_SITE_INSTALL_ACTIVATE)
                 ? View.GONE : InstallDebugSatisfyType.TYPE_INSTALL_PAUSE == detailProjectData.getInstallDebugSatisfyType()
                 ? View.VISIBLE : View.GONE);
     }
@@ -572,7 +576,8 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         binding.tvCompleteBtn.setText("验收合格");
         LogUtils.showLog("TYPE_WORK=" + detailProjectData.getModuleType().getDes());
         binding.llApplyPanel.setVisibility(FunctionModuleType.TYPE_FOCUS == detailProjectData.getModuleType()
-                || detailProjectData.getCustomerAcceptanceSatisfyType() == CustomerAcceptanceSatisfyType.TYPE_CONTRACT_PAUSE? View.GONE :
+                || detailProjectData.getCustomerAcceptanceSatisfyType() == CustomerAcceptanceSatisfyType.TYPE_CONTRACT_PAUSE
+                || !CommonUtils.isShowButton(ConstantValue.PROJECT_SITE_CUSTOMER_ACCEPTANCE) ? View.GONE :
                 CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_OK == detailProjectData.getCustomerAcceptanceSatisfyType()
                         || CustomerAcceptanceSatisfyType.TYPE_ACCEPTANCE_EXCEPTION == detailProjectData.getCustomerAcceptanceSatisfyType() ?
                         View.GONE : View.VISIBLE);

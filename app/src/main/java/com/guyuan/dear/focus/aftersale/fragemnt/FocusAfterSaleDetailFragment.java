@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.guyuan.dear.R;
@@ -23,21 +27,18 @@ import com.guyuan.dear.focus.aftersale.bean.SaleSectionType;
 import com.guyuan.dear.focus.aftersale.data.FocusAfterSaleViewModel;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
 import com.guyuan.dear.focus.projectsite.type.FunctionModuleType;
+import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.StringUtils;
 import com.guyuan.dear.work.projectsite.bean.EventAnswerListRefresh;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-
-import org.greenrobot.eventbus.EventBus;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -165,9 +166,11 @@ public class FocusAfterSaleDetailFragment extends BaseDataBindingFragment<Fragme
         data.setSectionType(afterSaleBean.getSectionType());
 
         binding.tvTitle.setText(data.getTitle());
+        //我的工作 and 权限允许 and 非完成，显示按钮
         binding.tvActivateBtn.setVisibility(FunctionModuleType.TYPE_WORK == afterSaleBean.getModuleType()
-                ? SaleCheckType.TYPE_CHECK_COMPLETE == data.getCheckType() ? View.GONE : View.VISIBLE
-                : View.GONE);
+                && SaleCheckType.TYPE_CHECK_COMPLETE != data.getCheckType()
+                && CommonUtils.isShowButton(ConstantValue.AFTER_SALE_FEEDBACK)
+                ? View.VISIBLE : View.GONE);
         //状态属性设置
         binding.tvProjectStatus.setText(data.getStatusText());
         binding.tvProjectStatus.setBackgroundResource(data.getStatusTextBg());

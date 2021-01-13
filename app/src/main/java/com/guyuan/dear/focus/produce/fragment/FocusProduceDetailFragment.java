@@ -274,7 +274,8 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
         binding.tvPlanCompleteSimple.setText(data.getPlanEndTime());
 
         LogUtils.showLog("isFooterBtnShow=" + isFooterBtnShow + "...getStatusType=" + (ProductStatusType.TYPE_PRODUCE_WAIT == data.getStatusType()));
-        binding.tvCommitBtnSimple.setVisibility((isFooterBtnShow
+        //我的工作 and 待开始 and 权限
+        binding.tvCommitBtnSimple.setVisibility((isFooterBtnShow && CommonUtils.isShowButton(ConstantValue.PRODUCE_APPROVE_START)
                 && ProductStatusType.TYPE_PRODUCE_WAIT == data.getStatusType()) ? View.VISIBLE : View.GONE);
     }
 
@@ -342,8 +343,10 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
         isProducePause = ProductStatusType.TYPE_PRODUCE_EXCEPTION == data.getStatusType();
         //生产状态
         isProduceIng = ProductStatusType.TYPE_PRODUCE_ING == data.getStatusType();
-        binding.tvActivateBtn.setVisibility(isFooterBtnShow && isProducePause ? View.VISIBLE : View.GONE);
-        binding.llApplyPanel.setVisibility(isFooterBtnShow && isProduceIng ? View.VISIBLE : View.GONE);
+        binding.tvActivateBtn.setVisibility(isFooterBtnShow && isProducePause
+                && CommonUtils.isShowButton(ConstantValue.PRODUCE_APPROVE_ACTIVATE) ? View.VISIBLE : View.GONE);
+        binding.llApplyPanel.setVisibility(isFooterBtnShow && isProduceIng
+                && CommonUtils.isShowButton(ConstantValue.PRODUCE_PAUSE_AND_FINISH) ? View.VISIBLE : View.GONE);
 
         planFragment.setProduceData(data);
 
