@@ -192,7 +192,7 @@ public class WorkFragment extends BaseListFragment<ChildrenBean, FragmentWorkBin
         binding.workMessageBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MessageActivity.start(getContext(), "消息", MessageFragment.MESSAGE_COMMON);
+                MessageActivity.start(getContext(), "消息", MessageFragment.MESSAGE_WORK);
             }
         });
 
@@ -222,7 +222,7 @@ public class WorkFragment extends BaseListFragment<ChildrenBean, FragmentWorkBin
                 }
             });
             //定时获取消息
-            viewModel.getLastUnReadMessage(MessageFragment.MESSAGE_COMMON);
+            viewModel.getLastUnReadMessage(MessageFragment.MESSAGE_WORK);
         }
 
     }

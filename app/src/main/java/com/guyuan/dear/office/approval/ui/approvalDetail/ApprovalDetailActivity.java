@@ -24,6 +24,8 @@ import com.guyuan.dear.office.approval.data.bean.ApprovalTypeBean;
 import com.guyuan.dear.office.approval.ui.ApprovalActivity;
 import com.guyuan.dear.office.approval.ui.ApprovalFragment;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.work.contractPause.views.applyDetail.ContractPauseApplyDetailFragment;
+import com.guyuan.dear.work.contractRestart.view.detail.ContractRestartDetailFragment;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -77,11 +79,14 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
         viewModel.setListener(this);
         switch (type) {
             //合同审批
-            case ApprovalTypeBean.CONTRACT_EXAMINE_MASTER_TYPE:
+            //case ApprovalTypeBean.CONTRACT_EXAMINE_MASTER_TYPE:
             case ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_STOP_TYPE:
             case ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_RESTART_TYPE:
-
-                fragment = ContractDetailFragment.getInstance(id);
+                if (type == ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_STOP_TYPE) {
+                    fragment = ContractPauseApplyDetailFragment.getInstance(id);
+                } else {
+                    fragment = ContractRestartDetailFragment.getInstance((long) id);
+                }
                 binding.approvalAcceptTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

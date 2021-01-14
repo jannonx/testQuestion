@@ -29,9 +29,9 @@ public class MessageFragment extends BaseListSearchFragment<MessageBean, Fragmen
     //显示消息种类,1:显示警告消息、预警消息；2：正常消息、办公消息
     public static final String TAG = "MessageFragment";
     public static final int MESSAGE_WARN = 1;        //警告消息
-    public static final int MESSAGE_PRE_WARN = 1;    //预警消息
-    public static final int MESSAGE_COMMON = 2;      //普通消息
-    public static final int MESSAGE_OFFICE = 2;      //办公消息
+    public static final int MESSAGE_PRE_WARN = 2;    //预警消息
+    public static final int MESSAGE_WORK = 3;        //工作消息
+    public static final int MESSAGE_OFFICE = 0;      //办公消息
     private int msgType;
 
     public static MessageFragment newInstance(int msgType) {
