@@ -90,6 +90,7 @@ android {
             buildConfigField "String", "SERVER_URL", properties.getProperty("RELEASE_SERVER_URL")
             buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_APP_KEY_RELEASE")
             buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_MSG_SECRET_RELEASE")
+            buildConfigField "String", "BAIDU_MAP_KEY", properties.getProperty("BAIDU_MAP_AK_RELEASE")
             manifestPlaceholders = [
                     CHANNEL_VALUE: name,
                     baidumapkey : baidu_map_release_key
@@ -112,6 +113,7 @@ android {
             buildConfigField "String", "SERVER_URL", properties.getProperty("DEBUG_SERVER_URL")
             buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_APP_KEY_DEBUG")
             buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_MSG_SECRET_DEBUG")
+            buildConfigField "String", "BAIDU_MAP_KEY", properties.getProperty("BAIDU_MAP_AK_DEBUG")
             manifestPlaceholders = [
                     CHANNEL_VALUE: name,
                     baidumapkey : baidu_map_debug_key
@@ -127,6 +129,7 @@ android {
             buildConfigField "String", "SERVER_URL", properties.getProperty("CHECK_SERVER_URL")
             buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_APP_KEY_CHECK")
             buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_MSG_SECRET_CHECK")
+            buildConfigField "String", "BAIDU_MAP_KEY", properties.getProperty("BAIDU_MAP_AK_CHECK")
             manifestPlaceholders = [
                     CHANNEL_VALUE: name,
                     baidumapkey : baidu_map_check_key

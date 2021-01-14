@@ -102,7 +102,7 @@ public class ContractRestartApplyViewModel extends BaseViewModel {
                     ToastUtils.showShort(DearApplication.getInstance(),"暂停原因需要说明。");
                     return;
                 }else {
-                    if(description.getValue().length()>=MAX_LEN){
+                    if(description.getValue().length()>MAX_LEN){
                         ToastUtils.showShort(DearApplication.getInstance(),"暂停原因字数不能超过240个字符串。");
                         return;
                     }

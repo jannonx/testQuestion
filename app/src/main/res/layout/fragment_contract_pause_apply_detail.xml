@@ -53,35 +53,37 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </FrameLayout>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
+            <TableLayout android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_12"
                 android:layout_marginTop="@dimen/dp_16"
                 android:layout_marginRight="@dimen/dp_12"
                 android:layout_marginBottom="@dimen/dp_12"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:shrinkColumns="0">
+                <TableRow android:gravity="center_vertical">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{fragment_my_apply_detail_vm.detailBean.buyer}"
+                        android:textColor="@color/color_black_333333"
+                        android:textSize="@dimen/sp_14"
+                        android:textStyle="bold" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{fragment_my_apply_detail_vm.detailBean.buyer}"
-                    android:textColor="@color/color_black_333333"
-                    android:textSize="@dimen/sp_14"
-                    android:textStyle="bold" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_12"
-                    android:paddingLeft="@dimen/dp_4"
-                    android:paddingTop="@dimen/dp_2"
-                    android:paddingRight="@dimen/dp_4"
-                    android:paddingBottom="@dimen/dp_2"
-                    android:textSize="@dimen/sp_12"
-                    android:textStyle="bold"
-                    app:setMyApplyDetailTagTextProperty="@{fragment_my_apply_detail_vm.detailBean.approveResult}" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_12"
+                        android:layout_marginRight="@dimen/dp_12"
+                        android:paddingLeft="@dimen/dp_4"
+                        android:paddingTop="@dimen/dp_2"
+                        android:paddingRight="@dimen/dp_4"
+                        android:paddingBottom="@dimen/dp_2"
+                        android:textSize="@dimen/sp_12"
+                        android:textStyle="bold"
+                        app:setMyApplyDetailTagTextProperty="@{fragment_my_apply_detail_vm.detailBean.approveResult}" />
+                </TableRow>
+            </TableLayout>
 
             <View
                 android:layout_width="match_parent"

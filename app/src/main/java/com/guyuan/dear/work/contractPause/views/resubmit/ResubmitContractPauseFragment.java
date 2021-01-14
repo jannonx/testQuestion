@@ -80,7 +80,7 @@ public class ResubmitContractPauseFragment extends BaseMvvmFragment<FragmentResu
         });
 
 
-        viewModel.onClickAddCopyList.postValue(new View.OnClickListener() {
+        viewModel.onClickAddSendList.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ArrayList<StaffBean> sendList = getViewModel().sendList.getValue();
