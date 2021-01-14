@@ -109,7 +109,7 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
         if (detailProjectData.getAppInstallDebugItemVOList() != null) {
             installDebugContentList.clear();
             List<InstallDebugBean> appInstallDebugItemVOList = detailProjectData.getAppInstallDebugItemVOList();
-            for (InstallDebugBean bean:appInstallDebugItemVOList){
+            for (InstallDebugBean bean : appInstallDebugItemVOList) {
                 bean.setStopStatus(detailProjectData.getStopStatus());
             }
             installDebugContentList.addAll(appInstallDebugItemVOList);
@@ -194,13 +194,16 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
 
     private void setCheckSafeData(SiteExploreBean detailProjectData) {
         CheckSafeSatisfyType checkSafeSatisfyType = detailProjectData.getCheckSafeSatisfyType();
-
+        //有没有排查
+        boolean isCheck = CheckSafeSatisfyType.TYPE_CHECK_WAIT == checkSafeSatisfyType
+                || CheckSafeSatisfyType.TYPE_CHECK_ING == checkSafeSatisfyType
+                || CheckSafeSatisfyType.TYPE_CONTRACT_PAUSE == checkSafeSatisfyType;
         //清点货物 #2FC25B  #F04864 红色
         tvRemark.setText(detailProjectData.getAuditItemExplain());
         //是否满足条件、是否安全(1:是，2:否)
         tvStatus.setTextColor(getActivity().getResources().getColor(
                 detailProjectData.getSatisfyFlag() == 1 ? R.color.color_green_2fc25b : R.color.color_red_F04864));
-        tvStatus.setText("存在安全隐患：" + (detailProjectData.getSatisfyFlag() == 1 ? "否" : "是"));
+        tvStatus.setText("存在安全隐患：" + (isCheck ? "" : detailProjectData.getSatisfyFlag() == 1 ? "否" : "是"));
 
         llContent.setVisibility((CheckSafeSatisfyType.TYPE_CHECK_WAIT == checkSafeSatisfyType
                 || CheckSafeSatisfyType.TYPE_CHECK_ING == checkSafeSatisfyType) ? View.GONE : View.VISIBLE);
@@ -208,10 +211,15 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
 
     private void setCheckGoodsData(SiteExploreBean detailProjectData) {
         CheckGoodsSatisfyType checkGoodsSatisfyType = detailProjectData.getCheckGoodsSatisfyType();
+        //有没有清点
+        boolean isCheck = CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING == checkGoodsSatisfyType
+                || CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING == checkGoodsSatisfyType
+                || CheckGoodsSatisfyType.TYPE_CONTRACT_PAUSE == checkGoodsSatisfyType;
+
         tvRemark.setText(detailProjectData.getCheckRemark());
         tvStatus.setTextColor(getActivity().getResources().getColor(
                 detailProjectData.getIsException() == CHECK_RIGHT ? R.color.color_green_2fc25b : R.color.color_red_F04864));
-        tvStatus.setText("货物异常：" + (detailProjectData.getIsException() == CHECK_RIGHT ? "否" : "是"));
+        tvStatus.setText("货物异常：" + (isCheck ? "" : detailProjectData.getIsException() == CHECK_RIGHT ? "否" : "是"));
 
         llContent.setVisibility((checkGoodsSatisfyType == CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING
                 || checkGoodsSatisfyType == CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING) ? View.GONE : View.VISIBLE);
@@ -219,12 +227,17 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
 
     private void setSiteExplorationData(SiteExploreBean detailProjectData) {
         SiteProjectSatisfyType siteProjectSatisfyType = detailProjectData.getSiteProjectSatisfyType();
+        //有没有勘察
+        boolean isCheck = SiteProjectSatisfyType.TYPE_EXPLORE_WAIT == siteProjectSatisfyType
+                || SiteProjectSatisfyType.TYPE_EXPLORE_ING == siteProjectSatisfyType
+                || SiteProjectSatisfyType.TYPE_CONTRACT_PAUSE == siteProjectSatisfyType;
+
         //清点货物 #2FC25B  #F04864 红色
         tvRemark.setText(detailProjectData.getAuditItemExplain());
         //是否满足条件、是否安全(1:是，2:否)
         tvStatus.setTextColor(getActivity().getResources().getColor(
                 detailProjectData.getSatisfyFlag() == 1 ? R.color.color_green_2fc25b : R.color.color_red_F04864));
-        tvStatus.setText("满足条件：" + (detailProjectData.getSatisfyFlag() == 1 ? "是" : "否"));
+        tvStatus.setText("满足条件：" + (isCheck ? "" : detailProjectData.getSatisfyFlag() == 1 ? "是" : "否"));
 
         llContent.setVisibility((SiteProjectSatisfyType.TYPE_EXPLORE_WAIT == siteProjectSatisfyType
                 || SiteProjectSatisfyType.TYPE_EXPLORE_ING == siteProjectSatisfyType) ? View.GONE : View.VISIBLE);
@@ -256,8 +269,8 @@ public class ExploreContentFragment extends BaseDataBindingFragment<FragmentExpl
             case TYPE_INSTALLATION_DEBUG:
             case TYPE_CUSTOMER_ACCEPTANCE:
                 ProjectInstallAdapter installDebugAdapter = new ProjectInstallAdapter(getContext(),
-                        installDebugContentList, ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == simpleData.getProjectReportType()?
-                        R.layout.item_install_project_customer: R.layout.item_install_project);
+                        installDebugContentList, ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == simpleData.getProjectReportType() ?
+                        R.layout.item_install_project_customer : R.layout.item_install_project);
                 adapter = new BaseRecyclerViewAdapter(installDebugAdapter);
                 break;
 
