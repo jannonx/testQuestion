@@ -43,21 +43,22 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
 
     public static final String TAG = "ApprovalDetailActivity";
     public static final String APPROVAL_TYPE = "approvalType";
+    public static final String BUSINESS_ID = "businessId";
 
     private Fragment fragment;
     private int type;
-    private int id;
     private int approvalType;
     private View.OnClickListener commitListener;
     private View.OnClickListener rejectListener;
 
 
-    public static void start(Context context, String title, int type, int approvalType, int id) {
+    public static void start(Context context, String title, int type, int approvalType, int id, int businessId) {
         Intent starter = new Intent(context, ApprovalDetailActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE, title);
         starter.putExtra(ConstantValue.KEY_TYPE, type);
         starter.putExtra(APPROVAL_TYPE, approvalType);
         starter.putExtra(ConstantValue.KEY_ID, id);
+        starter.putExtra(BUSINESS_ID, businessId);
         context.startActivity(starter);
     }
 
@@ -68,7 +69,6 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
         setTitleCenter(title);
         type = getIntent().getIntExtra(ConstantValue.KEY_TYPE, 0);
         approvalType = getIntent().getIntExtra(APPROVAL_TYPE, approvalType);
-        id = getIntent().getIntExtra(ConstantValue.KEY_ID, 0);
         if (approvalType == ApprovalFragment.APPROVAL) {
             binding.approvalLl.setVisibility(View.VISIBLE);
         }
@@ -82,6 +82,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
             //case ApprovalTypeBean.CONTRACT_EXAMINE_MASTER_TYPE:
             case ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_STOP_TYPE:
             case ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_RESTART_TYPE:
+                int id = getIntent().getIntExtra(ConstantValue.KEY_ID, 0);
                 if (type == ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_STOP_TYPE) {
                     fragment = ContractPauseApplyDetailFragment.getInstance(id);
                 } else {
@@ -163,7 +164,8 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
             case ApprovalTypeBean.PAUSE_PLAN:
             case ApprovalTypeBean.ACTIVATE_PLAN:
                 FocusProduceBean data = new FocusProduceBean();
-                data.setPlanId(id);
+                int businessID = getIntent().getIntExtra(BUSINESS_ID, 0);
+                data.setPlanId(businessID);
                 fragment = FocusProduceDetailFragment.newInstance(data, false);
                 binding.approvalAcceptTv.setOnClickListener(new View.OnClickListener() {
                     @Override
