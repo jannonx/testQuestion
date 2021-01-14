@@ -9,6 +9,7 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.utils.DistanceUtil;
+import com.guyuan.dear.BuildConfig;
 import com.guyuan.dear.base.app.DearApplication;
 import com.guyuan.dear.base.fragment.BaseDearViewModel;
 import com.guyuan.dear.login.data.bean.LoginBean;
@@ -71,8 +72,9 @@ public class ClockInViewModel extends BaseDearViewModel {
     public void initViews() {
 
         String packageName = DearApplication.getInstance().getPackageName();
-        LogUtils.showLog("pkName=" + packageName);
-        LogUtils.showLog(repo.showAppSHA1(DearApplication.getInstance()));
+        LogUtils.showLog("pkName = " + packageName);
+        LogUtils.showLog("sha1 = "+repo.showAppSHA1(DearApplication.getInstance()));
+        LogUtils.showLog("baidu map key = "+BuildConfig.BAIDU_MAP_KEY);
 
         //显示用户基础信息
         LoginBean me = repo.getMyInfo();
