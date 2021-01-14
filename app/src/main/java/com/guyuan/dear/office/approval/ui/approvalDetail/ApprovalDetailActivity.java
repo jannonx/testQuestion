@@ -26,6 +26,7 @@ import com.guyuan.dear.office.approval.ui.ApprovalFragment;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.views.applyDetail.ContractPauseApplyDetailFragment;
 import com.guyuan.dear.work.contractRestart.view.detail.ContractRestartDetailFragment;
+import com.taobao.accs.IAliyunAppReceiver;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -166,6 +167,11 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                 FocusProduceBean data = new FocusProduceBean();
                 int businessID = getIntent().getIntExtra(BUSINESS_ID, 0);
                 data.setPlanId(businessID);
+               if(type==ApprovalTypeBean.ACTIVATE_PLAN){
+                    data.setStopStatus(1);
+                }else {
+                    data.setStopStatus(0);
+                }
                 fragment = FocusProduceDetailFragment.newInstance(data, false);
                 binding.approvalAcceptTv.setOnClickListener(new View.OnClickListener() {
                     @Override
