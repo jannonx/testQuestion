@@ -584,6 +584,38 @@ public class DearNetHelper {
         return getDisposalAsync(observable, callback, mapper);
     }
 
+    public Disposable getMyPauseContractApplyByExamineId(int examineId,NetCallback<MyApplyBean> callback){
+        return getMyContractApplyByExamineId(1,examineId,callback);
+    }
+
+    public Disposable getMyRestartContractApplyByExamineId(int examineId,NetCallback<MyApplyBean> callback){
+        return getMyContractApplyByExamineId(2,examineId,callback);
+    }
+
+    private Disposable getMyContractApplyByExamineId(int type, int examineId,NetCallback<MyApplyBean> callback) {
+        SearchRqBody body = new SearchRqBody();
+        body.setPageNum(1);
+        body.setPageSize(50);
+        body.setFindType(2);
+        body.setType(type);
+        HashMap<String,String> filters = new HashMap<>();
+        filters.put("examineId",String.valueOf(examineId));
+        body.setFilters(filters);
+        Observable<ResultBean<BasePageResultBean<NetContractInfo>>> observable = netApiService.getContractApplyList(body);
+        Mapper<BasePageResultBean<NetContractInfo>, MyApplyBean> mapper = new Mapper<BasePageResultBean<NetContractInfo>, MyApplyBean>() {
+            @Override
+            public MyApplyBean map(BasePageResultBean<NetContractInfo> src) {
+                List<NetContractInfo> content = src.getContent();
+                if (content != null && !content.isEmpty()) {
+                    MyApplyBean apply = new MyApplyBean(content.get(0));
+                    return apply;
+                }
+                return null;
+            }
+        };
+        return getDisposalAsync(observable, callback, mapper);
+    }
+
 //    /**
 //     * 获取我的合同重启/暂停申请详情信息
 //     *

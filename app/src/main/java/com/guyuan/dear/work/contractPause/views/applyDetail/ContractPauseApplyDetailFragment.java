@@ -10,7 +10,9 @@ import androidx.fragment.app.FragmentActivity;
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
+import com.guyuan.dear.busbean.MessagePushBusBean;
 import com.guyuan.dear.busbean.UpdatePauseApplyListEvent;
+import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
 import com.guyuan.dear.databinding.FragmentContractPauseApplyDetailBinding;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
@@ -18,6 +20,7 @@ import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
 import com.guyuan.dear.work.contractPause.views.resubmit.ResubmitContractPauseActivity;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -51,7 +54,23 @@ public class ContractPauseApplyDetailFragment extends BaseMvvmFragment<FragmentC
         examineId = bundle.getInt(ConstantValue.KEY_ID);
         addDisposable(getViewModel().getMyApplyDetailFromNet(examineId));
         getViewDataBinding().fragmentMyPauseApplyDetailNestedScrollerView.fullScroll(View.FOCUS_UP);
+        EventBus.getDefault().register(this);
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onEvent(Object event) {
+        if (event instanceof MessagePushBusBean) {
+            MessageBean messageBean = ((MessagePushBusBean) event).getMessageBean();
+            if (messageBean != null && messageBean.getBusinessStatus() != -100) {
+                addDisposable(getViewModel().getMyApplyDetailFromNet(examineId));
+            }
+        }
     }
 
     @Override
@@ -76,7 +95,7 @@ public class ContractPauseApplyDetailFragment extends BaseMvvmFragment<FragmentC
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        LogUtils.showLog("req="+requestCode+" rsl="+resultCode);
+        LogUtils.showLog("req=" + requestCode + " rsl=" + resultCode);
         if (requestCode == REQ_CODE_RESUBMIT_PAUSE_APPLY && resultCode == RESULT_OK) {
             LogUtils.showLog("onActivityResult");
 //            addDisposable(getViewModel().getMyApplyDetailFromNet(examineId));

@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mvvmlibrary.base.fragment.BaseMvvmFragment;
 import com.guyuan.dear.BR;
 import com.guyuan.dear.R;
+import com.guyuan.dear.busbean.MessagePushBusBean;
 import com.guyuan.dear.busbean.UpdatePauseApplyListEvent;
 import com.guyuan.dear.busbean.UpdateRestartApplyListEvent;
 import com.guyuan.dear.customizeview.itemDecorator.LinearVerticalPaddingDecorator2P0;
 import com.guyuan.dear.databinding.FragmentMyApplyListBinding;
 import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.contractPause.adapters.MyApplyListAdapter;
 import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
 import com.guyuan.dear.work.contractPause.views.applyDetail.ContractPauseApplyDetailActivity;
@@ -99,13 +99,24 @@ public class MyApplyListFragment extends BaseMvvmFragment<FragmentMyApplyListBin
 
     @Subscribe
     public void onEvent(Object event) {
-        if(event instanceof UpdatePauseApplyListEvent && type == TYPE_MY_PAUSE_APPLY_LIST ){
-            MyApplyBean applyBean = ((UpdatePauseApplyListEvent) event).getBean();
-            LogUtils.showLog("UpdatePauseApplyListEvent="+applyBean.toString());
-            getViewModel().updatePauseApplyState(applyBean);
-        }else if(event instanceof UpdateRestartApplyListEvent && type == TYPE_MY_RESTART_APPLY_LIST){
-            MyApplyBean bean = ((UpdateRestartApplyListEvent) event).getBean();
-            getViewModel().updateRestartApplyState(bean);
+        if (event instanceof UpdatePauseApplyListEvent && type == TYPE_MY_PAUSE_APPLY_LIST) {
+            getViewModel().clearPauseApplyList();
+            getViewModel().updatePauseApplyListFromNet();
+        } else if (event instanceof UpdateRestartApplyListEvent && type == TYPE_MY_RESTART_APPLY_LIST) {
+            getViewModel().clearRestartApplyList();
+            getViewModel().updateRestartApplyListFromNet();
+        } else if (event instanceof MessagePushBusBean) {
+            //收到推送，审批状态发生了更新，需要刷新列表。
+            int businessStatus = ((MessagePushBusBean) event).getMessageBean().getBusinessStatus();
+            if (businessStatus != -100) {
+                if (type == TYPE_MY_RESTART_APPLY_LIST) {
+                    getViewModel().clearRestartApplyList();
+                    getViewModel().updateRestartApplyListFromNet();
+                } else if (type == TYPE_MY_PAUSE_APPLY_LIST) {
+                    getViewModel().clearPauseApplyList();
+                    getViewModel().updatePauseApplyListFromNet();
+                }
+            }
         }
     }
 
