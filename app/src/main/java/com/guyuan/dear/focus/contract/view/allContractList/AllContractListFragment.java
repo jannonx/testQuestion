@@ -97,13 +97,13 @@ public class AllContractListFragment extends BaseMvvmFragment<FragmentAllContrac
             }
         });
 
-//        wrapper.setOnItemClickListener(new OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-//                BaseContractBean bean = getViewModel().contractList.getValue().get(position);
-//                ContractDetailActivity.start(getActivity(), "合同详情", (int) bean.getContractId());
-//            }
-//        });
+        wrapper.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                BaseContractBean bean = getViewModel().contractList.getValue().get(position);
+                ContractDetailActivity.start(getActivity(), "合同详情", (int) bean.getContractId());
+            }
+        });
 
 
     }
