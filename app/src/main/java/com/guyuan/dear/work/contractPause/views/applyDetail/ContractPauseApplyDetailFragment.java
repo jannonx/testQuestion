@@ -14,6 +14,8 @@ import com.guyuan.dear.busbean.MessagePushBusBean;
 import com.guyuan.dear.busbean.UpdatePauseApplyListEvent;
 import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
 import com.guyuan.dear.databinding.FragmentContractPauseApplyDetailBinding;
+import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
+import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.work.contractPause.beans.MyApplyBean;
@@ -109,6 +111,11 @@ public class ContractPauseApplyDetailFragment extends BaseMvvmFragment<FragmentC
             FragmentActivity activity = getActivity();
             activity.onBackPressed();
         }
+    }
+
+    //审批需要获取详情页数据
+    public DetailContractApplyBean getContractBean() {
+        return getViewModel().getDetailBean().getValue();
     }
 
     @Override

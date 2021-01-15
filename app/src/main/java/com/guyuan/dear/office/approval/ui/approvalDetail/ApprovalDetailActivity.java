@@ -14,6 +14,7 @@ import com.guyuan.dear.busbean.ApprovalBusBean;
 import com.guyuan.dear.databinding.ActivityApprovalDetailBinding;
 import com.guyuan.dear.dialog.RemarkDialog;
 import com.guyuan.dear.dialog.TipDialogFragment;
+import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailFragment;
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
@@ -84,20 +85,25 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
             case ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_STOP_TYPE:
             case ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_RESTART_TYPE:
                 int id = getIntent().getIntExtra(ConstantValue.KEY_ID, 0);
-                if (type == ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_STOP_TYPE) {
-                    fragment = ContractPauseApplyDetailFragment.getInstance(id);
-                } else {
-                    fragment = ContractRestartDetailFragment.getInstance((long) id);
-                }
+                fragment = getContractDetailFragment(type, id);
                 binding.approvalAcceptTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        DetailContractBean detailContractBean = ((ContractDetailFragment) fragment).getContractBean();
                         TipDialogFragment tipDialogFragment = TipDialogFragment.newInstance("", "确定通过吗?");
                         tipDialogFragment.setOnSureListener(new TipDialogFragment.OnSure() {
                             @Override
                             public void sure() {
-                                viewModel.contractApproval(type, (int) detailContractBean.getContractId(), "", ApprovalActivity.ACCEPT);
+                                DetailContractApplyBean detailContractApplyBean = null;
+                                if (fragment instanceof ContractPauseApplyDetailFragment) {
+                                    detailContractApplyBean = ((ContractPauseApplyDetailFragment) fragment).getContractBean();
+                                } else if (fragment instanceof ContractRestartDetailFragment) {
+                                    detailContractApplyBean = ((ContractRestartDetailFragment) fragment).getContractBean();
+                                }
+                                if (detailContractApplyBean != null) {
+                                    viewModel.contractApproval(type, (int) detailContractApplyBean.getContractId(), "", ApprovalActivity.ACCEPT);
+                                } else {
+                                    showToastTip("数据错误");
+                                }
                                 tipDialogFragment.dismiss();
                             }
                         })
@@ -167,9 +173,9 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                 FocusProduceBean data = new FocusProduceBean();
                 int businessID = getIntent().getIntExtra(BUSINESS_ID, 0);
                 data.setPlanId(businessID);
-               if(type==ApprovalTypeBean.ACTIVATE_PLAN){
+                if (type == ApprovalTypeBean.ACTIVATE_PLAN) {
                     data.setStopStatus(1);
-                }else {
+                } else {
                     data.setStopStatus(0);
                 }
                 fragment = FocusProduceDetailFragment.newInstance(data, false);
@@ -267,6 +273,17 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
 
                 return 0;
         }
+    }
+
+    private Fragment getContractDetailFragment(int type, int id) {
+        Fragment contractDetailFragment;
+        if (type == ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_STOP_TYPE) {
+            contractDetailFragment = ContractPauseApplyDetailFragment.getInstance(id);
+        } else {
+            contractDetailFragment = ContractRestartDetailFragment.getInstance((long) id);
+        }
+
+        return contractDetailFragment;
     }
 
 
