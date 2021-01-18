@@ -1,5 +1,7 @@
 package com.guyuan.dear.base.bean;
 
+import com.sun.jna.platform.win32.Winspool;
+
 /**
  * @author : 唐力
  * @description :
@@ -27,6 +29,15 @@ public class ContractStatusBean {
     private ContractStopCauseVOBean contractStopCauseVO;
     private int id;
     private int stopStatus;
+    private int contractTextID;
+
+    public int getContractTextID() {
+        return contractTextID;
+    }
+
+    public void setContractTextID(int contractTextID) {
+        this.contractTextID = contractTextID;
+    }
 
     public String getContractNum() {
         return contractNum;

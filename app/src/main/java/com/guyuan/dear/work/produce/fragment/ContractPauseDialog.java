@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 
+import com.example.mvvmlibrary.base.activity.BaseActivity;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.bean.ContractStatusBean;
 import com.guyuan.dear.databinding.DialogContractPauseBinding;
@@ -41,6 +42,10 @@ public class ContractPauseDialog extends Dialog {
     }
 
     public static void show(@NonNull Context context, ContractStatusBean bean) {
+        if (context instanceof BaseActivity) {
+            BaseActivity baseActivity = (BaseActivity) context;
+            baseActivity.onContractPaused();
+        }
         ContractPauseDialog dialog = new ContractPauseDialog(context, bean);
         dialog.show();
     }
