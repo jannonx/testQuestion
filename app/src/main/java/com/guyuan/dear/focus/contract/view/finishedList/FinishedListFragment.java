@@ -1,6 +1,7 @@
 package com.guyuan.dear.focus.contract.view.finishedList;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import com.guyuan.dear.customizeview.itemDecorator.LinearVerticalPaddingDecorato
 import com.guyuan.dear.databinding.FragmentFinishedContractListBinding;
 import com.guyuan.dear.focus.contract.adapter.LastYearDeliverListAdapter;
 import com.guyuan.dear.focus.contract.bean.BaseContractBean;
+import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailActivity;
 import com.guyuan.dear.utils.ConstantValue;
 
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerView;
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;
 
 /**
@@ -90,6 +93,13 @@ public class FinishedListFragment extends BaseMvvmFragment<FragmentFinishedContr
             @Override
             public void onChanged(Boolean aBoolean) {
                 recyclerView.setLoadMoreEnabled(!aBoolean);
+            }
+        });
+        wrapper.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                BaseContractBean item = list.get(position);
+                ContractDetailActivity.start(getContext(), "合同详情", (int) item.getContractId());
             }
         });
 

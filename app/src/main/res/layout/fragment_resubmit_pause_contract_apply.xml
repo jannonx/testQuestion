@@ -241,7 +241,7 @@
                 android:paddingLeft="@dimen/dp_12"
                 android:paddingRight="@dimen/dp_12"
                 android:paddingBottom="@dimen/dp_12"
-                android:text="申请一旦通过系统审核，系统会终止所有进行中的任务，请谨慎操作。"
+                android:text="重启：申请一旦通过系统审核，系统会终止所有进行中的任务，项目状态将显示暂停中标识，请谨慎操作。"
                 android:textColor="#F04864"
                 android:textSize="@dimen/sp_14" />
 

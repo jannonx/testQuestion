@@ -1,6 +1,7 @@
 package com.guyuan.dear.focus.contract.view.exceptionList;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import com.guyuan.dear.databinding.FragmentExecutingContractListBinding;
 import com.guyuan.dear.focus.contract.adapter.ExceptionContractListAdapter;
 import com.guyuan.dear.focus.contract.adapter.LastYearDeliverListAdapter;
 import com.guyuan.dear.focus.contract.bean.BaseContractBean;
+import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailActivity;
 import com.guyuan.dear.focus.contract.view.executingList.ExecutingListFragment;
 import com.guyuan.dear.utils.ConstantValue;
 
@@ -23,6 +25,7 @@ import java.util.List;
 
 import tl.com.easy_recycleview_library.BaseRecyclerView;
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
+import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
 import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;
 
 /**
@@ -92,6 +95,13 @@ public class ExceptionContractListFragment extends BaseMvvmFragment<FragmentExce
             @Override
             public void onChanged(Boolean aBoolean) {
                 recyclerView.setLoadMoreEnabled(!aBoolean);
+            }
+        });
+        wrapper.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                BaseContractBean item = list.get(position);
+                ContractDetailActivity.start(getContext(), "合同详情", (int) item.getContractId());
             }
         });
 
