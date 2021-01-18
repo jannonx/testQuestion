@@ -2,6 +2,7 @@ package com.guyuan.dear.focus.produce.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -86,6 +87,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
     private int status = -1;//1.同意；2.拒绝
     private int type;
     private boolean isApproved = false;
+    private boolean isViewPagerInit = true;
     //自己隐藏
     private ArrayList<StaffBean> hiddenStaffList = new ArrayList<>();
     private RemarkDialog.OnDialogClickListener remarkComplexListener;
@@ -129,7 +131,6 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
             return;
         }
 
-
         initBean = (FocusProduceBean) arguments.getSerializable(ConstantValue.KEY_CONTENT);
         isFooterBtnShow = arguments.getBoolean(ConstantValue.KEY_BOOLEAN, false);
 //        LogUtils.showLog("listData=" + (produceBean == null));
@@ -141,9 +142,8 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
             @Override
             public void onChanged(FocusProduceBean data) {
                 jumpToPage(data);
-                if (data.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
-                    CommonUtils.getContractStatus(BaseApiService.PROJECT_ID, String.valueOf(data.getProjectId()));
-                }
+
+
             }
         });
 
@@ -155,6 +155,15 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
                 getActivity().finish();
             }
         });
+
+    }
+
+    /**
+     * 合同暂停，
+     */
+    public void setContractPaused() {
+        produceBean.setStopStatus(ContractStatusType.TYPE_CONTRACT_PAUSE.getCode());
+        setProduceDataComplex(produceBean);
     }
 
 
@@ -163,6 +172,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
      */
     private void jumpToPage(FocusProduceBean data) {
         LogUtils.showLog("jumpToPage=" + initBean.getStatusType().getDes());
+        CommonUtils.getContractStatus(BaseApiService.PROJECT_ID, String.valueOf(data.getProjectId()));
         data.setStopStatus(initBean.getStopStatus());
         if (ProductStatusType.TYPE_PRODUCE_WAIT == initBean.getStatusType()) {
             binding.clRootComplex.setVisibility(View.GONE);
@@ -338,7 +348,10 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
 
     private void setProduceDataComplex(FocusProduceBean data) {
         produceBean = data;
-        initViewPager();
+        if (isViewPagerInit) {
+            isViewPagerInit = false;
+            initViewPager();
+        }
         //暂停状态
         isProducePause = ProductStatusType.TYPE_PRODUCE_EXCEPTION == data.getStatusType();
         //生产状态
@@ -377,7 +390,9 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
                 (ProductStatusType.TYPE_PRODUCE_COMPLETE == data.getStatusType()
                         || ProductStatusType.TYPE_PRODUCE_DELAY_NOT_FINISH == data.getStatusType())
                         ? data.getActualEndTime() : "生产中");
-        binding.tvActualComplete.setVisibility(ProductStatusType.TYPE_CONTRACT_PAUSE == data.getStatusType() ? View.GONE : View.VISIBLE);
+        if (ProductStatusType.TYPE_CONTRACT_PAUSE == data.getStatusType()) {
+            binding.tvActualComplete.setText(TextUtils.isEmpty(data.getActualEndTime()) ? "合同暂停" : data.getActualEndTime());
+        }
         binding.tvPlanComplete.setText(data.getPlanEndTime());
 
 

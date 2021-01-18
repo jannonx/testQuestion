@@ -3,6 +3,7 @@ package com.guyuan.dear.focus.produce.bean;
 
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.projectsite.type.CustomerAcceptanceSatisfyType;
+import com.guyuan.dear.utils.LogUtils;
 
 /**
  * @description: 子生产状态
@@ -74,19 +75,25 @@ public enum ProductStatusType {
      * 根据枚举code获取实例，用于switchR
      */
     public static ProductStatusType toType(FocusProduceBean produceBean) {
-        if (produceBean == null || produceBean.getStopStatus() == null) return TYPE_UNKNOWN;
         //合同状态：1.合同正常，2.合同暂停，显示合同暂停状态
-        if (produceBean.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
-            return TYPE_CONTRACT_PAUSE;
-        } else {
-            //除了合同暂停，显示正常生产状态
-            for (ProductStatusType type : ProductStatusType.values()) {
-                if (type.getCode() == produceBean.getStatus()) {
-                    return type;
+        //除了合同暂停，显示正常生产状态
+        for (ProductStatusType type : ProductStatusType.values()) {
+            if (type.getCode() == produceBean.getStatus()) {
+                //合同暂停，已经完成的，显示已经完成，其他状态显示合同暂停
+                LogUtils.showLog("getStopStatus="+produceBean.getStopStatus().toString());
+                LogUtils.showLog("getStatus="+produceBean.getStatus());
+                LogUtils.showLog("getContractStatusType="+produceBean.getContractStatusType().getCode());
+                if (produceBean.getStopStatus() != null
+                        && ProductStatusType.TYPE_PRODUCE_COMPLETE.getCode() != produceBean.getStatus()
+                        && ProductStatusType.TYPE_PRODUCE_DELAY_NOT_FINISH.getCode() != produceBean.getStatus()
+                        && produceBean.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
+                    return TYPE_CONTRACT_PAUSE;
                 }
+                return type;
             }
-            return TYPE_UNKNOWN;
         }
+        return TYPE_UNKNOWN;
+
 
     }
 

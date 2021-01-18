@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
-import com.example.mvvmlibrary.base.fragment.BaseFragment;
 import com.example.mvvmlibrary.databinding.ActivityWithToolbarBinding;
 import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
@@ -16,7 +15,6 @@ import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
 
 import dagger.hilt.android.AndroidEntryPoint;
-
 
 import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailFragment.BUSINESS_ID;
 import static com.guyuan.dear.focus.produce.fragment.FocusProduceDetailFragment.BUSINESS_TYPE;
@@ -32,7 +30,7 @@ import static com.guyuan.dear.office.approval.ui.ApprovalActivity.IS_APPROVED;
  */
 @AndroidEntryPoint
 public class FocusProduceDetailActivity extends BaseToolbarActivity<ActivityWithToolbarBinding, FocusProduceViewModel> {
-
+    private FocusProduceDetailFragment mFragment;
     public static void start(Context context, FocusProduceBean data, boolean isFooterBtnShow) {
         Intent intent = new Intent(context, FocusProduceDetailActivity.class);
         intent.putExtra(ConstantValue.KEY_CONTENT, data);
@@ -62,7 +60,7 @@ public class FocusProduceDetailActivity extends BaseToolbarActivity<ActivityWith
         int businessType = getIntent().getIntExtra(BUSINESS_TYPE, -1);
         int type = getIntent().getIntExtra(APPROVAL_TYPE, -1);
         binding.toolbarContainer.titleTv.setText("生产详情");
-        BaseFragment mFragment;
+
 
         LogUtils.showLog("listData=" + (bean == null));
         if (isApproval) {
@@ -71,23 +69,6 @@ public class FocusProduceDetailActivity extends BaseToolbarActivity<ActivityWith
         } else {
             mFragment = FocusProduceDetailFragment.newInstance(bean, isFooterBtnShow);
         }
-//        if (ProductStatusType.TYPE_PRODUCE_WAIT == bean.getStatusType()) {
-//            if (isApproval) {
-//                mFragment = FocusProduceDetailSimpleFragment.newInstance(bean, businessId,
-//                        businessType, type,isApproval);
-//            } else {
-//                mFragment = FocusProduceDetailSimpleFragment.newInstance(bean, isFooterBtnShow);
-//            }
-//
-//        } else {
-//            LogUtils.showLog("listData=" + (bean == null));
-//            if (isApproval) {
-//                mFragment = FocusProduceDetailComplexFragment.newInstance(bean, businessId,
-//                        businessType, type,isApproval);
-//            } else {
-//                mFragment = FocusProduceDetailComplexFragment.newInstance(bean, isFooterBtnShow);
-//            }
-//        }
         ActivityUtils.addFragmentToActivity(fragmentManager, mFragment, R.id.fragment_container,
                 FocusProduceDetailFragment.TAG);
     }
@@ -97,6 +78,12 @@ public class FocusProduceDetailActivity extends BaseToolbarActivity<ActivityWith
         return viewModel;
     }
 
+
+    @Override
+    public void onContractPaused() {
+        super.onContractPaused();
+        mFragment.setContractPaused();
+    }
 
     @Override
     protected int getLayoutID() {

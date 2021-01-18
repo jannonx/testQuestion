@@ -13,7 +13,6 @@
         android:paddingTop="@dimen/dp_16"
         app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-
         <TextView
             android:id="@+id/tv_product_name_empty"
             android:layout_width="0dp"
