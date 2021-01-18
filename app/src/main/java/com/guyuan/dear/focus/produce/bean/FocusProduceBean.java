@@ -26,6 +26,10 @@ public class FocusProduceBean implements Serializable {
     private Integer stopStatus;
     private ContractStatusType contractStatusType;
     /**
+     * 非空，表示来自审批模块，
+     */
+    private Integer fromApplyModel;
+    /**
      * 产品代号
      */
     private String code;
@@ -205,6 +209,14 @@ public class FocusProduceBean implements Serializable {
 
     public String getCode() {
         return code;
+    }
+
+    public Integer getFromApplyModel() {
+        return fromApplyModel;
+    }
+
+    public void setFromApplyModel(Integer fromApplyModel) {
+        this.fromApplyModel = fromApplyModel;
     }
 
     public void setCode(String code) {
