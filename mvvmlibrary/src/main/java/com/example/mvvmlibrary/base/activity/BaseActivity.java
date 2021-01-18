@@ -14,17 +14,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.fragment.app.FragmentManager;
+
 import com.example.mvvmlibrary.R;
 import com.example.mvvmlibrary.util.ActivityUtils;
 import com.example.mvvmlibrary.util.AlertDialogUtils;
 import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 
 /**
@@ -44,7 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutID());
         fragmentManager = getSupportFragmentManager();
         ActivityUtils.addActivity(this.getClass().getSimpleName(), this);
-        init( savedInstanceState);
+        init(savedInstanceState);
     }
 
 
@@ -270,6 +274,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         hideLoading();
         loadingDialog = AlertDialogUtils.showLoading(this, null, status);
     }
+
+
+
+    //合同暂停
+    public void onContractPaused() {
+
+    }
+
 
     public void hideLoading() {
         if (loadingDialog != null) {

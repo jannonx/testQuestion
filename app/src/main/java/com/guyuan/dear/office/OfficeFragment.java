@@ -114,7 +114,7 @@ public class OfficeFragment extends BaseListFragment<ChildrenBean, FragmentOffic
         binding.officeMessageBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MessageActivity.start(getContext(), "消息", MessageFragment.MESSAGE_COMMON);
+                MessageActivity.start(getContext(), "消息", MessageFragment.MESSAGE_OFFICE);
             }
         });
 

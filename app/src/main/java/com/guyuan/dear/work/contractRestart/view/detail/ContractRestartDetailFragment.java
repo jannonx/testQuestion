@@ -15,6 +15,7 @@ import com.guyuan.dear.busbean.UpdatePauseApplyListEvent;
 import com.guyuan.dear.busbean.UpdateRestartApplyListEvent;
 import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
 import com.guyuan.dear.databinding.FragmentContractRestartApplyDetailBinding;
+import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
 import com.guyuan.dear.focus.contract.view.contractApplyDetail.ContractRestartApplyDetailViewModel;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.LogUtils;
@@ -115,5 +116,11 @@ public class ContractRestartDetailFragment extends BaseMvvmFragment<FragmentCont
             FragmentActivity activity = getActivity();
             activity.onBackPressed();
         }
+    }
+
+
+    //审批需要获取详情页数据
+    public DetailContractApplyBean getContractBean() {
+        return getViewModel().getDetailBean().getValue();
     }
 }

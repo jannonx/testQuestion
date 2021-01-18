@@ -14,6 +14,7 @@ import com.guyuan.dear.busbean.ApprovalBusBean;
 import com.guyuan.dear.databinding.ActivityApprovalDetailBinding;
 import com.guyuan.dear.dialog.RemarkDialog;
 import com.guyuan.dear.dialog.TipDialogFragment;
+import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
 import com.guyuan.dear.focus.contract.bean.DetailContractBean;
 import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailFragment;
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
@@ -24,6 +25,9 @@ import com.guyuan.dear.office.approval.data.bean.ApprovalTypeBean;
 import com.guyuan.dear.office.approval.ui.ApprovalActivity;
 import com.guyuan.dear.office.approval.ui.ApprovalFragment;
 import com.guyuan.dear.utils.ConstantValue;
+import com.guyuan.dear.work.contractPause.views.applyDetail.ContractPauseApplyDetailFragment;
+import com.guyuan.dear.work.contractRestart.view.detail.ContractRestartDetailFragment;
+import com.taobao.accs.IAliyunAppReceiver;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -41,21 +45,22 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
 
     public static final String TAG = "ApprovalDetailActivity";
     public static final String APPROVAL_TYPE = "approvalType";
+    public static final String BUSINESS_ID = "businessId";
 
     private Fragment fragment;
     private int type;
-    private int id;
     private int approvalType;
     private View.OnClickListener commitListener;
     private View.OnClickListener rejectListener;
 
 
-    public static void start(Context context, String title, int type, int approvalType, int id) {
+    public static void start(Context context, String title, int type, int approvalType, int id, int businessId) {
         Intent starter = new Intent(context, ApprovalDetailActivity.class);
         starter.putExtra(ConstantValue.KEY_TITLE, title);
         starter.putExtra(ConstantValue.KEY_TYPE, type);
         starter.putExtra(APPROVAL_TYPE, approvalType);
         starter.putExtra(ConstantValue.KEY_ID, id);
+        starter.putExtra(BUSINESS_ID, businessId);
         context.startActivity(starter);
     }
 
@@ -66,7 +71,6 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
         setTitleCenter(title);
         type = getIntent().getIntExtra(ConstantValue.KEY_TYPE, 0);
         approvalType = getIntent().getIntExtra(APPROVAL_TYPE, approvalType);
-        id = getIntent().getIntExtra(ConstantValue.KEY_ID, 0);
         if (approvalType == ApprovalFragment.APPROVAL) {
             binding.approvalLl.setVisibility(View.VISIBLE);
         }
@@ -77,20 +81,29 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
         viewModel.setListener(this);
         switch (type) {
             //合同审批
-            case ApprovalTypeBean.CONTRACT_EXAMINE_MASTER_TYPE:
+            //case ApprovalTypeBean.CONTRACT_EXAMINE_MASTER_TYPE:
             case ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_STOP_TYPE:
             case ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_RESTART_TYPE:
-
-                fragment = ContractDetailFragment.getInstance(id);
+                int id = getIntent().getIntExtra(ConstantValue.KEY_ID, 0);
+                fragment = getContractDetailFragment(type, id);
                 binding.approvalAcceptTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        DetailContractBean detailContractBean = ((ContractDetailFragment) fragment).getContractBean();
                         TipDialogFragment tipDialogFragment = TipDialogFragment.newInstance("", "确定通过吗?");
                         tipDialogFragment.setOnSureListener(new TipDialogFragment.OnSure() {
                             @Override
                             public void sure() {
-                                viewModel.contractApproval(type, (int) detailContractBean.getContractId(), "", ApprovalActivity.ACCEPT);
+                                DetailContractApplyBean detailContractApplyBean = null;
+                                if (fragment instanceof ContractPauseApplyDetailFragment) {
+                                    detailContractApplyBean = ((ContractPauseApplyDetailFragment) fragment).getContractBean();
+                                } else if (fragment instanceof ContractRestartDetailFragment) {
+                                    detailContractApplyBean = ((ContractRestartDetailFragment) fragment).getContractBean();
+                                }
+                                if (detailContractApplyBean != null) {
+                                    viewModel.contractApproval(type, (int) detailContractApplyBean.getContractId(), "", ApprovalActivity.ACCEPT);
+                                } else {
+                                    showToastTip("数据错误");
+                                }
                                 tipDialogFragment.dismiss();
                             }
                         })
@@ -158,7 +171,13 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
             case ApprovalTypeBean.PAUSE_PLAN:
             case ApprovalTypeBean.ACTIVATE_PLAN:
                 FocusProduceBean data = new FocusProduceBean();
-                data.setPlanId(id);
+                int businessID = getIntent().getIntExtra(BUSINESS_ID, 0);
+                data.setPlanId(businessID);
+                if (type == ApprovalTypeBean.ACTIVATE_PLAN) {
+                    data.setStopStatus(1);
+                } else {
+                    data.setStopStatus(0);
+                }
                 fragment = FocusProduceDetailFragment.newInstance(data, false);
                 binding.approvalAcceptTv.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -254,6 +273,17 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
 
                 return 0;
         }
+    }
+
+    private Fragment getContractDetailFragment(int type, int id) {
+        Fragment contractDetailFragment;
+        if (type == ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_STOP_TYPE) {
+            contractDetailFragment = ContractPauseApplyDetailFragment.getInstance(id);
+        } else {
+            contractDetailFragment = ContractRestartDetailFragment.getInstance((long) id);
+        }
+
+        return contractDetailFragment;
     }
 
 

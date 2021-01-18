@@ -68,7 +68,7 @@ public class MyApplyListViewModel extends BaseDearViewModel {
                     ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
                 } else {
                     pauseApplyList.getValue().addAll(result);
-                    Collections.sort(pauseApplyList.getValue(), comparator);
+//                    Collections.sort(pauseApplyList.getValue(), comparator);
                     pauseApplyList.postValue(pauseApplyList.getValue());
                 }
             }
@@ -86,7 +86,7 @@ public class MyApplyListViewModel extends BaseDearViewModel {
     private Comparator<MyApplyBean> comparator = new Comparator<MyApplyBean>() {
         @Override
         public int compare(MyApplyBean o1, MyApplyBean o2) {
-            return (int) (o2.getApplyDate() - o1.getApplyDate());
+            return (int) (o1.getApplyDate() - o2.getApplyDate());
         }
     };
 
@@ -109,7 +109,7 @@ public class MyApplyListViewModel extends BaseDearViewModel {
                     ToastUtils.showShort(DearApplication.getInstance(), "已经全部加载完毕。");
                 } else {
                     restartApplyList.getValue().addAll(result);
-                    Collections.sort(restartApplyList.getValue(), comparator);
+//                    Collections.sort(restartApplyList.getValue(), comparator);
                     restartApplyList.postValue(restartApplyList.getValue());
                 }
             }

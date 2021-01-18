@@ -17,6 +17,10 @@ public class NetBaseProjectBean {
     private int id;
     private String projectCode;
     private String projectName;
+    /**
+     * 销售合同状态：0.正常 1.暂停 2.被激活 3审批中
+     */
+    private int stopStatus;
 
     public int getId() {
         return id;
@@ -40,5 +44,13 @@ public class NetBaseProjectBean {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public int getStopStatus() {
+        return stopStatus;
+    }
+
+    public void setStopStatus(int stopStatus) {
+        this.stopStatus = stopStatus;
     }
 }

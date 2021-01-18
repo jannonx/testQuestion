@@ -20,6 +20,7 @@ public class FocusProduceBean implements Serializable {
      */
     private int approvalStatus;
     private ApprovalStatusType approvalStatusType;
+
     /**
      * 销售合同状态：0.正常 1.暂停 2.被激活 3审批中"
      */

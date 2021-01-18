@@ -48,6 +48,7 @@ public class BackService extends IntentService {
     public static final String NOT_HANDLE_CONTROL_MESSAGE = "service_not_handle_message";
     public static final String CONTRACT_STATUS = "service_contract_status";
     public static final String CONTRACT_PARAMETER = "contractParameter";
+    public static final String CONTRACT_TEXT_ID = "contract_text_id";
     public static final String CONTRACT_PARAMETER_TYPE = "contract_parameter_type";
     private DearApplication mApplication;
 
@@ -185,6 +186,7 @@ public class BackService extends IntentService {
                 if (bundle != null) {
                     String contractParameterType = bundle.getString(CONTRACT_PARAMETER_TYPE);
                     String contractParameter = bundle.getString(CONTRACT_PARAMETER);
+                    int contractTextID = bundle.getInt(CONTRACT_TEXT_ID);
                     switch (contractParameterType) {
                         case BaseApiService.ID:
                             observable = mApplication.getRetrofit().create(BaseApiService.class)
@@ -216,6 +218,7 @@ public class BackService extends IntentService {
                                     public void accept(Object o) throws Exception {
                                         ContractStatusBean contractStatusBean = (ContractStatusBean) o;
                                         int stopStatus = contractStatusBean.getStopStatus();
+                                        contractStatusBean.setContractTextID(contractTextID);
                                         //0.正常 1.暂停 2.被激活 3审批中
                                         if (stopStatus == 1) {
                                             EventBus.getDefault().post(contractStatusBean);

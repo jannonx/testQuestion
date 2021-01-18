@@ -81,7 +81,7 @@ public class ContractApplyBindingAdapter {
         if (ContractApplyBean.APPLY_TYPE_PAUSE == type) {
             view.setText("暂停：申请一旦通过系统审核，系统会终止所有进行中的任务。");
         } else if (ContractApplyBean.APPLY_TYPE_RESUME == type) {
-            view.setText("重启：申请一旦通过系统审核，系统会终止所有暂停的任务。");
+            view.setText("重启：申请一旦通过系统审核，系统会重启所有暂停的任务。");
         }
     }
 
