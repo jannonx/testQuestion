@@ -131,17 +131,22 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                 binding.approvalRejectTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        DetailContractBean bean = ((ContractDetailFragment) fragment).getContractBean();
-                        if (bean != null) {
-                            RemarkDialog.show(ApprovalDetailActivity.this, "请输入驳回备注", new RemarkDialog.OnDialogClickListener() {
-                                @Override
-                                public void onCommitInfo(ExecuteRequestBody data) {
-                                    viewModel.contractApproval(type, (int) bean.getContractId(), data.getReason(), ApprovalActivity.REJECT);
+                        RemarkDialog.show(ApprovalDetailActivity.this, "请输入驳回备注", new RemarkDialog.OnDialogClickListener() {
+                            @Override
+                            public void onCommitInfo(ExecuteRequestBody data) {
+                                DetailContractApplyBean detailContractApplyBean = null;
+                                if (fragment instanceof ContractPauseApplyDetailFragment) {
+                                    detailContractApplyBean = ((ContractPauseApplyDetailFragment) fragment).getContractBean();
+                                } else if (fragment instanceof ContractRestartDetailFragment) {
+                                    detailContractApplyBean = ((ContractRestartDetailFragment) fragment).getContractBean();
                                 }
-                            });
-                        } else {
-                            showToastTip("获取数据失败,无法提交");
-                        }
+                                if (detailContractApplyBean != null) {
+                                    viewModel.contractApproval(type, (int) detailContractApplyBean.getContractId(), data.getReason(), ApprovalActivity.REJECT);
+                                } else {
+                                    showToastTip("获取数据失败,无法提交");
+                                }
+                            }
+                        });
                     }
                 });
 
@@ -173,11 +178,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                 FocusProduceBean data = new FocusProduceBean();
                 int businessID = getIntent().getIntExtra(BUSINESS_ID, 0);
                 data.setPlanId(businessID);
-                if (type == ApprovalTypeBean.ACTIVATE_PLAN) {
-                    data.setStopStatus(1);
-                } else {
-                    data.setStopStatus(0);
-                }
+                data.setStopStatus(0);
                 fragment = FocusProduceDetailFragment.newInstance(data, false);
                 binding.approvalAcceptTv.setOnClickListener(new View.OnClickListener() {
                     @Override

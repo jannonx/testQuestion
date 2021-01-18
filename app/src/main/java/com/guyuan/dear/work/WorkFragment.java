@@ -192,7 +192,7 @@ public class WorkFragment extends BaseListFragment<ChildrenBean, FragmentWorkBin
         binding.workMessageBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MessageActivity.start(getContext(), "消息", MessageFragment.MESSAGE_WORK);
+                MessageActivity.start(getContext(), "消息", MessageActivity.MSG_WORK);
             }
         });
 

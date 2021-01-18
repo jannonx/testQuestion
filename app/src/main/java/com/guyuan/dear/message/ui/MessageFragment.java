@@ -26,7 +26,7 @@ import tl.com.easy_recycleview_library.interfaces.OnItemClickListener;
  **/
 
 public class MessageFragment extends BaseListSearchFragment<MessageBean, FragmentListSearchBinding, MessageViewModel> {
-    //显示消息种类,1:显示警告消息、预警消息；2：正常消息、办公消息
+
     public static final String TAG = "MessageFragment";
     public static final int MESSAGE_WARN = 1;        //警告消息
     public static final int MESSAGE_PRE_WARN = 2;    //预警消息
@@ -37,7 +37,7 @@ public class MessageFragment extends BaseListSearchFragment<MessageBean, Fragmen
     public static MessageFragment newInstance(int msgType) {
 
         Bundle args = new Bundle();
-        args.getInt(ConstantValue.KEY_TYPE, msgType);
+        args.putInt(ConstantValue.KEY_TYPE, msgType);
         MessageFragment fragment = new MessageFragment();
         fragment.setArguments(args);
         return fragment;

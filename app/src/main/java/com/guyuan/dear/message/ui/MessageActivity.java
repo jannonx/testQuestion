@@ -24,6 +24,9 @@ import dagger.hilt.android.AndroidEntryPoint;
  **/
 @AndroidEntryPoint
 public class MessageActivity extends BaseToolbarActivity<ActivityWithToolbarBinding, MessageViewModel> {
+    //显示消息种类,1:显示警告消息、预警消息,工作消息；2：办公消息
+    public static final int MSG_WORK=1;
+    public static final int MSG_OFFICE=2;
 
     private MessageFragment messageFragment;
 
