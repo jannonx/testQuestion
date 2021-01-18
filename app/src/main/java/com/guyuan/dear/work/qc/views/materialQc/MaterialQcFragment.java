@@ -335,6 +335,10 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
                 return new OnSelectItemClickListener<BaseProjectBean>() {
                     @Override
                     public void onItemClick(BaseProjectBean bean, int position) {
+                        if(bean.getStatus()==1){
+                            showToastTip("该合同已经暂停，不能被选中。");
+                            return;
+                        }
                         getViewModel().updateProjectInfo(bean);
                     }
                 };
@@ -342,7 +346,12 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
 
             @Override
             public String getItemLabel(BaseProjectBean item) {
-                return item.getProjectName();
+                String projectName = item.getProjectName();
+                int status = item.getStatus();
+                if(status == 1){
+                    projectName = projectName+"(暂停中)";
+                }
+                return projectName;
             }
         };
         dialog.show();
