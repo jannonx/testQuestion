@@ -29,7 +29,7 @@ public interface MessageApiService extends BaseApiService {
     String GET_LAST_UNREAD_MESSAGE = MESSAGE + "tMessage/appUnReadCount";
     String SET_MSG_ALL_READ = MESSAGE + "tMessage/readAll";
     String GET_SMART_CONTROL_MESSAGE = MESSAGE + "tMessage/appSpecialUnReadMessage";
-    String MSG_TYPE = "msgType";   //显示消息种类,1:显示警告消息、预警消息；2：正常消息、办公消息
+    String MSG_TYPE = "msgType";   //显示消息种类,1:显示警告消息、预警消息,工作消息；2：办公消息
     String MESSAGE_INFO_ID = "messageInfoId";
 
     @POST(MESSAGE_LIST)

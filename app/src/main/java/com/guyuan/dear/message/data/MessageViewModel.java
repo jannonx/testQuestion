@@ -48,7 +48,7 @@ public class MessageViewModel extends BaseViewModel {
         requestBody.setPageNum(pageIndex);
         requestBody.setPageSize(ConstantValue.PAGE_SIZE);
         ListRequestBody.FiltersBean filtersBean = new ListRequestBody.FiltersBean();
-        filtersBean.setMsgType(msgType);//显示消息种类,1:显示警告消息、预警消息；2：正常消息、办公消息
+        filtersBean.setMsgType(msgType);
         filtersBean.setQueryParams(content);
         requestBody.setFilters(filtersBean);
         RxJavaHelper.build(this, apiService.getMessageList(
