@@ -104,13 +104,14 @@
                     android:orientation="vertical"
                     android:background="@drawable/shape_rect_grey_ededed_stroke_round_corner_transparent">
                     <androidx.appcompat.widget.AppCompatEditText
+                        android:layout_margin="@dimen/dp_2"
                         android:id="@+id/fragment_pause_contract_edt_input_detail_reason"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
                         android:textSize="@dimen/sp_17"
                         android:padding="@dimen/dp_12"
                         android:textColorHint="#CCCCCC"
+                        android:background="@color/white"
                         android:hint="请输入描述"
                         android:text="@={fragment_restart_contract_vm.description}"/>
                     <androidx.appcompat.widget.AppCompatTextView
