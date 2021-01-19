@@ -2,22 +2,18 @@ package com.guyuan.dear.work.projectsite.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.Layout;
 import android.text.Selection;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatRadioButton;
 import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
@@ -27,18 +23,16 @@ import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.databinding.FragmentWorkSiteExplorationIngBinding;
 import com.guyuan.dear.focus.projectsite.adapter.CheckContentAdapter;
-import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
-import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.bean.ProjectSiteOpinionBean;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
+import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
-import com.guyuan.dear.utils.ToastUtils;
-import com.guyuan.dear.utils.keyboardlayout.OnKeyboardStateListener;
 import com.guyuan.dear.work.projectsite.activity.WorkSiteExploresActivity;
 import com.guyuan.dear.work.projectsite.bean.EventWorkSiteListRefresh;
+import com.guyuan.dear.work.projectsite.bean.OnConfirmDialogListenerImpl;
 import com.guyuan.dear.work.projectsite.bean.PostSiteExploreInfo;
 import com.guyuan.dear.work.projectsite.data.WorkProjectSiteViewModel;
 
@@ -58,7 +52,7 @@ import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
  * @company: 固远（深圳）信息技术有限公司
  */
 public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWorkSiteExplorationIngBinding, WorkProjectSiteViewModel>
-        implements BaseFileUploadActivity.PhotoSelectListener, OnKeyboardStateListener {
+        implements BaseFileUploadActivity.PhotoSelectListener {
 
     public static final String TAG = SiteExplorationFragment.class.getSimpleName();
     protected ArrayList<Uri> photoList = new ArrayList<>();
@@ -72,6 +66,8 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
     public BaseRecyclerViewAdapter adapter;
     public BaseRecyclerViewAdapter imageAdapter;
     private WorkSiteExploresActivity activity;
+    private ProjectCheckConfirmDialog postInfoDialog;
+    private PostSiteExploreInfo postInfo;
 
     public static SiteExplorationFragment newInstance(SiteExploreBean siteExploreBean) {
         Bundle args = new Bundle();
@@ -99,34 +95,34 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
         binding.baseRecycleView.setPullRefreshEnabled(false);
         binding.baseRecycleView.setLoadMoreEnabled(false);
 
-        binding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
-        binding.tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
+//        binding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
+//        binding.tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
 
-        ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
-                imageDataList, R.layout.item_explorate_image, true);
-        imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
-
-        binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        binding.imageRecycleView.setAdapter(imageAdapter);
-        binding.imageRecycleView.setPullRefreshEnabled(false);
-        binding.imageRecycleView.setLoadMoreEnabled(false);
+//        ContentImageViewAdapter imageViewAdapter = new ContentImageViewAdapter(getContext(),
+//                imageDataList, R.layout.item_explorate_image, true);
+//        imageAdapter = new BaseRecyclerViewAdapter(imageViewAdapter);
+//
+//        binding.imageRecycleView.setLayoutManager(new GridLayoutManager(getContext(), 3));
+//        binding.imageRecycleView.setAdapter(imageAdapter);
+//        binding.imageRecycleView.setPullRefreshEnabled(false);
+//        binding.imageRecycleView.setLoadMoreEnabled(false);
 
         binding.tvActivateBtn.setText(detailProjectData.getProjectReportType() == ProjectReportType.TYPE_SITE_EXPLORATION
                 ? "完成勘查" : "完成排查");
         binding.tvActivateBtn.setVisibility(detailProjectData.getProjectReportType() == ProjectReportType.TYPE_SITE_EXPLORATION ?
                 CommonUtils.isShowButton(ConstantValue.PROJECT_SITE_SURVEY_FINISH) ? View.VISIBLE : View.GONE :
                 CommonUtils.isShowButton(ConstantValue.PROJECT_SITE_SAFE_INVESTIGATE_FINISH) ? View.VISIBLE : View.GONE);
-        imageViewAdapter.setAdapterListener(new ContentImageViewAdapter.OnListAdapterListener() {
-            @Override
-            public void onDeleteCLick(int position) {
-                photoList.remove(position);
-                if (imageDataList.size() == 0) {
-                    binding.labelDocument.setText("拍照电子档");
-                    binding.tvTip.setText("点击此框上传资料拍照照片");
-                }
-
-            }
-        });
+//        imageViewAdapter.setAdapterListener(new ContentImageViewAdapter.OnListAdapterListener() {
+//            @Override
+//            public void onDeleteCLick(int position) {
+//                photoList.remove(position);
+//                if (imageDataList.size() == 0) {
+//                    binding.labelDocument.setText("拍照电子档");
+//                    binding.tvTip.setText("点击此框上传资料拍照照片");
+//                }
+//
+//            }
+//        });
         getWorkDetailData();
         initListener();
     }
@@ -147,91 +143,29 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
     }
 
     private void initListener() {
-        binding.flRoot.setOnKeyboardStateListener(this);
-        switchRadioButton(binding.rbRight, true);
-        switchRadioButton(binding.rbWrong, false);
-        //默认正常
-        binding.rgCheck.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkId) {
-                switch (checkId) {
-                    case R.id.rb_right:
-                        isConditionOK = TYPE_CONDITION_OK;
-                        switchRadioButton(binding.rbRight, true);
-                        switchRadioButton(binding.rbWrong, false);
-                        break;
-                    case R.id.rb_wrong:
-                        isConditionOK = TYPE_CONDITION_EXCEPTION;
-                        switchRadioButton(binding.rbRight, false);
-                        switchRadioButton(binding.rbWrong, true);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-
-        //记录字数上限
-        int wordLimitNum = 240;
-        binding.etSearch.addTextChangedListener(new TextWatcher() {
-            //记录输入的字数
-            private CharSequence enterWords;
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //实时记录输入的字数
-                enterWords = s;
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-//                setBottomViewHeight();
-                if (editable.length() > wordLimitNum) {
-                    //删除多余输入的字（不会显示出来）
-                    editable.delete(wordLimitNum, editable.length());
-                    binding.etSearch.setText(editable);
-
-                    binding.etSearch.setCursorVisible(true);
-                    binding.etSearch.requestFocus();
-                    binding.etSearch.setFocusable(true);//获得焦点
-                    binding.etSearch.setFocusableInTouchMode(true);//获得焦点
-                    //设置光标在最后
-                    binding.etSearch.setSelection(binding.etSearch.getText().toString().length());
-                }
-
-                //已输入字数
-                int enteredWords = wordLimitNum - editable.length();
-                //TextView显示剩余字数
-                binding.tvNumber.setText((wordLimitNum - enteredWords) + "/240");
-
-            }
-        });
 
         binding.tvActivateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(binding.etSearch.getText().toString())) {
-                    ToastUtils.showLong(getContext(), "请填内容");
-                    return;
-                }
-                if (imageDataList == null || imageDataList.size() == 0) {
-                    ToastUtils.showLong(getContext(), "请选择图片");
-                    return;
-                }
-                activity.checkPhotoAndFileUpLoad(imageDataList);
+                confirmCheckInfo();
+//                if (TextUtils.isEmpty(binding.etSearch.getText().toString())) {
+//                    ToastUtils.showLong(getContext(), "请填内容");
+//                    return;
+//                }
+//                if (imageDataList == null || imageDataList.size() == 0) {
+//                    ToastUtils.showLong(getContext(), "请选择图片");
+//                    return;
+//                }
+//                activity.checkPhotoAndFileUpLoad(imageDataList);
             }
         });
 
-        binding.clPickPic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.openAlbum(BaseTabActivity.FIRST);
-            }
-        });
+//        binding.clPickPic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                activity.openAlbum(BaseTabActivity.FIRST);
+//            }
+//        });
 
 
         viewModel.getCommitSiteExploreInfoEvent().observe(getActivity(), new Observer<Integer>() {
@@ -292,23 +226,23 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
     }
 
     private void postSiteExploreInfo(List<String> imageList) {
-        PostSiteExploreInfo body = new PostSiteExploreInfo();
+//        PostSiteExploreInfo body = new PostSiteExploreInfo();
 
-        body.setId(detailProjectData.getId());
-        body.setSatisfyFlag(isConditionOK);
+//        body.setId(detailProjectData.getId());
+//        body.setSatisfyFlag(isConditionOK);
 //        List<String> imageArr = new ArrayList<>();
 //        imageArr.add("https://demo-1302848661.cos.ap-shenzhen-fsi.myqcloud.com/dear-test/web/.png160612221432475");
         //图片
-        body.setImgUrl(imageList);
+        postInfo.setImgUrl(imageList);
 
-        body.setAuditExplain(binding.etSearch.getText().toString());
-//        List<ProjectSiteOpinionBean> opinionList = new ArrayList<>();
-//        for (ProjectSiteOpinionBean opinionBean : listData) {
-//            opinionList.add(opinionBean);
-//        }
-        body.setPsAuditItemDetailParamsList(listData);
+//        body.setAuditExplain(binding.etSearch.getText().toString());
+        List<ProjectSiteOpinionBean> opinionList = new ArrayList<>();
+        for (ProjectSiteOpinionBean opinionBean : listData) {
+            opinionList.add(opinionBean);
+        }
+        postInfo.setPsAuditItemDetailParamsList(listData);
 
-        String str = GsonUtil.objectToString(body);
+        String str = GsonUtil.objectToString(postInfo);
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; " +
                 "charset=utf-8"), str);
 
@@ -375,6 +309,39 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
     }
 
     /**
+     * 完成现场勘察和安全排查
+     */
+    private void confirmCheckInfo() {
+        postInfoDialog = new ProjectCheckConfirmDialog(getActivity(), detailProjectData, new OnConfirmDialogListenerImpl() {
+            @Override
+            public void onPickImageClick() {
+                activity.openAlbum(BaseTabActivity.FIRST);
+            }
+
+
+            @Override
+            public void onCommitSiteExplorationInfo(PostSiteExploreInfo data) {
+                postInfo = data;
+                activity.checkPhotoAndFileUpLoad(CommonUtils.getFilePath(photoList));
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+                photoList.remove(position);
+            }
+        });
+        postInfoDialog.show();
+        postInfoDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                postInfoDialog = null;
+                photoList.clear();
+            }
+        });
+
+    }
+
+    /**
      * 切换radioButton状态
      *
      * @param button    组件
@@ -405,12 +372,17 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
     public void onPhotoSelected(ArrayList<Uri> dataList) {
         photoList.clear();
         photoList.addAll(dataList);
-        imageDataList.clear();
-        imageDataList.addAll(CommonUtils.getFilePath(photoList));
-        imageAdapter.refreshData();
+        LogUtils.showLog("setPhotoList=" + photoList.size());
+        postInfoDialog.setPhotoList(dataList);
 
-        binding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
-        binding.tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
+//        photoList.clear();
+//        photoList.addAll(dataList);
+//        imageDataList.clear();
+//        imageDataList.addAll(CommonUtils.getFilePath(photoList));
+//        imageAdapter.refreshData();
+//
+//        binding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
+//        binding.tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
 
     }
 
@@ -422,27 +394,6 @@ public class SiteExplorationFragment extends BaseDataBindingFragment<FragmentWor
         }
     }
 
-    @Override
-    public void onKeyboardOpened(int height) {
-//        LogUtils.showLog("keyboardHeight=" + height);
-//        binding.viewEmptyBottom.setVisibility(View.GONE);
-//        keyboardHeight = height- ScreenUtils.dip2px(getContext(), 150);
-//        setGuideBottomHeight(height);
-//        binding.nsvContent.fullScroll(NestedScrollView.FOCUS_DOWN);
-
-//        binding.etSearch.setCursorVisible(true);
-//        binding.etSearch.requestFocus();
-//        binding.etSearch.setFocusable(true);//获得焦点
-//        binding.etSearch.setFocusableInTouchMode(true);//获得焦点
-    }
-
-    @Override
-    public void onKeyboardClosed() {
-//        LogUtils.showLog("onKeyboardClosed");
-//        binding.viewEmptyBottom.setVisibility(View.VISIBLE);
-//        setGuideBottomHeight(0);
-//        binding.nsvContent.fullScroll(NestedScrollView.FOCUS_DOWN);
-    }
 
     private int keyboardHeight;
 

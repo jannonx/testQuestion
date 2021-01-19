@@ -4,6 +4,7 @@ package com.guyuan.dear.focus.projectsite.type;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.produce.bean.ContractStatusType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.io.Serializable;
 
@@ -126,7 +127,7 @@ public enum SiteProjectSatisfyType implements Serializable {
      * @return
      */
     public boolean isJudgingCondition() {
-//        LogUtils.showLog("isJudgingCondition=" + this.getDes());
+        LogUtils.showLog("isJudgingCondition=" + this.getDes());
         return this != SiteProjectSatisfyType.TYPE_UNKNOWN;
     }
 

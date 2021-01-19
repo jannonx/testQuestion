@@ -28,6 +28,16 @@ public class OnConfirmDialogListenerImpl implements OnConfirmDialogListener {
     }
 
     @Override
+    public void onCommitSiteExplorationInfo(PostSiteExploreInfo data) {
+
+    }
+
+    @Override
+    public void onCommitCheckSafeInfo(PostSiteExploreInfo data) {
+
+    }
+
+    @Override
     public void onDeleteClick(int position) {
 
     }
