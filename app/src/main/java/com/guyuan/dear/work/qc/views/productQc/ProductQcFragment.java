@@ -230,6 +230,8 @@ public class ProductQcFragment extends BaseMvvmFragment<FragmentProductQcBinding
                     @Override
                     public void onSubmit(boolean success) {
                         if (success) {
+                            //拉到顶端
+                            getViewDataBinding().fragmentProductQcScrollerView.fullScroll(View.FOCUS_UP);
                             //跳转到我的申请详情并刷新
                             FragmentActivity activity = getActivity();
                             if (activity instanceof QcHomeActivity) {
