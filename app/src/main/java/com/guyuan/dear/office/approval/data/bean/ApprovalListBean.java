@@ -1,5 +1,8 @@
 package com.guyuan.dear.office.approval.data.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
@@ -9,7 +12,7 @@ import java.util.List;
  * @company : 固远（深圳）信息技术有限公司
  **/
 
-public class ApprovalListBean {
+public class ApprovalListBean implements Parcelable{
 
     private int pageNum;
     private int pageSize;
@@ -18,6 +21,42 @@ public class ApprovalListBean {
     private String updateTime;
 
     private List<ContentBean> content;
+
+    protected ApprovalListBean(Parcel in) {
+        pageNum = in.readInt();
+        pageSize = in.readInt();
+        totalPages = in.readInt();
+        totalSize = in.readInt();
+        updateTime = in.readString();
+        content = in.createTypedArrayList(ContentBean.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(pageNum);
+        dest.writeInt(pageSize);
+        dest.writeInt(totalPages);
+        dest.writeInt(totalSize);
+        dest.writeString(updateTime);
+        dest.writeTypedList(content);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<ApprovalListBean> CREATOR = new Creator<ApprovalListBean>() {
+        @Override
+        public ApprovalListBean createFromParcel(Parcel in) {
+            return new ApprovalListBean(in);
+        }
+
+        @Override
+        public ApprovalListBean[] newArray(int size) {
+            return new ApprovalListBean[size];
+        }
+    };
 
     public int getPageNum() {
         return pageNum;
@@ -67,7 +106,7 @@ public class ApprovalListBean {
         this.content = content;
     }
 
-    public static class ContentBean {
+    public static class ContentBean implements Parcelable {
         private int arType;               //审批类型
         private int businessId;           //业务id
         private String businessName;      //业务名称
@@ -76,6 +115,46 @@ public class ApprovalListBean {
         private int id;                   //主键
         private int status;               //状态 0.审批中 1.已同意 2.已拒绝
         private boolean isApproval=false;       //是否是待审批列表
+
+        protected ContentBean(Parcel in) {
+            arType = in.readInt();
+            businessId = in.readInt();
+            businessName = in.readString();
+            createName = in.readString();
+            createTime = in.readString();
+            id = in.readInt();
+            status = in.readInt();
+            isApproval = in.readByte() != 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(arType);
+            dest.writeInt(businessId);
+            dest.writeString(businessName);
+            dest.writeString(createName);
+            dest.writeString(createTime);
+            dest.writeInt(id);
+            dest.writeInt(status);
+            dest.writeByte((byte) (isApproval ? 1 : 0));
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        public static final Creator<ContentBean> CREATOR = new Creator<ContentBean>() {
+            @Override
+            public ContentBean createFromParcel(Parcel in) {
+                return new ContentBean(in);
+            }
+
+            @Override
+            public ContentBean[] newArray(int size) {
+                return new ContentBean[size];
+            }
+        };
 
         public boolean isApproval() {
             return isApproval;

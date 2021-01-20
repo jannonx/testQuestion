@@ -20,6 +20,7 @@ public class MatterProjectBean {
     private String projectCode;              //项目编号
     private String projectName;              //项目名称
     private String projectPerson;            //项目总负责人
+    private int stopStatus;                  //0.正常 1.暂停 2.被激活 3审批中
 
     public int getId() {
         return id;
@@ -51,5 +52,13 @@ public class MatterProjectBean {
 
     public void setProjectPerson(String projectPerson) {
         this.projectPerson = projectPerson;
+    }
+
+    public int getStopStatus() {
+        return stopStatus;
+    }
+
+    public void setStopStatus(int stopStatus) {
+        this.stopStatus = stopStatus;
     }
 }

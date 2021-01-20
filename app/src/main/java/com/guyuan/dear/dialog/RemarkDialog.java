@@ -36,21 +36,23 @@ public class RemarkDialog extends BottomSheetDialog {
     private OnDialogClickListener clickListener;
     private DialogRemarkBinding viewBinding;
     private String title;
+    private String tip;
 
     public RemarkDialog(@NonNull Context context, @StyleRes int theme, Activity activity) {
         super(context, R.style.BottomSheetDialog);
         this.activity = activity;
     }
 
-    public RemarkDialog(Activity activity, String title, OnDialogClickListener clickListener) {
+    public RemarkDialog(Activity activity, String title, String tip, OnDialogClickListener clickListener) {
         this(activity, 0, activity);
         this.clickListener = clickListener;
         this.title = title;
+        this.tip = tip;
     }
 
 
-    public static void show(Activity activity, String title, OnDialogClickListener clickListener) {
-        RemarkDialog customerDialog = new RemarkDialog(activity, title, clickListener);
+    public static void show(Activity activity, String title, String tip, OnDialogClickListener clickListener) {
+        RemarkDialog customerDialog = new RemarkDialog(activity, title, tip, clickListener);
         customerDialog.show();
     }
 
@@ -63,6 +65,10 @@ public class RemarkDialog extends BottomSheetDialog {
         mDialogBehavior.setPeekHeight(getWindowHeight());
         initListener();
         viewBinding.tvTitle.setText(title);
+        if (!TextUtils.isEmpty(tip)) {
+            viewBinding.contractTipTv.setVisibility(View.VISIBLE);
+            viewBinding.contractTipTv.setText(tip);
+        }
         viewBinding.tvCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,7 +132,7 @@ public class RemarkDialog extends BottomSheetDialog {
                 //已输入字数
                 int enteredWords = wordLimitNum - editable.length();
                 //TextView显示剩余字数
-                viewBinding.tvNumber.setText((wordLimitNum - enteredWords )+ "/240");
+                viewBinding.tvNumber.setText((wordLimitNum - enteredWords) + "/240");
             }
         });
     }

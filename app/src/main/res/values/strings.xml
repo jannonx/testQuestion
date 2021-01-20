@@ -490,4 +490,8 @@
 
     <!--消息-->
     <string name="message_no_data_tip">暂无消息</string>
+
+    <!--审批-->
+    <string name="contract_pause_tip">暂停：申请一旦通过系统审核，系统会自动终止所有进行中的任务！项目状态将显示暂停中标识。请谨慎操作！</string>
+    <string name="contract_restart_tip">重启：申请一但通过系统审核，系统会重启所有暂停中的任务，该项目将状态恢复正常，请确认好信息无误的情况下提交重启申请，谢谢！</string>
 </resources>
