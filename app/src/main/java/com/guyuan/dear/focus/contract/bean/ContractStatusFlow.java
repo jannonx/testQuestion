@@ -48,7 +48,7 @@ public class ContractStatusFlow {
         } else if (contractErrors == 2) {
             for (ContractPrgKnot prgKnot : knotList) {
                 if (prgKnot.getStatus() == ContractPrgKnot.KNOT_STATUS_PROCESSING&&prgKnot.getName().equals("质保金")) {
-                    prgKnot.setWarning("质保金异常");
+                    prgKnot.setWarning("无法回款");
                 }
             }
         }
