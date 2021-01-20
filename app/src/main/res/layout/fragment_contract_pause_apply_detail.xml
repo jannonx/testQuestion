@@ -192,7 +192,7 @@
                 android:paddingBottom="@dimen/dp_12"
                 android:textSize="@dimen/sp_14"
                 android:textColor="#F04864"
-                android:text="重启：申请一旦通过系统审核，系统会终止所有进行中的任务，项目状态将显示暂停中标识，请谨慎操作。"/>
+                android:text="@string/contract_pause_tip"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 app:displayRestartApplySubmitButton="@{fragment_my_apply_detail_vm.detailBean.approveResult}"

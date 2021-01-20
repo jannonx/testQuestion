@@ -199,7 +199,7 @@
                 android:paddingBottom="@dimen/dp_12"
                 android:textSize="@dimen/sp_14"
                 android:textColor="#F04864"
-                android:text="重启：申请一旦通过系统审核，系统会重启所有暂停中的任务，该项目将恢复正常状态，请确认好信息无误的情况下提交重启申请。"/>
+                android:text="@string/contract_restart_tip"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:onClick="@{fragment_restart_contract_vm.onClickSubmit}"

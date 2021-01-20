@@ -213,6 +213,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="请谨慎操作"
@@ -223,11 +224,9 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/dp_12"
-                android:paddingRight="@dimen/dp_12"
-                android:paddingBottom="@dimen/dp_12"
+                android:padding="@dimen/dp_12"
                 android:textSize="@dimen/sp_14"
-                android:textColor="@color/color_grey_999999"
+                android:textColor="#F04864"
                 app:showApplyBottomHint="@{fragment_pause_contract_vm.applyType}"/>
 
             <androidx.appcompat.widget.AppCompatButton

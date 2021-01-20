@@ -9,6 +9,7 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.guyuan.dear.R;
 import com.guyuan.dear.customizeview.itemDecorator.AddCopyListItemDecorator;
 import com.guyuan.dear.customizeview.itemDecorator.AddSendListItemDecorator;
 import com.guyuan.dear.work.contractPause.adapters.AddCopyListAdapter;
@@ -79,9 +80,9 @@ public class ContractApplyBindingAdapter {
     @BindingAdapter("showApplyBottomHint")
     public static void showApplyBottomHint(AppCompatTextView view,int type){
         if (ContractApplyBean.APPLY_TYPE_PAUSE == type) {
-            view.setText("暂停：申请一旦通过系统审核，系统会终止所有进行中的任务。");
+            view.setText(view.getContext().getString(R.string.contract_pause_tip));
         } else if (ContractApplyBean.APPLY_TYPE_RESUME == type) {
-            view.setText("重启：申请一旦通过系统审核，系统会重启所有暂停的任务。");
+            view.setText(view.getContext().getString(R.string.contract_restart_tip));
         }
     }
 
