@@ -140,16 +140,17 @@
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginTop="@dimen/dp_12"
-                    android:background="@drawable/shape_rect_grey_ededed_stroke_round_corner_transparent">
+                    android:background="@drawable/shape_rect_grey_ededed_stroke_round_corner_transparent"
+                    android:orientation="vertical">
+
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/fragment_pause_contract_edt_input_detail_reason"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
                         android:background="@color/white"
                         android:hint="请输入描述"
-                        android:layout_margin="2dp"
                         android:padding="@dimen/dp_12"
                         android:text="@={fragment_resubmit_pause_contract_vm.description}"
                         android:textColorHint="#CCCCCC"
@@ -158,12 +159,12 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
                         android:background="@color/white"
                         android:gravity="end"
                         android:paddingRight="@dimen/dp_12"
                         android:paddingBottom="@dimen/dp_12"
                         android:text="0/240"
-                        android:layout_margin="2dp"
                         android:textColor="#999999"
                         android:textSize="@dimen/sp_17"
                         app:showInputCount="@{fragment_resubmit_pause_contract_vm.description}" />
@@ -243,15 +244,14 @@
                 android:text="请谨慎操作"
                 android:textColor="#F04864"
                 android:textSize="@dimen/sp_16"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/dp_12"
-                android:paddingRight="@dimen/dp_12"
-                android:paddingBottom="@dimen/dp_12"
-                android:text="重启：申请一旦通过系统审核，系统会终止所有进行中的任务，项目状态将显示暂停中标识，请谨慎操作。"
+                android:padding="@dimen/dp_12"
+                android:text="@string/contract_pause_tip"
                 android:textColor="#F04864"
                 android:textSize="@dimen/sp_14" />
 
