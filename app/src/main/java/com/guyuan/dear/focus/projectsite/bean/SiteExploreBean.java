@@ -12,7 +12,6 @@ import com.guyuan.dear.focus.projectsite.type.InstallDebugSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
 import com.guyuan.dear.focus.projectsite.type.SiteProjectSatisfyType;
 import com.guyuan.dear.utils.CalenderUtils;
-import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.StringUtils;
 
 import java.io.Serializable;
@@ -300,7 +299,7 @@ public class SiteExploreBean implements Serializable {
     }
 
     public InstallDebugSatisfyType getInstallDebugSatisfyType() {
-        LogUtils.showLog("status=" + status);
+//        LogUtils.showLog("status=" + status);
         return InstallDebugSatisfyType.toType(this);
     }
 

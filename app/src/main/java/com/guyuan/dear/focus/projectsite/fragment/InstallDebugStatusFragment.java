@@ -3,6 +3,10 @@ package com.guyuan.dear.focus.projectsite.fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
+
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.guyuan.dear.R;
@@ -21,9 +25,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 
 /**
@@ -36,7 +37,7 @@ public class InstallDebugStatusFragment extends BaseDataBindingFragment<Fragment
 
     public static final String TAG = InstallDebugStatusFragment.class.getSimpleName();
     private SiteExploreBean detailProjectData;
-    private LinearLayoutCompat llTempEmptyView;
+    private FrameLayout llTempEmptyView;
     private BaseRecyclerViewAdapter adapter;
     private List<ProjectSiteStatusBean> listData = new ArrayList<>();
 
@@ -93,7 +94,7 @@ public class InstallDebugStatusFragment extends BaseDataBindingFragment<Fragment
      */
     private void addContentFooterView() {
         View footerView = LayoutInflater.from(getContext()).inflate(R.layout.coordinator_empty_view, binding.baseRecycleView, false);
-        llTempEmptyView = footerView.findViewById(R.id.ll_empty_view);
+        llTempEmptyView = footerView.findViewById(R.id.layout_root_view);
         footerView.findViewById(R.id.tv_refresh).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

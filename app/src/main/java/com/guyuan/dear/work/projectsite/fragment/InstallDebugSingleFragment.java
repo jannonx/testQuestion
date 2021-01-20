@@ -10,7 +10,6 @@ import android.text.TextWatcher;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -21,9 +20,7 @@ import com.guyuan.dear.base.activity.BaseTabActivity;
 import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.databinding.FragmentWrokInstallationDebugDetailSingleBinding;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
-
 import com.guyuan.dear.focus.projectsite.bean.InstallDebugBean;
-
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.type.InstallDebugSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
@@ -31,7 +28,6 @@ import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.utils.GsonUtil;
 import com.guyuan.dear.utils.LogUtils;
-import com.guyuan.dear.utils.ScreenUtils;
 import com.guyuan.dear.utils.ToastUtils;
 import com.guyuan.dear.utils.keyboardlayout.OnKeyboardStateListener;
 import com.guyuan.dear.work.projectsite.activity.WorkInstallDebugSingleActivity;
@@ -231,16 +227,13 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
             }
         });
 
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                //设置ScrollView滚动到顶部
-                int perHeight = ScreenUtils.dip2px(getContext(), 200);
-                LogUtils.showLog("perHeight=" + perHeight);
-                setGuideBottomHeight(perHeight);
-                binding.nsvContent.fullScroll(NestedScrollView.FOCUS_DOWN);
-            }
-        });
+//        handler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                //设置ScrollView滚动到顶部
+
+//            }
+//        });
     }
 
     /**
@@ -301,10 +294,17 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
     @Override
     public void onKeyboardOpened(int height) {
         LogUtils.showLog("keyboardHeight=" + height);
-//        binding.viewEmptyBottom.setVisibility(View.GONE);
+        binding.vGuideBottom.setVisibility(View.VISIBLE);
 //        keyboardHeight = height- ScreenUtils.dip2px(getContext(), 150);
 //        setGuideBottomHeight(height);
 //        binding.nsvContent.fullScroll(NestedScrollView.FOCUS_DOWN);
+        binding.nsvContent.post(new Runnable() {
+            @Override
+            public void run() {
+                binding.nsvContent.fullScroll(View.FOCUS_DOWN);//滚到底部
+//                nestedScrollView.fullScroll(ScrollView.FOCUS_UP);//滚到顶部
+            }
+        });
 
 //        binding.etSearch.setCursorVisible(true);
 //        binding.etSearch.requestFocus();
@@ -315,7 +315,7 @@ public class InstallDebugSingleFragment extends BaseDataBindingFragment<Fragment
     @Override
     public void onKeyboardClosed() {
         LogUtils.showLog("onKeyboardClosed");
-//        binding.viewEmptyBottom.setVisibility(View.VISIBLE);
+        binding.vGuideBottom.setVisibility(View.GONE);
 //        setGuideBottomHeight(0);
 //        binding.nsvContent.fullScroll(NestedScrollView.FOCUS_DOWN);
     }

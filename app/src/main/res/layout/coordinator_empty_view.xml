@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/layout_root_view"
         android:layout_width="match_parent"
+        tools:background="@color/color_green_2fc25b"
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.LinearLayoutCompat

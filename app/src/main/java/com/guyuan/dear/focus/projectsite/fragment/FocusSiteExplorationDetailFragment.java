@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -21,7 +22,6 @@ import com.guyuan.dear.base.api.BaseApiService;
 import com.guyuan.dear.base.api.UploadBean;
 import com.guyuan.dear.databinding.FragmentFocusSiteExplorationBinding;
 import com.guyuan.dear.focus.client.adapter.TabAdapter;
-import com.guyuan.dear.focus.produce.bean.ContractStatusType;
 import com.guyuan.dear.focus.projectsite.activity.FocusSiteExplorationDetailActivity;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.data.FocusProjectSiteViewModel;
@@ -251,9 +251,6 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
         data.setProjectReportType(detailProjectData.getProjectReportType());
         data.setModuleType(detailProjectData.getModuleType());
 
-        if (data.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
-            CommonUtils.getContractStatus(BaseApiService.PROJECT_ID, String.valueOf(data.getProjectId()));
-        }
 
         detailProjectData = data;
         //设置审核数据
@@ -444,6 +441,9 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      * @param detailProjectData 数据
      */
     private void setSiteExplorationData(SiteExploreBean detailProjectData) {
+        if (detailProjectData.getSiteProjectSatisfyType() == SiteProjectSatisfyType.TYPE_CONTRACT_PAUSE){
+            CommonUtils.getContractStatus(BaseApiService.PROJECT_ID, String.valueOf(detailProjectData.getProjectId()));
+        }
         binding.tvProjectName.setText(detailProjectData.getProjectName());
 
         binding.tvProjectCode.setText(detailProjectData.getProjectNum());
@@ -467,6 +467,10 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      * @param detailProjectData 数据
      */
     private void setCheckGoodsData(SiteExploreBean detailProjectData) {
+        if (detailProjectData.getCheckGoodsSatisfyType() == CheckGoodsSatisfyType.TYPE_CONTRACT_PAUSE){
+            CommonUtils.getContractStatus(BaseApiService.PROJECT_ID, String.valueOf(detailProjectData.getProjectId()));
+        }
+
         binding.tvProjectName.setText(detailProjectData.getSendGoodsNumber());
         binding.labelProjectCode.setText("项目名称：");
         binding.tvProjectCode.setText(detailProjectData.getProjectName());
@@ -496,6 +500,9 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      * @param detailProjectData 数据
      */
     private void setCheckSafeData(SiteExploreBean detailProjectData) {
+        if (detailProjectData.getCheckSafeSatisfyType() == CheckSafeSatisfyType.TYPE_CONTRACT_PAUSE){
+            CommonUtils.getContractStatus(BaseApiService.PROJECT_ID, String.valueOf(detailProjectData.getProjectId()));
+        }
 
         binding.tvProjectName.setText(detailProjectData.getProjectName());
 
@@ -521,6 +528,10 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      */
     private void setInstallationDebugData(SiteExploreBean detailProjectData) {
         LogUtils.showLog("onCommitInstallationDebugInfo...setInstallationDebugData");
+        if (detailProjectData.getInstallDebugSatisfyType() == InstallDebugSatisfyType.TYPE_CONTRACT_PAUSE){
+            CommonUtils.getContractStatus(BaseApiService.PROJECT_ID, String.valueOf(detailProjectData.getProjectId()));
+        }
+
         binding.tvProjectName.setText(detailProjectData.getProjectName());
 
         binding.labelProjectCode.setText("施工：");
@@ -557,6 +568,9 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
      * @param detailProjectData 数据
      */
     private void setCustomerAcceptanceData(SiteExploreBean detailProjectData) {
+        if (detailProjectData.getCustomerAcceptanceSatisfyType() == CustomerAcceptanceSatisfyType.TYPE_CONTRACT_PAUSE){
+            CommonUtils.getContractStatus(BaseApiService.PROJECT_ID, String.valueOf(detailProjectData.getProjectId()));
+        }
 
         binding.tvProjectName.setText(detailProjectData.getCustomerName());
 
@@ -642,6 +656,23 @@ public class FocusSiteExplorationDetailFragment extends BaseDataBindingFragment<
                 }
             }
         }
+
+        binding.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                binding.viewPager.reMeasureCurrentPage(  binding.viewPager.getCurrentItem());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
 

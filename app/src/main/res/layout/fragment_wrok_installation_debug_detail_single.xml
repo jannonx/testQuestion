@@ -18,7 +18,6 @@
                 android:id="@+id/cl_order_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 app:layout_scrollFlags="scroll|enterAlways">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -263,13 +262,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image_recycleView" />
 
-<!--                <View-->
-<!--                    android:id="@+id/v_guide_bottom"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/view_empty_bottom"-->
-<!--                    tools:background="@color/colorPrimaryDark" />-->
+                <View
+                    android:id="@+id/v_guide_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_150"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/view_empty_bottom"
+                    tools:background="@color/colorPrimaryDark" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

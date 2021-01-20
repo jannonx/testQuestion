@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.guyuan.dear.R;
-import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import com.guyuan.dear.customizeview.flowlayout.FlowLayout;
 import com.guyuan.dear.customizeview.flowlayout.TagAdapter;
 import com.guyuan.dear.customizeview.flowlayout.TagFlowLayout;
@@ -18,6 +17,7 @@ import com.guyuan.dear.utils.GlideUtils;
 
 import java.util.List;
 
+import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
@@ -80,6 +80,6 @@ public class InstallDebugStatusAdapter extends BaseRecyclerAdapter<ProjectSiteSt
 
         //处在我的工作，列表数大于2条，且最后一条，显示空白块
         View viewEmptyBottom = holder.getView(R.id.view_empty_bottom);
-        viewEmptyBottom.setVisibility(listData.size() > 2 && listData.size() - 1 == position ? View.VISIBLE : View.GONE);
+        viewEmptyBottom.setVisibility(listData.size() >= 2 && listData.size() - 1 == position ? View.VISIBLE : View.GONE);
     }
 }
