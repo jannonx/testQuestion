@@ -27,7 +27,6 @@ import com.guyuan.dear.work.qc.views.productQc.ProductQcViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -156,7 +155,7 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
         viewModel.onClickSelectQcApproach.postValue(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(getViewModel().getSelectedMaterial().getValue()==null){
+                if (getViewModel().getSelectedMaterial().getValue() == null) {
                     showToastTip("请先选择原材料。");
                     return;
                 }
@@ -188,6 +187,7 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
                     @Override
                     public void onSubmit(boolean success) {
                         if (success) {
+                            getViewDataBinding().fragmentMaterialQcScrollerView.fullScroll(View.FOCUS_UP);
                             //跳转到我的申请详情并刷新
                             FragmentActivity activity = getActivity();
                             if (activity instanceof QcHomeActivity) {
@@ -232,8 +232,6 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
 
 
     }
-
-
 
 
     private void showDialogSelectMaterial() {
@@ -335,7 +333,7 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
                 return new OnSelectItemClickListener<BaseProjectBean>() {
                     @Override
                     public void onItemClick(BaseProjectBean bean, int position) {
-                        if(bean.getStatus()==1){
+                        if (bean.getStatus() == 1) {
                             showToastTip("该合同已经暂停，不能被选中。");
                             return;
                         }
@@ -348,8 +346,8 @@ public class MaterialQcFragment extends BaseMvvmFragment<FragmentMaterialQcBindi
             public String getItemLabel(BaseProjectBean item) {
                 String projectName = item.getProjectName();
                 int status = item.getStatus();
-                if(status == 1){
-                    projectName = projectName+"(暂停中)";
+                if (status == 1) {
+                    projectName = projectName + "(暂停中)";
                 }
                 return projectName;
             }

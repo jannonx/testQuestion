@@ -11,7 +11,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -125,7 +126,6 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#F5F7FA"
                 android:orientation="vertical"
                 android:padding="@dimen/dp_12">
 
@@ -137,29 +137,39 @@
                     android:textSize="@dimen/sp_14"
                     android:textStyle="bold" />
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/fragment_pause_contract_edt_input_detail_reason"
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:layout_marginTop="@dimen/dp_12"
-                    android:background="@color/white"
-                    android:hint="请输入描述"
-                    android:padding="@dimen/dp_12"
-                    android:text="@={fragment_resubmit_pause_contract_vm.description}"
-                    android:textColorHint="#CCCCCC"
-                    android:textSize="@dimen/sp_17" />
+                    android:background="@drawable/shape_rect_grey_ededed_stroke_round_corner_transparent">
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/fragment_pause_contract_edt_input_detail_reason"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:hint="请输入描述"
+                        android:layout_margin="2dp"
+                        android:padding="@dimen/dp_12"
+                        android:text="@={fragment_resubmit_pause_contract_vm.description}"
+                        android:textColorHint="#CCCCCC"
+                        android:textSize="@dimen/sp_17" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:gravity="end"
-                    android:paddingRight="@dimen/dp_12"
-                    android:paddingBottom="@dimen/dp_12"
-                    android:text="0/240"
-                    android:textColor="#999999"
-                    android:textSize="@dimen/sp_17"
-                    app:showInputCount="@{fragment_resubmit_pause_contract_vm.description}" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="end"
+                        android:paddingRight="@dimen/dp_12"
+                        android:paddingBottom="@dimen/dp_12"
+                        android:text="0/240"
+                        android:layout_margin="2dp"
+                        android:textColor="#999999"
+                        android:textSize="@dimen/sp_17"
+                        app:showInputCount="@{fragment_resubmit_pause_contract_vm.description}" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat

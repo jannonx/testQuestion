@@ -15,6 +15,10 @@ public interface OnConfirmDialogListener {
 
     void onCommitCustomerAcceptanceInfo(PostCustomerAcceptanceInfo data);
 
+    void onCommitSiteExplorationInfo(PostSiteExploreInfo data);
+
+    void onCommitCheckSafeInfo(PostSiteExploreInfo data);
+
     /**
      * 删除图片position监听
      *

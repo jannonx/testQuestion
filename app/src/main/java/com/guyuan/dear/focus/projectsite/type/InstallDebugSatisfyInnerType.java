@@ -65,18 +65,20 @@ public enum InstallDebugSatisfyInnerType implements Serializable {
      * 根据枚举code获取实例，用于switch
      */
     public static InstallDebugSatisfyInnerType toType(InstallDebugBean bean) {
-        if (bean == null || bean.getStopStatus() == null) return TYPE_UNKNOWN;
+//        if (bean == null || bean.getStopStatus() == null) return TYPE_UNKNOWN;
         //合同状态：1.合同正常，2.合同暂停，显示合同暂停状态
-        if (bean.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
-            return TYPE_CONTRACT_PAUSE;
-        } else {
-            for (InstallDebugSatisfyInnerType type : InstallDebugSatisfyInnerType.values()) {
-                if (type.getCode() == bean.getStatus()) {
-                    return type;
+
+        for (InstallDebugSatisfyInnerType type : InstallDebugSatisfyInnerType.values()) {
+            if (type.getCode() == bean.getStatus()) {
+                if (TYPE_INSTALL_COMPLETE.getCode() != bean.getStatus()
+                        && bean.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
+                    return TYPE_CONTRACT_PAUSE;
                 }
+                return type;
             }
-            return TYPE_UNKNOWN;
         }
+        return TYPE_UNKNOWN;
+
     }
 
 //    public static String toText(int type) {

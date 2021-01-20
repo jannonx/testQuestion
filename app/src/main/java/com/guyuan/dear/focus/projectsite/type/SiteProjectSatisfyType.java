@@ -4,6 +4,7 @@ package com.guyuan.dear.focus.projectsite.type;
 import com.guyuan.dear.R;
 import com.guyuan.dear.focus.produce.bean.ContractStatusType;
 import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
+import com.guyuan.dear.utils.LogUtils;
 
 import java.io.Serializable;
 
@@ -85,34 +86,34 @@ public enum SiteProjectSatisfyType implements Serializable {
 
         if (bean == null || bean.getStopStatus() == null) return TYPE_UNKNOWN;
         //合同状态：1.合同正常，2.合同暂停，显示合同暂停状态
-        if (bean.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
+        if (bean.getStatus() != 30 && bean.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
             return TYPE_CONTRACT_PAUSE;
-        } else {
-            //除了合同暂停，显示正常生产状态
-            //勘查状态
-            if (bean.getSatisfyFlag() == 0) {
-                if (bean.getStatus() == 10) {
-                    return SiteProjectSatisfyType.TYPE_EXPLORE_WAIT;
-                } else if (bean.getStatus() == 20) {
-                    return SiteProjectSatisfyType.TYPE_EXPLORE_ING;
-                }
-            } else if (bean.getStatus() == 30) {
-                //勘查完成，条件状态
-                if (bean.getModuleType() == null) return SiteProjectSatisfyType.TYPE_UNKNOWN;
-                //我的关注
-                if (FunctionModuleType.TYPE_FOCUS == bean.getModuleType()) {
-                    if (bean.getSatisfyFlag() == 1) {
-                        return SiteProjectSatisfyType.TYPE_CONDITION_OK;
-                    } else if (bean.getSatisfyFlag() == 2) {
-                        return SiteProjectSatisfyType.TYPE_CONDITION_EXCEPTION;
-                    }
-                    //我的工作
-                } else if (FunctionModuleType.TYPE_WORK == bean.getModuleType()) {
-                    return SiteProjectSatisfyType.TYPE_EXPLORE_COMPLETE;
-                }
-            }
-            return SiteProjectSatisfyType.TYPE_UNKNOWN;
         }
+        //除了合同暂停，显示正常生产状态
+        //勘查状态
+        if (bean.getSatisfyFlag() == 0) {
+            if (bean.getStatus() == 10) {
+                return SiteProjectSatisfyType.TYPE_EXPLORE_WAIT;
+            } else if (bean.getStatus() == 20) {
+                return SiteProjectSatisfyType.TYPE_EXPLORE_ING;
+            }
+        } else if (bean.getStatus() == 30) {
+            //勘查完成，条件状态
+            if (bean.getModuleType() == null) return SiteProjectSatisfyType.TYPE_UNKNOWN;
+            //我的关注
+            if (FunctionModuleType.TYPE_FOCUS == bean.getModuleType()) {
+                if (bean.getSatisfyFlag() == 1) {
+                    return SiteProjectSatisfyType.TYPE_CONDITION_OK;
+                } else if (bean.getSatisfyFlag() == 2) {
+                    return SiteProjectSatisfyType.TYPE_CONDITION_EXCEPTION;
+                }
+                //我的工作
+            } else if (FunctionModuleType.TYPE_WORK == bean.getModuleType()) {
+                return SiteProjectSatisfyType.TYPE_EXPLORE_COMPLETE;
+            }
+        }
+        return SiteProjectSatisfyType.TYPE_UNKNOWN;
+
     }
 
     public static String toText(int type) {
@@ -126,7 +127,7 @@ public enum SiteProjectSatisfyType implements Serializable {
      * @return
      */
     public boolean isJudgingCondition() {
-//        LogUtils.showLog("isJudgingCondition=" + this.getDes());
+        LogUtils.showLog("isJudgingCondition=" + this.getDes());
         return this != SiteProjectSatisfyType.TYPE_UNKNOWN;
     }
 

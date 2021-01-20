@@ -130,7 +130,7 @@ public class CheckGoodsFragment extends BaseDataBindingFragment<FragmentWorkChec
                             "charset=utf-8"), str);
                     viewModel.postCheckGoodInfo(requestBody);
                 } else {
-                    //确认庆典
+                    //确认清点
                     confirmCheckGoods();
                 }
 

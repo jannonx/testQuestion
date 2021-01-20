@@ -74,29 +74,29 @@ public enum CheckGoodsSatisfyType implements Serializable {
     }
 
     public static CheckGoodsSatisfyType toType(SiteExploreBean bean) {
-        if (bean == null || bean.getStopStatus() == null) return TYPE_GOODS_CHECK_UNKNOWN;
         //合同状态：1.合同正常，2.合同暂停，显示合同暂停状态
-        if (bean.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
+        if (bean.getCheckStatus() != 30
+                && bean.getContractStatusType() == ContractStatusType.TYPE_CONTRACT_PAUSE) {
             return TYPE_CONTRACT_PAUSE;
-        } else {
-            //运输状态
-            if (bean.getTransportStatus() == 10) {
-                return CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING;
-            } else if (bean.getTransportStatus() == 20) {
-                //完成检测，检测结果
-                if (bean.getCheckStatus() == 30) {
-                    if (bean.getIsException() == 0) {
-                        return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_OK;
-                    } else if (bean.getIsException() == 1) {
-                        return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_EXCEPTION;
-                    }
-                } else {
-                    //运输到达，检测状态
-                    return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING;
-                }
-            }
-            return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_UNKNOWN;
         }
+        //运输状态
+        if (bean.getTransportStatus() == 10) {
+            return CheckGoodsSatisfyType.TYPE_GOODS_TRANSPORTING;
+        } else if (bean.getTransportStatus() == 20) {
+            //完成检测，检测结果
+            if (bean.getCheckStatus() == 30) {
+                if (bean.getIsException() == 0) {
+                    return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_OK;
+                } else if (bean.getIsException() == 1) {
+                    return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_EXCEPTION;
+                }
+            } else {
+                //运输到达，检测状态
+                return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_ING;
+            }
+        }
+        return CheckGoodsSatisfyType.TYPE_GOODS_CHECK_UNKNOWN;
+
     }
 
     /**

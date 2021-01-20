@@ -27,9 +27,9 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.databinding.DialogWorkProjectCheckBinding;
 import com.guyuan.dear.focus.projectsite.adapter.ContentImageViewAdapter;
 import com.guyuan.dear.focus.projectsite.bean.CheckGoodsBean;
+import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.focus.projectsite.type.CheckGoodsSatisfyType;
 import com.guyuan.dear.focus.projectsite.type.ProjectReportType;
-import com.guyuan.dear.focus.projectsite.bean.SiteExploreBean;
 import com.guyuan.dear.utils.CommonUtils;
 import com.guyuan.dear.utils.LogUtils;
 import com.guyuan.dear.utils.ToastUtils;
@@ -37,6 +37,7 @@ import com.guyuan.dear.work.projectsite.bean.OnConfirmDialogListener;
 import com.guyuan.dear.work.projectsite.bean.PostCheckInfo;
 import com.guyuan.dear.work.projectsite.bean.PostCustomerAcceptanceInfo;
 import com.guyuan.dear.work.projectsite.bean.PostInstallationDebugInfo;
+import com.guyuan.dear.work.projectsite.bean.PostSiteExploreInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,11 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
     // 是否异常，0正常，1异常
     private static final int TYPE_CHECK_OK = 0;
     private static final int TYPE_CHECK_EXCEPTION = 1;
+
+    // （现场勘察 安全排查）是否满足条件、是否安全(1:是，2:否)
+    private static final int TYPE_CONDITION_OK = 1;
+    private static final int TYPE_CONDITION_EXCEPTION = 2;
+    private int isConditionOK = 1;
 
     private Activity activity;
     private OnConfirmDialogListener clickListener;
@@ -134,11 +140,13 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
                 switch (checkId) {
                     case R.id.rb_right:
                         isCheckOK = TYPE_CHECK_OK;
+                        isConditionOK=TYPE_CONDITION_OK;
                         switchRadioButton(viewBinding.rbRight, true);
                         switchRadioButton(viewBinding.rbWrong, false);
                         break;
                     case R.id.rb_wrong:
                         isCheckOK = TYPE_CHECK_EXCEPTION;
+                        isConditionOK=TYPE_CONDITION_EXCEPTION;
                         switchRadioButton(viewBinding.rbRight, false);
                         switchRadioButton(viewBinding.rbWrong, true);
                         break;
@@ -147,7 +155,13 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
                 }
             }
         });
-
+        viewBinding.tvGoodsException.setText(
+                ProjectReportType.TYPE_SITE_EXPLORATION == siteExploreBean.getProjectReportType() ? "满足条件" :
+                        ProjectReportType.TYPE_CHECK_SAFE == siteExploreBean.getProjectReportType() ? "存在安全隐患" : "货物状态");
+        viewBinding.rbRight.setText(ProjectReportType.TYPE_SITE_EXPLORATION == siteExploreBean.getProjectReportType()
+                || ProjectReportType.TYPE_CHECK_SAFE == siteExploreBean.getProjectReportType() ? "是" : "正常");
+        viewBinding.rbWrong.setText(ProjectReportType.TYPE_SITE_EXPLORATION == siteExploreBean.getProjectReportType()
+                || ProjectReportType.TYPE_CHECK_SAFE == siteExploreBean.getProjectReportType() ? "否" : "异常");
         viewBinding.clStatus.setVisibility(ProjectReportType.TYPE_INSTALLATION_DEBUG == siteExploreBean.getProjectReportType() ||
                 ProjectReportType.TYPE_CUSTOMER_ACCEPTANCE == siteExploreBean.getProjectReportType() ? View.GONE : View.VISIBLE);
 
@@ -217,14 +231,15 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
         switch (siteExploreBean.getProjectReportType()) {
             ///现场勘查报告
             case TYPE_SITE_EXPLORATION:
+                ///安全排查报告
+            case TYPE_CHECK_SAFE:
+                commitSiteExplorationInfo();
                 break;
             ///货物清点报告
             case TYPE_CHECK_GOODS:
                 commitCheckGoodsInfo();
                 break;
-            ///安全排查报告
-            case TYPE_CHECK_SAFE:
-                break;
+
             ///安装调试报告
             case TYPE_INSTALLATION_DEBUG:
                 commitInstallDebugInfo();
@@ -239,6 +254,7 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
 
 
     }
+
 
     /**
      * 设置回调图片
@@ -261,6 +277,30 @@ public class ProjectCheckConfirmDialog extends BottomSheetDialog implements View
         viewBinding.labelDocument.setText(imageDataList.size() == 0 ? "拍照电子档" : "电子文件档");
         viewBinding.tvTip.setText(imageDataList.size() == 0 ? "点击此框上传资料拍照照片" : "点击图片，放大查看");
     }
+
+    private void commitSiteExplorationInfo() {
+        PostSiteExploreInfo body = new PostSiteExploreInfo();
+        body.setId(siteExploreBean.getId());
+        body.setSatisfyFlag(isConditionOK);
+        body.setAuditExplain(viewBinding.etSearch.getText().toString());
+
+        if (clickListener != null) {
+            clickListener.onCommitSiteExplorationInfo(body);
+            dismiss();
+        }
+    }
+
+//    private void commitCheckSafeInfo() {
+//        PostSiteExploreInfo body = new PostSiteExploreInfo();
+//        body.setId(siteExploreBean.getId());
+//        body.setSatisfyFlag(isCheckOK);
+//        body.setAuditExplain(viewBinding.etSearch.getText().toString());
+//
+//        if (clickListener != null) {
+//            clickListener.onCommitCheckSafeInfo(body);
+//            dismiss();
+//        }
+//    }
 
     private void commitCustomerAcceptanceInfo() {
         PostCustomerAcceptanceInfo body = new PostCustomerAcceptanceInfo();
