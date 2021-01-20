@@ -235,7 +235,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
                 @Override
                 public void onClick(View v) {
                     status = ApprovalActivity.REJECT;
-                    RemarkDialog.show(getActivity(), "请输入驳回备注", remarkSimpleListener);
+                    RemarkDialog.show(getActivity(), "请输入驳回备注", "",remarkSimpleListener);
                 }
             });
 
@@ -243,7 +243,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
                 @Override
                 public void onClick(View v) {
                     status = ApprovalActivity.ACCEPT;
-                    RemarkDialog.show(getActivity(), "请输入通过备注", remarkSimpleListener);
+                    RemarkDialog.show(getActivity(), "请输入通过备注", "",remarkSimpleListener);
                 }
             });
         }
@@ -321,7 +321,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
                 @Override
                 public void onClick(View v) {
                     status = ApprovalActivity.REJECT;
-                    RemarkDialog.show(getActivity(), "请输入驳回备注", remarkComplexListener);
+                    RemarkDialog.show(getActivity(), "请输入驳回备注","", remarkComplexListener);
                 }
             });
 
@@ -329,7 +329,7 @@ public class FocusProduceDetailFragment extends BaseDataBindingFragment<Fragment
                 @Override
                 public void onClick(View v) {
                     status = ApprovalActivity.ACCEPT;
-                    RemarkDialog.show(getActivity(), "请输入通过备注", remarkComplexListener);
+                    RemarkDialog.show(getActivity(), "请输入通过备注","", remarkComplexListener);
                 }
             });
         }

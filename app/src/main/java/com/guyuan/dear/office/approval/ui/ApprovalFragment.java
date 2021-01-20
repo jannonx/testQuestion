@@ -57,7 +57,7 @@ public class ApprovalFragment extends BaseListSearchFragment<ApprovalListBean.Co
             public void onItemClick(View view, int i) {
                 if (listData.size() > 0) {
                     ApprovalListBean.ContentBean bean = listData.get(i);
-                    ApprovalDetailActivity.start(getContext(), bean.getBusinessName(), bean.getArType(), type, bean.getId(),bean.getBusinessId());
+                    ApprovalDetailActivity.start(getContext(), type, bean);
                 }
             }
         });

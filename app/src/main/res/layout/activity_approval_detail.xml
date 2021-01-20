@@ -20,6 +20,53 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="12dp"
+            android:paddingTop="16dp"
+            android:paddingRight="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/approval_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
+                    android:maxLength="20"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="小江提交的申请小江提交的申请小江提交的申请小江提交的申请小江提交的申请小江提交的申请" />
+
+
+                <TextView
+                    android:id="@+id/approval_tag_tv"
+                    style="@style/TextTagBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="已审批" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/approval_time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="#999999"
+                android:textSize="12sp"
+                tools:text="2020-11-11 12:23:33" />
+
+            <View
+                style="@style/DivideLine"
+                android:layout_marginTop="12dp" />
+
+        </LinearLayout>
+
         <FrameLayout
             android:id="@+id/approval_detail_container"
             android:layout_width="match_parent"

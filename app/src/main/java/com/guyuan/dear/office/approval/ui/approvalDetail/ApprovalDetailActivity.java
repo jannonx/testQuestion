@@ -13,21 +13,19 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.busbean.ApprovalBusBean;
 import com.guyuan.dear.databinding.ActivityApprovalDetailBinding;
 import com.guyuan.dear.dialog.RemarkDialog;
-import com.guyuan.dear.dialog.TipDialogFragment;
 import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
-import com.guyuan.dear.focus.contract.bean.DetailContractBean;
-import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailFragment;
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailFragment;
+import com.guyuan.dear.office.approval.adapter.ApprovalBindingAdapter;
 import com.guyuan.dear.office.approval.data.ApprovalViewModel;
+import com.guyuan.dear.office.approval.data.bean.ApprovalListBean;
 import com.guyuan.dear.office.approval.data.bean.ApprovalTypeBean;
 import com.guyuan.dear.office.approval.ui.ApprovalActivity;
 import com.guyuan.dear.office.approval.ui.ApprovalFragment;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.views.applyDetail.ContractPauseApplyDetailFragment;
 import com.guyuan.dear.work.contractRestart.view.detail.ContractRestartDetailFragment;
-import com.taobao.accs.IAliyunAppReceiver;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -44,55 +42,61 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
         ActivityApprovalDetailBinding, ApprovalViewModel> implements ApprovalViewModel.ApprovalViewModelListener {
 
     public static final String TAG = "ApprovalDetailActivity";
-    public static final String APPROVAL_TYPE = "approvalType";
-    public static final String BUSINESS_ID = "businessId";
+    public static final String APPROVAL = "approval";
 
     private Fragment fragment;
-    private int type;
-    private int approvalType;
+    private int type;//审批类型
+    private int approvalType;//审批状态：已审批，未审批
     private View.OnClickListener commitListener;
     private View.OnClickListener rejectListener;
+    private ApprovalListBean.ContentBean approvalBean;
 
-
-    public static void start(Context context, String title, int type, int approvalType, int id, int businessId) {
+    public static void start(Context context, int type, ApprovalListBean.ContentBean bean) {
         Intent starter = new Intent(context, ApprovalDetailActivity.class);
-        starter.putExtra(ConstantValue.KEY_TITLE, title);
         starter.putExtra(ConstantValue.KEY_TYPE, type);
-        starter.putExtra(APPROVAL_TYPE, approvalType);
-        starter.putExtra(ConstantValue.KEY_ID, id);
-        starter.putExtra(BUSINESS_ID, businessId);
+        starter.putExtra(APPROVAL, bean);
         context.startActivity(starter);
     }
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
         setViewModelToFragment(false);
-        String title = getIntent().getStringExtra(ConstantValue.KEY_TITLE);
-        setTitleCenter(title);
-        type = getIntent().getIntExtra(ConstantValue.KEY_TYPE, 0);
-        approvalType = getIntent().getIntExtra(APPROVAL_TYPE, approvalType);
-        if (approvalType == ApprovalFragment.APPROVAL) {
-            binding.approvalLl.setVisibility(View.VISIBLE);
+        approvalType = getIntent().getIntExtra(ConstantValue.KEY_TYPE, 0);
+        approvalBean = getIntent().getParcelableExtra(APPROVAL);
+        if (approvalBean != null) {
+            setTitleCenter(approvalBean.getBusinessName() + "详情");
+            type = approvalBean.getArType();
+            if (approvalType == ApprovalFragment.APPROVAL) {
+                binding.approvalLl.setVisibility(View.VISIBLE);
+                ApprovalBindingAdapter.setApprovalStatus(binding.approvalTagTv, approvalBean.getStatus(), true);
+            } else {
+                ApprovalBindingAdapter.setApprovalStatus(binding.approvalTagTv, approvalBean.getStatus(), false);
+            }
+            setContent();
         }
-        setContent();
+
     }
 
     private void setContent() {
+        binding.approvalTitleTv.setText(approvalBean.getCreateName() + "提交的" + approvalBean.getBusinessName());
+        binding.approvalTimeTv.setText(approvalBean.getCreateTime());
         viewModel.setListener(this);
         switch (type) {
             //合同审批
             //case ApprovalTypeBean.CONTRACT_EXAMINE_MASTER_TYPE:
             case ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_STOP_TYPE:
             case ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_RESTART_TYPE:
-                int id = getIntent().getIntExtra(ConstantValue.KEY_ID, 0);
-                fragment = getContractDetailFragment(type, id);
+                int id = approvalBean.getId();
+//                fragment = getContractDetailFragment(type, id);
+                fragment = ApprovalDetailFragment.getInstance(type, id);
+                String tip = getContractTip(type);
                 binding.approvalAcceptTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        TipDialogFragment tipDialogFragment = TipDialogFragment.newInstance("", "确定通过吗?");
-                        tipDialogFragment.setOnSureListener(new TipDialogFragment.OnSure() {
+
+                        RemarkDialog.show(ApprovalDetailActivity.this, "通过原因", "", new RemarkDialog.OnDialogClickListener() {
                             @Override
-                            public void sure() {
+                            public void onCommitInfo(ExecuteRequestBody data) {
                                 DetailContractApplyBean detailContractApplyBean = null;
                                 if (fragment instanceof ContractPauseApplyDetailFragment) {
                                     detailContractApplyBean = ((ContractPauseApplyDetailFragment) fragment).getContractBean();
@@ -100,30 +104,11 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                                     detailContractApplyBean = ((ContractRestartDetailFragment) fragment).getContractBean();
                                 }
                                 if (detailContractApplyBean != null) {
-                                    viewModel.contractApproval(type, (int) detailContractApplyBean.getContractId(), "", ApprovalActivity.ACCEPT);
-                                } else {
-                                    showToastTip("数据错误");
+                                    viewModel.contractApproval(type, (int) detailContractApplyBean.getContractId(), data.getReason(), ApprovalActivity.ACCEPT);
                                 }
-                                tipDialogFragment.dismiss();
                             }
-                        })
-                                .setOnCancelListener(new TipDialogFragment.OnCancel() {
-                                    @Override
-                                    public void cancel() {
-                                        tipDialogFragment.dismiss();
-                                    }
-                                }).show(fragmentManager, TipDialogFragment.TAG);
+                        });
 
-//                        if (bean != null) {
-//                            RemarkDialog.show(ApprovalDetailActivity.this, "请输入驳回备注", new RemarkDialog.OnDialogClickListener() {
-//                                @Override
-//                                public void onCommitInfo(ExecuteRequestBody data) {
-//                                    viewModel.contractApproval(type, (int) bean.getContractId(), remarks, ApprovalActivity.ACCEPT);
-//                                }
-//                            });
-//                        } else {
-//                            showToastTip("获取数据失败,无法提交");
-//                        }
                     }
                 });
 
@@ -131,7 +116,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                 binding.approvalRejectTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        RemarkDialog.show(ApprovalDetailActivity.this, "请输入驳回备注", new RemarkDialog.OnDialogClickListener() {
+                        RemarkDialog.show(ApprovalDetailActivity.this, "驳回原因", tip, new RemarkDialog.OnDialogClickListener() {
                             @Override
                             public void onCommitInfo(ExecuteRequestBody data) {
                                 DetailContractApplyBean detailContractApplyBean = null;
@@ -176,28 +161,42 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
             case ApprovalTypeBean.PAUSE_PLAN:
             case ApprovalTypeBean.ACTIVATE_PLAN:
                 FocusProduceBean data = new FocusProduceBean();
-                int businessID = getIntent().getIntExtra(BUSINESS_ID, 0);
+                int businessID = approvalBean.getBusinessId();
                 data.setPlanId(businessID);
                 data.setStopStatus(0);
                 fragment = FocusProduceDetailFragment.newInstance(data, false);
                 binding.approvalAcceptTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        FocusProduceBean focusProduceBean = ((FocusProduceDetailFragment) fragment).getProduceBean();
-                        TipDialogFragment tipDialogFragment = TipDialogFragment.newInstance("", "确定通过吗?");
-                        tipDialogFragment.setOnSureListener(new TipDialogFragment.OnSure() {
-                            @Override
-                            public void sure() {
-                                viewModel.produceApproval((int) focusProduceBean.getPlanId(), 2, "", ApprovalActivity.ACCEPT, getProduceApprovalType(type));
-                                tipDialogFragment.dismiss();
-                            }
-                        })
-                                .setOnCancelListener(new TipDialogFragment.OnCancel() {
-                                    @Override
-                                    public void cancel() {
-                                        tipDialogFragment.dismiss();
-                                    }
-                                }).show(fragmentManager, TipDialogFragment.TAG);
+//                        FocusProduceBean focusProduceBean = ((FocusProduceDetailFragment) fragment).getProduceBean();
+//                        TipDialogFragment tipDialogFragment = TipDialogFragment.newInstance("", "确定通过吗?");
+//                        tipDialogFragment.setOnSureListener(new TipDialogFragment.OnSure() {
+//                            @Override
+//                            public void sure() {
+//                                viewModel.produceApproval((int) focusProduceBean.getPlanId(), 2, "", ApprovalActivity.ACCEPT, getProduceApprovalType(type));
+//                                tipDialogFragment.dismiss();
+//                            }
+//                        })
+//                                .setOnCancelListener(new TipDialogFragment.OnCancel() {
+//                                    @Override
+//                                    public void cancel() {
+//                                        tipDialogFragment.dismiss();
+//                                    }
+//                                }).show(fragmentManager, TipDialogFragment.TAG);
+
+                        FocusProduceBean bean = ((FocusProduceDetailFragment) fragment).getProduceBean();
+                        if (bean != null) {
+                            RemarkDialog.show(ApprovalDetailActivity.this, "通过原因", "", new RemarkDialog.OnDialogClickListener() {
+                                @Override
+                                public void onCommitInfo(ExecuteRequestBody data) {
+                                    //businessType传2:子生产计划
+                                    viewModel.produceApproval((int) bean.getPlanId(), 2, data.getReason(), ApprovalActivity.REJECT, getProduceApprovalType(type));
+                                }
+                            });
+                        } else {
+                            showToastTip("获取数据失败,无法提交");
+                        }
+
                     }
                 });
 
@@ -207,7 +206,7 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
                     public void onClick(View v) {
                         FocusProduceBean bean = ((FocusProduceDetailFragment) fragment).getProduceBean();
                         if (bean != null) {
-                            RemarkDialog.show(ApprovalDetailActivity.this, "请输入驳回备注", new RemarkDialog.OnDialogClickListener() {
+                            RemarkDialog.show(ApprovalDetailActivity.this, "驳回原因", "", new RemarkDialog.OnDialogClickListener() {
                                 @Override
                                 public void onCommitInfo(ExecuteRequestBody data) {
                                     //businessType传2:子生产计划
@@ -287,6 +286,17 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
         return contractDetailFragment;
     }
 
+
+    private String getContractTip(int type) {
+
+        if (type == ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_STOP_TYPE) {
+            return getString(R.string.contract_pause_tip);
+        } else if (type == ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_RESTART_TYPE) {
+            return getString(R.string.contract_restart_tip);
+        } else {
+            return "";
+        }
+    }
 
     @Override
     protected int getLayoutID() {
