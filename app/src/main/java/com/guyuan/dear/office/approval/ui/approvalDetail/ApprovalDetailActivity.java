@@ -13,10 +13,7 @@ import com.guyuan.dear.R;
 import com.guyuan.dear.busbean.ApprovalBusBean;
 import com.guyuan.dear.databinding.ActivityApprovalDetailBinding;
 import com.guyuan.dear.dialog.RemarkDialog;
-import com.guyuan.dear.dialog.TipDialogFragment;
 import com.guyuan.dear.focus.contract.bean.DetailContractApplyBean;
-import com.guyuan.dear.focus.contract.bean.DetailContractBean;
-import com.guyuan.dear.focus.contract.view.contractDetail.ContractDetailFragment;
 import com.guyuan.dear.focus.produce.bean.ExecuteRequestBody;
 import com.guyuan.dear.focus.produce.bean.FocusProduceBean;
 import com.guyuan.dear.focus.produce.fragment.FocusProduceDetailFragment;
@@ -29,7 +26,6 @@ import com.guyuan.dear.office.approval.ui.ApprovalFragment;
 import com.guyuan.dear.utils.ConstantValue;
 import com.guyuan.dear.work.contractPause.views.applyDetail.ContractPauseApplyDetailFragment;
 import com.guyuan.dear.work.contractRestart.view.detail.ContractRestartDetailFragment;
-import com.taobao.accs.IAliyunAppReceiver;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -91,7 +87,8 @@ public class ApprovalDetailActivity extends BaseToolbarActivity<
             case ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_STOP_TYPE:
             case ApprovalTypeBean.CONTRACT_EXAMINE_STATUS_RESTART_TYPE:
                 int id = approvalBean.getId();
-                fragment = getContractDetailFragment(type, id);
+//                fragment = getContractDetailFragment(type, id);
+                fragment = ApprovalDetailFragment.getInstance(type, id);
                 String tip = getContractTip(type);
                 binding.approvalAcceptTv.setOnClickListener(new View.OnClickListener() {
                     @Override
