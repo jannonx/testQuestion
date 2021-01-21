@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-  <item android:drawable="@drawable/bg_blue_0050b4_corner_20" android:state_checked="true" />
-  <item android:drawable="@drawable/bg_white_f5f5f5_corner_20" android:state_checked="false" />
-</selector>

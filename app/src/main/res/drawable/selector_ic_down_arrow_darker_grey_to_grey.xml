@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/ic_keyboard_arrow_down_grey_9e9e9e_24dp" android:state_pressed="true" />
-    <item android:drawable="@drawable/ic_keyboard_arrow_down_grey_757b83_24dp" />
-</selector>

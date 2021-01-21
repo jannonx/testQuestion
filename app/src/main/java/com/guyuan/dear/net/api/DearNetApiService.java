@@ -4,9 +4,7 @@ import com.example.httplibrary.bean.BasePageReqBean;
 import com.example.httplibrary.bean.BasePageResultBean;
 import com.example.httplibrary.bean.ResultBean;
 import com.guyuan.dear.base.api.BaseApiService;
-import com.guyuan.dear.focus.contract.bean.ContractBean;
 import com.guyuan.dear.net.reqBean.ClockInRqBody;
-import com.guyuan.dear.net.reqBean.ContractApplyBody;
 import com.guyuan.dear.net.reqBean.SearchRqBody;
 import com.guyuan.dear.net.reqBean.SubmitQcReportBody;
 import com.guyuan.dear.net.resultBeans.NetBaseContractInfo;
@@ -38,7 +36,6 @@ import com.guyuan.dear.net.resultBeans.NetVerifyFlowBean;
 import java.util.List;
 
 import io.reactivex.Observable;
-import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -88,14 +85,7 @@ public interface DearNetApiService extends BaseApiService {
     @GET("base/config/sysInit")
     Observable<ResultBean<NetServerParam>> getNetServerParams();
 
-    /**
-     * 提交合同申请（暂停、重启）
-     *
-     * @param body
-     * @return
-     */
-    @POST("base/tContractInfo/StopOrStartContractFlow")
-    Observable<ResultBean<Integer>> submitContractApply(@Body ContractApplyBody body);
+
 
     /**
      * 获取合同概况
@@ -129,11 +119,7 @@ public interface DearNetApiService extends BaseApiService {
     @POST("base/tContractInfo/findContractStatusPage")
     Observable<ResultBean<BasePageResultBean<NetContractInfo>>> getContractApplyList(@Body SearchRqBody body);
 
-    /**
-     * 获取合同异常列表或全部列表
-     */
-    @POST("base/tContractInfo/findContractSearch")
-    Observable<ResultBean<ContractBean>> getExceptionOrTotalContractList(@Body RequestBody body);
+
 
 
 

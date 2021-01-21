@@ -1,7 +1,5 @@
 package com.guyuan.dear.base.bean;
 
-import com.sun.jna.platform.win32.Winspool;
-
 /**
  * @author : 唐力
  * @description :

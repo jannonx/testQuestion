@@ -6,73 +6,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".home.MainActivity">
+        android:orientation="vertical">
 
-        <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/white" />
+        <include
+            android:id="@+id/ll_home_bar"
+            layout="@layout/home_bar" />
 
-        <RelativeLayout
-            android:id="@+id/bottom_layout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/white"
-            android:elevation="1dp">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_12"
+            android:background="@color/color_red_F04864"
+            android:padding="6dp"
+            android:text="选择题"
+            android:textColor="@color/color_black_333333"
+            android:textSize="@dimen/sp_16"
 
-            <RadioGroup
-                android:id="@+id/rd_group"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <RadioButton
-                    android:id="@+id/home_focus_rb"
-                    style="@style/tab_menu_item"
-                    android:drawableTop="@drawable/tab_menu_home"
-                    android:text="我的关注"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-
-                <RadioButton
-                    android:id="@+id/home_work_rb"
-                    style="@style/tab_menu_item"
-                    android:drawableTop="@drawable/tab_menu_discovery"
-                    android:text="我的工作"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-
-                <RadioButton
-                    android:id="@+id/home_office_rb"
-                    style="@style/tab_menu_item"
-                    android:drawableTop="@drawable/tab_menu_pay"
-                    android:text="掌上办公"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-
-                <RadioButton
-                    android:id="@+id/home_analysis_rb"
-                    style="@style/tab_menu_item"
-                    android:drawableTop="@drawable/tab_menu_smart"
-                    android:text="智能分析"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-
-                <RadioButton
-                    android:id="@+id/home_mine_rb"
-                    style="@style/tab_menu_item"
-                    android:drawableTop="@drawable/tab_menu_me"
-                    android:text="我的"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-
-            </RadioGroup>
-        </RelativeLayout>
+            />
 
     </LinearLayout>
 </layout>

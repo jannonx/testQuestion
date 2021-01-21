@@ -6,16 +6,11 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.baidu.mapapi.SDKInitializer;
 import com.example.httplibrary.BaseApiServiceModule;
 import com.example.mvvmlibrary.app.BaseApplication;
 import com.guyuan.dear.BuildConfig;
-import com.guyuan.dear.R;
-import com.guyuan.dear.home.MainActivity;
 import com.guyuan.dear.service.BackService;
-import com.guyuan.dear.umeng.UmengInitializer;
-import com.guyuan.dear.umeng.UmengMsgDecoder;
-import com.guyuan.dear.utils.BuglyUtil;
+import com.guyuan.dear.service.BackTaskType;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -58,31 +53,19 @@ public class DearApplication extends BaseApplication {
         WindowManager winManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         winManager.getDefaultDisplay().getMetrics(displayMetrics);
 
-        BuglyUtil.initBugly(this, BuildConfig.BUILD_TYPE, BuildConfig.VERSION_NAME,
-                BuildConfig.APPLICATION_ID, BuildConfig.BUGLY_APP_ID, R.mipmap.updata_bg,
-                R.layout.dialog_version_update, MainActivity.class);
+//        BuglyUtil.initBugly(this, BuildConfig.BUILD_TYPE, BuildConfig.VERSION_NAME,
+//                BuildConfig.APPLICATION_ID, BuildConfig.BUGLY_APP_ID, R.mipmap.updata_bg,
+//                R.layout.dialog_version_update, MainActivity.class);
 
-//        //初始化萤石云平台
-//        EZOpenSDK.showSDKLog(true);
-//        EZOpenSDK.enableP2P(false);
-//        EZOpenSDK.initLib(this, EzApiService.APP_KEY);
-//        //保证萤石云口令有效可用。
-//        EzNetManager.getInstance().makeSureAccessTokenValid();
 
         //初始化友盟推送
-        initUmengPush();
+//        initUmengPush();
         //初始化百度地图
-        SDKInitializer.initialize(this);
+//        SDKInitializer.initialize(this);
     }
 
     private void initUmengPush() {
-        UmengInitializer.getInstance().init(this, BuildConfig.UMENG_APP_KEY, BuildConfig.UMENG_MSG_SECRET,
-                new UmengInitializer.CustomMessageCallback() {
-                    @Override
-                    public void onGetCustomMsg(String jsong) {
-                        UmengMsgDecoder.getInstance().decodeMsg(jsong);
-                    }
-                });
+
     }
 
     /**
@@ -105,12 +88,12 @@ public class DearApplication extends BaseApplication {
     /**
      * 开启后台服务器 (采用IntentService服务形式加载)
      *
-     * @param action (动作)
+     * @param type   (类型)
      * @param bundle (绑定数据)
      */
-    public void startBackService(String action, Bundle bundle) {
+    public void startBackService(BackTaskType type, Bundle bundle) {
         Intent backService = new Intent(this, BackService.class);
-        backService.setAction(action);
+        backService.setAction(type.getDes());
         if (bundle != null) {
             backService.putExtras(bundle);
         }

@@ -5,13 +5,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.appcompat.widget.LinearLayoutCompat;
-import androidx.databinding.ViewDataBinding;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.example.mvvmlibrary.base.adapter.BaseDBRecycleAdapter;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.base.fragment.BaseDataBindingFragment;
@@ -23,6 +16,12 @@ import com.guyuan.dear.utils.LogUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import tl.com.easy_recycleview_library.BaseRecyclerView;
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewAdapter;
 import tl.com.easy_recycleview_library.interfaces.OnLoadMoreListener;
@@ -44,7 +43,7 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
     protected MaterialButton tv_refresh;
     protected AppCompatTextView tvTepRefresh;
     protected LinearLayoutCompat llEmptyView, llTepEmptyView;
-    private int emptyImgID = R.drawable.ic_svg_no_data;
+//    private int emptyImgID = R.drawable.ic_svg_no_data;
     private String emptyTip = ConstantValue.TIP_NO_DATA;
 
     public final int LOAD_MORE = 0X0100;
@@ -72,7 +71,7 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
         list_container = rootView.findViewById(R.id.list_container);
         recycleView = rootView.findViewById(R.id.base_recycleView);
         empty_view = rootView.findViewById(R.id.empty_view);
-        no_data_iv = rootView.findViewById(R.id.no_data_iv);
+//        no_data_iv = rootView.findViewById(R.id.no_data_iv);
         tv_empty = rootView.findViewById(R.id.tv_empty);
         tv_refresh = rootView.findViewById(R.id.tv_refresh);
         llEmptyView = rootView.findViewById(R.id.ll_empty_view);
@@ -184,13 +183,13 @@ public abstract class BaseListFragment<T, VB extends ViewDataBinding, VM extends
     }
 
     protected void setEmptyView() {
-        no_data_iv.setImageResource(emptyImgID);
+//        no_data_iv.setImageResource(emptyImgID);
         tv_empty.setText(emptyTip);
     }
 
-    protected void setEmptyResByID(int resID) {
-        this.emptyImgID = resID;
-    }
+//    protected void setEmptyResByID(int resID) {
+//        this.emptyImgID = resID;
+//    }
 
     protected void setEmpty_tip(String tip) {
         this.emptyTip = tip;

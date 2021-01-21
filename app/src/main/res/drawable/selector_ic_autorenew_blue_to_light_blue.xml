@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/ic_svg_autorenew_blue_2a82e4" android:state_pressed="true" />
-    <item android:drawable="@drawable/ic_svg_autorenew_blue_0e458c" />
-</selector>

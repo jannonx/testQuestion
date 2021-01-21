@@ -96,17 +96,7 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-    <style name="device_rb" parent="Widget.AppCompat.CompoundButton.RadioButton">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/color_white_ffffff</item>
-        <item name="android:textSize">@dimen/sp_18</item>
-        <item name="android:padding">@dimen/dp_5</item>
-        <item name="android:layout_margin">@dimen/dp_5</item>
-        <item name="android:background">@drawable/device_selector</item>
-        <item name="android:button">@null</item>
-    </style>
+
 
     <style name="device_number_text_style">
         <item name="android:textSize">@dimen/sp_16</item>
@@ -131,31 +121,6 @@
     </style>
 
 
-    <style name="tab_menu_item">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:button">@null</item>
-        <item name="android:gravity">center</item>
-        <item name="android:paddingTop">6dp</item>
-        <item name="android:textColor">@drawable/tab_menu_text</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:drawablePadding">2dp</item>
-        <item name="android:background">@color/transparent</item>
-
-    </style>
-
-
-    <!--顶部导航栏tab统一基本样式-->
-    <style name="tab_menu_top" parent="Widget.AppCompat.TextView">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/color_white_ffffff</item>
-        <item name="android:textSize">@dimen/sp_18</item>
-        <item name="android:padding">@dimen/dp_5</item>
-        <item name="android:background">@drawable/device_unselect</item>
-    </style>
 
     <!--顶部导航栏容器统一基本样式-->
     <style name="tab_top_layout" parent="Widget.Design.TabLayout">
@@ -208,50 +173,8 @@
     </style>
 
 
-    <!--textview中-->
-    <style name="item_text_normal" parent="Widget.AppCompat.TextView">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">50dp</item>
-        <item name="android:paddingLeft">5dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:background">@drawable/shape_gray_stroke_default</item>
-        <item name="android:textColor">@color/color_grey_9e9e9e</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <!--textview小-->
-    <style name="item_text_small" parent="Widget.AppCompat.TextView">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:paddingLeft">5dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:background">@drawable/shape_gray_stroke_default</item>
-        <item name="android:textColor">@color/color_grey_9e9e9e</item>
-        <item name="android:textSize">13sp</item>
-    </style>
 
 
-    <style name="commit_btn" parent="Widget.AppCompat.TextView">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">49dp</item>
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="android:background">@drawable/bg_blue_0050b4_round</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_marginLeft">20dp</item>
-        <item name="android:layout_marginRight">20dp</item>
-        <item name="android:textColor">@color/color_white_ffffff</item>
-        <item name="android:layout_gravity">center_horizontal</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:text">提交</item>
-    </style>
-
-    <style name="btn_style_white_round_corner_black_text" parent="commit_btn">
-        <item name="android:background">@drawable/bg_white_ffffff_corner_50_grey_stroke_e5e5e5
-        </item>
-        <item name="android:textColor">#333333</item>
-    </style>
 
 
     <style name="card_text_title" parent="Widget.AppCompat.TextView">
@@ -287,16 +210,7 @@
         <item name="android:paddingEnd">@dimen/dp_12</item>
     </style>
 
-    <style name="iv_right_arrow_style">
-        <item name="android:layout_width">@dimen/dp_24</item>
-        <item name="android:layout_height">@dimen/dp_24</item>
-        <item name="android:layout_marginStart">@dimen/dp_4</item>
-        <item name="android:paddingTop">@dimen/dp_3</item>
-        <item name="android:paddingBottom">@dimen/dp_3</item>
-        <item name="android:layout_alignParentEnd">true</item>
-        <item name="android:layout_centerVertical">true</item>
-        <item name="android:src">@mipmap/ic_arrow_next</item>
-    </style>
+
 
     <style name="label_text_title" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
@@ -370,48 +284,6 @@
     </style>
 
 
-    <!--text选中取消样式-->
-    <style name="text_white_blue_check_style" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">12sp</item>
-        <item name="android:paddingTop">7dp</item>
-        <item name="android:paddingBottom">7dp</item>
-        <item name="android:paddingLeft">15dp</item>
-        <item name="android:paddingRight">15dp</item>
-        <item name="android:textColor">@color/color_selector_black_to_white</item>
-        <item name="android:background">@drawable/selector_shape_grey_to_blue_0050b4_round_corner
-        </item>
-    </style>
-
-    <!--输入框样式-->
-    <style name="edit_text_style" parent="Widget.AppCompat.EditText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">12dp</item>
-        <item name="android:paddingBottom">12dp</item>
-        <item name="android:paddingLeft">5dp</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:maxLength">240</item>
-        <item name="android:textColor">@color/color_black_333333</item>
-        <item name="android:background">@drawable/bg_white_solid_round_corner_4_dadada_stroke</item>
-    </style>
-
-    <style name="edit_view_text_style" parent="Widget.AppCompat.EditText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">@dimen/dp_8</item>
-        <item name="android:paddingBottom">@dimen/dp_8</item>
-        <item name="android:paddingLeft">@dimen/dp_12</item>
-        <item name="android:textSize">@dimen/sp_14</item>
-        <item name="android:textColor">@color/color_black_333333</item>
-        <item name="android:background">@drawable/bg_white_solid_round_corner_4_dadada_stroke</item>
-    </style>
-
-    <!--欢迎页主题-->
-    <style name="AppTheme.welcome" parent="AppTheme">
-        <item name="android:windowBackground">@mipmap/bg_splash</item>
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowNoTitle">true</item>
-    </style>
 
     <!-- ToolBar菜单样式 -->
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
@@ -499,15 +371,7 @@
         <item name="android:textSize">@dimen/sp_15</item>
     </style>
 
-    <style name="commit_button_style_1">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:layout_margin">2dp</item>
-        <item name="background">@drawable/bg_svg_button</item>
-        <item name="android:textColor">@color/color_white_ffffff</item>
-        <item name="android:textSize">@dimen/sp_17</item>
-    </style>
+
 
     <style name="text_style_tab_item_normal">
         <item name="android:textSize">@dimen/sp_16</item>
@@ -599,50 +463,9 @@
         <item name="android:textColor">#999999</item>
     </style>
 
-    <!--用文字表示不通过状态样式-->
-    <style name="TextNotPass" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">#FF6010</item>
-        <item name="android:paddingStart">4dp</item>
-        <item name="android:paddingEnd">4dp</item>
-        <item name="android:paddingTop">1.5dp</item>
-        <item name="android:paddingBottom">1.5dp</item>
-        <item name="android:background">@drawable/bg_not_pass</item>
-    </style>
-
-    <!--绿色文本tag样式-->
-    <style name="TextTagGreen" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">#00B578</item>
-        <item name="android:paddingStart">4dp</item>
-        <item name="android:paddingEnd">4dp</item>
-        <item name="android:paddingTop">1.5dp</item>
-        <item name="android:paddingBottom">1.5dp</item>
-        <item name="android:background">@drawable/bg_pass</item>
-    </style>
-
-    <!--蓝色文本tag样式-->
-    <style name="TextTagBlue" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">#1677FF</item>
-        <item name="android:paddingStart">4dp</item>
-        <item name="android:paddingEnd">4dp</item>
-        <item name="android:paddingTop">1.5dp</item>
-        <item name="android:paddingBottom">1.5dp</item>
-        <item name="android:background">@drawable/bg_assess</item>
-    </style>
 
 
-    <!--橙色文本tag样式-->
-    <style name="TextTagOrange" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">#FF6010</item>
-        <item name="android:paddingStart">4dp</item>
-        <item name="android:paddingEnd">4dp</item>
-        <item name="android:paddingTop">1.5dp</item>
-        <item name="android:paddingBottom">1.5dp</item>
-        <item name="android:background">@drawable/bg_tag_orange</item>
-    </style>
+
 
     <!--分割线-->
     <style name="DivideLine">
@@ -680,18 +503,7 @@
         <item name="backgroundTint">#0050B4</item>
     </style>
 
-    <style name="TextDate" parent="Widget.AppCompat.TextView">
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/dp_12</item>
-        <item name="android:background">@drawable/bg_white_corner_12</item>
-        <item name="android:drawableRight">@mipmap/arrow_head_down</item>
-        <item name="android:drawablePadding">8dp</item>
-        <item name="android:paddingStart">@dimen/dp_12</item>
-        <item name="android:paddingEnd">@dimen/dp_12</item>
-        <item name="android:paddingTop">4dp</item>
-        <item name="android:paddingBottom">4dp</item>
-    </style>
+
 
 
     <style name="CardViewCommon" parent="Widget.MaterialComponents.CardView">

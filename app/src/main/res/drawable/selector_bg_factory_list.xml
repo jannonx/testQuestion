@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/bg_svg_factory_list_blue_32c5ff" android:state_pressed="true" />
-    <item android:drawable="@drawable/bg_svg_factory_list_blue_32c5ff" android:state_selected="true" />
-    <item android:drawable="@drawable/bg_svg_factory_list_blue_32c5ff" android:state_checked="true" />
-    <item android:drawable="@drawable/bg_svg_factory_list_grey_d1d1d1" />
-</selector>

@@ -1,50 +1,17 @@
 package com.guyuan.dear.home;
 
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
+import android.Manifest;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RadioGroup;
 
 import com.example.mvvmlibrary.base.activity.BaseNoToolbarActivity;
-import com.example.mvvmlibrary.util.ActivityUtils;
 import com.guyuan.dear.R;
-import com.guyuan.dear.analyse.AnalyseFragment;
 import com.guyuan.dear.base.app.DearApplication;
-import com.guyuan.dear.base.bean.ContractStatusBean;
-import com.guyuan.dear.busbean.LoginBusBean;
-import com.guyuan.dear.busbean.MessageBusBean;
-import com.guyuan.dear.busbean.MessagePushBusBean;
-import com.guyuan.dear.busbean.MessageUnreadBusBean;
-import com.guyuan.dear.busbean.TokenBusBean;
-import com.guyuan.dear.customizeview.autoscrollrecyclerview.MessageBean;
 import com.guyuan.dear.databinding.ActivityMainBinding;
-import com.guyuan.dear.db.DearDbManager;
-import com.guyuan.dear.focus.FocusFragment;
 import com.guyuan.dear.home.data.MainViewModel;
-import com.guyuan.dear.login.data.bean.AppMenusBean;
-import com.guyuan.dear.login.data.bean.ChildrenBean;
-import com.guyuan.dear.login.data.bean.LoginBean;
-import com.guyuan.dear.mine.MineFragment;
-import com.guyuan.dear.office.OfficeFragment;
-import com.guyuan.dear.service.BackService;
-import com.guyuan.dear.utils.CommonUtils;
-import com.guyuan.dear.utils.ConstantValue;
-import com.guyuan.dear.work.WorkFragment;
-import com.guyuan.dear.work.produce.fragment.ContractPauseDialog;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import com.guyuan.dear.service.BackTaskType;
+import com.guyuan.dear.test.ExamActivity;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -55,25 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint;
  * @company: 固远（深圳）信息技术有限公司
  */
 @AndroidEntryPoint
-public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, MainViewModel> implements RadioGroup.OnCheckedChangeListener {
-
-    private Fragment currentFragment;
-    private FocusFragment focusFragment;
-    private WorkFragment workFragment;
-    private OfficeFragment officeFragment;
-    private AnalyseFragment analyseFragment;
-    private MineFragment mineFragment;
-    private List<Fragment> fragmentList = new ArrayList<>();
-    public static final String OPEN_TYPE = "open_type";
-    public static final int COMMON = 0x001;//自动登录进入首页
-    public static final int LOGIN = 0x002;//账号登录进入首页
-
-
-    public static void start(Context context, int openType) {
-        Intent starter = new Intent(context, MainActivity.class);
-        starter.putExtra(OPEN_TYPE, openType);
-        context.startActivity(starter);
-    }
+public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, MainViewModel> {
 
 
     @Override
@@ -83,238 +32,17 @@ public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, Mai
 
     @Override
     protected void initFragment(Bundle savedInstanceState) {
-        if (!EventBus.getDefault().isRegistered(this)) {
-            EventBus.getDefault().register(this);
-        }
-        startBackService();
-        setListeners();
-        //在子线程更新人员最新清单 by leo
-        DearDbManager.getInstance().initiateStaffUpdate();
-    }
-
-    //回到首页拉去一次消息数据
-    @Override
-    protected void onResume() {
-        super.onResume();
-        DearApplication.getInstance().startBackService(BackService.NOT_HANDLE_CONTROL_MESSAGE, null);
-        DearApplication.getInstance().startBackService(BackService.UNREAD_OFFICE, null);
-        DearApplication.getInstance().startBackService(BackService.UNREAD_CONTROL_MESSAGE, null);
-    }
-
-
-    private void initFragments() {
-        //根据菜单加载对应的fragment
-        LoginBean loginBean = CommonUtils.getLoginInfo();
-        if (loginBean != null && loginBean.getAppMenus() != null) {
-            for (AppMenusBean menusBean : loginBean.getAppMenus()) {
-                String url = menusBean.getUrl();
-                String title = menusBean.getTitle();
-                ArrayList<ChildrenBean> menuList = new ArrayList<>();
-                if (menusBean.getChildren() != null) {
-                    menuList.addAll(menusBean.getChildren());
-                }
-                switch (url) {
-                    case ConstantValue.FOCUS://我的关注
-                        binding.homeFocusRb.setVisibility(View.VISIBLE);
-                        binding.homeFocusRb.setText(title);
-                        focusFragment = FocusFragment.newInstance(title, menuList);
-                        fragmentList.add(focusFragment);
-                        break;
-
-                    case ConstantValue.WORK://我的工作
-                        binding.homeWorkRb.setVisibility(View.VISIBLE);
-                        binding.homeWorkRb.setText(title);
-                        workFragment = WorkFragment.newInstance(title, menuList);
-                        fragmentList.add(workFragment);
-                        CommonUtils.saveButton(menuList);
-                        break;
-
-                    case ConstantValue.OFFICE://掌上办公
-                        binding.homeOfficeRb.setVisibility(View.VISIBLE);
-                        binding.homeOfficeRb.setText(title);
-                        officeFragment = OfficeFragment.newInstance(title, menuList);
-                        fragmentList.add(officeFragment);
-                        CommonUtils.saveButton(menuList);
-                        break;
-
-                    case ConstantValue.SMART_MANAGEMENT://智慧管理
-                        binding.homeAnalysisRb.setVisibility(View.VISIBLE);
-                        binding.homeAnalysisRb.setText(title);
-                        analyseFragment = AnalyseFragment.newInstance(title, menuList);
-                        fragmentList.add(analyseFragment);
-                        break;
-
-                    case ConstantValue.MINE://我的社区
-                        binding.homeMineRb.setVisibility(View.VISIBLE);
-                        binding.homeMineRb.setText(menusBean.getTitle());
-                        mineFragment = MineFragment.newInstance();
-                        fragmentList.add(mineFragment);
-                        break;
-
-                    default:
-                        break;
-                }
+        checkPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+        );
+        DearApplication.getInstance().startBackService(BackTaskType.TYPE_WR_DB, null);
+        binding.tvSelect.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ExamActivity.start(MainActivity.this,"试题一");
             }
-        } else {
-            showToastTip("该账号无菜单");
-        }
-
-        if (fragmentList.size() > 0) {
-            //设置默认第一个选中
-            currentFragment = fragmentList.get(0);
-            ActivityUtils.addFragmentToActivity(fragmentManager, fragmentList.get(0), R.id.container,
-                    FocusFragment.TAG);
-
-
-            if (currentFragment instanceof FocusFragment) {
-                binding.homeFocusRb.setChecked(true);
-            } else if (currentFragment instanceof WorkFragment) {
-                binding.homeWorkRb.setChecked(true);
-            } else if (currentFragment instanceof OfficeFragment) {
-                binding.homeOfficeRb.setChecked(true);
-            } else if (currentFragment instanceof AnalyseFragment) {
-                binding.homeAnalysisRb.setChecked(true);
-            } else if (currentFragment instanceof MineFragment) {
-                binding.homeMineRb.setChecked(true);
-            }
-        }
+        });
 
     }
 
 
-    //设置监听
-    private void setListeners() {
-        binding.rdGroup.setOnCheckedChangeListener(this);
-    }
-
-    //开启后台service
-    private void startBackService() {
-        int openType = getIntent().getIntExtra(OPEN_TYPE, 0);
-        switch (openType) {
-            case COMMON://免登录进入首页需要重新登录获取最新菜单
-                DearApplication.getInstance().startBackService(BackService.LOGIN, null);
-                break;
-            case LOGIN://从登陆进入首页不需要刷新菜单
-                initFragments();
-                break;
-        }
-    }
-
-
-    //解决其他界面崩溃导致首页页面叠加
-    @SuppressLint("MissingSuperCall")
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        //super.onSaveInstanceState(outState);
-    }
-
-
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId) {
-            case R.id.home_focus_rb:
-                switchContent(currentFragment, focusFragment, FocusFragment.TAG);
-                break;
-
-            case R.id.home_work_rb:
-                switchContent(currentFragment, workFragment, WorkFragment.TAG);
-                break;
-
-            case R.id.home_office_rb:
-                switchContent(currentFragment, officeFragment, OfficeFragment.TAG);
-                break;
-
-            case R.id.home_analysis_rb:
-                switchContent(currentFragment, analyseFragment, AnalyseFragment.TAG);
-                break;
-
-            case R.id.home_mine_rb:
-                switchContent(currentFragment, mineFragment, MineFragment.TAG);
-                break;
-
-            default:
-                break;
-        }
-    }
-
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(Object o) {
-        if (o instanceof TokenBusBean) {     //退出登录
-            CommonUtils.logout(this);
-        } else if (o instanceof LoginBusBean) {//获取最新菜单
-            LoginBusBean loginBusBean = (LoginBusBean) o;
-            if (loginBusBean.isSuccess()) {
-                initFragments();
-            } else {
-                CommonUtils.logout(this);
-            }
-        } else if (o instanceof MessageUnreadBusBean) {  //查询未读或未处理消息
-            MessageUnreadBusBean messageUnreadBusBean = (MessageUnreadBusBean) o;
-            int messageType = messageUnreadBusBean.getMessageType();
-            int unreadNumber = messageUnreadBusBean.getUnreadNumber();
-            List<MessageBean> messageBeanList = messageUnreadBusBean.getMessageBeanList();
-            switch (messageType) {
-                case MessageBusBean.OFFICE:
-                    officeFragment.setMessageBar(unreadNumber, messageBeanList);
-                    break;
-
-                case MessageBusBean.SMART_CONTROL_NOT_HANDLE:
-                    focusFragment.setControlBar(messageBeanList);
-                    break;
-
-                case MessageBusBean.SMART_CONTROL_UNREAD:
-                    workFragment.setMessageBar(unreadNumber, messageBeanList);
-                    break;
-
-            }
-
-        } else if (o instanceof MessagePushBusBean) {  //消息推送
-            MessagePushBusBean pushBusBean = (MessagePushBusBean) o;
-            int messageType = pushBusBean.getMessageType();
-            MessageBean messageBean = pushBusBean.getMessageBean();
-            switch (messageType) {
-                case MessageBusBean.OFFICE://掌上办公
-                    officeFragment.handleMessageBar(messageBean);
-                    break;
-
-                case MessageBusBean.SMART_CONTROL_WARNING://智能管控
-                case MessageBusBean.SMART_CONTROL_SERIOUS:
-                    focusFragment.handleControlBar(messageBean);
-                    workFragment.handlePushMessageBar(messageBean);
-                    break;
-
-                case MessageBusBean.WORK://我的工作
-                    //    workFragment.handlePushMessageBar(messageBean);
-                    break;
-
-            }
-        } else if (o instanceof ContractStatusBean) {//合同暂停弹窗
-            ContractStatusBean contractStatusBean = (ContractStatusBean) o;
-            ContractPauseDialog.show(ActivityUtils.getTopActivity(), contractStatusBean);
-        }
-
-    }
-
-
-    //切换fragment
-    private void switchContent(Fragment from, Fragment to, String tag) {
-        if (currentFragment != to) {
-            currentFragment = to;
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            if (!to.isAdded()) {    // 先判断是否被add过
-                transaction.hide(from).add(R.id.container, to, tag).commitAllowingStateLoss(); //
-                // 隐藏当前的fragment，add下一个到Activity中
-            } else {
-                transaction.hide(from).show(to).commitAllowingStateLoss(); // 隐藏当前的fragment，显示下一个
-            }
-        }
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
 }

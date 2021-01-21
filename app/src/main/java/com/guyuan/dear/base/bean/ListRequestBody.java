@@ -1,6 +1,6 @@
 package com.guyuan.dear.base.bean;
 
-import com.sun.jna.platform.win32.Winspool;
+
 
 /**
  * @description: 列表请求配置参数
@@ -41,7 +41,6 @@ public class ListRequestBody {
         /**
          * type : 1
          */
-
         private String type;
         private String cusName;
         private int orderType;

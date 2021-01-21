@@ -54,6 +54,7 @@
     <color name="color_grey_4f4f4f">#4f4f4f</color>
     <color name="color_grey_464646">#464646</color>
     <color name="color_grey_757575">#757575</color>
+    <color name="color_grey_F8F8F8">#F8F8F8</color>
     <color name="color_actionbar">@color/color_blue_0050B4</color>
     <color name="color_grey_848484">#848484</color>
     <color name="color_grey_6d7278">#6D7278</color>
@@ -101,7 +102,8 @@
 
     <!--    红色-->
     <color name="color_red_F04864">#F04864</color>
-
+    <color name="color_red_E77C6A">#E77C6A</color>
+    <color name="color_red_F5F5F5">#F5F5F5</color>
 
     <!--    橘色-->
     <color name="color_orange_FFECE3">#FFECE3</color>

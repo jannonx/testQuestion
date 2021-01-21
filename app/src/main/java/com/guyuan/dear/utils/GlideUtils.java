@@ -5,7 +5,6 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.guyuan.dear.R;
@@ -36,25 +35,9 @@ public class GlideUtils {
         return instance;
     }
 
-    public void loadUserImageFromGuYuanServer(ImageView target, String guYuanUploadedPicId,
-                                              int placeHolderSrcId, int errorSrcId) {
-        String url = guYuanUploadedPicId;
-        Glide.with(target)
-                .load(url)
-                .error(R.drawable.ic_svg_staff_icon_default)
-                .placeholder(R.drawable.ic_svg_staff_icon_default)
-                .into(target);
-    }
 
-    public void loadUserCircleImageFromGuYuanServer(ImageView target, String guYuanUploadedPicId) {
-        String url = guYuanUploadedPicId;
-        Glide.with(target)
-                .load(url)
-                .error(R.drawable.ic_svg_staff_icon_default)
-                .placeholder(R.drawable.ic_svg_staff_icon_default)
-                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
-                .into(target);
-    }
+
+
 
     public void loadRoundedCornersImageFromGuYuanServer(ImageView target,
                                                         String guYuanUploadedPicId) {

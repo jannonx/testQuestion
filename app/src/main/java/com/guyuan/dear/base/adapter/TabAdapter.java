@@ -1,21 +1,17 @@
 package com.guyuan.dear.base.adapter;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import java.util.List;
-
 /**
- * Created by TL
- * on 2019/11/28
+ * @description: viewpager的fragment的adapter
+ * @author: 许建宁
+ * @since: 2021/1/21 20:57
+ * @company: 固远（深圳）信息技术有限公司
  */
 public class TabAdapter extends FragmentStateAdapter {
     private List<Fragment> fragmentList;

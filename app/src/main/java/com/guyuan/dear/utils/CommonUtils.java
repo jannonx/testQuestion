@@ -1,46 +1,24 @@
 package com.guyuan.dear.utils;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-
 import com.bumptech.glide.Glide;
-import com.example.mvvmlibrary.util.ActivityUtils;
-import com.example.mvvmlibrary.util.LogUtils;
 import com.example.mvvmlibrary.util.MediaFileUtils;
-import com.example.mvvmlibrary.util.SharedPreferencesUtils;
-import com.google.gson.Gson;
 import com.guyuan.dear.BuildConfig;
-import com.guyuan.dear.base.api.BaseApiService;
-import com.guyuan.dear.base.app.DearApplication;
-import com.guyuan.dear.dialog.TipDialogFragment;
-import com.guyuan.dear.focus.device.data.beans.FactoryBean;
-import com.guyuan.dear.login.data.bean.ChildrenBean;
-import com.guyuan.dear.login.data.bean.LoginBean;
-import com.guyuan.dear.login.ui.LoginActivity;
-import com.guyuan.dear.service.BackService;
-import com.guyuan.dear.umeng.UmengAliasManager;
-import com.guyuan.dear.work.contractPause.beans.StaffBean;
-import com.umeng.commonsdk.debug.E;
-
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import droidninja.filepicker.utils.ContentUriUtils;
+import androidx.annotation.NonNull;
 import okhttp3.RequestBody;
 
 /**
@@ -78,34 +56,6 @@ public class CommonUtils {
         return Bitmap.createScaledBitmap(BitmapFactory.decodeFile(fileAddress), width, height, true);
     }
 
-    //获取本地缓存登录信息
-    public static LoginBean getLoginInfo() {
-        try {
-            String loginStr =
-                    (String) DearApplication.getInstance().getCacheData(ConstantValue.USER_JSON_STRING, "");
-            return new Gson().fromJson(loginStr, LoginBean.class);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public static long getCurrentUserId() {
-        try {
-            return getLoginInfo().getUserInfo().getId();
-        } catch (Exception e) {
-            return 0;
-        }
-    }
-
-    public static FactoryBean getFactoryListFromCache() {
-        FactoryBean bean = null;
-        String factoryCache =
-                (String) DearApplication.getInstance().getCacheData(ConstantValue.FACTORY_LIST, "");
-        if (!"".equals(factoryCache)) {
-            bean = GsonUtil.stringToBean(factoryCache, FactoryBean.class);
-        }
-        return bean;
-    }
 
     //int秒转化为小时分秒
     public static String getHour(int time) {
@@ -144,21 +94,6 @@ public class CommonUtils {
     }
 
 
-    //登出
-    public static void logout(Context context) {
-        LoginBean loginInfo = CommonUtils.getLoginInfo();
-        if (loginInfo != null) {
-            UmengAliasManager.getInstance().unregisterAlias(CommonUtils.getCurrentUserId());
-        }
-        SharedPreferencesUtils.removeData(context, ConstantValue.KEY_USER_PW);
-        SharedPreferencesUtils.removeData(context, ConstantValue.USER_JSON_STRING);
-        ActivityUtils.removeAllActivity();
-//        String loginStr =
-//                (String) DearApplication.getInstance().getCacheData(ConstantValue.USER_JSON_STRING, "");
-//        LogUtils.showLog(loginStr);
-        LoginActivity.start(context);
-    }
-
     // 判断一个字符串是否含有数字
     public static boolean hasDigit(String content) {
         boolean flag = false;
@@ -191,29 +126,25 @@ public class CommonUtils {
         return m.matches();
     }
 
-    //检查我的关注跳转协议
-    public static boolean checkFocusAction(String action) {
-        return Arrays.asList(ConstantValue.FOCUS_ACTIONS).contains(action);
+
+    private static HashMap<Integer, Integer> selectMap = new HashMap<>();
+
+    public static void putSelectResult(int index, int position) {
+        selectMap.put(index, position);
+        for (Map.Entry<Integer, Integer> entry : selectMap.entrySet()) {
+            System.out.println("key = " + entry.getKey() + ", value = " + entry.getValue());
+        }
     }
 
-    //跳转打电话界面
-    public static void makePhoneCall(FragmentActivity activity, String phoneNumber) {
-        TipDialogFragment tipDialogFragment = TipDialogFragment.newInstance("确定要拨打电话吗?", "");
-        tipDialogFragment.setOnCancelListener(new TipDialogFragment.OnCancel() {
-            @Override
-            public void cancel() {
-                tipDialogFragment.dismiss();
-            }
-        }).setOnSureListener(new TipDialogFragment.OnSure() {
-            @Override
-            public void sure() {
-                tipDialogFragment.dismiss();
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                Uri data = Uri.parse("tel:" + phoneNumber);
-                intent.setData(data);
-                activity.startActivity(intent);
-            }
-        }).show(activity.getSupportFragmentManager(), TipDialogFragment.TAG);
+    public static HashMap<Integer, Integer> getSelectMap() {
+        return selectMap;
+    }
+
+    public static void clearSelectMap() {
+        for (Iterator<Map.Entry<Integer, Integer>> it = selectMap.entrySet().iterator(); it.hasNext(); ) {
+//            Map.Entry<Integer, Integer> item = it.next();
+            it.remove();
+        }
     }
 
     //判断路径文件是否为图片和视频
@@ -239,54 +170,14 @@ public class CommonUtils {
         }
     }
 
-    //获取当前账号staffbean
-    public static ArrayList<StaffBean> getCurrentStaffList() {
-        ArrayList<StaffBean> staffBeanList = new ArrayList<>();
-        StaffBean staffBean = new StaffBean();
-        staffBean.setId(getLoginInfo().getUserInfo().getId());
-        staffBeanList.add(staffBean);
-        return staffBeanList;
-    }
-
-    //获取uri对应filepath
-    public static List<String> getFilePath(List<Uri> uriList) {
-        List<String> filePathList = new ArrayList<>();
-        if (uriList != null && uriList.size() > 0) {
-            for (Uri uri : uriList) {
-                try {
-                    filePathList.add(ContentUriUtils.INSTANCE.getFilePath(DearApplication.getInstance(), uri));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return filePathList;
-    }
 
     //获取合同状态
-    public static void getContractStatus(String contractParameterType, String contractParameter) {
-        Bundle bundle = new Bundle();
-        bundle.putString(BackService.CONTRACT_PARAMETER_TYPE, contractParameterType);
-        bundle.putString(BackService.CONTRACT_PARAMETER, contractParameter);
-        DearApplication.getInstance().startBackService(BackService.CONTRACT_STATUS, bundle);
-    }
+//    public static void getContractStatus(String contractParameterType, String contractParameter) {
+//        Bundle bundle = new Bundle();
+//        bundle.putString(BackService.CONTRACT_PARAMETER_TYPE, contractParameterType);
+//        bundle.putString(BackService.CONTRACT_PARAMETER, contractParameter);
+//        DearApplication.getInstance().startBackService(BackService.CONTRACT_STATUS, bundle);
+//    }
 
-    //保存各模块权限按钮
-    public static void saveButton(ArrayList<ChildrenBean> buttonBeanList) {
-        if (buttonBeanList != null && buttonBeanList.size() > 0) {
-            for (ChildrenBean bean : buttonBeanList) {
-                if (bean.getChildren() != null && bean.getChildren().size() > 0) {
-                    for (ChildrenBean buttonBean : bean.getChildren()) {
-                        ConstantValue.buttonList.add(buttonBean.getPerms());
-                    }
-                }
-            }
-        }
-    }
-
-    //检查当前按钮是否有权限
-    public static boolean isShowButton(String buttonUrl) {
-        return ConstantValue.buttonList.contains(buttonUrl);
-    }
 
 }

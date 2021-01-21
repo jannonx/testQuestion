@@ -1,14 +1,7 @@
 package com.guyuan.dear.base.api;
 
-import android.app.Application;
-
 import com.guyuan.dear.base.app.DearApplication;
-import com.guyuan.dear.login.api.LoginApiService;
 
-import dagger.Module;
-import dagger.Provides;
-import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ActivityComponent;
 import retrofit2.Retrofit;
 
 /**
