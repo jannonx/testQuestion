@@ -20,8 +20,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-/**
- * android自带的数据存储类
+
+ /**
+ * @description: android自带的数据存储类
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public class SharedPreferencesUtils {
 

@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,8 +31,9 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 
 /**
- * created by tl
- * created at 2020/8/18
+ * @description:
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public abstract class BaseActivity extends AppCompatActivity {
 

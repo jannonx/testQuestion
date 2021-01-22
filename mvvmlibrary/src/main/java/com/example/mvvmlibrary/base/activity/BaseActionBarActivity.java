@@ -8,11 +8,10 @@ import android.widget.TextView;
 import com.example.mvvmlibrary.R;
 
 /**
- * @author: 廖华凯
  * @description:
- * @since: 2020/11/26 10:27
- * @company: 固远（深圳）信息技术有限公司
- **/
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
+ */
 public abstract class BaseActionBarActivity extends BaseActivity {
     protected ImageView back_iv;
     protected TextView title_tv;

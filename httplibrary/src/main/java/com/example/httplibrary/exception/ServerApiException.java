@@ -1,7 +1,10 @@
 package com.example.httplibrary.exception;
 
+
 /**
- * 服务器异常(和服务器协议的错误)
+ * @description: 服务器异常(和服务器协议的错误)
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public final class ServerApiException extends Exception {
     private final int code;

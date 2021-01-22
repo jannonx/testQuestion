@@ -3,9 +3,10 @@ package com.example.httplibrary.bean;
 import java.util.Map;
 
 /**
- * @author 廖华凯
- * @since 2019/11/25 17:20 部分SmartFactory网络请求需要在body中提供一个空的PageRequest对象 by奶茶宝宝
- **/
+ * @description:
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
+ */
 public class PageRequestBodyBean {
 
     /**

@@ -15,9 +15,11 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
 /**
- * Created by linfp on 2016/6/20.
- * 线程管理(rxjava)
+ * @description: 线程管理(rxjava)
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public class ExecutorManager {
     public static final int DEVICE_INFO_UNKNOWN = 0;

@@ -1,9 +1,10 @@
 package com.example.httplibrary.bean;
 
 /**
- * @author 廖华凯
- * @since 2020/6/17 15:05
- **/
+ * @description: 封装的结果对象
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
+ */
 public interface StaffBeanInterface {
   public String getName();
   public long getId();

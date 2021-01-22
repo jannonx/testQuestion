@@ -2,8 +2,8 @@ package com.example.httplibrary.bean;
 
 /**
  * @description:
- * @author:Jannonx
- * @date: 2020/5/8 17:02
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public class BaseRefreshBean {
     private int pageNum;

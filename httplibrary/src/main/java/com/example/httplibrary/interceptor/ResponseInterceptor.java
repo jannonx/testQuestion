@@ -1,10 +1,11 @@
 package com.example.httplibrary.interceptor;
 
-/**
- * Created by sztangli on 2018-2-28.
- *
- */
 
+/**
+ * @description: 请求头拦截器
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
+ */
 import java.io.IOException;
 
 import okhttp3.Interceptor;

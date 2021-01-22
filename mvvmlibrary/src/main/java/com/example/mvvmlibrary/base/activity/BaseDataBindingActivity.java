@@ -15,8 +15,9 @@ import java.util.Map;
 
 
 /**
- * created by tl
- * created at 2020/8/12
+ * @description:
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public abstract class BaseDataBindingActivity<V extends ViewDataBinding, VM extends BaseViewModel> extends BaseActivity {
     protected V binding;

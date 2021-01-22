@@ -9,8 +9,9 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 /**
- * created by tl
- * created at 2020/6/5
+ * @description:
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public class StatusBarView extends View {
   private static int mStatusBarHeight;

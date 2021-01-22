@@ -10,14 +10,11 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
-import com.example.mvvmlibrary.base.data.BaseViewModel;
-
 /**
- * @author: 廖华凯
  * @description:
- * @since: 2020/10/27 15:37
- * @company: 固远（深圳）信息技术有限公司
- **/
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
+ */
 public abstract class BaseViewModelFragment<VB extends ViewDataBinding> extends BaseFragment {
     protected VB binding;
 

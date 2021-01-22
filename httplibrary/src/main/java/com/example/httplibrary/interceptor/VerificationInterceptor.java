@@ -9,9 +9,11 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okio.BufferedSource;
 
+
 /**
- * Created by fangpenglin on 16/6/18.
- * 认证拦截器
+ * @description: 认证拦截器
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public class VerificationInterceptor implements Interceptor {
 

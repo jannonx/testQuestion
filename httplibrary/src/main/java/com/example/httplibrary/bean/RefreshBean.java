@@ -4,8 +4,8 @@ import java.util.List;
 
 /**
  * @description:
- * @author:Jannonx
- * @date: 2020/5/8 17:04
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public class RefreshBean<T> extends BaseRefreshBean {
   private List<T> content;

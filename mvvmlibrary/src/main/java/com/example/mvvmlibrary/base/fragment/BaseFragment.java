@@ -1,7 +1,6 @@
 package com.example.mvvmlibrary.base.fragment;
 
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +17,9 @@ import com.example.mvvmlibrary.util.ToastUtils;
 import com.google.android.material.snackbar.Snackbar;
 
 /**
- * created by tl
- * created at 2020/8/12
+ * @description:
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public abstract class BaseFragment extends Fragment {
 

@@ -11,8 +11,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * created by tl
- * created at 2020/8/20
+ * @description:
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public class BaseApplication extends Application {
     private int width = 0, height = 0;

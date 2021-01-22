@@ -15,8 +15,11 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+
 /**
- * 参数拦截器(添加共有参数)
+ * @description: 参数拦截器(添加共有参数)
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public class ParamsInterceptor implements Interceptor {
 

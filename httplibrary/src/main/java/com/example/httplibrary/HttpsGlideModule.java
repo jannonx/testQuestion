@@ -25,10 +25,11 @@ import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
 
+
 /**
- * Created by TL
- * 用于glide加载https图片资源
- * on 2020/2/25
+ * @description: 用于glide加载https图片资源
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 @GlideModule
 public class HttpsGlideModule extends AppGlideModule {

@@ -12,11 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 /**
- * @author : tl
- * @description :DataBinding recycleView adapter基类
- * @since: 2020/10/29 14:58
- * @company : 固远（深圳）信息技术有限公司
- **/
+ * @description:
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
+ */
 
 public abstract class BaseDBRecycleAdapter<T, VDB extends ViewDataBinding> extends RecyclerView.Adapter<BaseDBRecycleAdapter.Holder> {
 

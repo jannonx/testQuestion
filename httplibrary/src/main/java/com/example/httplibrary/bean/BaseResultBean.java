@@ -1,8 +1,10 @@
 package com.example.httplibrary.bean;
 
+
 /**
- * Created by linfp on 2016/7/27.
- * 所有请求结果的bean
+ * @description: 所有请求结果的bean
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public class BaseResultBean {
     private int code;

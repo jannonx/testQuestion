@@ -8,7 +8,6 @@ import com.example.httplibrary.interceptor.HeadInterceptor;
 import com.example.httplibrary.interceptor.ParamsInterceptor;
 import com.example.httplibrary.interceptor.ResponseInterceptor;
 import com.example.httplibrary.interceptor.VerificationInterceptor;
-import com.google.gson.internal.GsonBuildConfig;
 
 import java.io.File;
 import java.io.InputStream;
@@ -22,7 +21,6 @@ import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
@@ -31,22 +29,18 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import dagger.Module;
-import dagger.Provides;
-import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ApplicationComponent;
-import dagger.hilt.android.qualifiers.ApplicationContext;
 import okhttp3.Cache;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 /**
- * Created by tl on 2018-8-9
- * 管理retrofit网络库的全局代理module
+ * @description: 管理retrofit网络库的全局代理module
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 //@Module
 //@InstallIn(ApplicationComponent.class)

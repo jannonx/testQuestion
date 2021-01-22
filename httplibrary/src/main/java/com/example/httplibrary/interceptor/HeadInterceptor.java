@@ -8,9 +8,11 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
+
 /**
- * Created by tl on 2018-8-9
- * 请求头拦截器
+ * @description: 请求头拦截器
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public class HeadInterceptor implements Interceptor {
 

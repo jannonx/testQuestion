@@ -11,11 +11,10 @@ import com.example.mvvmlibrary.R;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 
 /**
- * @author : tl
- * @description : 带导航栏activity
- * @since: 2020/9/7
- * @company : 固远（深圳）信息技术有限公司
- **/
+ * @description:
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
+ */
 public abstract class BaseToolbarActivity<V extends ViewDataBinding, VM extends BaseViewModel> extends BaseDataBindingActivity<V, VM> {
 
     protected ImageView back_iv;

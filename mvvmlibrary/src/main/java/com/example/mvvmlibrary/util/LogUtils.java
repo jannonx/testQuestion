@@ -3,9 +3,10 @@ package com.example.mvvmlibrary.util;
 import android.util.Log;
 
 /**
- * @author 廖华凯
- * @since 2019/11/19 15:07
- **/
+ * @description:
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
+ */
 public class LogUtils {
     public static void showLog(String msg) {
         StringBuilder sb = new StringBuilder();

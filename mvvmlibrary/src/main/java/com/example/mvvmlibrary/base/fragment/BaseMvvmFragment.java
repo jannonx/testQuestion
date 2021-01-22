@@ -21,11 +21,10 @@ import java.util.List;
 import io.reactivex.disposables.Disposable;
 
 /**
- * @author: 廖华凯
  * @description:
- * @since: 2020/9/18 10:31
- * @company: 固远（深圳）信息技术有限公司
- **/
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
+ */
 public abstract class BaseMvvmFragment<VDB extends ViewDataBinding, VM extends BaseViewModel> extends BaseViewModelFragment<VDB> {
     private VM viewModel;
     private List<Disposable> disposableList = new ArrayList<>();

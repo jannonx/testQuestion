@@ -5,11 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * @author: 廖华凯
  * @description:
- * @since: 2020/11/9 14:10
- * @company: 固远（深圳）信息技术有限公司
- **/
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
+ */
 public class BasePageResultBean<T> {
     @SerializedName("pageNum")
     private int pageIndex;

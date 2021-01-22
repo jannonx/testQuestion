@@ -15,8 +15,9 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 /**
- * created by tl
- * created at 2020/8/18
+ * @description:
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public class BaseViewModel extends ViewModel {
 

@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /**
- * @description: 富文本文件后缀检测
- * @author:Jannonx
- * @date: 2020/6/6 14:40
+ * @description:
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 public class MediaFileUtils {
     // comma separated list of all file extensions supported by the media scanner

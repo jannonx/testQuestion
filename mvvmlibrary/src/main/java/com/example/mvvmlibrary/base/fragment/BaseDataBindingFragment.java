@@ -8,12 +8,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.mvvmlibrary.base.activity.BaseDataBindingActivity;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
@@ -23,8 +21,9 @@ import java.lang.reflect.Type;
 
 
 /**
- * created by tl
- * created at 2020/8/25
+ * @description:
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
  */
 
 public abstract class BaseDataBindingFragment<VB extends ViewDataBinding, VM extends BaseViewModel> extends BaseFragment {

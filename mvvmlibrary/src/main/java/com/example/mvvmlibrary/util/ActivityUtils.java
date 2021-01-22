@@ -21,11 +21,10 @@ import static androidx.core.util.Preconditions.checkNotNull;
 
 
 /**
- * @author : tl
- * @description :Activity工具类
- * @since: 2020/9/7
- * @company : 固远（深圳）信息技术有限公司
- **/
+ * @description:
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
+ */
 public class ActivityUtils {
 
     //管理所有的Activity

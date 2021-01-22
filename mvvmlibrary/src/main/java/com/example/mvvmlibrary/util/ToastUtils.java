@@ -1,15 +1,13 @@
 package com.example.mvvmlibrary.util;
 
 import android.content.Context;
-import android.view.Gravity;
 import android.widget.Toast;
 
 /**
- * @author: 廖华凯
  * @description:
- * @since: 2020/12/7 15:19
- * @company: 固远（深圳）信息技术有限公司
- **/
+ * @author: 许建宁
+ * @since: 2020/11/24 23:56
+ */
 public class ToastUtils {
     private static Toast toast;
 

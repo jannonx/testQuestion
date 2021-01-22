@@ -16,10 +16,9 @@ import com.guyuan.dear.test.ExamActivity;
 import dagger.hilt.android.AndroidEntryPoint;
 
 /**
- * @description: APP主页面
+ * @description:
  * @author: 许建宁
  * @since: 2020/11/24 23:56
- * @company: 固远（深圳）信息技术有限公司
  */
 @AndroidEntryPoint
 public class MainActivity extends BaseNoToolbarActivity<ActivityMainBinding, MainViewModel> {
