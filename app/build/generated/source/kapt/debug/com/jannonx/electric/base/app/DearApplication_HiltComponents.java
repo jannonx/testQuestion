@@ -2,8 +2,11 @@ package com.jannonx.electric.base.app;
 
 import androidx.hilt.lifecycle.ViewModelFactoryModules;
 import com.jannonx.electric.base.api.ApiServiceModule;
+import com.jannonx.electric.home.MainActivity_GeneratedInjector;
 import com.jannonx.electric.home.data.MainViewModel_HiltModule;
 import com.jannonx.electric.home.hilt.MainModule;
+import com.jannonx.electric.test.activity.ExamActivity_GeneratedInjector;
+import com.jannonx.electric.test.activity.ExamResultActivity_GeneratedInjector;
 import com.jannonx.electric.test.data.TestViewModel_HiltModule;
 import com.jannonx.electric.test.hilt.TestModule;
 import dagger.Binds;
@@ -118,7 +121,10 @@ public final class DearApplication_HiltComponents {
       }
   )
   @ActivityScoped
-  public abstract static class ActivityC implements ActivityComponent,
+  public abstract static class ActivityC implements MainActivity_GeneratedInjector,
+      ExamActivity_GeneratedInjector,
+      ExamResultActivity_GeneratedInjector,
+      ActivityComponent,
       DefaultViewModelFactories.ActivityEntryPoint,
       FragmentComponentManager.FragmentComponentBuilderEntryPoint,
       ViewComponentManager.ViewComponentBuilderEntryPoint,

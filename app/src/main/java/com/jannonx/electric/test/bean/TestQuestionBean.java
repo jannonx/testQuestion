@@ -75,7 +75,7 @@ public class TestQuestionBean implements Serializable {
         if (getSelectItem() == null) {
             return ItemQuestionResultType.TYPE_NO_SELECT;
         }
-        return selectItem == rightItem ? ItemQuestionResultType.TYPE_RIGHT
+        return selectItem.getCode() == rightItem.getCode() ? ItemQuestionResultType.TYPE_RIGHT
                 : ItemQuestionResultType.TYPE_WRONG;
     }
 

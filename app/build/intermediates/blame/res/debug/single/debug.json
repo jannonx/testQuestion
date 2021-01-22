@@ -1,15 +1,7 @@
 [
     {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\color_color_selector_white_to_black.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\color\\color_selector_white_to_black.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\color_color_selector_grey_to_blue.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\color\\color_selector_grey_to_blue.xml"
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_question_item.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\fragment_question_item.xml"
     },
     {
         "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_base_no_tab.xml.flat",
@@ -20,20 +12,12 @@
         "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\shape_rect_grey_eeeeee_round_corner_50dp.xml"
     },
     {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
         "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_item_answer_question.xml.flat",
         "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\item_answer_question.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\color_color_selector_black_333333_to_blue_1677ff.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\color\\color_selector_black_333333_to_blue_1677ff.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v24_ic_launcher_foreground.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable-v24\\ic_launcher_foreground.xml"
     },
     {
         "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_tab_progress.xml.flat",
@@ -48,126 +32,6 @@
         "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\bg_work_project_rb_selector.xml"
     },
     {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_gray_f8f8f8_stroke_33333_corner_6.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\bg_gray_f8f8f8_stroke_33333_corner_6.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\anim_dialog_exit_anim.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\anim\\dialog_exit_anim.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_layout_search_bar.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\layout_search_bar.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap_ic_launcher.png.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap\\ic_launcher.png"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\color_color_selector_black_ff333333_to_blue_ff108ee9.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\color\\color_selector_black_ff333333_to_blue_ff108ee9.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\color_color_selector_blue_to_light_blue.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\color\\color_selector_blue_to_light_blue.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_layout_home_bar.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\layout_home_bar.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_list.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\fragment_list.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\color_color_selector_blue_ffffff_to_white_0050b4.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\color\\color_selector_blue_ffffff_to_white_0050b4.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\xml_file_paths.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\xml\\file_paths.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\color_color_selector_black_to_white.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\color\\color_selector_black_to_white.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_svg_cross_no_bg_32dp.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\ic_svg_cross_no_bg_32dp.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\color_color_selector_black_to_grey.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\color\\color_selector_black_to_grey.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_home_bar.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\home_bar.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_bg_result.png.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-xxhdpi\\bg_result.png"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_empty.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\empty.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_blue_0aad33_corner_4.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\bg_blue_0aad33_corner_4.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\activity_main.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_blue_1677ff_round.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\bg_blue_1677ff_round.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_question_item.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\fragment_question_item.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\anim_dialog_enter_anim.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\anim\\dialog_enter_anim.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\color_color_selector_white_to_orange.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\color\\color_selector_white_to_orange.xml"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\color_color_selector_blue_0050b4_to_white_ffffff.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\color\\color_selector_blue_0050b4_to_white_ffffff.xml"
-    },
-    {
         "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\xml_network_security_config.xml.flat",
         "source": "D:\\Document\\demo\\app\\src\\main\\res\\xml\\network_security_config.xml"
     },
@@ -176,28 +40,52 @@
         "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_rb_unselect.png"
     },
     {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_gray_f8f8f8_stroke_33333_corner_6.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\bg_gray_f8f8f8_stroke_33333_corner_6.xml"
+    },
+    {
         "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\xml_provider_paths.xml.flat",
         "source": "D:\\Document\\demo\\app\\src\\main\\res\\xml\\provider_paths.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_layout_search_bar.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\layout_search_bar.xml"
     },
     {
         "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_exam_result.xml.flat",
         "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\fragment_exam_result.xml"
     },
     {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap_ic_launcher_round.png.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap\\ic_launcher_round.png"
-    },
-    {
         "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_gray_f8f8f8_corner_6.xml.flat",
         "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\bg_gray_f8f8f8_corner_6.xml"
     },
     {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\color_color_selector_grey_848484_to_white_ffffff.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\color\\color_selector_grey_848484_to_white_ffffff.xml"
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_green_52d091_round.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\bg_green_52d091_round.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_orange_f36c4e_round.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\bg_orange_f36c4e_round.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_layout_home_bar.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\layout_home_bar.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_list.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\fragment_list.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\xml_file_paths.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\xml\\file_paths.xml"
     },
     {
         "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_gray_cccccc_round.xml.flat",
         "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\bg_gray_cccccc_round.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
         "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_selector_bg_grey_cccccc_to_blue_1677ff.xml.flat",
@@ -216,24 +104,28 @@
         "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\actvity_exam_result.xml"
     },
     {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_svg_cross_no_bg_32dp.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\ic_svg_cross_no_bg_32dp.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_home_bar.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\home_bar.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_bg_result.png.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-xxhdpi\\bg_result.png"
     },
     {
         "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_rb_select.png.flat",
         "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_rb_select.png"
     },
     {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\color_color_selector_black_333333_to_white_ffffff.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\color\\color_selector_black_333333_to_white_ffffff.xml"
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_empty.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\empty.xml"
     },
     {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
-    },
-    {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\color_color_selector_white_to_black_1.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\color\\color_selector_white_to_black_1.xml"
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_item_queston_tag.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\item_queston_tag.xml"
     },
     {
         "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_base_tab.xml.flat",
@@ -244,11 +136,15 @@
         "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\ic_svg_search.xml"
     },
     {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\color_color_selector_grey_eeeeee_to_white_ffffff.xml.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\color\\color_selector_grey_eeeeee_to_white_ffffff.xml"
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_blue_0aad33_corner_4.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\bg_blue_0aad33_corner_4.xml"
     },
     {
-        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "D:\\Document\\demo\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_blue_1677ff_round.xml.flat",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\drawable\\bg_blue_1677ff_round.xml"
     }
 ]

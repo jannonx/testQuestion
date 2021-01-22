@@ -23,8 +23,8 @@
     <clip>
       <shape>
         <gradient
-            android:endColor="@color/color_red_E77C6A"
-            android:startColor="@color/color_red_E77C6A"/>
+            android:endColor="@color/color_orange_F36C4E"
+            android:startColor="@color/color_orange_F36C4E"/>
       </shape>
     </clip>
   </item>

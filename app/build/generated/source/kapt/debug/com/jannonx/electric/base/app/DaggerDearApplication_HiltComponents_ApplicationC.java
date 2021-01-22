@@ -28,12 +28,15 @@ import com.jannonx.electric.base.api.ApiServiceModule_GetSSLSocketFactoryFactory
 import com.jannonx.electric.base.api.ApiServiceModule_GetTrustManagerFactoryFactory;
 import com.jannonx.electric.base.api.ApiServiceModule_GetX509TrustManagerFactory;
 import com.jannonx.electric.base.api.interceptor.HeadInterceptor;
+import com.jannonx.electric.home.MainActivity;
 import com.jannonx.electric.home.data.MainRepository;
 import com.jannonx.electric.home.data.MainViewModel_AssistedFactory;
 import com.jannonx.electric.home.data.MainViewModel_AssistedFactory_Factory;
 import com.jannonx.electric.home.hilt.MainModule;
 import com.jannonx.electric.home.hilt.MainModule_ProvidesMainApiServiceFactory;
 import com.jannonx.electric.home.hilt.MainModule_ProvidesMainRepositoryFactory;
+import com.jannonx.electric.test.activity.ExamActivity;
+import com.jannonx.electric.test.activity.ExamResultActivity;
 import com.jannonx.electric.test.data.TestRepository;
 import com.jannonx.electric.test.data.TestViewModel_AssistedFactory;
 import com.jannonx.electric.test.data.TestViewModel_AssistedFactory_Factory;
@@ -493,6 +496,18 @@ public final class DaggerDearApplication_HiltComponents_ApplicationC extends Dea
 
       private ViewModelProvider.Factory getProvideFactory() {
         return ViewModelFactoryModules_ActivityModule_ProvideFactoryFactory.provideFactory(activity, ApplicationContextModule_ProvideApplicationFactory.provideApplication(DaggerDearApplication_HiltComponents_ApplicationC.this.applicationContextModule), getMapOfStringAndProviderOfViewModelAssistedFactoryOf());
+      }
+
+      @Override
+      public void injectMainActivity(MainActivity mainActivity) {
+      }
+
+      @Override
+      public void injectExamActivity(ExamActivity examActivity) {
+      }
+
+      @Override
+      public void injectExamResultActivity(ExamResultActivity examResultActivity) {
       }
 
       @Override

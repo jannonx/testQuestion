@@ -44,6 +44,10 @@
         "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\home_bar.xml"
     },
     {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_queston_tag.xml",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\item_queston_tag.xml"
+    },
+    {
         "merged": "D:\\Document\\demo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\empty.xml",
         "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\empty.xml"
     },

@@ -341,6 +341,22 @@ category#android.intent.category.LAUNCHER
 ADDED from D:\Document\demo\app\src\main\AndroidManifest.xml:99:17-77
 	android:name
 		ADDED from D:\Document\demo\app\src\main\AndroidManifest.xml:99:27-74
+activity#com.jannonx.electric.test.activity.ExamActivity
+ADDED from D:\Document\demo\app\src\main\AndroidManifest.xml:103:9-106:56
+	android:screenOrientation
+		ADDED from D:\Document\demo\app\src\main\AndroidManifest.xml:105:13-49
+	tools:ignore
+		ADDED from D:\Document\demo\app\src\main\AndroidManifest.xml:106:13-53
+	android:name
+		ADDED from D:\Document\demo\app\src\main\AndroidManifest.xml:104:13-55
+activity#com.jannonx.electric.test.activity.ExamResultActivity
+ADDED from D:\Document\demo\app\src\main\AndroidManifest.xml:107:9-110:56
+	android:screenOrientation
+		ADDED from D:\Document\demo\app\src\main\AndroidManifest.xml:109:13-49
+	tools:ignore
+		ADDED from D:\Document\demo\app\src\main\AndroidManifest.xml:110:13-53
+	android:name
+		ADDED from D:\Document\demo\app\src\main\AndroidManifest.xml:108:13-61
 uses-sdk
 INJECTED from D:\Document\demo\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\Document\demo\app\src\main\AndroidManifest.xml

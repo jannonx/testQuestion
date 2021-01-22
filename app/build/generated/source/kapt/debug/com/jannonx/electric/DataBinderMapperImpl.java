@@ -17,6 +17,7 @@ import com.jannonx.electric.databinding.FragmentListBindingImpl;
 import com.jannonx.electric.databinding.FragmentQuestionItemBindingImpl;
 import com.jannonx.electric.databinding.HomeBarBindingImpl;
 import com.jannonx.electric.databinding.ItemAnswerQuestionBindingImpl;
+import com.jannonx.electric.databinding.ItemQuestonTagBindingImpl;
 import com.jannonx.electric.databinding.LayoutHomeBarBindingImpl;
 import com.jannonx.electric.databinding.LayoutSearchBarBindingImpl;
 import java.lang.IllegalArgumentException;
@@ -54,11 +55,13 @@ public class DataBinderMapperImpl extends DataBinderMapper {
 
   private static final int LAYOUT_ITEMANSWERQUESTION = 11;
 
-  private static final int LAYOUT_LAYOUTHOMEBAR = 12;
+  private static final int LAYOUT_ITEMQUESTONTAG = 12;
 
-  private static final int LAYOUT_LAYOUTSEARCHBAR = 13;
+  private static final int LAYOUT_LAYOUTHOMEBAR = 13;
 
-  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(13);
+  private static final int LAYOUT_LAYOUTSEARCHBAR = 14;
+
+  private static final SparseIntArray INTERNAL_LAYOUT_ID_LOOKUP = new SparseIntArray(14);
 
   static {
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.jannonx.electric.R.layout.activity_base_no_tab, LAYOUT_ACTIVITYBASENOTAB);
@@ -72,6 +75,7 @@ public class DataBinderMapperImpl extends DataBinderMapper {
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.jannonx.electric.R.layout.fragment_question_item, LAYOUT_FRAGMENTQUESTIONITEM);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.jannonx.electric.R.layout.home_bar, LAYOUT_HOMEBAR);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.jannonx.electric.R.layout.item_answer_question, LAYOUT_ITEMANSWERQUESTION);
+    INTERNAL_LAYOUT_ID_LOOKUP.put(com.jannonx.electric.R.layout.item_queston_tag, LAYOUT_ITEMQUESTONTAG);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.jannonx.electric.R.layout.layout_home_bar, LAYOUT_LAYOUTHOMEBAR);
     INTERNAL_LAYOUT_ID_LOOKUP.put(com.jannonx.electric.R.layout.layout_search_bar, LAYOUT_LAYOUTSEARCHBAR);
   }
@@ -151,6 +155,12 @@ public class DataBinderMapperImpl extends DataBinderMapper {
           }
           throw new IllegalArgumentException("The tag for item_answer_question is invalid. Received: " + tag);
         }
+        case  LAYOUT_ITEMQUESTONTAG: {
+          if ("layout/item_queston_tag_0".equals(tag)) {
+            return new ItemQuestonTagBindingImpl(component, view);
+          }
+          throw new IllegalArgumentException("The tag for item_queston_tag is invalid. Received: " + tag);
+        }
         case  LAYOUT_LAYOUTHOMEBAR: {
           if ("layout/layout_home_bar_0".equals(tag)) {
             return new LayoutHomeBarBindingImpl(component, view);
@@ -217,7 +227,7 @@ public class DataBinderMapperImpl extends DataBinderMapper {
   }
 
   private static class InnerLayoutIdLookup {
-    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(13);
+    static final HashMap<String, Integer> sKeys = new HashMap<String, Integer>(14);
 
     static {
       sKeys.put("layout/activity_base_no_tab_0", com.jannonx.electric.R.layout.activity_base_no_tab);
@@ -231,6 +241,7 @@ public class DataBinderMapperImpl extends DataBinderMapper {
       sKeys.put("layout/fragment_question_item_0", com.jannonx.electric.R.layout.fragment_question_item);
       sKeys.put("layout/home_bar_0", com.jannonx.electric.R.layout.home_bar);
       sKeys.put("layout/item_answer_question_0", com.jannonx.electric.R.layout.item_answer_question);
+      sKeys.put("layout/item_queston_tag_0", com.jannonx.electric.R.layout.item_queston_tag);
       sKeys.put("layout/layout_home_bar_0", com.jannonx.electric.R.layout.layout_home_bar);
       sKeys.put("layout/layout_search_bar_0", com.jannonx.electric.R.layout.layout_search_bar);
     }

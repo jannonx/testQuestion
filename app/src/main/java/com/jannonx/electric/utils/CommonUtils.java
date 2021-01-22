@@ -133,7 +133,7 @@ public class CommonUtils {
     public static void putSelectResult(int index, int position) {
         selectMap.put(index, position);
         for (Map.Entry<Integer, Integer> entry : selectMap.entrySet()) {
-            System.out.println("key = " + entry.getKey() + ", value = " + entry.getValue());
+            LogUtils.showLog("key = " + entry.getKey() + ", value = " + entry.getValue());
         }
     }
 

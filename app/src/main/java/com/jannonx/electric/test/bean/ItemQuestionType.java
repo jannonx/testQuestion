@@ -60,10 +60,6 @@ public enum ItemQuestionType implements Serializable {
         return null;
     }
 
-    public static String toText(int type) {
-        return ItemQuestionType.toType(type).getDes();
-
-    }
 
     public int getCode() {
         return code;

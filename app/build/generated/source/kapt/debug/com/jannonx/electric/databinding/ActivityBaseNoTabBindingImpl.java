@@ -13,7 +13,7 @@ public class ActivityBaseNoTabBindingImpl extends ActivityBaseNoTabBinding  {
     @Nullable
     private static final android.util.SparseIntArray sViewsWithIds;
     static {
-        sIncludes = new androidx.databinding.ViewDataBinding.IncludedLayouts(5);
+        sIncludes = new androidx.databinding.ViewDataBinding.IncludedLayouts(6);
         sIncludes.setIncludes(1, 
             new String[] {"toolbar"},
             new int[] {2},
@@ -21,17 +21,18 @@ public class ActivityBaseNoTabBindingImpl extends ActivityBaseNoTabBinding  {
         sViewsWithIds = new android.util.SparseIntArray();
         sViewsWithIds.put(R.id.progress_bar, 3);
         sViewsWithIds.put(R.id.base_vp, 4);
+        sViewsWithIds.put(R.id.tv_next_step, 5);
     }
     // views
     @NonNull
-    private final android.widget.LinearLayout mboundView0;
+    private final android.widget.RelativeLayout mboundView0;
     // variables
     // values
     // listeners
     // Inverse Binding Event Handlers
 
     public ActivityBaseNoTabBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 5, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 6, sIncludes, sViewsWithIds));
     }
     private ActivityBaseNoTabBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 1
@@ -39,9 +40,10 @@ public class ActivityBaseNoTabBindingImpl extends ActivityBaseNoTabBinding  {
             , (androidx.viewpager2.widget.ViewPager2) bindings[4]
             , (com.example.mvvmlibrary.databinding.ToolbarBinding) bindings[2]
             , (android.widget.ProgressBar) bindings[3]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[5]
             );
-        this.appBar.setTag(null);
-        this.mboundView0 = (android.widget.LinearLayout) bindings[0];
+        this.ablTitle.setTag(null);
+        this.mboundView0 = (android.widget.RelativeLayout) bindings[0];
         this.mboundView0.setTag(null);
         setRootTag(root);
         // listeners

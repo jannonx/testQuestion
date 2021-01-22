@@ -4,23 +4,87 @@ package com.jannonx.electric.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import com.jannonx.electric.R;
+import com.jannonx.electric.view.flowlayout.TagFlowLayout;
 import java.lang.Deprecated;
 import java.lang.Object;
 
 public abstract class ActvityExamResultBinding extends ViewDataBinding {
   @NonNull
-  public final AppCompatTextView tvSelect;
+  public final ImageView backIv;
+
+  @NonNull
+  public final AppCompatTextView labelAccuracyRate;
+
+  @NonNull
+  public final AppCompatTextView labelCard;
+
+  @NonNull
+  public final AppCompatTextView labelRight;
+
+  @NonNull
+  public final AppCompatTextView labelRightRound;
+
+  @NonNull
+  public final AppCompatTextView labelWrong;
+
+  @NonNull
+  public final AppCompatTextView labelWrongRound;
+
+  @NonNull
+  public final TagFlowLayout tflQuestionResult;
+
+  @NonNull
+  public final Toolbar toolbar;
+
+  @NonNull
+  public final AppCompatTextView tvAccuracyRate;
+
+  @NonNull
+  public final AppCompatTextView tvQuestionType;
+
+  @NonNull
+  public final AppCompatTextView tvRightNumber;
+
+  @NonNull
+  public final AppCompatTextView tvRightWrongNumber;
+
+  @NonNull
+  public final AppCompatTextView tvTip;
+
+  @NonNull
+  public final View vWrong;
 
   protected ActvityExamResultBinding(Object _bindingComponent, View _root, int _localFieldCount,
-      AppCompatTextView tvSelect) {
+      ImageView backIv, AppCompatTextView labelAccuracyRate, AppCompatTextView labelCard,
+      AppCompatTextView labelRight, AppCompatTextView labelRightRound, AppCompatTextView labelWrong,
+      AppCompatTextView labelWrongRound, TagFlowLayout tflQuestionResult, Toolbar toolbar,
+      AppCompatTextView tvAccuracyRate, AppCompatTextView tvQuestionType,
+      AppCompatTextView tvRightNumber, AppCompatTextView tvRightWrongNumber,
+      AppCompatTextView tvTip, View vWrong) {
     super(_bindingComponent, _root, _localFieldCount);
-    this.tvSelect = tvSelect;
+    this.backIv = backIv;
+    this.labelAccuracyRate = labelAccuracyRate;
+    this.labelCard = labelCard;
+    this.labelRight = labelRight;
+    this.labelRightRound = labelRightRound;
+    this.labelWrong = labelWrong;
+    this.labelWrongRound = labelWrongRound;
+    this.tflQuestionResult = tflQuestionResult;
+    this.toolbar = toolbar;
+    this.tvAccuracyRate = tvAccuracyRate;
+    this.tvQuestionType = tvQuestionType;
+    this.tvRightNumber = tvRightNumber;
+    this.tvRightWrongNumber = tvRightWrongNumber;
+    this.tvTip = tvTip;
+    this.vWrong = vWrong;
   }
 
   @NonNull

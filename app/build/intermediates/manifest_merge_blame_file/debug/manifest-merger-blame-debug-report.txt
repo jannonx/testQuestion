@@ -230,158 +230,170 @@
 100-->D:\Document\demo\app\src\main\AndroidManifest.xml:99:27-74
 101            </intent-filter>
 102        </activity>
-103
-104        <service
-104-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:29:9-32:45
-105            android:name="com.squareup.leakcanary.internal.HeapAnalyzerService"
-105-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:30:13-80
-106            android:enabled="false"
-106-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:31:13-36
-107            android:process=":leakcanary" />
-107-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:32:13-42
-108        <service
-108-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:33:9-36:45
-109            android:name="com.squareup.leakcanary.DisplayLeakService"
-109-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:34:13-70
-110            android:enabled="false"
-110-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:35:13-36
-111            android:process=":leakcanary" />
-111-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:36:13-42
-112
-113        <provider
-113-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:38:9-46:20
-114            android:name="com.squareup.leakcanary.internal.LeakCanaryFileProvider"
-114-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:39:13-83
-115            android:authorities="com.squareup.leakcanary.fileprovider.com.jannonx.electric.debug"
-115-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:40:13-88
-116            android:exported="false"
-116-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:41:13-37
-117            android:grantUriPermissions="true" >
-117-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:42:13-47
-118            <meta-data
-118-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:43:13-45:66
-119                android:name="android.support.FILE_PROVIDER_PATHS"
-119-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:44:17-67
-120                android:resource="@xml/leak_canary_file_paths" />
-120-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:45:17-63
-121        </provider>
-122
-123        <activity
-123-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:48:9-61:20
-124            android:name="com.squareup.leakcanary.internal.DisplayLeakActivity"
-124-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:49:13-80
-125            android:enabled="false"
-125-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:50:13-36
-126            android:icon="@mipmap/leak_canary_icon"
-126-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:51:13-52
-127            android:label="@string/leak_canary_display_activity_label"
-127-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:52:13-71
-128            android:process=":leakcanary"
-128-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:53:13-42
-129            android:taskAffinity="com.squareup.leakcanary.com.jannonx.electric.debug"
-129-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:54:13-76
-130            android:theme="@style/leak_canary_LeakCanary.Base" >
-130-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:55:13-63
-131            <intent-filter>
-131-->D:\Document\demo\app\src\main\AndroidManifest.xml:96:13-100:29
-132                <action android:name="android.intent.action.MAIN" />
-132-->D:\Document\demo\app\src\main\AndroidManifest.xml:97:17-69
-132-->D:\Document\demo\app\src\main\AndroidManifest.xml:97:25-66
-133
-134                <category android:name="android.intent.category.LAUNCHER" />
-134-->D:\Document\demo\app\src\main\AndroidManifest.xml:99:17-77
-134-->D:\Document\demo\app\src\main\AndroidManifest.xml:99:27-74
-135            </intent-filter>
-136        </activity>
-137        <activity
-137-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:62:9-71:68
-138            android:name="com.squareup.leakcanary.internal.RequestStoragePermissionActivity"
-138-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:63:13-93
-139            android:enabled="false"
-139-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:64:13-36
-140            android:excludeFromRecents="true"
-140-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:65:13-46
-141            android:icon="@mipmap/leak_canary_icon"
-141-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:66:13-52
-142            android:label="@string/leak_canary_storage_permission_activity_label"
-142-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:67:13-82
-143            android:process=":leakcanary"
-143-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:68:13-42
-144            android:roundIcon="@mipmap/leak_canary_icon"
-144-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:69:13-57
-145            android:taskAffinity="com.squareup.leakcanary.com.jannonx.electric.debug"
-145-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:70:13-76
-146            android:theme="@style/leak_canary_Theme.Transparent" />
-146-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:71:13-65
-147
-148        <provider
-148-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
-149            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
-149-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
-150            android:authorities="com.jannonx.electric.debug.lifecycle-process"
-150-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
-151            android:exported="false"
-151-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
-152            android:multiprocess="true" />
-152-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
+103        <activity
+103-->D:\Document\demo\app\src\main\AndroidManifest.xml:103:9-106:56
+104            android:name="com.jannonx.electric.test.activity.ExamActivity"
+104-->D:\Document\demo\app\src\main\AndroidManifest.xml:104:13-55
+105            android:screenOrientation="portrait" />
+105-->D:\Document\demo\app\src\main\AndroidManifest.xml:105:13-49
+106        <activity
+106-->D:\Document\demo\app\src\main\AndroidManifest.xml:107:9-110:56
+107            android:name="com.jannonx.electric.test.activity.ExamResultActivity"
+107-->D:\Document\demo\app\src\main\AndroidManifest.xml:108:13-61
+108            android:screenOrientation="portrait" />
+108-->D:\Document\demo\app\src\main\AndroidManifest.xml:109:13-49
+109
+110        <service
+110-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:29:9-32:45
+111            android:name="com.squareup.leakcanary.internal.HeapAnalyzerService"
+111-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:30:13-80
+112            android:enabled="false"
+112-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:31:13-36
+113            android:process=":leakcanary" />
+113-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:32:13-42
+114        <service
+114-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:33:9-36:45
+115            android:name="com.squareup.leakcanary.DisplayLeakService"
+115-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:34:13-70
+116            android:enabled="false"
+116-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:35:13-36
+117            android:process=":leakcanary" />
+117-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:36:13-42
+118
+119        <provider
+119-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:38:9-46:20
+120            android:name="com.squareup.leakcanary.internal.LeakCanaryFileProvider"
+120-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:39:13-83
+121            android:authorities="com.squareup.leakcanary.fileprovider.com.jannonx.electric.debug"
+121-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:40:13-88
+122            android:exported="false"
+122-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:41:13-37
+123            android:grantUriPermissions="true" >
+123-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:42:13-47
+124            <meta-data
+124-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:43:13-45:66
+125                android:name="android.support.FILE_PROVIDER_PATHS"
+125-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:44:17-67
+126                android:resource="@xml/leak_canary_file_paths" />
+126-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:45:17-63
+127        </provider>
+128
+129        <activity
+129-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:48:9-61:20
+130            android:name="com.squareup.leakcanary.internal.DisplayLeakActivity"
+130-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:49:13-80
+131            android:enabled="false"
+131-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:50:13-36
+132            android:icon="@mipmap/leak_canary_icon"
+132-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:51:13-52
+133            android:label="@string/leak_canary_display_activity_label"
+133-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:52:13-71
+134            android:process=":leakcanary"
+134-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:53:13-42
+135            android:taskAffinity="com.squareup.leakcanary.com.jannonx.electric.debug"
+135-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:54:13-76
+136            android:theme="@style/leak_canary_LeakCanary.Base" >
+136-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:55:13-63
+137            <intent-filter>
+137-->D:\Document\demo\app\src\main\AndroidManifest.xml:96:13-100:29
+138                <action android:name="android.intent.action.MAIN" />
+138-->D:\Document\demo\app\src\main\AndroidManifest.xml:97:17-69
+138-->D:\Document\demo\app\src\main\AndroidManifest.xml:97:25-66
+139
+140                <category android:name="android.intent.category.LAUNCHER" />
+140-->D:\Document\demo\app\src\main\AndroidManifest.xml:99:17-77
+140-->D:\Document\demo\app\src\main\AndroidManifest.xml:99:27-74
+141            </intent-filter>
+142        </activity>
+143        <activity
+143-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:62:9-71:68
+144            android:name="com.squareup.leakcanary.internal.RequestStoragePermissionActivity"
+144-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:63:13-93
+145            android:enabled="false"
+145-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:64:13-36
+146            android:excludeFromRecents="true"
+146-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:65:13-46
+147            android:icon="@mipmap/leak_canary_icon"
+147-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:66:13-52
+148            android:label="@string/leak_canary_storage_permission_activity_label"
+148-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:67:13-82
+149            android:process=":leakcanary"
+149-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:68:13-42
+150            android:roundIcon="@mipmap/leak_canary_icon"
+150-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:69:13-57
+151            android:taskAffinity="com.squareup.leakcanary.com.jannonx.electric.debug"
+151-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:70:13-76
+152            android:theme="@style/leak_canary_Theme.Transparent" />
+152-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:71:13-65
 153
-154        <service
-154-->[androidx.room:room-runtime:2.3.0-alpha01] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c92baded68e4657beb49b053bc28fdf5\room-runtime-2.3.0-alpha01\AndroidManifest.xml:25:9-28:40
-155            android:name="androidx.room.MultiInstanceInvalidationService"
-155-->[androidx.room:room-runtime:2.3.0-alpha01] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c92baded68e4657beb49b053bc28fdf5\room-runtime-2.3.0-alpha01\AndroidManifest.xml:26:13-74
-156            android:directBootAware="true"
-156-->[androidx.room:room-runtime:2.3.0-alpha01] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c92baded68e4657beb49b053bc28fdf5\room-runtime-2.3.0-alpha01\AndroidManifest.xml:27:13-43
-157            android:exported="false" />
-157-->[androidx.room:room-runtime:2.3.0-alpha01] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c92baded68e4657beb49b053bc28fdf5\room-runtime-2.3.0-alpha01\AndroidManifest.xml:28:13-37
-158
-159        <meta-data
-159-->[com.github.bumptech.glide:okhttp3-integration:4.10.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\7ea94e0f3fb904a11b36c1e5d09f4134\jetified-okhttp3-integration-4.10.0\AndroidManifest.xml:11:9-13:43
-160            android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
-160-->[com.github.bumptech.glide:okhttp3-integration:4.10.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\7ea94e0f3fb904a11b36c1e5d09f4134\jetified-okhttp3-integration-4.10.0\AndroidManifest.xml:12:13-84
-161            android:value="GlideModule" />
-161-->[com.github.bumptech.glide:okhttp3-integration:4.10.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\7ea94e0f3fb904a11b36c1e5d09f4134\jetified-okhttp3-integration-4.10.0\AndroidManifest.xml:13:13-40
-162
-163        <provider
-163-->[me.jessyan:autosize:1.1.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\0cdc917e8f1064266826489ccf10d3d1\jetified-autosize-1.1.2\AndroidManifest.xml:12:9-16:43
-164            android:name="me.jessyan.autosize.InitProvider"
-164-->[me.jessyan:autosize:1.1.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\0cdc917e8f1064266826489ccf10d3d1\jetified-autosize-1.1.2\AndroidManifest.xml:13:13-60
-165            android:authorities="com.jannonx.electric.debug.autosize-init-provider"
-165-->[me.jessyan:autosize:1.1.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\0cdc917e8f1064266826489ccf10d3d1\jetified-autosize-1.1.2\AndroidManifest.xml:14:13-74
-166            android:exported="false"
-166-->[me.jessyan:autosize:1.1.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\0cdc917e8f1064266826489ccf10d3d1\jetified-autosize-1.1.2\AndroidManifest.xml:15:13-37
-167            android:multiprocess="true" />
-167-->[me.jessyan:autosize:1.1.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\0cdc917e8f1064266826489ccf10d3d1\jetified-autosize-1.1.2\AndroidManifest.xml:16:13-40
+154        <provider
+154-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
+155            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+155-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
+156            android:authorities="com.jannonx.electric.debug.lifecycle-process"
+156-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
+157            android:exported="false"
+157-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
+158            android:multiprocess="true" />
+158-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
+159
+160        <service
+160-->[androidx.room:room-runtime:2.3.0-alpha01] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c92baded68e4657beb49b053bc28fdf5\room-runtime-2.3.0-alpha01\AndroidManifest.xml:25:9-28:40
+161            android:name="androidx.room.MultiInstanceInvalidationService"
+161-->[androidx.room:room-runtime:2.3.0-alpha01] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c92baded68e4657beb49b053bc28fdf5\room-runtime-2.3.0-alpha01\AndroidManifest.xml:26:13-74
+162            android:directBootAware="true"
+162-->[androidx.room:room-runtime:2.3.0-alpha01] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c92baded68e4657beb49b053bc28fdf5\room-runtime-2.3.0-alpha01\AndroidManifest.xml:27:13-43
+163            android:exported="false" />
+163-->[androidx.room:room-runtime:2.3.0-alpha01] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\c92baded68e4657beb49b053bc28fdf5\room-runtime-2.3.0-alpha01\AndroidManifest.xml:28:13-37
+164
+165        <meta-data
+165-->[com.github.bumptech.glide:okhttp3-integration:4.10.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\7ea94e0f3fb904a11b36c1e5d09f4134\jetified-okhttp3-integration-4.10.0\AndroidManifest.xml:11:9-13:43
+166            android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
+166-->[com.github.bumptech.glide:okhttp3-integration:4.10.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\7ea94e0f3fb904a11b36c1e5d09f4134\jetified-okhttp3-integration-4.10.0\AndroidManifest.xml:12:13-84
+167            android:value="GlideModule" />
+167-->[com.github.bumptech.glide:okhttp3-integration:4.10.0] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\7ea94e0f3fb904a11b36c1e5d09f4134\jetified-okhttp3-integration-4.10.0\AndroidManifest.xml:13:13-40
 168
-169        <activity
-169-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:17:9-19:62
-170            android:name="droidninja.filepicker.FilePickerActivity"
-170-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:18:13-68
-171            android:configChanges="orientation|screenSize" />
-171-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:19:13-59
-172        <activity
-172-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:20:9-22:62
-173            android:name="droidninja.filepicker.MediaDetailsActivity"
-173-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:21:13-70
-174            android:configChanges="orientation|screenSize" />
-174-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:22:13-59
-175
-176        <provider
-176-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:24:9-32:20
-177            android:name="droidninja.filepicker.utils.FilePickerProvider"
-177-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:25:13-74
-178            android:authorities="com.jannonx.electric.debug.droidninja.filepicker.provider"
-178-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:26:13-82
-179            android:exported="false"
-179-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:27:13-37
-180            android:grantUriPermissions="true" >
-180-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:28:13-47
-181            <meta-data
-181-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:43:13-45:66
-182                android:name="android.support.FILE_PROVIDER_PATHS"
-182-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:44:17-67
-183                android:resource="@xml/provider_paths" />
-183-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:45:17-63
-184        </provider>
-185    </application>
-186
-187</manifest>
+169        <provider
+169-->[me.jessyan:autosize:1.1.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\0cdc917e8f1064266826489ccf10d3d1\jetified-autosize-1.1.2\AndroidManifest.xml:12:9-16:43
+170            android:name="me.jessyan.autosize.InitProvider"
+170-->[me.jessyan:autosize:1.1.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\0cdc917e8f1064266826489ccf10d3d1\jetified-autosize-1.1.2\AndroidManifest.xml:13:13-60
+171            android:authorities="com.jannonx.electric.debug.autosize-init-provider"
+171-->[me.jessyan:autosize:1.1.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\0cdc917e8f1064266826489ccf10d3d1\jetified-autosize-1.1.2\AndroidManifest.xml:14:13-74
+172            android:exported="false"
+172-->[me.jessyan:autosize:1.1.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\0cdc917e8f1064266826489ccf10d3d1\jetified-autosize-1.1.2\AndroidManifest.xml:15:13-37
+173            android:multiprocess="true" />
+173-->[me.jessyan:autosize:1.1.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\0cdc917e8f1064266826489ccf10d3d1\jetified-autosize-1.1.2\AndroidManifest.xml:16:13-40
+174
+175        <activity
+175-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:17:9-19:62
+176            android:name="droidninja.filepicker.FilePickerActivity"
+176-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:18:13-68
+177            android:configChanges="orientation|screenSize" />
+177-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:19:13-59
+178        <activity
+178-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:20:9-22:62
+179            android:name="droidninja.filepicker.MediaDetailsActivity"
+179-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:21:13-70
+180            android:configChanges="orientation|screenSize" />
+180-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:22:13-59
+181
+182        <provider
+182-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:24:9-32:20
+183            android:name="droidninja.filepicker.utils.FilePickerProvider"
+183-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:25:13-74
+184            android:authorities="com.jannonx.electric.debug.droidninja.filepicker.provider"
+184-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:26:13-82
+185            android:exported="false"
+185-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:27:13-37
+186            android:grantUriPermissions="true" >
+186-->[com.droidninja:filepicker:2.2.5] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:28:13-47
+187            <meta-data
+187-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:43:13-45:66
+188                android:name="android.support.FILE_PROVIDER_PATHS"
+188-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:44:17-67
+189                android:resource="@xml/provider_paths" />
+189-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\Jannonx\.gradle\caches\transforms-2\files-2.1\d90c90e8600cf7e4943a4efd67d5e6dd\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:45:17-63
+190        </provider>
+191    </application>
+192
+193</manifest>

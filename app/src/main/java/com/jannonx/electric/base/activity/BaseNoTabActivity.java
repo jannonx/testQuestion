@@ -1,9 +1,11 @@
 package com.jannonx.electric.base.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
@@ -24,9 +26,10 @@ public abstract class BaseNoTabActivity<V extends ViewDataBinding, VM extends Ba
         extends BaseFileUploadActivity<V, VM> {
 
     protected ProgressBar progressBar;
-//    protected AppCompatTextView tvIndex;
-    protected ViewPager2 viewPager;
+    //    protected AppCompatTextView tvIndex;
 
+    protected ViewPager2 viewPager;
+    protected AppCompatTextView tvNextStep;
     /**
      * 起始选中位置
      */
@@ -68,9 +71,10 @@ public abstract class BaseNoTabActivity<V extends ViewDataBinding, VM extends Ba
         progressBar = findViewById(R.id.progress_bar);
 //        tvIndex = findViewById(R.id.tv_index);
         viewPager = findViewById(R.id.base_vp);
+        tvNextStep = findViewById(R.id.tv_next_step);
     }
 
-    private void initListener() {
+    protected void initListener() {
 
     }
 
@@ -106,10 +110,17 @@ public abstract class BaseNoTabActivity<V extends ViewDataBinding, VM extends Ba
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                progressBar.setProgress((int) (((position + 1.0) / fragmentList.size()) * 100));
+                setPageSelectedView(position, fragmentList);
+
 //                tvIndex.setText((position + 1) + "/" + fragmentList.size());
             }
         });
+    }
+
+    private void setPageSelectedView(int position, List<Fragment> fragmentList) {
+        if (fragmentList == null) return;
+        progressBar.setProgress((int) (((position + 1.0) / fragmentList.size()) * 100));
+        tvNextStep.setVisibility((position + 1) == fragmentList.size() ? View.VISIBLE : View.GONE);
     }
 
     /**

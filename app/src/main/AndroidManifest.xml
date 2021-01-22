@@ -100,14 +100,14 @@
             </intent-filter>
         </activity>
 
-<!--        <activity-->
-<!--            android:name=".test.activity.ExamActivity"-->
-<!--            android:screenOrientation="portrait"-->
-<!--            tools:ignore="LockedOrientationActivity" />-->
-<!--        <activity-->
-<!--            android:name=".test.activity.ExamResultActivity"-->
-<!--            android:screenOrientation="portrait"-->
-<!--            tools:ignore="LockedOrientationActivity" />-->
+        <activity
+            android:name=".test.activity.ExamActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".test.activity.ExamResultActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>

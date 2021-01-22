@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.viewpager2.widget.ViewPager2;
@@ -18,7 +19,7 @@ import java.lang.Object;
 
 public abstract class ActivityBaseNoTabBinding extends ViewDataBinding {
   @NonNull
-  public final AppBarLayout appBar;
+  public final AppBarLayout ablTitle;
 
   @NonNull
   public final ViewPager2 baseVp;
@@ -29,15 +30,19 @@ public abstract class ActivityBaseNoTabBinding extends ViewDataBinding {
   @NonNull
   public final ProgressBar progressBar;
 
+  @NonNull
+  public final AppCompatTextView tvNextStep;
+
   protected ActivityBaseNoTabBinding(Object _bindingComponent, View _root, int _localFieldCount,
-      AppBarLayout appBar, ViewPager2 baseVp, ToolbarBinding layoutToolbar,
-      ProgressBar progressBar) {
+      AppBarLayout ablTitle, ViewPager2 baseVp, ToolbarBinding layoutToolbar,
+      ProgressBar progressBar, AppCompatTextView tvNextStep) {
     super(_bindingComponent, _root, _localFieldCount);
-    this.appBar = appBar;
+    this.ablTitle = ablTitle;
     this.baseVp = baseVp;
     this.layoutToolbar = layoutToolbar;
     setContainedBinding(this.layoutToolbar);
     this.progressBar = progressBar;
+    this.tvNextStep = tvNextStep;
   }
 
   @NonNull

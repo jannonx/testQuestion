@@ -98,18 +98,21 @@
     <!--    绿色-->
     <color name="color_green_00B578">#00B578</color>
     <color name="color_green_D4FFF1">#D4FFF1</color>
+    <color name="color_green_52D091">#52D091</color>
 
 
     <!--    红色-->
     <color name="color_red_F04864">#F04864</color>
     <color name="color_red_E77C6A">#E77C6A</color>
     <color name="color_red_F5F5F5">#F5F5F5</color>
+    <color name="color_red_FC7A6A">#FC7A6A</color>
 
     <!--    橘色-->
     <color name="color_orange_FFECE3">#FFECE3</color>
     <color name="color_orange_FF6010">#FF6010</color>
     <color name="color_orange_FF8F1F">#FF8F1F</color>
     <color name="color_orange_FFEFDF">#FFEFDF</color>
+    <color name="color_orange_F36C4E">#F36C4E</color>
 
 
     <!--  蓝色-->

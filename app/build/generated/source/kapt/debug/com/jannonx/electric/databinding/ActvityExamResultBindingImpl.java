@@ -15,7 +15,21 @@ public class ActvityExamResultBindingImpl extends ActvityExamResultBinding  {
     static {
         sIncludes = null;
         sViewsWithIds = new android.util.SparseIntArray();
-        sViewsWithIds.put(R.id.tv_select, 1);
+        sViewsWithIds.put(R.id.toolbar, 1);
+        sViewsWithIds.put(R.id.back_iv, 2);
+        sViewsWithIds.put(R.id.label_accuracy_rate, 3);
+        sViewsWithIds.put(R.id.tv_accuracy_rate, 4);
+        sViewsWithIds.put(R.id.tv_tip, 5);
+        sViewsWithIds.put(R.id.label_right, 6);
+        sViewsWithIds.put(R.id.tv_right_number, 7);
+        sViewsWithIds.put(R.id.label_wrong, 8);
+        sViewsWithIds.put(R.id.tv_right_wrong_number, 9);
+        sViewsWithIds.put(R.id.label_card, 10);
+        sViewsWithIds.put(R.id.label_right_round, 11);
+        sViewsWithIds.put(R.id.v_wrong, 12);
+        sViewsWithIds.put(R.id.label_wrong_round, 13);
+        sViewsWithIds.put(R.id.tv_question_type, 14);
+        sViewsWithIds.put(R.id.tfl_question_result, 15);
     }
     // views
     @NonNull
@@ -26,11 +40,25 @@ public class ActvityExamResultBindingImpl extends ActvityExamResultBinding  {
     // Inverse Binding Event Handlers
 
     public ActvityExamResultBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 2, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 16, sIncludes, sViewsWithIds));
     }
     private ActvityExamResultBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
-            , (androidx.appcompat.widget.AppCompatTextView) bindings[1]
+            , (android.widget.ImageView) bindings[2]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[3]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[10]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[6]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[11]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[8]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[13]
+            , (com.jannonx.electric.view.flowlayout.TagFlowLayout) bindings[15]
+            , (androidx.appcompat.widget.Toolbar) bindings[1]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[4]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[14]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[7]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[9]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[5]
+            , (android.view.View) bindings[12]
             );
         this.mboundView0 = (androidx.core.widget.NestedScrollView) bindings[0];
         this.mboundView0.setTag(null);
