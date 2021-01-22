@@ -5,9 +5,8 @@ import java.util.List;
 
 /**
  * @description:
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2021/1/21 01:00
- * @company: 固远（深圳）信息技术有限公司
  */
 public class TestQuestionBean implements Serializable {
     /**

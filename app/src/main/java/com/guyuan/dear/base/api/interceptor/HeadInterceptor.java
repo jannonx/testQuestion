@@ -7,9 +7,11 @@ import java.io.IOException;
 import okhttp3.Interceptor;
 import okhttp3.Response;
 
+
 /**
- * Created by tl on 2018-8-9
- * 请求头拦截器
+ * @description: 请求头拦截器
+ * @author: Jannonx
+ * @since: 2021/1/21 20:57
  */
 public class HeadInterceptor implements Interceptor {
 

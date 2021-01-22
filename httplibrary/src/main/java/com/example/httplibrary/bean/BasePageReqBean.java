@@ -2,7 +2,7 @@ package com.example.httplibrary.bean;
 
 /**
  * @description:
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2020/11/24 23:56
  */
 public class BasePageReqBean {

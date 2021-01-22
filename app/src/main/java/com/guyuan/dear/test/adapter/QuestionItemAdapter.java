@@ -2,22 +2,22 @@ package com.guyuan.dear.test.adapter;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
+
 import com.guyuan.dear.R;
 import com.guyuan.dear.test.bean.ItemQuestionBean;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerAdapter;
 import tl.com.easy_recycleview_library.adapter.BaseRecyclerViewHolder;
 
 /**
- * @author : 许建宁
+ * @author : Jannonx
  * @description :
  * @since: 2020/11/19 14:11
- * @company : 固远（深圳）信息技术有限公司
  **/
 
 public class QuestionItemAdapter extends BaseRecyclerAdapter<ItemQuestionBean> {

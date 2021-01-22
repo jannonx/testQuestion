@@ -2,9 +2,8 @@ package com.guyuan.dear.utils.dbUtil;
 
 /**
  * @description:
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2021/1/21 21:29
- * @company: 固远（深圳）信息技术有限公司
  */
 public class DBConstant {
     public static final String DATABASE_PATH = "/data/user/0/com.guyuan.dear.debug/files/testQuestion.db";

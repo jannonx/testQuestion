@@ -12,7 +12,7 @@ import com.example.mvvmlibrary.base.data.BaseViewModel;
 
 /**
  * @description:
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2020/11/24 23:56
  */
 public abstract class BaseToolbarActivity<V extends ViewDataBinding, VM extends BaseViewModel> extends BaseDataBindingActivity<V, VM> {

@@ -7,9 +7,8 @@ import java.util.List;
 
 /**
  * @description:
- * @author: tl
+ * @author: Jannonx
  * @since: 2020/9/10 11:28
- * @company: 固远（深圳）信息技术有限公司
  */
 public class SimpleTabBean implements Serializable {
     private long id;

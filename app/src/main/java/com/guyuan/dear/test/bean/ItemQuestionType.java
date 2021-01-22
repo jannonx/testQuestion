@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * @description: 题目类型
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2020/11/10 15:31
  */
 public enum ItemQuestionType implements Serializable {

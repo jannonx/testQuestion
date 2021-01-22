@@ -30,9 +30,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 /**
  * @description:
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2021/1/21 15:40
- * @company: 固远（深圳）信息技术有限公司
  */
 @AndroidEntryPoint
 public class ExamActivity extends BaseNoTabActivity<ActivityBaseNoTabBinding, TestViewModel> implements HandlerUtils.OnReceiveMessageListener {

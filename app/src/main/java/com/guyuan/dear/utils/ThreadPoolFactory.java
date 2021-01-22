@@ -15,9 +15,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @description: 线程池工具类
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2021/1/21 21:20
- * @company: 固远（深圳）信息技术有限公司
  */
 public final class ThreadPoolFactory {
 

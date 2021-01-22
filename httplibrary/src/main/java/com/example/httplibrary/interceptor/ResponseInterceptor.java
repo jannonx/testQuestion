@@ -3,7 +3,7 @@ package com.example.httplibrary.interceptor;
 
 /**
  * @description: 请求头拦截器
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2020/11/24 23:56
  */
 import java.io.IOException;

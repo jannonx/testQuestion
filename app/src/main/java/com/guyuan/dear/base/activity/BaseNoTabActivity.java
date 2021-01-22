@@ -4,22 +4,21 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
+import androidx.databinding.ViewDataBinding;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.adapter.TabAdapter;
 
 import java.util.List;
 
-import androidx.databinding.ViewDataBinding;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
-
 
 /**
  * @description: 没有顶部导航栏activity基类
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2021/1/21 20:57
- * @company: 固远（深圳）信息技术有限公司
  */
 public abstract class BaseNoTabActivity<V extends ViewDataBinding, VM extends BaseViewModel>
         extends BaseFileUploadActivity<V, VM> {

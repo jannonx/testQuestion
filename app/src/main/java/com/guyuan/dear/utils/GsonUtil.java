@@ -3,10 +3,9 @@ package com.guyuan.dear.utils;
 import com.google.gson.Gson;
 
 /**
- * @author : tl
+ * @author : Jannonx
  * @description :gonson工具类
  * @since: 2020/9/7
- * @company : 固远（深圳）信息技术有限公司
  **/
 public class GsonUtil {
 

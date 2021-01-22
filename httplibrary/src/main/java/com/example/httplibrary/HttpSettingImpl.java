@@ -18,7 +18,7 @@ import retrofit2.Retrofit;
 
 /**
  * @description: okhttp参数设置接口
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2020/11/24 23:56
  */
 public interface HttpSettingImpl {

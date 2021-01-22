@@ -2,10 +2,8 @@ package com.guyuan.dear.utils;
 
 import android.util.Log;
 
-import com.guyuan.dear.BuildConfig;
-
 /**
- * @author 廖华凯
+ * @author Jannonx
  * @since 2019/11/19 15:07
  **/
 public class LogUtils {

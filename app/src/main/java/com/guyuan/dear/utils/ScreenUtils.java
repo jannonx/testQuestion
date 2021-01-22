@@ -10,9 +10,8 @@ import android.view.WindowManager;
 
 /**
  * @description: 屏幕相关工具
- * @author: 廖华凯
+ * @author: Jannonx
  * @since: 2020/9/10 11:28
- * @company: 固远（深圳）信息技术有限公司
  */
 public class ScreenUtils {
 

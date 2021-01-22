@@ -5,9 +5,8 @@ import java.io.Serializable;
 
 /**
  * @description: 选择题结果类型
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2020/11/10 15:31
- * @company: 固远（深圳）信息技术有限公司
  */
 public enum ItemQuestionResultType implements Serializable {
     /**

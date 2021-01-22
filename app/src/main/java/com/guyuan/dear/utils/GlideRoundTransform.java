@@ -16,7 +16,7 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import java.security.MessageDigest;
 
 /**
- * created by tl
+ * created by Jannonx
  * created at 2020/5/21
  */
 

@@ -6,10 +6,9 @@ import com.example.httplibrary.rx.BaseSchedulersCompat;
 import io.reactivex.Observable;
 
 /**
- * @author : 唐力
+ * @author : Jannonx
  * @description :
  * @since: 2020/12/10 15:15
- * @company : 固远（深圳）信息技术有限公司
  **/
 
 public class SchedulersCompat extends BaseSchedulersCompat {

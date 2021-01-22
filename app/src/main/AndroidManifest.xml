@@ -82,17 +82,7 @@
         android:theme="@style/AppTheme">
 
 
-        <provider
-            android:name=".utils.providers.BuglyFileProvider"
-            android:authorities="${applicationId}.fileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true"
-            tools:replace="name,authorities,exported,grantUriPermissions">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"
-                tools:replace="name,resource" />
-        </provider> <!-- 相册库配置 -->
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.cameraalbumtest.fileprovider"
@@ -103,7 +93,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <service android:name=".service.BackService" /> <!-- 配置百度地图 start -->
+        <service android:name=".service.BackService" />
 
         <!-- 今日头条屏幕适配 -->
         <meta-data

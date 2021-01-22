@@ -4,9 +4,8 @@ import java.io.Serializable;
 
 /**
  * @description:
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2021/1/21 15:41
- * @company: 固远（深圳）信息技术有限公司
  */
 public class Question implements Serializable {
     public String question;

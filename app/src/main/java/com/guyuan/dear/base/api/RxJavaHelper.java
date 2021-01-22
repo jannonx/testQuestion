@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.httplibrary.bean.ErrorResultBean;
 import com.example.httplibrary.bean.ResultBean;
-import com.example.httplibrary.rx.BaseSchedulersCompat;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 
 import io.reactivex.Observable;
@@ -16,10 +15,9 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
 /**
- * @author : tl
+ * @author : Jannonx
  * @description :
  * @since: 2020/9/8 15:54
- * @company : 固远（深圳）信息技术有限公司
  **/
 public class RxJavaHelper<T, VM extends BaseViewModel> {
 

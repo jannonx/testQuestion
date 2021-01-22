@@ -10,10 +10,9 @@ import dagger.hilt.InstallIn;
 import dagger.hilt.android.components.ActivityComponent;
 
 /**
- * @author : 唐力
+ * @author : Jannonx
  * @description :
  * @since: 2020/11/25 17:39
- * @company : 固远（深圳）信息技术有限公司
  **/
 @Module
 @InstallIn(ActivityComponent.class)

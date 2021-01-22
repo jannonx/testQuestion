@@ -18,7 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 /**
  * @description:
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2020/11/24 23:56
  */
 public abstract class BaseFragment extends Fragment {

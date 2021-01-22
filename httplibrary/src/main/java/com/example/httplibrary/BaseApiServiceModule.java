@@ -39,7 +39,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @description: 管理retrofit网络库的全局代理module
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2020/11/24 23:56
  */
 //@Module

@@ -23,9 +23,8 @@ import java.util.List;
 
 /**
  * @description:
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2020/12/8 16:32
- * @company: 固远（深圳）信息技术有限公司
  */
 public final class FileIOUtils {
 

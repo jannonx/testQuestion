@@ -4,9 +4,8 @@ package com.guyuan.dear.base.bean;
 
 /**
  * @description: 列表请求配置参数
- * @author: tl
+ * @author: Jannonx
  * @since: 2020/9/10 11:28
- * @company: 固远（深圳）信息技术有限公司
  */
 public class ListRequestBody {
     private FiltersBean filters;

@@ -12,7 +12,7 @@ import com.guyuan.dear.base.app.DearApplication;
 
 
 /**
- * @author 廖华凯
+ * @author Jannonx
  * @since 2019/12/18 19:26
  **/
 public class GlideUtils {

@@ -34,8 +34,772 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f10f9682-d627-4c56-9861-b917fd1d9e97" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle____app_libs_LibEasyRecyclerView_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_concurrent_concurrent_futures_1_1_0_alpha01.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_concurrent_concurrent_futures_ktx_1_1_0_alpha01.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_0_0_beta3_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_2_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_2_0_0_beta3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_solver_2_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_ktx_2_2_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_ktx_2_2_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_ktx_2_2_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_paging_paging_common_3_0_0_alpha02.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_paging_paging_common_ktx_3_0_0_alpha02.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_paging_paging_guava_3_0_0_alpha02_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_paging_paging_runtime_3_0_0_alpha02_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_paging_paging_rxjava2_3_0_0_alpha02_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_2_0_alpha04_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_droidninja_filepicker_2_2_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_listenablefuture_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_zxing_core_3_3_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jzxiang_pickerview_TimePickerDialog_1_0_1_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_tencent_bugly_crashreport_upgrade_1_5_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_tencent_bugly_nativecrashreport_3_7_700_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__io_reactivex_rxjava2_rxjava_2_2_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_greenrobot_greendao_3_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_greenrobot_greendao_api_3_2_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_android_1_3_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlinx_kotlinx_coroutines_core_1_3_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/Dear.buildSrc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Dear.buildSrc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/Dear.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/Dear.app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/httplibrary/Dear.httplibrary.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/httplibrary/Dear.httplibrary.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/mvvmlibrary/Dear.mvvmlibrary.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/mvvmlibrary/Dear.mvvmlibrary.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/bundle-manifest/armeabi-v7a/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/bundle_manifest/debug/bundle-manifest/armeabi-v7a/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_0.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_0.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_1.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_1.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_10.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_10.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_11.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_11.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_18.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_18.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_19.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_19.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_2.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_2.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_20.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_20.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_21.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_21.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_22.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_22.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_23.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_23.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_24.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_24.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_25.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_25.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_26.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_26.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_27.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_27.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_28.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_28.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_29.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_29.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_3.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_3.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_4.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_4.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_5.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_5.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_6.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_6.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_7.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_7.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_8.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_8.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_9.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeLibDexDebug/classes_9.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/mergeProjectDexDebug/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/dex_archive_input_jar_hashes/debug/out" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/dex_archive_input_jar_hashes/debug/out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/6f3a60fea2403b80385b399952aeb3a4cf0985a45b8da04b6f31825171901a1d_0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/6f3a60fea2403b80385b399952aeb3a4cf0985a45b8da04b6f31825171901a1d_1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/6f3a60fea2403b80385b399952aeb3a4cf0985a45b8da04b6f31825171901a1d_2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/6f3a60fea2403b80385b399952aeb3a4cf0985a45b8da04b6f31825171901a1d_3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/6f3a60fea2403b80385b399952aeb3a4cf0985a45b8da04b6f31825171901a1d_4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/6f3a60fea2403b80385b399952aeb3a4cf0985a45b8da04b6f31825171901a1d_5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/7863aef15b665fc07f4c3ca9175c53524af3252fb2afac785a60d68fb12805f6_2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/7863aef15b665fc07f4c3ca9175c53524af3252fb2afac785a60d68fb12805f6_3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/7863aef15b665fc07f4c3ca9175c53524af3252fb2afac785a60d68fb12805f6_5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/9a3b201c8d882ad6ff16a82c8c7c7fd7d0695f09bdac64a2d27c60b910f60b42_0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/9a3b201c8d882ad6ff16a82c8c7c7fd7d0695f09bdac64a2d27c60b910f60b42_1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/9a3b201c8d882ad6ff16a82c8c7c7fd7d0695f09bdac64a2d27c60b910f60b42_2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/9a3b201c8d882ad6ff16a82c8c7c7fd7d0695f09bdac64a2d27c60b910f60b42_3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/9ab85c61d59eda8352b04a2a917055dfe579d1052bae89423ab3ac720b79ec97_0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/9ab85c61d59eda8352b04a2a917055dfe579d1052bae89423ab3ac720b79ec97_1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/9ab85c61d59eda8352b04a2a917055dfe579d1052bae89423ab3ac720b79ec97_2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/9ab85c61d59eda8352b04a2a917055dfe579d1052bae89423ab3ac720b79ec97_3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/9ab85c61d59eda8352b04a2a917055dfe579d1052bae89423ab3ac720b79ec97_4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/9ab85c61d59eda8352b04a2a917055dfe579d1052bae89423ab3ac720b79ec97_5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/b77258052037c7835b4cf5851ec5f3106e38dcf87070434770e18664cc035bbe_1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/b77258052037c7835b4cf5851ec5f3106e38dcf87070434770e18664cc035bbe_2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/b77258052037c7835b4cf5851ec5f3106e38dcf87070434770e18664cc035bbe_3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/b77258052037c7835b4cf5851ec5f3106e38dcf87070434770e18664cc035bbe_5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/b885680e3e3530d9af16bbf7d1d0f29bb2f2cda5a8922d164bee8e1dfbb6de13_0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/b885680e3e3530d9af16bbf7d1d0f29bb2f2cda5a8922d164bee8e1dfbb6de13_1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/b885680e3e3530d9af16bbf7d1d0f29bb2f2cda5a8922d164bee8e1dfbb6de13_2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/b885680e3e3530d9af16bbf7d1d0f29bb2f2cda5a8922d164bee8e1dfbb6de13_3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/b885680e3e3530d9af16bbf7d1d0f29bb2f2cda5a8922d164bee8e1dfbb6de13_4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/b885680e3e3530d9af16bbf7d1d0f29bb2f2cda5a8922d164bee8e1dfbb6de13_5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/e465d5dd67a305933ecef51821b7b2f33f0ac1c24fb633c5b68b0770dee7b0f7_0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/e465d5dd67a305933ecef51821b7b2f33f0ac1c24fb633c5b68b0770dee7b0f7_1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/e465d5dd67a305933ecef51821b7b2f33f0ac1c24fb633c5b68b0770dee7b0f7_2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/e465d5dd67a305933ecef51821b7b2f33f0ac1c24fb633c5b68b0770dee7b0f7_3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/e465d5dd67a305933ecef51821b7b2f33f0ac1c24fb633c5b68b0770dee7b0f7_4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/e465d5dd67a305933ecef51821b7b2f33f0ac1c24fb633c5b68b0770dee7b0f7_5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/e8b76fa20c7a69d2069b72b3cc71c23c259b27e3b809fa67255a2921558cfb4b_0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/e8b76fa20c7a69d2069b72b3cc71c23c259b27e3b809fa67255a2921558cfb4b_1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/e8b76fa20c7a69d2069b72b3cc71c23c259b27e3b809fa67255a2921558cfb4b_2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/e8b76fa20c7a69d2069b72b3cc71c23c259b27e3b809fa67255a2921558cfb4b_4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/external_libs_dex_archive/debug/out/e8b76fa20c7a69d2069b72b3cc71c23c259b27e3b809fa67255a2921558cfb4b_5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeJavaRes/merge-state" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/debug-mergeNativeLibs/merge-state" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-af/values-af.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-am/values-am.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ar/values-ar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-as/values-as.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-az/values-az.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-b+sr+Latn/values-b+sr+Latn.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-be/values-be.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-bg/values-bg.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-bn/values-bn.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-bs/values-bs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ca/values-ca.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-cs/values-cs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-da/values-da.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-de/values-de.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-el/values-el.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rAU/values-en-rAU.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rCA/values-en-rCA.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rGB/values-en-rGB.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rIN/values-en-rIN.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rXC/values-en-rXC.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-es-rUS/values-es-rUS.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-es/values-es.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-et/values-et.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-eu/values-eu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-fa/values-fa.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-fi/values-fi.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-fr-rCA/values-fr-rCA.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-fr/values-fr.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-gl/values-gl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-gu/values-gu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h360dp-land-v13/values-h360dp-land-v13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h480dp-land-v13/values-h480dp-land-v13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-h720dp-v13/values-h720dp-v13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hi/values-hi.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hr/values-hr.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hu/values-hu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hy/values-hy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-in/values-in.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-is/values-is.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-it/values-it.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-iw/values-iw.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ja/values-ja.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ka/values-ka.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-kk/values-kk.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-km/values-km.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-kn/values-kn.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ko/values-ko.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ky/values-ky.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v4/values-large-v4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-lo/values-lo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-lt/values-lt.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-lv/values-lv.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-mk/values-mk.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ml/values-ml.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-mn/values-mn.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-mr/values-mr.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ms/values-ms.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-my/values-my.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-nb/values-nb.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ne/values-ne.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-nl/values-nl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-or/values-or.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pa/values-pa.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pl/values-pl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt-rBR/values-pt-rBR.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt-rPT/values-pt-rPT.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt/values-pt.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ro/values-ro.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ru/values-ru.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-si/values-si.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sk/values-sk.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sl/values-sl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-small-v4/values-small-v4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sq/values-sq.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sr/values-sr.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sv/values-sv.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw/values-sw.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ta/values-ta.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-te/values-te.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-th/values-th.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-tl/values-tl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-tr/values-tr.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-uk/values-uk.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ur/values-ur.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-uz/values-uz.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v16/values-v16.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v17/values-v17.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v18/values-v18.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v21/values-v21.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v22/values-v22.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v25/values-v25.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v26/values-v26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v28/values-v28.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-vi/values-vi.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w360dp-port-v13/values-w360dp-port-v13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w480dp-port-v13/values-w480dp-port-v13.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v21/values-watch-v21.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-xlarge-v4/values-xlarge-v4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rCN/values-zh-rCN.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rHK/values-zh-rHK.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rTW/values-zh-rTW.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh/values-zh.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zu/values-zu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_base_no_tab.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_base_tab.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_exam.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/empty.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_list.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/fragment_question_item.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/home_bar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/item_answer_question.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/layout_home_bar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/stripped.dir/layout/layout_search_bar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/armeabi-v7aDebug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/armeabi-v7aDebug/dex-renamer-state.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/armeabi-v7aDebug/zip-cache/androidResources" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/armeabi-v7aDebug/zip-cache/androidResources" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/armeabi-v7aDebug/zip-cache/javaResources0" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/armeabi-v7aDebug/zip-cache/javaResources0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/armeabi-v7a/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/instant_app_manifest/debug/armeabi-v7a/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/activity/BaseFileUploadActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/activity/BaseFileUploadActivity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/activity/BaseNoTabActivity$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/activity/BaseNoTabActivity$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/activity/BaseNoTabActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/activity/BaseNoTabActivity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/adapter/TabAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/adapter/TabAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/ApiServiceModule.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/ApiServiceModule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/BaseApiService.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/BaseApiService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/BaseModule.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/BaseModule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper$Builder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/RxJavaHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/SchedulersCompat.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/SchedulersCompat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/interceptor/HeadInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/api/interceptor/HeadInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/app/DearApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/app/DearApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/bean/CompanyOrganizationDataBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/bean/ContractStatusBean$ContractStopCauseVOBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/bean/ContractStatusBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/bean/DepartmentDataBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/bean/ListRequestBody$FiltersBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/bean/ListRequestBody$FiltersBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/bean/ListRequestBody.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/bean/ListRequestBody.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/bean/PicBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/bean/SimpleTabBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/bean/SimpleTabBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/fragment/BaseDearViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/fragment/BaseDearViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/fragment/BaseListFragment$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/fragment/BaseListFragment$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/fragment/BaseListFragment$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/fragment/BaseListFragment$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/fragment/BaseListFragment$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/fragment/BaseListFragment$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/fragment/BaseListFragment$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/fragment/BaseListFragment$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/fragment/BaseListFragment.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/base/fragment/BaseListFragment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/home/MainActivity$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/home/MainActivity$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/home/MainActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/home/MainActivity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/home/data/MainRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/home/data/MainRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/home/data/MainViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/home/data/MainViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/home/hilt/MainModule.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/home/hilt/MainModule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/api/DearNetApiService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/reqBean/ClockInRqBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/reqBean/ContractExceptionOrTotalBody$FiltersBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/reqBean/ContractExceptionOrTotalBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/reqBean/SearchRqBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/reqBean/SubmitQcReportBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetBaseContractInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetBaseProjectBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetBaseQcBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetClientInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetClockInConfig$TclockGpsConfigBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetClockInConfig$TcompanyWorkTimeBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetClockInConfig$TuserWorkTimeInfoVoBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetClockInConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractDetailInfo$TcontractPartsBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractDetailInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractHistory$ContractRestartVOSBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractHistory$ContractStopVOSBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractHistory$CustomerAcceptanceVOBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractHistory$PaymentSumVOBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractHistory$QualityAbnormaVOBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractHistory$QualitySumVOBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractHistory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractStatusDetail$TcontractInfoBean$TcontractPartsBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractStatusDetail$TcontractInfoBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractStatusDetail$TexamineVoBean$TexamineFlowsBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractStatusDetail$TexamineVoBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractStatusDetail.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractStatusFlow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetContractSumBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetHrSummary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetIdAndStatusMapping.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetMaterialBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetProductInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetQcApproach.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetQcReportApproveFlow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetQcReportDetailBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetQcSummaryBean$EquipmentDataBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetQcSummaryBean$MaterialsDataBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetQcSummaryBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetSearchContactInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetServerParam$JudgeCondition.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetServerParam.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetStaffAttendRecord.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetStaffAttendStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetStaffBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetVerifyFlowBean$BusinessDetailsBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/net/resultBeans/NetVerifyFlowBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/service/BackTaskType.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/service/BackTaskType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/bean/ItemQuestionBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/bean/ItemQuestionBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/bean/ItemQuestionResultType.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/bean/ItemQuestionResultType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/bean/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/bean/Question.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/bean/TestQuestionBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/bean/TestQuestionBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/data/TestRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/data/TestRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/data/TestViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/data/TestViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/hilt/TestModule.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/hilt/TestModule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/service/DBService.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/test/service/DBService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/CalenderUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/CalenderUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/CloseUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/CloseUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/ConstantValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/ConstantValue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/DimensionUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/DimensionUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/FileIOUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/FileIOUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/FileUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/FileUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/GsonUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/GsonUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/ScreenUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/ScreenUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/ThreadPoolFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/ThreadPoolFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/dbUtil/DBConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/dbUtil/DBConstant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/dbUtil/DBHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/javac/debug/classes/com/guyuan/dear/utils/dbUtil/DBHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/manifest_merge_blame_file/debug/manifest-merger-blame-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_java_res/debug/out.jar" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_java_res/debug/out.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/armeabi-v7a/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/merged_manifests/debug/armeabi-v7a/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/out/resources-armeabi-v7aDebug.ap_" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/processed_res/debug/out/resources-armeabi-v7aDebug.ap_" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/activity/BaseFileUploadActivity.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/activity/BaseFileUploadActivity.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/activity/BaseNoTabActivity$1.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/activity/BaseNoTabActivity$1.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/activity/BaseNoTabActivity.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/activity/BaseNoTabActivity.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/adapter/TabAdapter.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/adapter/TabAdapter.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/ApiServiceModule.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/ApiServiceModule.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/BaseApiService.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/BaseApiService.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/BaseModule.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/BaseModule.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$1.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$1.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$2.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$2.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$3.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$3.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$4.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$4.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$5.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$5.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$6.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$6.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$7.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$7.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$Builder.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper$Builder.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/RxJavaHelper.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/SchedulersCompat.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/SchedulersCompat.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/interceptor/HeadInterceptor.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/api/interceptor/HeadInterceptor.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/app/DearApplication.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/app/DearApplication.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/bean/CompanyOrganizationDataBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/bean/ContractStatusBean$ContractStopCauseVOBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/bean/ContractStatusBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/bean/DepartmentDataBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/bean/ListRequestBody$FiltersBean.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/bean/ListRequestBody$FiltersBean.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/bean/ListRequestBody.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/bean/ListRequestBody.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/bean/PicBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/bean/SimpleTabBean.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/bean/SimpleTabBean.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/fragment/BaseDearViewModel.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/fragment/BaseDearViewModel.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/fragment/BaseListFragment$1.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/fragment/BaseListFragment$1.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/fragment/BaseListFragment$2.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/fragment/BaseListFragment$2.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/fragment/BaseListFragment$3.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/fragment/BaseListFragment$3.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/fragment/BaseListFragment$4.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/fragment/BaseListFragment$4.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/fragment/BaseListFragment.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/base/fragment/BaseListFragment.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/home/MainActivity$1.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/home/MainActivity$1.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/home/MainActivity.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/home/MainActivity.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/home/data/MainRepository.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/home/data/MainRepository.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/home/data/MainViewModel.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/home/data/MainViewModel.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/home/hilt/MainModule.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/home/hilt/MainModule.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/api/DearNetApiService.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/reqBean/ClockInRqBody.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/reqBean/ContractExceptionOrTotalBody$FiltersBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/reqBean/ContractExceptionOrTotalBody.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/reqBean/SearchRqBody.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/reqBean/SubmitQcReportBody.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetBaseContractInfo.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetBaseProjectBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetBaseQcBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetClientInfo.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetClockInConfig$TclockGpsConfigBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetClockInConfig$TcompanyWorkTimeBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetClockInConfig$TuserWorkTimeInfoVoBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetClockInConfig.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractDetailInfo$TcontractPartsBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractDetailInfo.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractHistory$ContractRestartVOSBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractHistory$ContractStopVOSBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractHistory$CustomerAcceptanceVOBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractHistory$PaymentSumVOBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractHistory$QualityAbnormaVOBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractHistory$QualitySumVOBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractHistory.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractInfo.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractStatusDetail$TcontractInfoBean$TcontractPartsBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractStatusDetail$TcontractInfoBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractStatusDetail$TexamineVoBean$TexamineFlowsBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractStatusDetail$TexamineVoBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractStatusDetail.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractStatusFlow.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetContractSumBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetHrSummary.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetIdAndStatusMapping.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetMaterialBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetProductInfo.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetQcApproach.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetQcReportApproveFlow.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetQcReportDetailBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetQcSummaryBean$EquipmentDataBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetQcSummaryBean$MaterialsDataBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetQcSummaryBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetSearchContactInfo.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetServerParam$JudgeCondition.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetServerParam.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetStaffAttendRecord.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetStaffAttendStatus.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetStaffBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetVerifyFlowBean$BusinessDetailsBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/net/resultBeans/NetVerifyFlowBean.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/service/BackTaskType.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/service/BackTaskType.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/bean/ItemQuestionBean.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/bean/ItemQuestionBean.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/bean/ItemQuestionResultType.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/bean/ItemQuestionResultType.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/bean/Question.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/bean/Question.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/bean/TestQuestionBean.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/bean/TestQuestionBean.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/data/TestRepository.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/data/TestRepository.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/data/TestViewModel.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/data/TestViewModel.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/hilt/TestModule.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/hilt/TestModule.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/service/DBService.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/test/service/DBService.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/CalenderUtils.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/CalenderUtils.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/CloseUtils.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/CloseUtils.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/ConstantValue.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/ConstantValue.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/DimensionUtils.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/DimensionUtils.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/FileIOUtils.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/FileIOUtils.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/FileUtils.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/FileUtils.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/GsonUtil.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/GsonUtil.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/ScreenUtils.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/ScreenUtils.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/ThreadPoolFactory.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/ThreadPoolFactory.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/dbUtil/DBConstant.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/dbUtil/DBConstant.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/dbUtil/DBHelper.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/guyuan/dear/utils/dbUtil/DBHelper.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/sub_project_dex_archive/debug/out/79fa73a297b95cec530c2def035154272720ecb19f373b5fb37322b7bbab529e_0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/sub_project_dex_archive/debug/out/79fa73a297b95cec530c2def035154272720ecb19f373b5fb37322b7bbab529e_1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/sub_project_dex_archive/debug/out/79fa73a297b95cec530c2def035154272720ecb19f373b5fb37322b7bbab529e_2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/sub_project_dex_archive/debug/out/79fa73a297b95cec530c2def035154272720ecb19f373b5fb37322b7bbab529e_3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/sub_project_dex_archive/debug/out/79fa73a297b95cec530c2def035154272720ecb19f373b5fb37322b7bbab529e_4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/sub_project_dex_archive/debug/out/79fa73a297b95cec530c2def035154272720ecb19f373b5fb37322b7bbab529e_5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/sub_project_dex_archive/debug/out/8f5ddb12b52d72630f0738e5d349691db7165ff7f7b4ddfc17147ac4e127cc1a_0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/sub_project_dex_archive/debug/out/8f5ddb12b52d72630f0738e5d349691db7165ff7f7b4ddfc17147ac4e127cc1a_1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/sub_project_dex_archive/debug/out/8f5ddb12b52d72630f0738e5d349691db7165ff7f7b4ddfc17147ac4e127cc1a_2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/sub_project_dex_archive/debug/out/8f5ddb12b52d72630f0738e5d349691db7165ff7f7b4ddfc17147ac4e127cc1a_3.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/sub_project_dex_archive/debug/out/8f5ddb12b52d72630f0738e5d349691db7165ff7f7b4ddfc17147ac4e127cc1a_4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/sub_project_dex_archive/debug/out/8f5ddb12b52d72630f0738e5d349691db7165ff7f7b4ddfc17147ac4e127cc1a_5.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/activity/BaseFileUploadActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/activity/BaseFileUploadActivity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/activity/BaseNoTabActivity$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/activity/BaseNoTabActivity$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/activity/BaseNoTabActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/activity/BaseNoTabActivity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/adapter/TabAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/adapter/TabAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/ApiServiceModule.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/ApiServiceModule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/BaseApiService.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/BaseApiService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/BaseModule.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/BaseModule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper$Builder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/RxJavaHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/SchedulersCompat.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/SchedulersCompat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/interceptor/HeadInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/api/interceptor/HeadInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/app/DearApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/app/DearApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/bean/CompanyOrganizationDataBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/bean/ContractStatusBean$ContractStopCauseVOBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/bean/ContractStatusBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/bean/DepartmentDataBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/bean/ListRequestBody$FiltersBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/bean/ListRequestBody$FiltersBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/bean/ListRequestBody.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/bean/ListRequestBody.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/bean/PicBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/bean/SimpleTabBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/bean/SimpleTabBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/fragment/BaseDearViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/fragment/BaseDearViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/fragment/BaseListFragment$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/fragment/BaseListFragment$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/fragment/BaseListFragment$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/fragment/BaseListFragment$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/fragment/BaseListFragment$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/fragment/BaseListFragment$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/fragment/BaseListFragment$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/fragment/BaseListFragment$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/fragment/BaseListFragment.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/base/fragment/BaseListFragment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/home/MainActivity$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/home/MainActivity$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/home/MainActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/home/MainActivity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/home/data/MainRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/home/data/MainRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/home/data/MainViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/home/data/MainViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/home/hilt/MainModule.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/home/hilt/MainModule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/api/DearNetApiService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/reqBean/ClockInRqBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/reqBean/ContractExceptionOrTotalBody$FiltersBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/reqBean/ContractExceptionOrTotalBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/reqBean/SearchRqBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/reqBean/SubmitQcReportBody.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetBaseContractInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetBaseProjectBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetBaseQcBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetClientInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetClockInConfig$TclockGpsConfigBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetClockInConfig$TcompanyWorkTimeBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetClockInConfig$TuserWorkTimeInfoVoBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetClockInConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractDetailInfo$TcontractPartsBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractDetailInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractHistory$ContractRestartVOSBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractHistory$ContractStopVOSBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractHistory$CustomerAcceptanceVOBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractHistory$PaymentSumVOBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractHistory$QualityAbnormaVOBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractHistory$QualitySumVOBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractHistory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractStatusDetail$TcontractInfoBean$TcontractPartsBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractStatusDetail$TcontractInfoBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractStatusDetail$TexamineVoBean$TexamineFlowsBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractStatusDetail$TexamineVoBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractStatusDetail.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractStatusFlow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetContractSumBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetHrSummary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetIdAndStatusMapping.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetMaterialBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetProductInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetQcApproach.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetQcReportApproveFlow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetQcReportDetailBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetQcSummaryBean$EquipmentDataBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetQcSummaryBean$MaterialsDataBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetQcSummaryBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetSearchContactInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetServerParam$JudgeCondition.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetServerParam.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetStaffAttendRecord.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetStaffAttendStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetStaffBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetVerifyFlowBean$BusinessDetailsBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/net/resultBeans/NetVerifyFlowBean.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/service/BackTaskType.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/service/BackTaskType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/bean/ItemQuestionBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/bean/ItemQuestionBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/bean/ItemQuestionResultType.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/bean/ItemQuestionResultType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/bean/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/bean/Question.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/bean/TestQuestionBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/bean/TestQuestionBean.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/data/TestRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/data/TestRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/data/TestViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/data/TestViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/hilt/TestModule.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/hilt/TestModule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/service/DBService.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/test/service/DBService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/CalenderUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/CalenderUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/CloseUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/CloseUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/ConstantValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/ConstantValue.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/DimensionUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/DimensionUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/FileIOUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/FileIOUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/FileUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/FileUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/GsonUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/GsonUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/ScreenUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/ScreenUtils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/ThreadPoolFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/ThreadPoolFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/dbUtil/DBConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/dbUtil/DBConstant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/dbUtil/DBHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/com/guyuan/dear/utils/dbUtil/DBHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/2/META-INF/app_debug.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.keystream" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.keystream.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.values" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.values.at" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.values.s" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab_i" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab_i.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/proto.tab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/proto.tab.keystream" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/proto.tab.keystream.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/proto.tab.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/proto.tab.values.at" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/proto.tab_i" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/proto.tab_i.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab_i" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab_i.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.keystream" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.keystream.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.values.at" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab_i" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab_i.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab.keystream" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab.keystream.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab.values.at" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab_i" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab_i.len" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.keystream" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.keystream.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/java-sources-proto-map.tab_i" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/proto.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/proto.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/proto.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/proto.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/source-to-classes.tab_i" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.keystream" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.keystream.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab_i" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab.keystream" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab.keystream.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/supertypes.tab_i" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-armeabi-v7a-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-armeabi-v7a-debug.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/tmp/kapt3/incApCache/debug/classpath-structure.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/kapt3/incApCache/debug/classpath-structure.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/META-INF/app_debug.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/activity/BaseFileUploadActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/activity/BaseFileUploadActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/activity/BaseNoTabActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/activity/BaseNoTabActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/adapter/TabAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/adapter/TabAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/api/ApiServiceModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/api/ApiServiceModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/api/BaseApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/api/BaseApiService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/api/BaseModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/api/BaseModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/api/RxJavaHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/api/RxJavaHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/api/SchedulersCompat.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/api/SchedulersCompat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/api/interceptor/HeadInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/api/interceptor/HeadInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/app/DearApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/app/DearApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/bean/CompanyOrganizationDataBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/bean/ContractStatusBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/bean/DepartmentDataBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/bean/ListRequestBody.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/bean/ListRequestBody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/bean/PicBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/bean/SimpleTabBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/bean/SimpleTabBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/fragment/BaseDearViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/fragment/BaseDearViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/fragment/BaseListFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/base/fragment/BaseListFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/home/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/home/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/home/api/MainApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/home/api/MainApiService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/home/data/MainRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/home/data/MainRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/home/data/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/home/data/MainViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/home/hilt/MainModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/home/hilt/MainModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/api/DearNetApiService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/reqBean/ClockInRqBody.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/reqBean/ContractExceptionOrTotalBody.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/reqBean/SearchRqBody.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/reqBean/SubmitQcReportBody.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetBaseContractInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetBaseProjectBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetBaseQcBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetClientInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetClockInConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetContractDetailInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetContractHistory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetContractInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetContractStatusDetail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetContractStatusFlow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetContractSumBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetHrSummary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetIdAndStatusMapping.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetMaterialBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetProductInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetQcApproach.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetQcReportApproveFlow.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetQcReportDetailBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetQcSummaryBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetSearchContactInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetServerParam.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetStaffAttendRecord.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetStaffAttendStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetStaffBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/net/resultBeans/NetVerifyFlowBean.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/service/BackService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/service/BackService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/service/BackTaskType.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/service/BackTaskType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/ExamActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/ExamActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/adapter/QuestionItemAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/adapter/QuestionItemAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/api/TestApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/api/TestApiService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/bean/ItemQuestionBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/bean/ItemQuestionBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/bean/ItemQuestionResultType.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/bean/ItemQuestionResultType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/bean/ItemQuestionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/bean/ItemQuestionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/bean/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/bean/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/bean/TestQuestionBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/bean/TestQuestionBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/data/TestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/data/TestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/data/TestViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/data/TestViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/hilt/TestModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/hilt/TestModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/test/service/DBService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/CalenderUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/CalenderUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/CloseUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/CloseUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/ConstantValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/ConstantValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/DateUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/DateUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/DimensionUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/DimensionUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/FileIOUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/FileIOUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/GlideRoundTransform.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/GlideRoundTransform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/GlideUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/GlideUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/GsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/GsonUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/HandlerUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/HandlerUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/LogUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/LogUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/ScreenUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/ScreenUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/ThreadPoolFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/ThreadPoolFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/dbUtil/DBConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/dbUtil/DBConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/dbUtil/DBHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/guyuan/dear/utils/dbUtil/DBHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/pluginUnderTestMetadata/plugin-under-test-metadata.properties" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/build/pluginUnderTestMetadata/plugin-under-test-metadata.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/build/source-roots/buildSrc/source-roots.txt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/build/source-roots/buildSrc/source-roots.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/AppBarStateChangeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/AppBarStateChangeListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/interfaces/OnLoadMoreListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/interfaces/OnLoadMoreListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/interfaces/OnRefreshListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/interfaces/OnRefreshListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/httplibrary/src/main/java/com/example/httplibrary/BaseApiServiceModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/httplibrary/src/main/java/com/example/httplibrary/BaseApiServiceModule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/httplibrary/src/main/java/com/example/httplibrary/HttpSettingImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/httplibrary/src/main/java/com/example/httplibrary/HttpSettingImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/httplibrary/src/main/java/com/example/httplibrary/HttpsGlideModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/httplibrary/src/main/java/com/example/httplibrary/HttpsGlideModule.java" afterDir="false" />
@@ -59,7 +823,6 @@
       <change beforePath="$PROJECT_DIR$/mvvmlibrary/src/main/java/com/example/mvvmlibrary/app/BaseApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvvmlibrary/src/main/java/com/example/mvvmlibrary/app/BaseApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvvmlibrary/src/main/java/com/example/mvvmlibrary/base/activity/BaseActionBarActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvvmlibrary/src/main/java/com/example/mvvmlibrary/base/activity/BaseActionBarActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvvmlibrary/src/main/java/com/example/mvvmlibrary/base/activity/BaseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvvmlibrary/src/main/java/com/example/mvvmlibrary/base/activity/BaseActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvvmlibrary/src/main/java/com/example/mvvmlibrary/base/activity/BaseDataBindingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvvmlibrary/src/main/java/com/example/mvvmlibrary/base/activity/BaseDataBindingActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvvmlibrary/src/main/java/com/example/mvvmlibrary/base/activity/BaseNoToolbarActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvvmlibrary/src/main/java/com/example/mvvmlibrary/base/activity/BaseNoToolbarActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvvmlibrary/src/main/java/com/example/mvvmlibrary/base/activity/BaseToolbarActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvvmlibrary/src/main/java/com/example/mvvmlibrary/base/activity/BaseToolbarActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvvmlibrary/src/main/java/com/example/mvvmlibrary/base/adapter/BaseDBRecycleAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/mvvmlibrary/src/main/java/com/example/mvvmlibrary/base/adapter/BaseDBRecycleAdapter.java" afterDir="false" />
@@ -142,6 +905,12 @@
     <property name="android-custom-viewC:/Users/Jannonx/.gradle/caches/modules-2/files-2.1/androidx.viewpager/viewpager/1.0.0/db045f92188b9d247d5f556866f8861ab68528f0/viewpager-1.0.0-sources.jar!/androidx/viewpager/widget/ViewPager.java_SELECTED" value="ViewPager" />
     <property name="android-custom-viewC:/Users/Jannonx/.gradle/caches/modules-2/files-2.1/androidx.viewpager2/viewpager2/1.1.0-alpha01/9c676d557bd6742c7d80f273a9fd288b6ea62495/viewpager2-1.1.0-alpha01-sources.jar!/androidx/viewpager2/widget/ViewPager2.java_SELECTED" value="ViewPager2" />
     <property name="android-custom-viewC:/Users/Jannonx/AppData/Local/Android/Sdk/sources/android-29/android/view/View.java_SELECTED" value="View" />
+    <property name="android-custom-viewD:/Document/demo/app/src/main/java/com/guyuan/dear/utils/keyboardlayout/KeyboardConstraintLayout.java_SELECTED" value="KeyboardConstraintLayout" />
+    <property name="android-custom-viewD:/Document/demo/app/src/main/java/com/guyuan/dear/utils/keyboardlayout/KeyboardFrameLayout.java_SELECTED" value="KeyboardFrameLayout" />
+    <property name="android-custom-viewD:/Document/demo/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/BaseRecyclerView.java_SELECTED" value="BaseRecyclerView" />
+    <property name="android-custom-viewD:/Document/demo/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/deptView/ArrowRefreshHeader.java_SELECTED" value="ArrowRefreshHeader" />
+    <property name="android-custom-viewD:/Document/demo/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/deptView/LoadingFooter.java_SELECTED" value="LoadingFooter" />
+    <property name="android-custom-viewD:/Document/demo/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/deptView/SimpleViewSwitcher.java_SELECTED" value="SimpleViewSwitcher" />
     <property name="android-custom-viewD:/Document/demo/mvvmlibrary/src/main/java/com/example/mvvmlibrary/customizeview/StatusBarView.java_SELECTED" value="StatusBarView" />
     <property name="android-custom-viewD:/Document/simple/app/src/main/java/com/guyuan/dear/customizeview/MessageBar.java_SELECTED" value="MessageBar" />
     <property name="android-custom-viewD:/Document/simple/app/src/main/java/com/guyuan/dear/customizeview/SearchBar.java_SELECTED" value="SearchBar" />
@@ -157,6 +926,12 @@
     <property name="multi-representation-previewC:/Users/Jannonx/.gradle/caches/modules-2/files-2.1/androidx.viewpager/viewpager/1.0.0/db045f92188b9d247d5f556866f8861ab68528f0/viewpager-1.0.0-sources.jar!/androidx/viewpager/widget/ViewPager.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/Jannonx/.gradle/caches/modules-2/files-2.1/androidx.viewpager2/viewpager2/1.1.0-alpha01/9c676d557bd6742c7d80f273a9fd288b6ea62495/viewpager2-1.1.0-alpha01-sources.jar!/androidx/viewpager2/widget/ViewPager2.java_selected" value="Custom views" />
     <property name="multi-representation-previewC:/Users/Jannonx/AppData/Local/Android/Sdk/sources/android-29/android/view/View.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/Document/demo/app/src/main/java/com/guyuan/dear/utils/keyboardlayout/KeyboardConstraintLayout.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/Document/demo/app/src/main/java/com/guyuan/dear/utils/keyboardlayout/KeyboardFrameLayout.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/Document/demo/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/BaseRecyclerView.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/Document/demo/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/deptView/ArrowRefreshHeader.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/Document/demo/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/deptView/LoadingFooter.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/Document/demo/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/deptView/SimpleViewSwitcher.java_selected" value="Custom views" />
     <property name="multi-representation-previewD:/Document/demo/mvvmlibrary/src/main/java/com/example/mvvmlibrary/customizeview/StatusBarView.java_selected" value="Custom views" />
     <property name="multi-representation-previewD:/Document/simple/app/src/main/java/com/guyuan/dear/customizeview/MessageBar.java_selected" value="Custom views" />
     <property name="multi-representation-previewD:/Document/simple/app/src/main/java/com/guyuan/dear/customizeview/SearchBar.java_selected" value="Custom views" />
@@ -166,7 +941,7 @@
     <property name="multi-representation-previewD:/GuYuanProject/dear/app/src/main/java/com/guyuan/dear/customizeview/WrapContentViewPager.java_selected" value="Custom views" />
     <property name="multi-representation-previewD:/GuYuanProject/dear/app/src/main/java/com/guyuan/dear/utils/keyboardlayout/KeyboardFrameLayout.java_selected" value="Custom views" />
     <property name="multi-representation-previewD:/GuYuanProject/dear/easy_recyclerview_library/src/main/java/tl/com/easy_recycleview_library/BaseRecyclerView.java_selected" value="Custom views" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Suggestions" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.CommitDialog" />
@@ -400,7 +1175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611132490681</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="修改注释信息">
+      <created>1611287744982</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1611287744982</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -443,14 +1225,15 @@
     <MESSAGE value="生产和工程现场模块，添加合同状态判断" />
     <MESSAGE value="现场勘察，解决输入内容框被软键盘遮挡的问题" />
     <MESSAGE value="1、工程现场，底部留白&#10;2、键盘遮挡问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、工程现场，底部留白&#10;2、键盘遮挡问题" />
+    <MESSAGE value="修改注释信息" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改注释信息" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="477" y="252" key="#PSD" timestamp="1611250578390">
+    <state x="477" y="252" key="#PSD" timestamp="1611288822747">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="477" y="252" key="#PSD/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611250578390" />
-    <state x="477" y="252" key="#PSD/0.0.1920.1040@0.0.1920.1040" timestamp="1610072813871" />
+    <state x="477" y="252" key="#PSD/0.0.1920.1040@0.0.1920.1040" timestamp="1611288822747" />
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1610072256474">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -460,6 +1243,10 @@
     </state>
     <state x="555" y="190" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611247253835" />
     <state x="555" y="190" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1611127536910" />
+    <state x="551" y="385" width="818" height="278" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1611289662178">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="551" y="385" width="818" height="278" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1611289662178" />
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1610074030916">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -468,10 +1255,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="691" y="264" key="AndroidProcessChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610957748615" />
-    <state x="599" y="100" key="CommitChangelistDialog2" timestamp="1611132488449">
+    <state x="599" y="100" key="CommitChangelistDialog2" timestamp="1611287740995">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="599" y="100" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1611132488449" />
+    <state x="599" y="100" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1611287740995" />
     <state x="265" y="75" width="1536" height="860" key="DiffContextDialog" timestamp="1611131382707">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -537,10 +1324,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="700" height="519" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1611130305769" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1611132513451">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1611287754539">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1611132513451" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1611287754539" />
     <state x="639" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1609384025168">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -565,9 +1352,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1611245232722" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1611284736262">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1611288739973">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1611284736262" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1611288739973" />
   </component>
 </project>

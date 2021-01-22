@@ -32,10 +32,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 
 /**
- * @author : tl
+ * @author : Jannonx
  * @description :http参数设置
  * @since: 2020/9/7
- * @company : 固远（深圳）信息技术有限公司
  **/
 @Module
 @InstallIn(ApplicationComponent.class)

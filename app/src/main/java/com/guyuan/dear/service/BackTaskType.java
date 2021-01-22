@@ -2,9 +2,8 @@ package com.guyuan.dear.service;
 
 /**
  * @description: 启动后台服务类型
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2021/1/21 20:57
- * @company: 固远（深圳）信息技术有限公司
  */
 public enum BackTaskType {
     /**

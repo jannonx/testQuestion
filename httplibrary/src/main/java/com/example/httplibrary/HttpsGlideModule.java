@@ -28,7 +28,7 @@ import okhttp3.OkHttpClient;
 
 /**
  * @description: 用于glide加载https图片资源
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2020/11/24 23:56
  */
 @GlideModule

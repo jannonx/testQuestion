@@ -7,7 +7,7 @@ import java.lang.ref.WeakReference;
 
 /**
  * @description:
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2021/1/21 21:49
  */
 public class HandlerUtils {

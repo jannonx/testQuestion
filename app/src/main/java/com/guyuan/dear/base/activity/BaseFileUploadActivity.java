@@ -8,17 +8,14 @@ import android.net.Uri;
 import androidx.annotation.Nullable;
 import androidx.databinding.ViewDataBinding;
 
-
 import com.example.mvvmlibrary.base.activity.BaseToolbarActivity;
 import com.example.mvvmlibrary.base.data.BaseViewModel;
 import com.example.mvvmlibrary.util.LogUtils;
 import com.example.mvvmlibrary.util.MediaFileUtils;
 import com.guyuan.dear.R;
-import com.guyuan.dear.utils.FileUtils;
 import com.guyuan.dear.utils.ImgCompressor;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,9 +27,11 @@ import droidninja.filepicker.FilePickerConst;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
+
 /**
- * Created by TL
- * on 2020/1/17
+ * @description:
+ * @author: Jannonx
+ * @since: 2021/1/21 20:57
  */
 public abstract class BaseFileUploadActivity<V extends ViewDataBinding, VM extends BaseViewModel> extends BaseToolbarActivity<V, VM>
         implements ImgCompressor.CompressListener {

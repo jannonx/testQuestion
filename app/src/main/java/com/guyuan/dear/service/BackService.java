@@ -12,12 +12,15 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 
+
 /**
- * .
- * 开启后台下载服务
- */
+ * @author : Jannonx
+ * @description : 开启后台下载服务
+ * @since: 2020/11/25 17:39
+ **/
 public class BackService extends IntentService {
     private DearApplication mApplication;
+
     public BackService() {
         super("BackService");
     }

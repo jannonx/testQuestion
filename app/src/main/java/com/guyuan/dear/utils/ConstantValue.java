@@ -1,10 +1,9 @@
 package com.guyuan.dear.utils;
 
 /**
- * @author : tl
+ * @author : Jannonx
  * @description :常量池
  * @since: 2020/9/8
- * @company : 固远（深圳）信息技术有限公司
  **/
 public class ConstantValue {
 

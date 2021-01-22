@@ -19,10 +19,9 @@ import dagger.hilt.android.HiltAndroidApp;
 import retrofit2.Retrofit;
 
 /**
- * @author : tl
+ * @author : Jannonx
  * @description : 项目application维护一些全局变量或者方法
  * @since: 2020/9/7
- * @company : 固远（深圳）信息技术有限公司
  **/
 @HiltAndroidApp
 public class DearApplication extends BaseApplication {

@@ -3,10 +3,9 @@ package com.guyuan.dear.test.api;
 import com.guyuan.dear.base.api.BaseApiService;
 
 /**
- * @author : 唐力
+ * @author : Jannonx
  * @description :
  * @since: 2020/11/25 17:38
- * @company : 固远（深圳）信息技术有限公司
  **/
 
 public interface TestApiService extends BaseApiService {

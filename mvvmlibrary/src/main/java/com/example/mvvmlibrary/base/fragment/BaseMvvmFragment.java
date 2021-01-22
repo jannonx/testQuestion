@@ -22,7 +22,7 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * @description:
- * @author: 许建宁
+ * @author: Jannonx
  * @since: 2020/11/24 23:56
  */
 public abstract class BaseMvvmFragment<VDB extends ViewDataBinding, VM extends BaseViewModel> extends BaseViewModelFragment<VDB> {
