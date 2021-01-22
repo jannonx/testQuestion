@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: Dear_buildSrc.buildSrc">
+  <library name="Gradle: Dear.buildSrc.buildSrc">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/buildSrc/build/libs/buildSrc.jar!/" />
     </CLASSES>

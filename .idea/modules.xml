@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Dear.iml" filepath="$PROJECT_DIR$/.idea/modules/Dear.iml" group="Dear" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Dear_buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/Dear_buildSrc.iml" group="Dear/Dear_buildSrc" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Dear/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/easy_recyclerview_library/easy_recyclerview_library.iml" filepath="$PROJECT_DIR$/.idea/modules/easy_recyclerview_library/easy_recyclerview_library.iml" group="Dear/easy_recyclerview_library" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/httplibrary/httplibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/httplibrary/httplibrary.iml" group="Dear/httplibrary" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mvvmlibrary/mvvmlibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/mvvmlibrary/mvvmlibrary.iml" group="Dear/mvvmlibrary" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Dear.iml" filepath="$PROJECT_DIR$/.idea/modules/Dear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Dear.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Dear.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Dear.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/Dear.buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/easy_recyclerview_library/Dear.easy_recyclerview_library.iml" filepath="$PROJECT_DIR$/.idea/modules/easy_recyclerview_library/Dear.easy_recyclerview_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/httplibrary/Dear.httplibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/httplibrary/Dear.httplibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mvvmlibrary/Dear.mvvmlibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/mvvmlibrary/Dear.mvvmlibrary.iml" />
     </modules>
   </component>
 </project>

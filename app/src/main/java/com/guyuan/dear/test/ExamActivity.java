@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Message;
 
+import androidx.appcompat.widget.AppCompatRadioButton;
+import androidx.fragment.app.Fragment;
+
 import com.guyuan.dear.R;
 import com.guyuan.dear.base.activity.BaseNoTabActivity;
 import com.guyuan.dear.databinding.ActivityBaseNoTabBinding;
@@ -23,8 +26,7 @@ import com.guyuan.dear.utils.dbUtil.DBHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.widget.AppCompatRadioButton;
-import androidx.fragment.app.Fragment;
+import dagger.hilt.android.AndroidEntryPoint;
 
 /**
  * @description:
@@ -32,6 +34,7 @@ import androidx.fragment.app.Fragment;
  * @since: 2021/1/21 15:40
  * @company: 固远（深圳）信息技术有限公司
  */
+@AndroidEntryPoint
 public class ExamActivity extends BaseNoTabActivity<ActivityBaseNoTabBinding, TestViewModel> implements HandlerUtils.OnReceiveMessageListener {
     private static final int MESSAGE_LIST = 0x123;
     private HandlerUtils.HandlerHolder holder;
