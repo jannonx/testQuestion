@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+                                                       
+                                                   
+
+
+    <RelativeLayout
+        android:id="@+id/rl_search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_44"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/dp_12"
+        android:paddingTop="@dimen/dp_7"
+        android:paddingRight="@dimen/dp_12"
+        android:paddingBottom="@dimen/dp_7" android:tag="layout/layout_search_bar_0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_30"
+            android:layout_centerInParent="true"
+            android:background="@drawable/shape_rect_grey_eeeeee_round_corner_50dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_search"
+                android:layout_width="@dimen/dp_17"
+                android:layout_height="@dimen/dp_17"
+                android:layout_marginStart="@dimen/dp_13"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/et_search"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_svg_search" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dp_5"
+                android:background="@null"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textSize="@dimen/sp_13"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/iv_search"
+                app:layout_constraintRight_toLeftOf="@id/iv_clear"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_clear"
+                android:layout_width="@dimen/dp_33"
+                android:layout_height="@dimen/dp_30"
+                android:paddingStart="@dimen/dp_5"
+                android:paddingTop="@dimen/dp_7"
+                android:paddingEnd="@dimen/dp_12"
+                android:paddingBottom="@dimen/dp_7"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_svg_cross_no_bg_32dp"
+                tools:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatCheckedTextView
+                android:id="@+id/tv_search_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_4"
+                android:background="@drawable/selector_bg_grey_cccccc_to_blue_1677ff"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingTop="@dimen/dp_3"
+                android:paddingRight="@dimen/dp_8"
+                android:paddingBottom="@dimen/dp_3"
+                android:enabled="false"
+                android:text="搜索"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+         
+

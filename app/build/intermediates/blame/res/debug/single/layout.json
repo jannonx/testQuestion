@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_question_item.xml",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\fragment_question_item.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\empty.xml",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\empty.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\layout_home_bar.xml",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\layout_home_bar.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_exam.xml",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\activity_exam.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_base_no_tab.xml",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\activity_base_no_tab.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_list.xml",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\fragment_list.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_answer_question.xml",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\item_answer_question.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\layout_search_bar.xml",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\layout_search_bar.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_base_tab.xml",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\activity_base_tab.xml"
+    },
+    {
+        "merged": "D:\\Document\\demo\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\home_bar.xml",
+        "source": "D:\\Document\\demo\\app\\src\\main\\res\\layout\\home_bar.xml"
+    }
+]
