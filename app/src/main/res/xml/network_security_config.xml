@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--android版本27以上不允许明文流量的网络请求，如果要支持明文就做如下设置-->
-<network-security-config>
-    <base-config cleartextTrafficPermitted="true" />
-</network-security-config>
