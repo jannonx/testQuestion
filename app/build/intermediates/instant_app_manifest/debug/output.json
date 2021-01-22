@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "applicationId": "com.jannonx.electric.debug",
+  "variantType": "BASE_APK",
+  "elements": [
+    {
+      "outputType": {
+        "type": "INSTANT_APP_MANIFEST"
+      },
+      "apkData": {
+        "type": "FULL_SPLIT",
+        "splits": [
+          {
+            "filterType": "ABI",
+            "value": "armeabi-v7a"
+          }
+        ],
+        "versionCode": 1,
+        "versionName": "1.0.0",
+        "filterName": "armeabi-v7a",
+        "outputFile": "app-armeabi-v7a-debug.apk",
+        "fullName": "armeabi-v7aDebug",
+        "baseName": "armeabi-v7a-debug",
+        "dirName": "armeabi-v7a\\"
+      },
+      "path": "armeabi-v7a/AndroidManifest.xml",
+      "properties": {
+        "packageId": "com.jannonx.electric.debug",
+        "split": "",
+        "minSdkVersion": "24"
+      }
+    }
+  ]
+}

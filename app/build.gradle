@@ -86,7 +86,6 @@ android {
         //release
         release {
             initWith(buildTypes.commons)
-//            buildConfigField "String", "BUGLY_APP_ID", properties.getProperty("BUGLY_APP_ID_RELEASE")
             buildConfigField "String", "SERVER_URL", properties.getProperty("RELEASE_SERVER_URL")
 
             applicationIdSuffix ".release" //正式包APPID后缀,在手机上正式包和测试包就能共存了
@@ -103,7 +102,6 @@ android {
         //debug
         debug {
             initWith(buildTypes.commons)
-            buildConfigField "String", "BUGLY_APP_ID", properties.getProperty("BUGLY_APP_ID_DEBUG")
             buildConfigField "String", "SERVER_URL", properties.getProperty("DEBUG_SERVER_URL")
             applicationIdSuffix ".debug"//测试包APPID后缀
             debuggable true
@@ -112,7 +110,6 @@ android {
 
         check {
             initWith(buildTypes.commons)
-            buildConfigField "String", "BUGLY_APP_ID", properties.getProperty("BUGLY_APP_ID_CHECK")
             buildConfigField "String", "SERVER_URL", properties.getProperty("CHECK_SERVER_URL")
 
 
