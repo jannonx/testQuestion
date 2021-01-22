@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+                                                       
+                                                   
+
+    <FrameLayout
+        android:id="@+id/fl_tag_root"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/dp_8"
+        android:paddingBottom="@dimen/dp_12"
+        tools:background="@color/color_orange_eb830e" android:tag="layout/item_queston_tag_0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_tag_index"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:background="@drawable/bg_green_52d091_round"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"
+            tools:text="1" />
+
+    </FrameLayout>
+         

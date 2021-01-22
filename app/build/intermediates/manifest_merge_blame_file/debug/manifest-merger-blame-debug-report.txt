@@ -1,0 +1,399 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.jannonx.electric.debug"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="29" />
+10
+11    <!-- 腾讯云SDK权限 -->
+12    <uses-feature android:name="android.hardware.Camera" />
+12-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:6:5-60
+12-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:6:19-57
+13    <uses-feature android:name="android.hardware.camera.autofocus" />
+13-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:7:5-70
+13-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:7:19-67
+14
+15    <uses-permission android:name="android.permission.INTERNET" /> <!-- <uses-permission android:name="android.permission.WAKE_LOCK" /> &lt;!&ndash; MQTT权限 &ndash;&gt; -->
+15-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:9:5-67
+15-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:9:22-64
+16    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+16-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:10:5-71
+16-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:10:22-68
+17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+17-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:11:5-79
+17-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:11:22-76
+18    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+18-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:12:5-76
+18-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:12:22-73
+19    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+19-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:13:5-79
+19-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:13:22-76
+20    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+20-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:14:5-75
+20-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:14:22-72
+21    <uses-permission android:name="android.permission.CALL_PHONE" />
+21-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:15:5-69
+21-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:15:22-66
+22    <!--
+23          针对 Android 9 或更高版本并使用前台服务的应用必须请求
+24              FOREGROUND_SERVICE 权限。
+25    -->
+26    <uses-permission android:name="android.permission.READ_CONTACTS" />
+26-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:20:5-72
+26-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:20:22-69
+27    <uses-permission android:name="android.permission.CAMERA" /> <!-- 以下为极光推送所需权限 -->
+27-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:21:5-65
+27-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:21:22-62
+28    <!-- Required -->
+29    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- Required -->
+29-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:23:5-81
+29-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:23:22-78
+30    <uses-permission android:name="android.permission.FLASHLIGHT" />
+30-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:24:5-69
+30-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:24:22-66
+31    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- <uses-permission android:name="android.permission.INTERNET" /> -->
+31-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:25:5-76
+31-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:25:22-73
+32    <!-- Optional. Required for location feature -->
+33    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+33-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:27:5-86
+33-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:27:22-83
+34    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 用于开启 debug 版本的应用在 6.0 系统上的层叠窗口权限 -->
+34-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:28:5-79
+34-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:28:22-76
+35    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> -->
+35-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:29:5-80
+35-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:29:22-77
+36    <uses-permission android:name="android.permission.WAKE_LOCK" />
+36-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:30:5-68
+36-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:30:22-65
+37    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" /> <!-- <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> -->
+37-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:31:5-80
+37-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:31:22-77
+38    <uses-permission android:name="android.permission.BLUETOOTH" />
+38-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:32:5-68
+38-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:32:22-65
+39    <uses-permission android:name="android.permission.VIBRATE" /> <!-- MQTT后台服务保活用 -->
+39-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:33:5-66
+39-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:33:22-63
+40    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+40-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:34:5-77
+40-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:34:22-74
+41    <uses-permission android:name="android.permission.READ_LOGS" />
+41-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:35:5-37:47
+41-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:36:9-52
+42    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+42-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:28:5-79
+42-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:28:22-76
+43    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+43-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:39:5-83
+43-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:39:22-80
+44    <uses-permission android:name="com.jannonx.electric.debug.permission.JPUSH_MESSAGE" />
+45    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+45-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:41:5-79
+45-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:41:22-76
+46    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+46-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:42:5-85
+46-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:42:22-82
+47    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+47-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:43:5-78
+47-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:43:22-75
+48    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+48-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:44:5-81
+48-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:44:22-78
+49    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+49-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:45:5-89
+49-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:45:22-86
+50    <uses-permission android:name="android.permission.GET_TASKS" />
+50-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:46:5-68
+50-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:46:22-65
+51    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+51-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:47:5-81
+51-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:47:22-78
+52    <uses-permission android:name="android.permission.WRITE_SETTINGS" /> <!-- 以下为友盟需要的基本权限，需要自行添加至您的AndroidManifest文件中 start -->
+52-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:48:5-50:47
+52-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:49:9-57
+53    <uses-permission android:name="android.permission.INTERNET" />
+53-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:9:5-67
+53-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:9:22-64
+54    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+54-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:11:5-79
+54-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:11:22-76
+55    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+55-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:12:5-76
+55-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:12:22-73
+56    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+56-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:23:5-81
+56-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:23:22-78
+57    <uses-permission android:name="android.permission.WAKE_LOCK" />
+57-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:30:5-68
+57-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:30:22-65
+58    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+58-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:14:5-75
+58-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:14:22-72
+59    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_ADDED" />
+59-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:57:5-82
+59-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:57:22-79
+60    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_CHANGED" />
+60-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:58:5-84
+60-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:58:22-81
+61    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_INSTALL" />
+61-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:59:5-84
+61-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:59:22-81
+62    <uses-permission android:name="android.permission.BROADCAST_PACKAGE_REPLACED" />
+62-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:60:5-85
+62-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:60:22-82
+63    <uses-permission android:name="android.permission.GET_TASKS" />
+63-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:46:5-68
+63-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:46:22-65
+64    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- 以下为友盟需要的基本权限，需要自行添加至您的AndroidManifest文件中 end -->
+64-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:47:5-81
+64-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:47:22-78
+65    <!-- 百度地图 start -->
+66    <!-- 这个权限用于进行网络定位 -->
+67    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于访问GPS定位 -->
+67-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:44:5-81
+67-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:44:22-78
+68    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+68-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:28:5-79
+68-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:28:22-76
+69    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+69-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:12:5-76
+69-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:12:22-73
+70    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+70-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:11:5-79
+70-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:11:22-76
+71    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
+71-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:25:5-76
+71-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:25:22-73
+72    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 访问网络，网络定位需要上网 -->
+72-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:23:5-81
+72-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:23:22-78
+73    <uses-permission android:name="android.permission.INTERNET" />
+73-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:9:5-67
+73-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:9:22-64
+74
+75    <application
+75-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:73:5-111:19
+76        android:name="com.jannonx.electric.base.app.DearApplication"
+76-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:74:9-49
+77        android:allowBackup="true"
+77-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:75:9-35
+78        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+78-->[androidx.core:core:1.3.1] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\cc738ed1d6335fff215708106f3d7645\core-1.3.1\AndroidManifest.xml:24:18-86
+79        android:debuggable="true"
+80        android:extractNativeLibs="false"
+81        android:icon="@mipmap/ic_launcher"
+81-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:76:9-43
+82        android:label="@string/test_name"
+82-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:77:9-41
+83        android:networkSecurityConfig="@xml/network_security_config"
+83-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:78:9-69
+84        android:requestLegacyExternalStorage="true"
+84-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:79:9-52
+85        android:roundIcon="@mipmap/ic_launcher_round"
+85-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:80:9-54
+86        android:supportsRtl="true"
+86-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:81:9-35
+87        android:theme="@style/AppTheme" >
+87-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:82:9-40
+88        <service android:name="com.jannonx.electric.service.BackService" /> <!-- 今日头条屏幕适配 -->
+88-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:85:9-56
+88-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:85:18-53
+89        <meta-data
+89-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:88:9-90:35
+90            android:name="design_width_in_dp"
+90-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:89:13-46
+91            android:value="360" />
+91-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:90:13-32
+92        <meta-data
+92-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:91:9-93:35
+93            android:name="design_height_in_dp"
+93-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:92:13-47
+94            android:value="675" />
+94-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:93:13-32
+95
+96        <activity android:name="com.jannonx.electric.home.MainActivity" >
+96-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:95:9-101:20
+96-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:95:19-52
+97            <intent-filter>
+97-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:96:13-100:29
+98                <action android:name="android.intent.action.MAIN" />
+98-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:97:17-69
+98-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:97:25-66
+99
+100                <category android:name="android.intent.category.LAUNCHER" />
+100-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:99:17-77
+100-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:99:27-74
+101            </intent-filter>
+102        </activity>
+103        <activity
+103-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:103:9-106:56
+104            android:name="com.jannonx.electric.test.activity.ExamActivity"
+104-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:104:13-55
+105            android:screenOrientation="portrait" />
+105-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:105:13-49
+106        <activity
+106-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:107:9-110:56
+107            android:name="com.jannonx.electric.test.activity.ExamResultActivity"
+107-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:108:13-61
+108            android:screenOrientation="portrait" />
+108-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:109:13-49
+109
+110        <service
+110-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:29:9-32:45
+111            android:name="com.squareup.leakcanary.internal.HeapAnalyzerService"
+111-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:30:13-80
+112            android:enabled="false"
+112-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:31:13-36
+113            android:process=":leakcanary" />
+113-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:32:13-42
+114        <service
+114-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:33:9-36:45
+115            android:name="com.squareup.leakcanary.DisplayLeakService"
+115-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:34:13-70
+116            android:enabled="false"
+116-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:35:13-36
+117            android:process=":leakcanary" />
+117-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:36:13-42
+118
+119        <provider
+119-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:38:9-46:20
+120            android:name="com.squareup.leakcanary.internal.LeakCanaryFileProvider"
+120-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:39:13-83
+121            android:authorities="com.squareup.leakcanary.fileprovider.com.jannonx.electric.debug"
+121-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:40:13-88
+122            android:exported="false"
+122-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:41:13-37
+123            android:grantUriPermissions="true" >
+123-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:42:13-47
+124            <meta-data
+124-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:43:13-45:66
+125                android:name="android.support.FILE_PROVIDER_PATHS"
+125-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:44:17-67
+126                android:resource="@xml/leak_canary_file_paths" />
+126-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:45:17-63
+127        </provider>
+128
+129        <activity
+129-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:48:9-61:20
+130            android:name="com.squareup.leakcanary.internal.DisplayLeakActivity"
+130-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:49:13-80
+131            android:enabled="false"
+131-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:50:13-36
+132            android:icon="@mipmap/leak_canary_icon"
+132-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:51:13-52
+133            android:label="@string/leak_canary_display_activity_label"
+133-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:52:13-71
+134            android:process=":leakcanary"
+134-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:53:13-42
+135            android:taskAffinity="com.squareup.leakcanary.com.jannonx.electric.debug"
+135-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:54:13-76
+136            android:theme="@style/leak_canary_LeakCanary.Base" >
+136-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:55:13-63
+137            <intent-filter>
+137-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:96:13-100:29
+138                <action android:name="android.intent.action.MAIN" />
+138-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:97:17-69
+138-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:97:25-66
+139
+140                <category android:name="android.intent.category.LAUNCHER" />
+140-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:99:17-77
+140-->E:\AndroidStudio Files\testQuestion\app\src\main\AndroidManifest.xml:99:27-74
+141            </intent-filter>
+142        </activity>
+143        <activity
+143-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:62:9-71:68
+144            android:name="com.squareup.leakcanary.internal.RequestStoragePermissionActivity"
+144-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:63:13-93
+145            android:enabled="false"
+145-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:64:13-36
+146            android:excludeFromRecents="true"
+146-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:65:13-46
+147            android:icon="@mipmap/leak_canary_icon"
+147-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:66:13-52
+148            android:label="@string/leak_canary_storage_permission_activity_label"
+148-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:67:13-82
+149            android:process=":leakcanary"
+149-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:68:13-42
+150            android:roundIcon="@mipmap/leak_canary_icon"
+150-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:69:13-57
+151            android:taskAffinity="com.squareup.leakcanary.com.jannonx.electric.debug"
+151-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:70:13-76
+152            android:theme="@style/leak_canary_Theme.Transparent" />
+152-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:71:13-65
+153
+154        <provider
+154-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
+155            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+155-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
+156            android:authorities="com.jannonx.electric.debug.lifecycle-process"
+156-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
+157            android:exported="false"
+157-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
+158            android:multiprocess="true" />
+158-->[androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\c5f2440df0a11c361daf6d53ce1fdc7e\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
+159
+160        <service
+160-->[androidx.room:room-runtime:2.3.0-alpha01] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\c92baded68e4657beb49b053bc28fdf5\room-runtime-2.3.0-alpha01\AndroidManifest.xml:25:9-28:40
+161            android:name="androidx.room.MultiInstanceInvalidationService"
+161-->[androidx.room:room-runtime:2.3.0-alpha01] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\c92baded68e4657beb49b053bc28fdf5\room-runtime-2.3.0-alpha01\AndroidManifest.xml:26:13-74
+162            android:directBootAware="true"
+162-->[androidx.room:room-runtime:2.3.0-alpha01] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\c92baded68e4657beb49b053bc28fdf5\room-runtime-2.3.0-alpha01\AndroidManifest.xml:27:13-43
+163            android:exported="false" />
+163-->[androidx.room:room-runtime:2.3.0-alpha01] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\c92baded68e4657beb49b053bc28fdf5\room-runtime-2.3.0-alpha01\AndroidManifest.xml:28:13-37
+164
+165        <meta-data
+165-->[com.github.bumptech.glide:okhttp3-integration:4.10.0] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\7ea94e0f3fb904a11b36c1e5d09f4134\jetified-okhttp3-integration-4.10.0\AndroidManifest.xml:11:9-13:43
+166            android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
+166-->[com.github.bumptech.glide:okhttp3-integration:4.10.0] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\7ea94e0f3fb904a11b36c1e5d09f4134\jetified-okhttp3-integration-4.10.0\AndroidManifest.xml:12:13-84
+167            android:value="GlideModule" />
+167-->[com.github.bumptech.glide:okhttp3-integration:4.10.0] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\7ea94e0f3fb904a11b36c1e5d09f4134\jetified-okhttp3-integration-4.10.0\AndroidManifest.xml:13:13-40
+168
+169        <provider
+169-->[me.jessyan:autosize:1.1.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\a954b35ae0eb27cb1c0ef4348881a250\jetified-autosize-1.1.2\AndroidManifest.xml:12:9-16:43
+170            android:name="me.jessyan.autosize.InitProvider"
+170-->[me.jessyan:autosize:1.1.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\a954b35ae0eb27cb1c0ef4348881a250\jetified-autosize-1.1.2\AndroidManifest.xml:13:13-60
+171            android:authorities="com.jannonx.electric.debug.autosize-init-provider"
+171-->[me.jessyan:autosize:1.1.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\a954b35ae0eb27cb1c0ef4348881a250\jetified-autosize-1.1.2\AndroidManifest.xml:14:13-74
+172            android:exported="false"
+172-->[me.jessyan:autosize:1.1.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\a954b35ae0eb27cb1c0ef4348881a250\jetified-autosize-1.1.2\AndroidManifest.xml:15:13-37
+173            android:multiprocess="true" />
+173-->[me.jessyan:autosize:1.1.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\a954b35ae0eb27cb1c0ef4348881a250\jetified-autosize-1.1.2\AndroidManifest.xml:16:13-40
+174
+175        <activity
+175-->[com.droidninja:filepicker:2.2.5] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:17:9-19:62
+176            android:name="droidninja.filepicker.FilePickerActivity"
+176-->[com.droidninja:filepicker:2.2.5] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:18:13-68
+177            android:configChanges="orientation|screenSize" />
+177-->[com.droidninja:filepicker:2.2.5] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:19:13-59
+178        <activity
+178-->[com.droidninja:filepicker:2.2.5] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:20:9-22:62
+179            android:name="droidninja.filepicker.MediaDetailsActivity"
+179-->[com.droidninja:filepicker:2.2.5] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:21:13-70
+180            android:configChanges="orientation|screenSize" />
+180-->[com.droidninja:filepicker:2.2.5] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:22:13-59
+181
+182        <provider
+182-->[com.droidninja:filepicker:2.2.5] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:24:9-32:20
+183            android:name="droidninja.filepicker.utils.FilePickerProvider"
+183-->[com.droidninja:filepicker:2.2.5] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:25:13-74
+184            android:authorities="com.jannonx.electric.debug.droidninja.filepicker.provider"
+184-->[com.droidninja:filepicker:2.2.5] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:26:13-82
+185            android:exported="false"
+185-->[com.droidninja:filepicker:2.2.5] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:27:13-37
+186            android:grantUriPermissions="true" >
+186-->[com.droidninja:filepicker:2.2.5] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\ebfc724465f18940d97c806a730bc57b\jetified-filepicker-2.2.5\AndroidManifest.xml:28:13-47
+187            <meta-data
+187-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:43:13-45:66
+188                android:name="android.support.FILE_PROVIDER_PATHS"
+188-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:44:17-67
+189                android:resource="@xml/provider_paths" />
+189-->[com.squareup.leakcanary:leakcanary-android:1.6.2] C:\Users\aaa\.gradle\caches\transforms-2\files-2.1\f93b428c59df534b475ab4ecc0a82d44\jetified-leakcanary-android-1.6.2\AndroidManifest.xml:45:17-63
+190        </provider>
+191    </application>
+192
+193</manifest>

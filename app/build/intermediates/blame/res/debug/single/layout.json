@@ -1,0 +1,58 @@
+[
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\home_bar.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\home_bar.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\actvity_exam_result.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\actvity_exam_result.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_list.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\fragment_list.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_question_item.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\fragment_question_item.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_answer_question.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\item_answer_question.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_exam.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\activity_exam.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_base_no_tab.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\activity_base_no_tab.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_base_tab.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\activity_base_tab.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\empty.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\empty.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\layout_home_bar.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\layout_home_bar.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_exam_result.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\fragment_exam_result.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\layout_search_bar.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\layout_search_bar.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_queston_tag.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\item_queston_tag.xml"
+    }
+]
