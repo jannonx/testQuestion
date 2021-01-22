@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Dear.iml" filepath="$PROJECT_DIR$/.idea/modules/Dear.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Dear.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Dear.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Dear.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/Dear.buildSrc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/easy_recyclerview_library/Dear.easy_recyclerview_library.iml" filepath="$PROJECT_DIR$/.idea/modules/easy_recyclerview_library/Dear.easy_recyclerview_library.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/httplibrary/Dear.httplibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/httplibrary/Dear.httplibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mvvmlibrary/Dear.mvvmlibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/mvvmlibrary/Dear.mvvmlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Electric.iml" filepath="$PROJECT_DIR$/.idea/modules/Electric.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Electric.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Electric.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Electric.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/Electric.buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/easy_recyclerview_library/Electric.easy_recyclerview_library.iml" filepath="$PROJECT_DIR$/.idea/modules/easy_recyclerview_library/Electric.easy_recyclerview_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/httplibrary/Electric.httplibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/httplibrary/Electric.httplibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mvvmlibrary/Electric.mvvmlibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/mvvmlibrary/Electric.mvvmlibrary.iml" />
     </modules>
   </component>
 </project>

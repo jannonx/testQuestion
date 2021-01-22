@@ -5,9 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
+        android:id="@+id/ll_toolbar_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#0050B4"
+        android:background="@color/color_blue_0050b4"
         android:orientation="vertical">
 
         <com.example.mvvmlibrary.customizeview.StatusBarView

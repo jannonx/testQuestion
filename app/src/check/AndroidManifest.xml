@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:icon="@mipmap/icon_app"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/check_name"
-        android:roundIcon="@mipmap/icon_app"
+        android:roundIcon="@mipmap/ic_launcher_round"
         tools:replace="android:label,android:icon,android:roundIcon">
     </application>
 

@@ -3,7 +3,7 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'bugly'
+//apply plugin: 'bugly'
 
 //本地properties文件配置数据
 Properties properties = new Properties()
@@ -22,7 +22,7 @@ android {
     buildToolsVersion BuildConfig.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.guyuan.dear"
+        applicationId "com.jannonx.electric"
         minSdkVersion BuildConfig.minSdkVersion
         targetSdkVersion BuildConfig.targetSdkVersion
         versionCode appversionCode
@@ -86,15 +86,9 @@ android {
         //release
         release {
             initWith(buildTypes.commons)
-            buildConfigField "String", "BUGLY_APP_ID", properties.getProperty("BUGLY_APP_ID_RELEASE")
+//            buildConfigField "String", "BUGLY_APP_ID", properties.getProperty("BUGLY_APP_ID_RELEASE")
             buildConfigField "String", "SERVER_URL", properties.getProperty("RELEASE_SERVER_URL")
-            buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_APP_KEY_RELEASE")
-            buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_MSG_SECRET_RELEASE")
-            buildConfigField "String", "BAIDU_MAP_KEY", properties.getProperty("BAIDU_MAP_AK_RELEASE")
-            manifestPlaceholders = [
-                    CHANNEL_VALUE: name,
-                    baidumapkey : baidu_map_release_key
-            ]
+
             applicationIdSuffix ".release" //正式包APPID后缀,在手机上正式包和测试包就能共存了
             signingConfig signingConfigs.config
             debuggable true
@@ -111,13 +105,6 @@ android {
             initWith(buildTypes.commons)
             buildConfigField "String", "BUGLY_APP_ID", properties.getProperty("BUGLY_APP_ID_DEBUG")
             buildConfigField "String", "SERVER_URL", properties.getProperty("DEBUG_SERVER_URL")
-            buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_APP_KEY_DEBUG")
-            buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_MSG_SECRET_DEBUG")
-            buildConfigField "String", "BAIDU_MAP_KEY", properties.getProperty("BAIDU_MAP_AK_DEBUG")
-            manifestPlaceholders = [
-                    CHANNEL_VALUE: name,
-                    baidumapkey : baidu_map_debug_key
-            ]
             applicationIdSuffix ".debug"//测试包APPID后缀
             debuggable true
             signingConfig signingConfigs.config
@@ -127,13 +114,8 @@ android {
             initWith(buildTypes.commons)
             buildConfigField "String", "BUGLY_APP_ID", properties.getProperty("BUGLY_APP_ID_CHECK")
             buildConfigField "String", "SERVER_URL", properties.getProperty("CHECK_SERVER_URL")
-            buildConfigField "String", "UMENG_APP_KEY", properties.getProperty("UMENG_APP_KEY_CHECK")
-            buildConfigField "String", "UMENG_MSG_SECRET", properties.getProperty("UMENG_MSG_SECRET_CHECK")
-            buildConfigField "String", "BAIDU_MAP_KEY", properties.getProperty("BAIDU_MAP_AK_CHECK")
-            manifestPlaceholders = [
-                    CHANNEL_VALUE: name,
-                    baidumapkey : baidu_map_check_key
-            ]
+
+
             applicationIdSuffix ".check"//测试包APPID后缀
             debuggable true
             signingConfig signingConfigs.config

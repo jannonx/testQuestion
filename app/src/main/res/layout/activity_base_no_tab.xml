@@ -19,7 +19,9 @@
             android:background="#EBFBFF"
             app:elevation="0dp">
 
-            <include layout="@layout/toolbar" />
+            <include
+                android:id="@+id/layout_toolbar"
+                layout="@layout/toolbar" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -32,7 +34,6 @@
             android:indeterminateOnly="false"
             android:progress="50"
             android:progressDrawable="@drawable/bg_tab_progress" />
-
 
 
         <androidx.viewpager2.widget.ViewPager2

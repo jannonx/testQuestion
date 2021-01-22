@@ -1,5 +1,4 @@
 include ':httplibrary'
 include ':mvvmlibrary'
-//'easy_recyclerview_library'
 include ':app','easy_recyclerview_library'
-rootProject.name = "Dear"
+rootProject.name = "Electric"
