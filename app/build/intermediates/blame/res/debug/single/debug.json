@@ -12,6 +12,10 @@
         "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_rb_select.png"
     },
     {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_right_white.png.flat",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_right_white.png"
+    },
+    {
         "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_gray_cccccc_round.xml.flat",
         "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\drawable\\bg_gray_cccccc_round.xml"
     },
@@ -58,6 +62,10 @@
     {
         "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_work_project_rb_unselector.xml.flat",
         "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\drawable\\bg_work_project_rb_unselector.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_wrong_orange.png.flat",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_wrong_orange.png"
     },
     {
         "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\res\\merged\\debug\\xml_file_paths.xml.flat",
@@ -116,6 +124,10 @@
         "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\drawable\\bg_tab_progress.xml"
     },
     {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_right_green.png.flat",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_right_green.png"
+    },
+    {
         "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\res\\merged\\debug\\layout_item_queston_tag.xml.flat",
         "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\item_queston_tag.xml"
     },
@@ -132,6 +144,10 @@
         "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\layout_home_bar.xml"
     },
     {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_gray_eeeeee_corner_3.xml.flat",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\drawable\\bg_gray_eeeeee_corner_3.xml"
+    },
+    {
         "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\res\\merged\\debug\\layout_layout_search_bar.xml.flat",
         "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\layout_search_bar.xml"
     },
@@ -146,5 +162,9 @@
     {
         "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bg_blue_0aad33_corner_4.xml.flat",
         "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\drawable\\bg_blue_0aad33_corner_4.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_wrong_white.png.flat",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_wrong_white.png"
     }
 ]

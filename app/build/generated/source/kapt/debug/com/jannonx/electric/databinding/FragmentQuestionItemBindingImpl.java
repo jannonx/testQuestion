@@ -19,26 +19,48 @@ public class FragmentQuestionItemBindingImpl extends FragmentQuestionItemBinding
         sViewsWithIds.put(R.id.tv_question_type, 2);
         sViewsWithIds.put(R.id.tv_title, 3);
         sViewsWithIds.put(R.id.base_recycleView, 4);
+        sViewsWithIds.put(R.id.llc_parse_content, 5);
+        sViewsWithIds.put(R.id.label_answer, 6);
+        sViewsWithIds.put(R.id.iv_select_result, 7);
+        sViewsWithIds.put(R.id.tv_select_result, 8);
+        sViewsWithIds.put(R.id.llc_right, 9);
+        sViewsWithIds.put(R.id.label_right, 10);
+        sViewsWithIds.put(R.id.tv_right_number, 11);
+        sViewsWithIds.put(R.id.label_my_select, 12);
+        sViewsWithIds.put(R.id.tv_my_select, 13);
+        sViewsWithIds.put(R.id.label_parse, 14);
+        sViewsWithIds.put(R.id.tv_parse, 15);
     }
     // views
     @NonNull
-    private final android.widget.LinearLayout mboundView0;
+    private final androidx.core.widget.NestedScrollView mboundView0;
     // variables
     // values
     // listeners
     // Inverse Binding Event Handlers
 
     public FragmentQuestionItemBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 5, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 16, sIncludes, sViewsWithIds));
     }
     private FragmentQuestionItemBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
             , (tl.com.easy_recycleview_library.BaseRecyclerView) bindings[4]
+            , (androidx.appcompat.widget.AppCompatImageView) bindings[7]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[6]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[12]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[14]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[10]
+            , (androidx.appcompat.widget.LinearLayoutCompat) bindings[5]
+            , (androidx.appcompat.widget.LinearLayoutCompat) bindings[9]
             , (androidx.appcompat.widget.AppCompatTextView) bindings[1]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[13]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[15]
             , (androidx.appcompat.widget.AppCompatTextView) bindings[2]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[11]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[8]
             , (androidx.appcompat.widget.AppCompatTextView) bindings[3]
             );
-        this.mboundView0 = (android.widget.LinearLayout) bindings[0];
+        this.mboundView0 = (androidx.core.widget.NestedScrollView) bindings[0];
         this.mboundView0.setTag(null);
         setRootTag(root);
         // listeners
