@@ -12,6 +12,7 @@ import com.jannonx.electric.test.bean.ExamFunctionType;
 import com.jannonx.electric.test.bean.TestQuestionBean;
 import com.jannonx.electric.test.data.TestViewModel;
 import com.jannonx.electric.test.fragment.QuestionItemFragment;
+import com.jannonx.electric.test.fragment.QuestionResultFragment;
 import com.jannonx.electric.utils.CommonUtils;
 import com.jannonx.electric.utils.ConstantValue;
 import com.jannonx.electric.utils.HandlerUtils;
@@ -100,7 +101,7 @@ public class ExamActivity extends BaseNoTabActivity<ActivityBaseNoTabBinding, Te
         ArrayList<TestQuestionBean> parseList = (ArrayList<TestQuestionBean>) intent.getSerializableExtra(ConstantValue.KEY_CONTENT);
         List<Fragment> fragmentList = new ArrayList<>();
         for (int position = 0; position < parseList.size(); position++) {
-            fragmentList.add(QuestionItemFragment.newInstance(parseList, position, ExamFunctionType.TYPE_PARSE));
+            fragmentList.add(QuestionResultFragment.newInstance(parseList, position));
         }
         setFragmentList(fragmentList, conditionBean.getBrowsePosition());
     }
@@ -114,7 +115,7 @@ public class ExamActivity extends BaseNoTabActivity<ActivityBaseNoTabBinding, Te
                 LogUtils.showLog("fragmentList..size=" + dataList.size());
                 List<Fragment> fragmentList = new ArrayList<>();
                 for (int position = 0; position < dataList.size(); position++) {
-                    fragmentList.add(QuestionItemFragment.newInstance(dataList, position, ExamFunctionType.TYPE_EXAM));
+                    fragmentList.add(QuestionItemFragment.newInstance(dataList, position));
                 }
                 setFragmentList(fragmentList, 0);
                 break;

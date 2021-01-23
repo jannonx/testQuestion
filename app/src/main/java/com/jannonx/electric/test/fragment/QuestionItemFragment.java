@@ -32,12 +32,12 @@ public class QuestionItemFragment extends BaseDataBindingFragment<FragmentQuesti
     private Bundle arguments;
     private int examIndex;
     private ExamFunctionType functionType;
+    private TestQuestionBean examQuestionBean;
 
-    public static QuestionItemFragment newInstance(ArrayList<TestQuestionBean> dataList, int position, ExamFunctionType type) {
+    public static QuestionItemFragment newInstance(ArrayList<TestQuestionBean> dataList, int position) {
         Bundle args = new Bundle();
         args.putSerializable(ConstantValue.KEY_CONTENT, dataList);
         args.putInt(ConstantValue.KEY_INDEX, position);
-        args.putSerializable(ConstantValue.KEY_TYPE, type);
         QuestionItemFragment fragment = new QuestionItemFragment();
         fragment.setArguments(args);
         return fragment;
@@ -54,66 +54,32 @@ public class QuestionItemFragment extends BaseDataBindingFragment<FragmentQuesti
 
         if (arguments != null && getContext() != null) {
             examIndex = arguments.getInt(ConstantValue.KEY_INDEX);
-            functionType = (ExamFunctionType) arguments.getSerializable(ConstantValue.KEY_TYPE);
-            switch (functionType) {
-                case TYPE_EXAM:
-                    dealExamQuestion();
-                    break;
-                case TYPE_PARSE:
-                    browseAnswerData();
-                    break;
-                default:
-            }
+            ArrayList<TestQuestionBean> dataList = (ArrayList<TestQuestionBean>) arguments.getSerializable(ConstantValue.KEY_CONTENT);
+            examQuestionBean = dataList.get(examIndex);
+            binding.tvTitle.setText(examQuestionBean.getTitle());
 
+            binding.tvIndex.setText((examIndex + 1) + "/" + dataList.size());
+            listData.clear();
+            List<ItemQuestionBean> itemList = examQuestionBean.getItemList();
+            List<ItemQuestionBean> dealList = new ArrayList<>();
+            HashMap<Integer, Integer> selectMap = CommonUtils.getSelectMap();
+            LogUtils.showLog("examIndex=" + examIndex + "...contains=" + (selectMap.containsKey(examIndex)));
+            if (selectMap.containsKey(examIndex)) {
+                for (int ik = 0; ik < itemList.size(); ik++) {
+                    ItemQuestionBean innerBean = new ItemQuestionBean();
+                    ItemQuestionBean itemQuestionBean = itemList.get(ik);
+                    innerBean.setItemType(itemQuestionBean.getItemType());
+                    innerBean.setContent(itemQuestionBean.getContent());
+                    innerBean.setSelectIndex(selectMap.get(examIndex) == ik ? ik : -1);
+                    dealList.add(innerBean);
+                }
+            } else {
+                dealList.addAll(itemList);
+            }
+            setExamData(dealList);
 
         }
     }
-
-    private void browseAnswerData() {
-        binding.llcParseContent.setVisibility(View.VISIBLE);
-        ArrayList<TestQuestionBean> dataList = (ArrayList<TestQuestionBean>) arguments.getSerializable(ConstantValue.KEY_CONTENT);
-        TestQuestionBean testQuestionBean = dataList.get(examIndex);
-        binding.tvTitle.setText(testQuestionBean.getTitle());
-        binding.tvIndex.setText((examIndex + 1) + "/" + dataList.size());
-        listData.clear();
-        listData.addAll(testQuestionBean.getItemList());
-
-        questionItemAdapter = new QuestionItemAdapter(getContext(), listData
-                , R.layout.item_answer_question);
-        adapter = new BaseRecyclerViewAdapter(questionItemAdapter);
-        binding.baseRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.baseRecycleView.setAdapter(adapter);
-        binding.baseRecycleView.setPullRefreshEnabled(false);
-        binding.baseRecycleView.setLoadMoreEnabled(false);
-    }
-
-    private void dealExamQuestion() {
-
-        ArrayList<TestQuestionBean> dataList = (ArrayList<TestQuestionBean>) arguments.getSerializable(ConstantValue.KEY_CONTENT);
-        TestQuestionBean testQuestionBean = dataList.get(examIndex);
-        binding.tvTitle.setText(testQuestionBean.getTitle());
-
-        binding.tvIndex.setText((examIndex + 1) + "/" + dataList.size());
-        listData.clear();
-        List<ItemQuestionBean> itemList = testQuestionBean.getItemList();
-        List<ItemQuestionBean> dealList = new ArrayList<>();
-        HashMap<Integer, Integer> selectMap = CommonUtils.getSelectMap();
-        LogUtils.showLog("examIndex=" + examIndex + "...contains=" + (selectMap.containsKey(examIndex)));
-        if (selectMap.containsKey(examIndex)) {
-            for (int ik = 0; ik < itemList.size(); ik++) {
-                ItemQuestionBean innerBean = new ItemQuestionBean();
-                ItemQuestionBean itemQuestionBean = itemList.get(ik);
-                innerBean.setItemType(itemQuestionBean.getItemType());
-                innerBean.setContent(itemQuestionBean.getContent());
-                innerBean.setSelectIndex(selectMap.get(examIndex) == ik ? ik : -1);
-                dealList.add(innerBean);
-            }
-        } else {
-            dealList.addAll(itemList);
-        }
-        setExamData(dealList);
-    }
-
 
     private void setExamData(List<ItemQuestionBean> dealList) {
         listData.addAll(dealList);

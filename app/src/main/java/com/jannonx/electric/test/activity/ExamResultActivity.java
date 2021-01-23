@@ -73,9 +73,8 @@ public class ExamResultActivity extends BaseNoToolbarActivity<ActvityExamResultB
             LogUtils.showLog("right=" + testQuestionBean.getRightItem().getDes());
             LogUtils.showLog("containsKey=" + (selectMap.containsKey(ik)));
             if (selectMap.containsKey(ik)) {
-                //map存储的是item的index值，从0开始；abcd，对应的值是从1开始
-                innerBean.setSelectItem(ItemQuestionType.toType((selectMap.get(ik) + 1)));
-                LogUtils.showLog("selectMap=" + (ItemQuestionType.toType((selectMap.get(ik) + 1)).getDes()));
+                innerBean.setSelectItem(ItemQuestionType.toType((selectMap.get(ik) )));
+                LogUtils.showLog("selectMap=" + (ItemQuestionType.toType((selectMap.get(ik) )).getDes()));
                 LogUtils.showLog("result=" + innerBean.getResultType().getDes());
             }
             dealList.add(innerBean);

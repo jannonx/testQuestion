@@ -3867,7 +3867,9 @@ drawable bg_gray_cccccc_round
 drawable bg_gray_eeeeee_corner_3
 drawable bg_gray_f8f8f8_corner_6
 drawable bg_gray_f8f8f8_stroke_33333_corner_6
+drawable bg_green_52d091_corner_6
 drawable bg_green_52d091_round
+drawable bg_orange_f36c4e_corner_6
 drawable bg_orange_f36c4e_round
 drawable bg_orange_ffece3_corner_2
 drawable bg_tab_progress
@@ -4648,6 +4650,7 @@ menu picker_menu
 menu select_menu
 mipmap back
 mipmap bg_result
+mipmap ic_empty_select
 mipmap ic_launcher
 mipmap ic_launcher_round
 mipmap ic_rb_select

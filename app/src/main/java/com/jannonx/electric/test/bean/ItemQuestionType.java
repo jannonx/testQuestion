@@ -13,19 +13,19 @@ public enum ItemQuestionType implements Serializable {
     /**
      * 选择A
      */
-    TYPE_A(1, "A","选择A"),
+    TYPE_A(0, "A","选择A"),
     /**
      * 选择B
      */
-    TYPE_B(2, "B","选择B"),
+    TYPE_B(1, "B","选择B"),
     /**
      * 选择C
      */
-    TYPE_C(3, "C","选择C"),
+    TYPE_C(2, "C","选择C"),
     /**
      * 选择D
      */
-    TYPE_D(4, "D","选择D");
+    TYPE_D(3, "D","选择D");
 
 
     private int code;

@@ -18,25 +18,27 @@ public class ItemAnswerQuestionBindingImpl extends ItemAnswerQuestionBinding  {
         sViewsWithIds.put(R.id.cl_item_root, 1);
         sViewsWithIds.put(R.id.tv_item, 2);
         sViewsWithIds.put(R.id.tv_content, 3);
+        sViewsWithIds.put(R.id.iv_select_result, 4);
     }
     // views
     @NonNull
-    private final android.widget.LinearLayout mboundView0;
+    private final androidx.appcompat.widget.LinearLayoutCompat mboundView0;
     // variables
     // values
     // listeners
     // Inverse Binding Event Handlers
 
     public ItemAnswerQuestionBindingImpl(@Nullable androidx.databinding.DataBindingComponent bindingComponent, @NonNull View root) {
-        this(bindingComponent, root, mapBindings(bindingComponent, root, 4, sIncludes, sViewsWithIds));
+        this(bindingComponent, root, mapBindings(bindingComponent, root, 5, sIncludes, sViewsWithIds));
     }
     private ItemAnswerQuestionBindingImpl(androidx.databinding.DataBindingComponent bindingComponent, View root, Object[] bindings) {
         super(bindingComponent, root, 0
             , (androidx.constraintlayout.widget.ConstraintLayout) bindings[1]
-            , (android.widget.TextView) bindings[3]
-            , (android.widget.TextView) bindings[2]
+            , (androidx.appcompat.widget.AppCompatImageView) bindings[4]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[3]
+            , (androidx.appcompat.widget.AppCompatTextView) bindings[2]
             );
-        this.mboundView0 = (android.widget.LinearLayout) bindings[0];
+        this.mboundView0 = (androidx.appcompat.widget.LinearLayoutCompat) bindings[0];
         this.mboundView0.setTag(null);
         setRootTag(root);
         // listeners

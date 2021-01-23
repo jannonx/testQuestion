@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:background="@color/color_green_00B578">
@@ -16,34 +16,46 @@
             android:layout_marginTop="@dimen/dp_16"
             android:layout_marginEnd="@dimen/dp_12"
             android:background="@drawable/bg_gray_f8f8f8_corner_6"
-            android:padding="@dimen/dp_12"
+            tools:background="@drawable/bg_orange_f36c4e_corner_6"
+            android:padding="@dimen/dp_8"
             app:layout_scrollFlags="scroll|enterAlways">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_black_333333"
+                tools:textColor="@color/white"
                 android:textSize="@dimen/sp_16"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="A" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_content"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_18"
+                android:layout_marginStart="@dimen/dp_8"
+                android:layout_marginEnd="@dimen/dp_8"
                 android:gravity="start"
                 android:textColor="@color/color_black_333333"
-                android:textSize="@dimen/sp_16"
+                android:textSize="@dimen/sp_14"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                tools:textColor="@color/white"
+                app:layout_constraintEnd_toStartOf="@+id/iv_select_result"
                 app:layout_constraintStart_toEndOf="@+id/tv_item"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="内容内容内容内容内容" />
+                tools:text="内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_select_result"
+                android:layout_width="@dimen/dp_25"
+                android:src="@mipmap/ic_wrong_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="@dimen/dp_25"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

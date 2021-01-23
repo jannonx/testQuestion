@@ -9,8 +9,19 @@ import java.io.Serializable;
  * @company: 固远（深圳）信息技术有限公司
  */
 public class ExamConditionBean implements Serializable {
+    /**
+     * 选中浏览Index
+     */
     private int browsePosition;
+    /**
+     * 浏览类型
+     */
     private ExamFunctionType functionType;
+
+    /**
+     * 试题bean
+     */
+    private TestQuestionBean testQuestionBean;
 
     public ExamConditionBean() {
     }
@@ -34,5 +45,13 @@ public class ExamConditionBean implements Serializable {
 
     public void setFunctionType(ExamFunctionType functionType) {
         this.functionType = functionType;
+    }
+
+    public TestQuestionBean getTestQuestionBean() {
+        return testQuestionBean;
+    }
+
+    public void setTestQuestionBean(TestQuestionBean testQuestionBean) {
+        this.testQuestionBean = testQuestionBean;
     }
 }

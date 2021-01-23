@@ -1,11 +1,11 @@
 [
     {
-        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\home_bar.xml",
-        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\home_bar.xml"
-    },
-    {
         "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\actvity_exam_result.xml",
         "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\actvity_exam_result.xml"
+    },
+    {
+        "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\home_bar.xml",
+        "source": "E:\\AndroidStudio Files\\testQuestion\\app\\src\\main\\res\\layout\\home_bar.xml"
     },
     {
         "merged": "E:\\AndroidStudio Files\\testQuestion\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_list.xml",
