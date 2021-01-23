@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.hughsheng'
+
+android {
+    compileSdkVersion BuildConfig.compileSdkVersion
+    buildToolsVersion BuildConfig.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion BuildConfig.minSdkVersion
+        targetSdkVersion BuildConfig.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    compileOnly Android.meteria
+    compileOnly AndroidX.appcompat
+    compileOnly AndroidX.constraintlayout
+    compileOnly AndroidX.recyclerview
+
+    testCompileOnly Depend.junit
+    androidTestCompileOnly Depend.androidTestJunit
+    androidTestCompileOnly Depend.espressoCore
+
+    //hilt
+//    implementation Hilt.daggerRuntime
+//    kapt Hilt.daggerCompiler
+//    implementation Hilt.viewModule
+//    kapt Hilt.compiler
+
+
+    implementation AndroidX.lifeCycleExtension
+    implementation AndroidX.lifecycleRuntime
+    implementation AndroidX.lifeCycleKT
+
+    compileOnly SpinKit.runtime
+
+    //retrofit
+    compileOnly Retrofit.runtime
+    compileOnly Retrofit.gson
+    compileOnly Retrofit.adapter
+    compileOnly Retrofit.logging
+
+}

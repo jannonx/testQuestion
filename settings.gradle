@@ -1,0 +1,4 @@
+include ':httplibrary'
+include ':mvvmlibrary'
+include ':app','easy_recyclerview_library'
+rootProject.name = "Electric"

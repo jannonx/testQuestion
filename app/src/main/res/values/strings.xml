@@ -1,0 +1,497 @@
+<resources>
+
+    <array name="focus_assess_title">
+        <item>评审概况</item>
+        <item>评审异常</item>
+        <item>评审详情</item>
+    </array>
+    <array name="focus_purchase_title">
+        <item>采购概况</item>
+        <item>采购异常</item>
+        <item>采购详情</item>
+    </array>
+    <array name="work_project_title">
+        <item>现场勘查</item>
+        <item>清点货物</item>
+        <item>安全排查</item>
+        <item>安装调试</item>
+        <item>客户验收</item>
+    </array>
+    <array name="focus_quality_title">
+        <item>质检概况</item>
+        <item>关键零部件质检</item>
+        <item>委外关键零部件质检</item>
+        <item>原材料质检报告</item>
+        <item>质检异常</item>
+    </array>
+
+    <array name="focus_transport_title">
+        <item>运输跟踪</item>
+        <item>已送达</item>
+    </array>
+
+    <array name="focus_device_title">
+        <item>设备概况</item>
+        <item>设备异常</item>
+        <item>设备详情</item>
+    </array>
+
+    <array name="focus_produce_title">
+        <item>生产概况</item>
+        <item>生产异常</item>
+        <item>生产详情</item>
+    </array>
+
+    <array name="focus_after_sale_title">
+        <item>验收合格</item>
+        <item>验收不合格</item>
+    </array>
+    <array name="work_after_sale_title">
+        <item>故障排查</item>
+        <item>客户验收</item>
+    </array>
+    <array name="work_customer_title">
+        <item>全部客户</item>
+        <item>我的跟进</item>
+    </array>
+    <array name="work_purchase_title">
+        <item>采购原材料</item>
+        <item>采购关键零部件</item>
+    </array>
+
+    <array name="work_assess_title">
+        <item>合同评审</item>
+        <item>新建评审</item>
+        <item>我的新建</item>
+    </array>
+
+    <array name="control">
+        <item>安全管理</item>
+        <item>人员管理</item>
+        <item>设备管理</item>
+        <item>质量管理</item>
+        <item>生产管理</item>
+    </array>
+    <array name="control_device">
+        <item>设备保养</item>
+        <item>故障报修</item>
+        <item>保养记录</item>
+        <item>维修执行</item>
+    </array>
+    <array name="office_approve">
+        <item>请假</item>
+        <item>出差</item>
+        <item>外出</item>
+        <item>加班</item>
+        <item>招聘</item>
+        <item>离职</item>
+        <item>报销</item>
+        <item>付款</item>
+        <item>备用金</item>
+        <item>用印</item>
+        <item>通用审批</item>
+        <item>采购</item>
+    </array>
+
+    <array name="smart_control_url_array">
+        <item>RealTimeProgress_safe</item>
+        <item>RealTimeProgress_person</item>
+        <item>RealTimeProgress_device</item>
+        <item>RealTimeProgress_quality</item>
+        <item>RealTimeProgress_stock</item>
+        <item>RealTimeProgress_produce</item>
+        <item>RealTimeProgress_contract</item>
+        <item>RealTimeProgress_contract</item>
+        <item>REAL_TIME_PROGRESS_FINANCIAL_MANAGEMENT</item>
+    </array>
+
+    <array name="apply_for_leave_type">
+        <item>年假</item>
+        <item>事假</item>
+        <item>病假</item>
+        <item>调休</item>
+        <item>产假</item>
+        <item>陪产假</item>
+        <item>婚假</item>
+        <item>例假</item>
+        <item>丧假</item>
+        <item>哺乳假</item>
+    </array>
+
+
+    <!--过程控制-->
+    <array name="control_security">
+        <item>日常巡查</item>
+        <item>巡查记录</item>
+        <item>危险上报</item>
+        <item>上报记录</item>
+    </array>
+
+    <array name="control_security_search_result">
+        <item>有隐患</item>
+        <item>无隐患</item>
+        <item>报警</item>
+    </array>
+
+    <array name="control_security_danger_degree">
+        <item>预警</item>
+        <item>轻微</item>
+        <item>严重</item>
+    </array>
+
+
+    <array name="control_produce">
+        <item>完工报告</item>
+        <item>异常报告</item>
+        <item>我的报告</item>
+        <item>异常查看</item>
+    </array>
+
+    <array name="produce_type">
+        <item>开始</item>
+        <item>完工</item>
+    </array>
+
+    <array name="quality_handle_type">
+        <item>返工</item>
+        <item>报废</item>
+        <item>无需处理</item>
+    </array>
+    <array name="quality_material_handle_type">
+        <item>退货</item>
+    </array>
+    <array name="quality_test_method">
+        <item>全部质检</item>
+        <item>抽检</item>
+    </array>
+
+    <array name="quality_qualified_type">
+        <item>合格</item>
+        <item>不合格</item>
+    </array>
+
+    <array name="control_stock">
+        <item>成品库存</item>
+        <!--        <item>部件库存</item>-->
+        <!--        <item>零件库存</item>-->
+        <item>材料库存</item>
+        <item>异常填报</item>
+        <item>库存列表</item>
+        <item>异常列表</item>
+    </array>
+
+    <array name="control_stock_type">
+        <item>成品</item>
+        <item>原材料</item>
+    </array>
+
+    <array name="control_qc_feedback">
+        <item>成品报告</item>
+        <item>原材料报告</item>
+        <item>我的报告</item>
+    </array>
+
+
+    <array name="real_time_device">
+        <item>设备概况</item>
+        <item>设备异常</item>
+        <item>设备详情</item>
+    </array>
+
+
+    <array name="focus_security">
+        <item>安全概况</item>
+        <item>安全异常</item>
+        <item>安全详情</item>
+    </array>
+
+    <array name="focus_stock">
+        <item>库存概况</item>
+        <item>库存异常</item>
+        <item>库存详情</item>
+    </array>
+
+    <array name="real_time_produce">
+        <item>时段概览</item>
+        <item>完工报告</item>
+        <item>异常情况</item>
+    </array>
+
+
+    <array name="real_time_produces">
+        <item>生产概况</item>
+        <item>生产异常</item>
+        <item>生产详情</item>
+    </array>
+    <array name="focus_client_tab">
+        <item>跟进动态</item>
+        <item>基础信息</item>
+    </array>
+    <array name="focus_site_explore">
+        <item>勘察记录</item>
+        <item>勘察内容</item>
+    </array>
+    <array name="focus_check_safe">
+        <item>排查记录</item>
+        <item>排查内容</item>
+    </array>
+    <array name="focus_check_good">
+        <item>清点记录</item>
+        <item>清点内容</item>
+    </array>
+    <array name="focus_install_debug">
+        <item>施工动态</item>
+        <item>施工视频</item>
+    </array>
+    <array name="focus_customer_acceptance">
+        <item>验收记录</item>
+        <item>安装项目</item>
+    </array>
+    <array name="focus_produce_tab">
+        <item>生产动态</item>
+        <item>生产计划</item>
+    </array>
+    <array name="real_time_quality">
+        <item>质量概况</item>
+        <item>质量异常</item>
+        <item>质量详情</item>
+    </array>
+
+    <array name="focus_after_sale">
+        <item>排查记录</item>
+        <item>问题描述</item>
+    </array>
+    <!--过程控制-->
+
+    <!--实时进展-->
+    <array name="real_order">
+        <item>订单概况</item>
+        <item>订单异常</item>
+        <item>订单详情</item>
+    </array>
+
+    <array name="order_progress">
+        <item>订单录入</item>
+        <item>订单生产</item>
+        <item>材料出库</item>
+        <item>成品入库</item>
+        <item>订单发货</item>
+        <item>订单出库</item>
+        <item>订单发票</item>
+    </array>
+    <array name="order_progress_start">
+        <item>销售订单录入</item>
+        <item>生产订单</item>
+    </array>
+    <array name="order_progress_execute">
+        <item>材料已出库</item>
+        <item>产成品已入库</item>
+    </array>
+
+    <array name="order_progress_finish">
+        <item>已发货</item>
+        <item>销售已出库</item>
+        <item>销售已发票</item>
+    </array>
+
+    <array name="real_contract">
+        <item>合同概览</item>
+        <item>合同报告</item>
+        <item>异常情况</item>
+    </array>
+
+    <array name="real_stock">
+        <item>库存概况</item>
+        <item>库存异常</item>
+        <item>库存详情</item>
+    </array>
+
+    <array name="work_matter_apply_title">
+        <item>领料申请</item>
+        <item>我的申请</item>
+    </array>
+
+    <array name="smart_manage_analyse">
+        <item>合同流程</item>
+    </array>
+
+    <!--掌上办公-审批处理-->
+    <array name="office_approval_title">
+        <item>待审批</item>
+        <item>我已审批</item>
+    </array>
+
+    <string name="app_name">答题</string>
+
+    <string name="return_previous">返回</string>
+
+
+    <!--实时进展-->
+
+
+    <!--智慧管理-->
+
+    <string name="laser_cutting_machine">激光切割机</string>
+
+
+    <!--智慧管理-->
+
+    <string name="album">相册</string>
+    <string name="select_maximum">最多选择%1$d张</string>
+    <string name="start_meeting">发起会议</string>
+    <string name="announcement">通知</string>
+    <string name="mobile_office">移动办公</string>
+    <string name="examine_and_approve">审批</string>
+    <string name="live_stream_meeting">视频会议</string>
+    <string name="focus_smart_control">智能管控</string>
+    <string name="real_time_progress">实时进展</string>
+    <string name="device_management">设备管理</string>
+    <string name="process_control">过程控制</string>
+    <string name="security_management">安全管理</string>
+    <string name="you_got_meeting">您有会议邀请</string>
+    <string name="meeting_starter">会议发起人</string>
+    <string name="meeting_attendant">会议参与者</string>
+    <string name="request_permission">敬请授权</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="please_select_meeting_attendants">请选择1-12人参加视频会议</string>
+    <string name="search">搜索</string>
+    <string name="hr_management">人员管理</string>
+    <string name="hr_administration">人员管理</string>
+    <string name="staff_location">人员位置</string>
+    <string name="staff_status">人员状况</string>
+    <string name="staff_performance">人员业绩</string>
+    <string name="staff_number">工作人数：</string>
+    <string name="live_stream">实时画面</string>
+    <string name="please_input_achievement">请输入产出值</string>
+    <string name="sign_in_success">签到成功</string>
+    <string name="you_have_signed_off">你已签退</string>
+    <string name="quality_control">质量管理</string>
+    <string name="staff_sign_in">人员签到</string>
+    <string name="staff_sign_off">人员签退</string>
+    <string name="update_achievement">业绩上报</string>
+    <string name="submit">提交</string>
+    <string name="total_staffs_number">公司总人数</string>
+    <string name="no_data">无数据</string>
+    <string name="default_title_realtime_progress">我的关注</string>
+    <string name="default_title_process_control">我的工作</string>
+    <string name="default_title_mobile_office">掌上办公</string>
+    <string name="default_title_smart_analysis">智慧管理</string>
+    <string name="analysis_stock_overview_description">安全库存是预防急单和产能不足而设置的库存量，能够缓解急单对半成品生产的冲击、均衡生产能力。建立合适的安全库存，保证库存齐套性。齐套的库存有利货物尽快发出，减少等待时间，并且尽量避免高价值物料等待低价值物料。</string>
+    <string name="analysis_stock_turn_over_description">从控制的基本过程：测量、诊断、调整来看，统计分析是库存控制的基础。通过库存周转率、合同及发货率等统计指标，从降低库存、满足需求两方面体现生产运作水平。库存周转率的提高意味着缺货风险增大，或因小批量采购导致成本增加。库存控制不等于一味强调低库存、高周转率。</string>
+    <string name="analysis_stock_summary_description">
+        1，原材料库存中呆滞和冗余物料占有较大比例，主要原因是以往呆滞料处理相应操作有做，但形成的决定没有得到有效执行，以后须强调处理的及时性和加大处理力度
+        2，开发设计过程中需要的新材料应优先在原材料中挑用，便于增强库存材料的通用性，减少品号数量
+        3，加强销售、生产计划性，合理安排成品库存，当部分产品及滞销或面临淘汰时及时调整相应安全库存额定量，压缩对应原材料采购量，从而避免呆滞。</string>
+    <string name="please_input_search_item">请输入搜索内容</string>
+    <string name="security_report">报&#8194;警&#8194;人</string>
+    <string name="please_input_name_to_search">请输入姓名搜索</string>
+    <string name="textLength">%d/240</string>
+
+    <!--我的关注-采购-->
+    <string name="focus_purchase_code">代号：%s</string>
+    <string name="focus_purchase_spec">规格：%s</string>
+    <string name="focus_purchase_quality">材质：%s</string>
+    <string name="focus_purchase_return">退货数量：%d</string>
+    <string name="focus_purchase_replace">换货数量：%d</string>
+    <string name="focus_purchase_result">质检结果：%s</string>
+    <string name="focus_purchase_return_reason">退货原因：%s</string>
+    <string name="focus_purchase_replace_reason">换货原因：%s</string>
+    <string name="focus_purchase_delay_reason">拖期原因：%s</string>
+    <string name="focus_purchase_project_code">项目编号：%s</string>
+    <string name="focus_purchase_project_name">项目名称：%s</string>
+    <string name="focus_purchase_support_name">供应商名称：%s</string>
+    <string name="focus_purchase_person">操作人：%s</string>
+    <string name="focus_purchase_provide">供应商&#12288;&#12288;&#12288;&#12288;&#12288;<font color='#757575'>%s</font></string>
+    <string name="focus_purchase_contract_code">合同编号&#12288;&#12288;&#12288;&#12288;<font color='#757575'>%s</font></string>
+    <string name="focus_purchase_sign_time">签订时间&#12288;&#12288;&#12288;&#12288;<font color='#757575'>%s</font></string>
+    <string name="focus_purchase_arrive_time">到货时间&#12288;&#12288;&#12288;&#12288;<font color='#757575'>%s</font></string>
+    <string name="focus_purchase_person_in">采购跟进人&#12288;&#12288;&#12288;<font color='#757575'>%s</font></string>
+    <string name="focus_purchase_sign_person">签订人员&#12288;&#12288;&#12288;&#12288;<font color='#757575'>%s</font></string>
+    <string name="focus_purchase_record_reason">换货原因：%s</string>
+    <string name="focus_purchase_record_from">来自部门：%s</string>
+    <string name="focus_purchase_seal_person">销售人员：%s</string>
+
+
+    <!--我的关注-评审-->
+    <string name="focus_assess_point">评审点%d</string>
+
+    <!--我的工作-货物签收-->
+    <string name="work_goods_sign_contract">合同编号：%s</string>
+    <string name="work_goods_sign_person">采购跟进：%s</string>
+    <string name="work_goods_sign_time">到货时间：%s</string>
+    <string name="work_goods_sign_total_number">总数量：%d</string>
+    <string name="work_goods_sign_exchange_number">换货数量：%d</string>
+    <string name="work_goods_sign_return_number">退货数量：%d</string>
+    <string name="work_goods_sign_unit">单位：%s</string>
+    <string name="work_goods_sign_spec">规格：%s</string>
+    <string name="work_goods_sign_material">材质：%s</string>
+    <string name="work_goods_sign_remark">备注：%s</string>
+    <string name="piece_number">%d&#12288;件</string>
+
+    <!--通用字符-->
+    <string name="project_name">项目名称：%s</string>
+    <string name="project_code">项目编号：%s</string>
+    <string name="customer_name">客户名称：%s</string>
+    <string name="car_number">车牌号：%s</string>
+    <string name="description">描述：%s</string>
+    <string name="goods_number">货物数量：%d</string>
+    <string name="phone_number">手机号：%s</string>
+    <string name="code">代号：%s</string>
+    <string name="spec">规格：%s</string>
+    <string name="quality">材质：%s</string>
+    <string name="remark">备注：%s</string>
+    <string name="contract_person">联系人：%s</string>
+    <string name="commit_person">提交人：%s</string>
+    <string name="product_name">产品名称：%s</string>
+    <string name="product_code">产品代号：%s</string>
+    <string name="number">数量：%d</string>
+    <string name="contract_code">合同编号：%s</string>
+    <string name="sales_person_name">销售人员：%s</string>
+    <string name="return_goods_number">退货数量：%d</string>
+    <string name="replace_goods_number">换货数量：%d</string>
+
+    <!--我的关注-售后-->
+    <string name="focus_after_sale_project_name">项目名称：%s</string>
+    <string name="focus_after_sale_customer_name">客户名称：%s</string>
+    <string name="focus_after_sale_address">施工地址：%s</string>
+    <string name="focus_after_sale_person">排查人员：%s</string>
+    <string name="focus_after_sale_question_type">问题类型：%s</string>
+    <string name="focus_after_sale_idea">处理意见：%s</string>
+    <string name="focus_after_sale_description_">描述：%s</string>
+
+    <!--我的关注-运输-->
+    <string name="focus_transport_car_number">车牌号：%s</string>
+    <string name="focus_transport_phone_number">手机号：%s</string>
+    <string name="focus_transport_goods_number">货物数量：%d</string>
+    <string name="focus_transport_code">代号：%s</string>
+    <string name="focus_transport_spec">规格：%s</string>
+    <string name="focus_transport_remark">备注：%s</string>
+    <string name="focus_transport_contract_name">联系人：%s</string>
+    <string name="focus_transport_total_number">共%d个</string>
+    <string name="focus_transport_arrive_address">收货地址：%s</string>
+    <string name="focus_transport_plan_arrive_time">预计到货时间：%s</string>
+    <string name="focus_transport_driver_phone">司机手机号：%s</string>
+    <string name="focus_transport_send_code">发货编号：%s</string>
+
+    <!--我的工作-物料申请-->
+    <string name="work_matter_apply_spec">材料规格：%s</string>
+    <string name="work_matter_apply_project_name">项目名称：%s</string>
+    <string name="work_matter_apply_person_name">审核人员：%s</string>
+    <string name="work_matter_apply_time">审核时间：%s</string>
+    <string name="work_matter_apply_number">领用数量：%d</string>
+
+    <!--我的工作-货物签收-->
+    <string name="work_goods_sign_tip">重要提醒：请认真核对实际到货产品信息和数量是否一致，谢谢！</string>
+
+    <!--掌上办公-审批-->
+    <string name="office_approval_duty_unit">责任单位：%s</string>
+    <string name="office_approval_pause_reason">暂停原因：%s</string>
+
+    <!--消息-->
+    <string name="message_no_data_tip">暂无消息</string>
+
+    <!--审批-->
+    <string name="contract_pause_tip">暂停：申请一旦通过系统审核，系统会自动终止所有进行中的任务！项目状态将显示暂停中标识。请谨慎操作！</string>
+    <string name="contract_restart_tip">重启：申请一但通过系统审核，系统会重启所有暂停中的任务，该项目将状态恢复正常，请确认好信息无误的情况下提交重启申请，谢谢！</string>
+</resources>
