@@ -83,7 +83,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_8"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/dp_16"
                     android:background="@color/color_grey_eeeeee" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -91,10 +91,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dp_12"
-                    android:layout_marginTop="@dimen/dp_16"
+                    android:layout_marginTop="@dimen/dp_18"
                     android:text="试题解析"
                     android:textColor="@color/color_black_333333"
-                    android:textSize="@dimen/sp_20"
+                    android:textSize="@dimen/sp_18"
                     android:textStyle="bold" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
